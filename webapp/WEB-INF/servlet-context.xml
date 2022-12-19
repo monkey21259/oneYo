@@ -11,7 +11,7 @@
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/jndi_spring_orclKGY00"></property>
+		<property name="jndiName" value="java:comp/env/jdbc/jndi_spring_orclJSH00"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
