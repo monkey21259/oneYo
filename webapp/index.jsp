@@ -8,5 +8,6 @@
 	</head>
 	<body>
 		<a href="testSelectAll.ict">testSALL</a>
+		[221219] kgy - 변경 테스트
 	</body>
 </html>
