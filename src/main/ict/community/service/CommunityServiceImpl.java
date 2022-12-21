@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.community.dao.CommunityDAO;
-import main.ict.community.vo.CommunityVO;
+import main.ict.community.vo.CommunityVO; 
 
 @Service
 @Transactional

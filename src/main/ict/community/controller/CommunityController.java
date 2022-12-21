@@ -22,7 +22,7 @@ public class CommunityController {
 		
 //커뮤니티 게시글 등록(INSERT)
 	@GetMapping("communityInsertForm")
-	public String communityInsertForm() {
+	public String communityInsertForm() { 
 		
 		logger.info("communityInsertForm 함수 진입>>> : ");
 		

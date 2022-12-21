@@ -17,7 +17,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 	Logger logger = LogManager.getLogger(CommunityServiceImpl.class);
 	
 	@Autowired(required = false)
-	private SqlSession sqlSession; 
+	private SqlSession sqlSession;  
 	
 	@Override
 	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {

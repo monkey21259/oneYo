@@ -40,7 +40,7 @@
 		
 			List<CommunityVO> listAll = (List<CommunityVO>)obj;
 			
-				for(int i=0; i<listAll.size(); i++){
+				for(int i=0; i<listAll.size(); i++){ 
 					CommunityVO cvo = listAll.get(i);
 		%>
 			

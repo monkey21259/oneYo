@@ -1,7 +1,7 @@
 package main.ict.community.vo;
 
 public class CommunityVO {
-
+ 
 	private String row_num; //글 순위
 	private String cnum; //글번호
 	private String csubject; //글제목
