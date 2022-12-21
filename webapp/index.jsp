@@ -30,6 +30,10 @@
 		20221221 김기영 : ㅁ랸헝ㄴ래휴ㅗㄴㅇ려호ㅠㅜㅇㄹㄶ[ㅑㅕ90ㅇ로해ㅑㅇ로]
 		
 		<a href="memGrade.ict">회원가입 넘어가기 테스트~~~~</a>
-		 
+		
+		<!-- Community -->
+		<a href="communityInsertForm.ict">커뮤니티 게시글 등록</a><br>
+		<a href="communitySelectAll.ict">커뮤니티 게시판 전체보기</a><br>
+
 	</body>
 </html> 
