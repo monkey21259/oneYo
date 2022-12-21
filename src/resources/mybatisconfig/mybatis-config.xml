@@ -7,7 +7,6 @@
 		<typeAlias type="main.ict.test.vo.TestVO" alias="testvo"/>
 		<typeAlias type="main.ict.mem.vo.MemVO" alias="memvo"/>
 		<typeAlias type="main.ict.community.vo.CommunityVO" alias="communityvo"/>
-		
-		
+			
 	</typeAliases>
 </configuration>
