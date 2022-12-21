@@ -24,7 +24,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
 		logger.info("CommunitySelcetAll 서비스 진입 >>> ");
 		
-		return communityDAO.communitySelcetAll(cvo);
+		return communityDAO.communitySelcetAll(cvo); 
 	}
 
 	

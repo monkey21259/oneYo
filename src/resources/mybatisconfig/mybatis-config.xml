@@ -9,4 +9,4 @@
 		<typeAlias type="main.ict.community.vo.CommunityVO" alias="communityvo"/>
 			
 	</typeAliases>
-</configuration>
+</configuration> 

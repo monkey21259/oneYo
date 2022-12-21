@@ -3,7 +3,7 @@
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="main.ict.community.dao.CommunityDAO">
-
+ 
 <!-- 전체조회 -->
 <select id="communitySelcetAll" resultType="communityvo">
 	SELECT	 ROW_NUMBER() OVER (ORDER BY A.INSERTDATE, A.CNUM DESC) AS ROW_NUM

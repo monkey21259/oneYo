@@ -24,7 +24,7 @@ public class CommunityController {
 	@GetMapping("communityInsertForm")
 	public String communityInsertForm() {
 		
-		logger.info("communityInsertForm 함수 진입 >>> : ");
+		logger.info("communityInsertForm 함수 진입>>> : ");
 		
 		return "community/communityInsertForm";
 	}

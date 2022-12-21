@@ -7,7 +7,7 @@ import main.ict.community.vo.CommunityVO;
 public interface CommunityService {
 
 //커뮤니티 게시글 전체조회	
-	public List<CommunityVO> communitySelcetAll(CommunityVO cvo);
+	public List<CommunityVO> communitySelcetAll(CommunityVO cvo); 
 
 
 }//class

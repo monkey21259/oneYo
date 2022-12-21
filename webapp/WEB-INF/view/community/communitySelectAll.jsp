@@ -10,10 +10,10 @@
 	request.setCharacterEncoding("UTF-8");
 
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("CommunitySelectAll 진입 >>> : ");
+	logger.info("CommunitySelectAll 진입 >>> : "); 
 %>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 	<head>
 		<meta charset="UTF-8">
