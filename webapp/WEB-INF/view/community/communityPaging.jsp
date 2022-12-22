@@ -118,7 +118,7 @@ if(curGroup > 0){
 <%
 	} else{
 		logger.info("그룹범위내에서 페이지 링크 else");
-		
+		 
 %>
 	[<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>"><%=linkPage %></a>]&nbsp;
 <%

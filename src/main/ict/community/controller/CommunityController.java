@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import main.ict.common.ChabunUtils;
 import main.ict.common.CommonUtils;
+import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
 
@@ -20,12 +22,21 @@ public class CommunityController {
 
 	@Autowired(required = false)  
 	private CommunityService communityService;
-		
+	
+	@Autowired(required = false)  
+	private ChabunUtils chabunUtils;
+	
+	@Autowired(required = false)  
+	private ChabunService chabunService;
+			
 //커뮤니티 게시글 등록(INSERT)
 	@GetMapping("communityInsertForm")
 	public String communityInsertForm() { 
 		
 		logger.info("communityInsertForm 함수 진입>>> : ");
+		
+		//채번
+		String cnum = chabunUtils.getCommunityChabun("C", chabunService.getCommunityChabun().getCnum());
 		
 		return "community/communityInsertForm";
 	}
