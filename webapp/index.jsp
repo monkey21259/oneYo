@@ -34,6 +34,11 @@
 		<!-- Community -->
 		<a href="communityInsertForm.ict">커뮤니티 게시글 등록</a><br>
 		<a href="communitySelectAll.ict">커뮤니티 게시판 전체보기</a><br>
+		
+		<!-- Tip (전문가 팁) -->
+		<hr>
+		<a href="tipInsertForm.ict">전문가 팁 등록</a><br>
+		<a href="tipSelectAll.ict">전문가 팁 전체조회</a>
 
 	</body>
 </html> 

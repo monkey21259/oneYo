@@ -2,33 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="main.ict.community.vo.CommunityVO">
-
+<mapper namespace="main.ict.community.dao.CommunityDAO">
+  
 <!-- 전체조회 -->
-<select id = "communitySelectAll" resultType="communityvo">
-	SELECT	  A.CNUM AS CNUM
-			, A.CSUBJECT AS CSUBJECCT
+<select id="communitySelcetAll" resultType="communityvo">
+	SELECT	 ROW_NUMBER() OVER (ORDER BY A.INSERTDATE, A.CNUM DESC) AS ROW_NUM
+			, A.CNUM AS CNUM
+			, A.CSUBJECT AS CSUBJECT
 			, A.CCONTENT AS CCONTENT
 			, A.CPHOTO AS CPHOTO
 			, A.WARNING AS WARNING
-			, A.MNUM AS MNUM
-			, A.CHIT AS CHT
+			, B.MNUM AS MNUM
+       		, B.MNICK AS MNICK
+			, A.CHIT AS CHIT
 			, A.DELETEYN AS DELETEYN
 			, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
 			, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-	FROM ICT_COMMUNITY A
-	WHERE A.DELETEYN ='Y'
-	ORDER BY 1
-
+	FROM  "ORCLICT00"."ICT_COMMUNITY" A
+         ,"ORCLICT00"."ICT_MEMBER"    B
+	WHERE   A.MNUM = B.MNUM
+	AND     A.DELETEYN = 'Y'
+	AND     B.DELETEYN = 'Y'
+	ORDER BY A.INSERTDATE, A.CNUM DESC
 </select>
 
 
-
-
-
-
-
 </mapper>     
-
-
-
