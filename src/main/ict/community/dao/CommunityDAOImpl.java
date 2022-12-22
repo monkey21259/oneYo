@@ -18,7 +18,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 	
 	@Autowired(required = false)
 	private SqlSession sqlSession;  
-	
+	 
 	@Override
 	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
 		logger.info("communitySelcetAll DAO >>> : ");

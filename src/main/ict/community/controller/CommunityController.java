@@ -18,7 +18,7 @@ public class CommunityController {
 
 	Logger logger = LogManager.getLogger(CommunityController.class);
 
-	@Autowired(required = false)
+	@Autowired(required = false)  
 	private CommunityService communityService;
 		
 //커뮤니티 게시글 등록(INSERT)
