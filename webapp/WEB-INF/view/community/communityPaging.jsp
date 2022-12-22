@@ -92,7 +92,7 @@ if(curGroup > 0){
 	<a href="<%=url%>?<%=str%>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
 	<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
 	
-<%  
+<% 
 } else {
 %>
 	◁◁&nbsp;&nbsp;&nbsp;◀&nbsp;&nbsp;&nbsp;
@@ -118,9 +118,12 @@ if(curGroup > 0){
 <%
 	} else{
 		logger.info("그룹범위내에서 페이지 링크 else");
+		
 %>
 	[<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>"><%=linkPage %></a>]&nbsp;
 <%
+	logger.info("그룹범위내에서 페이지 링크 else str >>>>>>>> : " + str);
+	logger.info("그룹범위내에서 페이지 링크 else linkPage >>>>>>>>> : " + linkPage);
 	}
 	linkPage++;
 	loopCount--;
@@ -128,8 +131,8 @@ if(curGroup > 0){
 
 //다음그룹이 있는 경우
 if(linkPage <= pageCount){
-	logger.info("다른 그룹이 있는 경우 linkPage" + linkPage);
-	logger.info("다른 그룹이 있는 경우 pageCount" + pageCount);
+	logger.info("다른 그룹이 있는 경우 linkPage >>> " + linkPage);
+	logger.info("다른 그룹이 있는 경우 pageCount >>> " + pageCount);
 %>
 	<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>">▶</a>&nbsp;&nbsp;&nbsp;
 	<a href="<%=url %>?<%=str %>curPage=<%=pageCount %>">▷▷</a>&nbsp;&nbsp;&nbsp;
