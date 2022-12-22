@@ -10,4 +10,4 @@
 		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/>
 		
 	</typeAliases>
-</configuration>
+</configuration>  
