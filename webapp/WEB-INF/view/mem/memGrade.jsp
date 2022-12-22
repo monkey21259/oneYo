@@ -4,8 +4,6 @@
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
 
-<% request.setCharacterEncoding("UTF-8"); %>
-
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
@@ -18,6 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>memGrade.jsp</title>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- <script type="text/javascript" src="/oneYo/resource/js/mem/memGrade.js" charset="UTF-8"></script> -->
 <script type="text/javascript">
@@ -54,11 +53,12 @@ $(document).ready(function(){
 	
 });
 </script>
+
 </head>
 <body>
-
 	test 두둥 등장
 	ict_mem.xml
+
 <div>
 <form id="memGradeForm">
 이거 다른건디 일단 쓰던거 마저 쓰기 ㅎㅎ;;
@@ -93,5 +93,6 @@ $(document).ready(function(){
 </table>
 </form>
 </div>
+
 </body>
 </html>
