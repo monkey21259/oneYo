@@ -4,11 +4,12 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="main.ict.test.vo.TestVO" alias="testvo"/>
+		
 		<typeAlias type="main.ict.mem.vo.MemVO" alias="memvo"/>
 		<typeAlias type="main.ict.community.vo.CommunityVO" alias="communityvo"/>
 		<typeAlias type="main.ict.notice.vo.NoticeVO" alias="noticevo"/>
  	<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/> 
+ 		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/>
 		
 	</typeAliases>
 </configuration>  

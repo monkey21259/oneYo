@@ -31,7 +31,8 @@
 		AND     B.DELETEYN = 'Y'
 		ORDER BY A.INSERTDATE, A.CNUM DESC
 	) WHERE pageSize = #{curPage}
-</select>
+	
+	</select>
 
+</mapper>     
 
-</mapper>

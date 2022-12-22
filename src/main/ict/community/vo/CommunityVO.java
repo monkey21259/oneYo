@@ -24,11 +24,12 @@ public class CommunityVO {
 	
 //디폴트생성자	
 	public CommunityVO() {
+		
 	}
-	
-//매개변수 있는 생성자	
-	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning, String mnum,
-			String mnick, String chit, String deleteyn, String insertdate, String updatedate) {
+
+	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning,
+			String mnum, String mnick, String chit, String deleteyn, String insertdate, String updatedate,
+			String pageSize, String groupSize, String curPage, String totalCount) {
 		this.row_num = row_num;
 		this.cnum = cnum;
 		this.csubject = csubject;
@@ -41,38 +42,11 @@ public class CommunityVO {
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 	}
-	
-//페이징추가한 생성자
-
-	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning,
-		String mnum, String mnick, String chit, String deleteyn, String insertdate, String updatedate, String pageSize,
-		String groupSize, String curPage, String totalCount) {
-	this.row_num = row_num;
-	this.cnum = cnum;
-	this.csubject = csubject;
-	this.ccontent = ccontent;
-	this.cphoto = cphoto;
-	this.warning = warning;
-	this.mnum = mnum;
-	this.mnick = mnick;
-	this.chit = chit;
-	this.deleteyn = deleteyn;
-	this.insertdate = insertdate;
-	this.updatedate = updatedate;
-	this.pageSize = pageSize;
-	this.groupSize = groupSize;
-	this.curPage = curPage;
-	this.totalCount = totalCount;
-}
-
-//getter. setter	
-	
-	
-	public String getCnum() {
-		return cnum;
-	}
-
 
 	public String getRow_num() {
 		return row_num;
@@ -80,6 +54,10 @@ public class CommunityVO {
 
 	public void setRow_num(String row_num) {
 		this.row_num = row_num;
+	}
+
+	public String getCnum() {
+		return cnum;
 	}
 
 	public void setCnum(String cnum) {
@@ -197,8 +175,5 @@ public class CommunityVO {
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
 	}
-
-
 	
 } //class
-
