@@ -34,6 +34,9 @@
 		<!-- Community -->
 		<a href="communityInsertForm.ict">커뮤니티 게시글 등록</a><br>
 		<a href="communitySelectAll.ict">커뮤니티 게시판 전체보기</a><br>
+		
+		<!-- 공지사항 : 20221222개발시작 -->
+		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a>
 
 	</body>
 </html> 
