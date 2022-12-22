@@ -7,12 +7,8 @@
 		<typeAlias type="main.ict.test.vo.TestVO" alias="testvo"/>
 		<typeAlias type="main.ict.mem.vo.MemVO" alias="memvo"/>
 		<typeAlias type="main.ict.community.vo.CommunityVO" alias="communityvo"/>
-<<<<<<< HEAD
-<!-- 		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/> -->
-=======
 		<typeAlias type="main.ict.notice.vo.NoticeVO" alias="noticevo"/>
-		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/>
->>>>>>> branch 'main' of https://github.com/monkey21259/oneYo.git
+<!-- 		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/> -->
 		
 	</typeAliases>
 </configuration>  
