@@ -153,6 +153,4 @@ public class MemVO {
 		this.updatedate = updatedate;
 	}
 	
-	
-
 }

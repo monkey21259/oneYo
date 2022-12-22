@@ -1,6 +1,7 @@
 package main.ict.community.vo;
 
-public class CommunityVO {
+public class CommunityVO { 
+
  
 	private String row_num; //글 순위
 	private String cnum; //글번호
@@ -15,13 +16,20 @@ public class CommunityVO {
 	private String insertdate; //등록일
 	private String updatedate; //수정일
 	
+//페이지
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
+	
 //디폴트생성자	
 	public CommunityVO() {
+		
 	}
-	
-//매개변수 있는 생성자	
-	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning, String mnum,
-			String mnick, String chit, String deleteyn, String insertdate, String updatedate) {
+
+	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning,
+			String mnum, String mnick, String chit, String deleteyn, String insertdate, String updatedate,
+			String pageSize, String groupSize, String curPage, String totalCount) {
 		this.row_num = row_num;
 		this.cnum = cnum;
 		this.csubject = csubject;
@@ -34,15 +42,10 @@ public class CommunityVO {
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
-	}
-
-	
-//getter. setter	
-	
-	
-	
-	public String getCnum() {
-		return cnum;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 	}
 
 	public String getRow_num() {
@@ -51,6 +54,10 @@ public class CommunityVO {
 
 	public void setRow_num(String row_num) {
 		this.row_num = row_num;
+	}
+
+	public String getCnum() {
+		return cnum;
 	}
 
 	public void setCnum(String cnum) {
@@ -137,8 +144,36 @@ public class CommunityVO {
 		this.updatedate = updatedate;
 	}
 
-	
+	public String getPageSize() {
+		return pageSize;
+	}
 
-	
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
+	}
 	
 } //class

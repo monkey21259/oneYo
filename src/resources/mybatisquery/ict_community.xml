@@ -7,7 +7,7 @@
 <!-- 전체조회 -->
 <select id="communitySelcetAll" resultType="communityvo">
 	SELECT	 ROW_NUMBER() OVER (ORDER BY A.INSERTDATE, A.CNUM DESC) AS ROW_NUM
-			, A.CNUM AS CNUM
+			, A.CNUM AS CNUM 
 			, A.CSUBJECT AS CSUBJECT
 			, A.CCONTENT AS CCONTENT
 			, A.CPHOTO AS CPHOTO
@@ -27,4 +27,6 @@
 </select>
 
 
+
 </mapper>     
+

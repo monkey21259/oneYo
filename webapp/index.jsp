@@ -7,7 +7,6 @@
 		<title>index.jsp</title>
 	</head>
 	<body>
-		<a href="testSelectAll.ict">testSALL</a>
 		[221219] lsi - 푸시 테스트
 		20221219 정예린 테스트
 		20221219 홍준표 테스트
@@ -34,11 +33,12 @@
 		<!-- Community -->
 		<a href="communityInsertForm.ict">커뮤니티 게시글 등록</a><br>
 		<a href="communitySelectAll.ict">커뮤니티 게시판 전체보기</a><br>
-		
 		<!-- Tip (전문가 팁) -->
 		<hr>
 		<a href="tipInsertForm.ict">전문가 팁 등록</a><br>
 		<a href="tipSelectAll.ict">전문가 팁 전체조회</a>
+		<!-- 공지사항 : 20221222개발시작 -->
+		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a>
 
 	</body>
 </html> 

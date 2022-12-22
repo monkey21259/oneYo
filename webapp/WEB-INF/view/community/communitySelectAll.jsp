@@ -21,6 +21,8 @@
 	</head>
 	<body>
 	<button type="button">글 등록</button>
+
+
 		<form>
 			<table>
 				<thead>
