@@ -64,7 +64,6 @@ $(document).ready(function(){
 이거 다른건디 일단 쓰던거 마저 쓰기 ㅎㅎ;;
 
 <p id="testtest">
-
 </p>
 <button type="button" class="btn">일반</button>
 <button type="button" class="btn">전문가</button>
