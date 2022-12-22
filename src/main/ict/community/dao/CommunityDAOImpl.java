@@ -24,7 +24,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 		logger.info("communitySelcetAll DAO >>> : ");
 		
 		return sqlSession.selectList("communitySelcetAll", cvo);
-	}
+	} 
 
 	
 	
