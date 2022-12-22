@@ -24,7 +24,8 @@ alert("test3");
 $(document).ready(function(){
 	alert("test4");
 	
-	$('.btn').click(function(){
+	//	일반/전문가 등급 정하기				=====
+	$(document).on('click', '.btn', function(){
 		alert("plz 한글 주시오");
 		let grade = $(this).text();
 		
@@ -32,11 +33,10 @@ $(document).ready(function(){
 		if (grade == '전문가') { $('#mgrade').val(grade); }
 		
 		$('#testtest').html($('#mgrade').val());
-// 		testOut();
-	});
+	});	//	$('.btn').click()		=====
 	
 	//	이메일 선택 박스 변경시 text변경되는 함수		=====
-	$('#memail2').change(function(){
+	$(document).on('change', '#memail2', function(){
 		alert("memail2 >>> : " + $('#memail2').val());
 		
 		let emails = ["", "gmail.com", "naver.com", "kakao.com", ""];
@@ -47,9 +47,20 @@ $(document).ready(function(){
 		if (emailKey == '4') {
 			$('#memail1').attr("readonly", false);
 			$('#memail1').focus();
+		} else {
+			$('#memail1').attr("readonly", true);
 		}
-	});	//	$('#memail2').change		=====
+	});	//	$('#memail2').change()		=====
 	
+	
+	//	form 전송하기						=====
+	$(document).on('click', '#memailBtn', function(){
+		alert("#memailBtn >>> : "
+				+ $('#memail0').val() + "@" + $('#memail1').val()
+				+ "/" + $('#mgrade').val());
+		
+		
+	});	//	$('#memailBtn').click()		=====
 	
 });
 </script>
