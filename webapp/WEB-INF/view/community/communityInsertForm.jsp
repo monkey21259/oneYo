@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
+	<!--  -->
 	<body>
 		<form name="communityForm" id="communityForm">
 			<h3>커뮤니티 게시판 글쓰기</h3>
