@@ -92,7 +92,7 @@ if(curGroup > 0){
 	<a href="<%=url%>?<%=str%>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
 	<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
 	
-<% 
+<%  
 } else {
 %>
 	◁◁&nbsp;&nbsp;&nbsp;◀&nbsp;&nbsp;&nbsp;

@@ -5,7 +5,7 @@
 <mapper namespace="main.ict.community.dao.CommunityDAO">
   
 <!-- 전체조회 -->
-<select id="communitySelcetAll" resultType="communityvo">
+<select id="communitySelcetAll" resultType="communityvo"> 
 	SELECT * FROM (
 		SELECT	 ROW_NUMBER() OVER (ORDER BY A.INSERTDATE) AS ROW_NUM
 				, A.CNUM 		AS 		CNUM

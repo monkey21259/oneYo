@@ -88,7 +88,7 @@
 			
 				totalCount = Integer.parseInt(cvo.getTotalCount());
 				logger.info("totalCount >>> : " + totalCount);
-			%>
+			%> 
 					<tr>
 						<td colspan="6">
 						<jsp:include page="communityPaging.jsp" flush="true">

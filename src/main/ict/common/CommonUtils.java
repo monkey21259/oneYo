@@ -13,4 +13,4 @@ public abstract class CommonUtils {
 	public static final int COMMUNITY_CUR_PAGE =1; //현재페이지
 	public static final int COMMUNITY_TOTAL_COUNT =0; //총 게시글 수
 
-} //class
+} //class 

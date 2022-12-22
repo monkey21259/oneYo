@@ -47,7 +47,7 @@ public class CommunityController {
 		if(cvo.getCurPage() != null) {
 			curPage = Integer.parseInt(cvo.getCurPage());
 			logger.info("curPage >>> : " + curPage);
-		}
+		} 
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
 		cvo.setCurPage(String.valueOf(curPage));
