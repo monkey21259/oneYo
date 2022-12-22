@@ -25,7 +25,31 @@ alert("test3");
 $(document).ready(function(){
 	alert("test4");
 	
+	$('.btn').click(function(){
+		alert("plz 한글 주시오");
+		let grade = $(this).text();
+		
+		if (grade == '일반') { $('#mgrade').val(grade); }
+		if (grade == '전문가') { $('#mgrade').val(grade); }
+		
+		$('#testtest').html($('#mgrade').val());
+// 		testOut();
+	});
 	
+	//	이메일 선택 박스 변경시 text변경되는 함수		=====
+	$('#memail2').change(function(){
+		alert("memail2 >>> : " + $('#memail2').val());
+		
+		let emails = ["", "gmail.com", "naver.com", "kakao.com", ""];
+		let emailKey = parseInt($('#memail2').val());
+		alert("email2 >>> : " + emails[emailKey]);
+		
+		$('#memail1').val(emails[emailKey]);
+		if (emailKey == '4') {
+			$('#memail1').attr("readonly", false);
+			$('#memail1').focus();
+		}
+	});	//	$('#memail2').change		=====
 	
 	
 });
