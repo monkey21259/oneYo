@@ -19,16 +19,13 @@
 <meta charset="UTF-8">
 <title>memGrade.jsp</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/oneYo/content/js/mem/memGrade.js" charset="UTF-8"></script>
+<!-- <script type="text/javascript" src="/oneYo/resource/js/mem/memGrade.js" charset="UTF-8"></script> -->
 <script type="text/javascript">
 alert("test3");
 $(document).ready(function(){
 	alert("test4");
 	
-	$('#btn').click(function(){
-		alert("plz 한글 주시오");
-		testOut();
-	});
+	
 	
 	
 });
@@ -45,20 +42,23 @@ $(document).ready(function(){
 <p id="testtest">
 
 </p>
-<button type="button" id="btn">테스틍</button>
+<button type="button" class="btn">일반</button>
+<button type="button" class="btn">전문가</button>
+<input type="hidden" id="mgrade" value="일반">
 
 <table>
 <tr>
 <td>
-<input type="text" id="memail" name="memail">
-@ <input type="text" id="memail" name="memail">
-<select>
+<input type="text" id="memail0" name="memail0">
+@ <input type="text" id="memail1" name="memail1" readonly>
+<select id="memail2">
 <option value="0">선택해주세요.</option>
 <option value="1">gmail.com</option>
 <option value="2">naver.com</option>
 <option value="3">kakao.com</option>
 <option value="4">직접 입력</option>
 </select>
+<input type="hidden" id="memail" value="">
 </td>
 </tr>
 <tr>
