@@ -1,5 +1,7 @@
 package main.ict.notice.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,19 @@ public class NoticeController {
 	}//end of noticeInsertForm() method
 	
 	@GetMapping(value="noticeInsert")
-	public String noticeInsert(NoticeVO nvo) {
+	public String noticeInsert(HttpServletRequest req) {
 		logger.info("noticeInsert() 함수 진입 : ");
 		
+		
+		
+		NoticeVO nvo = null;
+		nvo = new NoticeVO();
+		
 		//채번 매기기
-		nvo.setNnum(ChabunUtils.getNoticeChabun("d", chabunService.getNoticeChabun().getNnum()));
+		String nnum = ChabunUtils.getNoticeChabun("d", chabunService.getNoticeChabun().getNnum());
 		
 		//서비스 호출
+		
 		
 		return "";
 	}//end of noticeInsert() method
