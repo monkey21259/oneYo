@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import main.ict.common.ChabunUtils;
-import main.ict.common.CommonUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
@@ -87,7 +86,6 @@ public class CommunityController {
 		cvo.setMnick(mnick);
 //		String mnick = req.getParameter("mnick");
 		logger.info("mnick >>> : " + cvo.getMnick());
-		
 	
 		//insert
 		int nCnt = communityService.communityInsert(cvo);
@@ -107,10 +105,10 @@ public class CommunityController {
 		logger.info("communitySelectAll 함수 진입 >>> : ");
 		
 	//페이징처리 =========================	
-		int pageSize = CommonUtils.COMMUNITY_PAGE_SIZE; //3
-		int groupSize = CommonUtils.COMMUNITY_GROUP_SIZE; //3
-		int curPage = CommonUtils.COMMUNITY_CUR_PAGE; //1
-		int totalCount = CommonUtils.COMMUNITY_TOTAL_COUNT; //0
+		int pageSize = ConstPack.COMMUNITY_PAGE_SIZE; //3
+		int groupSize = ConstPack.COMMUNITY_GROUP_SIZE; //3
+		int curPage = ConstPack.COMMUNITY_CUR_PAGE; //1
+		int totalCount = ConstPack.COMMUNITY_TOTAL_COUNT; //0
 		
 		
 		if(cvo.getCurPage() != null) {

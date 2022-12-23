@@ -25,8 +25,7 @@
 		<meta charset="UTF-8">
 		<title>CommunitySelectAll.jsp</title>
 	</head>
-<<<<<<< HEAD
-	<body>
+ 	<body>
 	<h3>커뮤니티 게시판</h3>
 	<hr>
 	<div>
@@ -38,12 +37,7 @@
 			<button type="button">글 등록 </button>
 		</div>
 	</div>
-=======
-	<body>
-	<button type="button">글 등록</button>
 
-
->>>>>>> branch 'main' of https://github.com/monkey21259/oneYo.git
 		<form>
 			<table>
 				<thead>
