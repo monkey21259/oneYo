@@ -4,4 +4,44 @@
 
 <mapper namespace="main.ict.mem.dao.MemDAO">
 
+<insert id="memInsert" parameterType="memvo">
+	
+	INSERT	INTO
+				ICT_MEMBER
+						(
+							 MNUM
+							,MID
+							,MPW
+							,MNAME
+							,MNICK
+							,MHP
+							,MEMAIL
+							,MGRADE
+							,MPROFILE
+							,MCATEGORY
+							,MWARNING
+							,DELETEYN
+							,INSERTDATE
+							,UPDATEDATE
+						)
+				VALUES
+						(
+							 #{ mnum }
+							,#{ mid }
+							,#{ mpw }
+							,#{ mname }
+							,#{ mnick }
+							,#{ mhp }
+							,#{ memail }
+							,#{ mgrade }
+							,#{ mprofile }
+							,#{ mcategory }
+							,0
+							,'Y'
+							,SYSDATE
+							,SYSDATE
+						)
+	
+</insert>
+
 </mapper>

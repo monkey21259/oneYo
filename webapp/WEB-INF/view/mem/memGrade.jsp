@@ -30,8 +30,8 @@ $(document).ready(function(){
 		alert("plz 한글 주시오");
 		let grade = $(this).text();
 		
-		if (grade == '일반') { $('#mgrade').val(grade); }
-		if (grade == '전문가') { $('#mgrade').val(grade); }
+		if (grade == '일반') { $('#mgrade').val('0'); }
+		if (grade == '전문가') { $('#mgrade').val('1'); }
 		
 		$('#testtest').html($('#mgrade').val());
 	});	//	$('.btn').click()		=====
@@ -60,6 +60,36 @@ $(document).ready(function(){
 				+ $('#memail0').val() + "@" + $('#memail1').val()
 				+ "/" + $('#mgrade').val());
 		
+		let cnt = 0;
+		
+		$('.memail').each(function(){
+			
+			if ($(this).val() == "" || $(this).val() == null) {
+				cnt += 1;
+				
+				alert("이메일을 마저 작성 해주세요.");
+				$("#memail0").focus();
+				
+				return false;
+			}
+		});
+		
+		if (cnt == 0) {
+			
+			let memail = $('#memail0').val() + "@" + $('#memail1').val();
+			
+			$('#memail').val(memail);
+			
+			console.log("#memail >>> : " + $('#memail').val());
+			
+			let link = "/oneYo/memInsertForm.ict"
+								+ "?mgrade=" + $('#mgrade').val()
+								+ "&memail=" + $('#memail').val();
+			
+			alert(link);
+		
+			location.href = link;
+		}
 		
 	});	//	$('#memailBtn').click()		=====
 	
@@ -74,65 +104,34 @@ $(document).ready(function(){
 이거 다른건디 일단 쓰던거 마저 쓰기 ㅎㅎ;;
 
 <p id="testtest">
-
-</p>
-<button type="button" id="btn">테스틍</button>
-
-<table>
-<tr>
-<td>
-<input type="text" id="memail" name="memail">
-@ <input type="text" id="memail" name="memail">
-<select>
-<option value="0">선택해주세요.</option>
-<option value="1">gmail.com</option>
-<option value="2">naver.com</option>
-<option value="3">kakao.com</option>
-<option value="4">직접 입력</option>
-</select>
-</td>
-</tr>
-<tr>
-<td>
-<input type="button" id="memailBtn" name="memailBtn" value="이메일 인증">
-</td>
-</tr>
-</table>
-</form>
-</div>
-=======
-
-<div>
-<form id="memGradeForm">
-이거 다른건디 일단 쓰던거 마저 쓰기 ㅎㅎ;;
-
-<p id="testtest">
+일반
 </p>
 <button type="button" class="btn">일반</button>
 <button type="button" class="btn">전문가</button>
-<input type="hidden" id="mgrade" value="일반">
+<input type="hidden" id="mgrade" value="0">
 
 <table>
 <tr>
 <td>
-<input type="text" id="memail0" name="memail0">
-@ <input type="text" id="memail1" name="memail1" readonly>
-<select id="memail2">
-<option value="0">선택해주세요.</option>
-<option value="1">gmail.com</option>
-<option value="2">naver.com</option>
-<option value="3">kakao.com</option>
-<option value="4">직접 입력</option>
-</select>
-<input type="hidden" id="memail" value="">
+	<input type="text" id="memail0" name="memail0">
+	@ <input type="text" id="memail1" name="memail1" readonly>
+	<select id="memail2">
+		<option value="0">선택해주세요.</option>
+		<option value="1">gmail.com</option>
+		<option value="2">naver.com</option>
+		<option value="3">kakao.com</option>
+		<option value="4">직접 입력</option>
+	</select>
+	<input type="hidden" id="memail" name="memail" value="">
 </td>
 </tr>
 <tr>
 <td>
-<input type="button" id="memailBtn" name="memailBtn" value="이메일 인증">
+	<input type="button" id="memailBtn" name="memailBtn" value="이메일 인증">
 </td>
 </tr>
 </table>
+
 </form>
 </div>
 </body>

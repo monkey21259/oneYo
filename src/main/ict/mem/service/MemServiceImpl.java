@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.mem.dao.MemDAO;
+import main.ict.mem.vo.MemVO;
 
 @Service
 @Transactional
@@ -18,5 +19,14 @@ public class MemServiceImpl implements MemService {
 	//	DAO
 	@Autowired(required=false)
 	private MemDAO memDAO;
+
+	//	회원 가입	"memInsert"
+	@Override
+	public int memInsert(MemVO mvo) {
+		
+		logger.info("memInsert(mvo) >>> : " + mvo);
+		
+		return memDAO.memInsert(mvo);
+	}	//	회원 가입	"memInsert"
 	
 }
