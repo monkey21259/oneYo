@@ -40,6 +40,8 @@ public class NoticeController {
 										ConstPack.NOTICE_IMG_SIZE,
 										ConstPack.NOTICE_ENC_TYPE);
 		
+		boolean bool = fu.imgFileUpload(req);
+		
 		NoticeVO nvo = null;
 		nvo = new NoticeVO();
 		

@@ -37,7 +37,7 @@ public abstract class ConstPack {
 	public static final int		LEVELUP_IMG_SIZE = 10 * 1024 * 1024;
 	public static final String	LEVELUP_ENC_TYPE = "UTF-8";
 	
-	public static final String	NOTICE_IMG_PATH = "C:\\00.KOSMO120\\30.web\\el_ict_work\\oneYo\\webapp\\img\\notice";
+	public static final String	NOTICE_IMG_PATH = COMMON_IMG_PATH + "notice";
 	public static final int		NOTICE_IMG_SIZE = 10 * 1024 * 1024;
 	public static final String	NOTICE_ENC_TYPE = "UTF-8";
 	
