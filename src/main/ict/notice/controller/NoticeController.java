@@ -77,12 +77,21 @@ public class NoticeController {
 	public String noticeSelectAll(NoticeVO nvo, Model model) {
 		logger.info("noticeSelectAll() 함수 진입 : ");
 		
+		nvo.setPageSize(String.valueOf(ConstPack.NOTICE_PAGE_SIZE));
+		nvo.setGroupSize(String.valueOf(ConstPack.NOTICE_GROUP_SIZE));
+		if(nvo.getCurPage() == null) {
+			nvo.setCurPage(String.valueOf(ConstPack.NOTICE_CUR_PAGE));
+		}//end of if
+		
 		//서비스 호출
 		List<NoticeVO> sallList = noticeService.noticeSelectAll(nvo);
 		
 		if(sallList.size() > 0) {
 			logger.info("sallList.size() : " + sallList.size());
+			//조회 결과 Attribute
 			model.addAttribute("sallList", sallList);
+			//페이징 관련 Attribute
+			model.addAttribute("pagingVO", nvo);
 			return "notice/noticeSelectAll";
 		}//end of if
 		

@@ -9,6 +9,15 @@
 	Object obj = request.getAttribute("sallList");
 	if (obj == null) return;
 	List<NoticeVO> sallList = (List<NoticeVO>)obj;
+	
+	Object pagingObj = request.getAttribute("pagingVO");
+	if (pagingObj == null) return;
+	NoticeVO pagingVO = (NoticeVO)pagingObj;
+	
+	int pageSize = Integer.parseInt(pagingVO.getPageSize());
+	int groupSize = Integer.parseInt(pagingVO.getGroupSize());
+	int curPage = Integer.parseInt(pagingVO.getCurPage());
+	int totalCount = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -29,10 +38,12 @@
 		<%
 			for(int i=0; i<sallList.size(); i++){
 				NoticeVO nvo = sallList.get(i);
+				
+				totalCount = Integer.parseInt(nvo.getTotalCount());
 		%>
 				<tr>
 					<td>
-						<%= sallList.size() - i %>
+						<%= nvo.getNoticeno() %>
 					</td>
 					<td>
 						<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
@@ -47,6 +58,18 @@
 		<%
 			}//end of for
 		%>
+				<tr>
+					<td colspan="4">
+						<jsp:include page="noticePaging.jsp" flush="true">
+							<jsp:param value="noticeSelectAll.ict" name="url"/>
+								<jsp:param value="" name="str"/>
+								<jsp:param value="<%=pageSize %>" name="pageSize"/>
+								<jsp:param value="<%=groupSize %>" name="groupSize"/>
+								<jsp:param value="<%=curPage %>" name="curPage"/>
+								<jsp:param value="<%=totalCount %>" name="totalCount"/>
+						</jsp:include>
+					</td>
+				</tr>
 			</table>
 			<input type="hidden" id="nnum" name="nnum">
 		</form>

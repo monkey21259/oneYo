@@ -36,16 +36,25 @@
 	<select id="noticeSelectAll" parameterType="noticevo" resultType="noticevo">
 		
 		SELECT
-				 A.NNUM									AS NNUM
-				,A.NSUBJECT								AS NSUBJECT
-				,A.NCONTENT								AS NCONTENT
-				,A.NPHOTO								AS NPHOTO
-				,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
-				,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')	AS UPDATEDATE
-				,A.NHIT									AS NHIT
-		FROM ICT_NOTICE A
-		WHERE	A.DELETEYN	= 'Y'
-		ORDER BY A.NNUM DESC
+			*
+		FROM
+			(
+				SELECT
+						 A.NNUM									AS NNUM
+						,A.NSUBJECT								AS NSUBJECT
+						,A.NCONTENT								AS NCONTENT
+						,A.NPHOTO								AS NPHOTO
+						,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
+						,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')	AS UPDATEDATE
+						,A.NHIT									AS NHIT
+						,CEIL(ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
+						,COUNT(A.NNUM) OVER()					AS totalCount
+						,ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)	AS NOTICENO
+				FROM ICT_NOTICE A
+				WHERE	A.DELETEYN	= 'Y'
+				ORDER BY A.NNUM DESC
+			)
+		WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
 		
 	</select>
 	
