@@ -39,6 +39,13 @@
 		<a href="tipSelectAll.ict">전문가 팁 전체조회</a>
 		<!-- 공지사항 : 20221222개발시작 -->
 		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a>
+		<!-- Recipe -->
+		<br /><hr />
+		<b>RECIPE</b><br />
+		<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a>
+		<a href=""></a>
+		<hr /><br />
+		
 
 	</body>
 </html> 
