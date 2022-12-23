@@ -8,12 +8,8 @@
 		<title>커뮤니티 게시판 글쓰기</title>
 		<!-- 제이쿼리cdn -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript">
-		alert("커뮤니티게시판 자바스크립트");
-		
+		<script type="text/javascript">		
 		$(document).ready(function(){
-			alert("커뮤니티게시판 제이쿼리");
-			
 			console.log("cphoto >>> : " + cphoto);
 			
 			$(document).on("click","#communityInsertbBtn", function(){

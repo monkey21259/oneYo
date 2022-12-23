@@ -30,12 +30,21 @@ public class CommunityServiceImpl implements CommunityService {
 	
 //커뮤니티 전체조회
 	@Override
-	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
-		logger.info("CommunitySelcetAll 서비스 진입 >>> ");
+	public List<CommunityVO> communitySelectAll(CommunityVO cvo) {
+		logger.info("communitySelcetAll 서비스 진입 >>> ");
 		
-		return communityDAO.communitySelcetAll(cvo); 
+		return communityDAO.communitySelectAll(cvo); 
 	}
 
+//커뮤니티 게시글 조회	
+	@Override
+	public List<CommunityVO> communitySelect(CommunityVO cvo) {
+		logger.info("communitySelect 서비스 진입 >>> ");
+		
+		return communityDAO.communitySelect(cvo); 
+	}
+
+	
 	
 	
 } //class

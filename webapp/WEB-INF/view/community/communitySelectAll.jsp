@@ -23,7 +23,23 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>CommunitySelectAll.jsp</title>
+		<title>커뮤니티 전체 조회</title>
+		<!-- 제이쿼리cdn -->
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$(document).on("click", "#insertSelectAllBtn", function(){
+				$("#communitySelectAll").attr({
+					"action":"communityInsertForm.ict",
+					"method":"GET",
+					"enctype":"application/x-www=form=urlencoded"	
+				}).submit();
+			}); //insertSelectAllBtn
+		
+		}); //ready
+	
+		</script>
 	</head>
  	<body>
 	<h3>커뮤니티 게시판</h3>
@@ -31,14 +47,11 @@
 	<div>
 		<div>
 			<button type="button">인기글</button>
-		</div>
-		
-		<div>
-			<button type="button">글 등록 </button>
+			<button type="button" id="insertSelectAllBtn" name="insertSelectAllBtn">글 등록 </button>
 		</div>
 	</div>
 
-		<form>
+		<form id="communitySelectAll" name="communitySelectAll">
 			<table>
 				<thead>
 					<tr>
@@ -67,7 +80,7 @@
 				<tbody>
 					<tr>
 						<td><%= _cvo.getCommunitynum()%></td>
-						<td><%= _cvo.getCsubject() %></td>
+						<td><a href="communitySelectContent.ict?cnum=<%=_cvo.getCnum()%>"><%= _cvo.getCsubject() %></td>
 						<td><%= _cvo.getMnick() %></td>
 						<td><%= _cvo.getChit() %></td>
 						<td><%= 1 %></td>                 <!-- 나중에 추가하기 -->

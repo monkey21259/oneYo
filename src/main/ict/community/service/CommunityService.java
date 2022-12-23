@@ -10,7 +10,10 @@ public interface CommunityService {
 	public int communityInsert(CommunityVO cvo);
 	
 //커뮤니티 게시글 전체조회	
-	public List<CommunityVO> communitySelcetAll(CommunityVO cvo);  
+	public List<CommunityVO> communitySelectAll(CommunityVO cvo);  
+	
+//커뮤니티 게시글 조회
+	public List<CommunityVO> communitySelect(CommunityVO cvo);  
 	
 
 }//class

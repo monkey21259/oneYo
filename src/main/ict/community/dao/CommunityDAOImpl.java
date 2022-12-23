@@ -24,8 +24,16 @@ public class CommunityDAOImpl implements CommunityDAO {
 
 //게시글 전체조회	
 	@Override
-	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
-		return sqlSession.selectList("communitySelcetAll", cvo);
+	public List<CommunityVO> communitySelectAll(CommunityVO cvo) {
+		return sqlSession.selectList("communitySelectAll", cvo);
 	}
 
+//커뮤니티 게시글 조회	
+	@Override
+	public List<CommunityVO> communitySelect(CommunityVO cvo) {
+		return sqlSession.selectList("communitySelect", cvo);
+	}
+
+	
+	
 }//class

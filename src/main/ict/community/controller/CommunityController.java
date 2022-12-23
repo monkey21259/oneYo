@@ -24,13 +24,15 @@ public class CommunityController {
 
 	Logger logger = LogManager.getLogger(CommunityController.class);
 
+//서비스호출	
 	@Autowired(required = false)  
 	private CommunityService communityService;
-	
+
+//채번서비스호출	
 	@Autowired(required = false)  
 	private ChabunService chabunService;
 			
-//커뮤니티 게시글 등록(INSERT)
+//커뮤니티 게시글 등록폼(insertform)
 	@GetMapping("communityInsertForm")
 	public String communityInsertForm() { 
 		
@@ -39,7 +41,7 @@ public class CommunityController {
 		return "community/communityInsertForm";
 	}
 	
-//게시글등록
+//게시글등록(insert)
 	@PostMapping("communityInsert")
 	public String communityInsert(HttpServletRequest req) {
 		
@@ -90,11 +92,11 @@ public class CommunityController {
 		//insert
 		int nCnt = communityService.communityInsert(cvo);
 		logger.info("nCnt >>> : " + nCnt);
-		if(nCnt > 0) {
-			return "community/communitySelectAll";
+		if(nCnt < 1) {
+			return "community/communityInsertForm";
 		}
+		return "community/communityInsert";
 		
-		return "community/communityInsertForm";
 	} //communityInsert
 	
 	
@@ -118,8 +120,7 @@ public class CommunityController {
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
 		cvo.setCurPage(String.valueOf(curPage));
-		cvo.setTotalCount(String.valueOf(totalCount)); //string
-		
+		cvo.setTotalCount(String.valueOf(totalCount)); 
 	
 		logger.info("cvo.getPageSize() >>> : " + cvo.getPageSize());
 		logger.info("cvo.getGroupSize() >>> : " + cvo.getGroupSize());
@@ -128,17 +129,108 @@ public class CommunityController {
 		
 	//페이징처리  =========================		
 	
-		List<CommunityVO> list = communityService.communitySelcetAll(cvo);
+		List<CommunityVO> list = communityService.communitySelectAll(cvo);
 		int nCnt = list.size();
 		logger.info("커뮤니티 전체조회 nCnt >>> : " + nCnt);
 		
 		if(nCnt > 0) {
 			model.addAttribute("pagingCVO", cvo);
 			model.addAttribute("listAll", list);
-			return "community/communitySelectAll";
 		}		
 		
 		return "community/communitySelectAll";
 	}
 	
+	
+//커뮤니티 글조회(content)
+		@GetMapping("communitySelectContent")
+		public String communitySelectContent(CommunityVO cvo, Model model) {
+			logger.info("communitySelectContent 함수 진입 >>> : ");
+			
+			List<CommunityVO> listS = communityService.communitySelect(cvo);
+			logger.info("cvo.getCnum() >>> : " + cvo.getCnum());
+			
+			logger.info("listS.size() >>> : " + listS.size());
+			
+			if(listS.size() ==  1 ) {
+				model.addAttribute("listS", listS);
+			}
+			return "community/communitySelectContent";
+			
+		} //SelectContent
+
+//커뮤니티 글 수정폼(updateform)
+		@GetMapping("communityUpdateForm")
+		public String communityUpdateForm(CommunityVO cvo, Model model) {
+			logger.info("communityUpdateForm 함수 진입>>> : ");
+			
+			List<CommunityVO> listU = communityService.communitySelect(cvo);
+			logger.info("cvo.getCnum() >>> : " + cvo.getCnum());
+			
+			logger.info("listS.size() >>> : " + listU.size());
+			
+			if(listU.size() == 1) {
+				model.addAttribute("listU", listU);
+				
+			}
+			
+			return"community/communityUpdateForm";
+		} //updateForm
+		
+////커뮤니티 글수정(updateform)	
+//	@PostMapping("communityUpdateForm")
+//	public String communityUpdateForm(HttpServletRequest req, Model model) {
+//		logger.info("communityUpdate 함수 진입>>> : ");
+//		
+//		//파일
+//		FileUpload fu = new FileUpload(	  ConstPack.COMMUNITY_IMG_PATH
+//										, ConstPack.COMMUNITY_IMG_SIZE
+//										, ConstPack.COMMUNITY_ENC_TYPE);
+//		
+//		logger.info("fu >>> : " + fu);
+//		
+//		//이미지 원본사이즈
+//		boolean bool = fu.imgFileUpload(req);
+//		logger.info("imgFileUpload >>> : " + bool);
+////		//vo 인스턴스
+//		CommunityVO cvo = null;
+//		cvo = new CommunityVO();
+//		
+//		String cnum = fu.getParameter("cnum");
+//		cvo.setCnum(cnum);
+//		logger.info("cnum >>> : " +cvo.getCnum());
+//		
+//		String csubject = fu.getParameter("csubject"); 
+//		cvo.setCsubject(csubject);
+//		logger.info("csubject >>> : " + cvo.getCsubject());
+//		
+//		String ccontent = fu.getParameter("ccontent");
+//		cvo.setCcontent(ccontent);
+//		logger.info("ccontent >>> : " + cvo.getCcontent());
+//		
+//		String cphoto = fu.getFileName("cphoto");
+//		cvo.setCphoto(cphoto);
+//		logger.info("cphoto >>> : " +  cphoto);
+//	
+////		String mnum = req.getParameter("mnum");
+//		String mnum = "M202212200007";
+//		cvo.setMnum(mnum);
+//		logger.info("mnum >>> : " + cvo.getMnum());
+//
+//		String mnick = "스펀지";
+//		cvo.setMnick(mnick);
+////		String mnick = req.getParameter("mnick");
+//		logger.info("mnick >>> : " + cvo.getMnick());
+//	
+//		//update
+//		int nCnt = communityService.communityInsert(cvo);
+//		logger.info("nCnt >>> : " + nCnt);
+//		if(nCnt < 1) {
+//			return "community/communityInsertForm";
+//		}
+//		return "community/communityInsert";
+//		
+//		
+//		return "";
+//	}//communityUpdateForm
 }//class

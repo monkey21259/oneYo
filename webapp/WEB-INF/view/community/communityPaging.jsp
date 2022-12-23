@@ -173,9 +173,6 @@ if(curGroup > 0){
 			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Last</a>
 		</li>
 		</ul>
-		<div id="btndiv" align="right">
-			전체 <%=pageCount%>페이지 중 <%=curPage%>페이지<br>
-		</div>
 <%
 	}
 %>
