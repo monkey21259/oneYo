@@ -2,8 +2,6 @@ package main.ict.community.vo;
 
 public class CommunityVO { 
 
- 
-	private String row_num; //글 순위
 	private String cnum; //글번호
 	private String csubject; //글제목
 	private String ccontent; //글내용
@@ -27,10 +25,9 @@ public class CommunityVO {
 		
 	}
 
-	public CommunityVO(String row_num, String cnum, String csubject, String ccontent, String cphoto, String warning,
+	public CommunityVO(String cnum, String csubject, String ccontent, String cphoto, String warning,
 			String mnum, String mnick, String chit, String deleteyn, String insertdate, String updatedate,
 			String pageSize, String groupSize, String curPage, String totalCount) {
-		this.row_num = row_num;
 		this.cnum = cnum;
 		this.csubject = csubject;
 		this.ccontent = ccontent;
@@ -46,14 +43,6 @@ public class CommunityVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
-	}
-
-	public String getRow_num() {
-		return row_num;
-	}
-
-	public void setRow_num(String row_num) {
-		this.row_num = row_num;
 	}
 
 	public String getCnum() {

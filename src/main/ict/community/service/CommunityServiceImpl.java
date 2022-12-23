@@ -20,11 +20,22 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired(required = false)
 	private CommunityDAO communityDAO;
 	
+//커뮤니티 글등록
+	@Override
+	public int communityInsert(CommunityVO cvo) {
+		logger.info("communityInsert 서비스 진입 >>> ");
+		
+		return communityDAO.communityInsert(cvo); 
+	}
+	
+//커뮤니티 전체조회
 	@Override
 	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
 		logger.info("CommunitySelcetAll 서비스 진입 >>> ");
 		
 		return communityDAO.communitySelcetAll(cvo); 
 	}
+
+	
 	
 } //class
