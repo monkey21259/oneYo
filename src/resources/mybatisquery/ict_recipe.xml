@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.ict.recipe.dao.RecipeDAO">
+
+<!-- INSERT -->
+<insert id="recipeInsert" parameterType="recipevo">
+
+	INSERT INTO ICT_RECIPE
+	(
+	    RNUM,
+	    RSUBJECT,
+	    RCONTENT,
+	    RPHOTO,
+	    RJERYO,
+	    RTIME,
+	    RPERSON,
+	    RDIFF,
+	    RCATEGORY,
+	    WARNING,
+	    MNUM,
+	    RHIT,
+	    DELETEYN,
+	    INSERTDATE,
+	    UPDATEDATE
+	) VALUES (
+	    #{ rnum },
+	    #{ rsubject },
+	    #{ rcontent },
+	    #{ rphoto },
+	    #{ rjeryo },
+	    #{ rtime },
+	    #{ rperson },
+	    #{ rdiff },
+	    #{ rcategory },
+	    #{ warning },
+	    #{ mnum },
+	    0,
+	    'Y',
+	    SYSDATE,
+	    SYSDATE
+	)
+
+</insert>
+
+</mapper>
