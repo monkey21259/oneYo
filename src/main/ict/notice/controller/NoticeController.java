@@ -1,5 +1,7 @@
 package main.ict.notice.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -72,10 +74,19 @@ public class NoticeController {
 	
 	//SELECT ALL
 	@GetMapping(value="noticeSelectAll")
-	public String noticeSelectAll() {
+	public String noticeSelectAll(NoticeVO nvo, Model model) {
 		logger.info("noticeSelectAll() 함수 진입 : ");
 		
-		return "notice/noticeSelectAll";
+		//서비스 호출
+		List<NoticeVO> sallList = noticeService.noticeSelectAll(nvo);
+		
+		if(sallList.size() > 0) {
+			logger.info("sallList.size() : " + sallList.size());
+			model.addAttribute("sallList", sallList);
+			return "notice/noticeSelectAll";
+		}//end of if
+		
+		return "";
 	}//end of noticeSelectAll() method
 	
 }//end of NoticeController class

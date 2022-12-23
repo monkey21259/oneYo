@@ -39,7 +39,8 @@
 		<a href="tipSelectAll.ict">전문가 팁 전체조회</a><br>
 		<hr>
 		<!-- 공지사항 : 20221222개발시작 -->
-		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a>
+		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a><br>
+		<a href="noticeSelectAll.ict">공지사항 게시글 조회 테스트</a>
 		<!-- Recipe -->
 		<br /><hr />
 		<b>RECIPE</b><br />

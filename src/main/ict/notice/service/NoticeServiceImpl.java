@@ -1,5 +1,7 @@
 package main.ict.notice.service;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,13 @@ public class NoticeServiceImpl implements NoticeService {
 		logger.info("noticeInsert() 함수 진입 : ");
 		return noticeDAO.noticeInsert(nvo);
 	}//end of noticeInsert() method
+
+	//SELECT ALL
+	@Override
+	public List<NoticeVO> noticeSelectAll(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		logger.info("noticeSelectAll() 함수 진입 : ");
+		return noticeDAO.noticeSelectAll(nvo);
+	}//end of noticeSelectAll() method
 	
 }//end of NoticeServiceImpl class
