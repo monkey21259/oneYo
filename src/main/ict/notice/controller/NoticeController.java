@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import main.ict.common.ChabunUtils;
+import main.ict.common.ConstPack;
+import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.notice.service.NoticeService;
 import main.ict.notice.vo.NoticeVO;
@@ -34,7 +36,9 @@ public class NoticeController {
 	public String noticeInsert(HttpServletRequest req) {
 		logger.info("noticeInsert() 함수 진입 : ");
 		
-		
+		FileUpload fu = new FileUpload( ConstPack.NOTICE_IMG_PATH,
+										ConstPack.NOTICE_IMG_SIZE,
+										ConstPack.NOTICE_ENC_TYPE);
 		
 		NoticeVO nvo = null;
 		nvo = new NoticeVO();
