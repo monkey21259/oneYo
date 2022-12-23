@@ -148,6 +148,13 @@ public class MemController {
 		
 		int insertCnt = memService.memInsert(mvo);
 		
+		if (insertCnt > 0) {
+			logger.info("memInsert().nCnt >>> : " + insertCnt);
+			
+			return "mem/memGrade";
+		}
+		
+		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");
 		
 		return "mem/memGrade";
 	}

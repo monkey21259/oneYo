@@ -79,7 +79,8 @@ $(document).ready(function(){
 			let mcategory = "";
 			$('.mcategory').each(function(){
 				if ($(this).is(':checked') == true) {
-					mcategory += "#" + $(this).val();
+// 					mcategory += "#" + $(this).val();
+					mcategory += $(this).val();
 				}
 			});
 			$('#mcategory').val(mcategory);
