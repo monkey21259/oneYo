@@ -16,7 +16,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 	private SqlSession sqlSession;  
 
 	
-//게시글 등록	
+//게시글 등록
 	@Override
 	public int communityInsert(CommunityVO cvo) {
 		return sqlSession.insert("communityInsert", cvo);

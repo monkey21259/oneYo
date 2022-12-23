@@ -8,8 +8,9 @@
   <insert id="communityInsert" parameterType="communityvo">
   	INSERT INTO ICT_COMMUNITY(	  CNUM
 						  		, CSUBJECT
-						  		, CCOMTENT
+						  		, CCONTENT
 						  		, CPHOTO
+						  		, MNUM
 						  		, DELETEYN
 						  		, INSERTDATE
 						  		, UPDATEDATE
@@ -17,8 +18,9 @@
 					  VALUES(
 		   				    #{cnum}
 						  , #{csubject}
-						  , #{ccoment}
+						  , #{ccontent}
 						  , #{cphoto}
+						  , #{mnum}
 						  , 'Y'
 						  , SYSDATE
 						  , SYSDATE

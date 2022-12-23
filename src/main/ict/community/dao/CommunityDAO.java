@@ -4,7 +4,7 @@ import java.util.List;
 
 import main.ict.community.vo.CommunityVO;
 
-public interface CommunityDAO {
+public interface CommunityDAO { 
 	
 //게시글등록
 	public int communityInsert(CommunityVO cvo);

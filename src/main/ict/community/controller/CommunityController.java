@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import main.ict.common.ChabunUtils;
 import main.ict.common.CommonUtils;
+import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
-import main.ict.mem.vo.MemVO;
 
 @Controller
 public class CommunityController {
@@ -32,62 +33,71 @@ public class CommunityController {
 			
 //커뮤니티 게시글 등록(INSERT)
 	@GetMapping("communityInsertForm")
-	public String communityInsertForm(HttpServletRequest req) { 
+	public String communityInsertForm() { 
 		
-		logger.info("communityInsertForm 함수 진입>>> : ");
+		logger.info("communityInsertForm 함수 진입 >>> " );
+	
+		return "community/communityInsertForm";
+	}
+	
+//게시글등록
+	@PostMapping("communityInsert")
+	public String communityInsert(HttpServletRequest req) {
+		
+		logger.info("communityInsert 함수 진입>>> : ");
 		
 		//채번
-		String cnum = ChabunUtils.getCommunityChabun("C", chabunService.getCommunityChabun().getCnum());
+		String cnum = ChabunUtils.getCommunityChabun("D", chabunService.getCommunityChabun().getCnum());
 		
 		//파일
-		//public FileUpload(String fuPath, int fuImgSize, String fuEncType)
-//		FileUpload fu = new FileUpload(	  ConstPack.COMMUNITY_IMG_PATH
-//										, ConstPack.COMMUNITY_IMG_SIZE
-//										, ConstPack.COMMUNITY_ENC_TYPE);
-//		
-//		logger.info("fu >>> : " + fu);
-//		
-//		//이미지 원본사이즈
-//		boolean bool = fu.imgFileUpload(req);
-//		logger.info("imgFileUpload >>> : " + bool);
-//		
+		FileUpload fu = new FileUpload(	  ConstPack.COMMUNITY_IMG_PATH
+										, ConstPack.COMMUNITY_IMG_SIZE
+										, ConstPack.COMMUNITY_ENC_TYPE);
+		
+		logger.info("fu >>> : " + fu);
+		
+		//이미지 원본사이즈
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("imgFileUpload >>> : " + bool);
 //		//vo 인스턴스
 		CommunityVO cvo = null;
 		cvo = new CommunityVO();
-//		
-//		cvo.setCnum(cnum);
-//		logger.info("cnum >>> : " +cvo.getCnum());
-//		
-//		String csubject = fu.getParameter("csubject"); 
-//		cvo.setCsubject(csubject);
-//		logger.info("csubject >>> : " + cvo.getCsubject());
-//		
-//		String ccontent = fu.getParameter("ccontent");
-//		cvo.setCcontent(ccontent);
-//		logger.info("ccontent >>> : " + cvo.getCcontent());
-//		
-//		String cphoto = fu.getParameter("cphoto");
-//		cvo.setCphoto(cphoto);
-//		logger.info("cphoto >>> : " +  cphoto);
-//		
+		
+		cvo.setCnum(cnum);
+		logger.info("cnum >>> : " +cvo.getCnum());
+		
+		String csubject = fu.getParameter("csubject"); 
+		cvo.setCsubject(csubject);
+		logger.info("csubject >>> : " + cvo.getCsubject());
+		
+		String ccontent = fu.getParameter("ccontent");
+		cvo.setCcontent(ccontent);
+		logger.info("ccontent >>> : " + cvo.getCcontent());
+		
+		String cphoto = fu.getFileName("cphoto");
+		cvo.setCphoto(cphoto);
+		logger.info("cphoto >>> : " +  cphoto);
+	
 //		String mnum = req.getParameter("mnum");
-//		logger.info("mnum >>> : " + cvo.getMnum());
-//		
-//		String mnick = req.getParameter("mnick");
-//		logger.info("mnick >>> : " + cvo.getMnick());
-		
 		String mnum = "M202212200008";
+		cvo.setMnum(mnum);
+		logger.info("mnum >>> : " + cvo.getMnum());
+
 		String mnick = "오징어";
+		cvo.setMnick(mnick);
+//		String mnick = req.getParameter("mnick");
+		logger.info("mnick >>> : " + cvo.getMnick());
 		
+	
 		//insert
 		int nCnt = communityService.communityInsert(cvo);
 		logger.info("nCnt >>> : " + nCnt);
 		if(nCnt > 0) {
-			return "community/SelectAll";
+			return "community/communitySelectAll";
 		}
 		
 		return "community/communityInsertForm";
-	}
+	} //communityInsert
 	
 	
 //커뮤니티 게시글 전체조회(selectAll)

@@ -28,7 +28,7 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.communityInsert(cvo); 
 	}
 	
-//커뮤니티 전체조회	
+//커뮤니티 전체조회
 	@Override
 	public List<CommunityVO> communitySelcetAll(CommunityVO cvo) {
 		logger.info("CommunitySelcetAll 서비스 진입 >>> ");

@@ -14,13 +14,15 @@
 		$(document).ready(function(){
 			alert("커뮤니티게시판 제이쿼리");
 			
+			console.log("cphoto >>> : " + cphoto);
+			
 			$(document).on("click","#communityInsertbBtn", function(){
 				var csubject = $("#csubject").val();
 				console.log("csubject" + csubject);
 				if(csubject !=null && csubject.length > 0 && typeof csubject !="undefinded"){		
 						alert("글쓰기 버튼 클릭 >>> : ");
 						$("#communityForm").attr({
-								"action":"communityInsert.jyr",
+								"action":"communityInsert.ict",
 								"method":"POST",
 								"enctype":"multipart/form-data"	
 						}).submit();
