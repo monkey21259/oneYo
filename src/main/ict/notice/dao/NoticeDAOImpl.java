@@ -33,4 +33,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return sqlSession.selectList("noticeSelectAll", nvo);
 	}//end of noticeSelectAll() method
 	
+	//SELECT CONTENT
+	@Override
+	public List<NoticeVO> noticeSelectContent(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		logger.info("noticeSelectContent() 함수 진입 : ");
+		return sqlSession.selectList("noticeSelectContent", nvo);
+	}//end of noticeSelectContent() method
+	
 }//end of NoticeDAOImpl class

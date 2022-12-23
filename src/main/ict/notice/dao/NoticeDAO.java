@@ -12,4 +12,7 @@ public interface NoticeDAO {
 	//SELECT ALL
 	public List<NoticeVO> noticeSelectAll(NoticeVO nvo);
 	
+	//SELECT CONTENT
+	public List<NoticeVO> noticeSelectContent(NoticeVO nvo);
+	
 }//end of NoticeDAO interface
