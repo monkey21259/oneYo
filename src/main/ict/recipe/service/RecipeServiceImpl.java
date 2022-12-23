@@ -1,5 +1,7 @@
 package main.ict.recipe.service;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,14 @@ public class RecipeServiceImpl implements RecipeService {
 		logger.info("recipeInsert() 함수 진입");
 		
 		return recipeDAO.recipeInsert(recipevo);
+	}
+	
+	@Override
+	public List<RecipeVO> recipeSelectAll() {
+		
+		logger.info("recipeSelectAll() 함수 진입");
+		
+		return recipeDAO.recipeSelectAll();
 	}
 
 }

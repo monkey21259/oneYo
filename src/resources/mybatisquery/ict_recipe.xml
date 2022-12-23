@@ -44,4 +44,30 @@
 
 </insert>
 
+<!-- SELECT ALL - VANILLA -->
+<select id="recipeSelectAll" resultType="recipevo">
+
+	SELECT
+	     A.RNUM         RNUM
+	    ,A.RSUBJECT     RSUBJECT
+	    ,A.RCONTENT     RCONTENT
+	    ,A.RPHOTO       RPHOTO
+	    ,A.RJERYO       RJERYO
+	    ,A.RTIME        RTIME
+	    ,A.RPERSON      RPERSON
+	    ,A.RDIFF        RDIFF
+	    ,A.RCATEGORY    RCATEGORY
+	    ,A.WARNING      WARNING
+	    ,A.MNUM         MNUM
+	    ,A.RHIT         RHIT
+	    ,A.DELETEYN     DELETEYN
+	    ,A.INSERTDATE   INSERTDATE
+	    ,A.UPDATEDATE   UPDATEDATE
+	  FROM
+	    ICT_RECIPE A
+	 WHERE A.DELETEYN = 'Y'
+	 ORDER BY 1
+
+</select>
+
 </mapper>

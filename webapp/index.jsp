@@ -44,8 +44,8 @@
 		<!-- Recipe -->
 		<br /><hr />
 		<b>RECIPE</b><br />
-		<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a>
-		<a href=""></a>
+		<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a><br />
+		<a href="/oneYo/recipeSelectAll.ict">레시피 전체 조회</a>
 		<hr /><br />
 
 

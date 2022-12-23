@@ -1,5 +1,7 @@
 package main.ict.recipe.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.ict.recipe.service.RecipeService;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.chabun.service.ChabunService;
 
 @Controller
 public class RecipeController {
@@ -23,8 +27,10 @@ public class RecipeController {
 	@Autowired(required=false)
 	public RecipeService recipeService;
 	
-	// RecipeDAO
+	@Autowired(required=false)
+	public ChabunService chabunService;
 	
+// I
 	@GetMapping(value="recipeInsertForm")
 	public String recipeInsertForm() {  // 세션 처리 필요
 		
@@ -33,6 +39,7 @@ public class RecipeController {
 		return "./recipe/recipeInsertForm";
 	}
 	
+// I
 	@PostMapping(value="recipeInsert")
 	public String recipeInsert(HttpServletRequest req, Model model) {
 		
@@ -52,9 +59,8 @@ public class RecipeController {
 		// VO setting
 		RecipeVO recipevo = new RecipeVO();
 		
-		// 채번
-		recipevo.setRnum("R202212230001");
-		//
+		String rnum = ChabunUtils.getRecipeChabun("D", chabunService.getRecipeChabun().getRnum());
+		recipevo.setRnum(rnum);
 		
 		recipevo.setRsubject(rfu.getParameter("rsubject"));
 		recipevo.setRcategory(rfu.getParameter("rcategory"));
@@ -88,9 +94,29 @@ public class RecipeController {
 			return "#";
 		}
 		
-		return "recipe/recipeSelectAll";
+		// TODO 등록된 글 화면 표시 필요
+		// TODO 추후 좋아요, 싫어요, 신고, 댓글 추가 필요
+		return "../index";
 	}
 	
+// S
+	@GetMapping(value="recipeSelectAll")
+	public String recipeSelectAll(Model model) {
+		
+		logger.info("recipeSelectAll() 함수 진입.");
+		
+		// 1. 값 불러와서 model
+		List<RecipeVO> recipeList = recipeService.recipeSelectAll();
+		if (recipeList == null || recipeList.size() < 1) {
+			logger.info("[FAIL] Recipe SelectAll");
+			return "#";
+		}
+		logger.info(recipeList.toString());
+		
+		model.addAttribute("recipeList", recipeList);
+		// TODO 페이징, 조건 검색(?)
+		return "./recipe/recipeSelectAll";
+	}
 	
 	
 	

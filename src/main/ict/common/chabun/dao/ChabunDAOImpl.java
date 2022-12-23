@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
+import main.ict.recipe.vo.RecipeVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -26,7 +27,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 	}//end of getMemberChabun() method
 	
 	//레시피
-	
+	@Override
+	public RecipeVO getRecipeChabun() {
+		
+		return sqlSession.selectOne("getRecipeChabun");
+	}
 	
 	//전문가 팁
 	

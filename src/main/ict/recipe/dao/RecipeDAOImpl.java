@@ -1,5 +1,7 @@
 package main.ict.recipe.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public int recipeInsert(RecipeVO recipevo) {
 		
 		return sqlSession.insert("recipeInsert", recipevo);
+	}
+	
+	@Override
+	public List<RecipeVO> recipeSelectAll() {
+		
+		return sqlSession.selectList("recipeSelectAll");
 	}
 
 }

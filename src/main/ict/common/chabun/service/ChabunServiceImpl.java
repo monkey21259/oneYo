@@ -10,6 +10,7 @@ import main.ict.common.chabun.dao.ChabunDAO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
+import main.ict.recipe.vo.RecipeVO;
 
 @Service
 @Transactional
@@ -28,7 +29,13 @@ public class ChabunServiceImpl implements ChabunService {
 	}//end of getMemberChabun() method
 	
 	//레시피
-	
+	@Override
+	public RecipeVO getRecipeChabun() {
+		
+		logger.info("getRecipeChabun() 함수 진입.");
+		
+		return chabunDAO.getRecipeChabun();
+	}
 	
 	//전문가 팁
 	

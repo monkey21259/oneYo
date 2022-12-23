@@ -16,7 +16,13 @@
 	
 	<!-- 레시피 -->
 	<!-- INDEX : SYS_C0011811 -->
+	<select id="getRecipeChabun" resultType="recipevo">
+		
+		SELECT /*+ INDEX_DESC(A SYS_C0011811) */
+		    NVL(MAX(SUBSTR(RNUM, -4)), 0) + 1   AS RNUM
+		  FROM ICT_RECIPE A
 	
+	</select>
 	
 	<!-- 전문가 팁 -->
 	<!-- INDEX : SYS_C0011807 -->

@@ -3,6 +3,7 @@ package main.ict.common.chabun.dao;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
+import main.ict.recipe.vo.RecipeVO;
 
 public interface ChabunDAO {
 	
@@ -10,7 +11,7 @@ public interface ChabunDAO {
 	public MemVO getMemberChabun();
 	
 	//레시피
-	
+	public RecipeVO getRecipeChabun();
 	
 	//전문가 팁
 	
