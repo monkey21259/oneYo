@@ -34,5 +34,13 @@ public class NoticeServiceImpl implements NoticeService {
 		logger.info("noticeSelectAll() 함수 진입 : ");
 		return noticeDAO.noticeSelectAll(nvo);
 	}//end of noticeSelectAll() method
+
+	//SELECT CONTENT
+	@Override
+	public List<NoticeVO> noticeSelectContent(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		logger.info("noticeSelectContent() 함수 진입 : ");
+		return noticeDAO.noticeSelectContent(nvo);
+	}//end of noticeSelectContent() method
 	
 }//end of NoticeServiceImpl class

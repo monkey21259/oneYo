@@ -89,4 +89,22 @@ public class NoticeController {
 		return "";
 	}//end of noticeSelectAll() method
 	
+	//SELECT CONTENT
+	@GetMapping(value="noticeSelectContent")
+	public String noticeSelectContent(NoticeVO nvo, Model model) {
+		logger.info("noticeSelectContent() 함수 진입 : ");
+		logger.info("nvo.getNnum() : " + nvo.getNnum());
+		
+		//서비스 호출
+		List<NoticeVO> scontList = noticeService.noticeSelectContent(nvo);
+		
+		if(scontList.size() > 0) {
+			logger.info("scontList.size() : " + scontList.size());
+			model.addAttribute("scontList", scontList);
+			return "notice/noticeSelectContent";
+		}//end of if
+		
+		return "notice/noticeSelectAll";
+	}//end of noticeSelectContent() method
+	
 }//end of NoticeController class

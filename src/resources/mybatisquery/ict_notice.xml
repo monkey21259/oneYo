@@ -49,4 +49,21 @@
 		
 	</select>
 	
+	<!-- SELECT CONTENT -->
+	<select id="noticeSelectContent" parameterType="noticevo" resultType="noticevo">
+		
+		SELECT
+				 A.NNUM									AS NNUM
+				,A.NSUBJECT								AS NSUBJECT
+				,A.NCONTENT								AS NCONTENT
+				,A.NPHOTO								AS NPHOTO
+				,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
+				,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')	AS UPDATEDATE
+				,A.NHIT									AS NHIT
+		FROM ICT_NOTICE A
+		WHERE	A.DELETEYN	= 'Y'
+		AND		A.NNUM		= #{nnum, jdbcType=VARCHAR}
+		
+	</select>
+	
 </mapper>
