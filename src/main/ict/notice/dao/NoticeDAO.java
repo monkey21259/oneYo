@@ -15,4 +15,10 @@ public interface NoticeDAO {
 	//SELECT CONTENT
 	public List<NoticeVO> noticeSelectContent(NoticeVO nvo);
 	
+	//UPDATE
+	public int noticeUpdate(NoticeVO nvo);
+	
+	//DELETE
+	public int noticeDelete(NoticeVO nvo);
+	
 }//end of NoticeDAO interface

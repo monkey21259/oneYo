@@ -66,4 +66,30 @@
 		
 	</select>
 	
+	<!-- UPDATE -->
+	<update id="noticeUpdate" parameterType="noticevo">
+		
+		UPDATE ICT_NOTICE
+		SET
+				 NSUBJECT	= #{nsubject, jdbcType=VARCHAR}
+				,NCONTENT	= #{ncontent, jdbcType=VARCHAR}
+				,NPHOTO		= #{nphoto, jdbcType=VARCHAR}
+				,UPDATEDATE	= SYSDATE
+		WHERE	NNUM = #{nnum, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
+	
+	<!-- DELETE -->
+	<update id="noticeDelete" parameterType="noticevo">
+		
+		UPDATE ICT_NOTICE
+		SET
+			 DELETEYN = 'N'
+			,UPDATEDATE = SYSDATE
+		WHERE	NNUM = #{nnum, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
+	
 </mapper>

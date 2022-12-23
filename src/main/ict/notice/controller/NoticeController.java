@@ -107,4 +107,74 @@ public class NoticeController {
 		return "notice/noticeSelectAll";
 	}//end of noticeSelectContent() method
 	
+	//글 수정 폼 이동
+	@GetMapping(value="noticeUpdateForm")
+	public String noticeUpdateForm(NoticeVO nvo, Model model) {
+		logger.info("noticeUpdateForm() 함수 진입 : ");
+		logger.info("nvo.getNnum() : " + nvo.getNnum());
+		
+		//서비스 호출
+		List<NoticeVO> updateList = noticeService.noticeSelectContent(nvo);
+		
+		if(updateList.size() > 0) {
+			logger.info("scontList.size() : " + updateList.size());
+			model.addAttribute("updateList", updateList);
+			return "notice/noticeUpdateForm";
+		}//end of if
+		
+		return "notice/noticeSelectContent";
+	}//end of noticeUpdateForm() method
+	
+	//UPDATE
+	@PostMapping(value="noticeUpdate")
+	public String noticeUpdate(HttpServletRequest req, Model model) {
+		logger.info("noticeUpdate() 함수 진입 : ");
+		
+		//파일 업로드
+		FileUpload fu = new FileUpload( ConstPack.NOTICE_IMG_PATH,
+										ConstPack.NOTICE_IMG_SIZE,
+										ConstPack.NOTICE_ENC_TYPE);
+		
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("noticeInsert() -> bool : " + bool);
+		
+		NoticeVO nvo = null;
+		nvo = new NoticeVO();
+		
+		//VO에 값 넣기
+		nvo.setNnum(fu.getParameter("nnum"));
+		nvo.setNsubject(fu.getParameter("nsubject"));
+		nvo.setNcontent(fu.getParameter("ncontent"));
+		if(fu.getFileName("nphoto") != null && fu.getFileName("nphoto").length() > 0) {
+			nvo.setNphoto(fu.getFileName("nphoto"));
+		}else {
+			nvo.setNphoto(fu.getParameter("nphoto1"));
+		}//end of if-else
+		
+		//서비스 호출
+		int updateCnt = noticeService.noticeUpdate(nvo);
+		if(updateCnt == 1) {
+			logger.info("updateCnt : " + updateCnt);
+			model.addAttribute("nvo", nvo);
+			return "notice/noticeUpdate";
+		}//end of if
+		
+		return "notice/noticeUpdateForm";
+	}//end of noticeUpdate() method
+	
+	//DELETE
+	@GetMapping(value="noticeDelete")
+	public String noticeDelete(NoticeVO nvo) {
+		logger.info("noticeDelete() 함수 진입 : ");
+		
+		//서비스 호출
+		int deleteCnt = noticeService.noticeDelete(nvo);
+		if(deleteCnt == 1) {
+			logger.info("deleteCnt : " + deleteCnt);
+			return "notice/noticeDelete";
+		}//end of if
+		
+		return "notice/noticeSelectContent";
+	}//end of noticeDelete() method
+	
 }//end of NoticeController class
