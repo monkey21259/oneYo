@@ -1,5 +1,10 @@
 package main.ict.notice.dao;
 
-public interface NoticeDAO {
+import main.ict.notice.vo.NoticeVO;
 
+public interface NoticeDAO {
+	
+	//INSERT
+	public int noticeInsert(NoticeVO nvo);
+	
 }//end of NoticeDAO interface

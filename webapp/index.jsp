@@ -36,7 +36,8 @@
 		<!-- Tip (전문가 팁) -->
 		<hr>
 		<a href="tipInsertForm.ict">전문가 팁 등록</a><br>
-		<a href="tipSelectAll.ict">전문가 팁 전체조회</a>
+		<a href="tipSelectAll.ict">전문가 팁 전체조회</a><br>
+		<hr>
 		<!-- 공지사항 : 20221222개발시작 -->
 		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a>
 		<!-- Recipe -->

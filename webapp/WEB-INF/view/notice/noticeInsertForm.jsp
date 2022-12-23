@@ -5,6 +5,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>공지사항 글 쓰기</title>
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				$(document).on('click', '#insertBtn', function(){
+					
+					$('#noticeInsertForm').attr({
+						'action':'noticeInsert.ict',
+						'method':'POST',
+						'enctype':'multipart/form-data'
+					}).submit();//end of submit
+					
+				});//end of insertBtn click function
+				
+			});//end of jQuery
+		</script>
 	</head>
 	<body>
 		<form id="noticeInsertForm" name="noticeInsertForm">

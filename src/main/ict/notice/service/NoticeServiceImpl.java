@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.notice.dao.NoticeDAO;
+import main.ict.notice.vo.NoticeVO;
 
 @Service
 @Transactional
@@ -15,4 +16,13 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired(required=false)
 	private NoticeDAO noticeDAO;
+
+	//INSERT
+	@Override
+	public int noticeInsert(NoticeVO nvo) {
+		// TODO Auto-generated method stub
+		logger.info("noticeInsert() 함수 진입 : ");
+		return noticeDAO.noticeInsert(nvo);
+	}//end of noticeInsert() method
+	
 }//end of NoticeServiceImpl class

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.notice.dao.NoticeDAO">
+	
+	<insert id="noticeInsert" parameterType="noticevo">
+		
+		INSERT INTO ICT_NOTICE
+			(
+				 NNUM
+				,NSUBJECT
+				,NCONTENT
+				,NPHOTO
+				,DELETEYN
+				,INSERTDATE
+				,UPDATEDATE
+				,NHIT
+			)
+		VALUES
+			(
+				 #{nnum, jdbcType=VARCHAR}
+				,#{nsubject, jdbcType=VARCHAR}
+				,#{ncontent, jdbcType=VARCHAR}
+				,#{nphoto, jdbcType=VARCHAR}
+				,'Y'
+				,SYSDATE
+				,SYSDATE
+				,0
+			)
+		
+	</insert>
+	
+</mapper>
