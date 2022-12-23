@@ -12,19 +12,21 @@ public class NoticeVO {
 	private int nhit;
 	
 	//페이징
-	private String pagesize;
-	private String groupsize;
-	private String curpage;
-	private String totalcount;
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
+	private String noticeno;
 	
 	//default constructor
 	public NoticeVO() {
 		
 	}
-	
+
 	//constructor using fields
 	public NoticeVO(String nnum, String nsubject, String ncontent, String nphoto, String deleteyn, String insertdate,
-			String updatedate, int nhit, String pagesize, String groupsize, String curpage, String totalcount) {
+			String updatedate, int nhit, String pageSize, String groupSize, String curPage, String totalCount,
+			String noticeno) {
 		super();
 		this.nnum = nnum;
 		this.nsubject = nsubject;
@@ -34,10 +36,11 @@ public class NoticeVO {
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
 		this.nhit = nhit;
-		this.pagesize = pagesize;
-		this.groupsize = groupsize;
-		this.curpage = curpage;
-		this.totalcount = totalcount;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
+		this.noticeno = noticeno;
 	}
 
 	//getter
@@ -73,20 +76,24 @@ public class NoticeVO {
 		return nhit;
 	}
 
-	public String getPagesize() {
-		return pagesize;
+	public String getPageSize() {
+		return pageSize;
 	}
 
-	public String getGroupsize() {
-		return groupsize;
+	public String getGroupSize() {
+		return groupSize;
 	}
 
-	public String getCurpage() {
-		return curpage;
+	public String getCurPage() {
+		return curPage;
 	}
 
-	public String getTotalcount() {
-		return totalcount;
+	public String getTotalCount() {
+		return totalCount;
+	}
+
+	public String getNoticeno() {
+		return noticeno;
 	}
 
 	//setter
@@ -122,20 +129,27 @@ public class NoticeVO {
 		this.nhit = nhit;
 	}
 
-	public void setPagesize(String pagesize) {
-		this.pagesize = pagesize;
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
 	}
 
-	public void setGroupsize(String groupsize) {
-		this.groupsize = groupsize;
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
 	}
 
-	public void setCurpage(String curpage) {
-		this.curpage = curpage;
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
 	}
 
-	public void setTotalcount(String totalcount) {
-		this.totalcount = totalcount;
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
 	}
+
+	public void setNoticeno(String noticeno) {
+		this.noticeno = noticeno;
+	}
+	
+
+	
 	
 }//end of NoticeVO class
