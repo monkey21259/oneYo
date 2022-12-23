@@ -135,7 +135,7 @@ public class CommunityController {
 		if(nCnt > 0) {
 			model.addAttribute("pagingCVO", cvo);
 			model.addAttribute("listAll", list);
-		
+			return "community/communitySelectAll";
 		}		
 		
 		return "community/communitySelectAll";

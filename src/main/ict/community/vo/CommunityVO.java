@@ -1,7 +1,8 @@
 package main.ict.community.vo;
 
 public class CommunityVO { 
-
+	
+	private String communitynum;
 	private String cnum; //글번호
 	private String csubject; //글제목
 	private String ccontent; //글내용
@@ -27,7 +28,7 @@ public class CommunityVO {
 
 	public CommunityVO(String cnum, String csubject, String ccontent, String cphoto, String warning,
 			String mnum, String mnick, String chit, String deleteyn, String insertdate, String updatedate,
-			String pageSize, String groupSize, String curPage, String totalCount) {
+			String pageSize, String groupSize, String curPage, String totalCount, String communitynum) {
 		this.cnum = cnum;
 		this.csubject = csubject;
 		this.ccontent = ccontent;
@@ -43,6 +44,7 @@ public class CommunityVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
+		this.totalCount = communitynum;
 	}
 
 	public String getCnum() {
@@ -164,5 +166,16 @@ public class CommunityVO {
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
 	}
+
+	public String getCommunitynum() {
+		return communitynum;
+	}
+
+	public void setCommunitynum(String communitynum) {
+		this.communitynum = communitynum;
+	}
+	
+	
+	
 	
 } //class

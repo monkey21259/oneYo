@@ -1,146 +1,197 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.File" %>
-<%@ page import="java.util.ArrayList" %>    
-<%@ page import="java.util.Collection" %>    
-<%@ page import="org.apache.log4j.LogManager" %>    
-<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="java.util.Collection" %>
+
 <%
+	//*******************************************
+	//전달해야 할 변수
+	//str url 값 가져오기 블럭	
 
-Logger logger = LogManager.getLogger(this.getClass());
-//====================
-//전달해야할 변수
-//====================
-String url = null;
-String str = null;
+	String url = null;
+	String str = null;
+	
+	url = request.getParameter("url");
+	System.out.println("넘어온 url의 값 : " + url);
+	
+	str = request.getParameter("str");
+	System.out.println("넘어온 str의 값 빈문자열 : " + str);
 
+	if(str != null&& str.length()>0) {
+		str = str + "&";
+		System.out.println("str : " + str);
+	}
+	//*******************************************
 
-url = request.getParameter("url");
-logger.info("url >>> : " + url);
-
-str = request.getParameter("str");
-logger.info("str >>> : " + str);
-
-// str에 데이터가 없어서 if문 실행하지 않음
-if(str !=null && str.length() > 0){
-	str = str + "&";
-	logger.info("str + & >>> : " + str);
-
-}
 %>
 
-<%
-//===========================
-//페이지 네비게이션 관련 변수 
-//===========================
+<% 
+	//*******************************************
+	//페이지 구성 
+	//한페이지에 보여질 게시물의 수
 
+	//한페이지에 보여질 게시물 row의 수
+	int pageSize = 0;
+	// 밑에 넘어갈 수 있는 페이지 이동 갯수
+	int groupSize = 0;
+	// 현재 페이지
+	int curPage = 0;
+	// 전체 페이지의 개수
+	int pageCount = 0;
+	//전체 게시물의 수
+	int totalCount = 0;
 
-//한페이지에 보여질 게시물의 수
-int pageSize = 0;
-//한페이지당보이는 페이지 수 (그룹)
-int groupSize = 0;
-//전체 게시글수 
-int totalCount = 0;
-//현재페이지
-int curPage = 0;
-//현제페이지 게시글 수
-int pageCount = 0;
-
-if(request.getParameter("pageSize") != null){
-	pageSize = Integer.parseInt(request.getParameter("pageSize"));
-}
-	logger.info("pageSize >>> : " + pageSize);
-
-if(request.getParameter("groupSize") != null){
-	groupSize = Integer.parseInt(request.getParameter("groupSize"));
-}
-
-logger.info("groupSize >>> : " + pageSize);
-
-if(request.getParameter("curPage") != null){
-	curPage = Integer.parseInt(request.getParameter("curPage"));
+	//include를 통해 넘어온 데이턴데 commonutil에 있는 상수값이 vo에 set되서 넘어오는거 controller를 봐라
+	if(request.getParameter("pageSize") != null){
+		pageSize = Integer.parseInt(request.getParameter("pageSize"));
+	}
 	
-}
-logger.info("curPage >>> : " + curPage);
+	//controller에서 상수가 vo에 세팅되어 넘어온 값
+		if(request.getParameter("groupSize")!=null){
+			groupSize = Integer.parseInt(request.getParameter("groupSize"));
+			System.out.println("controller에서 vo에 세팅되어 넘어온 groupSize : " + groupSize); 
+		}
 
-if(request.getParameter("totalCount") != null){
-	totalCount = Integer.parseInt(request.getParameter("totalCount"));
-}
-logger.info("pageSize >>> : " + pageSize);
+		//controller에서 상수가 vo에 세팅되어 넘어온 값
+		if(request.getParameter("curPage")!=null){
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+			System.out.println("controller에서 vo에 세팅되어 넘어온 curPage : " + curPage);
+		}
 
-logger.info("totalCount >>> : " + totalCount);
-//전체 게시물수 / 그룹의 크기 = 전체페이지 수
-//소수점에 따라 계산성의 오류가 없도록 한거
+		//얘는 반대로 controller에서 상수가 세팅된게아니라 db를 훑고 list에 있는 totalCount 결과값을 받아온거
+		if(request.getParameter("totalCount")!=null){
+			totalCount = Integer.parseInt(request.getParameter("totalCount"));
+			System.out.println("db훑고 와서 list에 담긴 totalCount : " + totalCount);
+		}
 
-pageCount = (int)Math.ceil(totalCount / (groupSize + 0.0));
-logger.info("pageCount >>> : " + pageCount);
+		//*******************************************
 
+		//*******************************************
+		//로직 짜기 현재 그룹 설정
+	pageCount = (int)Math.ceil(totalCount / (groupSize + 0.0));
+	System.out.println("pageCount : " + pageCount);
+	
+	int curGroup = (curPage-1) / groupSize;
+	System.out.println("curGroup의 값 : " + curGroup);
 
-int curGroup = (curPage - 1) / groupSize;
-logger.info("curGroup >>> : " + curGroup);
-
-//0*0
-int linkPage = curGroup * groupSize;
-logger.info("linkPage >>> : " + linkPage);
-
-%>    
+	int linkPage = curGroup * groupSize;
+	System.out.println("linkPage의 값 : " + linkPage);
+				
+%>
 <p align="right">
 <%
-//첫번째그룹이 아닌경우
+	//*******************************************
+	//세팅하기
 if(curGroup > 0){
 
-%>
-	<a href="<%=url%>?<%=str%>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
-	
+	//KosSpringFileUploadSelectAll.jy&curpage=1
+	//KosSpringFileUploadSelectAll.jy&curpage=curpage		
+%>		
+	<ul class="pagination pagination-sm justify-content-center">
+			<li class="page-item">
+				<a class="page-link" href="<%=url%>?curPage=1">First</a>
+			</li>
+			<li>
+				<a class="page-link" href="<%=url%>?curPage=<%=linkPage%>">Previous</a>
+			</li>
 <% 
-} else {
+	}else{
+
 %>
-	◁◁&nbsp;&nbsp;&nbsp;◀&nbsp;&nbsp;&nbsp;
-<%
-}
+	<ul class="pagination pagination-sm justify-content-center">
+			<li>
+				<a class="page-link" href="<%=url%>?curPage=1">First</a>
+			</li>
+			<li>
+				<a class="page-link" href="<%=url%>?curPage=1">Previous</a>
+			</li>
 
-//다음링크를 위해 증가
-	linkPage++;
-	logger.info("linkPage >>> : + " + linkPage);
-
-	int loopCount = groupSize;
-	logger.info("loopCount >>> : " + loopCount);
-	
-	//그룹범위내에서 페이지 링크 만듦
-	while((loopCount > 0) && (linkPage <= pageCount)){
-		if(linkPage == curPage){
-			logger.info("그룹범위내에서 페이지 링크 if");
-			//linkPage : 1
-%>
-
-<%=linkPage %>
-
-<%
-	} else{
-		logger.info("그룹범위내에서 페이지 링크 else");
-%>
-	[<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>"><%=linkPage %></a>]&nbsp;
 <%
 	}
+
+	//다음 페이지를 위해 증가
 	linkPage++;
-	loopCount--;
-}
+	System.out.println("증가된 linkPage : " + linkPage);
+	
+	int loopCount = groupSize;
+	System.out.println("groupSize를 대입한 loopCount : " + loopCount);
 
-//다음그룹이 있는 경우
-if(linkPage <= pageCount){
-	logger.info("다른 그룹이 있는 경우 linkPage" + linkPage);
-	logger.info("다른 그룹이 있는 경우 pageCount" + pageCount);
+	while((loopCount > 0)&&(linkPage <= pageCount)){
+		
+		if(linkPage == curPage){
+			System.out.println("그룹범위내에서 페이지 링크if");
+			
 %>
-	<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>">▶</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url %>?<%=str %>curPage=<%=pageCount %>">▷▷</a>&nbsp;&nbsp;&nbsp;
+	
+			<li class="page-item">
+				<a class="page-link" 
+				href="<%=url%>?curPage=<%=linkPage%>"><%=linkPage%></a>
+			</li>
+<% 
+		}else{
+			System.out.println("그룹이동없이 페이지 세팅");
+	
+%>
+	<li class="page-item">
+				<a class="page-link"
+					href="<%=url%>?curPage=<%=linkPage%>"><%=linkPage%></a>
+			</li>
+<% 		
+		}
+		linkPage++;
+		System.out.println("루프가 돌면서 linkPage가 증가하는 값 : " + linkPage);
+		loopCount--;
+		System.out.println("루프가 돌면서 loopCount가 감소하는 값 : " + loopCount);
+	}
 
-<%	
-} else {
-	logger.info("다음그룹이 있는 경우 linkPage >>> : " + linkPage);
-	logger.info("다음그룹이 있는 경우 pageCount >>> : " + pageCount);
-	logger.info("다음그룹이 있는 경우_else");
-%>	
-	▶&nbsp;&nbsp;&nbsp;▷▷&nbsp;&nbsp;&nbsp;
-<%	
-}
+	if(linkPage <= pageCount){
+		System.out.println("다음구릅이 있을떄 돔 : " + linkPage);	
+		System.out.println("다음구릅이 있을떄 돔 : " + pageCount);
+
+		
 %>
+	<li class="page-item">
+			<a class="page-link" href="<%=url%>?curPage=<%=linkPage%>">Next</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Last</a>
+		</li>
+		</ul>
+<% 		
+	//끝 페이지일 경우
+	}else{
+		System.out.println("끝페이지일때 도는 로직 linkPage : " + linkPage);
+		System.out.println("끝페이지일때 도는 로직 pageCount : " + pageCount);
+		System.out.println("끝페이지일때 도는 로직 else가 돈다");
+		
+%>
+ 		<li class="page-item">
+			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Next</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Last</a>
+		</li>
+		</ul>
+		<div id="btndiv" align="right">
+			전체 <%=pageCount%>페이지 중 <%=curPage%>페이지<br>
+		</div>
+<%
+	}
+%>
+
+</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+</body>
+</html>
