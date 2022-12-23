@@ -57,20 +57,21 @@
 			if(obj == null){return; }
 			List<CommunityVO> listAll = (List<CommunityVO>)obj;	
 		
-			CommunityVO cvo = null;
+			CommunityVO _cvo = null;
 		
 			if(listAll.size() > 0){
 				for(int i=0; i<listAll.size(); i++){ 
-					cvo = listAll.get(i);
+					_cvo = listAll.get(i);
+		
 		%>
 				<tbody>
 					<tr>
-						<td><%= i + 1 %></td>
-						<td><%= cvo.getCsubject() %></td>
-						<td><%= cvo.getMnick() %></td>
-						<td><%= cvo.getChit() %></td>
+						<td><%= _cvo.getCommunitynum()%></td>
+						<td><%= _cvo.getCsubject() %></td>
+						<td><%= _cvo.getMnick() %></td>
+						<td><%= _cvo.getChit() %></td>
 						<td><%= 1 %></td>                 <!-- 나중에 추가하기 -->
-						<td><%= cvo.getInsertdate()%></td>
+						<td><%= _cvo.getInsertdate()%></td>
 					</tr>
 				<%
 				} //for
@@ -90,8 +91,8 @@
 				curPage = Integer.parseInt(pagingCPVO.getCurPage());
 				logger.info("curPage >>> : " + curPage );
 				
-				logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + cvo.getTotalCount());
-				totalCount = Integer.parseInt(cvo.getTotalCount());
+				logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + _cvo.getTotalCount());
+				totalCount = Integer.parseInt(_cvo.getTotalCount());
 				logger.info("totalCount >>> : " + totalCount );
 				
 				%>
