@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.notice.dao.NoticeDAO">
+	
+	<!-- INSERT -->
+	<insert id="noticeInsert" parameterType="noticevo">
+		
+		INSERT INTO ICT_NOTICE
+			(
+				 NNUM
+				,NSUBJECT
+				,NCONTENT
+				,NPHOTO
+				,DELETEYN
+				,INSERTDATE
+				,UPDATEDATE
+				,NHIT
+			)
+		VALUES
+			(
+				 #{nnum, jdbcType=VARCHAR}
+				,#{nsubject, jdbcType=VARCHAR}
+				,#{ncontent, jdbcType=VARCHAR}
+				,#{nphoto, jdbcType=VARCHAR}
+				,'Y'
+				,SYSDATE
+				,SYSDATE
+				,0
+			)
+		
+	</insert>
+	
+	<!-- SELECT ALL -->
+	<select id="noticeSelectAll" parameterType="noticevo" resultType="noticevo">
+		
+		SELECT
+				 A.NNUM									AS NNUM
+				,A.NSUBJECT								AS NSUBJECT
+				,A.NCONTENT								AS NCONTENT
+				,A.NPHOTO								AS NPHOTO
+				,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
+				,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')	AS UPDATEDATE
+				,A.NHIT									AS NHIT
+		FROM ICT_NOTICE A
+		WHERE	A.DELETEYN	= 'Y'
+		ORDER BY A.NNUM DESC
+		
+	</select>
+	
+</mapper>
