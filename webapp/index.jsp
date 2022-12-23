@@ -45,5 +45,7 @@
 		<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a>
 		<a href=""></a>
 		<hr /><br />
+
+
 	</body>
 </html> 
