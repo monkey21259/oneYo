@@ -31,12 +31,12 @@
 $(document).ready(function(){
 	alert("hihi, <%= memail %>. 회원가입 진행합니다.");
 	
-	//	mcategory 단수	=====================
-	$(document).on('click', '.mcategory', function(){
+// 	//	mcategory 단수	=====================
+// 	$(document).on('click', '.mcategory', function(){
 		
-		$('.mcategory').prop('checked', false);
-		$(this).prop('checked', true);
-	});	//	mcategory 단수	=====================
+// 		$('.mcategory').prop('checked', false);
+// 		$(this).prop('checked', true);
+// 	});	//	mcategory 단수	=====================
 	
 	
 	$(document).on('click', '#formBtn', function(){
@@ -79,8 +79,7 @@ $(document).ready(function(){
 			let mcategory = "";
 			$('.mcategory').each(function(){
 				if ($(this).is(':checked') == true) {
-// 					mcategory += "#" + $(this).val();
-					mcategory += $(this).val();
+					mcategory += "#" + $(this).val();
 				}
 			});
 			$('#mcategory').val(mcategory);
