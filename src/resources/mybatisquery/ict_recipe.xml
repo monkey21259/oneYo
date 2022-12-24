@@ -61,13 +61,73 @@
 	    ,A.MNUM         MNUM
 	    ,A.RHIT         RHIT
 	    ,A.DELETEYN     DELETEYN
-	    ,A.INSERTDATE   INSERTDATE
-	    ,A.UPDATEDATE   UPDATEDATE
+	    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+	    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
 	  FROM
 	    ICT_RECIPE A
 	 WHERE A.DELETEYN = 'Y'
 	 ORDER BY 1
 
 </select>
+
+<!-- SELECT -->
+<select id="recipeSelectContent" parameterType="recipevo" resultType="recipevo">
+
+	SELECT
+	     A.RNUM         RNUM
+	    ,A.RSUBJECT     RSUBJECT
+	    ,A.RCONTENT     RCONTENT
+	    ,A.RPHOTO       RPHOTO
+	    ,A.RJERYO       RJERYO
+	    ,A.RTIME        RTIME
+	    ,A.RPERSON      RPERSON
+	    ,A.RDIFF        RDIFF
+	    ,A.RCATEGORY    RCATEGORY
+	    ,A.WARNING      WARNING
+	    ,A.MNUM         MNUM
+	    ,A.RHIT         RHIT
+	    ,A.DELETEYN     DELETEYN
+	    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+	    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
+	  FROM
+	    ICT_RECIPE A
+	 WHERE A.DELETEYN = 'Y'
+	   AND A.RNUM = #{ rnum, jdbcType=VARCHAR }
+	   AND A.MNUM = #{ mnum, jdbcType=VARCHAR }
+
+</select>
+
+<!-- UPDATE -->
+<update id="recipeUpdate" parameterType="recipevo">
+
+	UPDATE ICT_RECIPE
+	  SET
+	    RSUBJECT = #{ rsubject },
+	    RCONTENT = #{ rcontent },
+	    RPHOTO = #{ rphoto },
+	    RJERYO = #{ rjeryo },
+	    RTIME = #{ rtime },
+	    RPERSON = #{ rperson },
+	    RDIFF = #{ rdiff },
+	    RCATEGORY = #{ rcategory },
+	    UPDATEDATE = SYSDATE
+	 WHERE DELETEYN = 'Y'
+	   AND RNUM = #{ rnum, jdbcType=VARCHAR }
+	   AND MNUM = #{ mnum, jdbcType=VARCHAR }
+
+</update>
+
+<!-- DELETE -->
+<update id="recipeDelete" parameterType="recipevo">
+
+	UPDATE ICT_RECIPE
+	  SET
+	    DELETEYN = 'N',
+	    UPDATEDATE = SYSDATE
+	 WHERE DELETEYN = 'Y'
+	   AND RNUM = #{ rnum, jdbcType=VARCHAR }
+	   AND MNUM = #{ mnum, jdbcType=VARCHAR }
+
+</update>
 
 </mapper>

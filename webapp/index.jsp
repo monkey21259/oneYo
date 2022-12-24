@@ -38,7 +38,7 @@
 		<a href="tipInsertForm.ict">전문가 팁 등록</a><br>
 		<a href="tipSelectAll.ict">전문가 팁 전체조회</a><br>
 		<hr>
-		<!-- 공지사항 : 20221222개발시작 -->
+		<!-- 공지사항 -->
 		<a href="noticeInsertForm.ict">공지사항 게시글 등록 테스트</a><br>
 		<a href="noticeSelectAll.ict">공지사항 게시글 조회 테스트</a>
 		<!-- Recipe -->
@@ -47,6 +47,8 @@
 		<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a><br />
 		<a href="/oneYo/recipeSelectAll.ict">레시피 전체 조회</a>
 		<hr /><br />
+		<a href="rssTest.ict">RSS 테스트</a>
+		<hr>
 
 
 	</body>

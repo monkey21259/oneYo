@@ -8,30 +8,128 @@
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
 		<title>recipeSelectAll.jsp</title>
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		
+			console.log("[recipeSelectAll.jsp] JS");
+			$(document).ready(function() {
+				
+				console.log("[recipeSelectAll.jsp] jQuery");
+				$(".recipes").on("click", function() {
+					
+					console.log("[click] recipes");
+					
+					var recipeInfos = $(this).siblings();
+					var rnum = recipeInfos[0].value;
+					var mnum = recipeInfos[1].value;
+					
+					$("#rnum").val(rnum);
+					$("#mnum").val(mnum);
+					
+					$("#recipeInsertForm").attr({
+						"action": "/oneYo/recipeSelectContent.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+			});
+		
+		</script>
+		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
 	</head>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
-		<%
+<!--  -->
+		<header></header>
+<!--  -->
+		<nav></nav>
+<!--  -->
+		<aside></aside>
+<!-- Section -->		
+		<section>
+			<div class="recipeSectionHeader">
+				<span class="t">레시피(Recipe) 게시판</span>
+			</div>
+			<div class="recipeCategory">
+				<!-- (조건 검색) 카테고리 넣는 공간 -->
+				카테고리 넣는 공간
+			</div>
+			<div class="recipeSearchBtnDiv">
+				<!-- 카테고리 조건 검색 -->
+				<a class="recipeSearchBtn" href="javascript:void(0);">검색</a>
+			</div>
+			<div class="recipeSearchPeriodContainer">
+				<div class="t">
+					<a href="javascript:void(0);">
+						<span>&nbsp;일간&nbsp;</span>
+					</a>/
+				</div>
+				<div class="t">
+					<a href="javascript:void(0);">
+						<span>&nbsp;주간&nbsp;</span>
+					</a>/
+				</div>
+				<div class="t">
+					<a href="javascript:void(0);">
+						<span>&nbsp;월간&nbsp;</span>
+					</a>/
+				</div>
+				<div class="t">&nbsp;인기글</div>
+				<div class="tright">
+					<a href="javascript:void(0);">
+						<span>글 등록 버튼</span>
+					</a>
+				</div>
+			</div>
+<%
 			Object recipeObj = request.getAttribute("recipeList");
 			if (recipeObj == null) {
 				logger.info("[FAIL] getAttribute -> recipeObj is null");
 			}
-			@SuppressWarnings("unchecked")
+			
 			List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
 			if (recipeList.size() < 1) {
 				logger.info("[FAIL] Type Casting -> recipeList.size() < 1");
 			}
-		
-			out.println("<h3> Recipe Select All </h3>");
-			for (RecipeVO recipevo: recipeList) {
-				out.println(recipevo.toString() + "<br /><br />");
-			}
-		%>
+			
+			int rTotalHeight = 308 * (recipeList.size() / 4 + 1);
+// 			logger.info(recipeList.size());
+%>
+				<form id="recipeInsertForm">
+					<div class="recipeSection" style="height:<%= rTotalHeight %>px"> <!-- loop -->
+<%
+					RecipeVO recipevo = null;
+	 				for (int i=0; i<recipeList.size(); i++) {
+	 					recipevo = recipeList.get(i);
+%>
+						<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
+							<div class="recipes">
+								<div style="margin:10%;height:77%;">
+									<%= recipevo.getRsubject() %>
+								</div>
+							</div>
+							<input type="hidden" class="rnum" value="<%= recipevo.getRnum() %>" />
+							<input type="hidden" class="mnum" value="<%= recipevo.getMnum() %>" />
+						</a>
+<%
+						if (i % 4 == 0 && i > 0) {
+%>
+							<br />
+<%
+						}
+	 				}
+%>
+						<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
+						<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
+					</div>
+				</form>
+		</section>
 	</body>
 </html>

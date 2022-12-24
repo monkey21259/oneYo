@@ -35,5 +35,29 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		return recipeDAO.recipeSelectAll();
 	}
+	
+	@Override
+	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo) {
+		
+		logger.info("recipeSelectContent() 함수 진입");
+		
+		return recipeDAO.recipeSelectContent(recipevo);
+	}
 
+	@Override
+	public int recipeUpdate(RecipeVO recipevo) {
+		
+		logger.info("recipeUpdate() 함수 진입");
+		
+		return recipeDAO.recipeUpdate(recipevo);
+	}
+	
+	@Override
+	public int recipeDelete(RecipeVO recipevo) {
+		
+		logger.info("recipeDelete() 함수 진입");
+		
+		return recipeDAO.recipeDelete(recipevo);
+	}
+	
 }

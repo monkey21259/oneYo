@@ -24,4 +24,22 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return sqlSession.selectList("recipeSelectAll");
 	}
 
+	@Override
+	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo) {
+		
+		return sqlSession.selectList("recipeSelectContent", recipevo);
+	}
+	
+	@Override
+	public int recipeUpdate(RecipeVO recipevo) {
+		
+		return sqlSession.update("recipeUpdate", recipevo);
+	}
+	
+	@Override
+	public int recipeDelete(RecipeVO recipevo) {
+		
+		return sqlSession.update("recipeDelete", recipevo);
+	}
+	
 }

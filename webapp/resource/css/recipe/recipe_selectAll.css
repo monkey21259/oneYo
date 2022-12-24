@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* 게시판명(레시피) div */
+.recipeSectionHeader {
+	text-align: center;
+	height: 50px;
+}
+
+/* 게시판(레시피) 타이틀 span */
+.recipeSectionHeader .t {
+	font-size: 35px;
+	
+}
+
+/* 레시피 카테고리 div */
+.recipeCategory {
+	margin-top: 5px;
+	border: 1px solid #333;
+	height: 250px;
+}
+
+/* 레시피 카테고리 조건 검색 div */
+.recipeSearchBtnDiv {
+	margin-top: 5px;
+	border: 1px solid red;
+	height: 25px;
+	text-align: right;
+}
+
+/* 레시피 카테고리 조건 검색 버튼 a */
+.recipeSearchBtn {
+	position: relative;
+	top: 2px;
+}
+
+/* 월간/주간/일간 인기글 및 글 등록 버튼을 포함한 Container */
+.recipeSearchPeriodContainer {
+	margin-top: 5px;
+	padding: 0px 30px;
+	border: 1px solid #333;
+	height: 50px;
+}
+
+.recipeSearchPeriodContainer a {
+	text-decoration-line: none;
+}
+
+/* 월간/주간/일간 인기글 */
+.t {
+	float: left;
+}
+
+.tright {
+	float: right;
+}
+
+/* 레시피 게시글 전체리스트 div */
+.recipeSection {
+	margin: 5px 100px 0 100px;
+	border: 1px solid blue;
+	padding: 0px;
+}
+
+/* 레시피 div */
+.recipes {
+	margin-top: 5px;
+	margin-right: 5px;
+	border-radius: 50px;
+	border: 1px solid blue;
+	width: 24%;
+	height: 300px;
+	float: left;
+}
+
+
+
+

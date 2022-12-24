@@ -3,8 +3,6 @@
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="org.apache.log4j.LogManager" %>
 
-
-
 <!DOCTYPE html>
 <html lang='ko'>
 	<head>
@@ -35,7 +33,7 @@
 		<style type="text/css">
 		
 			.recipeTable tr, .recipeTable td {
-				border: 1px solid black;			
+				border: 1px solid black;
 			}
 		
 		</style>

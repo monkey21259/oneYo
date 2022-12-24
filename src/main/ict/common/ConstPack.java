@@ -13,7 +13,6 @@ public abstract class ConstPack {
 	public static final String LIKE_GUBUN = "L";
 	public static final String NOTICE_GUBUN = "N";
 	
-	
 	//파일 업로드
 	public static final String COMMON_IMG_PATH = "C:\\00.KOSMO120\\30.web\\el_ict_work\\oneYo\\webapp\\img\\";
 	
@@ -79,6 +78,12 @@ public abstract class ConstPack {
 	public static final int NOTICE_GROUP_SIZE = 3; 
 	public static final int NOTICE_CUR_PAGE = 1; 
 	public static final int NOTICE_TOTAL_COUNT = 0; 
+
+	// ------------------------------------
+	// 코드값 라벨링 관련 상수
+	public static final String[] RECIPE_CAT_ARR = {"한식", "중식", "양식", "일식", "디저트", "기타"};
+	public static final String[] RECIPE_DIFF_ARR = {"쉬움", "보통", "어려움"};
+	
 	
 	
 }//end of ConstPack abstract class

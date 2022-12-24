@@ -1,5 +1,6 @@
 package main.ict.recipe.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +31,7 @@ public class RecipeController {
 	@Autowired(required=false)
 	public ChabunService chabunService;
 	
-// I
+// I Form
 	@GetMapping(value="recipeInsertForm")
 	public String recipeInsertForm() {  // 세션 처리 필요
 		
@@ -74,7 +75,6 @@ public class RecipeController {
 		sb.append(rminute);
 		sb.append("분");
 		recipevo.setRtime(sb.toString());
-		sb = null;
 		
 		recipevo.setRperson(rfu.getParameter("rperson"));
 		recipevo.setRdiff(rfu.getParameter("rdiff"));
@@ -94,12 +94,15 @@ public class RecipeController {
 			return "#";
 		}
 		
-		// TODO 등록된 글 화면 표시 필요
+		List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
+		recipeList.add(recipevo);
+		
+		model.addAttribute("recipeList", recipeList);
 		// TODO 추후 좋아요, 싫어요, 신고, 댓글 추가 필요
-		return "../index";
+		return "./recipe/recipeSelectContent";
 	}
 	
-// S
+// S_ALL
 	@GetMapping(value="recipeSelectAll")
 	public String recipeSelectAll(Model model) {
 		
@@ -111,13 +114,79 @@ public class RecipeController {
 			logger.info("[FAIL] Recipe SelectAll");
 			return "#";
 		}
-		logger.info(recipeList.toString());
+//		logger.info(recipeList.toString());
 		
 		model.addAttribute("recipeList", recipeList);
 		// TODO 페이징, 조건 검색(?)
 		return "./recipe/recipeSelectAll";
 	}
+
+// S
+	@GetMapping(value="recipeSelectContent")
+	public String recipeSelectContent(RecipeVO recipevo, Model model) {
+		
+		logger.info("recipeSelectContent() 함수 진입");
+//		logger.info(recipevo.toString());  // RecipeVO [rnum=R202212210004, ..., mnum=M202212200005]
+		
+		List<RecipeVO> recipeList = recipeService.recipeSelectContent(recipevo);
+		if (recipeList == null || recipeList.size() != 1) {
+			logger.info("recipeList is invalid.");
+			return "#";
+		}
+		
+		logger.info("[SUCCESS] Recipe");
+		model.addAttribute("recipeList", recipeList);
+		return "./recipe/recipeSelectContent";
+	}
 	
+// U Form
+	@PostMapping(value="recipeUpdateForm")
+	public String recipeUpdateForm(RecipeVO recipevo, Model model) {
+		
+		logger.info("recipeUpdateForm() 함수 진입");
+		
+		// (O) rnum, rhit, mnum, updatedate, (X) warning, deleteyn, insertdate 
+		// (221224) rnum, rhit, mnum, updatedate
+		logger.info(recipevo.toString());
+		model.addAttribute("recipevo", recipevo);
+		return "./recipe/recipeUpdateForm";
+	}
 	
+// U
+	@PostMapping(value="recipeUpdate")
+	public String recipeUpdate(RecipeVO recipevo, Model model) {
+		
+		logger.info("recipeUpdate() 함수 진입");
+		logger.info(recipevo.toString());
+		
+		int nCnt = recipeService.recipeUpdate(recipevo);
+		logger.info("[Recipe Update] Count: " + nCnt);
+		if (nCnt < 1) {  // FAIL
+			return "#";
+		}
+		
+		List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
+		recipeList.add(recipevo);
+		
+		model.addAttribute("recipeList", recipeList);
+		return "./recipe/recipeSelectContent";
+	}
+	
+// D
+	@PostMapping(value="recipeDelete")
+	public String recipeDelete(RecipeVO recipevo, Model model) {
+		
+		logger.info("recipeDelete() 함수 진입");
+		
+		int nCnt = recipeService.recipeDelete(recipevo);
+		logger.info("[Recipe Delete] Count: " + nCnt);
+		if (nCnt < 1) {  // FAIL
+			return "#";
+		}
+		
+		List<RecipeVO> recipeList = recipeService.recipeSelectAll();
+		model.addAttribute("recipeList", recipeList);
+		return "./recipe/recipeSelectAll";
+	}
 	
 }
