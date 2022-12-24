@@ -21,10 +21,10 @@
 	int nCnt = list.size();
 	logger.info("nCnt >>> : " + nCnt);
 	
-	CommunityVO _cvo = null;
+	CommunityVO cvo = null;
 	
 	if(nCnt == 1){
-		_cvo = list.get(0);
+		cvo = list.get(0);
 	}
 %>
 <!DOCTYPE html>
@@ -35,27 +35,28 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				
 			//조회수 추가하기
 
 			//update
-				$(document).on("click", "#communityUpdate", function(){
-					alert("수정버튼클릭");
+				$(document).on("click", "#communityUpdateBtn", function(){
+				
 					$("#communitySelectContent").attr({
-						"action":"communityUpdateForm.ict",			
+						"action":"communityUpdateForm.ict",
 						"method":"GET",
 						"enctype":"application/x-www=form=urlencoded"
-						
 					}).submit();
 					
-				}); //update
-				
-// 			//delete
-// 				$(document).on("click", "#communityDelete", function(){
-// 					alert("삭제버튼클릭");
-					
-					
-// 				}); //delete
+				}); //Update
+
+
+					$(document).on("click", "#communityDeleteBtn", function(){
+						alert("삭제버튼클릭");
+						$("#communitySelectContent").attr({
+							"action":"communityDelete.ict",
+							"method":"GET",
+							"enctype":"application/x-www=form=urlencoded"	
+						}).submit();
+				}); //delete
  			}); //ready
 		
 		</script>
@@ -65,20 +66,20 @@
 	<hr>
 	
 		<form id="communitySelectContent" name="communitySelectContent">
-			<input type="hidden" id="cnum" name="cnum" value="<%= _cvo.getCnum() %>">
+			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
 			<table>
 				<div>
 					<tr>
 						<td>글제목</td>
-						<td colspan="2"><%=_cvo.getCsubject() %></td>
+						<td colspan="2"><%=cvo.getCsubject() %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%= _cvo.getMnick()%></td>
+						<td colspan="2"><%= cvo.getMnick()%></td>
 					</tr>
 					<tr>
 						<td>작성시간</td>
-						<td colspan="2"><%= _cvo.getUpdatedate()%></td>
+						<td colspan="2"><%= cvo.getUpdatedate()%></td>
 					</tr>
 				</div>
 				
@@ -94,14 +95,15 @@
 					</tr>	
 					<tr>
 						<td>
-							<img src="/oneYo/img/community/<%=_cvo.getCphoto()%>"></td>
-							<td colspan="2"><%= _cvo.getCcontent() %></td>
+							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>">
+							<input type="hidden" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>"></td>
+							<td colspan="2"><%= cvo.getCcontent() %></td>
 						
 					</tr>
 					<tr>
 						<td colspan="3">
-							<button type="button" id="communityUpdate">수정</button>
-							<button type="button" id="communityDelete">삭제</button>
+							<button type="button" id="communityUpdateBtn">수정</button>
+							<button type="button" id="communityDeleteBtn">삭제</button>
 						</td>
 					</tr>
 				</div>

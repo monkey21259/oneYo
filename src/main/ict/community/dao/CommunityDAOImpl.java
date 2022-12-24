@@ -34,6 +34,18 @@ public class CommunityDAOImpl implements CommunityDAO {
 		return sqlSession.selectList("communitySelect", cvo);
 	}
 
-	
-	
+
+//커뮤니티 게시글 수정	
+	@Override
+	public int communityUpdate(CommunityVO cvo) {
+		return sqlSession.update("communityUpdate", cvo);
+	}
+
+//커뮤니티 게시글 삭제
+	@Override
+	public int communityDelete(CommunityVO cvo) {
+		return sqlSession.update("communityDelete", cvo);
+	}	
+
+
 }//class

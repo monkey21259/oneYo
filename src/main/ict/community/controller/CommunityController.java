@@ -77,7 +77,7 @@ public class CommunityController {
 		
 		String cphoto = fu.getFileName("cphoto");
 		cvo.setCphoto(cphoto);
-		logger.info("cphoto >>> : " +  cphoto);
+		logger.info("cphoto >>> : " +  cvo.getCphoto());
 	
 //		String mnum = req.getParameter("mnum");
 		String mnum = "M202212200008";
@@ -166,6 +166,7 @@ public class CommunityController {
 			
 			List<CommunityVO> listU = communityService.communitySelect(cvo);
 			logger.info("cvo.getCnum() >>> : " + cvo.getCnum());
+			logger.info("cvo.getCphoto() >>>>>>>>>> : " + cvo.getCphoto());
 			
 			logger.info("listS.size() >>> : " + listU.size());
 			
@@ -177,60 +178,72 @@ public class CommunityController {
 			return"community/communityUpdateForm";
 		} //updateForm
 		
-////커뮤니티 글수정(updateform)	
-//	@PostMapping("communityUpdateForm")
-//	public String communityUpdateForm(HttpServletRequest req, Model model) {
-//		logger.info("communityUpdate 함수 진입>>> : ");
-//		
-//		//파일
-//		FileUpload fu = new FileUpload(	  ConstPack.COMMUNITY_IMG_PATH
-//										, ConstPack.COMMUNITY_IMG_SIZE
-//										, ConstPack.COMMUNITY_ENC_TYPE);
-//		
-//		logger.info("fu >>> : " + fu);
-//		
-//		//이미지 원본사이즈
-//		boolean bool = fu.imgFileUpload(req);
-//		logger.info("imgFileUpload >>> : " + bool);
-////		//vo 인스턴스
-//		CommunityVO cvo = null;
-//		cvo = new CommunityVO();
-//		
-//		String cnum = fu.getParameter("cnum");
-//		cvo.setCnum(cnum);
-//		logger.info("cnum >>> : " +cvo.getCnum());
-//		
-//		String csubject = fu.getParameter("csubject"); 
-//		cvo.setCsubject(csubject);
-//		logger.info("csubject >>> : " + cvo.getCsubject());
-//		
-//		String ccontent = fu.getParameter("ccontent");
-//		cvo.setCcontent(ccontent);
-//		logger.info("ccontent >>> : " + cvo.getCcontent());
-//		
-//		String cphoto = fu.getFileName("cphoto");
-//		cvo.setCphoto(cphoto);
-//		logger.info("cphoto >>> : " +  cphoto);
-//	
-////		String mnum = req.getParameter("mnum");
-//		String mnum = "M202212200007";
-//		cvo.setMnum(mnum);
-//		logger.info("mnum >>> : " + cvo.getMnum());
-//
-//		String mnick = "스펀지";
-//		cvo.setMnick(mnick);
-////		String mnick = req.getParameter("mnick");
-//		logger.info("mnick >>> : " + cvo.getMnick());
-//	
-//		//update
-//		int nCnt = communityService.communityInsert(cvo);
-//		logger.info("nCnt >>> : " + nCnt);
-//		if(nCnt < 1) {
-//			return "community/communityInsertForm";
-//		}
-//		return "community/communityInsert";
-//		
-//		
-//		return "";
-//	}//communityUpdateForm
+//커뮤니티 글수정(update)	
+	@PostMapping("communityUpdate")
+	public String communityUpdate(HttpServletRequest req, Model model) {
+		logger.info("communityUpdate 함수 진입>>> : ");
+		
+		//파일
+		FileUpload fu = new FileUpload(	  ConstPack.COMMUNITY_IMG_PATH
+										, ConstPack.COMMUNITY_IMG_SIZE
+										, ConstPack.COMMUNITY_ENC_TYPE);
+		
+		logger.info("fu >>> : " + fu);
+		
+		//이미지 원본사이즈
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("imgFileUpload >>> : " + bool);
+		
+//		//vo 인스턴스
+		CommunityVO cvo = null;
+		cvo = new CommunityVO();
+	
+		String cnum = fu.getParameter("cnum");
+		cvo.setCnum(cnum);
+		logger.info("cnum >>> : " + cvo.getCnum());
+		
+		String csubject = fu.getParameter("csubject"); 
+		cvo.setCsubject(csubject);
+		logger.info("csubject >>> : " + cvo.getCsubject());
+		
+		String ccontent = fu.getParameter("ccontent");
+		cvo.setCcontent(ccontent);
+		logger.info("ccontent >>> : " + cvo.getCcontent());
+
+		
+		String cphoto = fu.getFileName("cphoto");
+		if(cphoto == null) {
+			cphoto =" ";
+		}
+		cvo.setCphoto(cphoto);
+		logger.info("cphoto >>> : " +  cvo.getCphoto());
+		
+		//update
+		int nCnt = communityService.communityUpdate(cvo);
+		logger.info("nCnt >>> : " + nCnt);
+		
+		if(nCnt > 0) {
+			model.addAttribute("communityUpdate", cvo);
+			return "community/communityUpdate";
+		}
+		return "community/communitySelectContent";
+		
+
+	}//communityUpdateForm
+	
+	
+//커뮤니티 글삭제(delete)
+	@GetMapping("communityDelete")
+	public String communityDelete(CommunityVO cvo) {
+		logger.info("communityDelete >>> : ");
+		
+		//delete
+		int nCnt = communityService.communityDelete(cvo);
+		logger.info("nCnt >>> : " + nCnt);
+		if(nCnt == 1) {
+			return "community/communityDelete";
+		}
+		return "community/communitySelectContent";
+	} //communityDelete
+	
 }//class

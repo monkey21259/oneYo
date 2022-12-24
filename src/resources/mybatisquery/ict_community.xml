@@ -79,6 +79,22 @@
 	</select>
 	
 <!-- 수정 -->	
+	<update id="communityUpdate" parameterType="communityvo">
+		UPDATE "ORCLICT00"."ICT_COMMUNITY" A
+		   SET 	  CSUBJECT = #{csubject }
+		   		, CCONTENT = #{ccontent }
+		   		, CPHOTO = #{cphoto }
+		   		, UPDATEDATE = SYSDATE
+		 WHERE CNUM = #{cnum }
+		   AND DELETEYN = 'Y'
+	</update>	
 	
+<!-- 삭제 -->	
+	<update id="communityDelete" parameterType="communityvo">
+		UPDATE "ORCLICT00"."ICT_COMMUNITY" A
+		   SET 	 DELETEYN ='N'
+		 WHERE CNUM = #{cnum }
+		   AND DELETEYN = 'Y'
+	</update>	
 </mapper>     
 

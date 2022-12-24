@@ -44,7 +44,21 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.communitySelect(cvo); 
 	}
 
-	
-	
+//커뮤니티 게시글 수정	
+	@Override
+	public int communityUpdate(CommunityVO cvo) {
+		logger.info("communityUpdate 서비스 진입 >>> ");
+		
+		return communityDAO.communityUpdate(cvo); 
+	}
+
+//커뮤니티 게시글 삭제
+	@Override
+	public int communityDelete(CommunityVO cvo) {
+	logger.info("communityDelete 서비스 진입 >>> ");
+		
+		return communityDAO.communityDelete(cvo); 
+	}
+
 	
 } //class

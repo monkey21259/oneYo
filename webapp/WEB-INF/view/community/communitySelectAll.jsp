@@ -29,7 +29,7 @@
 		<script type="text/javascript">
 		
 		$(document).ready(function(){
-			$(document).on("click", "#insertSelectAllBtn", function(){
+			$(document).on("click", "#communityInsertBtn", function(){
 				$("#communitySelectAll").attr({
 					"action":"communityInsertForm.ict",
 					"method":"GET",
@@ -47,7 +47,7 @@
 	<div>
 		<div>
 			<button type="button">인기글</button>
-			<button type="button" id="insertSelectAllBtn" name="insertSelectAllBtn">글 등록 </button>
+			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
 		</div>
 	</div>
 
@@ -70,21 +70,21 @@
 			if(obj == null){return; }
 			List<CommunityVO> listAll = (List<CommunityVO>)obj;	
 		
-			CommunityVO _cvo = null;
+			CommunityVO cvo = null;
 		
 			if(listAll.size() > 0){
 				for(int i=0; i<listAll.size(); i++){ 
-					_cvo = listAll.get(i);
+					cvo = listAll.get(i);
 		
 		%>
 				<tbody>
 					<tr>
-						<td><%= _cvo.getCommunitynum()%></td>
-						<td><a href="communitySelectContent.ict?cnum=<%=_cvo.getCnum()%>"><%= _cvo.getCsubject() %></td>
-						<td><%= _cvo.getMnick() %></td>
-						<td><%= _cvo.getChit() %></td>
+						<td><%= cvo.getCommunitynum()%></td>
+						<td><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></td>
+						<td><%= cvo.getMnick() %></td>
+						<td><%= cvo.getChit() %></td>
 						<td><%= 1 %></td>                 <!-- 나중에 추가하기 -->
-						<td><%= _cvo.getInsertdate()%></td>
+						<td><%= cvo.getUpdatedate()%></td>
 					</tr>
 				<%
 				} //for
@@ -104,8 +104,8 @@
 				curPage = Integer.parseInt(pagingCPVO.getCurPage());
 				logger.info("curPage >>> : " + curPage );
 				
-				logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + _cvo.getTotalCount());
-				totalCount = Integer.parseInt(_cvo.getTotalCount());
+				logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + cvo.getTotalCount());
+				totalCount = Integer.parseInt(cvo.getTotalCount());
 				logger.info("totalCount >>> : " + totalCount );
 				
 				%>

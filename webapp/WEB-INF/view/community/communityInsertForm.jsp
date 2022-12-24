@@ -38,7 +38,7 @@
 				<table> 
 				<tr>
 					<td>제목</td>
-					<td><input type="text" id="csubject" name="csubject">
+					<td><input type="text" id="csubject" name="csubject"></td>
 				</tr>
 				<tr>
 					<td>내용</td>
@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td><input type="file" id="cphoto" name="cphoto">
+					<td><input type="file" id="cphoto" name="cphoto"></td>
 				</tr>
 				</table>
 			
