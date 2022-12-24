@@ -186,4 +186,10 @@ public class NoticeController {
 		return "notice/noticeSelectContent";
 	}//end of noticeDelete() method
 	
+	//RSS 테스트
+	@GetMapping(value="rssTest")
+	public String rssTest() {
+		return "rss/rss";
+	}//end of rssTest() method
+	
 }//end of NoticeController class
