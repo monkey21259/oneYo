@@ -36,9 +36,9 @@
 		
 		$(document).on("click", ".tsubject", function(){
 			let tnum = $(this).children(1).val();
-			console.log("tsubject : " + tsubject);
+			console.log("tnum : " + tnum);
 			
-			location.href = "tipSelectContent.ict?tnum=" + tsubject;
+			location.href = "tipSelectContent.ict?tnum=" + tnum;
 			
 			<%--
 			$("#tipSelectAllForm").attr({
@@ -50,9 +50,9 @@
 		
 		$(document).on("click", ".tcontent", function(){
 			let tnum = $(this).children(1).val();
-			console.log("tcontent : " + tcontent);
+			console.log("tnum : " + tnum);
 			
-			location.href = "tipSelectContent.ict?tnum=" + tcontent;
+			location.href = "tipSelectContent.ict?tnum=" + tnum;
 		});
 	});
 	
