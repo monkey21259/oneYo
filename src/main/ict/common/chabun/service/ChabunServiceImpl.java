@@ -11,6 +11,7 @@ import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.vo.TipVO;
 
 @Service
 @Transactional
@@ -38,7 +39,12 @@ public class ChabunServiceImpl implements ChabunService {
 	}
 	
 	//전문가 팁
-	
+	@Override
+	public TipVO getTipChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getTipChabun() 함수 진입");
+		return chabunDAO.getTipChabun();
+	}
 	
 	//경고
 	

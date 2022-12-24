@@ -38,7 +38,7 @@ public class FileRename implements FileRenamePolicy {
 				StringBuffer sb = new StringBuffer();
 				
 				sb.append(fileName);
-				sb.append(" (" + i + ")");
+				sb.append("(" + i + ")");
 				sb.append(fExtName);
 				
 				f = new File(f.getParent(), sb.toString());

@@ -35,18 +35,27 @@
 		console.log("tipSelectAll.jsp 페이지 진입");
 		
 		$(document).on("click", ".tsubject", function(){
-			let tsubject = $(this).parent();
-			let tnum = tsubject
-			console.log(tsubject);
+			let tnum = $(this).children(1).val();
+			console.log("tsubject : " + tsubject);
 			
+			location.href = "tipSelectContent.ict?tnum=" + tsubject;
+			
+			<%--
 			$("#tipSelectAllForm").attr({
-				"action": "tipSelectContent.ict",
+				"action": "#tipSelectContent.ict",
 				"method": "GET"
 			}).submit();
+			--%>
 		});
 		
+		$(document).on("click", ".tcontent", function(){
+			let tnum = $(this).children(1).val();
+			console.log("tcontent : " + tcontent);
+			
+			location.href = "tipSelectContent.ict?tnum=" + tcontent;
+		});
 	});
-
+	
 </script>
 </head>
 <body>
@@ -69,14 +78,15 @@
 %>
 		<tr>
 			<td>
-				<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
 				<%= tvo.getTipnum() %>
 			</td>
 			<td class="tsubject">
 				<%= tvo.getTsubject() %>
+				<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
 			</td>
 			<td class="tcontent">
 				<%= tvo.getTcontent() %>
+				<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
 			</td>
 			<td>
 				<%= tvo.getThit() %>

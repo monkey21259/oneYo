@@ -32,7 +32,33 @@ public class TipServiceImpl implements TipService {
 		logger.info("tipSelectAll() 함수 진입");
 		return tipDAO.tipSelectAll();
 	}
-	
-	
+
+	@Override
+	public List<TipVO> tipSelectContent(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipSelectContent() 함수 진입");
+		return tipDAO.tipSelectContent(tvo);
+	}
+
+	@Override
+	public List<TipVO> tipUpdateForm(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipUpdateForm() 함수 진입");
+		return tipDAO.tipUpdateForm(tvo);
+	}
+
+	@Override
+	public int tipUpdate(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipUpdate() 함수 진입");
+		return tipDAO.tipUpdate(tvo);
+	}
+
+	@Override
+	public int tipDelete(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("tipDelete() 함수 진입");
+		return tipDAO.tipDelete(tvo);
+	}
 
 }

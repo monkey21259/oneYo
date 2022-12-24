@@ -9,7 +9,13 @@ public interface TipService {
 	int tipInsert(TipVO tvo);
 
 	List<TipVO> tipSelectAll();
-	
-	
+
+	List<TipVO> tipSelectContent(TipVO tvo);
+
+	List<TipVO> tipUpdateForm(TipVO tvo);
+
+	int tipUpdate(TipVO tvo);
+
+	int tipDelete(TipVO tvo);
 
 }

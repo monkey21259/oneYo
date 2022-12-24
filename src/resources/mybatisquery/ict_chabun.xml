@@ -26,6 +26,13 @@
 	
 	<!-- 전문가 팁 -->
 	<!-- INDEX : SYS_C0011807 -->
+	<select id="getTipChabun" resultType="tipvo">
+	
+		SELECT /*+ INDEX_DESC(A SYS_C0011807) */
+		    	NVL(MAX(SUBSTR(TNUM, -4)), 0) + 1   AS TNUM
+		FROM 	ICT_TIP A
+	
+	</select>
 	
 	
 	<!-- 경고 -->

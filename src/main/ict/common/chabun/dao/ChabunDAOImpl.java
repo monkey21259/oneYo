@@ -10,6 +10,7 @@ import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.vo.TipVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -34,7 +35,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 	}
 	
 	//전문가 팁
-	
+	@Override
+	public TipVO getTipChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getTipChabun");
+	}
 	
 	//경고
 	

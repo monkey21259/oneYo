@@ -4,6 +4,7 @@ import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.vo.TipVO;
 
 public interface ChabunService {
 	
@@ -14,7 +15,7 @@ public interface ChabunService {
 	public RecipeVO getRecipeChabun();
 	
 	//전문가 팁
-	
+	public TipVO getTipChabun();
 	
 	//경고
 	

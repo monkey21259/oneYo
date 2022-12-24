@@ -25,4 +25,28 @@ public class TipDAOImpl implements TipDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("tipSelectAll");
 	}
+
+	@Override
+	public List<TipVO> tipSelectContent(TipVO tvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("tipSelectContent", tvo);
+	}
+
+	@Override
+	public List<TipVO> tipUpdateForm(TipVO tvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("tipUpdateForm", tvo);
+	}
+
+	@Override
+	public int tipUpdate(TipVO tvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("tipUpdate", tvo);
+	}
+
+	@Override
+	public int tipDelete(TipVO tvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("tipDelete", tvo);
+	}
 }

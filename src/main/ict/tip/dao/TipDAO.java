@@ -10,4 +10,12 @@ public interface TipDAO {
 
 	List<TipVO> tipSelectAll();
 
+	List<TipVO> tipSelectContent(TipVO tvo);
+
+	List<TipVO> tipUpdateForm(TipVO tvo);
+
+	int tipUpdate(TipVO tvo);
+
+	int tipDelete(TipVO tvo);
+
 }

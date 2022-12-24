@@ -2,13 +2,20 @@ package main.ict.tip.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import main.ict.common.ChabunUtils;
+import main.ict.common.ConstPack;
+import main.ict.common.FileUpload;
+import main.ict.common.chabun.service.ChabunService;
 import main.ict.tip.service.TipService;
 import main.ict.tip.vo.TipVO;
 
@@ -19,27 +26,51 @@ public class TipController {
 	@Autowired(required=false)
 	private TipService tipService;
 	
+	@Autowired(required=false)
+	private ChabunService chabunService;
+	
 	@GetMapping(value="tipInsertForm")
 	public String tipInsertForm() {
 		logger.info("tipInsertForm() 함수 진입");
 		return "tip/tipInsertForm";
 	}
 	
-	@GetMapping(value="tipInsert")
-	public String tipInsert(TipVO tvo, Model m) {
+	@PostMapping(value="tipInsert")
+	public String tipInsert(HttpServletRequest req, Model m) {
 		logger.info("tipInsert() 함수 진입");
 		
 		// 채번 로직 추가하기
+		String tnum = ChabunUtils.getTipChabun("D", chabunService.getTipChabun().getTnum());
+		logger.info("채번 결과 tnum : " + tnum);
 		
 		// 파일 업로드 추가하기
+		FileUpload fu = new FileUpload( ConstPack.TIP_IMG_PATH
+					,ConstPack.TIP_IMG_SIZE
+					,ConstPack.TIP_ENC_TYPE);
+		
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("tipInsert() bool : " + bool);
+		
+		TipVO tvo = null;
+		tvo = new TipVO();
+		
+		tvo.setTnum(tnum);
+		tvo.setTsubject(fu.getParameter("tsubject"));
+		tvo.setTcontent(fu.getParameter("tcontent"));
+		tvo.setTcategory(fu.getParameter("tcategory"));
+		tvo.setTphoto(fu.getFileName("tphoto"));
+		
+		// 파일 업로드 체크
+		if(tvo.getTphoto() == null)
+			tvo.setTphoto("no_img.jpg");
 		
 		logger.info("tvo 프로퍼티 : \n" + tvo.toString());
 		int insertResult = tipService.tipInsert(tvo);
 
-		if(insertResult == 0) {
+		if(insertResult == 1) {
 			logger.info("인서트가 " + insertResult + "건 되었습니다.");
-			m.addAttribute(tvo);
-			return "tip/tipSelectContent";
+			m.addAttribute("tnum", tvo.getTnum());
+			return "tip/tipInsert";
 		}
 		
 		return "tip/tipInsertForm";
@@ -69,7 +100,84 @@ public class TipController {
 		
 		logger.info(tvo.getTnum());
 		
-		return "tip/tipSelectContent";
+		List<TipVO> list = tipService.tipSelectContent(tvo);
+		if(list !=null && list.size() == 1) {
+			m.addAttribute("list", list);
+			return "tip/tipSelectContent";
+		}
+		
+		return "tip/tipSelectAll";
+	}
+	
+	@GetMapping(value="tipUpdateForm")
+	public String tipUpdateForm(TipVO tvo, Model m) {
+		logger.info("tipUpdateForm() 함수 진입");
+		
+		logger.info("수정할 글번호 PK : " + tvo.getTnum());
+		List<TipVO> list = tipService.tipUpdateForm(tvo);
+		
+		if(list !=null && list.size() == 1) {
+			logger.info(list.get(0).toString());
+			m.addAttribute("list", list);
+			return "tip/tipUpdateForm";
+		}
+		
+		return "tip/SelectAll";
+	}
+	
+	@PostMapping(value="tipUpdate")
+	public String tipUpdate(HttpServletRequest req, Model m) {
+		logger.info("tipUpdate() 함수 진입");
+		
+		// 파일 업로드 추가하기
+		FileUpload fu = new FileUpload( ConstPack.TIP_IMG_PATH
+					,ConstPack.TIP_IMG_SIZE
+					,ConstPack.TIP_ENC_TYPE);
+		
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("tipInsert() bool : " + bool);
+		
+		TipVO tvo = null;
+		tvo = new TipVO();
+		
+		tvo.setTnum(fu.getParameter("tnum"));
+		tvo.setTsubject(fu.getParameter("tsubject"));
+		tvo.setTcontent(fu.getParameter("tcontent"));
+		tvo.setTcategory(fu.getParameter("tcategory"));
+		tvo.setTphoto(fu.getFileName("tphoto"));
+		
+		logger.info("tvo : " + tvo.toString());
+		
+		if(tvo.getTphoto() == null)
+			tvo.setTphoto("no_img.jpg");
+		
+		int updateCnt = tipService.tipUpdate(tvo);
+		if(updateCnt == 1) {
+			logger.info("업데이트가 " + updateCnt + "건 되었습니다");
+			m.addAttribute("tnum", tvo.getTnum());
+			return "tip/tipUpdate";
+		}else {
+			logger.info("업데이트 실패");
+			List<TipVO> list = tipService.tipSelectContent(tvo);
+			m.addAttribute("list", list);
+			return "tip/tipSelectContent";
+		}
+	}
+	
+	@GetMapping(value="tipDelete")
+	public String tipDelete(TipVO tvo, Model m) {
+		logger.info("tipDelete() 함수 진입");
+		
+		int deleteCnt = tipService.tipDelete(tvo);
+		if(deleteCnt == 1) {
+			logger.info("삭제가 " + deleteCnt + "건 되었습니다.");
+			return "tip/tipDelete";
+		}else {
+			logger.info("삭제 실패");
+			List<TipVO> list = tipService.tipSelectContent(tvo);
+			m.addAttribute("list", list);
+			return "tip/tipSelectContent";
+		}
 	}
 
 }

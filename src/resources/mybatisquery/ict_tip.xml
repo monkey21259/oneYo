@@ -66,8 +66,79 @@ UPDATEDATE          DATE
 	WHERE   A.MNUM = B.MNUM
 	AND     A.DELETEYN = 'Y'
 	AND     B.DELETEYN = 'Y'
-	ORDER BY A.INSERTDATE, A.TNUM DESC
+	ORDER BY A.TNUM DESC
 
 </select>
+
+<select id="tipSelectContent" parameterType="tipvo" resultType="tipvo">
+
+	SELECT
+	        A.TNUM          AS      TNUM
+	       ,A.TSUBJECT      AS      TSUBJECT
+	       ,A.TCONTENT      AS      TCONTENT
+	       ,A.TPHOTO        AS      TPHOTO
+	       ,A.TCATEGORY     AS      TCATEGORY
+	       ,A.WARNING       AS      WARNING
+	       ,A.MNUM          AS      MNUM
+	       ,A.THIT          AS      THIT
+	       ,A.DELETEYN      AS      DELETEYN
+	       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')    AS      INSERTDATE
+	       ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')    AS      UPDATEDATE
+	       ,B.MNICK         AS      MNICK
+	       ,NVL((SELECT COUNT(LNUM)
+	         	 FROM "ORCLICT00"."ICT_LIKE"
+	         	 WHERE LIKETHIS = #{tnum}), 0)     AS    LIKECNT
+	FROM    "ORCLICT00"."ICT_TIP" A
+	       ,"ORCLICT00"."ICT_MEMBER" B
+	       ,"ORCLICT00"."ICT_LIKE" C
+	WHERE   A.MNUM = B.MNUM(+)
+	AND     A.DELETEYN = 'Y'
+	AND     B.DELETEYN = 'Y'
+	AND     C.LIKEYN = 'Y'
+	AND     A.TNUM = #{tnum} group by A.TNUM, A.TSUBJECT, A.TCONTENT, A.TPHOTO, A.TCATEGORY, 
+            A.WARNING, A.MNUM, A.THIT, A.DELETEYN, TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD'), 
+            TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD'), B.MNICK
+
+</select>
+
+<select id="tipUpdateForm" parameterType="tipvo" resultType="tipvo">
+
+	SELECT
+	        A.TNUM          AS      TNUM
+	       ,A.TSUBJECT      AS      TSUBJECT
+	       ,A.TCONTENT      AS      TCONTENT
+	       ,A.TPHOTO        AS      TPHOTO
+	       ,A.TCATEGORY     AS      TCATEGORY
+	       ,A.DELETEYN      AS      DELETEYN
+	       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')    AS      INSERTDATE
+	       ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')    AS      UPDATEDATE
+	FROM	"ORCLICT00"."ICT_TIP" A
+	WHERE	A.DELETEYN = 'Y'
+	AND		A.TNUM = #{tnum}
+
+</select>
+
+<update id="tipUpdate" parameterType="tipvo">
+
+	UPDATE "ORCLICT00"."ICT_TIP"
+	SET     TSUBJECT = #{tsubject}
+	       ,TCONTENT = #{tcontent}
+	       ,TPHOTO = #{tphoto}
+	       ,TCATEGORY = #{tcategory}
+	       ,UPDATEDATE = SYSDATE
+	WHERE   TNUM = #{tnum}
+	AND		DELETEYN = 'Y'
+
+</update>
+
+<update id="tipDelete" parameterType="tipvo">
+
+	UPDATE "ORCLICT00"."ICT_TIP"
+	SET		DELETEYN = 'N'
+		   ,UPDATEDATE = SYSDATE
+	WHERE 	TNUM = #{tnum}
+	AND		DELETEYN = 'Y'
+
+</update>
 
 </mapper>

@@ -20,8 +20,9 @@ public class TipVO {
 	// 글번호
 	private String tipnum;
 	
-	// SelectAll.jsp에서 보일 작성자 닉네임
+	// 글 작성자 닉네임, 글 좋아요 수
 	private String mnick;
+	private String likecnt;
 	
 	public TipVO() {
 
@@ -29,7 +30,7 @@ public class TipVO {
 
 	public TipVO(String tnum, String tsubject, String tcontent, String tphoto, String tcategory, String warning,
 			String mnum, String thit, String deleteyn, String insertdate, String updatedate, String tipnum,
-			String mnick) {
+			String mnick, String likecnt) {
 		this.tnum = tnum;
 		this.tsubject = tsubject;
 		this.tcontent = tcontent;
@@ -43,6 +44,7 @@ public class TipVO {
 		this.updatedate = updatedate;
 		this.tipnum = tipnum;
 		this.mnick = mnick;
+		this.likecnt = likecnt;
 	}
 
 	public String getTnum() {
@@ -148,13 +150,23 @@ public class TipVO {
 	public void setMnick(String mnick) {
 		this.mnick = mnick;
 	}
+	
+	
+
+	public String getLikecnt() {
+		return likecnt;
+	}
+
+	public void setLikecnt(String likecnt) {
+		this.likecnt = likecnt;
+	}
 
 	@Override
 	public String toString() {
 		return "TipVO [tnum=" + tnum + ", tsubject=" + tsubject + ", tcontent=" + tcontent + ", tphoto=" + tphoto
 				+ ", tcategory=" + tcategory + ", warning=" + warning + ", thit=" + thit + ", deleteyn=" + deleteyn
 				+ ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", mnum=" + mnum + ", tipnum=" + tipnum
-				+ ", mnick=" + mnick + "]";
+				+ ", mnick=" + mnick + ", likecnt=" + likecnt + "]";
 	}
 
 }
