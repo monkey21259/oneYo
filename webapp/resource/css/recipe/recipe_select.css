@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+/* 게시판명(레시피) div */
+.recipeSectionHeader {
+	text-align: center;
+	height: 50px;
+}
+
+/* 버튼 a */
+.btn {
+	cursor: pointer;
+}
+
