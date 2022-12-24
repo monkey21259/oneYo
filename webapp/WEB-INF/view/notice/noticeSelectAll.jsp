@@ -49,7 +49,7 @@
 						<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
 					</td>
 					<td>
-						<%=nvo.getUpdatedate() %>
+						<%=nvo.getInsertdate() %>
 					</td>
 					<td>
 						<%=nvo.getNhit() %>

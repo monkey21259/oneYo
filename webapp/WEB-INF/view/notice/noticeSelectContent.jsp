@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<td>작성일</td>
-					<td><%=nvo.getUpdatedate() %></td>
+					<td><%=nvo.getInsertdate() %></td>
 				</tr>
 				<tr>
 					<td colspan="2">
