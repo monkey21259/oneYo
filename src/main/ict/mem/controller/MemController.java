@@ -1,5 +1,7 @@
 package main.ict.mem.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -9,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.GoogleMail;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.mem.service.MemService;
 import main.ict.mem.vo.MemVO;
@@ -39,6 +43,46 @@ public class MemController {
 		
 		return "mem/memGrade";
 	}
+
+	//	이메일 인증
+	@GetMapping("memInsertEmail")
+	public String memInsertEmail(MemVO mvo) {
+		
+		logger.info("memInsertEmail(mvo) >>> : " + mvo.getMemail() + " / " + mvo.getMgrade());
+		
+		String memail = "";
+		memail = mvo.getMemail();
+		
+		String subject = "";
+		subject = "오내요 이메일 인증";
+		
+		String sendUrl = "";
+//		sendUrl = "http://localhost:8088/oneYo/memInsertForm.ict?memail=";
+		sendUrl = "http://192.168.219.128:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
+		sendUrl += memail + "&mgrade=" + mvo.getMgrade();
+		
+		String sendMsg = "";
+		//	보낼 내용
+		StringBuffer neyong = null;
+		neyong = new StringBuffer();
+		neyong.append(" <p style='background-color:#AC7B53;'> ");
+		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ 오늘은 내가 요리사 ~~~</span> ");
+		neyong.append(" <br> ");
+		neyong.append(" <a style='text-decoration:none;color:#000;' href='" + sendUrl + "'><span style='color:#93A603;background-color:#F0F2CC;'>오내요 회원가입 이메일 인증</span></a> ");
+		neyong.append(" <br> ");
+		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ oneYo ~~~</span> ");
+		neyong.append(" </p> ");
+		sendMsg = neyong.toString();
+		
+		logger.info(sendMsg);
+		
+		GoogleMail gmail = null;
+		gmail = new GoogleMail();
+		
+		gmail.authumMail(memail, subject, sendMsg);
+		
+		return "mem/memInsertEmail";
+	}
 	
 	//	회원가입 form 2(회원가입) 호출
 	@GetMapping("memInsertForm")
@@ -54,6 +98,24 @@ public class MemController {
 		}
 		
 		return "mem/memGrade";
+	}
+	
+	//	ID 아이디 중복 체크
+	@PostMapping("memIdCheck")
+	@ResponseBody
+	public Object memIdCheck(MemVO mvo) {
+		
+		logger.info("memIdCheck(mvo) >>> :" + mvo.getMid());
+		
+		List<MemVO> list = null;
+		list = memService.memIdCheck(mvo);
+		
+		String msg = "";
+		
+		if (list.size() == 0) { msg = "ID_YES"; }
+		else { msg = "ID_NO"; }
+		
+		return msg;
 	}
 	
 	//	회원가입 데이터 전송

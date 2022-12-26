@@ -82,7 +82,7 @@ $(document).ready(function(){
 			
 			console.log("#memail >>> : " + $('#memail').val());
 			
-			let link = "/oneYo/memInsertForm.ict"
+			let link = "/oneYo/memInsertEmail.ict"
 								+ "?mgrade=" + $('#mgrade').val()
 								+ "&memail=" + $('#memail').val();
 			

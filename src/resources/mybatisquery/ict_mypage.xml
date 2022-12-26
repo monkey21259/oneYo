@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.mypage.dao.MypageDAO">
+
+<select id="selectMyRecipe" parameterType="memvo" resultType="recipevo">
+
+	SELECT  A.RNUM							AS			RNUM 
+		   ,SUBSTR(A.RSUBJECT, 0, 20)		AS			RSUBJECT  
+		   ,SUBSTR(A.RCONTENT, 0, 20)		AS 			RCONTENT
+		   ,A.RHIT 							AS			RHIT
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')		AS		INSERTDATE 
+	FROM 	(SELECT	 RNUM
+				   	,RSUBJECT
+				   	,RCONTENT
+				   	,RHIT
+				   	,INSERTDATE
+			 FROM   "ORCLICT00"."ICT_RECIPE"
+			 WHERE   DELETEYN = 'Y'
+			 AND     MNUM	  = #{mnum}
+			 ORDER BY RNUM DESC) A
+	<![CDATA[WHERE ROWNUM	<=	5]]>
+
+</select>
+
+<select id="selectMyCommunity" parameterType="memvo" resultType="communityvo">
+
+	SELECT	A.CNUM				AS		CNUM
+		   ,SUBSTR(A.CSUBJECT, 0, 20) 			AS		CSUBJECT 
+		   ,SUBSTR(A.CCONTENT, 0, 20) 			AS		CCONTENT 
+		   ,A.CHIT 				AS		CHIT 
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')		AS		INSERTDATE
+	FROM   (SELECT	CNUM
+				   ,CSUBJECT
+				   ,CCONTENT
+				   ,CHIT
+				   ,INSERTDATE
+		   FROM	   "ORCLICT00"."ICT_COMMUNITY"
+		   WHERE	DELETEYN = 'Y'
+		   AND 		MNUM	 = 'M202212200001'
+		   ORDER BY CNUM DESC)	A
+	<![CDATA[WHERE ROWNUM	<=	5]]>
+
+</select>
+
+<select id="selectMyTip" parameterType="memvo" resultType="tipvo">
+
+	SELECT	A.TNUM			AS		TNUM
+		   ,SUBSTR(A.TSUBJECT, 0, 20)		AS		TSUBJECT
+		   ,SUBSTR(A.TCONTENT, 0, 20)		AS		TCONTENT
+		   ,A.THIT			AS		THIT
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')		AS		INSERTDATE
+	FROM	(SELECT	TNUM
+				   ,TSUBJECT
+				   ,TCONTENT
+				   ,THIT
+				   ,INSERTDATE
+			FROM	"ORCLICT00"."ICT_TIP"
+			WHERE	DELETEYN = 'Y'
+			AND 	MNUM = 'M202212200001'
+			ORDER BY TNUM DESC)	A
+	<![CDATA[WHERE ROWNUM	<=	5]]>
+
+</select>
+
+<select id="selectMyProfile" parameterType="memvo" resultType="memvo">
+
+	SELECT	A.MNUM			AS		MNUM
+		   ,A.MID			AS		MID
+		   ,A.MPW			AS		MPW
+		   ,A.MNAME			AS		MNAME
+		   ,A.MNICK			AS		MNICK
+		   ,A.MHP			AS		MHP
+		   ,A.MEMAIL		AS		MEMAIL
+		   ,A.MGRADE		AS		MGRADE
+		   ,A.MPROFILE		AS		MPROFILE
+		   ,A.MCATEGORY		AS		MCATEGORY
+		   ,A.MWARNING		AS		MWARNING
+		   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+		   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')	AS		UPDATEDATE
+	FROM	"ORCLICT00"."ICT_MEMBER"	A
+	WHERE	A.DELETEYN = 'Y'
+	AND 	A.MNUM 	   = #{mnum}
+
+</select>
+
+</mapper>
