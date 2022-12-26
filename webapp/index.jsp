@@ -51,6 +51,8 @@
 		<a href="rssTest.ict">RSS 테스트</a>
 		<hr>
 		<a href="adminHome.ict">관리자 메인페이지</a><br>
+		<hr>
+		<a href="home.ict">Main Home</a><br>
 
 
 	</body>
