@@ -44,4 +44,17 @@
 	
 </insert>
 
+<select id="memIdCheck" parameterType="memvo" resultType="memvo">
+	
+	SELECT
+			A.MID		MID
+	FROM
+			ICT_MEMBER	A
+	WHERE
+			A.DELETEYN	= 'Y'
+		AND
+			A.MID		= #{ mid }
+	
+</select>
+
 </mapper>

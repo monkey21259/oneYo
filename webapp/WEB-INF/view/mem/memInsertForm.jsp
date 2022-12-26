@@ -38,7 +38,112 @@ $(document).ready(function(){
 // 		$(this).prop('checked', true);
 // 	});	//	mcategory 단수	=====================
 	
+	//	아이디 중복 검사 이후 재 입력 시도
+	$(document).on('click', '#mid', function(){
+		
+		if ($('#mid').attr('readonly')) {
+			
+			$('#mid').attr('readonly', false);
+			$('#mid').focus();
+			$('#midBtn').attr('disabled', false);
+		}
+		
+	});
 	
+	//	ID 아이디 중복 검사
+	$(document).on('click', '#midBtn', function(){
+		
+		alert("아이디 확인 중! >>> ");
+		
+		let idCheckURL = "memIdCheck.ict";
+		let reqType = "POST";
+		let dataParam = { mid : $('#mid').val(), };
+		
+		$.ajax({
+			 url 	: idCheckURL
+			,type	: reqType
+			,data	: dataParam
+			,success: whenSuccess
+			,error	: whenError
+		});
+		
+		function whenSuccess(resData) {
+			console.log("resData >>> : " + resData);
+			
+			if ("ID_YES" == resData) {
+				
+				alert("아이디 사용 가능 : ID_YES");
+				console.log("아이디 사용 가능 : ID_YES");
+				
+				$('#mid').attr('readonly', true);
+				$('#mpw').focus();
+				$('#midBtn').attr('disabled', true);
+				
+			}else if("ID_NO" == resData) {
+				
+				alert("아이디 사용 불가능 : ID_NO");
+				console.log("아이디 사용 불가능 : ID_NO");
+				
+				$('#mid').val('');
+				$('#mid').focus();
+			}
+		}	//	ajax 수행문
+		
+		function whenError() {
+			alert("에러 발생, 콘솔을 확인 해 주세요.");
+			console.log("에러 발생 e >>> : " + e.responseText);
+		}
+		
+	});	//	ID 아이디 중복 검사
+	
+	//	비밀번호 입력 확인
+	$(document).on('click', '#mpw', function(){
+		if ($('#mpw').prop('readonly') && $('#mpw_r_tr').prop('hidden')) {
+
+			$('#mpw').attr('readonly', false);
+			$('.mpw_td').each(function(){
+				$(this).attr('rowspan', '2');
+			});
+			$('#mpw_r_tr').prop('hidden', false);
+			$('#mpwBtn').attr('disabled', false);
+			
+			$('#mpw_r').val($('#mpw').val());
+		}
+	});
+	
+	//	비밀번호 확인
+	$(document).on('click', '#mpwBtn', function(){
+		alert("비밀번호 확인 중입니다.");
+		
+		let pw = $('#mpw').val();
+		let pw_r = $('#mpw_r').val();
+		
+		
+		if (pw == pw_r) {
+			alert("비밀번호가 일치합니다.");
+			
+			$('#mpw_r').val('');
+			
+			$('#mpw').attr('readonly', true);
+			$('.mpw_td').each(function(){
+				$(this).attr('rowspan', '');
+			});
+			$('#mpw_r_tr').prop('hidden', true);
+			$('#mpwBtn').attr('disabled', true);
+			
+			$('#mname').focus();
+		} else {
+			alert("비밀번호가 일치하지 않습니다.");
+			
+			$('#mpw').val('');
+			$('#mpw_r').val('');
+			$('#mpw').focus();
+			
+		}
+	});	//	비밀번호 확인
+	
+	
+	//	form 전송 버튼
 	$(document).on('click', '#formBtn', function(){
 		
 		//	NOT NULL 데이터 NULL 체크			=====================
@@ -58,6 +163,21 @@ $(document).ready(function(){
 			}	//	input null 체크 if
 		});	//	null이면 안되는 input을 돌며 null데이터를 체크한다.
 		
+		
+		if (!$('#mid').prop('readonly')) {
+			
+			alert("아이디 중복 검사를 하지 않았습니다.");	//	아이디 중복 검사 여부를 알려줌
+			$('#mid').focus();	//	아이디에 커서 올려줌
+			
+		}
+		
+		if (!$('#mpw').prop('readonly')) {
+			
+			alert("비밀번호 검사를 하지 않았습니다.");	//	비밀번호 완료를 확인함
+			$('#mpw_r').focus();	//	비번 확인 란에 커서 올려줌
+			
+		}
+		
 		if (cnt != 0) {	//	NOT NULL항목중 null이 있었을 경우
 			
 			alert("미작성 한 필수 입력 항목이 " + cnt + "개 있습니다. 마저 작성해주세요.");	//	미작성 항목 수를 알려줌
@@ -65,7 +185,10 @@ $(document).ready(function(){
 			
 		//	NOT NULL 데이터 NULL 체크			=====================
 			
-		} else {	//	NOT NULL 항목 중 null이 없었을 경우
+		}
+		
+		//	아이디 중복 검사  & 비밀번호 확인 & 필수작성항목 전부 작성시
+		if (cnt == 0 && $('#mid').prop('readonly') && $('#mpw').prop('readonly')){
 			
 			//	mhp			=====================
 			let mhp = $('#mhp0').val();
@@ -95,9 +218,7 @@ $(document).ready(function(){
 			}).submit();
 		}
 		
-		
-		
-	});
+	});	//	form 전송 버튼
 	
 });
 </script>
@@ -125,21 +246,22 @@ $(document).ready(function(){
 	</td>
 	<td>
 		<input type="button" id="midBtn" name="midBtn" value="아이디 확인">
+		<input type="button" id="testID" name="testID" value="ㅌㅅㅌ">
 	</td>
 </tr>
 <!-- mpw 비밀번호 -->
 <tr>
-	<td rowspan='2'>
+	<td class="mpw_td" rowspan='2'>
 		PW
 	</td>
 	<td>
 		<input type="text" id="mpw" name="mpw" class="notNull">
 	</td>
-	<td rowspan='2'>
+	<td class="mpw_td" rowspan='2'>
 		<input type="button" id="mpwBtn" name="mpwBtn" value="비밀번호 확인">
 	</td>
 </tr>
-<tr>
+<tr id="mpw_r_tr">
 	<td>
 		<input type="text" id="mpw_r" name="mpw_r">
 	</td>

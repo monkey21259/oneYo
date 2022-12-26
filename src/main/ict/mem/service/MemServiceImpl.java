@@ -1,5 +1,7 @@
 package main.ict.mem.service;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,12 @@ public class MemServiceImpl implements MemService {
 		
 		return memDAO.memInsert(mvo);
 	}	//	회원 가입	"memInsert"
+
+	@Override
+	public List<MemVO> memIdCheck(MemVO mvo) {
+		logger.info("memIdCheck(mvo) >>> : " + mvo.getMid());
+		
+		return memDAO.memIdCheck(mvo);
+	}
 	
 }

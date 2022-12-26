@@ -1,5 +1,7 @@
 package main.ict.mem.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
@@ -54,6 +57,24 @@ public class MemController {
 		}
 		
 		return "mem/memGrade";
+	}
+	
+	//	ID 아이디 중복 체크
+	@PostMapping("memIdCheck")
+	@ResponseBody
+	public Object memIdCheck(MemVO mvo) {
+		
+		logger.info("memIdCheck(mvo) >>> :" + mvo.getMid());
+		
+		List<MemVO> list = null;
+		list = memService.memIdCheck(mvo);
+		
+		String msg = "";
+		
+		if (list.size() == 0) { msg = "ID_YES"; }
+		else { msg = "ID_NO"; }
+		
+		return msg;
 	}
 	
 	//	회원가입 데이터 전송

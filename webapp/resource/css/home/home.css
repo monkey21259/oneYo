@@ -19,10 +19,11 @@ a {
 	color	: #000;	/* 링크 폰트 색상 */
 	text-decoration	: none;	/* 링크 밑줄 없애기 */
 }
+
 /* 전체 영역 */
 #all_div {
 	width	: 1000px;
-	margin	: 0 auto;	/* margin 상하단 0 좌우 자동(중앙정렬) */
+	margin	: 20px auto;	/* margin 상하단 0 좌우 자동(중앙정렬) */
 	overflow: hidden;	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
 	
 	border	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
