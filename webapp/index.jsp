@@ -21,7 +21,7 @@
 		
 		20221221 정상호: 하하하하하하
 		김기영 노래 잘부름
-
+ 
 		&lt; PUSH 테스트 &gt;
 		20221221 정상호: 푸쉬
 		20221221 김기영: pull 안하고 푸쉬
@@ -31,6 +31,7 @@
 		<a href="memGrade.ict">회원가입 넘어가기 테스트~~~~</a>
 		
 		<!-- Community -->
+		<hr>
 		<a href="communityInsertForm.ict">커뮤니티 게시글 등록</a><br>
 		<a href="communitySelectAll.ict">커뮤니티 게시판 전체보기</a><br>
 		<!-- Tip (전문가 팁) -->
@@ -49,6 +50,7 @@
 		<hr /><br />
 		<a href="rssTest.ict">RSS 테스트</a>
 		<hr>
+		<a href="adminHome.ict">관리자 메인페이지</a><br>
 
 
 	</body>

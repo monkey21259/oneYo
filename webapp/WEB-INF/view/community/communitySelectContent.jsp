@@ -37,9 +37,8 @@
 			$(document).ready(function(){
 			//조회수 추가하기
 
-			//update
+			//수정
 				$(document).on("click", "#communityUpdateBtn", function(){
-				
 					$("#communitySelectContent").attr({
 						"action":"communityUpdateForm.ict",
 						"method":"GET",
@@ -48,15 +47,26 @@
 					
 				}); //Update
 
-
-					$(document).on("click", "#communityDeleteBtn", function(){
+			//삭제
+				$(document).on("click", "#communityDeleteBtn", function(){
+					$("#communitySelectContent").attr({
+						"action":"communityDelete.ict",
+						"method":"GET",
+						"enctype":"application/x-www=form=urlencoded"	
+					}).submit();
+				}); //delete
+				
+				
+			//신고
+				$(document).on("click", "#warning", function(){
 						alert("삭제버튼클릭");
 						$("#communitySelectContent").attr({
-							"action":"communityDelete.ict",
+							"action":"communityWarningForm.ict",
 							"method":"GET",
 							"enctype":"application/x-www=form=urlencoded"	
 						}).submit();
-				}); //delete
+				}); //신고
+				
  			}); //ready
 		
 		</script>
@@ -79,13 +89,13 @@
 					</tr>
 					<tr>
 						<td>작성시간</td>
-						<td colspan="2"><%= cvo.getUpdatedate()%></td>
+						<td colspan="2"><%= cvo.getInsertdate()%></td>
 					</tr>
 				</div>
 				
 				<div>
 					<tr>
-						<td>좋아요</td>
+						<td><%= cvo.getLikecnt() %></td>
 						<td>조회수</td>
 						<td><button type="button" id="warning">신고</button></td>
 					</tr>

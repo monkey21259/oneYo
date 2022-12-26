@@ -2,7 +2,10 @@ package main.ict.community.vo;
 
 public class CommunityVO { 
 	
-	private String communitynum;
+	//좋아요
+	private String likecnt;
+	
+	private String communitynum; //순번
 	private String cnum; //글번호
 	private String csubject; //글제목
 	private String ccontent; //글내용
@@ -11,7 +14,7 @@ public class CommunityVO {
 	private String mnum; //회원번호
 	private String mnick; //회원닉네임
 	private String chit; //조회수
-	private String deleteyn; //삭제여부
+	private String deleteyn; //삭제여부 
 	private String insertdate; //등록일
 	private String updatedate; //수정일
 	
@@ -45,6 +48,30 @@ public class CommunityVO {
 		this.curPage = curPage;
 		this.totalCount = totalCount;
 		this.totalCount = communitynum;
+	}
+	
+//좋아요 추가한 생성자
+	public CommunityVO(String likecnt, String communitynum, String cnum, String csubject, String ccontent,
+			String cphoto, String warning, String mnum, String mnick, String chit, String deleteyn, String insertdate,
+			String updatedate, String pageSize, String groupSize, String curPage, String totalCount) {
+
+		this.likecnt = likecnt;
+		this.communitynum = communitynum;
+		this.cnum = cnum;
+		this.csubject = csubject;
+		this.ccontent = ccontent;
+		this.cphoto = cphoto;
+		this.warning = warning;
+		this.mnum = mnum;
+		this.mnick = mnick;
+		this.chit = chit;
+		this.deleteyn = deleteyn;
+		this.insertdate = insertdate;
+		this.updatedate = updatedate;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 	}
 
 	public String getCnum() {
@@ -173,6 +200,14 @@ public class CommunityVO {
 
 	public void setCommunitynum(String communitynum) {
 		this.communitynum = communitynum;
+	}
+
+	public String getLikecnt() {
+		return likecnt;
+	}
+
+	public void setLikecnt(String likecnt) {
+		this.likecnt = likecnt;
 	}
 	
 	

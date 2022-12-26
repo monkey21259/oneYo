@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.admin.dao.AdminDAO">
+
+<!-- 커뮤니티 --> 
+<!-- 	<select id="adminCommunitySelectAll" resultType="adminvo"> -->
+<!-- 				SELECT	  ROW_NUMBER() OVER (ORDER BY A.CNUM)     AS      COMMUNITYNUM -->
+<!-- 	                    , A.CNUM		 AS 	CNUM -->
+<!-- 						, A.CSUBJECT  	 AS 	CSUBJECT -->
+<!-- 						, A.CCONTENT 	 AS 	CCONTENT -->
+<!-- 						, A.CPHOTO 		 AS 	CPHOTO -->
+<!-- 						, A.WARNING 	 AS 	WARNING -->
+<!-- 						, B.MNUM 		 AS 	MNUM -->
+<!-- 			       		, B.MNICK        AS 	MNICK -->
+<!-- 						, A.CHIT 	     AS 	CHIT -->
+<!-- 						, A.DELETEYN 	 AS 	DELETEYN -->
+<!-- 						, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE -->
+<!-- 				FROM  "ORCLICT00"."ICT_COMMUNITY" A -->
+<!-- 			         ,"ORCLICT00"."ICT_MEMBER"    B -->
+<!-- 				WHERE    A.MNUM = B.MNUM -->
+<!-- 				AND      A.DELETEYN = 'Y' -->
+<!-- 				AND      B.DELETEYN = 'Y' -->
+<!-- 				ORDER BY A.CNUM DESC -->
+<!-- 	</select> --> 
+</mapper>

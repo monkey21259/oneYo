@@ -88,7 +88,7 @@ public class CommunityController {
 		cvo.setMnick(mnick);
 //		String mnick = req.getParameter("mnick");
 		logger.info("mnick >>> : " + cvo.getMnick());
-	
+		
 		//insert
 		int nCnt = communityService.communityInsert(cvo);
 		logger.info("nCnt >>> : " + nCnt);
@@ -98,6 +98,7 @@ public class CommunityController {
 		return "community/communityInsert";
 		
 	} //communityInsert
+	
 	
 	
 //커뮤니티 게시글 전체조회(selectAll)
@@ -229,7 +230,7 @@ public class CommunityController {
 		return "community/communitySelectContent";
 		
 
-	}//communityUpdateForm
+	}//communityUpdateForm 
 	
 	
 //커뮤니티 글삭제(delete)

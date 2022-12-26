@@ -74,7 +74,7 @@
 		
 			if(listAll.size() > 0){
 				for(int i=0; i<listAll.size(); i++){ 
-					cvo = listAll.get(i);
+					cvo = listAll.get(i); 
 		
 		%>
 				<tbody>
@@ -84,12 +84,12 @@
 						<td><%= cvo.getMnick() %></td>
 						<td><%= cvo.getChit() %></td>
 						<td><%= 1 %></td>                 <!-- 나중에 추가하기 -->
-						<td><%= cvo.getUpdatedate()%></td>
+						<td><%= cvo.getInsertdate()%></td>
 					</tr>
-				<%
-				} //for
-				%>	
-				<%
+		<%
+		} //for
+		%>	
+		<%
 				//페이징 세팅
 				//model.addAttribute("pagingCVO", cvo);
 				Object obj_p = request.getAttribute("pagingCVO");
