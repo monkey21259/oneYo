@@ -8,7 +8,7 @@
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
 	
-	logger.info("~~ memGrade.jsp ~~");
+	logger.info("~~ memInsertForm.jsp ~~");
 %>
 
 <%
@@ -21,6 +21,7 @@
 	mgrade = request.getParameter("mgrade");
 	logger.info(mgrade);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -230,6 +231,17 @@ $(document).ready(function(){
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
+
+<%
+	if (memail == null || mgrade == null) {
+%>
+	<script>
+		location.href = "/oneYo/memGrade.ict";
+	</script>
+<%
+	}
+%>
+
 <div>
 <form id="memInsertForm" name="memInsertForm">
 

@@ -49,8 +49,15 @@
 				<hr>
 				<a href="adminHome.ict">관리자 메인페이지</a><br>
 				<hr>
+				<!-- Main Home -->
 				<a href="home.ict">Main Home</a><br>
 				<hr>
+				<!-- memSelct -->
+				<a href="home.ict">아직 링크 안달렸어용</a><br>
+				<hr>
+				<!-- mail -->
+<!-- 				<a href="memInsertEmail.ict?memail=onnu0623@gmail.com&mgrade=0">mail</a><br> -->
+<!-- 				<hr> -->
 				<!-- 로그인 -->
 				<a href="loginForm.ict">로그인 테스트</a>
 			</div>
