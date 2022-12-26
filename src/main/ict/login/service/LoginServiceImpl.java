@@ -34,5 +34,21 @@ public class LoginServiceImpl implements LoginService {
 		logger.info("idFind() 함수 진입 : ");
 		return loginDAO.idFind(mvo);
 	}//end of idFind() method
+
+	//비밀번호 찾기(아이디 및 이메일 주소 확인)
+	@Override
+	public List<MemVO> pwFind(MemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("pwFind() 함수 진입 : ");
+		return loginDAO.pwFind(mvo);
+	}//end of pwFind() method
+
+	//비밀번호 변경
+	@Override
+	public int resetPW(MemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("resetPW() 함수 진입 : ");
+		return loginDAO.resetPW(mvo);
+	}//end of resetPW() method
 	
 }//end of LoginServiceImpl class
