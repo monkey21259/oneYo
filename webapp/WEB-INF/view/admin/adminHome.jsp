@@ -20,7 +20,7 @@
 //신고 : model.addAttribute("adminWarningSelectAll", list);
 	Object obj = request.getAttribute("adminWarningSelectAll");
 		if(obj == null){return; }
-		List<WarningVO> list = (List<WarningVO>)obj;
+		List<WarningVO> list = (List<WarningVO>)obj; 
 		
 		WarningVO wvo = null;
 		

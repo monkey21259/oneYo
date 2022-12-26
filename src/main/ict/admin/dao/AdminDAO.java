@@ -9,4 +9,4 @@ public interface AdminDAO {
 	
 	//신고글
 	//	public List<WarningVO> warningSelectAll(WarningVO wvo);  
-}
+} 

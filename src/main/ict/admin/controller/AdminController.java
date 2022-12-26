@@ -31,7 +31,7 @@ public class AdminController {
 //			List<WarningVO> list = adminService.warningSelectAll(wvo);
 //			int nCnt = list.size();
 //			logger.info("신고글 갯수(nCnt) >>> : ");
-//			
+//			 
 //			if(nCnt > 0) {
 //				model.addAttribute("adminWarningSelectAll", list);
 //			}

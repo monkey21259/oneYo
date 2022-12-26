@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService {
 	Logger logger = LogManager.getLogger(CommunityServiceImpl.class);
 	
 	@Autowired(required = false)
-	private AdminDAO adminDAO;
+	private AdminDAO adminDAO; 
 	
 //	@Override
 //	public List<WarningVO> warningSelectAll(WarningVO wvo) {

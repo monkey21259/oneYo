@@ -11,7 +11,7 @@ import main.ict.warning.vo.WarningVO;
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 	
-	@Autowired(required = false)
+	@Autowired(required = false) 
 	private SqlSession sqlsession;
 
 //신고	
