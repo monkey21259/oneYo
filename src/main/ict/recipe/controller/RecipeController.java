@@ -81,7 +81,7 @@ public class RecipeController {
 		recipevo.setRcontent(rfu.getParameter("rcontent"));
 		recipevo.setRphoto(rfu.getFileName("rphoto"));
 		recipevo.setRhit(rfu.getParameter("rhit"));
-		recipevo.setMnum("M202212230001");  // TODO TEMP -----------------------------
+		recipevo.setMnum("M202212230011");  // TODO TEMP -----------------------------
 		recipevo.setWarning("0");
 		
 		logger.info(recipevo.toString());

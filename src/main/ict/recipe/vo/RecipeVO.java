@@ -18,10 +18,12 @@ public class RecipeVO {
 	private String insertdate;	// 등록일
 	private String updatedate;	// 수정일
 	
-	// paging
+	// Paging
 	
-	// filter
+	// Filter
 	
+	// LIKE
+	private String likecnt;		// 좋아요
 	
 	public RecipeVO() {}
 
@@ -106,6 +108,10 @@ public class RecipeVO {
 		return updatedate;
 	}
 
+	public String getLikecnt() {
+		return likecnt;
+	}
+	
 	// Setter
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
@@ -166,13 +172,17 @@ public class RecipeVO {
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
 	}
+	
+	public void setLikecnt(String likecnt) {
+		this.likecnt = likecnt;
+	}
 
 	@Override
 	public String toString() {
 		return "RecipeVO [rnum=" + rnum + ", rsubject=" + rsubject + ", rcategory=" + rcategory + ", rjeryo=" + rjeryo
 				+ ", rtime=" + rtime + ", rperson=" + rperson + ", rdiff=" + rdiff + ", rcontent=" + rcontent
 				+ ", rphoto=" + rphoto + ", rhit=" + rhit + ", mnum=" + mnum + ", warning=" + warning + ", deleteyn="
-				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + "]";
+				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + "]";
 	}
 	
 }

@@ -37,11 +37,6 @@
 				
 				console.log("[recipeSelectContent.jsp] jQuery");
 				
-				// Setting
-				/* 글내용 */
-				var rcontent = "<%= recipevo.getRcontent() %>";
-				$("#rcontent").val(rcontent);
-								
 				// UpdateForm, Delete
 				$("#recipeUpdateFormBtn").on("click", function() {
 					
@@ -143,7 +138,7 @@
 					<tr>
 						<td>글 내용</td>
 						<td>
-							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly></textarea><br />
+							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
 							<img src="<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
@@ -157,6 +152,7 @@
 						</td>
 					</tr>
 				</table>
+				!!! <%= recipevo.getLikecnt() %> !!!
 <% // rnum, rhit, mnum, warning, deleteyn, insertdate, updatedate %>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />

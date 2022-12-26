@@ -74,6 +74,42 @@
 <select id="recipeSelectContent" parameterType="recipevo" resultType="recipevo">
 
 	SELECT
+	        A.RNUM          AS      RNUM
+	       ,A.RSUBJECT      AS      RSUBJECT
+	       ,A.RCONTENT      AS      RCONTENT
+	       ,A.RPHOTO        AS      RPHOTO
+	       ,A.RJERYO        AS      RJERYO
+	       ,A.RTIME         AS      RTIME
+	       ,A.RPERSON       AS      RPERSON
+	       ,A.RDIFF         AS      RDIFF
+	       ,A.RCATEGORY     AS      RCATEGORY
+	       ,A.WARNING       AS      WARNING
+	       ,A.MNUM          AS      MNUM
+	       ,A.RHIT          AS      RHIT
+	       ,A.DELETEYN      AS      DELETEYN
+	       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')    AS      INSERTDATE
+	       ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')    AS      UPDATEDATE
+	       ,B.MNICK         AS      MNICK
+	       ,NVL((SELECT COUNT(LNUM)
+	             FROM "ORCLICT00"."ICT_LIKE"
+	             WHERE LIKETHIS = #{ rnum }), 0)     AS    LIKECNT
+	FROM    "ORCLICT00"."ICT_RECIPE" A
+	       ,"ORCLICT00"."ICT_MEMBER" B
+	       ,"ORCLICT00"."ICT_LIKE" C
+	WHERE   A.MNUM = B.MNUM(+)
+	AND     A.DELETEYN = 'Y'
+	AND     B.DELETEYN = 'Y'
+	AND     C.LIKEYN = 'Y'
+	AND     A.RNUM = #{ rnum } group by A.RNUM, A.RSUBJECT, A.RCONTENT, A.RPHOTO, A.WARNING, 
+	        A.MNUM, A.RHIT, A.DELETEYN, TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD'), TO_DATE(A.INSERTDATE), 
+	        A.INSERTDATE, 'YYYY-MM-DD', TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD'), TO_DATE(A.UPDATEDATE), A.UPDATEDATE, 
+	        'YYYY-MM-DD', B.MNICK, A.RJERYO, A.RTIME, A.RPERSON, 
+	        A.RDIFF, A.RCATEGORY
+
+</select>
+
+<!-- 
+SELECT
 	     A.RNUM         RNUM
 	    ,A.RSUBJECT     RSUBJECT
 	    ,A.RCONTENT     RCONTENT
@@ -94,8 +130,7 @@
 	 WHERE A.DELETEYN = 'Y'
 	   AND A.RNUM = #{ rnum, jdbcType=VARCHAR }
 	   AND A.MNUM = #{ mnum, jdbcType=VARCHAR }
-
-</select>
+ -->
 
 <!-- UPDATE -->
 <update id="recipeUpdate" parameterType="recipevo">

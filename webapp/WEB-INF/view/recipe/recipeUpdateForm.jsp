@@ -4,6 +4,7 @@
 <%@ page import="org.apache.log4j.LogManager" %>
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
+<%@ page import="main.ict.common.CodeUtils" %>
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 <%
@@ -30,11 +31,11 @@
 				
 				// Setting --------------------------------------------------------------
 				
-				/* 음식 카테고리 */
-				var rcategory = "<%= recipevo.getRcategory() %>";
+				/* 음식 카테고리 */ // 기타
+				var rcategory = "<%= CodeUtils.getRcategoryVal(recipevo.getRcategory()) %>";
 				$("#rcategory option[value='" + rcategory + "']").prop('selected', true);
 				
-				/* 조리 시간 */
+				/* 조리 시간 */ // 00시 10분
 				var rhour, rminute;
 				if ("<%= recipevo.getRtime() %>".includes("시")) {  /* 시간이 포함된 경우 */
 					rhour = "<%= recipevo.getRtime() %>".split('시')[0];
@@ -49,7 +50,7 @@
 				}
 				$("#rminute option[value='" + rminute + "']").prop('selected', true);
 				
-				/* 인분 */
+				/* 인분 */ // 2인분
 				var rperson = "<%= recipevo.getRperson() %>".split("인분")[0];
 				if (rperson != "10") {
 					rperson = "0" + rperson;
@@ -57,12 +58,8 @@
 				$("#rperson option[value='" + rperson + "']").prop('selected', true);
 				
 				/* 난이도 */
-				var rdiff = "<%= recipevo.getRdiff() %>";
+				var rdiff = "<%= CodeUtils.getRdiffVal(recipevo.getRdiff()) %>";
 				$("#rdiff option[value='" + rdiff + "']").prop('selected', true);
-				
-				/* 글내용 */
-				var rcontent = "<%= recipevo.getRcontent() %>";
-				$("#rcontent").val(rcontent);
 				
 				// Setting END ---------------------------------------------------------
 				
@@ -219,7 +216,7 @@
 					<tr>
 						<td>글 내용</td>
 						<td>
-							<textarea id="rcontent" name="rcontent" cols="10" rows="5"></textarea><br />
+							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
 							<img src="<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
 						<!-- 사진 변경 시 Ajax(+ 태그 값 변경) >>> input type="file" 추가해서 로직 작성 필요 -->
