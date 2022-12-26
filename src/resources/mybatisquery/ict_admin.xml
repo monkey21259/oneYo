@@ -4,6 +4,10 @@
 
 <mapper namespace="main.ict.admin.dao.AdminDAO">
 
+<!-- 신고글 -->
+
+
+
 <!-- 커뮤니티 --> 
 <!-- 	<select id="adminCommunitySelectAll" resultType="adminvo"> -->
 <!-- 				SELECT	  ROW_NUMBER() OVER (ORDER BY A.CNUM)     AS      COMMUNITYNUM -->
