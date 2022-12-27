@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.comment.dao.CommentDAO">
+	
+	<!-- 댓글 insert -->
+	<insert id="commentInsert" parameterType="commentvo">
+		
+		INSERT INTO ICT_COMMENT
+			(
+				 CONUM
+				,COTNUM
+				,COCONTENT
+				,MNUM
+				,DELETEYN
+				,INSERTDATE
+				,UPDATEDATE
+			)
+		VALUES
+			(
+				 #{conum, jdbcType=VARCHAR}
+				,#{cotnum, jdbcType=VARCHAR}
+				,#{cocontent, jdbcType=VARCHAR}
+				,#{mnum, jdbcType=VARCHAR}
+				,'Y'
+				,SYSDATE
+				,SYSDATE
+			)
+		
+	</insert>
+	
+	<!-- 댓글 select all -->
+	<select id="commentSelectAll" parameterType="commentvo" resultType="commentvo">
+		
+		SELECT
+			 A.CONUM								AS CONUM
+			,A.COCONTENT							AS COCONTENT
+			,A.MNUM									AS MNUM
+			,B.MNICK								AS MNICK
+			,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
+		FROM ICT_COMMENT A, ICT_MEMBER B
+		WHERE	A.DELETEYN = 'Y'
+		AND		A.COTNUM = #{cotnum, jdbcType=VARCHAR}
+		AND 	A.MNUM = B.MNUM
+		ORDER BY A.CONUM ASC
+		
+	</select>
+	
+	<!-- 댓글 delete -->
+	<update id="commentDelete" parameterType="commentvo">
+		
+		UPDATE ICT_COMMENT A
+		SET
+			A.DELETEYN = 'N'
+		WHERE A.CONUM = #{conum, jdbcType=VARCHAR}
+		
+	</update>
+	
+</mapper>

@@ -51,5 +51,15 @@ public class MypageController {
 		
 		return "mypage/mypageHome";
 	}
+	
+
+	//	마이페이지 넘어가기 전 비밀번호 확인 폼으로 이동
+	@GetMapping("mypagePWChk")
+	public String mypagePWChk() {
+		
+		logger.info("mypagePWChk() >>> : mypagePWChk.jsp");
+		
+		return "mypage/mypagePWChk";
+	}
 
 }

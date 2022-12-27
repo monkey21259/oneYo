@@ -2,6 +2,7 @@ package main.ict.common.chabun.dao;
 
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -35,5 +36,7 @@ public interface ChabunDAO {
 	
 	//공지사항
 	public NoticeVO getNoticeChabun();
+
+	public LevelupVO getLevelupChabun();
 	
 }//end of ChabunDAO interface

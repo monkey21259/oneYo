@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -219,5 +220,71 @@ public class MemController {
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");
 		
 		return "mem/memGrade";
+	}
+	
+
+	//	마이페이지 프로필 편집 memSelect
+	@PostMapping("profileSelect")
+	public String profileSelect(@ModelAttribute MemVO mvo, Model model) {
+		
+		logger.info("profileSelect() >>> : " + mvo.getMnum() + " + " + mvo.getMkey());
+		
+		String mnum = mvo.getMnum();
+		
+		String mkey = "";
+		if (mvo.getMkey() != null && mvo.getMkey().length() > 0) {
+			
+			mkey = mvo.getMkey();
+			mkey = mkey.toUpperCase();
+		}
+		
+		logger.info("mnum >>> : " + mnum + " / mkey >>> : " + mkey);
+		
+		
+		
+		if (mnum != null && mnum.length() > 0) {
+			
+			List<MemVO> list = null;
+			list = memService.memSelect(mvo);
+			
+			logger.info("memSelect() - list != null >>> : " + (boolean)(list != null));
+			
+			int nCnt = list.size();
+			
+			if (list != null && nCnt > 0) {
+				
+				logger.info("memSelect() - nCnt >>> : " + nCnt);
+				
+				model.addAttribute("list", list);
+				
+				if (mkey == null || mkey.length() == 0 || mkey.equals("PWCHECK")) {
+					
+					return "mypage/profileSelect";
+				}
+				
+				if (mkey.equals("MPROFILE")) {
+					
+					return "mypage/profilePhotoUpdateForm";
+				}
+				
+				if (mkey.equals("MPW")) {
+					
+					return "mypage/profilePWUpdateForm";
+				}
+				
+				if (mkey.equals("MEMAIL")) {
+					
+					return "mypage/profileEmailUpdateForm";
+				}
+				
+				if (mkey.equals("MEM")) {
+					
+					return "mypage/profileInfoUpdateForm";
+				}
+			}
+		}
+		
+		
+		return "mypage/mypagePWCheck";
 	}
 }

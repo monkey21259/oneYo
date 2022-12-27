@@ -61,6 +61,13 @@
 	
 	<!-- 등업 -->
 	<!-- INDEX : SYS_C0011821 -->
+	<select id="getLevelupChabun" resultType="levelupvo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011821) */
+		    NVL(MAX(SUBSTR(A.LVNUM, -4)), 0) + 1 AS LVNUM
+		FROM ICT_LEVELUP A
+		
+	</select>
 	
 	
 	<!-- 좋아요 -->

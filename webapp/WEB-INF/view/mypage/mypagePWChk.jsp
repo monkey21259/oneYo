@@ -24,14 +24,30 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	alert("mypagePWChk.jsp");
+	
+	$(document).on('click', '#mpwBtn', function(){
+		alert("#mpwBtn");
+		
+		$('#mkey').val("PWCHECK");
+		
+		$('#pwCheckForm').attr({
+			 'action'	: "profileSelect.ict"
+			,'method'	: "POST"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
+	});
 });
 </script>
 </head>
 <body>
 하나도 안건드렸어요!!!!
-<form>
+<form id="pwCheckForm">
 <input type="text" id="mpw" name="mpw">
-<input type=button" id="mpwBtn" value="비밀번호 확인">
+<input type="button" id="mpwBtn" value="비밀번호 확인">
+<!-- 임의 -->
+<input type="hidden" id="mnum" name="mnum" value="M202212260012">
+<input type="hidden" id="mkey" name="mkey" value="">
 </form>
 
 </body>

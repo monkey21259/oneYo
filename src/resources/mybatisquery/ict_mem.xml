@@ -57,4 +57,64 @@
 	
 </select>
 
+<select id="memSelect" parameterType="memvo" resultType="memvo">
+
+SELECT
+		 A.MNUM			MNUM
+		,A.MID			MID
+		,A.MPW			MPW
+		,A.MNAME		MNAME
+		,A.MNICK		MNICK
+		,A.MHP			MHP
+		,A.MEMAIL		MEMAIL
+		,A.MGRADE		MGRADE
+		,A.MPROFILE		MPROFILE
+		,A.MCATEGORY	MCATEGORY
+		,A.MWARNING		MWARNING
+		,A.DELETEYN		DELETEYN
+		,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')	INSERTDATE
+		,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')	UPDATEDATE
+FROM
+		ICT_MEMBER		A
+WHERE
+		A.DELETEYN	=	'Y'
+	AND
+		A.MNUM		=	#{ mnum, jdbcType=VARCHAR }
+<if test="mkey != null and mkey.equalsIgnoreCase('PWCHECK')">
+	AND
+		A.MPW		=	#{ mpw, jdbcType=VARCHAR }
+</if>
+
+</select>
+
+<update id="memUpdate" parameterType="memvo">
+
+UPDATE
+		 A.UPDATEDATE	=	SYSDATE
+<if test="mkey != null and mkey.equalsIgnoreCase('MPROFILE')">
+		,A.MNICK		=	#{ mnick }
+		,A.MPROFILE		=	#{ mprofile }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MPW')">
+		,A.MPW			=	#{ mpw }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MEMAIL')">
+		,A.MEMAIL		=	#{ memail }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MEM')">
+		,A.MNAME		=	#{ mname }
+		,A.MHP			=	#{ mhp }
+		,A.MCATEGORY	=	#{ mcategory }
+</if>
+FROM
+		ICT_MEMBER		A
+WHERE
+		A.DELETEYN	=	'Y'
+	AND
+		A.MNUM		=	#{ mnum }
+
+
+
+</update>
+
 </mapper>

@@ -7,6 +7,57 @@ public abstract class CodeUtils {
 	
 	static Logger logger = LogManager.getLogger(CodeUtils.class);
 	
+	//	프로필 조회 시 선호 카테고리 뷰
+	public static String getMCategorys(String mCatV) {
+		
+		String mcate = "";
+		
+		if (mCatV == null || mCatV.length() == 0) return mcate;
+		
+		String[] mcategorys = null;
+		mcategorys = mCatV.split("#");
+		
+		for (int i = 1; i < mcategorys.length; i++) {
+			
+			if (i > 1) {
+				mcate += " / ";	//	처음이 아닐 시 문자열에 들어가는 것
+			}
+			
+			for (int j = 0; j < ConstPack.RECIPE_CAT_IDX_ARR.length; j++) {
+				
+				if (mcategorys[i].equals(ConstPack.RECIPE_CAT_IDX_ARR[j])) {
+					
+					mcate += "#" + ConstPack.RECIPE_CAT_ARR[j];
+				}
+			}
+		}
+		return mcate;
+	}	//	프로필 조회 시 선호 카테고리 뷰
+	
+	//	프로필 조회 시 선호 카테고리 뷰
+	public static String getMgradeVal(String mgrade) {
+		
+		logger.info("getMgradeVal - mgrade: " + mgrade);
+		
+		String mgr = "";
+		
+		if (mgrade == null || mgrade.length() == 0) return mgr;
+		
+		for (int i = 0; i < ConstPack.MEM_GRADE_IDX_ARR.length; i++) {
+			
+			logger.info("getMgradeVal - MEM_GRADE_IDX_ARR: " + ConstPack.MEM_GRADE_IDX_ARR[i]);
+			
+			if (mgrade.equals(ConstPack.MEM_GRADE_IDX_ARR[i])) {
+				
+				mgr = ConstPack.MEM_GRADE_ARR[i];
+			}
+		}
+		logger.info("mgr: " + mgr);
+		return mgr;
+	}	//	프로필 조회 시 선호 카테고리 뷰
+	
+	
+	
 	public static String getRcategory(String catV) {
 		
 		logger.info("getRcategory() - 음식 카테고리 매핑 함수 진입.");

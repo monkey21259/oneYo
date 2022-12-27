@@ -52,8 +52,11 @@
 				<!-- Main Home -->
 				<a href="home.ict">Main Home</a><br>
 				<hr>
+				<!-- mypage pwcheck -->
+				<a href="mypagePWChk.ict?mnum=M202212260012">비번 체크</a><br>
+				<hr>
 				<!-- memSelct -->
-				<a href="home.ict">아직 링크 안달렸어용</a><br>
+				<a href="profileSelect.ict?mnum=M202212260012">프로필 보기</a><br>
 				<hr>
 				<!-- mail -->
 <!-- 				<a href="memInsertEmail.ict?memail=onnu0623@gmail.com&mgrade=0">mail</a><br> -->
