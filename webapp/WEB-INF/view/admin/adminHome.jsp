@@ -9,6 +9,7 @@
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.tip.vo.TipVO" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
+<%@ page import="main.ict.common.CodeUtils" %>
 <%
 	request.setCharacterEncoding("UTF-8");
  
@@ -177,9 +178,16 @@
 					</tr>					
 				</thead>
 <%
- 			if(listLV.size() > 0){
+ 			
+				String process = null;
+				if(listLV.size() > 0){
 				for(int i=0; i<listLV.size(); i++){
 					lvvo = listLV.get(i);
+					
+					
+					if(lvvo.getProcessyn().equals("0")){
+						process = "대기 중";
+					};
 %>
 				<tbody>
 					<tr>
@@ -189,7 +197,7 @@
 						<td><img src="oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
 						<td><%= lvvo.getMnick()%></td> <!-- 닉네임 -->
 						<td><%= lvvo.getInsertdate()%></td>
-						<td><%= lvvo.getProcessyn()%></td>
+						<td><%= process%></td>
 					</tr>
 				</tbody>
 				<%
@@ -218,12 +226,13 @@
 				for(int i=0; i<listW.size(); i++){
 					wvo = listW.get(i);
 					
+					
 %>
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
 						<td><%= wvo.getWtnum() %></td>
-						<td><%= wvo.getWcategory()%></td>
+						<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
 						<td><%= wvo.getWcontent()%></td>
 						<td><%= wvo.getMnick()%></td>
 						<td><%= wvo.getInsertdate()%></td>
@@ -261,7 +270,7 @@
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= rvo.getRcategory() %></td>
+						<td><%= CodeUtils.getAdminRcategorys(rvo.getRcategory()) %></td>
 						<td><%= rvo.getMnick() %></td><!-- 닉네임 -->
 						<td><%= rvo.getRsubject() %></td>
 						<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="width:50px; height:50px"></td>
@@ -302,7 +311,7 @@
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= tvo.getTcategory()%></td>
+						<td><%= CodeUtils.getTipcate(tvo.getTcategory())%></td>
 						<td><%= tvo.getMnick()%></td><!-- 닉네임 -->
 						<td><%= tvo.getTsubject()%></td>
 						<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>" style="width:50px; height:50px"></td>

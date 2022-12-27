@@ -10,6 +10,7 @@ public abstract class CodeUtils {
 	//	프로필 조회 시 선호 카테고리 뷰
 	public static String getMCategorys(String mCatV) {
 		
+		
 		String mcate = "";
 		
 		if (mCatV == null || mCatV.length() == 0) return mcate;
@@ -30,6 +31,22 @@ public abstract class CodeUtils {
 					mcate += "#" + ConstPack.RECIPE_CAT_ARR[j];
 				}
 			}
+		}
+		return mcate;
+	}	//	프로필 조회 시 선호 카테고리 뷰
+	
+	public static String getAdminRcategorys(String mcategorys) {
+		
+		
+		String mcate = "";	
+			
+			for (int j = 0; j < ConstPack.RECIPE_CAT_IDX_ARR.length; j++) {
+				
+				if (mcategorys.equals(ConstPack.RECIPE_CAT_IDX_ARR[j])) {
+					
+					mcate = ConstPack.RECIPE_CAT_ARR[j];
+				}
+			
 		}
 		return mcate;
 	}	//	프로필 조회 시 선호 카테고리 뷰
@@ -181,32 +198,56 @@ public abstract class CodeUtils {
 		
 		//public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};
 		//public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
+		String wcate1 = null;
 		
-		logger.info("WARNING_IND_ARR 길이 >>> : " +ConstPack.WARNING_IND_ARR.length);
+		if(wcate.equals("00")) {
+			wcate1 = "욕설 및 비방";
+		}else if(wcate.equals("01")) {
+			wcate1 = "음란물";
+		}else if(wcate.equals("02")) {
+			wcate1 = "불법광고";
+		}else if(wcate.equals("03")) {
+			wcate1 = "도배성";
+		}else if(wcate.equals("04")) {
+			wcate1 = "주제와 맞지 않음";
+		}else if(wcate.equals("99")) {
+			wcate1 = "기타";
+		}
+			
 		
+		return wcate1;
+	}
+	
+	public static String getTipcate(String tipcate) {
 		
-		logger.info("wcate.length() >>> : " + wcate.length());
+//		public static final String[] TIP_ARR = {"요리", "주방관리", "재료정보", "기타"};
+//		public static final String[] TIP_IND_ARR = {"00", "01", "02", "99"};
 		
-		for(int i=wcate.length(); i< 4; i++) {
-			wcate = "0" + wcate;
-			logger.info("wcate 0븉이기 >>> : " + wcate);
+		String tipcate1 = null;
+		
+		for(int i=0; i < ConstPack.TIP_ARR.length; i++) {
+			if(tipcate.equals(ConstPack.TIP_IND_ARR[i])) {
+				tipcate1 = ConstPack.TIP_ARR[i];
+			}
+			
 		}
 		
-		for(int j=0; j< ConstPack.WARNING_ARR.length; j++) {
-		if(wcate.equals(ConstPack.WARNING_IND_ARR[j])) {
-				wcate = ConstPack.WARNING_ARR[j];
-				logger.info("wcate >>> : " + wcate);
-			} //if
-		} //for
-	
-		return wcate;
+		return tipcate1;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		
 		logger.info(CodeUtils.getRcategory("-1"));
 		logger.info(CodeUtils.getRdiff("0"));
-		logger.info(CodeUtils.getWcategory("0"));
+		logger.info(CodeUtils.getWcategory("00"));
 		
 		
 	}

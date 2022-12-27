@@ -92,4 +92,9 @@ public abstract class ConstPack {
 	public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
 	public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};
 	
+	//팁 분야
+	public static final String[] TIP_ARR = {"요리", "주방관리", "재료정보", "기타"};
+	public static final String[] TIP_IND_ARR = {"00", "01", "02", "99"};
+	
+	
 }//end of ConstPack abstract class
