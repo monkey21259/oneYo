@@ -60,6 +60,9 @@
 <!-- 				<hr> -->
 				<!-- 로그인 -->
 				<a href="loginForm.ict">로그인 테스트</a>
+				<hr>
+				<!-- 댓글 테스트 -->
+				<a href="commentForm.ict">댓글 테스트</a>
 			</div>
 		</div>
 	</body>

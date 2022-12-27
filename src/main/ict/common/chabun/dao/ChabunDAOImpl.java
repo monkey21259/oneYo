@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
@@ -44,9 +45,6 @@ public class ChabunDAOImpl implements ChabunDAO {
 	//경고
 	
 	
-	//댓글
-	
-	
 	//커뮤니티
 	@Override
 	public CommunityVO getCommunityChabun() {
@@ -68,5 +66,13 @@ public class ChabunDAOImpl implements ChabunDAO {
 		logger.info("getNoticeChabun() 함수 진입 : ");
 		return sqlSession.selectOne("getNoticeChabun");
 	}//end of getNoticeChabun() method
+	
+	//댓글
+	@Override
+	public CommentVO getCommentChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getCommentChabun() 함수 진입 : ");
+		return sqlSession.selectOne("getCommentChabun");
+	}//end of getCommentChabun() method
 	
 }//end of ChabunDAOImpl class
