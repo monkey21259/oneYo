@@ -49,8 +49,8 @@
 				</tr>
 				<tr>
 					<td>
-						<a href="idFindForm.ict">아이디 찾기</a>&nbsp;|&nbsp;
-						<a href="pwFindForm.ict">비밀번호 찾기</a>&nbsp;|&nbsp;
+						<a href="idFindForm.ict">아이디 찾기</a>&nbsp;|
+						<a href="pwFindForm.ict">비밀번호 찾기</a>&nbsp;|
 						<a href="memGrade.ict">회원가입</a>
 					</td>
 				</tr>

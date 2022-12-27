@@ -1,5 +1,7 @@
 package main.ict.mem.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -26,6 +28,15 @@ public class MemDAOImpl implements MemDAO {
 		
 		return (Integer)sqlSession.insert("memInsert", mvo);
 	}	//	회원 가입	"memInsert"
+
+	//	ID 아이디 중복 검사	"memIdCheck"
+	@Override
+	public List<MemVO> memIdCheck(MemVO mvo) {
+		
+		logger.info("memIdCheck(mvo) >>> : " + mvo);
+		
+		return sqlSession.selectList("memIdCheck", mvo);
+	}	//	ID 아이디 중복 검사	"memIdCheck"
 	
 	
 }

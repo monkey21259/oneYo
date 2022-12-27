@@ -8,7 +8,8 @@
 	<select id="login" parameterType="memvo" resultType="memvo">
 		
 		SELECT
-			 A.MID	AS MID
+			 A.MNUM	AS MNUM
+			,A.MID	AS MID
 			,A.MPW	AS MPW
 		FROM ICT_MEMBER A
 		WHERE	A.MID = #{mid, jdbcType=VARCHAR}
@@ -21,13 +22,41 @@
 	<select id="idFind" parameterType="memvo" resultType="memvo">
 		
 		SELECT
-			 A.MNAME	AS MNAME
+			 A.MNUM		AS MNUM
+			,A.MID		AS MID
+			,A.MNAME	AS MNAME
 			,A.MEMAIL	AS MEMAIL
+			,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 		FROM ICT_MEMBER A
 		WHERE	A.MNAME = #{mname, jdbcType=VARCHAR}
 		AND		A.MEMAIL = #{memail, jdbcType=VARCHAR}
 		AND		A.DELETEYN = 'Y'
 		
 	</select>
+	
+	<!-- 비밀번호 찾기(아이디 및 이메일 주소 확인) -->
+	<select id="pwFind" parameterType="memvo" resultType="memvo">
+		
+		SELECT
+			 A.MNUM		AS MNUM
+			,A.MID		AS MID
+			,A.MEMAIL	AS MEMAIL
+		FROM ICT_MEMBER A
+		WHERE	A.MID = #{mid, jdbcType=VARCHAR}
+		AND		A.MEMAIL = #{memail, jdbcType=VARCHAR}
+		AND		A.DELETEYN = 'Y'
+		
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="resetPW" parameterType="memvo">
+		
+		UPDATE ICT_MEMBER
+		SET
+			MPW = #{mpw, jdbcType=VARCHAR}
+		WHERE	MID = #{mid, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
 	
 </mapper>

@@ -4,17 +4,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>아이디 찾기</title>
+		<title>비밀번호 찾기</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$(document).on('click', '#emailBtn', function(){
 					
-					let urlVal = "idFind.ict"
+					let urlVal = "pwFind.ict"
 					let typeVal = "POST";
-					let mnameVal = $('#mname').val();
+					let midVal = $('#mid').val();
 					let memailVal = $('#memail').val();
-					let dataVal = { mname:mnameVal,
+					let dataVal = { mid:midVal,
 									memail:memailVal};
 					
 					$.ajax({
@@ -29,8 +29,8 @@
 						if(resData == "FIND_YES"){
 							alert("입력하신 이메일 주소로 송부된 URL을 클릭해주세요.");
 						}else{
-							alert("이름 또는 이메일 주소가 일치하지 않습니다.");
-							$('#mname').val('');
+							alert("아이디 또는 이메일 주소가 일치하지 않습니다.");
+							$('#mid').val('');
 							$('#memail').val('');
 							$('#mname').focus();
 						}//end of if-else
@@ -46,14 +46,14 @@
 		</script>
 	</head>
 	<body>
-		<form id="idFindForm" name="idFindForm">
+		<form id="pwFindForm" name="pwFindForm">
 			<table border="1">
 				<tr>
 					<td>로고 자리</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" id="mname" name="mname" placeholder="이름">
+						<input type="text" id="mid" name="mid" placeholder="아이디">
 					</td>
 				</tr>
 				<tr>
@@ -69,7 +69,7 @@
 				<tr>
 					<td>
 						<a href="loginForm.ict">로그인</a>&nbsp;|
-						<a href="pwFindForm.ict">비밀번호 찾기</a>&nbsp;|
+						<a href="idFindForm.ict">아이디 찾기</a>&nbsp;|
 						<a href="memGrade.ict">회원가입</a>
 					</td>
 				</tr>

@@ -41,7 +41,13 @@
 	
 	<!-- 댓글 -->
 	<!-- INDEX : SYS_C0011814 -->
-	
+	<select id="getCommentChabun" resultType="commentvo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011814) */
+			NVL(MAX(SUBSTR(A.CONUM, -4)), 0) + 1 AS CONUM
+		FROM ICT_COMMENT A
+		
+	</select>
 	
 	<!-- 커뮤니티 -->
 	<!-- INDEX : SYS_C0011818 -->
