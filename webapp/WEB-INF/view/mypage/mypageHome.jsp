@@ -22,9 +22,10 @@
 		location.href="#";
 	}
 	
-	function levelup(){
+	function levelup(mnum){
 		alert("등업 버튼 클릭");
-		location.href="#";
+		alert("mnum : " + mnum);
+		location.href = "levelupSelectAll.ict?mnum=" + mnum;
 	}
 
 </script>
@@ -99,7 +100,7 @@
 			</c:forEach>
 		</div>
 		<div>
-			<button type="button" onclick="levelup()">등업 목록</button>
+			<button type="button" onclick="levelup('${mList.get(0).getMnum()}')">등업 목록</button>
 		</div>
 	</div>
 </body>
