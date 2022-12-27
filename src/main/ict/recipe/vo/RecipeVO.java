@@ -18,6 +18,9 @@ public class RecipeVO {
 	private String insertdate;	// 등록일
 	private String updatedate;	// 수정일
 	
+	//mnick
+	private String mnick;		// 회원닉네임
+	
 	// Paging
 	
 	// Filter
@@ -29,7 +32,7 @@ public class RecipeVO {
 
 	public RecipeVO(String rnum, String rsubject, String rcategory, String rjeryo, String rtime, String rperson,
 			String rdiff, String rcontent, String rphoto, String rhit, String mnum, String warning, String deleteyn,
-			String insertdate, String updatedate) {
+			String insertdate, String updatedate, String mnick) {
 		this.rnum = rnum;
 		this.rsubject = rsubject;
 		this.rcategory = rcategory;
@@ -45,6 +48,7 @@ public class RecipeVO {
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
+		this.mnick = mnick;
 	}
 
 	// Getter
@@ -177,12 +181,22 @@ public class RecipeVO {
 		this.likecnt = likecnt;
 	}
 
+	
+	public String getMnick() {
+		return mnick;
+	}
+
+	public void setMnick(String mnick) {
+		this.mnick = mnick;
+	}
+	
+
 	@Override
 	public String toString() {
 		return "RecipeVO [rnum=" + rnum + ", rsubject=" + rsubject + ", rcategory=" + rcategory + ", rjeryo=" + rjeryo
 				+ ", rtime=" + rtime + ", rperson=" + rperson + ", rdiff=" + rdiff + ", rcontent=" + rcontent
 				+ ", rphoto=" + rphoto + ", rhit=" + rhit + ", mnum=" + mnum + ", warning=" + warning + ", deleteyn="
-				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + "]";
+				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + ", mnum=" + mnum + "]";
 	}
 	
 }

@@ -36,7 +36,7 @@ public class AdminController {
 			int nCntLV = listLV.size();
 			logger.info("등업글 갯수(nCnt) >>> : " + nCntLV);
 			 
-			if(nCntLV >= 0) {
+			if(nCntLV > 0) {
 				model.addAttribute("adminLevelupSelectAll", listLV);
 			}
 		

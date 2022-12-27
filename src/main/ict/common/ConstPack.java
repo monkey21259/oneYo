@@ -86,6 +86,8 @@ public abstract class ConstPack {
 	public static final String[] RECIPE_DIFF_ARR = {"쉬움", "보통", "어려움"};
 	public static final String[] RECIPE_DIFF_IDX_ARR = {"0", "1", "2"};
 	
-	
+	//신고
+	public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
+	public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};
 	
 }//end of ConstPack abstract class
