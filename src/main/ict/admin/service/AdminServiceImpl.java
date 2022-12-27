@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.admin.dao.AdminDAO;
 import main.ict.community.service.CommunityServiceImpl;
+import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
+import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
 
 @Service
@@ -17,17 +21,48 @@ import main.ict.warning.vo.WarningVO;
 public class AdminServiceImpl implements AdminService {
 
 	Logger logger = LogManager.getLogger(CommunityServiceImpl.class);
-	
+
+//dao호출	
 	@Autowired(required = false)
 	private AdminDAO adminDAO; 
+
+
+//등업
+	@Override
+		public List<LevelupVO> adminLevelupSelectAll(LevelupVO lvvo) {
+			logger.info("adminLevelupSelectAll 함수진입 >>> : ");
+			return adminDAO.adminLevelupSelectAll(lvvo);
+		}
+ 
+//신고
+	@Override
+		public List<WarningVO> adminWarningSelectAll(WarningVO wvo) {
+			logger.info("adminWarningSelectAll 함수진입 >>> : ");
+			return adminDAO.adminWarningSelectAll(wvo);
+	}
 	
-//	@Override
-//	public List<WarningVO> warningSelectAll(WarningVO wvo) {
-//		logger.info("warningSelectAll 함수진입 >>> : ");
-//		return adminDAO.warningSelectAll(wvo);
-//	}
+//레시피
+	@Override
+	public List<RecipeVO> adminRecipeSelectAll(RecipeVO rvo) {
+		logger.info("adminRecipeSelectAll 함수진입 >>> : ");
+		return adminDAO.adminRecipeSelectAll(rvo);
+	}
+	
+//전문가팁
+	@Override
+	public List<TipVO> adminTipSelectAll(TipVO tvo) {
+		logger.info("adminTipSelectAll 함수진입 >>> : ");
+		return adminDAO.adminTipSelectAll(tvo);
+	}
+
+//커뮤니티	
+	@Override
+	public List<CommunityVO> adminCommunitySelectAll(CommunityVO cvo) {
+		logger.info("adminCommunitySelectAll 함수진입 >>> : ");
+		return adminDAO.adminCommunitySelectAll(cvo);
+	}
 
 	
 	
 	
-}
+} //class

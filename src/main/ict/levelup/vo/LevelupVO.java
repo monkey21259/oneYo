@@ -2,7 +2,7 @@ package main.ict.levelup.vo;
 
 public class LevelupVO {
 
-	
+	private String levelupnum; //순번
 	private String lvnum; //등업번호 
 	private String lvsubject; //등업제목
 	private String lvcontent; //등업내용
@@ -12,13 +12,18 @@ public class LevelupVO {
 	private String insertdate; //등록일
 	private String updatedate; //수정일
 	
+	//닉네임
+	private String mnick; //회원닉네임
+	
 //디폴트생성자	
 	public LevelupVO() {
 	}
 
 //매개변수 있는 생성자	
-	public LevelupVO(String lvnum, String lvsubject, String lvcontent, String lvphoto, String mnum, String processyn,
-			String insertdate, String updatedate) {
+	public LevelupVO(String levelupnum, String lvnum, String lvsubject, String lvcontent, String lvphoto, String mnum,
+			String processyn, String insertdate, String updatedate, String mnick) {
+		
+		this.levelupnum = levelupnum;
 		this.lvnum = lvnum;
 		this.lvsubject = lvsubject;
 		this.lvcontent = lvcontent;
@@ -27,6 +32,7 @@ public class LevelupVO {
 		this.processyn = processyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
+		this.mnick = mnick;
 	}
 	
 //getter, setter	
@@ -85,7 +91,7 @@ public class LevelupVO {
 
 	public void setInsertdate(String insertdate) {
 		this.insertdate = insertdate;
-	}
+	} 
 
 	public String getUpdatedate() {
 		return updatedate;
@@ -94,6 +100,23 @@ public class LevelupVO {
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
 	}
+
+	public String getLevelupnum() {
+		return levelupnum;
+	}
+
+	public void setLevelupnum(String levelupnum) {
+		this.levelupnum = levelupnum;
+	}
+
+	public String getMnick() {
+		return mnick;
+	}
+
+	public void setMnick(String mnick) {
+		this.mnick = mnick;
+	}
+	
 	
 	
 } //class

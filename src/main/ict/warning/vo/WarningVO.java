@@ -2,6 +2,7 @@ package main.ict.warning.vo;
 
 public class WarningVO {
 
+	private String warningnum; //순번
 	private String wnum; //신고번호
 	private String wtnum; //신고글번호
 	private String wcategory; //신고분야
@@ -9,17 +10,18 @@ public class WarningVO {
 	private String mnum; //회원번호
 	private String deleteyn; //삭제여부
 	private String insertdate; //작성일
-	
+ 
 
 //디폴트생성자	
 	public WarningVO() {
-			super();
+	
 		}
 
 
 //매개변수 있는 생성자	
-	public WarningVO(String wnum, String wtnum, String wcategory, String wcontent, String mnum, String deleteyn,
+	public WarningVO(String warningnum, String wnum, String wtnum, String wcategory, String wcontent, String mnum, String deleteyn,
 			String insertdate) {
+		this.warningnum = warningnum;
 		this.wnum = wnum;
 		this.wtnum = wtnum;
 		this.wcategory = wcategory;
@@ -99,12 +101,16 @@ public class WarningVO {
 	public void setInsertdate(String insertdate) {
 		this.insertdate = insertdate;
 	}
+
+
+	public String getWarningnum() {
+		return warningnum;
+	}
+
+
+	public void setWarningnum(String warningnum) {
+		this.warningnum = warningnum;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-}
+} //class
