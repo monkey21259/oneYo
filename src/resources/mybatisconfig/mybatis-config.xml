@@ -10,7 +10,7 @@
 		<typeAlias type="main.ict.notice.vo.NoticeVO" alias="noticevo"/>			<!-- 공지사항 -->
  		<typeAlias type="main.ict.tip.vo.TipVO" alias="tipvo"/>						<!-- 전문가팁 -->
  		<typeAlias type="main.ict.recipe.vo.RecipeVO" alias="recipevo" />			<!-- 레시피 -->
-<!-- 		<typeAlias type="main.ict.warning.vo.LevelupVO" alias="levelupvo"/>			등업 -->
+		<typeAlias type="main.ict.levelup.vo.LevelupVO" alias="levelupvo"/>		<!-- 등업 -->
 		<typeAlias type="main.ict.warning.vo.WarningVO" alias="warningvo"/>			<!-- 신고 -->
 		<typeAlias type="main.ict.comment.vo.CommentVO" alias="commentvo"/> 		<!-- 댓글 -->
 		
