@@ -19,7 +19,9 @@
 	
 	function profileModify(mnum){
 		alert("프로필 영역 클릭");
-		location.href="mypagePWChk.ict?mnum=" + mnum;
+		alert("mnum : " + mnum);
+		// mnum 현재 상수 : 'M202212260012'
+		location.href="mypagePWChk.ict?mnum=" + 'M202212260012';
 	}
 	
 	function levelup(mnum){
@@ -32,7 +34,7 @@
 </head>
 <body>
 	<div id="container" style="text-align:center;">
-		<div id="profile_div" onclick="profileModify()" style="border:1px solid black; float:left;">
+		<div id="profile_div" onclick="profileModify('${mList.get(0).getMnum()}')" style="border:1px solid black; float:left;">
 			<c:forEach items="${mList}" var="mvo">
 				<span id="mnum" style="display:none">
 				${mvo.mnum}

@@ -21,4 +21,10 @@ public class LevelupDAOImpl implements LevelupDAO {
 		return sqlSession.selectList("levelupSelectAll", mvo);
 	}
 
+	@Override
+	public int levelupInsert(LevelupVO lvvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("levelupInsert", lvvo);
+	}
+
 }

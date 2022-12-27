@@ -9,7 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>oneYo(오내요)</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		console.log("levelupSelectAll.jsp 페이지 진입");
+		
+		$(document).on("click", "#levelupInsertBtn", function(){
+			alert("levelupInsertBtn 버튼 클릭 이벤트 발생");
+			if(confirm("등업글을 작성하시겠습니까?")){
+				location.href = "levelupInsertForm.ict?mnum=${list.get(0).getMnum()}";
+			}
+			
+		});
+	});
 
 	function levelupSelect(lvnum) {
 		
@@ -66,6 +80,11 @@
 						</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="5">
+						<button type="button" id="levelupInsertBtn">등업 신청</button>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

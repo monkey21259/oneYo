@@ -18,5 +18,31 @@
 
 </select>
 
+<insert id="levelupInsert" parameterType="levelupvo">
+
+	INSERT INTO "ORCLICT00"."ICT_LEVELUP"
+				(
+					LVNUM
+				   ,LVSUBJECT
+				   ,LVCONTENT
+				   ,LVPHOTO
+				   ,MNUM
+				   ,PROCESSYN
+				   ,INSERTDATE
+				   ,UPDATEDATE
+				)
+		 VALUES (
+		 			#{lvnum}
+		 		   ,#{lvsubject}
+		 		   ,#{lvcontent}
+		 		   ,#{lvphoto}
+		 		   ,#{mnum}
+		 		   ,'Y'
+		 		   ,SYSDATE
+		 		   ,SYSDATE
+		 		)
+
+</insert>
+
 
 </mapper>

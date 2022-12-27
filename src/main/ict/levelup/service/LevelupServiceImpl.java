@@ -27,4 +27,11 @@ public class LevelupServiceImpl implements LevelupService {
 		return levelupDAO.levelupSelectAll(mvo);
 	}
 
+	@Override
+	public int levelupInsert(LevelupVO lvvo) {
+		// TODO Auto-generated method stub
+		logger.info("levelupInsert() 함수 진입");
+		return levelupDAO.levelupInsert(lvvo);
+	}
+
 }

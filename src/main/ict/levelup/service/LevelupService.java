@@ -9,4 +9,6 @@ public interface LevelupService {
 
 	List<LevelupVO> levelupSelectAll(MemVO mvo);
 
+	int levelupInsert(LevelupVO lvvo);
+
 }

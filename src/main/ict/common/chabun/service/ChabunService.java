@@ -2,6 +2,7 @@ package main.ict.common.chabun.service;
 
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -28,7 +29,7 @@ public interface ChabunService {
 	public CommunityVO getCommunityChabun();
 	
 	//등업
-	
+	public LevelupVO getLevelupChabun();
 	
 	//좋아요
 	
