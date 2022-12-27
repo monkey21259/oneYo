@@ -18,6 +18,9 @@ public class NoticeVO {
 	private String totalCount;
 	private String noticeno;
 	
+	//좋아요
+	private int likecnt;
+	
 	//default constructor
 	public NoticeVO() {
 		
@@ -26,8 +29,8 @@ public class NoticeVO {
 	//constructor using fields
 	public NoticeVO(String nnum, String nsubject, String ncontent, String nphoto, String deleteyn, String insertdate,
 			String updatedate, int nhit, String pageSize, String groupSize, String curPage, String totalCount,
-			String noticeno) {
-		super();
+			String noticeno, int likecnt) {
+		
 		this.nnum = nnum;
 		this.nsubject = nsubject;
 		this.ncontent = ncontent;
@@ -41,6 +44,7 @@ public class NoticeVO {
 		this.curPage = curPage;
 		this.totalCount = totalCount;
 		this.noticeno = noticeno;
+		this.likecnt = likecnt;
 	}
 
 	//getter
@@ -94,6 +98,10 @@ public class NoticeVO {
 
 	public String getNoticeno() {
 		return noticeno;
+	}
+	
+	public int getLikecnt() {
+		return likecnt;
 	}
 
 	//setter
@@ -149,7 +157,8 @@ public class NoticeVO {
 		this.noticeno = noticeno;
 	}
 	
-
-	
+	public void setLikecnt(int likecnt) {
+		this.likecnt = likecnt;
+	}
 	
 }//end of NoticeVO class

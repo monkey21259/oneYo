@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.common.chabun.dao.ChabunDAO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
@@ -49,9 +50,6 @@ public class ChabunServiceImpl implements ChabunService {
 	//경고
 	
 	
-	//댓글
-	
-	
 	//커뮤니티
 	@Override
 	public CommunityVO getCommunityChabun() {
@@ -73,5 +71,13 @@ public class ChabunServiceImpl implements ChabunService {
 		logger.info("getNoticeChabun() 함수 진입 : ");
 		return chabunDAO.getNoticeChabun();
 	}//end of getNoticeChabun() method
+
+	//댓글
+	@Override
+	public CommentVO getCommentChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getCommentChabun() 함수 진입 : ");
+		return chabunDAO.getCommentChabun();
+	}//end of getCommentChabun() method
 	
 }//end of ChabunServiceImpl class

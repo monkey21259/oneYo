@@ -56,7 +56,7 @@ public class LoginController {
 	//아이디 찾기 및 인증메일 송부
 	@PostMapping(value="idFind")
 	@ResponseBody
-	public String idFind(MemVO mvo, Model model) {
+	public String idFind(MemVO mvo) {
 		logger.info("idFind() 함수 진입 : ");
 		
 		//ajax로 응답할 메세지

@@ -1,5 +1,6 @@
 package main.ict.common.chabun.service;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
@@ -21,7 +22,7 @@ public interface ChabunService {
 	
 	
 	//댓글
-	
+	public CommentVO getCommentChabun();
 	
 	//커뮤니티
 	public CommunityVO getCommunityChabun();
