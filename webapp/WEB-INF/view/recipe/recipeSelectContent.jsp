@@ -163,6 +163,9 @@
 				<!-- <input type="hidden" id="insertdate" name="insertdate" value="<%= recipevo.getInsertdate() %>" /> -->	<!-- 일간/주간/월간 -->
 				<input type="hidden" id="updatedate" name="updatedate" value="<%= recipevo.getUpdatedate() %>" />	<!-- 작성(수정) 시간 -->
 			</form>
+			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+			</jsp:include>
 		</section>
 	</body>
 </html>
