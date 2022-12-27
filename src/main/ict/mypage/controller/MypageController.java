@@ -53,7 +53,7 @@ public class MypageController {
 	}
 	
 
-	//	회원가입 form 1(전문가/일반 선택) 호출
+	//	마이페이지 넘어가기 전 비밀번호 확인 폼으로 이동
 	@GetMapping("mypagePWChk")
 	public String mypagePWChk() {
 		

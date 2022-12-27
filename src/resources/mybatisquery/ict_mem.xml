@@ -87,4 +87,34 @@ WHERE
 
 </select>
 
+<update id="memUpdate" parameterType="memvo">
+
+UPDATE
+		 A.UPDATEDATE	=	SYSDATE
+<if test="mkey != null and mkey.equalsIgnoreCase('MPROFILE')">
+		,A.MNICK		=	#{ mnick }
+		,A.MPROFILE		=	#{ mprofile }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MPW')">
+		,A.MPW			=	#{ mpw }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MEMAIL')">
+		,A.MEMAIL		=	#{ memail }
+</if>
+<if test="mkey != null and mkey.equalsIgnoreCase('MEM')">
+		,A.MNAME		=	#{ mname }
+		,A.MHP			=	#{ mhp }
+		,A.MCATEGORY	=	#{ mcategory }
+</if>
+FROM
+		ICT_MEMBER		A
+WHERE
+		A.DELETEYN	=	'Y'
+	AND
+		A.MNUM		=	#{ mnum }
+
+
+
+</update>
+
 </mapper>

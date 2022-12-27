@@ -227,9 +227,20 @@ public class MemController {
 	@PostMapping("profileSelect")
 	public String profileSelect(@ModelAttribute MemVO mvo, Model model) {
 		
-		logger.info("profileSelect() >>> : " + mvo.getMnum());
+		logger.info("profileSelect() >>> : " + mvo.getMnum() + " + " + mvo.getMkey());
 		
 		String mnum = mvo.getMnum();
+		
+		String mkey = "";
+		if (mvo.getMkey() != null && mvo.getMkey().length() > 0) {
+			
+			mkey = mvo.getMkey();
+			mkey = mkey.toUpperCase();
+		}
+		
+		logger.info("mnum >>> : " + mnum + " / mkey >>> : " + mkey);
+		
+		
 		
 		if (mnum != null && mnum.length() > 0) {
 			
@@ -246,7 +257,30 @@ public class MemController {
 				
 				model.addAttribute("list", list);
 				
-				return "mypage/profileSelect";
+				if (mkey == null || mkey.length() == 0 || mkey.equals("PWCHECK")) {
+					
+					return "mypage/profileSelect";
+				}
+				
+				if (mkey.equals("MPROFILE")) {
+					
+					return "mypage/profilePhotoUpdateForm";
+				}
+				
+				if (mkey.equals("MPW")) {
+					
+					return "mypage/profilePWUpdateForm";
+				}
+				
+				if (mkey.equals("MEMAIL")) {
+					
+					return "mypage/profileEmailUpdateForm";
+				}
+				
+				if (mkey.equals("MEM")) {
+					
+					return "mypage/profileInfoUpdateForm";
+				}
 			}
 		}
 		

@@ -47,22 +47,72 @@ $(document).ready(function(){
 	
 	$(document).on('click', '.mprBtn', function(){
 		alert("mprBtn");
+		
+		$('#mkey').val("MPROFILE");
+		
+
+		$('#profileSelect').attr({
+			 'action'	: "profileSelect.ict"
+			,'method'	: "POST"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
 	});	//	.mprBtn 프로필 버튼
 	
 	$(document).on('click', '.mgrBtn', function(){
 		alert("mgrBtn");
+		
+		$('#mkey').val("MGRADE");
+
+
+// 		$('#profileSelect').attr({
+// 			 'action'	: "profileSelect.ict"
+// 			,'method'	: "POST"
+// 			,"enctype"	: "application/x-www-form-urlencoded"
+// 		}).submit();
+		
 	});	//	.mgrBtn 등업 버튼
 	
 	$(document).on('click', '.mpwBtn', function(){
 		alert("mpwBtn");
+		
+		$('#mkey').val("MPW");
+
+
+		$('#profileSelect').attr({
+			 'action'	: "profileSelect.ict"
+			,'method'	: "POST"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
 	});	//	.mpwBtn 비번 변경 버튼
 	
 	$(document).on('click', '.memailBtn', function(){
 		alert("memailBtn");
+		
+		$('#mkey').val("MEMAIL");
+
+
+		$('#profileSelect').attr({
+			 'action'	: "profileSelect.ict"
+			,'method'	: "POST"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
 	});	//	.memailBtn 이메일 버튼
 	
 	$(document).on('click', '.memBtn', function(){
 		alert("memBtn");
+		
+		$('#mkey').val("MEM");
+
+
+		$('#profileSelect').attr({
+			 'action'	: "profileSelect.ict"
+			,'method'	: "POST"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
 	});	//	.memBtn 기타 버튼
 });
 </script>
@@ -139,6 +189,7 @@ profileSelect.jsp
 	</td>
 	<td>
 	<input type="hidden" id="mnum" name="mnum" value="<%= mvo.getMnum() %>">
+	<input type="hidden" id="mkey" name="mkey" value="">
 	<%= mvo.getMid() %>
 	</td>
 	<td rowspan="4">
