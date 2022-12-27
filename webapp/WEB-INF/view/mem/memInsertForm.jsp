@@ -76,9 +76,9 @@ $(document).ready(function(){
 				alert("아이디 사용 가능 : ID_YES");
 				console.log("아이디 사용 가능 : ID_YES");
 				
-				$('#mid').attr('readonly', true);
+				$('#mid').prop('readonly', true);
 				$('#mpw').focus();
-				$('#midBtn').attr('disabled', true);
+				$('#midBtn').prop('disabled', true);
 				
 			}else if("ID_NO" == resData) {
 				
@@ -101,12 +101,12 @@ $(document).ready(function(){
 	$(document).on('click', '#mpw', function(){
 		if ($('#mpw').prop('readonly') && $('#mpw_r_tr').prop('hidden')) {
 
-			$('#mpw').attr('readonly', false);
+			$('#mpw').prop('readonly', false);
 			$('.mpw_td').each(function(){
 				$(this).attr('rowspan', '2');
 			});
 			$('#mpw_r_tr').prop('hidden', false);
-			$('#mpwBtn').attr('disabled', false);
+			$('#mpwBtn').prop('disabled', false);
 			
 			$('#mpw_r').val($('#mpw').val());
 		}

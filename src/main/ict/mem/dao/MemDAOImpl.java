@@ -37,6 +37,15 @@ public class MemDAOImpl implements MemDAO {
 		
 		return sqlSession.selectList("memIdCheck", mvo);
 	}	//	ID 아이디 중복 검사	"memIdCheck"
+
+	//	프로필 조회 목적 memSelect "profileSelect"
+	@Override
+	public List<MemVO> memSelect(MemVO mvo) {
+		
+		logger.info("memSelect(mvo) >>> : " + mvo.getMnum());
+		
+		return sqlSession.selectList("memSelect", mvo);
+	}	//	프로필 조회 목적 memSelect "profileSelect"
 	
 	
 }

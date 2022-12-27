@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -219,5 +220,37 @@ public class MemController {
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");
 		
 		return "mem/memGrade";
+	}
+	
+
+	//	마이페이지 프로필 편집 memSelect
+	@GetMapping("profileSelect")
+	public String profileSelect(@ModelAttribute MemVO mvo, Model model) {
+		
+		logger.info("profileSelect() >>> : " + mvo.getMnum());
+		
+		String mnum = mvo.getMnum();
+		
+		if (mnum != null && mnum.length() > 0) {
+			
+			List<MemVO> list = null;
+			list = memService.memSelect(mvo);
+			
+			logger.info("memSelect() - list != null >>> : " + (boolean)(list != null));
+			
+			int nCnt = list.size();
+			
+			if (list != null && nCnt > 0) {
+				
+				logger.info("memSelect() - nCnt >>> : " + nCnt);
+				
+				model.addAttribute("list", list);
+				
+				return "mypage/profileSelect";
+			}
+		}
+		
+		
+		return "mypage/mypagePWCheck";
 	}
 }
