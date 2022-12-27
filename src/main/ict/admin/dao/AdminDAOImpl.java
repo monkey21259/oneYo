@@ -25,7 +25,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<LevelupVO> adminLevelupSelectAll(LevelupVO lvvo) {
 		return sqlsession.selectList("adminLevelupSelectAll", lvvo);
 		}
-
+ 
 //신고	
 	@Override
 	public List<WarningVO> adminWarningSelectAll(WarningVO wvo) {

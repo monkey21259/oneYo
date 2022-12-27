@@ -91,7 +91,7 @@ public class LevelupVO {
 
 	public void setInsertdate(String insertdate) {
 		this.insertdate = insertdate;
-	}
+	} 
 
 	public String getUpdatedate() {
 		return updatedate;

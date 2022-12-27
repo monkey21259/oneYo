@@ -47,7 +47,7 @@ public class AdminController {
 			 
 			if(nCntW > 0) {
 				model.addAttribute("adminWarningSelectAll", listW);
-			}
+			} 
 		
 		//레시피
 			List<RecipeVO> listR = adminService.adminRecipeSelectAll(rvo);

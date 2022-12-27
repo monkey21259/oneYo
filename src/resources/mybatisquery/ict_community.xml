@@ -3,7 +3,7 @@
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="main.ict.community.dao.CommunityDAO">
-
+ 
 <!-- 글등록 -->
   <insert id="communityInsert" parameterType="communityvo">
   	INSERT INTO ICT_COMMUNITY(	  CNUM

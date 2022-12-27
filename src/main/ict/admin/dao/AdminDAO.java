@@ -12,7 +12,7 @@ public interface AdminDAO {
  	
 //등업	
 	public List<LevelupVO> adminLevelupSelectAll(LevelupVO lvvo);  
-	
+	 
 //신고
 	public List<WarningVO> adminWarningSelectAll(WarningVO wvo);  
 	

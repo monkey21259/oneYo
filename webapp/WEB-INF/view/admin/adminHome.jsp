@@ -99,7 +99,7 @@
 					}).submit();
 					
 				});
-				
+				 
 				//등업
 				$(document).on("click", "#levelupmoreBtn", function(){
 					$("#adminForm").attr({
@@ -164,7 +164,7 @@
 	<h3>등업</h3>
 		<hr>
 		<button type="button" id="levelupmoreBtn" style="float: right;">더보기</button><br>
-			<table border="1 solid">
+			<table>
 				<thead>
 					<tr>
 						<th>NO</th>

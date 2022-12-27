@@ -12,7 +12,7 @@ public interface AdminService {
 	
 //등업	
 	public List<LevelupVO> adminLevelupSelectAll(LevelupVO lvvo);   
-	
+	 
 //신고글
 	public List<WarningVO> adminWarningSelectAll(WarningVO wvo);   
 	

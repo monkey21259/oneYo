@@ -10,7 +10,7 @@ public class WarningVO {
 	private String mnum; //회원번호
 	private String deleteyn; //삭제여부
 	private String insertdate; //작성일
-
+ 
 
 //디폴트생성자	
 	public WarningVO() {
