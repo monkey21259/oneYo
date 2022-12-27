@@ -224,7 +224,7 @@ public class MemController {
 	
 
 	//	마이페이지 프로필 편집 memSelect
-	@GetMapping("profileSelect")
+	@PostMapping("profileSelect")
 	public String profileSelect(@ModelAttribute MemVO mvo, Model model) {
 		
 		logger.info("profileSelect() >>> : " + mvo.getMnum());

@@ -80,6 +80,10 @@ WHERE
 		A.DELETEYN	=	'Y'
 	AND
 		A.MNUM		=	#{ mnum, jdbcType=VARCHAR }
+<if test="mkey != null and mkey.equalsIgnoreCase('PWCHECK')">
+	AND
+		A.MPW		=	#{ mpw, jdbcType=VARCHAR }
+</if>
 
 </select>
 

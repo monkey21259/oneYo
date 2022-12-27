@@ -17,9 +17,9 @@
 		
 	});
 	
-	function profileModify(){
+	function profileModify(mnum){
 		alert("프로필 영역 클릭");
-		location.href="#";
+		location.href="mypagePWChk.ict?mnum=" + mnum;
 	}
 	
 	function levelup(mnum){

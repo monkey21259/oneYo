@@ -51,5 +51,15 @@ public class MypageController {
 		
 		return "mypage/mypageHome";
 	}
+	
+
+	//	회원가입 form 1(전문가/일반 선택) 호출
+	@GetMapping("mypagePWChk")
+	public String mypagePWChk() {
+		
+		logger.info("mypagePWChk() >>> : mypagePWChk.jsp");
+		
+		return "mypage/mypagePWChk";
+	}
 
 }
