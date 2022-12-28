@@ -29,12 +29,31 @@
 		alert("mnum : " + mnum);
 		location.href = "levelupSelectAll.ict?mnum=" + mnum;
 	}
+	
+	function recipeSelect(rnum){
+		alert("레시피 글 클릭");
+		alert("rnum : " + rnum);
+		location.href = "recipeSelectContent.ict?rnum=" + rnum;
+	}
+	
+	function communitySelect(cnum){
+		alert("커뮤니티 글 클릭");
+		alert("cnum : " + cnum);
+		location.href = "communitySelectContent.ict?cnum=" + cnum;
+	}
+	
+	function tipSelect(tnum){
+		alert("전문가 팁 글 클릭");
+		alert("tnum : " + tnum);
+		location.href = "tipSelectContent.ict?tnum=" + tnum;
+	}
 
 </script>
 </head>
 <body>
 	<div id="container" style="text-align:center;">
-		<div id="profile_div" onclick="profileModify('${mList.get(0).getMnum()}')" style="border:1px solid black; float:left;">
+	<c:set var="mnum" value="${mList.get(0).getMnum()}" />
+		<div id="profile_div" onclick="profileModify('${mnum}')" style="border:1px solid black; float:left;">
 			<c:forEach items="${mList}" var="mvo">
 				<span id="mnum" style="display:none">
 				${mvo.mnum}
@@ -46,7 +65,7 @@
 				<br />
 				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;">
 				<br />
-				<c:if test="${mvo.mgrade eq '0'}">
+				<c:if test="${mvo.mgrade eq '0'}"> 
 					<span id="mgrade" style="border:1px solid black;">
 					일반 등급
 					</span>
@@ -56,7 +75,7 @@
 		</div>
 		<div id="community_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
 			<c:forEach items="${cList}" var="cvo">
-				<div style="border:1px solid black;">
+				<div style="border:1px solid black;" onclick="communitySelect('${cvo.cnum}')">
 					<br />
 					${cvo.cnum}
 					<br />
@@ -73,7 +92,7 @@
 		</div>
 		<div id="recipe_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
 			<c:forEach items="${rList}" var="rvo">
-				<div style="border:1px solid black;">
+				<div style="border:1px solid black;" onclick="recipeSelect('${rvo.rnum}')">
 					<br />
 					${rvo.rnum}
 					<br />
@@ -88,7 +107,7 @@
 		</div>
 		<div id="tip_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
 			<c:forEach items="${tList}" var="tvo">
-				<div style="border:1px solid black;">
+				<div style="border:1px solid black;" onclick="tipSelect('${tvo.tnum}')">
 					<br />
 					${tvo.tnum}
 					<br />
@@ -102,7 +121,7 @@
 			</c:forEach>
 		</div>
 		<div>
-			<button type="button" onclick="levelup('${mList.get(0).getMnum()}')">등업 목록</button>
+			<button type="button" onclick="levelup('${mnum}')">등업 목록</button>
 		</div>
 	</div>
 </body>
