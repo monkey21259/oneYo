@@ -11,6 +11,9 @@ public class WarningVO {
 	private String deleteyn; //삭제여부
 	private String insertdate; //작성일
  
+	private String allnum;
+	private String allsubject;
+	private String value;
 //신고자 닉네임
 	private String mnick; //신고자 닉네임
 
@@ -22,7 +25,7 @@ public class WarningVO {
 
 //매개변수 있는 생성자	
 	public WarningVO(String warningnum, String wnum, String wtnum, String wcategory, String wcontent, String mnum, String deleteyn,
-			String insertdate, String mnick) {
+			String insertdate, String mnick, String allnum, String allsubject, String value) {
 		this.warningnum = warningnum;
 		this.wnum = wnum;
 		this.wtnum = wtnum;
@@ -32,6 +35,10 @@ public class WarningVO {
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.mnick = mnick;
+		this.allnum = allnum;
+		this.allsubject = allsubject;
+		this.value = value;
+	
 	}
 
 
@@ -123,6 +130,36 @@ public class WarningVO {
 
 	public void setMnick(String mnick) {
 		this.mnick = mnick;
+	}
+
+
+	public String getAllnum() {
+		return allnum;
+	}
+
+
+	public void setAllnum(String allnum) {
+		this.allnum = allnum;
+	}
+
+
+	public String getAllsubject() {
+		return allsubject;
+	}
+
+
+	public void setAllsubject(String allsubject) {
+		this.allsubject = allsubject;
+	}
+
+
+	public String getValue() {
+		return value;
+	}
+
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 	

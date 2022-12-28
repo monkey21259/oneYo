@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.ict.warning.dao.WarningDAO">
+
+<select id="recipeSelect" resultType="warningvo">
+
+	SELECT A.RNUM AS ALLNUM,
+	       A.RSUBJECT AS ALLSUBJECT
+	  FROM ICT_RECIPE A
+	  WHERE DELETEYN = 'Y'
+	  ORDER BY 1 DESC
+
+</select>
+
+<select id="tipSelect" resultType="warningvo">
+
+	SELECT A.TNUM AS ALLNUM,
+	 	   A.TSUBJECT AS ALLSUBJECT
+	 	   FROM ICT_TIP A
+	 	   WHERE DELETEYN = 'Y'
+		   ORDER BY 1 DESC	
+
+</select>
+
+<select id="comSelect" resultType="warningvo">
+		
+		SELECT A.CNUM AS ALLNUM,
+			   A.CSUBJECT AS ALLSUBJECT
+			   FROM ICT_COMMUNITY A
+			   WHERE DELETEYN = 'Y'
+			   ORDER BY 1 DESC
+
+</select>
+
+<insert id="warningInsert" parameterType="warningvo">
+
+	INSERT INTO ICT_WARNING(WNUM, 
+							WTNUM, 
+							WCATEGORY, 
+							WCONTENT, 
+							MNUM, 
+							DELETEYN, 
+							INSERTDATE)
+	                 VALUES(#{wnum}, 
+	                        #{wtnum}, 
+	                        #{wcategory}, 
+	                        #{wcontent}, 
+	                        #{mnum}, 
+	                        'Y', 
+	                        SYSDATE)
+
+
+
+
+</insert>
+
+</mapper>
