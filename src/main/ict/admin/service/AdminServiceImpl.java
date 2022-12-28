@@ -12,6 +12,7 @@ import main.ict.admin.dao.AdminDAO;
 import main.ict.community.service.CommunityServiceImpl;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.mem.vo.MemVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
@@ -61,8 +62,16 @@ public class AdminServiceImpl implements AdminService {
 		logger.info("adminCommunitySelectAll 함수진입 >>> : ");
 		return adminDAO.adminCommunitySelectAll(cvo);
 	}
-
 	
+	
+//회원조회
+	@Override
+	public List<MemVO> adminMemSelectAll(MemVO mvo) {
+		logger.info("adminMemSelectAll 함수진입 >>> : ");
+		return adminDAO.adminMemSelectAll(mvo);
+	}
+
+
 	
 	
 } //class

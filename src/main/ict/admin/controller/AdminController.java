@@ -13,6 +13,7 @@ import main.ict.admin.service.AdminService;
 import main.ict.community.controller.CommunityController;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.mem.vo.MemVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
@@ -76,7 +77,21 @@ public class AdminController {
 				model.addAttribute("adminCommunitySelectAll", listC);
 			}
 			
-			
 			return "admin/adminHome";
 	} //adminHome
+	
+	@GetMapping("adminMemSelectAll")
+	public String adminMemSelectAll(MemVO mvo, Model model) {
+		
+		List<MemVO> list = adminService.adminMemSelectAll(mvo);
+		int nCnt = list.size();
+		
+		logger.info("회원수 >>> : " + nCnt);
+		if(nCnt > 0) {
+			
+			model.addAttribute("adminMemSelectAll", list);
+		}
+		return "admin/adminMemSelectAll";
+	}
+	
 }//class
