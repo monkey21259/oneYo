@@ -191,10 +191,10 @@ public abstract class CodeUtils {
 		return rPerson + "인분";
 	}
 	
-//신고
+////관리자페이지에 adminHome에 들어가는  신고분야
 	public static String getWcategory(String wcate){
-		logger.info("신고 매핑함수 진입>>>");
-		logger.info("신고분야(Wcategory) >>> : " + wcate);
+		logger.info("신고분야(getWcategory) 함수 진입>>>");
+		logger.info("신고분야(getWcategory) >>> : " + wcate);
 		
 		//public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};
 		//public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
@@ -217,9 +217,11 @@ public abstract class CodeUtils {
 		
 		return wcate1;
 	}
+
 	
+//관리자페이지에 adminHome에 들어가는 팁분야	
 	public static String getTipcate(String tipcate) {
-		
+		logger.info("신고분야(getTipcate) 함수 진입>>>");
 //		public static final String[] TIP_ARR = {"요리", "주방관리", "재료정보", "기타"};
 //		public static final String[] TIP_IND_ARR = {"00", "01", "02", "99"};
 		
@@ -234,20 +236,17 @@ public abstract class CodeUtils {
 		
 		return tipcate1;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public static void main(String[] args) {
 		
+		
+		logger.info(CodeUtils.getRcategoryVal("00"));
 		logger.info(CodeUtils.getRcategory("-1"));
 		logger.info(CodeUtils.getRdiff("0"));
 		logger.info(CodeUtils.getWcategory("00"));
+		
+		
 		
 		
 	}

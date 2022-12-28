@@ -84,7 +84,7 @@
 				//회원목록
 				$(document).on("click", "#memselectAllBtn", function(){
 					$("#adminForm").attr({
-						"action":".ict",
+						"action":"adminMemSelectAll.ict",
 						"method":"GET",
 						"enctype":"application/x-www=form=urlencoded"	
 					}).submit();
