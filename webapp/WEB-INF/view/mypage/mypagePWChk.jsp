@@ -34,12 +34,16 @@ $(document).ready(function(){
 		alert("#mpwBtn");
 		
 		$('#mkey').val("PWCHECK");
-		
-		$('#pwCheckForm').attr({
-			 'action'	: "profileSelect.ict"
-			,'method'	: "POST"
-			,"enctype"	: "application/x-www-form-urlencoded"
-		}).submit();
+		if ($('#mpw').val() != null && $('#mpw').val().length > 0) {
+			
+			$('#pwCheckForm').attr({
+				 'action'	: "profileSelect.ict"
+				,'method'	: "POST"
+				,"enctype"	: "application/x-www-form-urlencoded"
+			}).submit();
+		}else {
+			alert("비밀번호를 입력해주세요.");
+		}
 		
 	});
 });
@@ -47,6 +51,8 @@ $(document).ready(function(){
 </head>
 <body>
 회원 번호 = <%= mnum %> ((관리자는 접속시 비밀번호 확인하세용))
+<br>
+비밀번호 확인
 <form id="pwCheckForm">
 <input type="text" id="mpw" name="mpw">
 <input type="button" id="mpwBtn" value="비밀번호 확인">
