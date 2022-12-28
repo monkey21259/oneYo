@@ -66,6 +66,7 @@
 				<hr>
 				<!-- 댓글 테스트 -->
 				<a href="commentForm.ict">댓글 테스트</a>
+				<hr>
 			</div>
 		</div>
 	</body>
