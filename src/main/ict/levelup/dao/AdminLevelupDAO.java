@@ -9,4 +9,7 @@ public interface AdminLevelupDAO {
 	public List<LevelupVO> levelupSelectAll();
 	
 	public List<LevelupVO> levelupSelectContent(LevelupVO lvo);
+	
+	public int adminLevelupNope(LevelupVO lvo);
+	
 }

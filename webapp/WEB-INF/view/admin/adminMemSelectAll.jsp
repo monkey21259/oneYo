@@ -32,14 +32,56 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				alert("제이쿼리");
+						
+				$(document).on("click", ".deleteBtn", function(){
+					
+					let info = $(this).parent().find(".mid");
+					//let info = $(this).siblings();
+					console.log("info >>> : " + info);
+					let mid = info.get(0).value;
+					console.log("mid >>> : " + mid);
+					
+					let result = confirm(mid + '님을 탈퇴 하시겠습니까? ')
+					if(result == true){
+					
+					let url = "memDelete.ict";
+					let reqType= "GET";
+					let dataParam ={
+							
+							mid : info.get(0).value,
+					};
+					
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+					
+					$.ajax({
+						
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError		
+						
+					}); //ajax
+				}else{
+					alert("취소되었습니다");
+				}
+					
+					
+				function whenSuccess(resData){
+							if(resData == 'deleteOK'){
+								alert("탈퇴되었습니다.");
+							} 
+						
+					} //sucess
+					
+				function whenError(e){
+					console("탈퇴실패 >>> : "  + e.responseText);
+				} //whenError	
 				
-// 				$(document).on("click", "#deleteBtn", function(){
 					
-					
-					
-					
-// 				}); //deleteBtn
+				}); //deleteBtn
 				
 			}); //ready
 		</script>
@@ -72,17 +114,21 @@
 %>				
 				<tbody>
 					<tr>
-						<td><%= mvo.getMemnum() %></td>
+						
+						<td class="info"><%= mvo.getMemnum() %></td>
 						<td><%= mvo.getMid() %></td>
 						<td><%= mvo.getMname() %></td>
 						<td><%= mvo.getMnick() %></td>
 						<td><%= mvo.getMemail() %></td>
 						<td><%= CodeUtils.getMgradeVal(mvo.getMgrade()) %></td>
 						<td><img src="/oneYo/img/mem/<%= mvo.getMprofile() %>" style="width:50px; height:50px;"></td>
-						<td><%= CodeUtils.getMCategorys(mvo.getMcategory()) %></td>
+						<td><%= CodeUtils.getAdminRcate(mvo.getMcategory()) %></td>
 						<td><%= mvo.getMwarning() %></td>
 						<td><%= mvo.getInsertdate() %></td>
-						<td><button type="button" id="deleteBtn">탈퇴</button></td>
+						<td class="delBtn">
+							<input type="hidden" class="mid" value="<%= mvo.getMid() %>" />
+							<button type="button" class="deleteBtn">탈퇴</button>
+						</td>
 					</tr>
 				</tbody>
 <%

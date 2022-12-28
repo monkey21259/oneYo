@@ -19,6 +19,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$("#nopeBtn").click(function(){
+			
+			$("#levelupForm").attr({
+				"action":"levelupNope.ict",
+				"method":"GET",
+				"enctype":"application/x-www-form-urlencoded"
+			}).submit();
+			
+		});
+		
+		
+		
+		
+	});
+
+
+
+
+
+
+
+
+
+</script>
 <style type="text/css">
 	@font-face{
 		src:url(/jshSpring/font/EF_Diary.ttf);
@@ -64,7 +93,7 @@
 <br>
 <h1 align="center">등업</h1>
 
-<form name="boardForm" id="boardForm">
+<form name="levelupForm" id="levelupForm">
 <table id="hi" align="center">
 	<tr>
 		<td>제목</td>
@@ -75,6 +104,8 @@
 		</td>
 		</tr>
 		<tr>
+			<input type="hidden" name="lvnum" value="<%=lvo.getLvnum() %>">
+			<input type="hidden" name="mnum" value="<%=lvo.getMnum() %>">
 			<td>작성자</td>
 			<td><%= mnick %></td>
 		</tr>
@@ -92,8 +123,8 @@
 <tr>
 <td colspan="6" align="center">
 <br><br>
-<button type="button" class="btns" id="insertBtn">거부</button>
-<button type="button" class="btns" id="selectAllBtn">승인</button>
+<button type="button" class="btns" id="nopeBtn">거부</button>
+<button type="button" class="btns" id="okeyBtn">승인</button>
 </td>				
 </tr>
 </table>

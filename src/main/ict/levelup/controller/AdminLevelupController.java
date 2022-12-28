@@ -58,5 +58,19 @@ public class AdminLevelupController {
 		return "";
 	}
 	
+	@GetMapping(value="levelupNope")
+	public String levelupNope(Model m, LevelupVO lvo) {
+		
+		System.out.println("lvo.getLvnum : " + lvo.getLvnum());
+		
+		int nCnt = adminLevelupService.adminLevelupNope(lvo);
+		
+		if(nCnt > 0) {
+			
+			return "levelup/levelupNope";
+		}
+		
+		return "";
+	}
 	
 }
