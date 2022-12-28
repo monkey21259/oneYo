@@ -86,7 +86,7 @@
 					$("#adminForm").attr({
 						"action":"adminMemSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				});
@@ -96,7 +96,7 @@
 					$("#adminForm").attr({
 						"action":"noticeSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				});
@@ -104,9 +104,9 @@
 				//등업
 				$(document).on("click", "#levelupmoreBtn", function(){
 					$("#adminForm").attr({
-						"action":".ict",
+						"action":"adminLevelupSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); //levelupmoreBtn
@@ -116,7 +116,7 @@
 					$("#adminForm").attr({
 						"action":".ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -126,7 +126,7 @@
 					$("#adminForm").attr({
 						"action":"recipeSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -136,7 +136,7 @@
 					$("#adminForm").attr({
 						"action":"tipSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -146,7 +146,7 @@
 					$("#adminForm").attr({
 						"action":"communitySelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 

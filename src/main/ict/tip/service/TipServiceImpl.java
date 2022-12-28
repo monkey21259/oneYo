@@ -27,10 +27,10 @@ public class TipServiceImpl implements TipService {
 	}
 
 	@Override
-	public List<TipVO> tipSelectAll() {
+	public List<TipVO> tipSelectAll(TipVO tvo) {
 		// TODO Auto-generated method stub
 		logger.info("tipSelectAll() 함수 진입");
-		return tipDAO.tipSelectAll();
+		return tipDAO.tipSelectAll(tvo);
 	}
 
 	@Override

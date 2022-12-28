@@ -13,6 +13,12 @@
 	List<TipVO> list = null;
 	TipVO tvo = null;
 	
+	TipVO pagingVO = null;
+	int pageSize = 0;
+	int groupSize = 0;
+	int curPage = 0;
+	int totalCount = 0;
+	
 	if(request.getAttribute("list") !=null) {
 		list = (List<TipVO>)request.getAttribute("list");
 		if(list !=null && list.size() > 0) {
@@ -21,6 +27,13 @@
 				logger.info("VO : " + tvo.toString());
 			}
 		}
+	}
+	
+	if(request.getAttribute("pagingVO") != null){
+		pagingVO = (TipVO)request.getAttribute("pagingVO");
+		pageSize = Integer.parseInt(pagingVO.getPageSize());
+		groupSize = Integer.parseInt(pagingVO.getGroupSize());
+		curPage = Integer.parseInt(pagingVO.getCurPage());
 	}
 %>
 <!DOCTYPE html>
@@ -75,6 +88,8 @@
 <% 
 	for(int i=0; i < list.size(); i++) {
 		tvo = list.get(i);
+		
+		totalCount = Integer.parseInt(tvo.getTotalCount());
 %>
 		<tr>
 			<td>
@@ -101,6 +116,18 @@
 <%
 	}
 %>
+		<tr>
+			<td colspan="4">
+				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+					<jsp:param value="tipSelectAll.ict" name="url"/>
+						<jsp:param value="" name="str"/>
+						<jsp:param value="<%=pageSize %>" name="pageSize"/>
+						<jsp:param value="<%=groupSize %>" name="groupSize"/>
+						<jsp:param value="<%=curPage %>" name="curPage"/>
+						<jsp:param value="<%=totalCount %>" name="totalCount"/>
+				</jsp:include>
+			</td>
+		</tr>
 	</tbody>
 </table>
 </form>

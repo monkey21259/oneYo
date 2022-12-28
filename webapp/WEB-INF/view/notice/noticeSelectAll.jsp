@@ -60,7 +60,7 @@
 		%>
 				<tr>
 					<td colspan="4">
-						<jsp:include page="noticePaging.jsp" flush="true">
+						<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 							<jsp:param value="noticeSelectAll.ict" name="url"/>
 								<jsp:param value="" name="str"/>
 								<jsp:param value="<%=pageSize %>" name="pageSize"/>
