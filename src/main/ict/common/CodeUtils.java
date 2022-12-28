@@ -195,9 +195,7 @@ public abstract class CodeUtils {
 	public static String getWcategory(String wcate){
 		logger.info("신고분야(getWcategory) 함수 진입>>>");
 		logger.info("신고분야(getWcategory) >>> : " + wcate);
-		
-		//public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};
-		//public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
+
 		String wcate1 = null;
 		
 		if(wcate.equals("00")) {
@@ -222,8 +220,6 @@ public abstract class CodeUtils {
 //관리자페이지에 adminHome에 들어가는 팁분야	
 	public static String getTipcate(String tipcate) {
 		logger.info("신고분야(getTipcate) 함수 진입>>>");
-//		public static final String[] TIP_ARR = {"요리", "주방관리", "재료정보", "기타"};
-//		public static final String[] TIP_IND_ARR = {"00", "01", "02", "99"};
 		
 		String tipcate1 = null;
 		
@@ -236,7 +232,46 @@ public abstract class CodeUtils {
 		
 		return tipcate1;
 	}
+	
+//관리자페이지 요리분야 배열	
 
+	public static String getAdminRcate(String rcate) {
+		logger.info("관리자 회원목록 요리분야(getAdminRcate) 함수 진입>>>");
+		
+		//IDX_ARR 담을 배열
+		String rcate1[] = null;
+		
+		// CAT_ARR 뽑을거
+		String rcateV = "";
+		
+		if (rcate != null || rcate.length() > 0) {
+			
+			//배열쪼개기
+			rcate1 = rcate.split("#");
+			logger.info("rcate1 >>> : " + rcate1);
+			logger.info("rcate1[1] >>> : " + rcate1[1]);
+			logger.info("ConstPack.RECIPE_CAT_IDX_ARR[0]) >>> : " + ConstPack.RECIPE_CAT_IDX_ARR[0]);
+			
+			for(int i=1; i<rcate1.length; i++) { // 배열인덱스길이만큼 
+				if(i>1) {
+					rcateV += ",";
+				} //if
+				for(int j = 0; j < ConstPack.RECIPE_CAT_IDX_ARR.length-1; j++) { 
+				
+					if(rcate1[i].equals(ConstPack.RECIPE_CAT_IDX_ARR[j])) {
+						rcateV += ConstPack.RECIPE_CAT_ARR[j];
+					} //if
+				} //for
+			} //for
+			
+		} //if	
+		
+		return rcateV;
+			
+		
+	} //getAdminRcate
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -245,6 +280,8 @@ public abstract class CodeUtils {
 		logger.info(CodeUtils.getRcategory("-1"));
 		logger.info(CodeUtils.getRdiff("0"));
 		logger.info(CodeUtils.getWcategory("00"));
+		logger.info(CodeUtils.getAdminRcate("#00#01#02"));
+		
 		
 		
 		

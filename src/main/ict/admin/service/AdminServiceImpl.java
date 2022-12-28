@@ -71,6 +71,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminMemSelectAll(mvo);
 	}
 
+//회원탈퇴	
+	@Override
+	public int adminMemDelete(MemVO mvo) {
+		logger.info("adminMemDelete 함수진입 >>> : ");
+		return adminDAO.adminMemDelete(mvo);
+	}
+
+	
 
 	
 	

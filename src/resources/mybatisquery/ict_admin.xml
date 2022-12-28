@@ -157,4 +157,12 @@
 		WHERE DELETEYN ='Y'
 		ORDER BY MNUM DESC
 	</select>
+	
+<!-- 회원탈퇴 -->	
+	<update id="adminMemDelete" parameterType="memvo">
+		UPDATE "ORCLICT00"."ICT_MEMBER"
+		SET DELETEYN = 'N'
+		WHERE DELETEYN = 'Y'
+		AND MID = #{mid }
+	</update>
 </mapper>

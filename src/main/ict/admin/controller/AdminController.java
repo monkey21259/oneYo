@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.admin.service.AdminService;
 import main.ict.community.controller.CommunityController;
@@ -92,6 +94,29 @@ public class AdminController {
 			model.addAttribute("adminMemSelectAll", list);
 		}
 		return "admin/adminMemSelectAll";
-	}
+	} //adminMemSelectAll
+	
+	@GetMapping("memDelete")
+	@ResponseBody
+	public Object memDelete(MemVO mvo) {
+		logger.info("memDelete() 함수진입 >>> : ");
+		logger.info("memDelete mvo.getMid() >>> : " + mvo.getMid());
+
+		String s ="";
+		
+		int nCnt = adminService.adminMemDelete(mvo);
+		logger.info("nCnt >>> : " + nCnt);
+		
+		if(nCnt == 1) {
+			s = "deleteOK";
+		}else { s ="deleteNO";
+		}
+		logger.info("탈퇴 ajax값(s) >>> : " + s);
+		
+		
+		
+		return s;
+		
+	} //memDelete
 	
 }//class

@@ -28,4 +28,7 @@ public interface AdminDAO {
 	
 //회원조회	
 	public List<MemVO> adminMemSelectAll(MemVO mvo);	
+	
+//회원탈퇴
+	public int adminMemDelete(MemVO mvo);	
 }  
