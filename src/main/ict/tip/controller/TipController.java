@@ -77,10 +77,16 @@ public class TipController {
 	}
 	
 	@GetMapping(value="tipSelectAll")
-	public String tipSelectAll(Model m) {
+	public String tipSelectAll(TipVO _tvo, Model m) {
 		logger.info("tipSelectAll() 함수 진입");
 		
-		List<TipVO> list = tipService.tipSelectAll();
+		_tvo.setPageSize(String.valueOf(ConstPack.TIP_PAGE_SIZE));
+		_tvo.setGroupSize(String.valueOf(ConstPack.TIP_GROUP_SIZE));
+		if(_tvo.getCurPage() == null) {
+			_tvo.setCurPage(String.valueOf(ConstPack.TIP_CUR_PAGE));
+		}//end of if
+		
+		List<TipVO> list = tipService.tipSelectAll(_tvo);
 		TipVO tvo = null;
 		
 		if(list !=null && list.size() > 0) {
@@ -88,6 +94,7 @@ public class TipController {
 				tvo = list.get(i);
 				logger.info("VO : \n" + tvo.toString());
 			}
+			m.addAttribute("pagingVO", _tvo);
 			m.addAttribute("list", list);
 			return "tip/tipSelectAll";
 		}

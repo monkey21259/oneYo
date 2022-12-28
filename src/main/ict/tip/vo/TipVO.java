@@ -24,27 +24,38 @@ public class TipVO {
 	private String mnick;
 	private String likecnt;
 	
+	//페이징
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
+	
 	public TipVO() {
 
 	}
 
 	public TipVO(String tnum, String tsubject, String tcontent, String tphoto, String tcategory, String warning,
-			String mnum, String thit, String deleteyn, String insertdate, String updatedate, String tipnum,
-			String mnick, String likecnt) {
+			String thit, String deleteyn, String insertdate, String updatedate, String mnum, String tipnum,
+			String mnick, String likecnt, String pageSize, String groupSize, String curPage, String totalCount) {
+		
 		this.tnum = tnum;
 		this.tsubject = tsubject;
 		this.tcontent = tcontent;
 		this.tphoto = tphoto;
 		this.tcategory = tcategory;
 		this.warning = warning;
-		this.mnum = mnum;
 		this.thit = thit;
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
+		this.mnum = mnum;
 		this.tipnum = tipnum;
 		this.mnick = mnick;
 		this.likecnt = likecnt;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 	}
 
 	public String getTnum() {
@@ -159,6 +170,40 @@ public class TipVO {
 
 	public void setLikecnt(String likecnt) {
 		this.likecnt = likecnt;
+	}
+	
+	//paging getter
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+	
+	//paging setter
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
 	}
 
 	@Override
