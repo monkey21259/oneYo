@@ -28,4 +28,10 @@ public class AdminLevelupServiceImpl implements AdminLevelupService {
 		return adminLevelupDAO.levelupSelectContent(lvo);
 	}
 
+	@Override
+	public int adminLevelupNope(LevelupVO lvo) {
+		// TODO Auto-generated method stub
+		return adminLevelupDAO.adminLevelupNope(lvo);
+	}
+
 }
