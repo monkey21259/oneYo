@@ -68,4 +68,6 @@ public abstract class ChabunUtils {
 		return ConstPack.NOTICE_GUBUN.concat(ChabunUtils.numPad(ymdFlag, num));
 	}//end of getMemChabun() method
 	
+	//신고번호
+	
 }//end of ChabunUtils abstract class

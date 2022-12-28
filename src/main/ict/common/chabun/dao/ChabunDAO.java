@@ -7,6 +7,7 @@ import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface ChabunDAO {
 	
@@ -39,4 +40,6 @@ public interface ChabunDAO {
 
 	public LevelupVO getLevelupChabun();
 	
+	//신고
+	public WarningVO getWarningChabun();
 }//end of ChabunDAO interface

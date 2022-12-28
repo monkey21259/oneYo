@@ -18,6 +18,11 @@
 					postClick($(this));
 				});
 				
+				$("#warningForm").click(function(){
+					location.href="warningForm.ict";
+				});
+				
+				
 			});
 			
 			function postClick(obj) {
@@ -59,7 +64,7 @@
 		</script>
 	</head>
 <body>
-
+<button id="warningForm">신고</button>
 <!--			all_div		-->
 <!--	┌─────────────────┐	-->
 <!--	│      header 	  │	-->
@@ -176,6 +181,5 @@
 </div>
 
 </div>
-
 </body>
 </html>

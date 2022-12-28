@@ -13,6 +13,7 @@ import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -79,5 +80,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 		logger.info("getCommentChabun() 함수 진입 : ");
 		return sqlSession.selectOne("getCommentChabun");
 	}//end of getCommentChabun() method
+
+	@Override
+	public WarningVO getWarningChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getWarningChabun");
+	}
 	
 }//end of ChabunDAOImpl class

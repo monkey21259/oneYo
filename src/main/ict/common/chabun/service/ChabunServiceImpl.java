@@ -14,6 +14,7 @@ import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Service
 @Transactional
@@ -85,6 +86,12 @@ public class ChabunServiceImpl implements ChabunService {
 		logger.info("getCommentChabun() 함수 진입 : ");
 		return chabunDAO.getCommentChabun();
 	}//end of getCommentChabun() method
+
+	@Override
+	public WarningVO getWarningChabun() {
+		// TODO Auto-generated method stub
+		return chabunDAO.getWarningChabun();
+	}
 
 	
 }//end of ChabunServiceImpl class
