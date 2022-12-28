@@ -31,5 +31,24 @@
 
 </select>
 
+<select id="levelupSelectContent" parameterType="levelupvo" resultType="levelupvo">
+
+		SELECT A.LVNUM AS LVNUM,
+		       A.LVSUBJECT AS LVSUBJECT,
+		       A.LVCONTENT AS LVCONTENT,
+		       A.LVPHOTO AS LVPHOTO,
+		       A.MNUM AS MNUM,
+		       A.INSERTDATE AS INSERTDATE
+		  FROM ICT_LEVELUP A
+		  WHERE MNUM = #{mnum}
+		  AND PROCESSYN = '0'     
+			
+
+
+
+
+
+
+</select>
 
 </mapper>

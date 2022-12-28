@@ -12,6 +12,12 @@ public class LevelupVO {
 	private String insertdate; //등록일
 	private String updatedate; //수정일
 	
+	//페이징
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
+	
 	//닉네임
 	private String mnick; //회원닉네임
 	
@@ -35,6 +41,28 @@ public class LevelupVO {
 		this.mnick = mnick;
 	}
 	
+	
+	
+	public LevelupVO(String levelupnum, String lvnum, String lvsubject, String lvcontent, String lvphoto, String mnum,
+			String processyn, String insertdate, String updatedate, String pageSize, String groupSize, String curPage,
+			String totalCount, String mnick) {
+	
+		this.levelupnum = levelupnum;
+		this.lvnum = lvnum;
+		this.lvsubject = lvsubject;
+		this.lvcontent = lvcontent;
+		this.lvphoto = lvphoto;
+		this.mnum = mnum;
+		this.processyn = processyn;
+		this.insertdate = insertdate;
+		this.updatedate = updatedate;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
+		this.mnick = mnick;
+	}
+
 //getter, setter	
 
 	public String getLvnum() {
@@ -115,6 +143,38 @@ public class LevelupVO {
 
 	public void setMnick(String mnick) {
 		this.mnick = mnick;
+	}
+
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
 	}
 	
 	

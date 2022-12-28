@@ -8,4 +8,5 @@ public interface AdminLevelupService {
 
 	public List<LevelupVO> levelupSelectAll();
 	
+	public List<LevelupVO> levelupSelectContent(LevelupVO lvo);
 }
