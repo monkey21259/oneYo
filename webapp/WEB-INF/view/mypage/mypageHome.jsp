@@ -21,7 +21,7 @@
 		alert("프로필 영역 클릭");
 		alert("mnum : " + mnum);
 		// mnum 현재 상수 : 'M202212260012'
-		location.href="mypagePWChk.ict?mnum=" + 'M202212260012';
+		location.href="mypagePWChk.ict?mnum=" + mnum;
 	}
 	
 	function levelup(mnum){

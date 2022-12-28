@@ -19,6 +19,13 @@
 %>
 
 <%
+	String mkey = "";
+	mkey = request.getParameter("mkey");
+	
+	logger.info("mkey >>> : " + mkey);
+%>
+
+<%
 	Object obj = null;
 	obj = request.getAttribute("list");
 	
@@ -39,6 +46,9 @@
 <head>
 <meta charset="UTF-8">
 <title>profileEmailUpdateForm.jsp</title>
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 <body>
 
