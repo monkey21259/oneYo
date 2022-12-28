@@ -83,5 +83,14 @@
 		FROM ICT_NOTICE A
 		
 	</select>
+	<!-- 신고 -->
+	<!-- INDEX : SYS_C0011808 -->
+	<select id="getWarningChabun" resultType="warningvo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011808) */
+		    NVL(MAX(SUBSTR(A.WNUM, -4)), 0) + 1 AS WNUM
+		FROM ICT_WARNING A
+		
+	</select>
 	
 </mapper>
