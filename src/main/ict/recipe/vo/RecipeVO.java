@@ -22,6 +22,10 @@ public class RecipeVO {
 	private String mnick;		// 회원닉네임
 	
 	// Paging
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
 	
 	// Filter
 	
@@ -32,7 +36,9 @@ public class RecipeVO {
 
 	public RecipeVO(String rnum, String rsubject, String rcategory, String rjeryo, String rtime, String rperson,
 			String rdiff, String rcontent, String rphoto, String rhit, String mnum, String warning, String deleteyn,
-			String insertdate, String updatedate, String mnick) {
+			String insertdate, String updatedate, String mnick, String pageSize, String groupSize, String curPage,
+			String totalCount, String likecnt) {
+		
 		this.rnum = rnum;
 		this.rsubject = rsubject;
 		this.rcategory = rcategory;
@@ -49,6 +55,11 @@ public class RecipeVO {
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
 		this.mnick = mnick;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
+		this.likecnt = likecnt;
 	}
 
 	// Getter
@@ -116,6 +127,22 @@ public class RecipeVO {
 		return likecnt;
 	}
 	
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+	
 	// Setter
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
@@ -181,13 +208,28 @@ public class RecipeVO {
 		this.likecnt = likecnt;
 	}
 
-	
 	public String getMnick() {
 		return mnick;
 	}
 
 	public void setMnick(String mnick) {
 		this.mnick = mnick;
+	}
+	
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
 	}
 	
 

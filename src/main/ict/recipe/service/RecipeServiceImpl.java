@@ -29,11 +29,11 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 	
 	@Override
-	public List<RecipeVO> recipeSelectAll() {
+	public List<RecipeVO> recipeSelectAll(RecipeVO recipevo) {
 		
 		logger.info("recipeSelectAll() 함수 진입");
 		
-		return recipeDAO.recipeSelectAll();
+		return recipeDAO.recipeSelectAll(recipevo);
 	}
 	
 	@Override

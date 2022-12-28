@@ -8,7 +8,7 @@ public interface TipDAO {
 
 	int tipInsert(TipVO tvo);
 
-	List<TipVO> tipSelectAll();
+	List<TipVO> tipSelectAll(TipVO tvo);
 
 	List<TipVO> tipSelectContent(TipVO tvo);
 
