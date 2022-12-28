@@ -21,4 +21,11 @@ public class AdminLevelupDAOImpl implements AdminLevelupDAO {
 		return sqlSession.selectList("levelupSelectAll");
 	}
 
+
+	@Override
+	public List<LevelupVO> levelupSelectContent(LevelupVO lvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("levelupSelectContent");
+	}
+
 }
