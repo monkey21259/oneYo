@@ -6,36 +6,33 @@
 
 <!-- 등업 -->
 	<select id="adminLevelupSelectAll" resultType="levelupvo">
-   SELECT   A.LVNUM			AS			LVNUM 
-	   , A.LVSUBJECT		AS			LVSUBJECT  
-	   , A.LVCONTENT		AS 			LVCONTENT
-	   , A.LVPHOTO 			AS 			LVPHOTO
-	   , A.MNUM 			AS 			MNUM
-	   , A.PROCESSYN 		AS 			PROCESSYN
-	   , B.MNICK			AS			MNICK
-   , TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-   , TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-FROM ( SELECT	 	LVNUM
-		 	  		,LVSUBJECT
-			  	 	,LVCONTENT
-			  	 	,LVPHOTO
-			  	 	,MNUM
-			 	  	,PROCESSYN
-			 	  	,INSERTDATE
-			 	  	,UPDATEDATE
-		 FROM   "ORCLICT00"."ICT_LEVELUP"
-		 WHERE   PROCESSYN = '0'
-		 ORDER BY LVNUM DESC) A
-	, "ORCLICT00"."ICT_MEMBER" B
-	<![CDATA[WHERE A.MNUM = B.MNUM
-AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
+	   SELECT    A.LVNUM			AS			LVNUM 
+			   , A.LVSUBJECT		AS			LVSUBJECT  
+			   , A.LVPHOTO 			AS 			LVPHOTO
+			   , A.MNUM 			AS 			MNUM
+			   , A.PROCESSYN 		AS 			PROCESSYN
+			   , B.MNICK			AS			MNICK
+		   , TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+		   , TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
+		FROM ( SELECT	  	 LVNUM
+				 	  		,LVSUBJECT
+					  	 	,LVPHOTO
+					  	 	,MNUM
+					 	  	,PROCESSYN
+					 	  	,INSERTDATE
+					 	  	,UPDATEDATE
+				FROM   "ORCLICT00"."ICT_LEVELUP"
+				WHERE   PROCESSYN = '0'
+			 	ORDER BY LVNUM DESC) A
+				, "ORCLICT00"."ICT_MEMBER" B
+		<![CDATA[WHERE A.MNUM = B.MNUM
+		AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 		
 	</select>
 
 <!-- 신고글 -->
 	<select id="adminWarningSelectAll" resultType="warningvo">
-		SELECT 	  A.WNUM 		AS 		WNUM
-				, A.WTNUM 		AS 		WTNUM
+		SELECT 	  A.WTNUM 		AS 		WTNUM
 				, A.WCATEGORY 	AS 		WCATEGORY
 				, A.WCONTENT 	AS 		WCONTENT
 				, B.MNUM 		AS 		MNUM
@@ -61,7 +58,6 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 	<select id="adminRecipeSelectAll" resultType="recipevo">
 		SELECT 	  A.RNUM 			AS 		RNUM
 				, A.RSUBJECT		AS 		RSUBJECT
-				, A.RCONTENT 		AS 		RCONTENT
 				, A.RPHOTO			AS		RPHOTO
 				, A.RCATEGORY 		AS 		RCATEGORY
 				, A.WARNING 		AS 		WARNING
@@ -72,7 +68,6 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 				, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
 		FROM (SELECT  RNUM
 					, RSUBJECT
-					, RCONTENT
 					, RPHOTO
 					, RCATEGORY
 					, WARNING
@@ -94,7 +89,6 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 	<select id="adminTipSelectAll" resultType="tipvo">
 		SELECT 	  A.TNUM 			AS 		TNUM
 				, A.TSUBJECT		AS 		TSUBJECT
-				, A.TCONTENT 		AS 		TCONTENT
 				, A.TPHOTO			AS		TPHOTO
 				, A.TCATEGORY 		AS 		TCATEGORY
 				, A.WARNING 		AS 		WARNING
@@ -102,17 +96,14 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 				, B.MNICK			AS 		MNICK
 				, A.THIT 			AS 		THIT
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-				, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
 		FROM (SELECT TNUM
 					, TSUBJECT
-					, TCONTENT
 					, TPHOTO
 					, TCATEGORY
 					, WARNING
 					, THIT
 					, MNUM
 					, INSERTDATE
-					, UPDATEDATE
 			 FROM "ORCLICT00"."ICT_TIP"
   		 	 WHERE DELETEYN ='Y'
   		 	 ORDER BY TNUM DESC ) A
@@ -128,8 +119,6 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 	<select id="adminCommunitySelectAll" resultType="communityvo">
 		SELECT	  A.CNUM		 AS 	CNUM
 				, A.CSUBJECT  	 AS 	CSUBJECT
-				, A.CCONTENT 	 AS 	CCONTENT
-				, A.CPHOTO 		 AS 	CPHOTO
 				, A.WARNING 	 AS 	WARNING
 				, B.MNUM 		 AS 	MNUM
 	       		, B.MNICK        AS 	MNICK
@@ -137,8 +126,6 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
 		FROM  (SELECT CNUM
 					, CSUBJECT
-					, CCONTENT
-					, CPHOTO
 					, WARNING
 					, CHIT
 					, MNUM 
@@ -151,7 +138,23 @@ AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 					FROM  "ORCLICT00"."ICT_MEMBER"
 					WHERE DELETEYN='Y') B
 		 <![CDATA[WHERE ROWNUM <= 5 AND A.MNUM = B.MNUM]]> 
-
 	</select> 
 
+<!-- 회원조회 -->
+	<select id="adminMemSelectAll" resultType="memvo">
+		SELECT   ROW_NUMBER() OVER (ORDER BY A.MNUM)    AS     MEMNUM
+				, A.MNUM 		AS 		MNUM 
+				, A.MID 		AS		MID 
+				, A.MNAME 		AS 		MNAME
+				, A.MNICK 		AS 		MNICK
+				, A.MEMAIL 		AS		MEMAIL
+				, A.MGRADE 		AS 		MGRADE 
+				, A.MPROFILE 	AS 		MPROFILE
+				, A.MCATEGORY	AS 		MCATEGORY
+				, A.MWARNING 	AS 		MWARNING
+				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+		FROM 	"ORCLICT00"."ICT_MEMBER" A
+		WHERE DELETEYN ='Y'
+		ORDER BY MNUM DESC
+	</select>
 </mapper>

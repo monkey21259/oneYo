@@ -89,6 +89,16 @@
 				</div>
 			</div>
 <%
+			Object pagingObj = request.getAttribute("pagingVO");
+			if (pagingObj == null) {
+				logger.info("[FAIL] getAttribute -> pagingObj is null");
+			}
+			RecipeVO pagingVO = (RecipeVO)pagingObj;
+			int pageSize = Integer.parseInt(pagingVO.getPageSize());
+			int groupSize = Integer.parseInt(pagingVO.getGroupSize());
+			int curPage = Integer.parseInt(pagingVO.getCurPage());
+			int totalCount = 0;
+			
 			Object recipeObj = request.getAttribute("recipeList");
 			if (recipeObj == null) {
 				logger.info("[FAIL] getAttribute -> recipeObj is null");
@@ -108,6 +118,8 @@
 					RecipeVO recipevo = null;
 	 				for (int i=0; i<recipeList.size(); i++) {
 	 					recipevo = recipeList.get(i);
+	 					
+	 					totalCount = Integer.parseInt(recipevo.getTotalCount());
 %>
 						<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
 							<div class="recipes">
@@ -129,6 +141,14 @@
 						<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 						<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
 					</div>
+					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+							<jsp:param value="recipeSelectAll.ict" name="url"/>
+								<jsp:param value="" name="str"/>
+								<jsp:param value="<%=pageSize %>" name="pageSize"/>
+								<jsp:param value="<%=groupSize %>" name="groupSize"/>
+								<jsp:param value="<%=curPage %>" name="curPage"/>
+								<jsp:param value="<%=totalCount %>" name="totalCount"/>
+						</jsp:include>
 				</form>
 		</section>
 	</body>

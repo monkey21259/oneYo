@@ -21,9 +21,9 @@ public class TipDAOImpl implements TipDAO {
 	}
 
 	@Override
-	public List<TipVO> tipSelectAll() {
+	public List<TipVO> tipSelectAll(TipVO tvo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("tipSelectAll");
+		return sqlSession.selectList("tipSelectAll", tvo);
 	}
 
 	@Override

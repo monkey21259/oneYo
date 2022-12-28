@@ -140,7 +140,7 @@
 						<td>
 							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
-							<img src="<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
+							<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 						</td>
 					</tr>

@@ -113,7 +113,7 @@
 				%>
 				<tr>
 				<td colspan="6">
-				<jsp:include page="communityPaging.jsp" flush="true">
+				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 					<jsp:param name="url" value="communitySelectAll.ict" />
 					<jsp:param name="pageSize" value="<%=pageSize %>" />
 					<jsp:param name="groupSize" value="<%=groupSize %>" />

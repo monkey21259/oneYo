@@ -50,7 +50,7 @@ public class LevelupController {
 			m.addAttribute("list", list);
 		}
 		
-		return "mypage/levelupSelectAll";
+		return "levelup/levelupSelectAll";
 	}
 	
 	@GetMapping(value="levelupInsertForm")
@@ -60,7 +60,7 @@ public class LevelupController {
 		logger.info("mvo.getMnum() : " + mvo.getMnum());
 		m.addAttribute("mvo", mvo);
 		
-		return "mypage/levelupInsertForm";
+		return "levelup/levelupInsertForm";
 	}
 	
 	@PostMapping(value="levelupInsert")
@@ -98,7 +98,7 @@ public class LevelupController {
 		
 		int nCnt = levelupService.levelupInsert(lvvo);
 		
-		return "mypage/levelupInsert";
+		return "levelup/levelupInsert";
 	}
 	
 }
