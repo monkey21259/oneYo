@@ -22,7 +22,10 @@
 		<meta charset="UTF-8">
 		<title>home.jsp</title>
 		<!-- 칸 나눈 css -->
+		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		<!-- home 페이지 전용 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
+		<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 		
@@ -104,7 +107,7 @@
 		</script>
 	</head>
 <body>
-<button id="warningForm">신고</button>
+
 <!--			all_div		-->
 <!--	┌─────────────────┐	-->
 <!--	│      header 	  │	-->
@@ -119,10 +122,78 @@
 <!--	│    footer	 	  │	-->
 <!--	└─────────────────┘	-->
 
+<div id="sideBar">
+	<div id="warningForm">
+	신고
+	</div>
+	
+	<a href="javascript:window.scrollTo(0,0);">
+	<div id="go_top">
+	TOP▲
+	</div>
+	</a>
+</div>
+
 <div id="all_div">
 
 <div id="header">
-머리부분
+	<a href="home.ict">
+		<div id="logo">
+		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+		<!-- 379 X 186 -->
+		</div>
+	</a>
+	
+	<hr>
+	
+	<div class="nav">
+	<!-- 상단 메뉴바 -->
+		<nav>
+		<ul>
+			<li>
+				<a href="recipeSelectAll.ict" class="menu_link">
+				<div>
+				레시피
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="tipSelectAll.ict" class="menu_link">
+				<div>
+				Tip
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="communitySelectAll.ict" class="menu_link">
+				<div>
+				커뮤니티
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="noticeSelectAll.ict" class="menu_link">
+				<div>
+				공지사항
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="menu_link">
+				<div>
+				더보기
+				</div>
+				</a>
+			</li>
+		</ul>
+		</nav>
+	</div>
+	
+	<hr>
+</div>
+
+<div id="serchBar">
+검색바 여기에 넣기
 </div>
 
 <div id="left">
@@ -239,5 +310,6 @@
 </div>
 
 </div>
+
 </body>
 </html>

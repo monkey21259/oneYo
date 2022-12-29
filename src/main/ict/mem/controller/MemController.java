@@ -418,22 +418,21 @@ public class MemController {
 	}
 	
 	//	memDelete 회원 탈퇴
-	//	오류나는데 일단 집가고 싶어서ㅜ 걍 주석처리하고갑니다...
-//	@GetMapping("memDelete")
-//	public String memDelete(MemVO mvo, Model model) {
-//		
-//		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
-//		
-//		int deleteCnt = memService.memDelete(mvo);
-//		
-//		if (deleteCnt > 0) {
-//			logger.info("memDelete nCnt >>> : " + deleteCnt);
-//			
-//			model.addAttribute("memDelete", deleteCnt);
-//			
-//			return "home/home";
-//		}
-//		
-//		return "home/home";
-//	}
+	@GetMapping("memDelete")
+	public String memDelete(MemVO mvo, Model model) {
+		
+		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
+		
+		int deleteCnt = memService.memDelete(mvo);
+		
+		if (deleteCnt > 0) {
+			logger.info("memDelete nCnt >>> : " + deleteCnt);
+			
+			model.addAttribute("memDelete", deleteCnt);
+			
+			return "home/home";
+		}
+		
+		return "home/home";
+	}
 }
