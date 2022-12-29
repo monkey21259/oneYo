@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="main.ict.warning.dao.AdminWarningDAO">
+<!-- 신고전체조회 -->
+	<select id="adminWarningSelectAll" resultType="warningvo">
+		SELECT	  ROW_NUMBER() OVER (ORDER BY A.WNUM)     AS      WARNINGNUM
+				, A.WNUM		AS 		WNUM
+				, A.WTNUM 		AS 		WTNUM
+				, A.WCATEGORY 	AS 		WCATEGORY
+				, A.WCONTENT 	AS 		WCONTENT
+				, B.MNUM 		AS 		MNUM
+				, B.MNICK 		AS 		MNICK
+				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+		FROM "ORCLICT00"."ICT_WARNING" A,
+			 "ORCLICT00"."ICT_MEMBER" B
+			  WHERE A.DELETEYN ='Y'
+			  AND A.MNUM = B.MNUM
+			  ORDER BY A.WNUM DESC
+	</select>
+	
+<!-- 신고당한사람 -->
+	<select id="adminWarningSelectRecipe" resultType="warningvo">
+		SELECT    A.WTNUM 	AS 		WTNUM
+				, B.MNUM 	AS 		WTMNUM
+				, B.MNICK 	AS 		MNICK
+				, C.RNUM 	AS 		RNUM	
+				, C.MNUM 	AS 		MNUM
+					
+		FROM "ORCLICT00"."ICT_WARNING" A,
+			 "ORCLICT00"."ICT_MEMBER" B,
+			 "ORCLICT00"."ICT_RECIPE" C
+			 
+		WHERE  
+		A.WTNUM = #{wtnum}
+		AND A.WTNUM = C.RNUM
+		AND C.MNUM = B.MNUM
+		AND A.DELETEYN = 'Y'
+	</select>		
+<!-- 		ELSIF(SELECT SUBSTR(A.WTNUM, 1) == "T")  THEN -->
+		
+<!-- 			SELECT    A.WTNUM 	AS 		WTNUM -->
+<!-- 					, B.MNUM 	AS 		MNUM -->
+<!-- 					, B.MNICK 	AS 		MNICK -->
+<!-- 					, C.TNUM 	AS 		TNUM	 -->
+<!-- 					, C.MNUM 	AS 		MNUM -->
+						
+<!-- 			FROM "ORCLICT00"."ICT_WARNING" A, -->
+<!-- 				 "ORCLICT00"."ICT_MEMBER" B, -->
+<!-- 				 "ORCLICT00"."ICT_TIP" C -->
+				 
+<!-- 			WHERE  A.WTNUM = C.TNUM -->
+<!-- 			AND C.MNUM = B.MNUM -->
+<!-- 			AND A.DELETEYN = 'Y' 	 -->
+			
+<!-- 		ELSIF(SELECT SUBSTR(A.WTNUM, 1) == "C")  THEN -->
+		
+<!-- 			SELECT    A.WTNUM 	AS 		WTNUM -->
+<!-- 					, B.MNUM 	AS 		MNUM -->
+<!-- 					, B.MNICK 	AS 		MNICK -->
+<!-- 					, C.CNUM 	AS 		CNUM	 -->
+<!-- 					, C.MNUM 	AS 		MNUM -->
+						
+<!-- 			FROM "ORCLICT00"."ICT_WARNING" A, -->
+<!-- 				 "ORCLICT00"."ICT_MEMBER" B, -->
+<!-- 				 "ORCLICT00"."ICT_COMMUNITY" C -->
+				 
+<!-- 			WHERE  A.WTNUM = C.CNUM -->
+<!-- 			AND C.MNUM = B.MNUM -->
+<!-- 			AND A.DELETEYN = 'Y' 	 -->
+		
+<!-- 		END IF -->
+		
+		
+<!-- 신고건별조회 -->	
+<!-- 	<select id="adminWarningSelectContent" resultType="warningvo"> -->
+<!-- 		SELECT	  A.WNUM		AS 		WNUM -->
+<!-- 				, A.WTNUM 		AS 		WTNUM -->
+<!-- 				, A.WCATEGORY 	AS 		WCATEGORY -->
+<!-- 				, A.WCONTENT 	AS 		WCONTENT -->
+<!-- 				, B.MNUM 		AS 		MNUM  -->
+<!-- 				, B.MNICK 		AS 		MNICK 신고한사람 -->
+<!-- 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE -->
+<!-- 		FROM "ORCLICT00"."ICT_WARNING" A, -->
+<!-- 			 "ORCLICT00"."ICT_MEMBER" B	  -->
+<!-- 		WHERE A.DELETEYN ='Y' -->
+<!-- 		AND B.MNUM = #{mnum, jdbcType=VARCHAR }  -->
+<!-- 		ORDER BY A.WNUM DESC -->
+<!-- 	</select> -->
+</mapper>
