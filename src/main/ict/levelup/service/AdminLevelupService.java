@@ -11,4 +11,7 @@ public interface AdminLevelupService {
 	public List<LevelupVO> levelupSelectContent(LevelupVO lvo);
 	
 	public int adminLevelupNope(LevelupVO lvo);
+	
+	public int levelupOkey(LevelupVO lvo);
+	public int mgradeUpdate(LevelupVO lvo);
 }

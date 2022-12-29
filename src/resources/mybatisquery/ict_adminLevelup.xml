@@ -54,5 +54,25 @@
 
 </update>
 
+<update id="levelupOkey" parameterType="levelupvo">
+	
+		UPDATE ICT_LEVELUP
+		SET PROCESSYN = '2'
+		WHERE LVNUM = #{lvnum}
+
+
+</update>
+
+<update id="mgradeUpdate" parameterType="levelupvo">
+
+
+	UPDATE ICT_MEMBER
+	   SET MGRADE = '1'   
+	   WHERE MNUM = #{mnum}
+	   AND DELETEYN = 'Y'
+
+
+</update>
+
 
 </mapper>
