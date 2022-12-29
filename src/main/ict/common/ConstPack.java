@@ -62,7 +62,7 @@ public abstract class ConstPack {
 	public static final int TIP_TOTAL_COUNT = 0;
 	
 	//community
-	public static final int COMMUNITY_PAGE_SIZE = 20;
+	public static final int COMMUNITY_PAGE_SIZE = 3;
 	public static final int COMMUNITY_GROUP_SIZE = 5; 
 	public static final int COMMUNITY_CUR_PAGE = 1; 
 	public static final int COMMUNITY_TOTAL_COUNT = 0; 

@@ -114,13 +114,14 @@ public class CommunityController {
 		int totalCount = ConstPack.COMMUNITY_TOTAL_COUNT; //0
 		
 		
-		if(cvo.getCurPage() == null) {
-			cvo.setCurPage(String.valueOf(curPage));
+		if(cvo.getCurPage() != null) {
+			curPage = Integer.parseInt(cvo.getCurPage());
 		} 
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
 		cvo.setTotalCount(String.valueOf(totalCount)); 
-	
+		cvo.setCurPage(String.valueOf(curPage));
+		
 		logger.info("cvo.getPageSize() >>> : " + cvo.getPageSize());
 		logger.info("cvo.getGroupSize() >>> : " + cvo.getGroupSize());
 		logger.info("cvo.getCurPage() >>> : " + cvo.getCurPage());
