@@ -146,6 +146,7 @@ public class LoginController {
 				mvo.setMhp((String)response.get("mobile"));
 				mvo.setAccess_token(access_token);
 				
+				// 회원가입 여부 체크
 				logger.info(mvo.getMid());
 				List<MemVO> memChkList = memService.memIdCheck(mvo);
 				if (memChkList != null && memChkList.size() == 1) {
@@ -172,7 +173,6 @@ public class LoginController {
 			 
 		}
 		
-//		logger.info("req - params: " + req.getParameter("code"));
 		// KAKAO ------------------------------------------------------
 		if (req.getParameter("code") != null) {
 			
@@ -280,13 +280,13 @@ public class LoginController {
 				br.close();
 				logger.info("result: " + result);
 				// 필요한 데이터(또는 사용 가능성이 있는 데이터)를 제외하고 모두 삭제해놓은 상태
-//				{	"id":2569091320,
+//				{	"id":1111111111,
 //					"connected_at":"2022-12-09T09:42:46Z",  // TEMP
 //					"kakao_account":
 //						{
-//							"profile":{"nickname":"김기영"},
-//							"email":"denzel10@nate.com",
-//							"birthday":"0328",  // TEMP
+//							"profile":{"nickname":"abc"},
+//							"email":"abc@nate.com",
+//							"birthday":"1231",  // TEMP
 //							"gender":"male"     // TEMP
 //						}
 //				}
@@ -304,11 +304,26 @@ public class LoginController {
 				mvo.setMname(nick);
 				mvo.setMemail(email);
 				mvo.setMpw("X");  // TEMP
+				mvo.setMkey("Kakao");
+				mvo.setAccess_token(access_token);
+
+				logger.info(mvo.getMid());
+				List<MemVO> memChkList = memService.memIdCheck(mvo);
+				if (memChkList != null && memChkList.size() == 1) {
+					
+					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동");
+					// 세션 생성 및 부여하기
+					O_Session mSession = O_Session.getInstance();
+					mSession.setSession(req, mvo.getMid());
+					mSession.addAttribute(req, "access_token", access_token);
+					
+					return "home/home";  // 메인 페이지로 이동하기
+				}
 				
-				model.addAttribute("mkey", "Kakao");  // TODO TEMP >> 은솔이 memVO에 key? 라는 변수에 나중에 할당해야함.
+				logger.info("[NEW] 회원가입이 필요합니다.");
 				model.addAttribute("mvoSNS", mvo);
-				model.addAttribute("accessToken", access_token);
-				// mid 일치여부 확인 + 분기 처리 필요
+				logger.info("[SUCCESS] SNS -> memGrade");
+				
 				return "mem/memGrade";
 				
 			} catch (Exception e) {
@@ -335,6 +350,55 @@ public class LoginController {
 		}//end of if-else
 		
 	}//end of login() method
+	
+	@GetMapping("logout")
+	public String logout(HttpServletRequest req, MemVO mvo, Model model) {
+		logger.info("logout() 함수 진입.");
+		
+		// (공통) 카카오, 네이버, 일반
+		O_Session oSession = O_Session.getInstance();
+		String access_token = (String)oSession.getAttribute(req, "access_token");
+		oSession.killSession(req);
+		
+//		POST /v1/user/logout HTTP/1.1
+//		Host: kapi.kakao.com
+//		Authorization: Bearer ${ACCESS_TOKEN}/KakaoAK ${APP_ADMIN_KEY}
+//		로그아웃 요청 성공 시, 응답 코드와 로그아웃된 사용자의 회원번호를 받습니다.
+		String result = "";
+		logger.info(mvo.toString());
+		if (mvo != null && access_token != null && !(access_token.equals("")) && mvo.getMid().contains(ConstPack.M_KAKAO_FR_ID)) {
+			// 토큰이 존재하는 경우 -> 카카오톡 로그인 상태
+			String headAuth = "Bearer ";
+			headAuth += req.getParameter("accessToken");
+			logger.info("headAuth: " + headAuth);
+			try {
+				URL reqURL = new URL("https://kapi.kakao.com/v1/user/logout");
+				HttpURLConnection conn = (HttpURLConnection)reqURL.openConnection();
+				conn.setRequestProperty("Authorization", headAuth);
+				conn.setUseCaches(false);
+				conn.setRequestMethod("POST");
+				conn.setDoOutput(true);
+				
+				int responseCode = conn.getResponseCode();
+				
+				BufferedReader bw = new BufferedReader(
+										new InputStreamReader(conn.getInputStream()));
+				
+				String line = "";
+				while ((line = bw.readLine()) != null) {
+					result += line;
+				}
+				
+				logger.info("[ID] result: " + result);
+				
+			} catch (Exception e) {
+				logger.info(e.getMessage());
+			}
+			
+		}
+		
+		return "home/home";
+	}
 	
 	//아이디 찾기 폼 이동
 	@GetMapping(value="idFindForm")

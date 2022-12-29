@@ -34,13 +34,13 @@ public class HomeController {
 	}
 	
 	// SNS Logout
-	@GetMapping(value="logout")
-	public String logout(HttpServletRequest req, MemVO mvo) {
+//	@GetMapping(value="logout")
+//	public String logout(HttpServletRequest req, MemVO mvo) {
 		
-		logger.info("logout() 함수 진입");
+//		logger.info("logout() 함수 진입");
 		
 		// 공통 (일반 + SNS)
-		O_Session oSession = O_Session.getInstance();
+//		O_Session oSession = O_Session.getInstance();
 		// [보류] session mid를 통해서 로그인 유형을 파악한 뒤 분기처리.
 		
 		// Naver 로그아웃 > 로그아웃이 아니라 탈퇴였음 (로그인 연동해제하면 토큰값이 달라지면서 다시 가입해야함.)
@@ -106,9 +106,9 @@ public class HomeController {
 		
 		
 		// 공통 (일반 + SNS)
-		oSession.killSession(req);
+//		oSession.killSession(req);
 		
-		return "home/home";
-	}
+//		return "home/home";
+//	}
 	
 }

@@ -96,10 +96,9 @@ public class MemController {
 		
 		if (mvo.getMemail() != null && mvo.getMgrade() != null) {
 			// SNS 회원가입 케이스
-			if (req.getParameter("accTok") != null || req.getParameter("accTok").equals("null") || req.getParameter("accTok").equals("")) {
-				
+			if (mvo.getAccess_token() != null) {
+				logger.info(mvo.toString());
 				model.addAttribute("mvoSNS", mvo);
-				model.addAttribute("mkey", (String)req.getParameter("mkey"));
 			}
 			
 			// 공통
@@ -221,6 +220,8 @@ public class MemController {
 		
 		if (insertCnt > 0) {
 			logger.info("memInsert().nCnt >>> : " + insertCnt);
+			
+			// TODO SNS 로그인일 경우 분기처리 필요 (일회성 - 바로 로그인 후 메인으로)
 			
 			return "login/loginForm";
 		}

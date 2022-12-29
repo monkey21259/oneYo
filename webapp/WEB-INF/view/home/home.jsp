@@ -54,7 +54,11 @@
 				
 				$("#logoutBtn").on("click", function() {
 					console.log("[로그아웃] 버튼 클릭");
-					location.href="/oneYo/logout.ict";
+					$("#logoutForm").attr({
+						"action": "/oneYo/logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
 				});
 				
 				// ------------------------------------------
@@ -214,7 +218,7 @@
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
 	 	<div class="banner">
-	 	배너 영역. (실례합니다. 로그인 테스트좀...)
+	 	배너 영역. (로그인 테스트좀...)
 <%
 		if (mid == null || mid.equals("")) {
 %>
@@ -226,10 +230,10 @@
 			<span><%= mid %>님 환영합니다.</span>
 			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
 	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
+	 		<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
+	 		</form>
 	 		<br /><b>임시용 레시피버튼</b>
-<!-- 	 		<form id="recipeSAllForm"> -->
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" /> --%>
-<!-- 	 		</form> -->
 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
 <% 		
 		}

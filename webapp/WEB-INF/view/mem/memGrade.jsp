@@ -22,6 +22,7 @@
 	String mnick = "";
 	String memail = "";
 	String mhp = "";
+	String mkey = "";
 	String access_token = "";
 %>
 <%  // 추가: 김기영 - SNS 로그인 시 회원가입일 경우 (221227)
@@ -181,22 +182,15 @@ $(document).ready(function(){
 %>
 	<tr>
 		<td>
-			<input type="button" id="insertFormBtn" name="insertFormBtn" value="다음" />
-			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
-			<input type="hidden" id="mpw" name="mpw" value="<%= mpw %>" />
-			<input type="hidden" id="mname" name="mname" value="<%= mname %>" />
-			<input type="hidden" id="mnick" name="mnick" value="<%= mnick %>" />
-			<input type="hidden" id="memail" name="memail" value="<%= memail %>" />
-			<input type="hidden" id="mhp" name="mhp" value="<%= mhp %>" />
-			<input type="hidden" id="access_token" name="access_token" value="<%= access_token %>" />
-<%
-		String mkey = (String)request.getAttribute("mkey");
-		if (mkey != null) {
-%>
+			<input type="button" name="insertFormBtn" id="insertFormBtn" value="다음" />
+			<input type="hidden" name="mid" value="<%= mid %>" />
+			<input type="hidden" name="mpw" value="<%= mpw %>" />
+			<input type="hidden" name="mname" value="<%= mname %>" />
+			<input type="hidden" name="mnick" value="<%= mnick %>" />
+			<input type="hidden" name="memail" value="<%= memail %>" />
+			<input type="hidden" name="mhp" value="<%= mhp %>" />
+			<input type="hidden" name="access_token" value="<%= access_token %>" />
 			<input type="hidden" name="mkey" value="<%= mkey %>" />
-<%
-		}
-%>
 		</td>
 	</tr>
 <%
