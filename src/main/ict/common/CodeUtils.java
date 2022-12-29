@@ -123,7 +123,15 @@ public abstract class CodeUtils {
 		return rPerson + "인분";
 	}
 	
-	
+	public static String[] getMhpParts(String mhp) {
+		
+		logger.info("getMhpParts() 함수 진입");
+		String[] mhpParts = {"", "", ""};
+		if (mhp == null || mhp.equals("null")) {
+			return mhpParts;
+		}
+		return mhp.split("-");
+	}
 	
 	public static void main(String[] args) {
 		

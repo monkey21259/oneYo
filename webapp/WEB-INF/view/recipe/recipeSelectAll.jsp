@@ -83,7 +83,7 @@
 				</div>
 				<div class="t">&nbsp;인기글</div>
 				<div class="tright">
-					<a href="javascript:void(0);">
+					<a href="/oneYo/recipeInsertForm.ict">
 						<span>글 등록 버튼</span>
 					</a>
 				</div>
