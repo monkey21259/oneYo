@@ -94,5 +94,6 @@ public class NumUtils {
 		num_5 = nu.numToMan(num_5);
 		logger.info(num_5);
 		
+		
 	} // end of main()
 } // end of NumUtils.class
