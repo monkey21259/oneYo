@@ -108,19 +108,17 @@ public class CommunityController {
 		logger.info("communitySelectAll 함수 진입 >>> : ");
 		
 	//페이징처리 =========================	
-		int pageSize = ConstPack.COMMUNITY_PAGE_SIZE; //3
-		int groupSize = ConstPack.COMMUNITY_GROUP_SIZE; //3
+		int pageSize = ConstPack.COMMUNITY_PAGE_SIZE; //20
+		int groupSize = ConstPack.COMMUNITY_GROUP_SIZE; //5
 		int curPage = ConstPack.COMMUNITY_CUR_PAGE; //1
 		int totalCount = ConstPack.COMMUNITY_TOTAL_COUNT; //0
 		
 		
-		if(cvo.getCurPage() != null) {
-			curPage = Integer.parseInt(cvo.getCurPage());
-			logger.info("curPage >>> : " + curPage);
+		if(cvo.getCurPage() == null) {
+			cvo.setCurPage(String.valueOf(curPage));
 		} 
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
-		cvo.setCurPage(String.valueOf(curPage));
 		cvo.setTotalCount(String.valueOf(totalCount)); 
 	
 		logger.info("cvo.getPageSize() >>> : " + cvo.getPageSize());

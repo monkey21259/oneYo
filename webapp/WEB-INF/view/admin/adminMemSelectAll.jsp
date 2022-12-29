@@ -13,6 +13,8 @@
 	logger.info("회원목록(adminMemSelectAll) 진입 >>> : "); 
 %>        
 <%
+	
+
 	//model.addAttribute("adminMemSelectAll", list);
 	Object obj = request.getAttribute("adminMemSelectAll");
 	if(obj == null){return; }
@@ -20,6 +22,14 @@
 	List<MemVO> list = (List<MemVO>)obj;
 	//vo호출
 	MemVO mvo = null;
+	
+%>
+<%
+	// 페이징
+	int pageSize = 0;
+	int groupSize = 0;
+	int curPage = 0;
+	int totalCount = 0;
 	
 %>
 
@@ -44,7 +54,7 @@
 					let result = confirm(mid + '님을 탈퇴 하시겠습니까? ')
 					if(result == true){
 					
-					let url = "memDelete.ict";
+					let url = "adminMemDelete.ict";
 					let reqType= "GET";
 					let dataParam ={
 							
@@ -109,8 +119,25 @@
 <%
 			if(list.size() > 0){
 				for(int i=0; i<list.size(); i++){
-						mvo = list.get(i);
+					mvo = list.get(i);
+%>
+<%
+					//페이징 세팅
+					//model.addAttribute("pagingMVO", mvo);
+					Object obj_p = request.getAttribute("pagingMVO");
+					MemVO pagingMPVO = (MemVO)obj_p;
 					
+					pageSize = Integer.parseInt(pagingMPVO.getPageSize());
+					logger.info("pageSize >>> : " + pageSize );
+					
+					groupSize = Integer.parseInt(pagingMPVO.getGroupSize());
+					logger.info("groupSize >>> : " + groupSize );
+					
+					curPage = Integer.parseInt(pagingMPVO.getCurPage());
+					logger.info("curPage >>> : " + curPage );
+					
+					totalCount = Integer.parseInt(mvo.getTotalCount());
+					logger.info("totalCount >>> : " + totalCount );
 %>				
 				<tbody>
 					<tr>
@@ -133,9 +160,23 @@
 				</tbody>
 <%
 				}//for
+%>
+
+				<tr>
+					<td colspan="11">
+					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+						<jsp:param name="url" value="adminMemSelectAll.ict" />
+						<jsp:param name="pageSize" value="<%=pageSize %>" />
+						<jsp:param name="groupSize" value="<%=groupSize %>" />
+						<jsp:param name="curPage" value="<%=curPage %>"/>
+						<jsp:param name="totalCount" value="<%=totalCount %>"/>
+						</jsp:include>
+					</td>
+				</tr>
+<%
 			}//if
 %>
 			</table>
-		
+
 </body>
 </html>

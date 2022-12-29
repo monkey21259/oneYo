@@ -48,7 +48,7 @@
 	<hr>
 	<div>
 		<div>
-			<button type="button">인기글</button>
+			<button type="button">인기글</button> 			
 			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
 		</div>
 	</div>
