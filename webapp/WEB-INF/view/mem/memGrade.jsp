@@ -22,15 +22,15 @@
 	String mnick = "";
 	String memail = "";
 	String mhp = "";
-	String accessToken = "";
+	String access_token = "";
 %>
 <%  // 추가: 김기영 - SNS 로그인 시 회원가입일 경우 (221227)
 	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
-	if (request.getAttribute("accessToken") != null) {
-		accessToken = (String)request.getAttribute("accessToken");	
+	if (mvo != null) {
+		access_token = mvo.getAccess_token();	
 	}
 	boolean snsFlag = false;
-	if (accessToken != null && mvo != null) {
+	if (mvo != null && access_token != null) {
 		logger.info("SNS 로그인 후 넘어온 등급 선택창 << snsFlag = true >>");
 		snsFlag = true;
 		
@@ -188,7 +188,7 @@ $(document).ready(function(){
 			<input type="hidden" id="mnick" name="mnick" value="<%= mnick %>" />
 			<input type="hidden" id="memail" name="memail" value="<%= memail %>" />
 			<input type="hidden" id="mhp" name="mhp" value="<%= mhp %>" />
-			<input type="hidden" id="accTok" name="accTok" value="<%= accessToken %>" />
+			<input type="hidden" id="access_token" name="access_token" value="<%= access_token %>" />
 <%
 		String mkey = (String)request.getAttribute("mkey");
 		if (mkey != null) {

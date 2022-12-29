@@ -52,6 +52,11 @@
 					location.href="/oneYo/loginForm.ict";
 				});
 				
+				$("#logoutBtn").on("click", function() {
+					console.log("[로그아웃] 버튼 클릭");
+					location.href="/oneYo/logout.ict";
+				});
+				
 				// ------------------------------------------
 				// 레시피 게시판 이동 (테스트) ---------------------
 				$("#recipeSAllBtn").on("click", function() {
@@ -220,7 +225,7 @@
 %>
 			<span><%= mid %>님 환영합니다.</span>
 			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
-	 		<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">로그아웃</button>
+	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
 	 		<br /><b>임시용 레시피버튼</b>
 <!-- 	 		<form id="recipeSAllForm"> -->
 <%-- 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" /> --%>

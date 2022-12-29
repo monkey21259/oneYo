@@ -30,6 +30,9 @@ public class MemVO {
 	// 게시글순번
 	private String memnum;
 	
+	// Access Token
+	private String access_token;
+	
 	public MemVO() {
 		//	호출 목적 빈 생성자
 	}
@@ -234,6 +237,24 @@ public class MemVO {
 	public void setMemnum(String memnum) {
 		this.memnum = memnum;
 	}
-	
+
+// Access Token
+	public String getAccess_token() {
+		return access_token;
+	}
+
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
+
+	@Override
+	public String toString() {
+		return "MemVO [mnum=" + mnum + ", mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", mnick=" + mnick
+				+ ", mhp=" + mhp + ", memail=" + memail + ", mgrade=" + mgrade + ", mprofile=" + mprofile
+				+ ", mcategory=" + mcategory + ", mwarning=" + mwarning + ", deleteyn=" + deleteyn + ", insertdate="
+				+ insertdate + ", updatedate=" + updatedate + ", mkey=" + mkey + ", pageSize=" + pageSize
+				+ ", groupSize=" + groupSize + ", curPage=" + curPage + ", totalCount=" + totalCount + ", memnum="
+				+ memnum + ", access_token=" + access_token + "]";
+	}	
 	
 }
