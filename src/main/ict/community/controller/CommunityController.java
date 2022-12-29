@@ -121,7 +121,7 @@ public class CommunityController {
 		} 
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
-		cvo.setTotalCount(String.valueOf(totalCount)); 
+		//cvo.setTotalCount(String.valueOf(totalCount)); 
 		cvo.setCurPage(String.valueOf(curPage));
 		
 		logger.info("cvo.getPageSize() >>> : " + cvo.getPageSize());
@@ -131,14 +131,25 @@ public class CommunityController {
 		
 	//페이징처리  =========================		
 	
+		//searching 프로퍼티 null값 방지
+		if(cvo.getKeyword() == null || cvo.getKeyword() == "null") {
+			cvo.setKeyword("");
+		}//end of if
+		if(cvo.getStartDate() == null || cvo.getStartDate() == "null") {
+			cvo.setStartDate("");
+		}//end of if
+		if(cvo.getEndDate() == null || cvo.getEndDate() == "null") {
+			cvo.setEndDate("");
+		}//end of if
+		
 		List<CommunityVO> list = communityService.communitySelectAll(cvo);
 		int nCnt = list.size();
 		logger.info("커뮤니티 전체조회 nCnt >>> : " + nCnt);
 		
-		if(nCnt > 0) {
+		//if(nCnt > 0) {
 			model.addAttribute("pagingCVO", cvo);
 			model.addAttribute("listAll", list);
-		}		
+		//}		
 		
 		return "community/communitySelectAll";
 	}

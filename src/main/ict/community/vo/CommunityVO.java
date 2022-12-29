@@ -24,6 +24,12 @@ public class CommunityVO {
 	private String curPage;
 	private String totalCount;
 	
+	//searching
+	private String searchFilter;	//텍스트 검색 카테고리
+	private String keyword;			//텍스트 검색하는 키워드
+	private String startDate;		//날짜 검색 시작일
+	private String endDate;			//날짜 검색 종료일
+	
 //디폴트생성자	
 	public CommunityVO() {
 		
@@ -72,6 +78,35 @@ public class CommunityVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
+	}
+	
+	//서칭 추가한 생성자
+	public CommunityVO(String likecnt, String communitynum, String cnum, String csubject, String ccontent,
+			String cphoto, String warning, String mnum, String mnick, String chit, String deleteyn, String insertdate,
+			String updatedate, String pageSize, String groupSize, String curPage, String totalCount,
+			String searchFilter, String keyword, String startDate, String endDate) {
+		
+		this.likecnt = likecnt;
+		this.communitynum = communitynum;
+		this.cnum = cnum;
+		this.csubject = csubject;
+		this.ccontent = ccontent;
+		this.cphoto = cphoto;
+		this.warning = warning;
+		this.mnum = mnum;
+		this.mnick = mnick;
+		this.chit = chit;
+		this.deleteyn = deleteyn;
+		this.insertdate = insertdate;
+		this.updatedate = updatedate;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
+		this.searchFilter = searchFilter;
+		this.keyword = keyword;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public String getCnum() {
@@ -202,6 +237,7 @@ public class CommunityVO {
 		this.communitynum = communitynum;
 	}
 
+	//서칭 getter
 	public String getLikecnt() {
 		return likecnt;
 	}
@@ -210,7 +246,38 @@ public class CommunityVO {
 		this.likecnt = likecnt;
 	}
 	
+	public String getSearchFilter() {
+		return searchFilter;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
 	
+	//서칭 setter
+	public void setSearchFilter(String searchFilter) {
+		this.searchFilter = searchFilter;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	
 	
 } //class
