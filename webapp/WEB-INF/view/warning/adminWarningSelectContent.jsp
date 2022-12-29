@@ -105,7 +105,7 @@
 					</td>
 					<td class="td_2"> 작성일자 :<%= insertdate %>
 					</td>
-					</tr>
+					</tr> 
 					<tr>
 						<input type="hidden" name="mnum" value="<%=wvo.getWtmnum()%>">
 						<td>신고당한 사람</td>

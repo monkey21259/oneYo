@@ -32,7 +32,7 @@
 			 "ORCLICT00"."ICT_MEMBER" B,
 			 "ORCLICT00"."ICT_RECIPE" C
 			 
-		WHERE  
+		WHERE   
 		A.WTNUM = #{wtnum}
 		AND A.WTNUM = C.RNUM
 		AND C.MNUM = B.MNUM

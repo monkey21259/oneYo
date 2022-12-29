@@ -176,7 +176,7 @@ public class WarningVO {
 	}
 
 
-	public String getWtmnick() {
+	public String getWtmnick() { 
 		return wtmnick;
 	}
 

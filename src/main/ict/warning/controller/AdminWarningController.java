@@ -64,7 +64,7 @@ public class AdminWarningController {
 			logger.info("신고분야가 레시피(R) 인 글 갯수 >>> : " + list.size());
 			
 			if(list.size() > 0) {
-				
+				 
 				model.addAttribute("list", list);
 				model.addAttribute("wcategory", wcategory);
 				model.addAttribute("wtnum", wtnum);
