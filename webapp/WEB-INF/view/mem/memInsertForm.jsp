@@ -4,6 +4,9 @@
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
 
+<%@ page import="main.ict.mem.vo.MemVO" %>
+<%@ page import="main.ict.common.CodeUtils" %>
+
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
@@ -20,6 +23,14 @@
 	String mgrade = null;
 	mgrade = request.getParameter("mgrade");
 	logger.info(mgrade);
+%>
+
+<%
+	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
+	if (mvo != null) { logger.info("SNS-LoginVO was created"); }
+	
+	String mkey = (String)request.getAttribute("mkey");
+	if (mkey != null) { logger.info("[Kakao] INSERT form start!"); }
 %>
 
 <!DOCTYPE html>
@@ -249,6 +260,9 @@ $(document).ready(function(){
 회원가입 포오옴
 <table border=1>
 <!-- mid 아이디 -->
+<%
+	if (mvo == null) {
+%>
 <tr>
 	<td>
 		ID
@@ -374,6 +388,161 @@ $(document).ready(function(){
 		<input type="button" id="formBtn" name="formBtn" value="회원가입">
 	</td>
 </tr>
+<%
+	} else {
+%>
+<tr>
+	<td>
+		ID
+	</td>
+	<td>
+		<input type="text" id="mid" name="mid" value="<%= mvo.getMid() %>" readonly />
+	</td>
+	<td>
+		<input type="button" id="midBtn" name="midBtn" value="아이디 확인">
+		<input type="button" id="testID" name="testID" value="ㅌㅅㅌ">
+	</td>
+</tr>
+<!-- mpw 비밀번호 -->
+<tr>
+	<td class="mpw_td" rowspan='2'>
+		PW
+	</td>
+	<td>
+		<input type="password" id="mpw" name="mpw" value="<%= mvo.getMpw() %>" readonly />
+	</td>
+	<td class="mpw_td" rowspan='2'>
+		<input type="button" id="mpwBtn" name="mpwBtn" value="비밀번호 확인" />
+	</td>
+</tr>
+<tr id="mpw_r_tr">
+	<td>
+		<input type="password" id="mpw_r" name="mpw_r" value="<%= mvo.getMpw() %>" readonly />
+	</td>
+</tr>
+<!-- mname 이름 -->
+<tr>
+	<td>
+		이름
+	</td>
+	<td>
+		<input type="text" id="mname" name="mname" value="<%= mvo.getMname() %>" readonly>
+	</td>
+	<td>
+	</td>
+</tr>
+<!-- mnick 닉네임 -->
+<tr>
+	<td>
+		닉네임
+	</td>
+	<td>
+<%
+	if (mkey == null) {
+%>
+		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly />
+<%	
+	} else {
+%>
+		<input type="text" id="mnick" name="mnick" value="" />
+<%
+	}
+%>
+	</td>
+	<td>
+	</td>
+</tr>
+<!-- mhp 휴대폰 -->
+<tr>
+	<td>
+		휴대폰
+	</td>
+	<td>
+<%
+	if (mkey == null) {
+%>
+		<% String[] mhpParts = CodeUtils.getMhpParts(mvo.getMhp()); %>
+		<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="<%= mhpParts[0] %>" readonly />
+		- <input type="text" id="mhp1" name="mhp1" class="mhp notNull" value="<%= mhpParts[1] %>" readonly />
+		- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="<%= mhpParts[2] %>" readonly />
+		<input type="hidden" id="mhp" name="mhp" value="<%= mvo.getMhp() %>" />
+<%
+	} else {
+%>
+		<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="" />
+		- <input type="text" id="mhp1" name="mhp1" class="mhp notNull" value="" />
+		- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="" />
+		<input type="hidden" id="mhp" name="mhp" value="" />
+<%
+	}
+%>
+	</td>
+	<td>
+	</td>
+</tr>
+<!-- memail 이메일 -->
+<tr>
+	<td>
+		이메일
+	</td>
+	<td>
+		<%= mvo.getMemail() %>
+		<input type="hidden" id="memail" name="memail" value="<%= mvo.getMemail() %>">
+		<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>">
+	</td>
+	<td>
+	</td>
+</tr>
+<!-- mprofile 프로필 사진 -->
+<tr>
+	<td>
+		프로필 사진
+	</td>
+	<td>
+		<input type="file" id="mprofile" name="mprofile">
+	</td>
+	<td>
+	</td>
+</tr>
+<!-- mcategory 요리 분야 -->
+<tr>
+	<td>
+		LIKE
+	</td>
+	<td>
+		<ul>
+		<li>
+			<input type="checkbox" class="mcategory" value="00">한식
+		</li>
+		<li>
+			<input type="checkbox" class="mcategory" value="01">중식
+		</li>
+		<li>
+			<input type="checkbox" class="mcategory" value="02">양식
+		</li>
+		<li>
+			<input type="checkbox" class="mcategory" value="03">일식
+		</li>
+		<li>
+			<input type="checkbox" class="mcategory" value="04">간식
+		</li>
+		<li>
+			<input type="checkbox" class="mcategory" value="99">기타
+		</li>
+		</ul>
+		<input type="hidden" id="mcategory" name="mcategory" value="">
+	</td>
+	<td>
+	</td>
+</tr>
+<tr>
+	<td colspan="3">
+		<input type="button" id="formBtn" name="formBtn" value="회원가입">
+	</td>
+</tr>
+<%
+	}
+%>
 </table>
 
 </form>

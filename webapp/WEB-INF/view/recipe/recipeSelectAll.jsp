@@ -6,9 +6,16 @@
 <%@ page import="java.util.List" %>
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
+<%@ page import="main.ict.common.O_Session" %>
 
-<% Logger logger = LogManager.getLogger(this.getClass()); %>
 <% request.setCharacterEncoding("UTF-8"); %>
+<% Logger logger = LogManager.getLogger(this.getClass()); %>
+
+<%
+	O_Session oSession = O_Session.getInstance();
+	String mid = oSession.getSession(request);
+	logger.info("mid: " + mid);
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -83,7 +90,7 @@
 				</div>
 				<div class="t">&nbsp;인기글</div>
 				<div class="tright">
-					<a href="javascript:void(0);">
+					<a href="/oneYo/recipeInsertForm.ict">
 						<span>글 등록 버튼</span>
 					</a>
 				</div>

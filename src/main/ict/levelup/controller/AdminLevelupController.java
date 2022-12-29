@@ -87,7 +87,6 @@ public class AdminLevelupController {
 			return "levelup/levelOkey";
 			
 			
-			
 		}
 		
 		

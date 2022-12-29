@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.recipe.dao.RecipeDAO;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 
 @Service
 @Transactional
@@ -58,6 +59,22 @@ public class RecipeServiceImpl implements RecipeService {
 		logger.info("recipeDelete() 함수 진입");
 		
 		return recipeDAO.recipeDelete(recipevo);
+	}
+
+	// recipeSearch 2022-12-29 이성일 추가
+	@Override
+	public List<RecipeVO> recipeSearch(List<String> rList) {
+		// TODO Auto-generated method stub
+		
+		logger.info("recipeSearch() 함수 진입");
+		
+		return recipeDAO.recipeSearch(rList);
+	}
+
+	@Override
+	public int recipeWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return recipeDAO.recipeWarningInsert(wvo);
 	}
 	
 }

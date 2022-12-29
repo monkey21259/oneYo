@@ -3,6 +3,7 @@ package main.ict.recipe.service;
 import java.util.List;
 
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface RecipeService {
 
@@ -11,5 +12,9 @@ public interface RecipeService {
 	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo);
 	public int recipeUpdate(RecipeVO recipevo);
 	public int recipeDelete(RecipeVO recipevo);
+	// recipeSearch 2022-12-29 이성일 추가
+	public List<RecipeVO> recipeSearch(List<String> rList);
 	
+	//신고
+	public int recipeWarningInsert(WarningVO wvo);
 }

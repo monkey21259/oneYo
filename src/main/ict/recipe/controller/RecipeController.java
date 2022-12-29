@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.ict.recipe.service.RecipeService;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
@@ -196,4 +197,75 @@ public class RecipeController {
 		return "./recipe/recipeSelectAll";
 	}
 	
+// S (재료 검색) by 이성일
+	@GetMapping(value="recipeSearch")
+	public String recipeSearch(HttpServletRequest req, Model m) {
+		
+		logger.info("recipeSearch() 함수 진입");
+		List<String> rList = null;
+		RecipeVO rvo = null;
+		String[] rjeryo = null;
+		
+		if(req.getParameterValues("rjeryo") !=null)
+			rjeryo = req.getParameterValues("rjeryo");
+		
+		if(rjeryo !=null && rjeryo.length > 0) {
+			rList = new ArrayList<String>();
+			for(int i=0; i < rjeryo.length; i++) {
+				rList.add(rjeryo[i]);
+			}
+		}
+		
+		if(rList !=null && rList.size() > 0) {
+			for(int i=0; i < rList.size(); i++) {
+				logger.info("rList[" + i + "] : " + rList.get(i));
+			}
+		}
+		
+		List<RecipeVO> list = recipeService.recipeSearch(rList);
+		
+		if(list !=null && list.size() > 0) {
+			for(int i=0; i < list.size(); i++) {
+				rvo = list.get(i);
+				logger.info("rvo " + i + "번 : " + rvo.toString());
+			}
+			
+			m.addAttribute("list", list);
+		}
+		
+		return "./recipe/recipeSearch";
+	}
+	
+	@GetMapping(value="recipeWarningForm")
+	public String recipeWarningForm(RecipeVO recipevo, Model m) {
+		
+		recipevo.setMnum("M202212260013");
+		m.addAttribute("rvo", recipevo);
+		
+		return "recipe/recipeWarningForm";
+	}
+
+	@GetMapping(value="recipeWarningInsert")
+	public String recipeWarningInsert(WarningVO wvo) {
+		
+		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
+		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
+		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
+		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
+		System.out.println("wnum : " + wnum);
+		wvo.setWnum(wnum);
+		
+		int nCnt = recipeService.recipeWarningInsert(wvo);
+		
+		if(nCnt > 0) {
+			
+			return "recipe/recipeWarningInsert";
+		}
+		
+		
+		return "";
+	}
+
+
 }

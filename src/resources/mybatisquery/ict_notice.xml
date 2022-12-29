@@ -48,10 +48,38 @@
 						,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')	AS UPDATEDATE
 						,A.NHIT									AS NHIT
 						,CEIL(ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
-						,COUNT(A.NNUM) OVER()					AS totalCount
-						,ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)	AS NOTICENO
+						,COUNT(A.NNUM) OVER()									AS totalCount
+						,ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)				AS NOTICENO
+						<if test="searchFilter != null and searchFilter != ''">
+							<![CDATA[,#{searchFilter, jdbcType=VARCHAR}			AS searchFilter]]>
+						</if>
+						<if test="keyword != null and keyword != ''">
+							<![CDATA[,#{keyword, jdbcType=VARCHAR}				AS keyword]]>
+						</if>
+						<if test="startDate != null and startDate != ''">
+							<![CDATA[,#{startDate, jdbcType=VARCHAR}			AS startDate]]>
+						</if>
+						<if test="endDate != null and endDate != ''">
+							<![CDATA[,#{endDate, jdbcType=VARCHAR}				AS endDate]]>
+						</if>
 				FROM ICT_NOTICE A
 				WHERE	A.DELETEYN	= 'Y'
+				<if test="searchFilter == '00'">
+				<![CDATA[	AND (A.NSUBJECT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%'
+							OR   A.NCONTENT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%')]]>
+				</if>
+				<if test="searchFilter == '01'">
+					<![CDATA[	AND A.NSUBJECT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+				</if>
+				<if test="searchFilter == '02'">
+					<![CDATA[	AND A.NCONTENT   LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+				</if>
+				<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+					<![CDATA[	AND TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')
+								<= TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')]]>
+					<![CDATA[	AND TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')
+								>= TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')]]>
+				</if>
 				ORDER BY A.NNUM DESC
 			)
 		WHERE	pageSize = #{curPage, jdbcType=VARCHAR}

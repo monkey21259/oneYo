@@ -3,6 +3,7 @@ package main.ict.community.service;
 import java.util.List;
 
 import main.ict.community.vo.CommunityVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface CommunityService {
 
@@ -20,6 +21,9 @@ public interface CommunityService {
 
 
 //커뮤니티 게시글 수정
-	public int communityDelete(CommunityVO cvo);	
+	public int communityDelete(CommunityVO cvo);
+	
+	//신고
+	public int communityWarningInsert(WarningVO wvo);
 
 }//class

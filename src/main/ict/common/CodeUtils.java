@@ -191,6 +191,16 @@ public abstract class CodeUtils {
 		return rPerson + "인분";
 	}
 	
+	public static String[] getMhpParts(String mhp) {
+		
+		logger.info("getMhpParts() 함수 진입");
+		String[] mhpParts = {"", "", ""};
+		if (mhp == null || mhp.equals("null")) {
+			return mhpParts;
+		}
+		return mhp.split("-");
+	}
+
 ////관리자페이지에 adminHome에 들어가는  신고분야
 	public static String getWcategory(String wcate){
 		logger.info("신고분야(getWcategory) 함수 진입>>>");
@@ -270,9 +280,7 @@ public abstract class CodeUtils {
 			
 		
 	} //getAdminRcate
-	
-	
-	
+		
 	public static void main(String[] args) {
 		
 		
@@ -281,9 +289,6 @@ public abstract class CodeUtils {
 		logger.info(CodeUtils.getRdiff("0"));
 		logger.info(CodeUtils.getWcategory("00"));
 		logger.info(CodeUtils.getAdminRcate("#00#01#02"));
-		
-		
-		
 		
 		
 	}

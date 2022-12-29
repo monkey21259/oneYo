@@ -18,8 +18,10 @@ public class RecipeVO {
 	private String insertdate;	// 등록일
 	private String updatedate;	// 수정일
 	
-	//mnick
+	// mnick
 	private String mnick;		// 회원닉네임
+	// mprofile - 2022-12-29 이성일 추가
+	private String mprofile;
 	
 	// Paging
 	private String pageSize;
@@ -36,8 +38,8 @@ public class RecipeVO {
 
 	public RecipeVO(String rnum, String rsubject, String rcategory, String rjeryo, String rtime, String rperson,
 			String rdiff, String rcontent, String rphoto, String rhit, String mnum, String warning, String deleteyn,
-			String insertdate, String updatedate, String mnick, String pageSize, String groupSize, String curPage,
-			String totalCount, String likecnt) {
+			String insertdate, String updatedate, String mnick, String mprofile, String pageSize, String groupSize, 
+			String curPage,	String totalCount, String likecnt) {
 		
 		this.rnum = rnum;
 		this.rsubject = rsubject;
@@ -55,6 +57,7 @@ public class RecipeVO {
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
 		this.mnick = mnick;
+		this.mprofile = mprofile;
 		this.pageSize = pageSize;
 		this.groupSize = groupSize;
 		this.curPage = curPage;
@@ -231,14 +234,23 @@ public class RecipeVO {
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
 	}
-	
+
+	public String getMprofile() {
+		return mprofile;
+	}
+
+	public void setMprofile(String mprofile) {
+		this.mprofile = mprofile;
+	}
 
 	@Override
 	public String toString() {
 		return "RecipeVO [rnum=" + rnum + ", rsubject=" + rsubject + ", rcategory=" + rcategory + ", rjeryo=" + rjeryo
 				+ ", rtime=" + rtime + ", rperson=" + rperson + ", rdiff=" + rdiff + ", rcontent=" + rcontent
 				+ ", rphoto=" + rphoto + ", rhit=" + rhit + ", mnum=" + mnum + ", warning=" + warning + ", deleteyn="
-				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + ", mnum=" + mnum + "]";
+				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", mnick=" + mnick
+				+ ", mprofile=" + mprofile + ", pageSize=" + pageSize + ", groupSize=" + groupSize + ", curPage="
+				+ curPage + ", totalCount=" + totalCount + ", likecnt=" + likecnt + "]";
 	}
 	
 }

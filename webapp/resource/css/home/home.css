@@ -1,54 +1,25 @@
 @charset "UTF-8";
 
-* {
-	margin	: 0;
-	padding	: 0;
-}
-
-body {
-	font-family	: '돋움';	/* 폰트 글씨체 */
-	font-size	: 12px;	/* 폰트 사이즈 */
-	color		: #000;	/* 폰트 색상 */
-}
-
-ul {
-	list-style	: none;	/* ul 특유의 리스트 점 없애는 것 */
-}
-
-a {
-	color	: #000;	/* 링크 폰트 색상 */
-	text-decoration	: none;	/* 링크 밑줄 없애기 */
-}
-
 /* 전체 영역 */
 #all_div {
-	width	: 1000px;
-	margin	: 20px auto;	/* margin 상하단 0 좌우 자동(중앙정렬) */
-	overflow: hidden;	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
 	
-	border	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
 }
 
 /* 상단 header */
 #header {
-	border-bottom	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
+	
 }
 
 /* 좌측 left */
 #left {
-	width	: 150px;
-	float	: left;		/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	
 }
 
 /* ---------------------- 중 앙 - 시작 ------------------- */
 
 /* 중앙 center */
 #center {
-	width	: 698px;
-	float	: left;		/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
-
-	border-left	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-right: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
+	
 }
 
 /* 중앙 배너 */
@@ -175,16 +146,12 @@ a {
 
 /* 우측 right */
 #right {
-	width	: 150px;
-	float	: right;		/* 해당 블럭 왼쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	
 }
 
 
 /* 하단 footer */
 #footer {
-	clear	: both;		/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
-	overflow: hidden;	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
-	border-top	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
 	padding-top: 15px;
 	height: 80px;
 	text-align: center;

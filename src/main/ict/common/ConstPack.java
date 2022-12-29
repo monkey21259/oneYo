@@ -87,13 +87,21 @@ public abstract class ConstPack {
 
 	// ------------------------------------
 	// 코드값 라벨링 관련 상수
-	public static final String[] MEM_GRADE_ARR = {"일반", "지망생", "전문가", "관리자"};
-	public static final String[] MEM_GRADE_IDX_ARR = {"0", "1", "2", "9"};
+	public static final String[] MEM_GRADE_ARR = {"일반", "전문가", "관리자"};
+	public static final String[] MEM_GRADE_IDX_ARR = {"0", "1","9"};
 	public static final String[] RECIPE_CAT_ARR = {"한식", "중식", "양식", "일식", "디저트", "기타"};
 	public static final String[] RECIPE_CAT_IDX_ARR = {"00", "01", "02", "03", "04", "99"};
 	public static final String[] RECIPE_DIFF_ARR = {"쉬움", "보통", "어려움"};
 	public static final String[] RECIPE_DIFF_IDX_ARR = {"0", "1", "2"};
 	
+	// SNS(네이버) 관련 상수
+	public static final String M_NAVER_STATE = "oneYo120";  // 사이트간 요청 위조 방지를 위한 상태 토큰값(인코딩을 적용한 값 사용)
+	public static final String M_NAVER_CID = "ONEHnTFShtFKdeomauWh";  // App 등록 시 발급받은 Client ID
+	public static final String M_NAVER_CSECRET = "9VNi2Puk9t";  // App 등록 시 발급받은 Client secret
+	public static final String M_NAVER_FR_ID = "naver_";  // 회원 가입시 아이디에 붙일 네이버 이름
+	// SNS(카카오) 관련 상수
+	public static final String M_KAKAO_FR_ID = "kakao_";  // 회원 가입시 아이디에 붙일 카카오 이름
+
 	//신고
 	public static final String[] WARNING_ARR = {"욕설 및 비방", "음란물", "불법광고", "도배성", "주제와 맞지 않음", "기타"};
 	public static final String[] WARNING_IND_ARR = {"00", "01", "02", "03", "04", "99"};

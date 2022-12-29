@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 
 public class RecipeDAOImpl implements RecipeDAO {
 
@@ -40,6 +41,20 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public int recipeDelete(RecipeVO recipevo) {
 		
 		return sqlSession.update("recipeDelete", recipevo);
+	}
+
+	// recipeSearch 2022-12-29 이성일 추가
+	@Override
+	public List<RecipeVO> recipeSearch(List<String> rList) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList("recipeSearch", rList);
+	}
+
+	@Override
+	public int recipeWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("recipeWarningInsert", wvo);
 	}
 	
 }

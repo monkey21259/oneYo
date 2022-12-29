@@ -95,12 +95,20 @@ public class MemController {
 		logger.info("memInsertForm(mvo, model) >>> : " + mvo.getMemail() + " + " + mvo.getMgrade());
 		
 		if (mvo.getMemail() != null && mvo.getMgrade() != null) {
+			// SNS 회원가입 케이스
+			if (req.getParameter("accTok") != null || req.getParameter("accTok").equals("null") || req.getParameter("accTok").equals("")) {
+				
+				model.addAttribute("mvoSNS", mvo);
+				model.addAttribute("mkey", (String)req.getParameter("mkey"));
+			}
+			
+			// 공통
 			return "mem/memInsertForm";
 		}
 		
 		return "mem/memGrade";
 	}
-	
+
 	//	ID 아이디 중복 체크
 	@PostMapping("memIdCheck")
 	@ResponseBody
@@ -214,7 +222,7 @@ public class MemController {
 		if (insertCnt > 0) {
 			logger.info("memInsert().nCnt >>> : " + insertCnt);
 			
-			return "mem/memGrade";
+			return "login/loginForm";
 		}
 		
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");
@@ -410,22 +418,21 @@ public class MemController {
 	}
 	
 	//	memDelete 회원 탈퇴
-	//	오류나는데 일단 집가고 싶어서ㅜ 걍 주석처리하고갑니다...
-//	@GetMapping("memDelete")
-//	public String memDelete(MemVO mvo, Model model) {
-//		
-//		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
-//		
-//		int deleteCnt = memService.memDelete(mvo);
-//		
-//		if (deleteCnt > 0) {
-//			logger.info("memDelete nCnt >>> : " + deleteCnt);
-//			
-//			model.addAttribute("memDelete", deleteCnt);
-//			
-//			return "home/home";
-//		}
-//		
-//		return "home/home";
-//	}
+	@GetMapping("memDelete")
+	public String memDelete(MemVO mvo, Model model) {
+		
+		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
+		
+		int deleteCnt = memService.memDelete(mvo);
+		
+		if (deleteCnt > 0) {
+			logger.info("memDelete nCnt >>> : " + deleteCnt);
+			
+			model.addAttribute("memDelete", deleteCnt);
+			
+			return "home/home";
+		}
+		
+		return "home/home";
+	}
 }

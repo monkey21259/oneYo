@@ -3,6 +3,7 @@ package main.ict.tip.service;
 import java.util.List;
 
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface TipService {
 
@@ -17,5 +18,7 @@ public interface TipService {
 	int tipUpdate(TipVO tvo);
 
 	int tipDelete(TipVO tvo);
+	
+	public int tipWarningInsert(WarningVO wvo);
 
 }

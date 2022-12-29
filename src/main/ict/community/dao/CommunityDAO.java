@@ -3,6 +3,7 @@ package main.ict.community.dao;
 import java.util.List;
 
 import main.ict.community.vo.CommunityVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface CommunityDAO { 
 	
@@ -21,6 +22,9 @@ public interface CommunityDAO {
 
 //커뮤니티 게시글 수정
 	public int communityDelete(CommunityVO cvo);	
+	
+	//신고
+	public int communityWarningInsert(WarningVO wvo);
 
 }//class
 	 

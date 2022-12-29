@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+* {
+	margin	: 0;
+	padding	: 0;
+}
+
+body {
+	/* 폰트 글씨체 */
+	font-family	: '돋움';
+	/* 폰트 사이즈 */
+	font-size	: 12px;
+	/* 폰트 색상 */
+	color		: #000;
+	
+	/* 배경색 위에서 부터 아래로 그라데이션!! */
+	background	: linear-gradient(#AC7B53, 80%, #E0E086);
+}
+
+ul {
+	/* ul 특유의 리스트 점 없애는 것 */
+	list-style	: none;
+}
+
+a {
+	/* 링크 폰트 색상 */
+	color	: #000;
+	/* 링크 밑줄 없애기 */
+	text-decoration	: none;
+}
+
+/* 전체 영역 */
+#all_div {
+	/* width 가로폭 */
+	width	: 1200px;
+	/* margin 상하단 0 좌우 자동(중앙정렬) */
+	margin	: 20px auto;
+	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
+	overflow: hidden;
+	
+	/* 일단 보기 편하시라고 선그어놨어용 */
+	border	: 1px solid #ccc;
+	
+	/* 배경색 위에서 부터 아래로 그라데이션!! */
+	background	: linear-gradient(#FCF4EF, /* #fef9f7,  */#fff);
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	/* 일단 보기 편하시라고 선그어놨어용 */
+	border-bottom	: 1px solid #ccc;
+}
+
+#logo {
+/* 	width	: 80%; */
+	margin	: 10px auto;
+	text-align: center;
+}
+
+#logo img {
+	width	: 15%;
+	height	: auto;
+	
+}
+
+.nav {
+	width	: 100%;
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+}
+
+.nav nav ul li {
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	/* 상단 메뉴바 가로 정렬 */
+	float	: left;
+	width	: 200px;
+	height	: 30px;
+	
+	margin	: 0 20px;
+}
+
+.nav .menu_link div {
+/* 	background-color	: #93A603; */
+	/* 영역 지정 */
+	width	: 100%;
+	height	: 100%;
+}
+
+#header hr {
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+}
+
+/* -------------------------------- 상단 serchBar -------------------------------- */
+#serchBar {
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+	
+	/* #all_div의 약 67% 가로 폭 */
+	width	: 800px;
+	height	: 50px;
+	
+	/* 좌우 중앙 정렬 */
+	margin	: 0 auto;
+	text-align: center;
+	
+	/* 배경 색상 */
+	background-color	: #fff;
+}
+
+/* -------------------------------- 좌측 left -------------------------------- */
+#left {
+	/* width 가로폭 */
+	width	: 200px;
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: left;
+}
+
+/* -------------------------------- 중앙 center -------------------------------- */
+#center {
+	/* width 가로폭 */
+	width	: 798px;
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: left;
+
+	border-left	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
+	border-right: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
+}
+
+
+/* -------------------------------- 우측 right -------------------------------- */
+#right {
+	/* width 가로폭 */
+	width	: 200px;
+	/* 해당 블럭 왼쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: right;
+}
+
+
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
+	overflow: hidden;
+	/* 일단 보기 편하시라고 선그어놨어용 */
+	border-top	: 1px solid #ccc;
+	
+	text-align: center;
+}
+
+
+/* -------------------------------- 사이드 바 -------------------------------- */
+#sideBar {
+	/* width 가로폭 */
+	width	: 70px;
+	/* height 세로폭 */
+	height	: 500px;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	/* 배경 색상 */
+	background-color	: #F0F2CC;
+	
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	/* 위치 지정 */
+	top	: 20%;
+	right	: 1%;
+	
+	/* 10층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 10;
+}
+
+#sideBar div {
+	/* margin div 주위 영역 */
+	margin	: 5px 5px;
+	
+	/* width 가로폭 */
+	width	: 60px;
+	/* height 세로폭 */
+	height	: 50px;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	/* 배경색 */
+	background-color	: #fff;
+}
+
+

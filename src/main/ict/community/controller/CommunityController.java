@@ -18,6 +18,8 @@ import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
+import main.ict.warning.vo.WarningVO;
 
 @Controller
 public class CommunityController {
@@ -114,13 +116,14 @@ public class CommunityController {
 		int totalCount = ConstPack.COMMUNITY_TOTAL_COUNT; //0
 		
 		
-		if(cvo.getCurPage() == null) {
-			cvo.setCurPage(String.valueOf(curPage));
+		if(cvo.getCurPage() != null) {
+			curPage = Integer.parseInt(cvo.getCurPage());
 		} 
 		cvo.setPageSize(String.valueOf(pageSize));
 		cvo.setGroupSize(String.valueOf(groupSize));
-		cvo.setTotalCount(String.valueOf(totalCount)); 
-	
+		//cvo.setTotalCount(String.valueOf(totalCount)); 
+		cvo.setCurPage(String.valueOf(curPage));
+		
 		logger.info("cvo.getPageSize() >>> : " + cvo.getPageSize());
 		logger.info("cvo.getGroupSize() >>> : " + cvo.getGroupSize());
 		logger.info("cvo.getCurPage() >>> : " + cvo.getCurPage());
@@ -128,14 +131,25 @@ public class CommunityController {
 		
 	//페이징처리  =========================		
 	
+		//searching 프로퍼티 null값 방지
+		if(cvo.getKeyword() == null || cvo.getKeyword() == "null") {
+			cvo.setKeyword("");
+		}//end of if
+		if(cvo.getStartDate() == null || cvo.getStartDate() == "null") {
+			cvo.setStartDate("");
+		}//end of if
+		if(cvo.getEndDate() == null || cvo.getEndDate() == "null") {
+			cvo.setEndDate("");
+		}//end of if
+		
 		List<CommunityVO> list = communityService.communitySelectAll(cvo);
 		int nCnt = list.size();
 		logger.info("커뮤니티 전체조회 nCnt >>> : " + nCnt);
 		
-		if(nCnt > 0) {
+		//if(nCnt > 0) {
 			model.addAttribute("pagingCVO", cvo);
 			model.addAttribute("listAll", list);
-		}		
+		//}		
 		
 		return "community/communitySelectAll";
 	}
@@ -244,5 +258,44 @@ public class CommunityController {
 		}
 		return "community/communitySelectContent";
 	} //communityDelete
+	
+	@GetMapping(value="communityWarningForm")
+	public String communityWarningForm(CommunityVO cvo, Model m) {
+		System.out.println("cvo.getCnum : " + cvo.getCnum());
+		System.out.println("cvo.getCsubject : " + cvo.getCsubject());
+		
+		String cnum = cvo.getCnum();
+		String csubject = cvo.getCsubject();
+		String mnum = "M202212260013";
+		
+		m.addAttribute("mnum", mnum);
+		m.addAttribute("cnum", cnum);
+		m.addAttribute("csubject", csubject);
+		return "community/communityWarningForm";
+	
+	}
+	
+	@GetMapping(value="communityWarningInsert")
+	public String warningInsert(WarningVO wvo, Model m) {
+	
+		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
+		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
+		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
+		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
+		System.out.println("wnum : " + wnum);
+		wvo.setWnum(wnum);
+		
+		int nCnt = communityService.communityWarningInsert(wvo);
+		
+		if(nCnt > 0) {
+			
+			return "community/communityWarningInsert";
+		}
+		
+		return "";
+		
+	}
+	
 	
 }//class
