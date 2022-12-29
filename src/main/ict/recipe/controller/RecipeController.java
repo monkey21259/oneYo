@@ -196,4 +196,43 @@ public class RecipeController {
 		return "./recipe/recipeSelectAll";
 	}
 	
+// S (재료 검색) by 이성일
+	@GetMapping(value="recipeSearch")
+	public String recipeSearch(HttpServletRequest req, Model m) {
+		
+		logger.info("recipeSearch() 함수 진입");
+		List<String> rList = null;
+		RecipeVO rvo = null;
+		String[] rjeryo = null;
+		
+		if(req.getParameterValues("rjeryo") !=null)
+			rjeryo = req.getParameterValues("rjeryo");
+		
+		if(rjeryo !=null && rjeryo.length > 0) {
+			rList = new ArrayList<String>();
+			for(int i=0; i < rjeryo.length; i++) {
+				rList.add(rjeryo[i]);
+			}
+		}
+		
+		if(rList !=null && rList.size() > 0) {
+			for(int i=0; i < rList.size(); i++) {
+				logger.info("rList[" + i + "] : " + rList.get(i));
+			}
+		}
+		
+		List<RecipeVO> list = recipeService.recipeSearch(rList);
+		
+		if(list !=null && list.size() > 0) {
+			for(int i=0; i < list.size(); i++) {
+				rvo = list.get(i);
+				logger.info("rvo " + i + "번 : " + rvo.toString());
+			}
+			
+			m.addAttribute("list", list);
+		}
+		
+		return "./recipe/recipeSearch";
+	}
+	
 }

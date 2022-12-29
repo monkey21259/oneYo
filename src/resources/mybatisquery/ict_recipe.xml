@@ -172,4 +172,38 @@ SELECT
 
 </update>
 
+<!-- recipeSearch 2022-12-29 이성일 추가  -->
+<select id="recipeSearch" resultType="recipevo">
+
+	SELECT B.RNUM 		AS		RNUM
+		  ,B.RSUBJECT 	AS		RSUBJECT
+		  ,B.RPHOTO 	AS		RPHOTO
+		  ,B.RHIT		AS		RHIT
+		  ,B.RJERYO 	AS		RJERYO
+		  ,A.MNUM		AS		MNUM
+		  ,A.MNICK		AS		MNICK
+		  ,A.MPROFILE	AS		MPROFILE
+		  ,NVL((SELECT COUNT(LNUM)
+		        FROM "ORCLICT00"."ICT_LIKE" L
+		        WHERE B.RNUM = L.LIKETHIS
+		        AND L.LIKEYN = 'Y'), 0)					AS	LIKECNT
+		  ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS 	INSERTDATE
+		  ,TO_CHAR(TO_DATE(B.UPDATEDATE), 'YYYY-MM-DD')	AS 	UPDATEDATE
+	FROM  (SELECT A.MNUM
+				 ,A.MNICK
+				 ,A.MPROFILE
+				 ,A.DELETEYN
+	       FROM  "ORCLICT00"."ICT_MEMBER" A 
+	       WHERE  A.DELETEYN = 'Y')       A
+	     ,(SELECT *
+	       FROM  "ORCLICT00"."ICT_RECIPE" B
+	       WHERE  B.DELETEYN = 'Y'
+	       <foreach item="item" index="index" collection="list">
+	       AND	  B.RJERYO LIKE '%${item}%'
+	       </foreach>
+	       ORDER BY B.RNUM DESC)         B
+	WHERE  A.MNUM = B.MNUM
+
+</select>
+
 </mapper>

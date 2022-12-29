@@ -41,5 +41,13 @@ public class RecipeDAOImpl implements RecipeDAO {
 		
 		return sqlSession.update("recipeDelete", recipevo);
 	}
+
+	// recipeSearch 2022-12-29 이성일 추가
+	@Override
+	public List<RecipeVO> recipeSearch(List<String> rList) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList("recipeSearch", rList);
+	}
 	
 }

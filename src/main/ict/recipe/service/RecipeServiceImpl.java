@@ -59,5 +59,15 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		return recipeDAO.recipeDelete(recipevo);
 	}
+
+	// recipeSearch 2022-12-29 이성일 추가
+	@Override
+	public List<RecipeVO> recipeSearch(List<String> rList) {
+		// TODO Auto-generated method stub
+		
+		logger.info("recipeSearch() 함수 진입");
+		
+		return recipeDAO.recipeSearch(rList);
+	}
 	
 }

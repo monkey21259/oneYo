@@ -11,5 +11,7 @@ public interface RecipeService {
 	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo);
 	public int recipeUpdate(RecipeVO recipevo);
 	public int recipeDelete(RecipeVO recipevo);
+	// recipeSearch 2022-12-29 이성일 추가
+	public List<RecipeVO> recipeSearch(List<String> rList);
 	
 }

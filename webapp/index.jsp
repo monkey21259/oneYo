@@ -61,6 +61,7 @@
 				<!-- 댓글 테스트 -->
 				<a href="commentForm.ict">댓글 테스트</a>
 				<hr>
+				<a href="recipeSearch.ict?rjeryo=양배추&rjeryo=참치&rjeryo=양파">레시피 게시판 재료 검색 테스트</a>
 			</div>
 		</div>
 	</body>
