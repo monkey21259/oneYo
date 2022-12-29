@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import main.ict.recipe.service.RecipeService;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
@@ -235,4 +236,36 @@ public class RecipeController {
 		return "./recipe/recipeSearch";
 	}
 	
+	@GetMapping(value="recipeWarningForm")
+	public String recipeWarningForm(RecipeVO recipevo, Model m) {
+		
+		recipevo.setMnum("M202212260013");
+		m.addAttribute("rvo", recipevo);
+		
+		return "recipe/recipeWarningForm";
+	}
+
+	@GetMapping(value="recipeWarningInsert")
+	public String recipeWarningInsert(WarningVO wvo) {
+		
+		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
+		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
+		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
+		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
+		System.out.println("wnum : " + wnum);
+		wvo.setWnum(wnum);
+		
+		int nCnt = recipeService.recipeWarningInsert(wvo);
+		
+		if(nCnt > 0) {
+			
+			return "recipe/recipeWarningInsert";
+		}
+		
+		
+		return "";
+	}
+
+
 }
