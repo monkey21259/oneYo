@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.community.dao.CommunityDAO;
-import main.ict.community.vo.CommunityVO; 
+import main.ict.community.vo.CommunityVO;
+import main.ict.warning.vo.WarningVO; 
 
 @Service
 @Transactional
@@ -58,6 +59,12 @@ public class CommunityServiceImpl implements CommunityService {
 	logger.info("communityDelete 서비스 진입 >>> ");
 		
 		return communityDAO.communityDelete(cvo); 
+	}
+
+	@Override
+	public int communityWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return communityDAO.communityWarningInsert(wvo);
 	}
 
 	

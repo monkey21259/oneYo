@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import main.ict.community.vo.CommunityVO;
+import main.ict.warning.vo.WarningVO;
 
 @Repository
 public class CommunityDAOImpl implements CommunityDAO {
@@ -45,6 +46,12 @@ public class CommunityDAOImpl implements CommunityDAO {
 	@Override
 	public int communityDelete(CommunityVO cvo) {
 		return sqlSession.update("communityDelete", cvo);
+	}
+
+	@Override
+	public int communityWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("communityWarningInsert", wvo);
 	}	
 
 
