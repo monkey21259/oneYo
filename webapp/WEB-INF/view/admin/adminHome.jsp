@@ -114,7 +114,7 @@
 				//신고
 				$(document).on("click", "#warningmoreBtn", function(){
 					$("#adminForm").attr({
-						"action":".ict",
+						"action":"adminWarningSelectAll.ict",
 						"method":"GET",
 						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
