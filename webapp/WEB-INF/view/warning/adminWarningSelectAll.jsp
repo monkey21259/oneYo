@@ -35,7 +35,33 @@
 		
 		$(".warningSelect").click(function(){
 			
+				let info = $(this).siblings();
+				let info0 = info.get(0).value;
+				let info1 = info.get(1).value;
+				let info2 = info.get(2).value;
+				let info3 = info.get(3).value;
+				let info4 = info.get(4).value;
+			
+				console.log(info0);
+				console.log(info1);
+				console.log(info2);
+				console.log(info3);
+				console.log(info4);
 				
+				$("#wtnum").val(info0);
+				$("#wcategory").val(info1);
+				$("#wcontent").val(info2);
+				$("#mnick").val(info3);
+				$("#insertdate").val(info4);
+				
+				
+				
+// 				<input type="hidden" id="wtnum" name="wtnum" value="">
+// 				<input type="hidden" id="wcategory" name="wcategory" value="">
+// 				<input type="hidden" id="wcontent" name="wcontent" value="">
+// 				<input type="hidden" id="mnick" name="mnick" value="">
+// 				<input type="hidden" id="insertdate" name="insertdate" value="">
+			
 			$("#adminWarningSelectAll").attr({
 				'action':'adminWarningSelectContent.ict',
 				'method':'GET',
@@ -73,11 +99,11 @@
 	%>
 				<tbody>
 					<tr>
-						<input type="hidden" name="wtnum" value="<%= wvo.getWtnum() %>">
-						<input type="hidden" name="wcategory" value="<%=wvo.getWcategory()%>">
-						<input type="hidden" name="wcontent" value="<%= wvo.getWcontent() %>">
-						<input type="hidden" name="mnick" value="<%= wvo.getMnick()%>">
-						<input type="hidden" name="insertdate" value="<%= wvo.getInsertdate()%>">
+						<input type="hidden" name="wtnum1" value="<%= wvo.getWtnum() %>">
+						<input type="hidden" name="wcategory1" value="<%=wvo.getWcategory()%>">
+						<input type="hidden" name="wcontent1" value="<%= wvo.getWcontent() %>">
+						<input type="hidden" name="mnick1" value="<%= wvo.getMnick()%>">
+						<input type="hidden" name="insertdate1" value="<%= wvo.getInsertdate()%>">
 						<td><%= wvo.getWarningnum() %></td>
 						<td><%= wvo.getWtnum() %></td>
 						<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
@@ -92,6 +118,11 @@
 %>
 				</tbody>
 			</table>
+			<input type="hidden" id="wtnum" name="wtnum" value="">
+			<input type="hidden" id="wcategory" name="wcategory" value="">
+			<input type="hidden" id="wcontent" name="wcontent" value="">
+			<input type="hidden" id="mnick" name="mnick" value="">
+			<input type="hidden" id="insertdate" name="insertdate" value="">
 		</form>
 	</body>
 </html>

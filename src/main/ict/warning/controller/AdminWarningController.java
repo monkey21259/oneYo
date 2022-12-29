@@ -44,27 +44,20 @@ public class AdminWarningController {
 	public String adminWarningSelectContent(WarningVO wvo , HttpServletRequest req, Model model) {
 		logger.info("adminWarningSelectContent 함수진입 >>> ");
 		
-		String wtnum = req.getParameter("wtnum");
-		String wcategory = req.getParameter("wcategory");
-		String wcontent = req.getParameter("wcontent");
-		String mnick = req.getParameter("mnick");
-		String insertdate = req.getParameter("insertdate");
+	
+		System.out.println("wtnum : " + wvo.getWtnum());
+		System.out.println("wcategory : " + wvo.getWcategory());
+		System.out.println("wcontent : " + wvo.getWcontent());
+		System.out.println("mnick : " + wvo.getMnick());
+		System.out.println("insertddate : " + wvo.getInsertdate());
 		
-		System.out.println("wtnum : " + wtnum);
-		System.out.println("wcategory : " + wcategory);
-		System.out.println("wcontent : " + wcontent);
-		System.out.println("mnick : " + mnick);
-		System.out.println("insertddate : " + insertdate);
-		
-		
-		String wnum = req.getParameter("wnum");
-		wvo.setWnum(wnum);
-		logger.info("wnum >>> : " + wvo.getWnum());
-		logger.info("wnum.substring(0,1) >>> : " + wnum.substring(0,1));
-		logger.info("wnum.substring(0,1).toUpperCase() >>> : " + wnum.substring(0,1).toUpperCase());
-		
+		String wcategory = wvo.getWcategory();
+		String mnick = wvo.getMnick();
+		String wtnum = wvo.getWtnum();
+		String wcontent = wvo.getWcontent();
+		String insertdate = wvo.getInsertdate();
 		//신고당한 사람
-		if(wnum.substring(0,1).equals("R")) {
+		if(wvo.getWtnum().substring(0,1).equals("R")) {
 			
 			List<WarningVO> list = adminWarningService.adminWarningSelectRecipe(wvo);
 			
@@ -73,6 +66,12 @@ public class AdminWarningController {
 			if(list.size() > 0) {
 				
 				model.addAttribute("list", list);
+				model.addAttribute("wcategory", wcategory);
+				model.addAttribute("wtnum", wtnum);
+				model.addAttribute("mnick", mnick);
+				model.addAttribute("wcontent", wcontent);
+				model.addAttribute("insertdate", insertdate);
+				return "warning/adminWarningSelectContent";
 			} //if
 		
 		} //if

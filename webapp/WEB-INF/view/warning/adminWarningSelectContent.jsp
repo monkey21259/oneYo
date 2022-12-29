@@ -15,6 +15,21 @@
 	logger.info("adminWarningSelectAll 진입 >>> : "); 
 %>
 <%
+	String wcategory = (String)request.getAttribute("wcategory");
+	String wtnum = (String)request.getAttribute("wtnum");
+	String mnick = (String)request.getAttribute("mnick");
+	String wcontent = (String)request.getAttribute("wcontent");
+	String insertdate = (String)request.getAttribute("insertdate");
+
+// 	model.addAttribute("list", list);
+// 	model.addAttribute("wcategory", wcategory);
+// 	model.addAttribute("wtnum", wtnum);
+// 	model.addAttribute("mnick", mnick);
+// 	model.addAttribute("wcontent", wcontent);
+// 	model.addAttribute("insertdate", insertdate);
+
+%>
+<%
 	//	model.addAttribute("list", list);
 	Object obj = request.getAttribute("list");
 			if(obj == null){return; }
@@ -23,12 +38,9 @@
 			int nCnt = list.size();
 			
 			WarningVO wvo = null;
-			RecipeVO rvo = null;
 			
-// 			if(nCnt == 1){
-// 				wvo = list.get(0);
-// 				rvo = list.get(0);
-		//	}
+			wvo = list.get(0);
+			
 			
 			
 			
@@ -89,20 +101,21 @@
 				<tr>
 					<td>신고분야</td>
 					<td colspan="4" style="text-align:left; width:400;">
-						<font size="4" style="color:black"><%= wvo.getWcategory() %></font>
+						<font size="4" style="color:black"><%= CodeUtils.getWcategory(wcategory) %></font>
 					</td>
-					<td class="td_2"> 작성일자 :<%= wvo.getInsertdate() %>
+					<td class="td_2"> 작성일자 :<%= insertdate %>
 					</td>
 					</tr>
 					<tr>
-						<td>작성자</td>
-<%-- 						<td><%= wvo.get %></td> --%>
+						<input type="hidden" name="mnum" value="<%=wvo.getWtmnum()%>">
+						<td>신고당한 사람</td>
+						<td><%= wvo.getWtmnick() %></td> 
 						<td>신고자</td>
-						<td><%= wvo.getMnick()%></td>
+						<td><%= mnick%></td>
 					</tr>
 					<tr>
 						<td>
-						<span name="wcontent" id="wcontent" rows="5" cols="100"><%= wvo.getWcontent() %></span>
+						<span name="wcontent" id="wcontent" rows="5" cols="100"><%= wcontent %></span>
 						</td>
 					</tr>		
 				<tr>

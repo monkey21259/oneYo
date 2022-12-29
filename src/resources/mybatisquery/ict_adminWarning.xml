@@ -24,7 +24,7 @@
 	<select id="adminWarningSelectRecipe" resultType="warningvo">
 		SELECT    A.WTNUM 	AS 		WTNUM
 				, B.MNUM 	AS 		WTMNUM
-				, B.MNICK 	AS 		MNICK
+				, B.MNICK 	AS 		WTMNICK
 				, C.RNUM 	AS 		RNUM	
 				, C.MNUM 	AS 		MNUM
 					
