@@ -8,6 +8,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$(".content").click(function(){
+			
+			
+			let info = $(this).siblings();
+			console.log(info);
+			
+			let mnum = info.get(1).value;
+			let mnick = info.get(0).value;
+			
+			console.log(mnum);
+			console.log(mnick);
+			
+			location.href="adminLevelupSelectContent.ict?mnick="+mnick+"&mnum="+mnum;
+		});
+		
+		
+		
+		
+	});
+	
+
+
+
+
+
+
+
+
+
+</script>
+
 </head>
 <body>
 <form id="adminForm" name="adminForm">
@@ -17,17 +53,17 @@
 		<hr>
 		<button type="button" id="levelupmoreBtn" style="float: right;">더보기</button><br>
 			<table border="1 solid">
-				<thead>
+			
 					<tr>
-						<th>NO</th>
-						<th>등업번호</th>
-						<th>등업제목</th>
-						<th>등업사진</th>
-						<th>등업신청자</th>
-						<th>등업신청일</th> <!-- 작성일 -->
-						<th>등업처리여부</th>						
+						<td>NO</td>
+						<td>등업번호</td>
+						<td>등업제목</td>
+						<td>등업사진</td>
+						<td>등업신청자</td>
+						<td>등업신청일</td> <!-- 작성일 -->
+						<td>등업처리여부</td>						
 					</tr>					
-				</thead>
+				
 <%
  			
 				List<LevelupVO> list = (List<LevelupVO>)request.getAttribute("list");
@@ -42,17 +78,20 @@
 						process = "대기 중";
 					};
 %>
-				<tbody>
+			
+						
 					<tr>
+						<input type="hidden" value="<%= lvo.getMnick()%>" id="mnick">
+						<input type="hidden" value="<%= lvo.getMnum()%>" id="mnum">
 						<td><%= i+1 %></td>
 						<td><%= lvo.getLvnum()%></td>
-						<td><%= lvo.getLvsubject()%></td>
+						<td class="content"><%= lvo.getLvsubject()%></td>
 						<td><img src="oneYo/img/levelup/<%= lvo.getLvphoto()%>"></td>
 						<td><%= lvo.getMnick()%></td> <!-- 닉네임 -->
 						<td><%= lvo.getInsertdate()%></td>
 						<td><%= process%></td>
 					</tr>
-				</tbody>
+				
 				<%
 				} //for
  			} //if				

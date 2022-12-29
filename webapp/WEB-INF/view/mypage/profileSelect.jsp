@@ -114,6 +114,17 @@ $(document).ready(function(){
 		}).submit();
 		
 	});	//	.memBtn 기타 버튼
+	
+	$(document).on('click', '.delBtn', function(){
+		alert("delBtn");
+
+		$('#profileSelect').attr({
+			 'action'	: "memDelete.ict"
+			,'method'	: "GET"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
+		
+	});	//	.memBtn 기타 버튼
 });
 </script>
 </head>
@@ -248,7 +259,7 @@ profileSelect.jsp
 	</td>
 </tr>
 </table>
-
+<input type="button" class="delBtn" value="회원탈퇴">
 </form>
 
 </div>

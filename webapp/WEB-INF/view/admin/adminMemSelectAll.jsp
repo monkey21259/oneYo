@@ -13,6 +13,8 @@
 	logger.info("회원목록(adminMemSelectAll) 진입 >>> : "); 
 %>        
 <%
+	
+
 	//model.addAttribute("adminMemSelectAll", list);
 	Object obj = request.getAttribute("adminMemSelectAll");
 	if(obj == null){return; }
@@ -20,6 +22,14 @@
 	List<MemVO> list = (List<MemVO>)obj;
 	//vo호출
 	MemVO mvo = null;
+	
+%>
+<%
+	// 페이징
+	int pageSize = 0;
+	int groupSize = 0;
+	int curPage = 0;
+	int totalCount = 0;
 	
 %>
 
@@ -32,14 +42,56 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				alert("제이쿼리");
+						
+				$(document).on("click", ".deleteBtn", function(){
+					
+					let info = $(this).parent().find(".mid");
+					//let info = $(this).siblings();
+					console.log("info >>> : " + info);
+					let mid = info.get(0).value;
+					console.log("mid >>> : " + mid);
+					
+					let result = confirm(mid + '님을 탈퇴 하시겠습니까? ')
+					if(result == true){
+					
+					let url = "adminMemDelete.ict";
+					let reqType= "GET";
+					let dataParam ={
+							
+							mid : info.get(0).value,
+					};
+					
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+					
+					$.ajax({
+						
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError		
+						
+					}); //ajax
+				}else{
+					alert("취소되었습니다");
+				}
+					
+					
+				function whenSuccess(resData){
+							if(resData == 'deleteOK'){
+								alert("탈퇴되었습니다.");
+							} 
+						
+					} //sucess
+					
+				function whenError(e){
+					console("탈퇴실패 >>> : "  + e.responseText);
+				} //whenError	
 				
-// 				$(document).on("click", "#deleteBtn", function(){
 					
-					
-					
-					
-// 				}); //deleteBtn
+				}); //deleteBtn
 				
 			}); //ready
 		</script>
@@ -67,29 +119,64 @@
 <%
 			if(list.size() > 0){
 				for(int i=0; i<list.size(); i++){
-						mvo = list.get(i);
+					mvo = list.get(i);
+%>
+<%
+					//페이징 세팅
+					//model.addAttribute("pagingMVO", mvo);
+					Object obj_p = request.getAttribute("pagingMVO");
+					MemVO pagingMPVO = (MemVO)obj_p;
 					
+					pageSize = Integer.parseInt(pagingMPVO.getPageSize());
+					logger.info("pageSize >>> : " + pageSize );
+					
+					groupSize = Integer.parseInt(pagingMPVO.getGroupSize());
+					logger.info("groupSize >>> : " + groupSize );
+					
+					curPage = Integer.parseInt(pagingMPVO.getCurPage());
+					logger.info("curPage >>> : " + curPage );
+					
+					totalCount = Integer.parseInt(mvo.getTotalCount());
+					logger.info("totalCount >>> : " + totalCount );
 %>				
 				<tbody>
 					<tr>
-						<td><%= mvo.getMemnum() %></td>
+						
+						<td class="info"><%= mvo.getMemnum() %></td>
 						<td><%= mvo.getMid() %></td>
 						<td><%= mvo.getMname() %></td>
 						<td><%= mvo.getMnick() %></td>
 						<td><%= mvo.getMemail() %></td>
 						<td><%= CodeUtils.getMgradeVal(mvo.getMgrade()) %></td>
 						<td><img src="/oneYo/img/mem/<%= mvo.getMprofile() %>" style="width:50px; height:50px;"></td>
-						<td><%= CodeUtils.getMCategorys(mvo.getMcategory()) %></td>
+						<td><%= CodeUtils.getAdminRcate(mvo.getMcategory()) %></td>
 						<td><%= mvo.getMwarning() %></td>
 						<td><%= mvo.getInsertdate() %></td>
-						<td><button type="button" id="deleteBtn">탈퇴</button></td>
+						<td class="delBtn">
+							<input type="hidden" class="mid" value="<%= mvo.getMid() %>" />
+							<button type="button" class="deleteBtn">탈퇴</button>
+						</td>
 					</tr>
 				</tbody>
 <%
 				}//for
+%>
+
+				<tr>
+					<td colspan="11">
+					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+						<jsp:param name="url" value="adminMemSelectAll.ict" />
+						<jsp:param name="pageSize" value="<%=pageSize %>" />
+						<jsp:param name="groupSize" value="<%=groupSize %>" />
+						<jsp:param name="curPage" value="<%=curPage %>"/>
+						<jsp:param name="totalCount" value="<%=totalCount %>"/>
+						</jsp:include>
+					</td>
+				</tr>
+<%
 			}//if
 %>
 			</table>
-		
+
 </body>
 </html>

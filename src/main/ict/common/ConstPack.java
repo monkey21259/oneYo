@@ -87,8 +87,8 @@ public abstract class ConstPack {
 
 	// ------------------------------------
 	// 코드값 라벨링 관련 상수
-	public static final String[] MEM_GRADE_ARR = {"일반", "지망생", "전문가", "관리자"};
-	public static final String[] MEM_GRADE_IDX_ARR = {"0", "1", "2", "9"};
+	public static final String[] MEM_GRADE_ARR = {"일반", "전문가", "관리자"};
+	public static final String[] MEM_GRADE_IDX_ARR = {"0", "1","9"};
 	public static final String[] RECIPE_CAT_ARR = {"한식", "중식", "양식", "일식", "디저트", "기타"};
 	public static final String[] RECIPE_CAT_IDX_ARR = {"00", "01", "02", "03", "04", "99"};
 	public static final String[] RECIPE_DIFF_ARR = {"쉬움", "보통", "어려움"};

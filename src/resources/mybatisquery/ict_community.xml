@@ -16,11 +16,11 @@
 						  		, UPDATEDATE
 						  	 )
 					  VALUES(
-		   				    #{cnum}
-						  , #{csubject}
-						  , #{ccontent}
-						  , #{cphoto}
-						  , #{mnum}
+		   				    #{cnum, jdbcType=VARCHAR}
+						  , #{csubject, jdbcType=VARCHAR}
+						  , #{ccontent, jdbcType=VARCHAR}
+						  , #{cphoto, jdbcType=VARCHAR}
+						  , #{mnum, jdbcType=VARCHAR}
 						  , 'Y'
 						  , SYSDATE
 						  , SYSDATE
@@ -43,7 +43,7 @@
 					, A.DELETEYN 	 AS 	DELETEYN
 					, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
 					, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-					,CEIL(ROW_NUMBER() OVER(ORDER BY CNUM DESC) / #{pageSize}) pageSize
+					,CEIL(ROW_NUMBER() OVER(ORDER BY A.CNUM DESC) / #{pageSize, jdbcType=VARCHAR}) pageSize
 					, COUNT(A.CNUM) OVER() AS totalCount
 			FROM  "ORCLICT00"."ICT_COMMUNITY" A
 		         ,"ORCLICT00"."ICT_MEMBER"    B
@@ -51,7 +51,7 @@
 			AND      A.DELETEYN = 'Y'
 			AND      B.DELETEYN = 'Y'
 			ORDER BY A.CNUM DESC
-		) WHERE pageSize = #{curPage}
+		) WHERE pageSize = #{curPage, jdbcType=VARCHAR}
            ORDER BY COMMUNITYNUM DESC
         
 	</select>
@@ -72,7 +72,7 @@
 		       ,B.MNICK         AS      MNICK
 		       ,NVL((SELECT COUNT(LNUM)
 		             FROM "ORCLICT00"."ICT_LIKE"
-		             WHERE LIKETHIS = #{cnum }), 0)     AS    LIKECNT
+		             WHERE LIKETHIS = #{cnum, jdbcType=VARCHAR }), 0)     AS    LIKECNT
 		FROM    "ORCLICT00"."ICT_COMMUNITY" A
 		       ,"ORCLICT00"."ICT_MEMBER" B
 		       ,"ORCLICT00"."ICT_LIKE" C
@@ -80,7 +80,7 @@
 		AND     A.DELETEYN = 'Y'
 		AND     B.DELETEYN = 'Y'
 		AND     C.LIKEYN = 'Y'
-		AND     A.CNUM = #{cnum } group by A.CNUM, A.CSUBJECT, A.CCONTENT, A.CPHOTO,
+		AND     A.CNUM = #{cnum, jdbcType=VARCHAR } group by A.CNUM, A.CSUBJECT, A.CCONTENT, A.CPHOTO,
 		        A.WARNING, A.MNUM, A.CHIT, A.DELETEYN, TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD'), 
 		        TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD'), B.MNICK
 			
@@ -89,11 +89,11 @@
 <!-- 수정 -->	
 	<update id="communityUpdate" parameterType="communityvo">
 		UPDATE "ORCLICT00"."ICT_COMMUNITY" A
-		   SET 	  CSUBJECT = #{csubject }
-		   		, CCONTENT = #{ccontent }
-		   		, CPHOTO = #{cphoto }
+		   SET 	  CSUBJECT = #{csubject, jdbcType=VARCHAR }
+		   		, CCONTENT = #{ccontent, jdbcType=VARCHAR }
+		   		, CPHOTO = #{cphoto, jdbcType=VARCHAR }
 		   		, UPDATEDATE = SYSDATE
-		 WHERE CNUM = #{cnum }
+		 WHERE CNUM = #{cnum, jdbcType=VARCHAR }
 		   AND DELETEYN = 'Y'
 	</update>	
 	
@@ -101,7 +101,7 @@
 	<update id="communityDelete" parameterType="communityvo">
 		UPDATE "ORCLICT00"."ICT_COMMUNITY" A
 		   SET 	 DELETEYN ='N'
-		 WHERE CNUM = #{cnum }
+		 WHERE CNUM = #{cnum, jdbcType=VARCHAR }
 		   AND DELETEYN = 'Y'
 	</update>	
 </mapper>     

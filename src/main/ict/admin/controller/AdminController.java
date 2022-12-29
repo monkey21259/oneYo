@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.admin.service.AdminService;
+import main.ict.common.ConstPack;
 import main.ict.community.controller.CommunityController;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
@@ -79,19 +82,70 @@ public class AdminController {
 			
 			return "admin/adminHome";
 	} //adminHome
+
 	
+//회원목록	
 	@GetMapping("adminMemSelectAll")
 	public String adminMemSelectAll(MemVO mvo, Model model) {
 		
+		//페이징===========
+		int pageSize = ConstPack.MEMBER_PAGE_SIZE; //10
+		int groupSize = ConstPack.MEMBER_GROUP_SIZE; //5
+		int curPage = ConstPack.MEMBER_CUR_PAGE; //1
+		int totalCount = ConstPack.MEMBER_TOTAL_COUNT; //0
+		
+		
+		if(mvo.getCurPage() != null) {
+			curPage = Integer.parseInt(mvo.getCurPage());
+		}
+		
+		mvo.setPageSize(String.valueOf(pageSize));
+		mvo.setGroupSize(String.valueOf(groupSize));
+		mvo.setCurPage(String.valueOf(curPage));
+		mvo.setTotalCount(String.valueOf(totalCount)); 
+	
+		logger.info("mvo.getPageSize() >>> : " + mvo.getPageSize());
+		logger.info("mvo.getGroupSize() >>> : " + mvo.getGroupSize());
+		logger.info("mvo.getCurPage() >>> : " + mvo.getCurPage());
+		logger.info("mvo.getTotalCount() >>> : " + mvo.getTotalCount());
+		
+		//페이징===========
+			
 		List<MemVO> list = adminService.adminMemSelectAll(mvo);
 		int nCnt = list.size();
 		
 		logger.info("회원수 >>> : " + nCnt);
 		if(nCnt > 0) {
 			
+			model.addAttribute("pagingMVO", mvo);
 			model.addAttribute("adminMemSelectAll", list);
 		}
 		return "admin/adminMemSelectAll";
-	}
+	} //adminMemSelectAll
+
+	
+//회원탈퇴	
+	@GetMapping("adminMemDelete")
+	@ResponseBody
+	public Object memDelete(MemVO mvo) {
+		logger.info("memDelete() 함수진입 >>> : ");
+		logger.info("memDelete mvo.getMid() >>> : " + mvo.getMid());
+
+		String s ="";
+		
+		int nCnt = adminService.adminMemDelete(mvo);
+		logger.info("nCnt >>> : " + nCnt);
+		
+		if(nCnt == 1) {
+			s = "deleteOK";
+		}else { s ="deleteNO";
+		}
+		logger.info("탈퇴 ajax값(s) >>> : " + s);
+		
+		
+		
+		return s;
+		
+	} //memDelete
 	
 }//class

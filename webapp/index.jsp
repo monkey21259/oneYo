@@ -55,12 +55,6 @@
 				<!-- mypage pwcheck -->
 				<a href="mypagePWChk.ict?mnum=M202212260012">비번 체크</a><br>
 				<hr>
-				<!-- memSelct -->
-				<a href="profileSelect.ict?mnum=M202212260012">프로필 보기</a><br>
-				<hr>
-				<!-- mail -->
-<!-- 				<a href="memInsertEmail.ict?memail=onnu0623@gmail.com&mgrade=0">mail</a><br> -->
-<!-- 				<hr> -->
 				<!-- 로그인 -->
 				<a href="loginForm.ict">로그인 테스트</a>
 				<hr>

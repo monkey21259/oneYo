@@ -287,4 +287,145 @@ public class MemController {
 		
 		return "mypage/mypagePWCheck";
 	}
+	
+
+	//	회원가입 데이터 전송
+	@PostMapping("memUpdate")
+	public String memUpdate(HttpServletRequest req/* , MemVO mvo */, Model model) {
+		
+		logger.info("memUpdate(req, mvo, model) >>> : memUpdate.jsp"
+				+ " >>> : " + req/* + " / " + mvo */ + " / " + model);
+
+		FileUpload fu = null;
+		fu = new FileUpload( ConstPack.MEMBER_IMG_PATH
+							,ConstPack.MEMBER_IMG_SIZE
+							,ConstPack.MEMBER_ENC_TYPE	);
+		
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("memUpdate().bool >>> : " + bool);
+		
+		//	vo 호출
+		MemVO mvo = null;
+		mvo = new MemVO();
+		
+		//	==========================================================	//
+		
+		String mkey = "";	//	구분자 key
+		if (fu.getParameter("mkey") != null && fu.getParameter("mkey").length() > 0) {
+			
+			mkey = fu.getParameter("mkey");
+			mkey = mkey.toUpperCase();
+		}
+		mvo.setMkey(mkey);	//	vo 세팅
+		logger.info("vo.mkey >>> : " + mvo.getMkey());
+		
+		//	MNUM	//	회원 번호	//	NOT NULL	//	비교군 업댓x
+		String mnum = "";
+		mnum = fu.getParameter("mnum");
+		logger.info("mnum >>> : " + mnum);
+		mvo.setMnum(mnum);	//	vo 세팅
+		logger.info("vo.mnum >>> : " + mvo.getMnum());
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MPROFILE")) {
+			
+			//	MNICK	//	닉네임	//
+			String mnick = "";
+			mnick = fu.getParameter("mnick");	//	호출
+			logger.info("mnick >>> : " + mnick);
+			mvo.setMnick(mnick);	//	vo 세팅
+			logger.info("vo.mnick >>> : " + mvo.getMnick());
+			
+			//	MPROFILE	//	프로필사진	//	
+			String mprofile = "";
+			mprofile = fu.getFileName("mprofile");	//	호출
+			logger.info("mprofile >>> : " + mprofile);
+			mvo.setMprofile(mprofile);	//	vo 세팅
+			logger.info("vo.mprofile >>> : " + mvo.getMprofile());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MPW")) {
+			
+			//	MPW	//	비밀번호	//	NOT NULL
+			String mpw = "";
+			mpw = fu.getParameter("mpw");	//	호출
+			logger.info("mpw >>> : " + mpw);
+			mvo.setMpw(mpw);	//	vo 세팅
+			logger.info("vo.mpw >>> : " + mvo.getMpw());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MEMAIL")) {
+			
+			//	MEMAIL	//	이메일	//	NOT NULL
+			String memail = "";
+			memail = fu.getParameter("memail");	//	호출
+			logger.info("memail >>> : " + memail);
+			mvo.setMemail(memail);	//	vo 세팅
+			logger.info("vo.memail >>> : " + mvo.getMemail());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MEM")) {
+			
+			//	MNAME	//	이름	//
+			String mname = "";
+			mname = fu.getParameter("mname");	//	호출
+			logger.info("mname >>> : " + mname);
+			mvo.setMname(mname);	//	vo 세팅
+			logger.info("vo.mname >>> : " + mvo.getMname());
+			
+			//	MHP	//	핸드폰	//	NOT NULL
+			String mhp = "";
+			mhp = fu.getParameter("mhp");	//	호출
+			logger.info("mhp >>> : " + mhp);
+			mvo.setMhp(mhp);	//	vo 세팅
+			logger.info("vo.mhp >>> : " + mvo.getMhp());
+			
+			//	MCATEGORY	//	요리 분야	//	
+			String mcategory = "";
+			mcategory = fu.getParameter("mcategory");	//	호출
+			logger.info("mcategory >>> : " + mcategory);
+			mvo.setMcategory(mcategory);	//	vo 세팅
+			logger.info("vo.mcategory >>> : " + mvo.getMcategory());
+		}
+		
+		
+		int updateCnt = memService.memUpdate(mvo);
+		
+		if (updateCnt > 0) {		//	성공시
+			logger.info("memUpdate().nCnt >>> : " + updateCnt);
+			
+			return "mypage/profileUpdate";
+		}
+		
+		logger.info("memUpdate().nCnt >>> : " + updateCnt + "로 입력 실패");
+		
+		return "mem/profileSelect";	//	실패시
+	}
+	
+	//	memDelete 회원 탈퇴
+	//	오류나는데 일단 집가고 싶어서ㅜ 걍 주석처리하고갑니다...
+//	@GetMapping("memDelete")
+//	public String memDelete(MemVO mvo, Model model) {
+//		
+//		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
+//		
+//		int deleteCnt = memService.memDelete(mvo);
+//		
+//		if (deleteCnt > 0) {
+//			logger.info("memDelete nCnt >>> : " + deleteCnt);
+//			
+//			model.addAttribute("memDelete", deleteCnt);
+//			
+//			return "home/home";
+//		}
+//		
+//		return "home/home";
+//	}
 }

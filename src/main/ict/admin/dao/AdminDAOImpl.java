@@ -56,7 +56,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<MemVO> adminMemSelectAll(MemVO mvo) {
 		return sqlsession.selectList("adminMemSelectAll", mvo);
 	}
-	
 
+//회원탈퇴	
+	@Override
+	public int adminMemDelete(MemVO mvo) {
+		return sqlsession.update("adminMemDelete", mvo);
+	}
 	
 } 

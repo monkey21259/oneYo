@@ -46,6 +46,24 @@ public class MemDAOImpl implements MemDAO {
 		
 		return sqlSession.selectList("memSelect", mvo);
 	}	//	프로필 조회 목적 memSelect "profileSelect"
+
+	//	프로필 수정 삭제 memUpdate "memUpdate"
+	@Override
+	public int memUpdate(MemVO mvo) {
+		
+		logger.info("memUpdate(mvo) >>> : ");
+		
+		return (Integer)sqlSession.update("memUpdate", mvo);
+	}	//	프로필 수정 삭제 memUpdate "memUpdate"
+
+	//	회원 탈퇴 "memDelete"
+	@Override
+	public int memDelete(MemVO mvo) {
+
+		logger.info("memDelete(mvo) >>> : ");
+		
+		return (Integer)sqlSession.update("memDelete", mvo);
+	}	//	회원 탈퇴 "memDelete"
 	
 	
 }

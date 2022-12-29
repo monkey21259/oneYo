@@ -31,5 +31,48 @@
 
 </select>
 
+<select id="levelupSelectContent" parameterType="levelupvo" resultType="levelupvo">
+
+		SELECT A.LVNUM AS LVNUM,
+		       A.LVSUBJECT AS LVSUBJECT,
+		       A.LVCONTENT AS LVCONTENT,
+		       A.LVPHOTO AS LVPHOTO,
+		       A.MNUM AS MNUM,
+		       TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+		  FROM ICT_LEVELUP A
+		  WHERE MNUM = #{mnum}
+		  AND PROCESSYN = '0'     
+			
+
+</select>
+
+<update id="adminLevelupNope" parameterType="levelupvo">
+
+	UPDATE ICT_LEVELUP
+	   SET PROCESSYN = '1'
+	   WHERE LVNUM = #{lvnum}
+
+</update>
+
+<update id="levelupOkey" parameterType="levelupvo">
+	
+		UPDATE ICT_LEVELUP
+		SET PROCESSYN = '2'
+		WHERE LVNUM = #{lvnum}
+
+
+</update>
+
+<update id="mgradeUpdate" parameterType="levelupvo">
+
+
+	UPDATE ICT_MEMBER
+	   SET MGRADE = '1'   
+	   WHERE MNUM = #{mnum}
+	   AND DELETEYN = 'Y'
+
+
+</update>
+
 
 </mapper>

@@ -3,195 +3,170 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
 
 <%
-	//*******************************************
-	//전달해야 할 변수
-	//str url 값 가져오기 블럭	
+	Logger logger = LogManager.getLogger(this.getClass());
+//-----------------
+//전달해야 할 변수
+//-----------------
+	logger.info("인쿨루드를 통한 paging jsp 도착");	
 
 	String url = null;
 	String str = null;
-	
+							//boardpaging_1.jsp의 데이터
 	url = request.getParameter("url");
-	System.out.println("넘어온 url의 값 : " + url);
+	logger.info("Boardpaging.jsp url : " + url);
 	
 	str = request.getParameter("str");
-	System.out.println("넘어온 str의 값 빈문자열 : " + str);
-
-	if(str != null&& str.length()>0) {
+	logger.info("빈깡통보냄 str : " + str);
+	
+	if(str != null){
 		str = str + "&";
-		System.out.println("str : " + str);
+		logger.info("str + & : " + str);
 	}
-	//*******************************************
 
 %>
-
-<% 
-	//*******************************************
-	//페이지 구성 
-	//한페이지에 보여질 게시물의 수
-
-	//한페이지에 보여질 게시물 row의 수
+<%
+	//페이지 네비게이션 관련 변수
+	//---------------------
+	
+	//한 페이지에서 보여질 게시물의 수
 	int pageSize = 0;
-	// 밑에 넘어갈 수 있는 페이지 이동 갯수
+
+	//그룹의 크기
 	int groupSize = 0;
-	// 현재 페이지
-	int curPage = 0;
-	// 전체 페이지의 개수
-	int pageCount = 0;
-	//전체 게시물의 수
+	
+	//전체 게시물의 갯수
 	int totalCount = 0;
-
-	//include를 통해 넘어온 데이턴데 commonutil에 있는 상수값이 vo에 set되서 넘어오는거 controller를 봐라
+	
+	//현재 페이지
+	int curPage = 0;
+	
+	//전체 페이지의 개수
+	int pageCount = 0;
+							//페이지로우갯수 7고정      48부터   70까지는 넘어온 데이터 받는 블럭
 	if(request.getParameter("pageSize") != null){
-		pageSize = Integer.parseInt(request.getParameter("pageSize"));
+		pageSize = Integer.parseInt(request.getParameter("pageSize"));//
+		logger.info("한페이지에 보여질 게시물 수 pageSize : " + pageSize);
 	}
-	
-	//controller에서 상수가 vo에 세팅되어 넘어온 값
-		if(request.getParameter("groupSize")!=null){
-			groupSize = Integer.parseInt(request.getParameter("groupSize"));
-			System.out.println("controller에서 vo에 세팅되어 넘어온 groupSize : " + groupSize); 
-		}
-
-		//controller에서 상수가 vo에 세팅되어 넘어온 값
-		if(request.getParameter("curPage")!=null){
-			curPage = Integer.parseInt(request.getParameter("curPage"));
-			System.out.println("controller에서 vo에 세팅되어 넘어온 curPage : " + curPage);
-		}
-
-		//얘는 반대로 controller에서 상수가 세팅된게아니라 db를 훑고 list에 있는 totalCount 결과값을 받아온거
-		if(request.getParameter("totalCount")!=null){
-			totalCount = Integer.parseInt(request.getParameter("totalCount"));
-			System.out.println("db훑고 와서 list에 담긴 totalCount : " + totalCount);
-		}
-
-		//*******************************************
-
-		//*******************************************
-		//로직 짜기 현재 그룹 설정
-	pageCount = (int)Math.ceil(totalCount / (groupSize + 0.0));
-	System.out.println("pageCount : " + pageCount);
-	
-	int curGroup = (curPage-1) / groupSize;
-	System.out.println("curGroup의 값 : " + curGroup);
-
-	int linkPage = curGroup * groupSize;
-	System.out.println("linkPage의 값 : " + linkPage);
-				
-%>
-<p align="right">
-<%
-	//*******************************************
-	//세팅하기
-if(curGroup > 0){
-
-	//KosSpringFileUploadSelectAll.jy&curpage=1
-	//KosSpringFileUploadSelectAll.jy&curpage=curpage		
-%>		
-	<ul class="pagination pagination-sm justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="<%=url%>?curPage=1">First</a>
-			</li>
-			<li>
-				<a class="page-link" href="<%=url%>?curPage=<%=linkPage%>">Previous</a>
-			</li>
-<% 
-	}else{
-
-%>
-	<ul class="pagination pagination-sm justify-content-center">
-			<li>
-				<a class="page-link" href="<%=url%>?curPage=1">First</a>
-			</li>
-			<li>
-				<a class="page-link" href="<%=url%>?curPage=1">Previous</a>
-			</li>
-
-<%
-	}
-
-	//다음 페이지를 위해 증가
-	linkPage++;
-	System.out.println("증가된 linkPage : " + linkPage);
-	
-	int loopCount = groupSize;
-	System.out.println("groupSize를 대입한 loopCount : " + loopCount);
-
-	while((loopCount > 0)&&(linkPage <= pageCount)){
-		
-		if(linkPage == curPage){
-			System.out.println("그룹범위내에서 페이지 링크if");
+					//밑에 보이는 넘어가는 페이지 5개 고정
 			
-%>
-	
-			<li class="page-item">
-				<a class="page-link" 
-				href="<%=url%>?curPage=<%=linkPage%>"><%=linkPage%></a>
-			</li>
-<% 
-		}else{
-			System.out.println("그룹이동없이 페이지 세팅");
-	
-%>
-	<li class="page-item">
-				<a class="page-link"
-					href="<%=url%>?curPage=<%=linkPage%>"><%=linkPage%></a>
-			</li>
-<% 		
-		}
-		linkPage++;
-		System.out.println("루프가 돌면서 linkPage가 증가하는 값 : " + linkPage);
-		loopCount--;
-		System.out.println("루프가 돌면서 loopCount가 감소하는 값 : " + loopCount);
+	if(request.getParameter("groupSize") != null){
+		groupSize = Integer.parseInt(request.getParameter("groupSize"));
+		logger.info("밑에 보여지는 목록 groupSize : " + groupSize);
+		
 	}
-
-	if(linkPage <= pageCount){
-		System.out.println("다음구릅이 있을떄 돔 : " + linkPage);	
-		System.out.println("다음구릅이 있을떄 돔 : " + pageCount);
-
-		
+				//현재 페이지 6
+	if(request.getParameter("curPage") != null){
+		curPage = Integer.parseInt(request.getParameter("curPage"));
+		logger.info("현재 페이지 curPage : " + curPage);
+	}
+				//전체 페이지 수
+	if(request.getParameter("totalCount") != null){
+		totalCount = Integer.parseInt(request.getParameter("totalCount"));
+		logger.info("전체 글갯수 totalCount : " + totalCount);
+	}
+	
+	//전체게시물수와 페이지크기를 가지고 전체 페이지 개수를 계산함.
+	//소수점에 따라 계산상의 오류가 없도록 한것    나누기 / 한것 totalCount 200 pagesize 7
+	
+						//200 나누기 한번에 보여줄 로우의 갯수
+	pageCount = (int)Math.ceil(totalCount / (pageSize + 0.0));
+	logger.info("전체 페이지 갯수 pageCount : " + pageCount);
+							// 29
+	//현재그룹 설정
+	//ex 6-1/5			//  1  /    밑에 고정으로 보이는 페이지수 5개
+	int curGroup = (curPage-1) / groupSize;
+	logger.info("curGroup : " + curGroup);
+					//1
+	//0*0             0 * 5
+	int linkPage = curGroup * groupSize;
+	logger.info("linkPage : " + linkPage);
+					// 5
 %>
-	<li class="page-item">
-			<a class="page-link" href="<%=url%>?curPage=<%=linkPage%>">Next</a>
-		</li>
-		<li class="page-item">
-			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Last</a>
-		</li>
-		</ul>
-<% 		
-	//끝 페이지일 경우
-	}else{
-		System.out.println("끝페이지일때 도는 로직 linkPage : " + linkPage);
-		System.out.println("끝페이지일때 도는 로직 pageCount : " + pageCount);
-		System.out.println("끝페이지일때 도는 로직 else가 돈다");
-		
-%>
- 		<li class="page-item">
-			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Next</a>
-		</li>
-		<li class="page-item">
-			<a class="page-link" href="<%=url%>?curPage=<%=pageCount%>">Last</a>
-		</li>
-		</ul>
-		<div id="btndiv" align="right">
-			전체 <%=pageCount%>페이지 중 <%=curPage%>페이지<br>
-		</div>
+
+	<p align="right">
+	
 <%
-	}
+
+	if(curGroup > 0){
+
+	//boardSelectList.jsp&curPage=1
+	//boardSelectList.jsp&curPage=0		
+%>	
+	<!-- 쿼리스트링 날릴려고 작성한 곳 -->
+	<a href="<%=url %>?curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
+	<a href="<%=url %>?curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
+<%		
+	}else{
+%>	
+ <!--  ◁◁-->&nbsp;&nbsp;&nbsp;<!--◀-->&nbsp;&nbsp;&nbsp;
+<%
+	} 
+	//다음 링크를 위해 증가시킴
+	linkPage++;
+	logger.info("증가된 linkPage : " + linkPage);
+			//groupSize 5 그래서 5
+	int loopCount = groupSize;
+	logger.info("loopCount : " + loopCount);
+	
+	//그룹범위내에서 페이지 링크만듬
+	//5>0 && 1<=40
+	while((loopCount > 0) && (linkPage <= pageCount)){
+				//5            6  <=29
+		//6 == 6
+	if(linkPage == curPage){
+		logger.info("그룹범위내에서 페이지 링크if");
+
+%>	
+	<%=linkPage %>
+<% 	
+	}else{
+		logger.info("그룹범위내에서 페이지 링크 else");
+		logger.info("linkPage 값 증가 : " + linkPage);
 %>
+	[<a href="<%=url %>?curPage=<%=linkPage%>"><%=linkPage %></a>]&nbsp;
+	
 
+<% 	
+	}
+	
+	linkPage++;
+	loopCount--;
+	}
+	
+	//다음그룹이 있는 경우
+	//  6  40
+	//중간의 경우 
+	if(linkPage <= pageCount) {
+		logger.info("다음그룹이 있는경우 linkPage : " + linkPage);
+		logger.info("다음그룹이 있는 경우 pageCount : " + pageCount);
+		
+		//boardSelectList.jsp?&curPage=6
+		//boardSelectList.jsp?&curPage=40		
+%>	
+	<a href="<%=url %>?curPage=<%=linkPage %>">▶</a>&nbsp;&nbsp;&nbsp;
+	<a href="<%=url %>?curPage=<%=pageCount %>">▷▷</a>&nbsp;&nbsp;&nbsp;
+	
+<% 	
+	//마지막 페이지의 경우
+	}else{
+		logger.info("다음그룹이 있는경우 linkPage : " + linkPage);
+		logger.info("다음그룹이 있는경우 pageCount : " + pageCount);
+		logger.info("다음그룹이 있는경우 _else");
+%>	
+	<!--    ▶-->&nbsp;&nbsp;&nbsp;<!--  ▷▷-->&nbsp;&nbsp;&nbsp; 
+<% 
+	}
+	
+%>
 </p>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
 
-</body>
-</html>
+
+
+
+
+
+

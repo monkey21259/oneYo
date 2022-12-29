@@ -90,30 +90,42 @@ WHERE
 <update id="memUpdate" parameterType="memvo">
 
 UPDATE
-		 A.UPDATEDATE	=	SYSDATE
-<if test="mkey != null and mkey.equalsIgnoreCase('MPROFILE')">
-		,A.MNICK		=	#{ mnick }
-		,A.MPROFILE		=	#{ mprofile }
+		ICT_MEMBER
+	SET
+<if test="mkey != null and mkey.equals('MPROFILE')">
+		 MNICK			=	#{ mnick }
+		,MPROFILE		=	#{ mprofile }
 </if>
-<if test="mkey != null and mkey.equalsIgnoreCase('MPW')">
-		,A.MPW			=	#{ mpw }
+<if test="mkey != null and mkey.equals('MPW')">
+		 MPW			=	#{ mpw }
 </if>
-<if test="mkey != null and mkey.equalsIgnoreCase('MEMAIL')">
-		,A.MEMAIL		=	#{ memail }
+<if test="mkey != null and mkey.equals('MEMAIL')">
+		 MEMAIL			=	#{ memail }
 </if>
-<if test="mkey != null and mkey.equalsIgnoreCase('MEM')">
-		,A.MNAME		=	#{ mname }
-		,A.MHP			=	#{ mhp }
-		,A.MCATEGORY	=	#{ mcategory }
+<if test="mkey != null and mkey.equals('MEM')">
+		 MNAME			=	#{ mname }
+		,MHP			=	#{ mhp }
+		,MCATEGORY		=	#{ mcategory }
 </if>
-FROM
-		ICT_MEMBER		A
+		,UPDATEDATE		=	SYSDATE
 WHERE
-		A.DELETEYN	=	'Y'
+		DELETEYN		=	'Y'
 	AND
-		A.MNUM		=	#{ mnum }
+		MNUM			=	#{ mnum }
 
+</update>
 
+<update id="memDelete" parameterType="memvo">
+
+UPDATE
+		ICT_MEMBER
+	SET
+		 DELETEYN		=	'N'
+		,UPDATEDATE		=	SYSDATE
+WHERE
+		DELETEYN		=	'Y'
+	AND
+		MNUM			=	#{ mnum }
 
 </update>
 

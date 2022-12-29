@@ -21,6 +21,12 @@ public class MemVO {
 	//	key
 	private String mkey;	//	함수 조정 키	
 	
+	//페이징
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
+	
 	// 게시글순번
 	private String memnum;
 	
@@ -31,7 +37,8 @@ public class MemVO {
 	//	vo 세팅
 	public MemVO(String mnum, String mid, String mpw, String mname, String mnick, String mhp, String memail,
 			String mgrade, String mprofile, String mcategory, String mwarning, String deleteyn, String insertdate,
-			String updatedate, String mkey, String memnum) {
+			String updatedate, String mkey, String pageSize, String groupSize, String curPage, String totalCount,
+			String memnum) {
 		this.mnum = mnum;
 		this.mid = mid;
 		this.mpw = mpw;
@@ -49,11 +56,16 @@ public class MemVO {
 		
 		this.mkey = mkey;
 		
-		this.memnum = memnum;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
 		
+		this.memnum = memnum;
 	}
+	
 
-//	MNUM	//	회원 번호	//	NOT NULL
+	//	MNUM	//	회원 번호	//	NOT NULL
 	public String getMnum() {
 		return mnum;
 	}
@@ -174,9 +186,47 @@ public class MemVO {
 	public void setMkey(String mkey) {
 		this.mkey = mkey;
 	}
+	
+	// 페이징
+// pageSize // 한페이지에 나오는 row수	//	
+	public String getPageSize() {
+		return pageSize;
+	}
 
-// memnum  // 게시글순번 //
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
 
+// groupSize // 그룹페이지 수	//	
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+// curPage // 현재페이지	//	
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+// totalCount // 총 게시글 수	//		
+	public String getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	
+// memnum  // 게시글순번 //	
+	
 	public String getMemnum() {
 		return memnum;
 	}

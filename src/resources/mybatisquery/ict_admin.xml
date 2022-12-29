@@ -32,14 +32,13 @@
 
 <!-- 신고글 -->
 	<select id="adminWarningSelectAll" resultType="warningvo">
-		SELECT 	  A.WTNUM 		AS 		WTNUM
+	SELECT 	  A.WTNUM 		AS 		WTNUM
 				, A.WCATEGORY 	AS 		WCATEGORY
 				, A.WCONTENT 	AS 		WCONTENT
 				, B.MNUM 		AS 		MNUM
 				, B.MNICK 		AS 		MNICK
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-		FROM (SELECT  WNUM
-					, WTNUM
+		FROM (SELECT  WTNUM
 					, WCATEGORY
 					, WCONTENT
 					, MNUM
@@ -117,15 +116,13 @@
 
 <!-- 커뮤니티 --> 
 	<select id="adminCommunitySelectAll" resultType="communityvo">
-		SELECT	  A.CNUM		 AS 	CNUM
-				, A.CSUBJECT  	 AS 	CSUBJECT
+		SELECT	  A.CSUBJECT  	 AS 	CSUBJECT
 				, A.WARNING 	 AS 	WARNING
 				, B.MNUM 		 AS 	MNUM
 	       		, B.MNICK        AS 	MNICK
 				, A.CHIT 	     AS 	CHIT
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-		FROM  (SELECT CNUM
-					, CSUBJECT
+		FROM  (SELECT CSUBJECT
 					, WARNING
 					, CHIT
 					, MNUM 
@@ -135,26 +132,39 @@
 				ORDER BY CNUM DESC) A
 				, (SELECT MNUM
 				  		 ,MNICK
-					FROM  "ORCLICT00"."ICT_MEMBER"
-					WHERE DELETEYN='Y') B
+					FROM  "ORCLICT00"."ICT_MEMBER") B
 		 <![CDATA[WHERE ROWNUM <= 5 AND A.MNUM = B.MNUM]]> 
 	</select> 
 
 <!-- 회원조회 -->
 	<select id="adminMemSelectAll" resultType="memvo">
-		SELECT   ROW_NUMBER() OVER (ORDER BY A.MNUM)    AS     MEMNUM
-				, A.MNUM 		AS 		MNUM 
-				, A.MID 		AS		MID 
-				, A.MNAME 		AS 		MNAME
-				, A.MNICK 		AS 		MNICK
-				, A.MEMAIL 		AS		MEMAIL
-				, A.MGRADE 		AS 		MGRADE 
-				, A.MPROFILE 	AS 		MPROFILE
-				, A.MCATEGORY	AS 		MCATEGORY
-				, A.MWARNING 	AS 		MWARNING
-				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-		FROM 	"ORCLICT00"."ICT_MEMBER" A
-		WHERE DELETEYN ='Y'
-		ORDER BY MNUM DESC
+		SELECT * FROM(
+			SELECT   ROW_NUMBER() OVER (ORDER BY A.MNUM)    AS     MEMNUM
+					, A.MNUM 		AS 		MNUM 
+					, A.MID 		AS		MID 
+					, A.MNAME 		AS 		MNAME
+					, A.MNICK 		AS 		MNICK
+					, A.MEMAIL 		AS		MEMAIL
+					, A.MGRADE 		AS 		MGRADE 
+					, A.MPROFILE 	AS 		MPROFILE
+					, A.MCATEGORY	AS 		MCATEGORY
+					, A.MWARNING 	AS 		MWARNING
+					, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+					<!-- pageSize -->
+					,CEIL(ROW_NUMBER() OVER(ORDER BY MNUM DESC) / #{pageSize, jdbcType=VARCHAR}) pageSize
+					<!-- totalCount -->
+					, COUNT(A.MNUM) OVER() AS totalCount
+			FROM 	"ORCLICT00"."ICT_MEMBER" A
+			WHERE DELETEYN ='Y'
+			ORDER BY MNUM DESC
+		) WHERE pageSize = #{curPage}
 	</select>
+	
+<!-- 회원탈퇴 -->	
+	<update id="adminMemDelete" parameterType="memvo">
+		UPDATE "ORCLICT00"."ICT_MEMBER"
+		SET DELETEYN = 'N'
+		WHERE DELETEYN = 'Y'
+		AND MID = #{mid, jdbcType=VARCHAR }
+	</update>
 </mapper>

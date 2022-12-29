@@ -13,7 +13,12 @@
 	
 	logger.info("~~ mypagePWChk.jsp ~~");
 %>
-
+<%
+	String mnum = "";
+	mnum = request.getParameter("mnum");
+	
+	logger.info("mnum >>> : " + mnum);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,24 +34,29 @@ $(document).ready(function(){
 		alert("#mpwBtn");
 		
 		$('#mkey').val("PWCHECK");
-		
-		$('#pwCheckForm').attr({
-			 'action'	: "profileSelect.ict"
-			,'method'	: "POST"
-			,"enctype"	: "application/x-www-form-urlencoded"
-		}).submit();
+		if ($('#mpw').val() != null && $('#mpw').val().length > 0) {
+			
+			$('#pwCheckForm').attr({
+				 'action'	: "profileSelect.ict"
+				,'method'	: "POST"
+				,"enctype"	: "application/x-www-form-urlencoded"
+			}).submit();
+		}else {
+			alert("비밀번호를 입력해주세요.");
+		}
 		
 	});
 });
 </script>
 </head>
 <body>
-하나도 안건드렸어요!!!!
+회원 번호 = <%= mnum %> ((관리자는 접속시 비밀번호 확인하세용))
+<br>
+비밀번호 확인
 <form id="pwCheckForm">
 <input type="text" id="mpw" name="mpw">
 <input type="button" id="mpwBtn" value="비밀번호 확인">
-<!-- 임의 -->
-<input type="hidden" id="mnum" name="mnum" value="M202212260012">
+<input type="hidden" id="mnum" name="mnum" value="<%= mnum %>">
 <input type="hidden" id="mkey" name="mkey" value="">
 </form>
 
