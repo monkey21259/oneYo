@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Datepiker</title>
+
+<!-- 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+<link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$("#date1").datepicker();
+	
+	$("#date11").datepicker();
+	
+	$("#date2").datepicker({
+		showOn: "button",
+        buttonImage: "images/calendar.gif",
+	    buttonImageOnly: false,
+		buttonText: "Select date"
+	});
+	
+	$("#date22").datepicker({
+		showOn: "button",
+        buttonImage: "images/calendar.gif",
+	    buttonImageOnly: false,
+		buttonText: "Select date"
+	});
+	
+	$("#date3").datepicker({
+		onSelect:function(dateText, inst) {
+			console.log(dateText);
+			console.log(inst);
+		}
+	});
+	
+	$("#date33").datepicker({
+		onSelect:function(dateText, inst) {
+			console.log(dateText);
+			console.log(inst);
+		}
+	});
+});
+//]]>
+</script>
+</head>
+<body>
+<h3>jQuery UI Datepiker Calendar</h3>
+<input type="text" name="date1" id="date1" size="12" /> - 
+<input type="text" name="date11" id="date11" size="12" />
+<p/>
+<input type="text" name="date2" id="date2" size="12" /> - 
+<input type="text" name="date22" id="date22" size="12" />
+<p/>
+<input type="text" name="date3" id="date3" size="12" /> 
+<input type="button" value="달력" onclick="$('#date3').datepicker('show');" /> - 
+<input type="text" name="date33" id="date33" size="12" />
+<input type="button" value="달력" onclick="$('#date33').datepicker('show');" />
+</body>
+</html>

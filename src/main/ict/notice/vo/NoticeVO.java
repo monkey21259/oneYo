@@ -21,15 +21,21 @@ public class NoticeVO {
 	//좋아요
 	private int likecnt;
 	
+	//searching
+	private String searchFilter;	//텍스트 검색 카테고리
+	private String keyword;			//텍스트 검색하는 키워드
+	private String startDate;		//날짜 검색 시작일
+	private String endDate;			//날짜 검색 종료일
+	
 	//default constructor
 	public NoticeVO() {
 		
 	}
-
+	
 	//constructor using fields
 	public NoticeVO(String nnum, String nsubject, String ncontent, String nphoto, String deleteyn, String insertdate,
 			String updatedate, int nhit, String pageSize, String groupSize, String curPage, String totalCount,
-			String noticeno, int likecnt) {
+			String noticeno, int likecnt, String searchFilter, String keyword, String startDate, String endDate) {
 		
 		this.nnum = nnum;
 		this.nsubject = nsubject;
@@ -45,6 +51,10 @@ public class NoticeVO {
 		this.totalCount = totalCount;
 		this.noticeno = noticeno;
 		this.likecnt = likecnt;
+		this.searchFilter = searchFilter;
+		this.keyword = keyword;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	//getter
@@ -103,6 +113,22 @@ public class NoticeVO {
 	public int getLikecnt() {
 		return likecnt;
 	}
+	
+	public String getSearchFilter() {
+		return searchFilter;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
 
 	//setter
 	public void setNnum(String nnum) {
@@ -159,6 +185,22 @@ public class NoticeVO {
 	
 	public void setLikecnt(int likecnt) {
 		this.likecnt = likecnt;
+	}
+
+	public void setSearchFilter(String searchFilter) {
+		this.searchFilter = searchFilter;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 }//end of NoticeVO class
