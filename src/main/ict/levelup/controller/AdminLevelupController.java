@@ -72,5 +72,26 @@ public class AdminLevelupController {
 		
 		return "";
 	}
+
+	@GetMapping(value="levelupOkey")
+	public String levelupOkey(Model m, LevelupVO lvo) {
+		
+		System.out.println("lvo.getLvnum : " + lvo.getLvnum());
+		System.out.println("lvo.getMnum : " + lvo.getMnum());
+		
+		int levelupCnt = adminLevelupService.levelupOkey(lvo);
+		int memberCnt = adminLevelupService.mgradeUpdate(lvo);
+		
+		if(levelupCnt > 0 && memberCnt > 0) {
+			
+			return "levelup/levelOkey";
+			
+			
+			
+		}
+		
+		
+		return "";
+	}
 	
 }

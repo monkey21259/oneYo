@@ -26,24 +26,42 @@
 		
 		$("#nopeBtn").click(function(){
 			
+			let result = confirm('등업을 거부하시겠습니까?');
+			if(result == true){
+			
 			$("#levelupForm").attr({
 				"action":"levelupNope.ict",
 				"method":"GET",
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();
 			
+			alert("등업이 거부되었습니다.");
+			
+			}else{
+				alert("취소되었습니다.");
+			}
 		});
 		
 		
-		
+		$("#okeyBtn").click(function(){
+			
+			let result = confirm('등업을 승인하시겠습니까?');
+			if(result == true){
+			
+			$("#levelupForm").attr({
+				"action":"levelupOkey.ict",
+				"method":"GET",
+				"enctype":"application/x-www-form-urlencoded"		
+			}).submit();
+				
+			alert("등업이 승인되었습니다.");
+			
+			}else{
+				alert("취소되었습니다.");
+			}	
+		});
 		
 	});
-
-
-
-
-
-
 
 
 

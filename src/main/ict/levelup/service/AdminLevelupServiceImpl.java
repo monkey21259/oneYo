@@ -34,4 +34,16 @@ public class AdminLevelupServiceImpl implements AdminLevelupService {
 		return adminLevelupDAO.adminLevelupNope(lvo);
 	}
 
+	@Override
+	public int levelupOkey(LevelupVO lvo) {
+		// TODO Auto-generated method stub
+		return adminLevelupDAO.levelupOkey(lvo);
+	}
+
+	@Override
+	public int mgradeUpdate(LevelupVO lvo) {
+		// TODO Auto-generated method stub
+		return adminLevelupDAO.mgradeUpdate(lvo);
+	}
+
 }
