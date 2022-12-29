@@ -42,7 +42,7 @@
 					$("#communitySelectContent").attr({
 						"action":"communityUpdateForm.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"
+						"enctype":"application/x-www-form-urlencoded"
 					}).submit();
 					
 				}); //Update
@@ -52,7 +52,7 @@
 					$("#communitySelectContent").attr({
 						"action":"communityDelete.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 				}); //delete
 				
@@ -63,7 +63,7 @@
 						$("#communitySelectContent").attr({
 							"action":"communityWarningForm.ict",
 							"method":"GET",
-							"enctype":"application/x-www=form=urlencoded"	
+							"enctype":"application/x-www-form-urlencoded"	
 						}).submit();
 				}); //신고
 				
@@ -76,6 +76,8 @@
 	<hr>
 	
 		<form id="communitySelectContent" name="communitySelectContent">
+			<input type="hidden" id="mnum" name="mnum" value="<%=cvo.getMnum() %>">
+			<input type="hidden" id="csubject" name="csubject" value="<%=cvo.getCsubject() %>">
 			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
 			<table>
 				<div>

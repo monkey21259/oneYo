@@ -20,6 +20,7 @@ import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.tip.service.TipService;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Controller
 public class TipController {
@@ -189,4 +190,34 @@ public class TipController {
 		}
 	}
 
+	@GetMapping(value="tipWarningForm")
+	public String tipWarningForm(TipVO tvo, Model m) {
+		
+		
+		
+		m.addAttribute("tvo", tvo);
+		
+		return "tip/tipWarningForm";
+	}
+	
+	@GetMapping(value="tipWarningInsert")
+	public String warningInsert(WarningVO wvo, Model m) {
+		
+		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
+		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
+		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
+		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
+		System.out.println("wnum : " + wnum);
+		wvo.setWnum(wnum);
+	
+		int nCnt = tipService.tipWarningInsert(wvo);
+		
+		if(nCnt > 0) {
+			
+			return "tip/tipWarningInsert";
+		}
+		
+		return "";
+	}
 }

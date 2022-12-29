@@ -95,12 +95,20 @@ public class MemController {
 		logger.info("memInsertForm(mvo, model) >>> : " + mvo.getMemail() + " + " + mvo.getMgrade());
 		
 		if (mvo.getMemail() != null && mvo.getMgrade() != null) {
+			// SNS 회원가입 케이스
+			if (req.getParameter("accTok") != null || req.getParameter("accTok").equals("null") || req.getParameter("accTok").equals("")) {
+				
+				model.addAttribute("mvoSNS", mvo);
+				model.addAttribute("mkey", (String)req.getParameter("mkey"));
+			}
+			
+			// 공통
 			return "mem/memInsertForm";
 		}
 		
 		return "mem/memGrade";
 	}
-	
+
 	//	ID 아이디 중복 체크
 	@PostMapping("memIdCheck")
 	@ResponseBody
@@ -214,7 +222,7 @@ public class MemController {
 		if (insertCnt > 0) {
 			logger.info("memInsert().nCnt >>> : " + insertCnt);
 			
-			return "mem/memGrade";
+			return "home/home";
 		}
 		
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");

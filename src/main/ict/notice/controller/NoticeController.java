@@ -77,10 +77,22 @@ public class NoticeController {
 	public String noticeSelectAll(NoticeVO nvo, Model model) {
 		logger.info("noticeSelectAll() 함수 진입 : ");
 		
+		//페이징 프로퍼티 값 넣기
 		nvo.setPageSize(String.valueOf(ConstPack.NOTICE_PAGE_SIZE));
 		nvo.setGroupSize(String.valueOf(ConstPack.NOTICE_GROUP_SIZE));
 		if(nvo.getCurPage() == null) {
 			nvo.setCurPage(String.valueOf(ConstPack.NOTICE_CUR_PAGE));
+		}//end of if
+		
+		//searching 프로퍼티 null값 방지
+		if(nvo.getKeyword() == null || nvo.getKeyword() == "null") {
+			nvo.setKeyword("");
+		}//end of if
+		if(nvo.getStartDate() == null || nvo.getStartDate() == "null") {
+			nvo.setStartDate("");
+		}//end of if
+		if(nvo.getEndDate() == null || nvo.getEndDate() == "null") {
+			nvo.setEndDate("");
 		}//end of if
 		
 		//서비스 호출
@@ -95,7 +107,7 @@ public class NoticeController {
 			return "notice/noticeSelectAll";
 		}//end of if
 		
-		return "";
+		return "notice/noticeSelectAll";
 	}//end of noticeSelectAll() method
 	
 	//SELECT CONTENT

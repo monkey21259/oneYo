@@ -4,6 +4,8 @@
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
 
+<%@ page import="main.ict.mem.vo.MemVO" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <%
@@ -11,6 +13,16 @@
 	logger = LogManager.getLogger(this.getClass());
 	
 	logger.info("~~ memGrade.jsp ~~");
+%>
+
+<%  // 추가: 김기영 - SNS 로그인 시 회원가입일 경우 (221227)
+	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
+	String accessToken = (String)request.getAttribute("accessToken");
+	boolean snsFlag = false;
+	if (accessToken != null && mvo != null) {
+		logger.info("SNS 로그인 후 넘어온 등급 선택창 << snsFlag = true >>");
+		snsFlag = true;
+	}
 %>
 
 <!DOCTYPE html>
@@ -93,7 +105,19 @@ $(document).ready(function(){
 		
 	});	//	$('#memailBtn').click()		=====
 	
-});
+	$("#insertFormBtn").on("click", function() {
+		
+		console.log("[SNS] 다음 버튼 클릭");
+		console.log("SNS > 일반/전문가 > INSERT_FORM");
+		$("#memGradeForm").attr({
+			"action" : "/oneYo/memInsertForm.ict",
+			"method" : "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+		
+	});
+		
+});  // document.ready
 </script>
 </head>
 <body>
@@ -108,9 +132,12 @@ $(document).ready(function(){
 </p>
 <button type="button" class="btn">일반</button>
 <button type="button" class="btn">전문가</button>
-<input type="hidden" id="mgrade" value="0">
+<input type="hidden" id="mgrade" name="mgrade" value="0">
 
 <table>
+<%  // 추가 kgy
+	if (snsFlag = false) {
+%>
 <tr>
 <td>
 	<input type="text" id="memail0" name="memail0">
@@ -130,8 +157,33 @@ $(document).ready(function(){
 	<input type="button" id="memailBtn" name="memailBtn" value="이메일 인증">
 </td>
 </tr>
+<%	// 추가 kgy
+	} else {
+%>
+	<tr>
+		<td>
+			<input type="button" id="insertFormBtn" name="insertFormBtn" value="다음" />
+			<input type="hidden" id="mid" name="mid" value="<%= mvo.getMid() %>" />
+			<input type="hidden" id="mpw" name="mpw" value="<%= mvo.getMpw() %>" />
+			<input type="hidden" id="mname" name="mname" value="<%= mvo.getMname() %>" />
+			<input type="hidden" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" />
+			<input type="hidden" id="memail" name="memail" value="<%= mvo.getMemail() %>" />
+			<input type="hidden" id="mhp" name="mhp" value="<%= mvo.getMhp() %>" />
+			<input type="hidden" id="accTok" name="accTok" value="<%= accessToken %>" />
+<%
+		String mkey = (String)request.getAttribute("mkey");
+		if (mkey != null) {
+%>
+			<input type="hidden" name="mkey" value="<%= mkey %>" />
+<%
+		}
+%>
+		</td>
+	</tr>
+<%
+	}
+%>
 </table>
-
 </form>
 </div>
 </body>

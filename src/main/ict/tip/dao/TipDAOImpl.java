@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Repository
 public class TipDAOImpl implements TipDAO {
@@ -48,5 +49,11 @@ public class TipDAOImpl implements TipDAO {
 	public int tipDelete(TipVO tvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("tipDelete", tvo);
+	}
+
+	@Override
+	public int tipWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("tipWarningInsert", wvo);
 	}
 }

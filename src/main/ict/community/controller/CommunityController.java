@@ -18,6 +18,8 @@ import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
+import main.ict.warning.vo.WarningVO;
 
 @Controller
 public class CommunityController {
@@ -245,5 +247,44 @@ public class CommunityController {
 		}
 		return "community/communitySelectContent";
 	} //communityDelete
+	
+	@GetMapping(value="communityWarningForm")
+	public String communityWarningForm(CommunityVO cvo, Model m) {
+		System.out.println("cvo.getCnum : " + cvo.getCnum());
+		System.out.println("cvo.getCsubject : " + cvo.getCsubject());
+		
+		String cnum = cvo.getCnum();
+		String csubject = cvo.getCsubject();
+		String mnum = cvo.getMnum();
+		
+		m.addAttribute("mnum", mnum);
+		m.addAttribute("cnum", cnum);
+		m.addAttribute("csubject", csubject);
+		return "community/communityWarningForm";
+	
+	}
+	
+	@GetMapping(value="communityWarningInsert")
+	public String warningInsert(WarningVO wvo, Model m) {
+	
+		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
+		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
+		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
+		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
+		System.out.println("wnum : " + wnum);
+		wvo.setWnum(wnum);
+		
+		int nCnt = communityService.communityWarningInsert(wvo);
+		
+		if(nCnt > 0) {
+			
+			return "community/communityWarningInsert";
+		}
+		
+		return "";
+		
+	}
+	
 	
 }//class

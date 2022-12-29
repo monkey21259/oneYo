@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.tip.dao.TipDAO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Service
 @Transactional
@@ -59,6 +60,12 @@ public class TipServiceImpl implements TipService {
 		// TODO Auto-generated method stub
 		logger.info("tipDelete() 함수 진입");
 		return tipDAO.tipDelete(tvo);
+	}
+
+	@Override
+	public int tipWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return tipDAO.tipWarningInsert(wvo);
 	}
 
 }
