@@ -148,4 +148,26 @@ UPDATEDATE          DATE
 
 </update>
 
+<insert id="tipWarningInsert" parameterType="warningvo">
+
+	INSERT INTO ICT_WARNING(WNUM, 
+							WTNUM, 
+							WCATEGORY, 
+							WCONTENT, 
+							MNUM, 
+							DELETEYN, 
+							INSERTDATE)
+	                 VALUES(#{wnum}, 
+	                        #{wtnum}, 
+	                        #{wcategory}, 
+	                        #{wcontent}, 
+	                        #{mnum}, 
+	                        'Y', 
+	                        SYSDATE)
+
+
+
+
+</insert>
+
 </mapper>

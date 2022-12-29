@@ -3,6 +3,7 @@ package main.ict.tip.dao;
 import java.util.List;
 
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface TipDAO {
 
@@ -17,5 +18,7 @@ public interface TipDAO {
 	int tipUpdate(TipVO tvo);
 
 	int tipDelete(TipVO tvo);
+	
+	public int tipWarningInsert(WarningVO wvo);
 
 }

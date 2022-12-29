@@ -53,6 +53,20 @@
 			}
 		});
 		
+		$("#warningBtn").click(function(){
+			if(confirm("신고하시겠습니까?")){
+				$("#tipSelectContentForm").attr({
+					'action': 'tipWarningForm.ict',
+					'method': 'GET'
+				}).submit();
+			}
+			
+			
+		});
+	
+	
+	
+	
 	});
 
 </script>
@@ -76,6 +90,8 @@
 		</div>
 		<form id="tipSelectContentForm">
 			<input id="tnum" name="tnum" type="hidden" value="<%= tvo.getTnum() %>">
+			<input id="mnum" name="mnum" type="hidden" value="<%= tvo.getMnum() %>">
+			<input id="tsubject" name="tsubject" type="hidden" value="<%= tvo.getTsubject() %>">
 			<div id="content">사진 : 
 				<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>">
 				<br>
@@ -93,6 +109,7 @@
 				<br>
 				<input id="updateBtn" type="button" value="수정">
 				<input id="deleteBtn" type="button" value="삭제">
+				<input id="warningBtn" type="button" value="신고">
 			</div>
 		</form>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
