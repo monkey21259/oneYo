@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -228,4 +229,211 @@ public class MemController {
 		
 		return "mem/memGrade";
 	}
+	
+
+	//	마이페이지 프로필 편집 memSelect
+	@PostMapping("profileSelect")
+	public String profileSelect(@ModelAttribute MemVO mvo, Model model) {
+		
+		logger.info("profileSelect() >>> : " + mvo.getMnum() + " + " + mvo.getMkey());
+		
+		String mnum = mvo.getMnum();
+		
+		String mkey = "";
+		if (mvo.getMkey() != null && mvo.getMkey().length() > 0) {
+			
+			mkey = mvo.getMkey();
+			mkey = mkey.toUpperCase();
+		}
+		
+		logger.info("mnum >>> : " + mnum + " / mkey >>> : " + mkey);
+		
+		
+		
+		if (mnum != null && mnum.length() > 0) {
+			
+			List<MemVO> list = null;
+			list = memService.memSelect(mvo);
+			
+			logger.info("memSelect() - list != null >>> : " + (boolean)(list != null));
+			
+			int nCnt = list.size();
+			
+			if (list != null && nCnt > 0) {
+				
+				logger.info("memSelect() - nCnt >>> : " + nCnt);
+				
+				model.addAttribute("list", list);
+				
+				if (mkey == null || mkey.length() == 0 || mkey.equals("PWCHECK")) {
+					
+					return "mypage/profileSelect";
+				}
+				
+				if (mkey.equals("MPROFILE")) {
+					
+					return "mypage/profilePhotoUpdateForm";
+				}
+				
+				if (mkey.equals("MPW")) {
+					
+					return "mypage/profilePWUpdateForm";
+				}
+				
+				if (mkey.equals("MEMAIL")) {
+					
+					return "mypage/profileEmailUpdateForm";
+				}
+				
+				if (mkey.equals("MEM")) {
+					
+					return "mypage/profileInfoUpdateForm";
+				}
+			}
+		}
+		
+		
+		return "mypage/mypagePWCheck";
+	}
+	
+
+	//	회원가입 데이터 전송
+	@PostMapping("memUpdate")
+	public String memUpdate(HttpServletRequest req/* , MemVO mvo */, Model model) {
+		
+		logger.info("memUpdate(req, mvo, model) >>> : memUpdate.jsp"
+				+ " >>> : " + req/* + " / " + mvo */ + " / " + model);
+
+		FileUpload fu = null;
+		fu = new FileUpload( ConstPack.MEMBER_IMG_PATH
+							,ConstPack.MEMBER_IMG_SIZE
+							,ConstPack.MEMBER_ENC_TYPE	);
+		
+		boolean bool = fu.imgFileUpload(req);
+		logger.info("memUpdate().bool >>> : " + bool);
+		
+		//	vo 호출
+		MemVO mvo = null;
+		mvo = new MemVO();
+		
+		//	==========================================================	//
+		
+		String mkey = "";	//	구분자 key
+		if (fu.getParameter("mkey") != null && fu.getParameter("mkey").length() > 0) {
+			
+			mkey = fu.getParameter("mkey");
+			mkey = mkey.toUpperCase();
+		}
+		mvo.setMkey(mkey);	//	vo 세팅
+		logger.info("vo.mkey >>> : " + mvo.getMkey());
+		
+		//	MNUM	//	회원 번호	//	NOT NULL	//	비교군 업댓x
+		String mnum = "";
+		mnum = fu.getParameter("mnum");
+		logger.info("mnum >>> : " + mnum);
+		mvo.setMnum(mnum);	//	vo 세팅
+		logger.info("vo.mnum >>> : " + mvo.getMnum());
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MPROFILE")) {
+			
+			//	MNICK	//	닉네임	//
+			String mnick = "";
+			mnick = fu.getParameter("mnick");	//	호출
+			logger.info("mnick >>> : " + mnick);
+			mvo.setMnick(mnick);	//	vo 세팅
+			logger.info("vo.mnick >>> : " + mvo.getMnick());
+			
+			//	MPROFILE	//	프로필사진	//	
+			String mprofile = "";
+			mprofile = fu.getFileName("mprofile");	//	호출
+			logger.info("mprofile >>> : " + mprofile);
+			mvo.setMprofile(mprofile);	//	vo 세팅
+			logger.info("vo.mprofile >>> : " + mvo.getMprofile());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MPW")) {
+			
+			//	MPW	//	비밀번호	//	NOT NULL
+			String mpw = "";
+			mpw = fu.getParameter("mpw");	//	호출
+			logger.info("mpw >>> : " + mpw);
+			mvo.setMpw(mpw);	//	vo 세팅
+			logger.info("vo.mpw >>> : " + mvo.getMpw());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MEMAIL")) {
+			
+			//	MEMAIL	//	이메일	//	NOT NULL
+			String memail = "";
+			memail = fu.getParameter("memail");	//	호출
+			logger.info("memail >>> : " + memail);
+			mvo.setMemail(memail);	//	vo 세팅
+			logger.info("vo.memail >>> : " + mvo.getMemail());
+		}
+		
+		//	==========================================================	//
+		
+		if (mkey.equals("MEM")) {
+			
+			//	MNAME	//	이름	//
+			String mname = "";
+			mname = fu.getParameter("mname");	//	호출
+			logger.info("mname >>> : " + mname);
+			mvo.setMname(mname);	//	vo 세팅
+			logger.info("vo.mname >>> : " + mvo.getMname());
+			
+			//	MHP	//	핸드폰	//	NOT NULL
+			String mhp = "";
+			mhp = fu.getParameter("mhp");	//	호출
+			logger.info("mhp >>> : " + mhp);
+			mvo.setMhp(mhp);	//	vo 세팅
+			logger.info("vo.mhp >>> : " + mvo.getMhp());
+			
+			//	MCATEGORY	//	요리 분야	//	
+			String mcategory = "";
+			mcategory = fu.getParameter("mcategory");	//	호출
+			logger.info("mcategory >>> : " + mcategory);
+			mvo.setMcategory(mcategory);	//	vo 세팅
+			logger.info("vo.mcategory >>> : " + mvo.getMcategory());
+		}
+		
+		
+		int updateCnt = memService.memUpdate(mvo);
+		
+		if (updateCnt > 0) {		//	성공시
+			logger.info("memUpdate().nCnt >>> : " + updateCnt);
+			
+			return "mypage/profileUpdate";
+		}
+		
+		logger.info("memUpdate().nCnt >>> : " + updateCnt + "로 입력 실패");
+		
+		return "mem/profileSelect";	//	실패시
+	}
+	
+	//	memDelete 회원 탈퇴
+	//	오류나는데 일단 집가고 싶어서ㅜ 걍 주석처리하고갑니다...
+//	@GetMapping("memDelete")
+//	public String memDelete(MemVO mvo, Model model) {
+//		
+//		logger.info("memDelete(mvo, model) >>> : " + mvo.getMnum());
+//		
+//		int deleteCnt = memService.memDelete(mvo);
+//		
+//		if (deleteCnt > 0) {
+//			logger.info("memDelete nCnt >>> : " + deleteCnt);
+//			
+//			model.addAttribute("memDelete", deleteCnt);
+//			
+//			return "home/home";
+//		}
+//		
+//		return "home/home";
+//	}
 }

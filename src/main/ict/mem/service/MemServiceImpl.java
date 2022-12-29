@@ -31,11 +31,39 @@ public class MemServiceImpl implements MemService {
 		return memDAO.memInsert(mvo);
 	}	//	회원 가입	"memInsert"
 
+	//	ID 아이디 중복 검사	"memIdCheck"
 	@Override
 	public List<MemVO> memIdCheck(MemVO mvo) {
 		logger.info("memIdCheck(mvo) >>> : " + mvo.getMid());
 		
 		return memDAO.memIdCheck(mvo);
+	}
+
+	//	프로필 조회 목적 memSelect "profileSelect"
+	@Override
+	public List<MemVO> memSelect(MemVO mvo) {
+		
+		logger.info("memSelect(mvo) >>> : " + mvo.getMnum());
+		
+		return memDAO.memSelect(mvo);
+	}
+
+	//	프로필 수정 삭제 memUpdate "memUpdate"
+	@Override
+	public int memUpdate(MemVO mvo) {
+
+		logger.info("memUpdate(mvo) >>> : " + mvo.getMnum() + " + " + mvo.getMkey());
+		
+		return memDAO.memUpdate(mvo);
+	}
+
+	//	회원 탈퇴 "memDelete"
+	@Override
+	public int memDelete(MemVO mvo) {
+		
+		logger.info("memDelete(mvo) >>> : " + mvo.getMnum());
+		
+		return memDAO.memDelete(mvo);
 	}
 	
 }

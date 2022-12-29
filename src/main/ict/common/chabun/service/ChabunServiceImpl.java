@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import main.ict.comment.vo.CommentVO;
 import main.ict.common.chabun.dao.ChabunDAO;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Service
 @Transactional
@@ -59,7 +61,12 @@ public class ChabunServiceImpl implements ChabunService {
 	}//end of getCommunityChabun() method
 	
 	//등업
-	
+	@Override
+	public LevelupVO getLevelupChabun() {
+		// TODO Auto-generated method stub
+		logger.info("getLevelupChabun() 함수 진입");
+		return chabunDAO.getLevelupChabun();
+	}
 	
 	//좋아요
 	
@@ -79,5 +86,12 @@ public class ChabunServiceImpl implements ChabunService {
 		logger.info("getCommentChabun() 함수 진입 : ");
 		return chabunDAO.getCommentChabun();
 	}//end of getCommentChabun() method
+
+	@Override
+	public WarningVO getWarningChabun() {
+		// TODO Auto-generated method stub
+		return chabunDAO.getWarningChabun();
+	}
+
 	
 }//end of ChabunServiceImpl class

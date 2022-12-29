@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main.ict.levelup.dao.LevelupDAO">
+
+<select id="levelupSelectAll" parameterType="memvo" resultType="levelupvo">
+
+		SELECT 	A.LVNUM 			AS			LVNUM 
+			   ,A.LVSUBJECT 		AS			LVSUBJECT
+			   ,A.LVCONTENT 		AS			LVCONTENT 
+			   ,A.LVPHOTO 			AS			LVPHOTO 
+			   ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+			   ,A.MNUM				AS			MNUM
+		FROM 	"ORCLICT00"."ICT_LEVELUP"	A
+		WHERE 	A.MNUM = '${ mnum }'
+		AND 	PROCESSYN = '0'
+
+</select>
+
+<insert id="levelupInsert" parameterType="levelupvo">
+
+	INSERT INTO "ORCLICT00"."ICT_LEVELUP"
+				(
+					LVNUM
+				   ,LVSUBJECT
+				   ,LVCONTENT
+				   ,LVPHOTO
+				   ,MNUM
+				   ,PROCESSYN
+				   ,INSERTDATE
+				   ,UPDATEDATE
+				)
+		 VALUES (
+		 			#{lvnum}
+		 		   ,#{lvsubject}
+		 		   ,#{lvcontent}
+		 		   ,#{lvphoto}
+		 		   ,#{mnum}
+		 		   ,'0'
+		 		   ,SYSDATE
+		 		   ,SYSDATE
+		 		)
+
+</insert>
+
+
+</mapper>

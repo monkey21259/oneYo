@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.mem.vo.MemVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
@@ -48,6 +49,18 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<CommunityVO> adminCommunitySelectAll(CommunityVO cvo) {
 		return sqlsession.selectList("adminCommunitySelectAll", cvo);
+	}
+	
+//회원조회
+	@Override
+	public List<MemVO> adminMemSelectAll(MemVO mvo) {
+		return sqlsession.selectList("adminMemSelectAll", mvo);
+	}
+
+//회원탈퇴	
+	@Override
+	public int adminMemDelete(MemVO mvo) {
+		return sqlsession.update("adminMemDelete", mvo);
 	}
 	
 } 

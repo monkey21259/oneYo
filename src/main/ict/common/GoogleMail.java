@@ -18,7 +18,6 @@ public class GoogleMail {
 	// 2. String mailSubject : 이메일 제목
 	// 3. String sendMsg	 : 이메일 내용
 	public void authumMail(String receiveMail, String mailSubject, String sendMsg) {
-		sendMsg = "<h2>" + sendMsg + "</h2>";
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");

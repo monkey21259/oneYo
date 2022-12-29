@@ -52,17 +52,15 @@
 				<!-- Main Home -->
 				<a href="home.ict">Main Home</a><br>
 				<hr>
-				<!-- memSelct -->
-				<a href="home.ict">아직 링크 안달렸어용</a><br>
+				<!-- mypage pwcheck -->
+				<a href="mypagePWChk.ict?mnum=M202212260012">비번 체크</a><br>
 				<hr>
-				<!-- mail -->
-<!-- 				<a href="memInsertEmail.ict?memail=onnu0623@gmail.com&mgrade=0">mail</a><br> -->
-<!-- 				<hr> -->
 				<!-- 로그인 -->
 				<a href="loginForm.ict">로그인 테스트</a>
 				<hr>
 				<!-- 댓글 테스트 -->
 				<a href="commentForm.ict">댓글 테스트</a>
+				<hr>
 			</div>
 		</div>
 	</body>

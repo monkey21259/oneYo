@@ -61,6 +61,13 @@
 	
 	<!-- 등업 -->
 	<!-- INDEX : SYS_C0011821 -->
+	<select id="getLevelupChabun" resultType="levelupvo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011821) */
+		    NVL(MAX(SUBSTR(A.LVNUM, -4)), 0) + 1 AS LVNUM
+		FROM ICT_LEVELUP A
+		
+	</select>
 	
 	
 	<!-- 좋아요 -->
@@ -74,6 +81,15 @@
 		SELECT /* + INDEX_DESC(A SYS_C0011790) */
 		    NVL(MAX(SUBSTR(A.NNUM, -4)), 0) + 1 AS NNUM
 		FROM ICT_NOTICE A
+		
+	</select>
+	<!-- 신고 -->
+	<!-- INDEX : SYS_C0011808 -->
+	<select id="getWarningChabun" resultType="warningvo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011808) */
+		    NVL(MAX(SUBSTR(A.WNUM, -4)), 0) + 1 AS WNUM
+		FROM ICT_WARNING A
 		
 	</select>
 	

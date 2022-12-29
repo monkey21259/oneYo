@@ -45,28 +45,35 @@
 </insert>
 
 <!-- SELECT ALL - VANILLA -->
-<select id="recipeSelectAll" resultType="recipevo">
+<select id="recipeSelectAll" parameterType="recipevo" resultType="recipevo">
 
-	SELECT
-	     A.RNUM         RNUM
-	    ,A.RSUBJECT     RSUBJECT
-	    ,A.RCONTENT     RCONTENT
-	    ,A.RPHOTO       RPHOTO
-	    ,A.RJERYO       RJERYO
-	    ,A.RTIME        RTIME
-	    ,A.RPERSON      RPERSON
-	    ,A.RDIFF        RDIFF
-	    ,A.RCATEGORY    RCATEGORY
-	    ,A.WARNING      WARNING
-	    ,A.MNUM         MNUM
-	    ,A.RHIT         RHIT
-	    ,A.DELETEYN     DELETEYN
-	    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
-	    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
-	  FROM
-	    ICT_RECIPE A
-	 WHERE A.DELETEYN = 'Y'
-	 ORDER BY 1
+	SELECT *
+	FROM
+		(
+			SELECT
+			     A.RNUM         RNUM
+			    ,A.RSUBJECT     RSUBJECT
+			    ,A.RCONTENT     RCONTENT
+			    ,A.RPHOTO       RPHOTO
+			    ,A.RJERYO       RJERYO
+			    ,A.RTIME        RTIME
+			    ,A.RPERSON      RPERSON
+			    ,A.RDIFF        RDIFF
+			    ,A.RCATEGORY    RCATEGORY
+			    ,A.WARNING      WARNING
+			    ,A.MNUM         MNUM
+			    ,A.RHIT         RHIT
+			    ,A.DELETEYN     DELETEYN
+			    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+			    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
+			    ,CEIL(ROW_NUMBER() OVER(ORDER BY A.RNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
+				,COUNT(A.RNUM) OVER()					AS totalCount
+			FROM
+			    ICT_RECIPE A
+			WHERE A.DELETEYN = 'Y'
+			ORDER BY 1
+		 )
+	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
 
 </select>
 

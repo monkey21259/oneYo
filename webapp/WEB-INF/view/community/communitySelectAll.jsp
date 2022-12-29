@@ -48,7 +48,7 @@
 	<hr>
 	<div>
 		<div>
-			<button type="button">인기글</button>
+			<button type="button">인기글</button> 			
 			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
 		</div>
 	</div>
@@ -113,7 +113,7 @@
 				%>
 				<tr>
 				<td colspan="6">
-				<jsp:include page="communityPaging.jsp" flush="true">
+				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 					<jsp:param name="url" value="communitySelectAll.ict" />
 					<jsp:param name="pageSize" value="<%=pageSize %>" />
 					<jsp:param name="groupSize" value="<%=groupSize %>" />

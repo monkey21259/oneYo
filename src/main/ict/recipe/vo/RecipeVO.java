@@ -18,7 +18,14 @@ public class RecipeVO {
 	private String insertdate;	// 등록일
 	private String updatedate;	// 수정일
 	
+	//mnick
+	private String mnick;		// 회원닉네임
+	
 	// Paging
+	private String pageSize;
+	private String groupSize;
+	private String curPage;
+	private String totalCount;
 	
 	// Filter
 	
@@ -29,7 +36,9 @@ public class RecipeVO {
 
 	public RecipeVO(String rnum, String rsubject, String rcategory, String rjeryo, String rtime, String rperson,
 			String rdiff, String rcontent, String rphoto, String rhit, String mnum, String warning, String deleteyn,
-			String insertdate, String updatedate) {
+			String insertdate, String updatedate, String mnick, String pageSize, String groupSize, String curPage,
+			String totalCount, String likecnt) {
+		
 		this.rnum = rnum;
 		this.rsubject = rsubject;
 		this.rcategory = rcategory;
@@ -45,6 +54,12 @@ public class RecipeVO {
 		this.deleteyn = deleteyn;
 		this.insertdate = insertdate;
 		this.updatedate = updatedate;
+		this.mnick = mnick;
+		this.pageSize = pageSize;
+		this.groupSize = groupSize;
+		this.curPage = curPage;
+		this.totalCount = totalCount;
+		this.likecnt = likecnt;
 	}
 
 	// Getter
@@ -112,6 +127,22 @@ public class RecipeVO {
 		return likecnt;
 	}
 	
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public String getGroupSize() {
+		return groupSize;
+	}
+
+	public String getCurPage() {
+		return curPage;
+	}
+
+	public String getTotalCount() {
+		return totalCount;
+	}
+	
 	// Setter
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
@@ -177,12 +208,37 @@ public class RecipeVO {
 		this.likecnt = likecnt;
 	}
 
+	public String getMnick() {
+		return mnick;
+	}
+
+	public void setMnick(String mnick) {
+		this.mnick = mnick;
+	}
+	
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
+	}
+	
+
 	@Override
 	public String toString() {
 		return "RecipeVO [rnum=" + rnum + ", rsubject=" + rsubject + ", rcategory=" + rcategory + ", rjeryo=" + rjeryo
 				+ ", rtime=" + rtime + ", rperson=" + rperson + ", rdiff=" + rdiff + ", rcontent=" + rcontent
 				+ ", rphoto=" + rphoto + ", rhit=" + rhit + ", mnum=" + mnum + ", warning=" + warning + ", deleteyn="
-				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + "]";
+				+ deleteyn + ", insertdate=" + insertdate + ", updatedate=" + updatedate + ", likecnt=" + likecnt + ", mnum=" + mnum + "]";
 	}
 	
 }

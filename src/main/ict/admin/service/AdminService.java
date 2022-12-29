@@ -4,6 +4,7 @@ import java.util.List;
 
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.mem.vo.MemVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
@@ -24,6 +25,12 @@ public interface AdminService {
 	
 //커뮤니티
 	public List<CommunityVO> adminCommunitySelectAll(CommunityVO cvo);
+	
+//회원조회	
+	public List<MemVO> adminMemSelectAll(MemVO mvo);
+
+//회원탈퇴
+	public int adminMemDelete(MemVO mvo);
 	
 }
 

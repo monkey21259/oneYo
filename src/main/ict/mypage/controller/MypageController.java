@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import main.ict.common.GoogleMail;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.mypage.service.MypageService;
@@ -50,6 +53,61 @@ public class MypageController {
 		}
 		
 		return "mypage/mypageHome";
+	}
+	
+
+	//	마이페이지 넘어가기 전 비밀번호 확인 폼으로 이동
+	@GetMapping("mypagePWChk")
+	public String mypagePWChk() {
+		
+		logger.info("mypagePWChk() >>> : mypagePWChk.jsp");
+		
+		return "mypage/mypagePWChk";
+	}
+	
+	//	이메일 변경시 확인
+	@PostMapping("profileEmailCheck")
+	@ResponseBody
+	public String profileEmailCheck(MemVO mvo) {
+		
+		logger.info("profileEmailCheck() >>> : " + mvo.getMemail());
+		
+		String memail = "";
+		memail = mvo.getMemail();
+		
+		String subject = "";
+		subject = "오내요 이메일 인증";
+		
+		String mailkey = "";
+		mailkey = mvo.getMkey();
+		logger.info("profileEmailCheck >>> : " + mailkey);
+		
+		String sendMsg = "";
+//		보낼 내용
+		StringBuffer neyong = null;
+		neyong = new StringBuffer();
+		neyong.append(" <p style='background-color:#AC7B53;'> ");
+		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ 오늘은 내가 요리사 ~~~</span> ");
+		neyong.append(" <br> ");
+		neyong.append("	<span style='color:#93A603;background-color:#F0F2CC;'>" + mailkey + "</span> ");
+		neyong.append(" <br> ");
+		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ oneYo ~~~</span> ");
+		neyong.append(" </p> ");
+		sendMsg = neyong.toString();
+		
+		GoogleMail gmail = null;
+		gmail = new GoogleMail();
+		
+		gmail.authumMail(memail, subject, sendMsg);
+		
+		String msg = "";
+		if (memail != null && memail.length() > 0 && mailkey != null && mailkey.length() > 0) {
+			msg = "GOMAIL";
+		}else {
+			msg = "NOTMAIL";
+		}
+		
+		return msg;
 	}
 
 }

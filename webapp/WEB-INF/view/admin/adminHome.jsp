@@ -9,6 +9,7 @@
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.tip.vo.TipVO" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
+<%@ page import="main.ict.common.CodeUtils" %>
 <%
 	request.setCharacterEncoding("UTF-8");
  
@@ -83,9 +84,9 @@
 				//회원목록
 				$(document).on("click", "#memselectAllBtn", function(){
 					$("#adminForm").attr({
-						"action":".ict",
+						"action":"adminMemSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				});
@@ -95,7 +96,7 @@
 					$("#adminForm").attr({
 						"action":"noticeSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				});
@@ -103,9 +104,9 @@
 				//등업
 				$(document).on("click", "#levelupmoreBtn", function(){
 					$("#adminForm").attr({
-						"action":".ict",
+						"action":"adminLevelupSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); //levelupmoreBtn
@@ -115,7 +116,7 @@
 					$("#adminForm").attr({
 						"action":".ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -125,7 +126,7 @@
 					$("#adminForm").attr({
 						"action":"recipeSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -135,7 +136,7 @@
 					$("#adminForm").attr({
 						"action":"tipSelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -145,7 +146,7 @@
 					$("#adminForm").attr({
 						"action":"communitySelectAll.ict",
 						"method":"GET",
-						"enctype":"application/x-www=form=urlencoded"	
+						"enctype":"application/x-www-form-urlencoded"	
 					}).submit();
 					
 				}); 
@@ -164,7 +165,7 @@
 	<h3>등업</h3>
 		<hr>
 		<button type="button" id="levelupmoreBtn" style="float: right;">더보기</button><br>
-			<table>
+			<table border="1 solid">
 				<thead>
 					<tr>
 						<th>NO</th>
@@ -177,24 +178,31 @@
 					</tr>					
 				</thead>
 <%
-// 			if(listLV.size() > 0){
+ 			
+				String process = null;
+				if(listLV.size() > 0){
 				for(int i=0; i<listLV.size(); i++){
 					lvvo = listLV.get(i);
+					
+					
+					if(lvvo.getProcessyn().equals("0")){
+						process = "대기 중";
+					};
 %>
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
 						<td><%= lvvo.getLvnum()%></td>
 						<td><%= lvvo.getLvsubject()%></td>
-						<td><%= lvvo.getLvphoto()%></td>
-						<td><%= lvvo.getMnum()%></td> <!-- 닉네임 -->
+						<td><img src="oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
+						<td><%= lvvo.getMnick()%></td> <!-- 닉네임 -->
 						<td><%= lvvo.getInsertdate()%></td>
-						<td><%= lvvo.getProcessyn()%></td>
+						<td><%= process%></td>
 					</tr>
 				</tbody>
 				<%
 				} //for
-// 			} //if				
+ 			} //if				
 				%>
 			</table>
 			
@@ -207,7 +215,6 @@
 					<tr>
 						<th>NO</th>
 						<th>신고글번호</th> <!-- 신고당한 글번호 -->
-						<th>신고글제목</th> <!-- 신고당한 글제목 -->
 						<th>신고분야</th>
 						<th>신고내용</th>
 						<th>신고자</th>
@@ -219,15 +226,15 @@
 				for(int i=0; i<listW.size(); i++){
 					wvo = listW.get(i);
 					
+					
 %>
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
 						<td><%= wvo.getWtnum() %></td>
-						<td><%= wvo.getWnum()%></td> <!-- mnum으로 신고글제목 가져오기 -->
-						<td><%= wvo.getWcategory()%></td>
+						<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
 						<td><%= wvo.getWcontent()%></td>
-						<td><%= wvo.getMnum()%></td><!-- 신고자 -->
+						<td><%= wvo.getMnick()%></td>
 						<td><%= wvo.getInsertdate()%></td>
 					</tr>
 <%
@@ -263,8 +270,8 @@
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= rvo.getRcategory() %></td>
-						<td><%= rvo.getMnum() %></td><!-- 닉네임 -->
+						<td><%= CodeUtils.getAdminRcategorys(rvo.getRcategory()) %></td>
+						<td><%= rvo.getMnick() %></td><!-- 닉네임 -->
 						<td><%= rvo.getRsubject() %></td>
 						<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="width:50px; height:50px"></td>
 						<td><%= rvo.getRhit() %></td>
@@ -304,8 +311,8 @@
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= tvo.getTcategory()%></td>
-						<td><%= tvo.getMnum()%></td><!-- 닉네임 -->
+						<td><%= CodeUtils.getTipcate(tvo.getTcategory())%></td>
+						<td><%= tvo.getMnick()%></td><!-- 닉네임 -->
 						<td><%= tvo.getTsubject()%></td>
 						<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>" style="width:50px; height:50px"></td>
 						<td><%= tvo.getThit()%></td>
@@ -343,7 +350,7 @@
 				<tbody>
 					<tr>
 						<td><%= i+1 %></td>
-						<td><%= cvo.getMnum() %></td> <!-- 닉네임 -->
+						<td><%= cvo.getMnick() %></td> <!-- 닉네임 -->
 						<td><%= cvo.getCsubject() %></td>
 						<td><%= cvo.getChit() %></td>
 						<td><%= cvo.getInsertdate() %></td>

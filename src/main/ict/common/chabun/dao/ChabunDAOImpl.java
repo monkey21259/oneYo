@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
+import main.ict.levelup.vo.LevelupVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
+import main.ict.warning.vo.WarningVO;
 
 @Repository
 public class ChabunDAOImpl implements ChabunDAO {
@@ -54,7 +56,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 	}//end of getCommunityChabun() method
 	
 	//등업
-	
+	@Override
+	public LevelupVO getLevelupChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getLevelupChabun");
+	}
 	
 	//좋아요
 	
@@ -74,5 +80,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 		logger.info("getCommentChabun() 함수 진입 : ");
 		return sqlSession.selectOne("getCommentChabun");
 	}//end of getCommentChabun() method
+
+	@Override
+	public WarningVO getWarningChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getWarningChabun");
+	}
 	
 }//end of ChabunDAOImpl class

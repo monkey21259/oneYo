@@ -6,104 +6,165 @@
 
 <!-- 등업 -->
 	<select id="adminLevelupSelectAll" resultType="levelupvo">
-		SELECT   A.LVNUM			AS			LVNUM 
+	   SELECT    A.LVNUM			AS			LVNUM 
 			   , A.LVSUBJECT		AS			LVSUBJECT  
-			   , A.LVCONTENT		AS 			LVCONTENT
 			   , A.LVPHOTO 			AS 			LVPHOTO
 			   , A.MNUM 			AS 			MNUM
 			   , A.PROCESSYN 		AS 			PROCESSYN
+			   , B.MNICK			AS			MNICK
 		   , TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
 		   , TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-		FROM ( SELECT	 	LVNUM
+		FROM ( SELECT	  	 LVNUM
 				 	  		,LVSUBJECT
-					  	 	,LVCONTENT
 					  	 	,LVPHOTO
 					  	 	,MNUM
 					 	  	,PROCESSYN
 					 	  	,INSERTDATE
 					 	  	,UPDATEDATE
-				 FROM   "ORCLICT00"."ICT_LEVELUP"
-				 WHERE   PROCESSYN = '0'
-				 ORDER BY LVNUM DESC) A
-	<![CDATA[WHERE ROWNUM	<=	5]]>
+				FROM   "ORCLICT00"."ICT_LEVELUP"
+				WHERE   PROCESSYN = '0'
+			 	ORDER BY LVNUM DESC) A
+				, "ORCLICT00"."ICT_MEMBER" B
+		<![CDATA[WHERE A.MNUM = B.MNUM
+		AND ROWNUM	<=	5 AND A.PROCESSYN = '0']]>
 		
 	</select>
 
 <!-- 신고글 -->
 	<select id="adminWarningSelectAll" resultType="warningvo">
-		SELECT * FROM 
-			(SELECT A.WNUM 		AS 		WNUM
-				, A.WTNUM 		AS 		WTNUM
+	SELECT 	  A.WTNUM 		AS 		WTNUM
 				, A.WCATEGORY 	AS 		WCATEGORY
 				, A.WCONTENT 	AS 		WCONTENT
-				, A.MNUM 		AS 		MNUM
-				, A.DELETEYN 	AS 		DELETEYN
+				, B.MNUM 		AS 		MNUM
+				, B.MNICK 		AS 		MNICK
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-		FROM "ORCLICT00"."ICT_WARNING" A
-		WHERE DELETEYN ='N'   <!-- 나중에 Y로 바꾸기 -->
-		ORDER BY WNUM DESC
-        ) <![CDATA[WHERE ROWNUM <= 5]]>
+		FROM (SELECT  WTNUM
+					, WCATEGORY
+					, WCONTENT
+					, MNUM
+					, INSERTDATE
+			  FROM "ORCLICT00"."ICT_WARNING"
+			  WHERE DELETEYN ='Y'
+			  ORDER BY WNUM DESC) A
+			 , (SELECT 	 MNUM
+				  	 	,MNICK
+				FROM  	"ORCLICT00"."ICT_MEMBER") B
+	<![CDATA[WHERE ROWNUM	<=	5  AND A.MNUM = B.MNUM]]>
+	  
 	</select>
 
 <!-- 레시피 -->
 	<select id="adminRecipeSelectAll" resultType="recipevo">
-		SELECT 		A.RNUM 			AS 		RNUM
+		SELECT 	  A.RNUM 			AS 		RNUM
 				, A.RSUBJECT		AS 		RSUBJECT
-				, A.RCONTENT 		AS 		RCONTENT
 				, A.RPHOTO			AS		RPHOTO
 				, A.RCATEGORY 		AS 		RCATEGORY
 				, A.WARNING 		AS 		WARNING
-				, A.MNUM 			AS 		MNUM
+				, B.MNUM 			AS 		MNUM
+				, B.MNICK 			AS 		MNICK
 				, A.RHIT 			AS 		RHIT
-				, A.DELETEYN 		AS 		DELETEYN
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
 				, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-		FROM "ORCLICT00"."ICT_RECIPE" A
-		WHERE DELETEYN ='Y'
-		AND <![CDATA[ROWNUM <=5]]> 
-		ORDER BY RNUM DESC
+		FROM (SELECT  RNUM
+					, RSUBJECT
+					, RPHOTO
+					, RCATEGORY
+					, WARNING
+					, MNUM
+					, RHIT
+					, INSERTDATE
+					, UPDATEDATE
+				FROM "ORCLICT00"."ICT_RECIPE"
+				WHERE DELETEYN ='Y'
+				ORDER BY RNUM DESC) A
+				,  (SELECT 	 MNUM
+				  	 		,MNICK
+					FROM  "ORCLICT00"."ICT_MEMBER") B
+		 <![CDATA[WHERE ROWNUM <=5 AND A.MNUM = B.MNUM]]> 
+	
       </select>
       	
 <!-- 전문가팁 -->
 	<select id="adminTipSelectAll" resultType="tipvo">
 		SELECT 	  A.TNUM 			AS 		TNUM
 				, A.TSUBJECT		AS 		TSUBJECT
-				, A.TCONTENT 		AS 		TCONTENT
 				, A.TPHOTO			AS		TPHOTO
 				, A.TCATEGORY 		AS 		TCATEGORY
 				, A.WARNING 		AS 		WARNING
-				, A.MNUM 			AS 		MNUM
+				, B.MNUM 			AS 		MNUM
+				, B.MNICK			AS 		MNICK
 				, A.THIT 			AS 		THIT
-				, A.DELETEYN 		AS 		DELETEYN
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-				, TO_CHAR(TO_DATE(A.UPDATEDATE),'YYYY-MM-DD') AS UPDATEDATE
-		FROM "ORCLICT00"."ICT_TIP" A
-		WHERE DELETEYN ='Y'
-		AND <![CDATA[ROWNUM <=5]]> 
-		ORDER BY A.TNUM DESC 
+		FROM (SELECT TNUM
+					, TSUBJECT
+					, TPHOTO
+					, TCATEGORY
+					, WARNING
+					, THIT
+					, MNUM
+					, INSERTDATE
+			 FROM "ORCLICT00"."ICT_TIP"
+  		 	 WHERE DELETEYN ='Y'
+  		 	 ORDER BY TNUM DESC ) A
+  		 	 , (SELECT 	 MNUM
+				  	 	,MNICK
+				FROM  "ORCLICT00"."ICT_MEMBER") B
+		 <![CDATA[WHERE ROWNUM <=5 AND A.MNUM = B.MNUM]]> 
+		
      </select>
 
 
 <!-- 커뮤니티 --> 
 	<select id="adminCommunitySelectAll" resultType="communityvo">
-		SELECT	  ROW_NUMBER() OVER (ORDER BY A.CNUM)     AS      COMMUNITYNUM
-                , A.CNUM		 AS 	CNUM
-				, A.CSUBJECT  	 AS 	CSUBJECT
-				, A.CCONTENT 	 AS 	CCONTENT
-				, A.CPHOTO 		 AS 	CPHOTO
+		SELECT	  A.CSUBJECT  	 AS 	CSUBJECT
 				, A.WARNING 	 AS 	WARNING
 				, B.MNUM 		 AS 	MNUM
 	       		, B.MNICK        AS 	MNICK
 				, A.CHIT 	     AS 	CHIT
-				, A.DELETEYN 	 AS 	DELETEYN
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
-		FROM  "ORCLICT00"."ICT_COMMUNITY" A
-	         ,"ORCLICT00"."ICT_MEMBER"    B
-		WHERE    A.MNUM = B.MNUM
-		AND      A.DELETEYN = 'Y'
-		AND      B.DELETEYN = 'Y'
-		AND <![CDATA[ROWNUM <=5]]> 
-		ORDER BY A.CNUM DESC
+		FROM  (SELECT CSUBJECT
+					, WARNING
+					, CHIT
+					, MNUM 
+					, INSERTDATE
+				FROM "ORCLICT00"."ICT_COMMUNITY"
+				WHERE DELETEYN = 'Y'
+				ORDER BY CNUM DESC) A
+				, (SELECT MNUM
+				  		 ,MNICK
+					FROM  "ORCLICT00"."ICT_MEMBER") B
+		 <![CDATA[WHERE ROWNUM <= 5 AND A.MNUM = B.MNUM]]> 
 	</select> 
 
+<!-- 회원조회 -->
+	<select id="adminMemSelectAll" resultType="memvo">
+		SELECT * FROM(
+			SELECT   ROW_NUMBER() OVER (ORDER BY A.MNUM)    AS     MEMNUM
+					, A.MNUM 		AS 		MNUM 
+					, A.MID 		AS		MID 
+					, A.MNAME 		AS 		MNAME
+					, A.MNICK 		AS 		MNICK
+					, A.MEMAIL 		AS		MEMAIL
+					, A.MGRADE 		AS 		MGRADE 
+					, A.MPROFILE 	AS 		MPROFILE
+					, A.MCATEGORY	AS 		MCATEGORY
+					, A.MWARNING 	AS 		MWARNING
+					, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+					<!-- pageSize -->
+					,CEIL(ROW_NUMBER() OVER(ORDER BY MNUM DESC) / #{pageSize, jdbcType=VARCHAR}) pageSize
+					<!-- totalCount -->
+					, COUNT(A.MNUM) OVER() AS totalCount
+			FROM 	"ORCLICT00"."ICT_MEMBER" A
+			WHERE DELETEYN ='Y'
+			ORDER BY MNUM DESC
+		) WHERE pageSize = #{curPage}
+	</select>
+	
+<!-- 회원탈퇴 -->	
+	<update id="adminMemDelete" parameterType="memvo">
+		UPDATE "ORCLICT00"."ICT_MEMBER"
+		SET DELETEYN = 'N'
+		WHERE DELETEYN = 'Y'
+		AND MID = #{mid, jdbcType=VARCHAR }
+	</update>
 </mapper>

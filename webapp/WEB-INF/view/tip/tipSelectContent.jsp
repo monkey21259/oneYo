@@ -95,6 +95,9 @@
 				<input id="deleteBtn" type="button" value="삭제">
 			</div>
 		</form>
+		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+			<jsp:param name="cotnum" value="<%=tvo.getTnum() %>"/>
+		</jsp:include>
 	</div>
 </div>
 </body>

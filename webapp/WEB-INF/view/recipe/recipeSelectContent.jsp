@@ -140,7 +140,7 @@
 						<td>
 							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
-							<img src="<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
+							<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 						</td>
 					</tr>
@@ -163,6 +163,9 @@
 				<!-- <input type="hidden" id="insertdate" name="insertdate" value="<%= recipevo.getInsertdate() %>" /> -->	<!-- 일간/주간/월간 -->
 				<input type="hidden" id="updatedate" name="updatedate" value="<%= recipevo.getUpdatedate() %>" />	<!-- 작성(수정) 시간 -->
 			</form>
+			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+			</jsp:include>
 		</section>
 	</body>
 </html>

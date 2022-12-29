@@ -104,18 +104,25 @@ public class RecipeController {
 	
 // S_ALL
 	@GetMapping(value="recipeSelectAll")
-	public String recipeSelectAll(Model model) {
+	public String recipeSelectAll(RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeSelectAll() 함수 진입.");
 		
+		recipevo.setPageSize(String.valueOf(ConstPack.RECIPE_PAGE_SIZE));
+		recipevo.setGroupSize(String.valueOf(ConstPack.RECIPE_GROUP_SIZE));
+		if(recipevo.getCurPage() == null) {
+			recipevo.setCurPage(String.valueOf(ConstPack.RECIPE_CUR_PAGE));
+		}//end of if
+		
 		// 1. 값 불러와서 model
-		List<RecipeVO> recipeList = recipeService.recipeSelectAll();
+		List<RecipeVO> recipeList = recipeService.recipeSelectAll(recipevo);
 		if (recipeList == null || recipeList.size() < 1) {
 			logger.info("[FAIL] Recipe SelectAll");
 			return "#";
 		}
 //		logger.info(recipeList.toString());
 		
+		model.addAttribute("pagingVO", recipevo);
 		model.addAttribute("recipeList", recipeList);
 		// TODO 페이징, 조건 검색(?)
 		return "./recipe/recipeSelectAll";
@@ -184,7 +191,7 @@ public class RecipeController {
 			return "#";
 		}
 		
-		List<RecipeVO> recipeList = recipeService.recipeSelectAll();
+		List<RecipeVO> recipeList = recipeService.recipeSelectAll(recipevo);
 		model.addAttribute("recipeList", recipeList);
 		return "./recipe/recipeSelectAll";
 	}

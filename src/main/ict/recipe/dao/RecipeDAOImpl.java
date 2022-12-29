@@ -19,9 +19,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 	}
 	
 	@Override
-	public List<RecipeVO> recipeSelectAll() {
+	public List<RecipeVO> recipeSelectAll(RecipeVO recipevo) {
 		
-		return sqlSession.selectList("recipeSelectAll");
+		return sqlSession.selectList("recipeSelectAll", recipevo);
 	}
 
 	@Override

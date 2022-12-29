@@ -119,5 +119,8 @@
 				</div>
 			</table>
 		</form>
+		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+			<jsp:param name="cotnum" value="<%=cvo.getCnum() %>"/>
+		</jsp:include>
 	</body>
 </html>
