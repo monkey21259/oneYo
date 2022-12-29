@@ -15,13 +15,32 @@
 	logger.info("~~ memGrade.jsp ~~");
 %>
 
+<%
+	String mid = "";
+	String mpw = "";
+	String mname = "";
+	String mnick = "";
+	String memail = "";
+	String mhp = "";
+	String accessToken = "";
+%>
 <%  // 추가: 김기영 - SNS 로그인 시 회원가입일 경우 (221227)
 	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
-	String accessToken = (String)request.getAttribute("accessToken");
+	if (request.getAttribute("accessToken") != null) {
+		accessToken = (String)request.getAttribute("accessToken");	
+	}
 	boolean snsFlag = false;
 	if (accessToken != null && mvo != null) {
 		logger.info("SNS 로그인 후 넘어온 등급 선택창 << snsFlag = true >>");
 		snsFlag = true;
+		
+		// DTO 세팅
+		mid = mvo.getMid();
+		mpw = mvo.getMpw();
+		mname = mvo.getMname();
+		mnick = mvo.getMnick();
+		memail = mvo.getMemail();
+		mhp = mvo.getMhp();
 	}
 %>
 
@@ -163,12 +182,12 @@ $(document).ready(function(){
 	<tr>
 		<td>
 			<input type="button" id="insertFormBtn" name="insertFormBtn" value="다음" />
-			<input type="hidden" id="mid" name="mid" value="<%= mvo.getMid() %>" />
-			<input type="hidden" id="mpw" name="mpw" value="<%= mvo.getMpw() %>" />
-			<input type="hidden" id="mname" name="mname" value="<%= mvo.getMname() %>" />
-			<input type="hidden" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" />
-			<input type="hidden" id="memail" name="memail" value="<%= mvo.getMemail() %>" />
-			<input type="hidden" id="mhp" name="mhp" value="<%= mvo.getMhp() %>" />
+			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
+			<input type="hidden" id="mpw" name="mpw" value="<%= mpw %>" />
+			<input type="hidden" id="mname" name="mname" value="<%= mname %>" />
+			<input type="hidden" id="mnick" name="mnick" value="<%= mnick %>" />
+			<input type="hidden" id="memail" name="memail" value="<%= memail %>" />
+			<input type="hidden" id="mhp" name="mhp" value="<%= mhp %>" />
 			<input type="hidden" id="accTok" name="accTok" value="<%= accessToken %>" />
 <%
 		String mkey = (String)request.getAttribute("mkey");

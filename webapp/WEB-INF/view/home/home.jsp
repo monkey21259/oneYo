@@ -1,7 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.apache.log4j.LogManager" %>
+
+<%@ page import="main.ict.common.O_Session" %>
+
+<% Logger logger = LogManager.getLogger(this.getClass()); %>
+<% logger.info(".jsp 진입"); %>
+
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	O_Session	oSession = O_Session.getInstance();
+	String		mid = oSession.getSession(request);
+	
+	logger.info("mid: " + mid);
+%>
+
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 	<head>
 		<meta charset="UTF-8">
 		<title>home.jsp</title>
@@ -21,6 +37,30 @@
 				$("#warningForm").click(function(){
 					location.href="warningForm.ict";
 				});
+				
+				// 로그인 / 로그아웃 / 회원가입 / 마이페이지 ----------
+				$("#newMemBtn").on("click", function() {
+					console.log("[회원가입] 버튼 클릭");
+					location.href="/oneYo/memGrade.ict";
+				});
+				
+				$("#loginBtn").on("click", function() {
+					console.log("[로그인] 버튼 클릭");
+					location.href="/oneYo/loginForm.ict";
+				});
+				
+				// ------------------------------------------
+				// 레시피 게시판 이동 (테스트) ---------------------
+				$("#recipeSAllBtn").on("click", function() {
+					console.log("[테스트] 레시피 게시판 이동");
+					location.href="/oneYo/recipeSelectAll.ict";
+// 					$("#recipeSAllForm").attr({
+// 						"action": "/oneYo/recipeSelectAll.ict",
+// 						"method": "GET",
+// 						"enctype": "application/x-www-form-urlencoded"
+// 					}).submit();
+				});
+				// ------------------------------------------
 				
 				
 			});
@@ -98,9 +138,27 @@
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
 	 	<div class="banner">
-	 	배너 영역
+	 	배너 영역. (실례합니다. 로그인 테스트좀...)
+<%
+		if (mid == null || mid.equals("")) {
+%>
+			<button class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</button>
+	 		<button class="Choonsik" id="loginBtn" name="loginBtn">로그인</button>
+<%
+		} else {
+%>
+			<span><%= mid %>님 환영합니다.</span>
+			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
+	 		<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">로그아웃</button>
+	 		<br /><b>임시용 레시피버튼</b>
+<!-- 	 		<form id="recipeSAllForm"> -->
+<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" /> --%>
+<!-- 	 		</form> -->
+	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
+<% 		
+		}
+%>
 	 	</div>
-	 	
 	 	<div class="favorContainer">
 	 		<div class="postTitles">
 			 	<div class="favorPostTitle" data-value="recipe" data-num="4">

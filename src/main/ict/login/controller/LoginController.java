@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.GoogleMail;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.login.service.LoginService;
 import main.ict.mem.service.MemService;
@@ -130,7 +131,7 @@ public class LoginController {
 				jObj = (JSONObject)jsonParser.parse(result);
 				
 				String message = (String)jObj.get("message");  // success
-				if (!(message.equals("success"))) {
+				if (!(message.equals("success"))) {  // NAVER - 프로필 획득 성공
 					logger.info("[Profile API] message: " + message);
 					return "#";
 				}
@@ -145,11 +146,22 @@ public class LoginController {
 				mvo.setMemail((String)response.get("email"));
 				mvo.setMhp((String)response.get("mobile"));
 				
+				logger.info(mvo.getMid());
+				List<MemVO> memChkList = memService.memIdCheck(mvo);
+				if (memChkList != null && memChkList.size() == 1) {
+					
+					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동");
+					// 세션 생성 및 부여하기
+					O_Session mSession = O_Session.getInstance();
+					mSession.setSession(req, mvo.getMid());
+					
+					return "home/home";  // 메인 페이지로 이동하기
+				}
+				
+				logger.info("[NEW] 회원가입이 필요합니다.");
 				model.addAttribute("mvoSNS", mvo);
 				model.addAttribute("accessToken", accessToken);
 				logger.info("[SUCCESS] SNS -> memGrade");
-				
-				// mid 일치여부 체크쿼리 있는지 확인 필요 + 분기처리 해야함.
 				
 				return "mem/memGrade";
 				

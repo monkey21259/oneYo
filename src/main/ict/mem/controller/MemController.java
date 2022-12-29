@@ -222,7 +222,7 @@ public class MemController {
 		if (insertCnt > 0) {
 			logger.info("memInsert().nCnt >>> : " + insertCnt);
 			
-			return "home/home";
+			return "login/loginForm";
 		}
 		
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");
