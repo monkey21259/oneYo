@@ -58,6 +58,17 @@
 					}).submit();
 				});
 				
+				$("#warningBtn").click(function(){
+					
+					$("#recipeSelectForm").attr({
+						"action": "recipeWarningForm.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+					
+				});
+				
+				
 			});
 		
 		</script>
@@ -85,6 +96,9 @@
 				<span class="t">레시피(Recipe) 글보기</span>
 			</div>
 			<form id="recipeSelectForm">
+				<input id="tnum" name="tnum" type="hidden" value="<%= recipevo.getRnum() %>">
+			<input id="mnum" name="mnum" type="hidden" value="<%= recipevo.getMnum() %>">
+			<input id="tsubject" name="tsubject" type="hidden" value="<%= recipevo.getRsubject() %>">
 				<table class="recipeTable">
 					<tr>
 						<td colspan="2" style="text-align:center;">
@@ -147,6 +161,7 @@
 <%  // 글쓰기 버튼 %>
 					<tr>
 						<td colspan="2" style="text-align:right;">
+							<input type="button" id="warningBtn" value="신고">
 							<a class="btn" id="recipeUpdateFormBtn">수정</a>
 							<a class="btn" id="recipeDeleteBtn">삭제</a>
 						</td>

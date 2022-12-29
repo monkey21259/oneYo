@@ -266,7 +266,7 @@ public class CommunityController {
 		
 		String cnum = cvo.getCnum();
 		String csubject = cvo.getCsubject();
-		String mnum = cvo.getMnum();
+		String mnum = "M202212260013";
 		
 		m.addAttribute("mnum", mnum);
 		m.addAttribute("cnum", cnum);

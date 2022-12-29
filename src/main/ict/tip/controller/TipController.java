@@ -194,7 +194,7 @@ public class TipController {
 	public String tipWarningForm(TipVO tvo, Model m) {
 		
 		
-		
+		tvo.setMnum("M202212260013");
 		m.addAttribute("tvo", tvo);
 		
 		return "tip/tipWarningForm";
@@ -206,6 +206,7 @@ public class TipController {
 		System.out.println("wvo.getWtnum : " + wvo.getWtnum());
 		System.out.println("wvo.getWcategory : " + wvo.getWcategory());
 		System.out.println("wvo.getWcontent : " + wvo.getWcontent());
+		
 		
 		String wnum = ChabunUtils.getWarningChabun("D", chabunService.getWarningChabun().getWnum());
 		System.out.println("wnum : " + wnum);

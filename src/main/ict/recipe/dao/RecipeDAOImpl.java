@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 
 public class RecipeDAOImpl implements RecipeDAO {
 
@@ -48,6 +49,12 @@ public class RecipeDAOImpl implements RecipeDAO {
 		// TODO Auto-generated method stub
 		
 		return sqlSession.selectList("recipeSearch", rList);
+	}
+
+	@Override
+	public int recipeWarningInsert(WarningVO wvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("recipeWarningInsert", wvo);
 	}
 	
 }

@@ -3,6 +3,7 @@ package main.ict.recipe.dao;
 import java.util.List;
 
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.warning.vo.WarningVO;
 
 public interface RecipeDAO {
 	
@@ -14,4 +15,7 @@ public interface RecipeDAO {
 	// recipeSearch 2022-12-29 이성일 추가
 	public List<RecipeVO> recipeSearch(List<String> rList);
 
+	//신고
+	public int recipeWarningInsert(WarningVO wvo);
+	
 }
