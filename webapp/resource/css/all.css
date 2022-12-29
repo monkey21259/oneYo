@@ -29,6 +29,19 @@ a {
 	text-decoration	: none;
 }
 
+/* 감출 요소 */
+.hidden_O {
+	
+	/* visibility : hidden - 숨김 (영역차지) */
+	visibility	: hidden;
+}
+.hidden_X {
+	
+	/* display : none - 숨김 (영역삭제) */
+	display	: none;
+}
+
+
 /* 전체 영역 */
 #all_div {
 	/* width 가로폭 */
@@ -51,14 +64,37 @@ a {
 	border-bottom	: 1px solid #ccc;
 }
 
+#header .logoSide {
+	width	: 490px;
+	height	: 120px;
+}
+
+#header #logoLeft {
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: left;
+}
+#header #logoCenter {
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: left;
+}
+#header #logoRight {
+	/* 해당 블럭 왼쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: right;
+}
+
+#header #logoCenter a {
+	wigth	: 100%;
+}
+
 #logo {
-/* 	width	: 80%; */
-	margin	: 10px auto;
+	width	: 180px;
+	height	: 91px;
+	margin	: 15px 20px;
 	text-align: center;
 }
 
 #logo img {
-	width	: 15%;
+	width	: 100%;
 	height	: auto;
 	
 }
@@ -70,8 +106,8 @@ a {
 }
 
 .nav nav ul li {
-	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	/* 상단 메뉴바 가로 정렬 */
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
 	width	: 200px;
 	height	: 30px;
@@ -91,8 +127,8 @@ a {
 	clear	: both;
 }
 
-/* -------------------------------- 상단 serchBar -------------------------------- */
-#serchBar {
+/* -------------------------------- 상단 searchBar -------------------------------- */
+#searchBar {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
 	

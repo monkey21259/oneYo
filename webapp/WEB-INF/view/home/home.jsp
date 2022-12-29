@@ -27,6 +27,8 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
 		<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript">
 		
 			alert("[home.jsp] JS");
@@ -74,7 +76,7 @@
 				});
 				// ------------------------------------------
 				
-				
+				hiddenAction();
 			});
 			
 			function postClick(obj) {
@@ -136,6 +138,10 @@
 	신고
 	</div>
 	
+	<div id="searchBarBtn">
+	검색
+	</div>
+	
 	<a href="javascript:window.scrollTo(0,0);">
 	<div id="go_top">
 	TOP▲
@@ -146,12 +152,20 @@
 <div id="all_div">
 
 <div id="header">
-	<a href="home.ict">
-		<div id="logo">
-		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
-		<!-- 379 X 186 -->
-		</div>
-	</a>
+	<div id="logoLeft" class="logoSide">
+	로고 옆공간 좌측
+	</div>
+	<div id="logoCenter">
+		<a href="home.ict">
+			<div id="logo">
+			<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+			<!-- 379 X 186 -->
+			</div>
+		</a>
+	</div>
+	<div id="logoRight" class="logoSide">
+	로고 옆공간 우측
+	</div>
 	
 	<hr>
 	
@@ -201,8 +215,10 @@
 	<hr>
 </div>
 
-<div id="serchBar">
+<div id="searchBar" class="hidden_X">
 검색바 여기에 넣기
+<input type="text" id="searchText" name="serchText">
+<input type="button" id="searchTextBtn" value="검색">
 </div>
 
 <div id="left">
