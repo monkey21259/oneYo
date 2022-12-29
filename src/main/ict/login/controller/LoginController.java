@@ -57,7 +57,6 @@ public class LoginController {
 			// 토큰 갱신 : 		   "refresh_token"
 			// 토큰 삭제 : 		   "delete"
 			// ※ 로그인 연동 해제 구현 시 토큰 유효성 검사 必 (토큰이 무효해도 success 리턴)
-			
 			try {
 				logger.info("[Naver] 액세스 토큰 가져오기");
 				// Naver Authorization 시 reponse된 값
@@ -94,7 +93,7 @@ public class LoginController {
 				JSONParser jsonParser = new JSONParser();
 				JSONObject jObj = (JSONObject)jsonParser.parse(result);
 				
-				String accessToken = (String)jObj.get("access_token");
+				String access_token = (String)jObj.get("access_token");
 //				String refreshToken = (String)jObj.get("refresh_token");
 				String tokenType = (String)jObj.get("token_type");
 //				logger.info(accessToken);
@@ -108,7 +107,7 @@ public class LoginController {
 				conn.setRequestMethod("POST");
 				
 				// Authorization: [토큰 타입] {접근 토큰}
-				String reqHeader = tokenType + " " + accessToken;
+				String reqHeader = tokenType + " " + access_token;
 				conn.setRequestProperty("Authorization", reqHeader);
 				conn.setUseCaches(false);
 				conn.setDoOutput(true);
@@ -145,6 +144,7 @@ public class LoginController {
 				mvo.setMnick((String)response.get("nickname"));
 				mvo.setMemail((String)response.get("email"));
 				mvo.setMhp((String)response.get("mobile"));
+				mvo.setAccess_token(access_token);
 				
 				logger.info(mvo.getMid());
 				List<MemVO> memChkList = memService.memIdCheck(mvo);
@@ -154,13 +154,13 @@ public class LoginController {
 					// 세션 생성 및 부여하기
 					O_Session mSession = O_Session.getInstance();
 					mSession.setSession(req, mvo.getMid());
+					mSession.addAttribute(req, "access_token", access_token);
 					
 					return "home/home";  // 메인 페이지로 이동하기
 				}
 				
 				logger.info("[NEW] 회원가입이 필요합니다.");
 				model.addAttribute("mvoSNS", mvo);
-				model.addAttribute("accessToken", accessToken);
 				logger.info("[SUCCESS] SNS -> memGrade");
 				
 				return "mem/memGrade";

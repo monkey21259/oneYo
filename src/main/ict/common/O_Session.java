@@ -11,6 +11,7 @@ public class O_Session {
 	static Logger logger = LogManager.getLogger(O_Session.class);
 
 	private static final String M_SESSION_ID = "mid";
+	private static final String M_SESSION_ACC_TOK = "access_token";  // 코드 리팩토링할때 활용 가능.
 	
 	private static class LazyHolder {
 		public static final O_Session SESSIONLISTENER_INSTANCE = new O_Session();
@@ -21,6 +22,25 @@ public class O_Session {
 	}
 	
 	public O_Session() {}
+	
+	public Object getAttribute(final HttpServletRequest req, String attr) {
+		
+		logger.info("getAttribute() 함수 진입");
+		
+		HttpSession hSession = req.getSession(false);
+		return hSession.getAttribute(attr);
+	}
+	
+	public boolean addAttribute(final HttpServletRequest req, String attr, Object obj) {
+		
+		logger.info("addAttribute() 함수 진입");
+		HttpSession hSession = req.getSession(false);
+		if (hSession != null) {
+			hSession.setAttribute(attr, obj);
+			return true;
+		}
+		return false;
+	}
 	
 	public void killSession(final HttpServletRequest req) {
 		
