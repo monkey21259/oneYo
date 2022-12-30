@@ -75,7 +75,7 @@ public class HomeController {
 		model.addAttribute("DataMap", dataMap);
 		
 		// testhome.jsp에서 el 데이터 확인
-		return "home/testhome";
+		return "home/home";
 	}
 	
 	// SNS Logout
