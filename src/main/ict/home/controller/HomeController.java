@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,12 +14,20 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import main.ict.common.ConstPack;
 import main.ict.common.O_Session;
+import main.ict.community.vo.CommunityVO;
+import main.ict.home.service.HomeService;
+import main.ict.home.vo.HomeVO;
 import main.ict.mem.vo.MemVO;
+import main.ict.notice.vo.NoticeVO;
+import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.vo.TipVO;
 
 @Controller
 public class HomeController {
@@ -24,13 +35,47 @@ public class HomeController {
 	//	log4j 세팅
 	private Logger logger = LogManager.getLogger(HomeController.class);
 	
+	@Autowired(required=false)
+	private HomeService homeService;
+	
 	//	home 이동
+	// 2022-12-30 이성일 home 데이터 추가
 	@GetMapping("home")
-	public String home() {
+	public String home(Model model) {
 		
 		logger.info("home() >>> : home.jsp");
 		
-		return "home/home";
+		Map<String, Object> dataMap = new HashMap();
+		
+		List<RecipeVO> rList = homeService.getRecipeList();
+		List<TipVO> tList = homeService.getTipList();
+		List<CommunityVO> cList = homeService.getCommunityList();
+		List<NoticeVO> nList = homeService.getNoticeList();
+		List<MemVO> mList = homeService.getMemList();
+		List<HomeVO> cntList = homeService.getCntList();
+		
+		if(rList !=null && rList.size() > 0)
+			dataMap.put("RecipeList", rList);
+		
+		if(tList !=null && tList.size() > 0)
+			dataMap.put("TipList", tList);
+		
+		if(cList !=null && cList.size() > 0)
+			dataMap.put("CommunityList", cList);
+		
+		if(nList !=null && nList.size() > 0)
+			dataMap.put("NoticeList", nList);
+		
+		if(mList !=null && mList.size() > 0)
+			dataMap.put("MemList", mList);
+		
+		if(cntList !=null && cntList.size() == 1)
+			dataMap.put("Count", cntList);
+		
+		model.addAttribute("DataMap", dataMap);
+		
+		// testhome.jsp에서 el 데이터 확인
+		return "home/testhome";
 	}
 	
 	// SNS Logout
