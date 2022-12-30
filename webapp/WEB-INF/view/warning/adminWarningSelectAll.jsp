@@ -14,7 +14,13 @@
 	logger.info("adminWarningSelectAll 진입 >>> : "); 
 %>
 <%
-	//model.addAttribute("listAll", listAll)
+	int pageSize = 0;
+	int groupSize = 0;
+	int curPage = 0;
+	int totalCount = 0;
+
+
+//model.addAttribute("listAll", listAll)
 	Object obj = request.getAttribute("listAll");
 			if(obj == null){return; }
 			List<WarningVO> listAll = (List<WarningVO>)obj;	
@@ -67,7 +73,8 @@
 </script>
 	</head>
 	<body>
-	
+	<h3>신고글조회</h3>
+	<hr>
 		<form id="adminWarningSelectAll" name="adminWarningSelectAll">
 			<table border="1 solid">
 				<thead>
@@ -103,9 +110,43 @@
 						<td><%= wvo.getInsertdate()%></td> <!-- 등록일 -->
 					</tr>
 <%
-				} //for
+		totalCount = Integer.parseInt(wvo.getTotalCount());
+		} //for
+%>	
+<%
 			}//if
 %>
+<%
+	//	model.addAttribute("pagingAWVO", wvo);
+		Object obj_p = request.getAttribute("pagingAWVO");
+		WarningVO pagingAWPVO = (WarningVO)obj_p;
+		
+		pageSize = Integer.parseInt(pagingAWPVO.getPageSize());
+		logger.info("pageSize >>> : " + pageSize );
+		
+		groupSize = Integer.parseInt(pagingAWPVO.getGroupSize());
+		logger.info("groupSize >>> : " + groupSize );
+		
+		curPage = Integer.parseInt(pagingAWPVO.getCurPage());
+		logger.info("curPage >>> : " + curPage );
+		
+		logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + wvo.getTotalCount());
+		
+		logger.info("totalCount >>> : " + totalCount );
+
+%>
+		<tr>
+			<td colspan="6">
+				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+					<jsp:param value="adminWarningSelectAll.ict" name="url"/>
+						<jsp:param value="" name="str"/>
+						<jsp:param value="<%=pageSize %>" name="pageSize"/>
+						<jsp:param value="<%=groupSize %>" name="groupSize"/>
+						<jsp:param value="<%=curPage %>" name="curPage"/>
+						<jsp:param value="<%=totalCount %>" name="totalCount"/>
+				</jsp:include>
+			</td>
+		</tr>
 				</tbody>
 			</table>
 			<input type="hidden" id="wtnum" name="wtnum" value="">
