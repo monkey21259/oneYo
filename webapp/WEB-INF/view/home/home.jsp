@@ -261,7 +261,7 @@
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
 	 	<div class="banner">
-	 	<img src="/oneYo/resource/img/001.png">
+	 	<img src="/oneYo/resource/img/002.png">
 	 	</div>
 	 	<div class="favorContainer">
 	 		<div class="postTitles">

@@ -19,6 +19,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 전체 css -->
+<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+
+<!-- adminLevelupContent.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupContent.css">
+
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>		
+		
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
@@ -61,58 +71,121 @@
 			}	
 		});
 		
+//		검색 바 없어졌다 생기기 액션주는 all.js 함수
+		hiddenAction();
+		
 	});
 
 
 
 </script>
-<style type="text/css">
-	@font-face{
-		src:url(/jshSpring/font/EF_Diary.ttf);
-		font-family: "EF_Diary";
-	}
 
-	body{
-   background-color:#e6e6e6;
-   color: #0c186d;
-   font-family:EF_Diary;
-   }
-   #hi{
-   	  border:20px solid white;
-      border-radius: 20px;
-      background-color:white;
-      box-shadow: 2px 2px 10px black;
-      width:900px;
-  
- }
- 
- #rbwritediv{
- 		border-radius: 20px;
- 		background-color:white;
- 		font-family:EF_Diary;		 
- 		color: #0c186d;
-		margin: 0 auto; 		
-		border:10px solid white;
-		box-shadow: 2px 2px 10px black;
-		width:900px;
-	}	
-	
-	 .btns{
-      border: 2px solid #0c186d;
-      border-radius: 5px;
-      background-color: white;
-      color: #0c186d;
-      font-weight: bold;
-      padding:0px 10px;
-   }
-</style>
 </head>
 <body>
 <br>
-<h1 align="center">등업</h1>
+
 
 <form name="levelupForm" id="levelupForm">
-<table id="hi" align="center">
+		 	<div id="sideBar">
+	<div id="warningForm">
+	신고
+	</div>
+	
+	<div class="searchBarBtn">
+	검색
+	</div>
+	
+	<a href="javascript:window.scrollTo(0,0);">
+	<div id="go_top">
+	TOP▲
+	</div>
+	</a>
+</div>
+
+<div id="searchBar" class="hidden_X">
+<!-- <div id="searchBar" class="hidden_O"> -->
+	<div class="searchBarBtn">
+		X
+	</div>
+	검색바 여기에 넣기
+	<input type="text" id="searchText" name="serchText">
+	<input type="button" id="searchTextBtn" value="검색">
+</div>
+
+<div id="all_div">
+
+<div id="header">
+	<div id="logoLeft" class="logoSide">
+	로고 옆공간 좌측
+	</div>
+	<div id="logoCenter">
+		<a href="home.ict">
+			<div id="logo">
+			<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+			<!-- 379 X 186 -->
+			</div>
+		</a>
+	</div>
+	<div id="logoRight" class="logoSide">
+	로고 옆공간 우측
+	</div>
+	
+	<hr>
+	
+	<div class="nav">
+	<!-- 상단 메뉴바 -->
+		<nav>
+		<ul>
+			<li>
+				<a href="recipeSelectAll.ict" class="menu_link">
+				<div>
+				레시피
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="tipSelectAll.ict" class="menu_link">
+				<div>
+				Tip
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="communitySelectAll.ict" class="menu_link">
+				<div>
+				커뮤니티
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="noticeSelectAll.ict" class="menu_link">
+				<div>
+				공지사항
+				</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="menu_link">
+				<div>
+				더보기
+				</div>
+				</a>
+			</li>
+		</ul>
+		</nav>
+	</div>
+	
+	<hr>
+</div>
+
+<div id="left">
+좌측
+</div>
+
+<div id="center">
+<!-- -------------------------------페이지 전용 center------------------------------- -->
+<h1 align="center">등업</h1>
+<table>
 	<tr>
 		<td>제목</td>
 		<td colspan="4" style="text-align:left; width:400;">
@@ -145,8 +218,28 @@
 <button type="button" class="btns" id="okeyBtn">승인</button>
 </td>				
 </tr>
-</table>
-</form>
+</table>	
 
-</body>
+<!-- -------------------------------페이지 전용 center------------------------------- -->
+</div>
+
+<div id="right">
+우측
+</div>
+
+<div id="footer">
+	<div>
+		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
+		<span>팀 소개: ~~~</span>
+	</div>
+	<div>
+		<span>회원 수: </span> / <span>레시피글 수: </span><br />
+		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+	</div>
+</div>
+
+</div>
+			
+		</form>
+	</body>
 </html>

@@ -248,7 +248,7 @@
 				<td>
 					<textarea rows="10" cols="50" id="tcontent" name="tcontent" placeholder="글 내용" ><%= tvo.getTcontent() %></textarea>
 					<br>
-					<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>">
+					<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>" style="width:200px; height:200px;">
 				</td>
 			</tr>
 			<tr>
