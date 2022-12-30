@@ -32,7 +32,8 @@
 <script type="text/javascript">
 		
 	$(document).ready(function(){
-		
+	
+	//content로 전송
 		$(".warningSelect").click(function(){
 			
 				let info = $(this).siblings();
@@ -54,26 +55,15 @@
 				$("#mnick").val(info3);
 				$("#insertdate").val(info4);
 				
-				
-				
-// 				<input type="hidden" id="wtnum" name="wtnum" value="">
-// 				<input type="hidden" id="wcategory" name="wcategory" value="">
-// 				<input type="hidden" id="wcontent" name="wcontent" value="">
-// 				<input type="hidden" id="mnick" name="mnick" value="">
-// 				<input type="hidden" id="insertdate" name="insertdate" value="">
-			
 			$("#adminWarningSelectAll").attr({
 				'action':'adminWarningSelectContent.ict',
 				'method':'GET',
 				'enctype':'application/x-www-form-urlencoded'
 			}).submit();
 			
-		});
-		
-		
-	});		
-		
-		
+		}); //warningSelect 클릭
+	});	//ready
+	
 </script>
 	</head>
 	<body>

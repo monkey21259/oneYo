@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import main.ict.community.controller.CommunityController;
+import main.ict.mem.vo.MemVO;
 import main.ict.warning.dao.AdminWarningDAO;
 import main.ict.warning.vo.WarningVO;
 
@@ -28,13 +29,41 @@ public class AdminWarningServiceImpl implements AdminWarningService{
 		return adminWarningDAO.adminWarningSelectAll(wvo);
 	}
 
-	
 //신고분야(R)
 	@Override
 	public List<WarningVO> adminWarningSelectRecipe(WarningVO wvo) {
 		logger.info("adminWarningSelectRecipe 함수진입 >>> ");
 		return adminWarningDAO.adminWarningSelectRecipe(wvo);
 	}
+
+//신고분야(T)
+	@Override
+	public List<WarningVO> adminWarningSelectTip(WarningVO wvo){
+		logger.info("adminWarningSelectTip 함수진입 >>> ");
+		return adminWarningDAO.adminWarningSelectTip(wvo);
+	}
+	
+	
+//신고분야(C)
+	@Override
+	public List<WarningVO> adminWarningSelectCommunity(WarningVO wvo){
+		logger.info("adminWarningSelectCommunity 함수진입 >>> ");
+		return adminWarningDAO.adminWarningSelectCommunity(wvo);
+	}
+	
+//회원경고
+	@Override
+	public int adminMemberCaution(MemVO mvo) {
+		logger.info("adminMemberCaution 함수진입 >>> ");
+		return adminWarningDAO.adminMemberCaution(mvo);
+	}
+
+//신고글삭제
+	@Override
+	public int adminWarningDelete(WarningVO wvo) {
+		logger.info("adminWarningDelete 함수진입 >>> ");
+		return adminWarningDAO.adminWarningDelete(wvo);
+	}		
 
 	
 }

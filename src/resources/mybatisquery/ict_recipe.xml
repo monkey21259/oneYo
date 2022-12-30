@@ -199,7 +199,7 @@ SELECT
 	       FROM  "ORCLICT00"."ICT_RECIPE" B
 	       WHERE  B.DELETEYN = 'Y'
 	       <foreach item="item" index="index" collection="list">
-	       AND	  B.RJERYO LIKE '%${item}%'
+	       AND	  B.RJERYO LIKE '%'||'${item}'||'%'
 	       </foreach>
 	       ORDER BY B.RNUM DESC)         B
 	WHERE  A.MNUM = B.MNUM

@@ -143,7 +143,6 @@ public class AdminController {
 		logger.info("탈퇴 ajax값(s) >>> : " + s);
 		
 		
-		
 		return s;
 		
 	} //memDelete

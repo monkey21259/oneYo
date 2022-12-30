@@ -127,23 +127,6 @@ a {
 	clear	: both;
 }
 
-/* -------------------------------- 상단 searchBar -------------------------------- */
-#searchBar {
-	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
-	clear	: both;
-	
-	/* #all_div의 약 67% 가로 폭 */
-	width	: 800px;
-	height	: 50px;
-	
-	/* 좌우 중앙 정렬 */
-	margin	: 0 auto;
-	text-align: center;
-	
-	/* 배경 색상 */
-	background-color	: #fff;
-}
-
 /* -------------------------------- 좌측 left -------------------------------- */
 #left {
 	/* width 가로폭 */
@@ -224,6 +207,47 @@ a {
 	
 	/* 배경색 */
 	background-color	: #fff;
+}
+
+/* -------------------------------- 상단 searchBar -------------------------------- */
+#searchBar {
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+	
+	/* #all_div의 약 67% 가로 폭 */
+	width	: 800px;
+	height	: 80px;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	/* 좌우 중앙 정렬 */
+	margin	: 0 auto;
+	text-align: center;
+	
+	/* 배경 색상 */
+	background-color	: #fff;
+	
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	/* 위치 지정 */
+	top	: 30%;
+	right	: 25%;
+	
+	/* 9층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 9;
+}
+
+#searchBar div {
+	
+	/* #searchBar 사이즈 */
+	width	: 13px;
+	height	: 19px;
+	
+	/* 위치 지정 */
+	margin-right	: 1%;
+	margin-left	: 98%;
 }
 
 

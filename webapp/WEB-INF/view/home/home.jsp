@@ -78,6 +78,7 @@
 				});
 				// ------------------------------------------
 				
+				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 			});
 			
@@ -140,7 +141,7 @@
 	신고
 	</div>
 	
-	<div id="searchBarBtn">
+	<div class="searchBarBtn">
 	검색
 	</div>
 	
@@ -149,6 +150,16 @@
 	TOP▲
 	</div>
 	</a>
+</div>
+
+<div id="searchBar" class="hidden_X">
+<!-- <div id="searchBar" class="hidden_O"> -->
+	<div class="searchBarBtn">
+		X
+	</div>
+	검색바 여기에 넣기
+	<input type="text" id="searchText" name="serchText">
+	<input type="button" id="searchTextBtn" value="검색">
 </div>
 
 <div id="all_div">
@@ -215,12 +226,6 @@
 	</div>
 	
 	<hr>
-</div>
-
-<div id="searchBar" class="hidden_X">
-검색바 여기에 넣기
-<input type="text" id="searchText" name="serchText">
-<input type="button" id="searchTextBtn" value="검색">
 </div>
 
 <div id="left">

@@ -89,6 +89,25 @@ public class TipController {
 			_tvo.setCurPage(String.valueOf(ConstPack.TIP_CUR_PAGE));
 		}//end of if
 		
+		//searching 프로퍼티 null값 방지
+		if(_tvo.getSearchCategory() == null || _tvo.getSearchCategory() == "null") {
+			_tvo.setSearchCategory("");
+		}//end of if
+		if(_tvo.getKeyword() == null || _tvo.getKeyword() == "null") {
+			_tvo.setKeyword("");
+		}//end of if
+		if(_tvo.getStartDate() == null || _tvo.getStartDate() == "null") {
+			_tvo.setStartDate("");
+		}//end of if
+		if(_tvo.getEndDate() == null || _tvo.getEndDate() == "null") {
+			_tvo.setEndDate("");
+		}//end of if
+		
+		logger.info("searchCategory : " + _tvo.getSearchCategory());
+		logger.info("keyword : " + _tvo.getKeyword());
+		logger.info("startDate : " + _tvo.getStartDate());
+		logger.info("endDate : " + _tvo.getEndDate());
+		
 		List<TipVO> list = tipService.tipSelectAll(_tvo);
 		TipVO tvo = null;
 		
@@ -97,11 +116,14 @@ public class TipController {
 				tvo = list.get(i);
 				logger.info("VO : \n" + tvo.toString());
 			}
-			m.addAttribute("pagingVO", _tvo);
-			m.addAttribute("list", list);
-			return "tip/tipSelectAll";
+
+			//return "tip/tipSelectAll";
 		}
-		return "tip/tipInsertForm";
+
+		m.addAttribute("pagingVO", _tvo);
+		m.addAttribute("list", list);
+		
+		return "tip/tipSelectAll";
 	}
 	
 	@GetMapping(value="tipSelectContent")

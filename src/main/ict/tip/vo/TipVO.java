@@ -30,13 +30,20 @@ public class TipVO {
 	private String curPage;
 	private String totalCount;
 	
+	//searching
+	private String searchCategory;	//검색 카테고리
+	private String keyword;			//텍스트 검색하는 키워드
+	private String startDate;		//날짜 검색 시작일
+	private String endDate;			//날짜 검색 종료일
+	
 	public TipVO() {
 
 	}
 
 	public TipVO(String tnum, String tsubject, String tcontent, String tphoto, String tcategory, String warning,
 			String thit, String deleteyn, String insertdate, String updatedate, String mnum, String tipnum,
-			String mnick, String likecnt, String pageSize, String groupSize, String curPage, String totalCount) {
+			String mnick, String likecnt, String pageSize, String groupSize, String curPage, String totalCount,
+			String searchCategory, String keyword, String startDate, String endDate) {
 		
 		this.tnum = tnum;
 		this.tsubject = tsubject;
@@ -56,6 +63,10 @@ public class TipVO {
 		this.groupSize = groupSize;
 		this.curPage = curPage;
 		this.totalCount = totalCount;
+		this.searchCategory = searchCategory;
+		this.keyword = keyword;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public String getTnum() {
@@ -162,8 +173,6 @@ public class TipVO {
 		this.mnick = mnick;
 	}
 	
-	
-
 	public String getLikecnt() {
 		return likecnt;
 	}
@@ -204,6 +213,40 @@ public class TipVO {
 
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
+	}
+
+	//서칭 getter
+	public String getSearchCategory() {
+		return searchCategory;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	//서칭 setter
+	public void setSearchCategory(String searchCategory) {
+		this.searchCategory = searchCategory;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	@Override

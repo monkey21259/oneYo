@@ -20,72 +20,72 @@
 			  ORDER BY A.WNUM DESC
 	</select>
 	
-<!-- 신고당한사람 -->
+<!-- 신고분야(R) 건별조회 -->
 	<select id="adminWarningSelectRecipe" resultType="warningvo">
-		SELECT    A.WTNUM 	AS 		WTNUM
-				, B.MNUM 	AS 		WTMNUM
-				, B.MNICK 	AS 		WTMNICK
-				, C.RNUM 	AS 		RNUM	
-				, C.MNUM 	AS 		MNUM
-					
+		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
+				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
+				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
+				, C.RNUM 	AS 		RNUM 		<!-- 레시피작성글번호 -->
+				, C.MNUM 	AS 		MNUM 		<!-- 레시피작성한회원번호 -->
 		FROM "ORCLICT00"."ICT_WARNING" A,
 			 "ORCLICT00"."ICT_MEMBER" B,
 			 "ORCLICT00"."ICT_RECIPE" C
-			 
 		WHERE   
 		A.WTNUM = #{wtnum}
 		AND A.WTNUM = C.RNUM
 		AND C.MNUM = B.MNUM
 		AND A.DELETEYN = 'Y'
-	</select>		
-<!-- 		ELSIF(SELECT SUBSTR(A.WTNUM, 1) == "T")  THEN -->
-		
-<!-- 			SELECT    A.WTNUM 	AS 		WTNUM -->
-<!-- 					, B.MNUM 	AS 		MNUM -->
-<!-- 					, B.MNICK 	AS 		MNICK -->
-<!-- 					, C.TNUM 	AS 		TNUM	 -->
-<!-- 					, C.MNUM 	AS 		MNUM -->
-						
-<!-- 			FROM "ORCLICT00"."ICT_WARNING" A, -->
-<!-- 				 "ORCLICT00"."ICT_MEMBER" B, -->
-<!-- 				 "ORCLICT00"."ICT_TIP" C -->
-				 
-<!-- 			WHERE  A.WTNUM = C.TNUM -->
-<!-- 			AND C.MNUM = B.MNUM -->
-<!-- 			AND A.DELETEYN = 'Y' 	 -->
-			
-<!-- 		ELSIF(SELECT SUBSTR(A.WTNUM, 1) == "C")  THEN -->
-		
-<!-- 			SELECT    A.WTNUM 	AS 		WTNUM -->
-<!-- 					, B.MNUM 	AS 		MNUM -->
-<!-- 					, B.MNICK 	AS 		MNICK -->
-<!-- 					, C.CNUM 	AS 		CNUM	 -->
-<!-- 					, C.MNUM 	AS 		MNUM -->
-						
-<!-- 			FROM "ORCLICT00"."ICT_WARNING" A, -->
-<!-- 				 "ORCLICT00"."ICT_MEMBER" B, -->
-<!-- 				 "ORCLICT00"."ICT_COMMUNITY" C -->
-				 
-<!-- 			WHERE  A.WTNUM = C.CNUM -->
-<!-- 			AND C.MNUM = B.MNUM -->
-<!-- 			AND A.DELETEYN = 'Y' 	 -->
-		
-<!-- 		END IF -->
-		
-		
-<!-- 신고건별조회 -->	
-<!-- 	<select id="adminWarningSelectContent" resultType="warningvo"> -->
-<!-- 		SELECT	  A.WNUM		AS 		WNUM -->
-<!-- 				, A.WTNUM 		AS 		WTNUM -->
-<!-- 				, A.WCATEGORY 	AS 		WCATEGORY -->
-<!-- 				, A.WCONTENT 	AS 		WCONTENT -->
-<!-- 				, B.MNUM 		AS 		MNUM  -->
-<!-- 				, B.MNICK 		AS 		MNICK 신고한사람 -->
-<!-- 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE -->
-<!-- 		FROM "ORCLICT00"."ICT_WARNING" A, -->
-<!-- 			 "ORCLICT00"."ICT_MEMBER" B	  -->
-<!-- 		WHERE A.DELETEYN ='Y' -->
-<!-- 		AND B.MNUM = #{mnum, jdbcType=VARCHAR }  -->
-<!-- 		ORDER BY A.WNUM DESC -->
-<!-- 	</select> -->
+	</select>
+	
+<!-- 신고분야(T) 건별조회 -->
+	<select id="adminWarningSelectTip" resultType="warningvo">
+		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
+				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
+				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
+				, C.TNUM 	AS 		TNUM 		<!-- 레시피작성글번호 -->
+				, C.MNUM 	AS 		MNUM 		<!-- 레시피작성한회원번호 -->
+		FROM "ORCLICT00"."ICT_WARNING" A,
+			 "ORCLICT00"."ICT_MEMBER" B,
+			 "ORCLICT00"."ICT_TIP" C
+		WHERE   
+		A.WTNUM = #{wtnum}
+		AND A.WTNUM = C.TNUM
+		AND C.MNUM = B.MNUM
+		AND A.DELETEYN = 'Y'
+	</select>
+	
+<!-- 신고분야(C) 건별조회 -->
+	<select id="adminWarningSelectCommunity" resultType="warningvo">
+		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
+				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
+				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
+				, C.CNUM 	AS 		CNUM 		<!-- 레시피작성글번호 -->
+				, C.MNUM 	AS 		MNUM 		<!-- 레시피작성한회원번호 -->
+		FROM "ORCLICT00"."ICT_WARNING" A,
+			 "ORCLICT00"."ICT_MEMBER" B,
+			 "ORCLICT00"."ICT_COMMUNITY" C
+		WHERE   
+		A.WTNUM = #{wtnum}
+		AND A.WTNUM = C.CNUM
+		AND C.MNUM = B.MNUM
+		AND A.DELETEYN = 'Y'
+	</select>
+	
+<!-- 회원경고 -->	
+	<update id="adminMemberCaution" parameterType="memvo">
+		 UPDATE "ORCLICT00"."ICT_MEMBER"
+		      SET MWARNING = MWARNING + 1
+		      WHERE MNUM = #{mnum, jdbcType=VARCHAR }
+	</update>
+	
+<!-- 회원삭제 -->	 
+	<update id="adminWarningDelete" parameterType="warningvo">
+	UPDATE  "ORCLICT00"."ICT_WARNING"
+	SET		DELETEYN='N'
+  	WHERE 	WNUM = #{wnum, jdbcType=VARCHAR }
+  	AND 	DELETEYN = 'Y'
+  	</update>
 </mapper>
