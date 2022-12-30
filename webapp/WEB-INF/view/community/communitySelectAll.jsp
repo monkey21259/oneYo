@@ -64,7 +64,7 @@
 				$("#communitySelectAll").attr({
 					"action":"communityInsertForm.ict",
 					"method":"GET",
-					"enctype":"application/x-www=form=urlencoded"	
+					"enctype":"application/x-www-form-urlencoded"
 				}).submit();
 			}); //insertSelectAllBtn
 			

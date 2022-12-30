@@ -23,6 +23,7 @@
 <!-- 신고분야(R) 건별조회 -->
 	<select id="adminWarningSelectRecipe" resultType="warningvo">
 		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
 				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
 				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
 				, C.RNUM 	AS 		RNUM 		<!-- 레시피작성글번호 -->
@@ -40,6 +41,7 @@
 <!-- 신고분야(T) 건별조회 -->
 	<select id="adminWarningSelectTip" resultType="warningvo">
 		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
 				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
 				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
 				, C.TNUM 	AS 		TNUM 		<!-- 레시피작성글번호 -->
@@ -57,6 +59,7 @@
 <!-- 신고분야(C) 건별조회 -->
 	<select id="adminWarningSelectCommunity" resultType="warningvo">
 		SELECT    A.WTNUM 	AS 		WTNUM 		<!-- 신고당한글번호 -->
+				, A.WNUM		AS 		WNUM
 				, B.MNUM 	AS 		WTMNUM 		<!-- 신고당한회원번호 -->
 				, B.MNICK 	AS 		WTMNICK 	<!-- 신고당한사람 닉네임 -->
 				, C.CNUM 	AS 		CNUM 		<!-- 레시피작성글번호 -->
@@ -77,4 +80,12 @@
 		      SET MWARNING = MWARNING + 1
 		      WHERE MNUM = #{mnum, jdbcType=VARCHAR }
 	</update>
+	
+<!-- 회원삭제 -->	 
+	<update id="adminWarningDelete" parameterType="warningvo">
+	UPDATE  "ORCLICT00"."ICT_WARNING"
+	SET		DELETEYN='N'
+  	WHERE 	WNUM = #{wnum, jdbcType=VARCHAR }
+  	AND 	DELETEYN = 'Y'
+  	</update>
 </mapper>

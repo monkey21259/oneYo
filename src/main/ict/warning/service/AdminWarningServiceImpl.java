@@ -56,5 +56,14 @@ public class AdminWarningServiceImpl implements AdminWarningService{
 	public int adminMemberCaution(MemVO mvo) {
 		logger.info("adminMemberCaution 함수진입 >>> ");
 		return adminWarningDAO.adminMemberCaution(mvo);
+	}
+
+//신고글삭제
+	@Override
+	public int adminWarningDelete(WarningVO wvo) {
+		logger.info("adminWarningDelete 함수진입 >>> ");
+		return adminWarningDAO.adminWarningDelete(wvo);
 	}		
+
+	
 }

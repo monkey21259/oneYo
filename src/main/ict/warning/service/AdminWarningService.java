@@ -22,4 +22,6 @@ public interface AdminWarningService {
 //회원경고
 	public int adminMemberCaution(MemVO mvo);	
 	
+//신고글삭제
+	public int adminWarningDelete(WarningVO wvo);
 }
