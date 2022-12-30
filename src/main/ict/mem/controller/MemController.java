@@ -59,7 +59,7 @@ public class MemController {
 		
 		String sendUrl = "";
 //		sendUrl = "http://localhost:8088/oneYo/memInsertForm.ict?memail=";
-		sendUrl = "http://192.168.219.128:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
+		sendUrl = "http://192.168.219.119:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
 		sendUrl += memail + "&mgrade=" + mvo.getMgrade();
 		
 		String sendMsg = "";
