@@ -141,4 +141,19 @@ public class AdminWarningController {
 		return s;
 	}
 	
+//신고글 삭제
+	@GetMapping("adminWarningDelete")
+	public String adminWarningDelete(WarningVO wvo) {
+		
+		logger.info("wvo.getWnum() >>> : " + wvo.getWnum());
+		
+		int nCnt = adminWarningService.adminWarningDelete(wvo);
+		logger.info("nCnt >>> : " + nCnt);
+		
+			if(nCnt == 1) {
+				return "warning/adminWarningDelete";
+			} 
+		
+		return "#";
+	}
 } //class

@@ -93,6 +93,17 @@
 			} //whenError	
 			
 		});//warningBtn버튼클릭
+	
+//삭제버튼클릭	
+		$(document).on("click", "#deleteBtn", function(){
+		
+			$("#adminwarningForm").attr({
+				'action':"adminWarningDelete.ict",
+				'method':'GET',
+				'enctype':'application/x-www-form-urlencoded'
+			}).submit();		
+			
+		}); //deleteBtn
 		
 	}); //ready	
 
@@ -143,35 +154,37 @@
 	<br>
 		<h1 align="center">신고</h1>
 		
-		<form name="levelupForm" id="levelupForm">
+		<form name="adminwarningForm" id="adminwarningForm">
 			<table id="hi" align="center">
 				<tr>
 					<td>신고분야</td>
 					<td colspan="4" style="text-align:left; width:400;">
 						<font size="4" style="color:black"><%= CodeUtils.getWcategory(wcategory) %></font>
 					</td>
-					<td class="td_2"> 작성일자 :<%= insertdate %>
+					<td class="td_2"> 작성일자 : <%= insertdate %>
 					</td>
-					</tr> 
-					<tr>
-						<input type="hidden" id ="mnum" name="mnum" value="<%=wvo.getWtmnum()%>" />
-						<input type="hidden" id ="mnick" name="mnick" value="<%=wvo.getWtmnick()%>" />
-						<td>신고당한 사람</td>
-						
-						<td><%= wvo.getWtmnick() %></td> 
-						<td>신고자</td>
-						<td><%= mnick%></td>
-					</tr>
-					<tr>
-						<td>
-						<span name="wcontent" id="wcontent" rows="5" cols="100"><%= wcontent %></span>
-						</td>
-					</tr>		
+				</tr> 
+				<tr>
+					<input type="hidden" id ="wnum" name="wnum" value="<%=wvo.getWnum()%>" />
+					<input type="hidden" id ="mnum" name="mnum" value="<%=wvo.getWtmnum()%>" />
+					<input type="hidden" id ="mnick" name="mnick" value="<%=wvo.getWtmnick()%>" />
+					<td>신고당한 사람</td>
+					<td><%= wvo.getWtmnick() %></td> 
+					
+					<td class="td_2">신고자</td>
+					<td><%= mnick%></td>
+				</tr>
+				<tr>
+					<td>
+					<span name="wcontent" id="wcontent" rows="5" cols="100"><%= wcontent %></span>
+					</td>
+				</tr>		
 				<tr>
 					<td colspan="6" align="center">
 					<br><br>
 					<button type="button" class="btns" id="warningBtn">경고</button>
 					<button type="button" class="btns" id="deleteBtn">삭제</button>
+					
 					</td>				
 				</tr>
 			</table>

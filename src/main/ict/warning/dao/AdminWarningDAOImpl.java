@@ -44,5 +44,12 @@ public class AdminWarningDAOImpl implements AdminWarningDAO{
 	public int adminMemberCaution(MemVO mvo) {
 		return sqlSession.update("adminMemberCaution", mvo);
 	}	
+
+//신고글 삭제
+	@Override
+	public int adminWarningDelete(WarningVO wvo) {
+		return sqlSession.update("adminWarningDelete", wvo);
+	}		
+
 	
 }

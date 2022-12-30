@@ -21,5 +21,8 @@ public interface AdminWarningDAO {
 	
 //회원경고
 	public int adminMemberCaution(MemVO mvo);	
+
+//신고글 삭제
+	public int adminWarningDelete(WarningVO wvo);	
 	
 }
