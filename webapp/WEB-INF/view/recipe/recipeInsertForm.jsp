@@ -27,6 +27,28 @@
 						"enctype": "multipart/form-data"
 					}).submit();
 				});
+				
+				let i = "";
+				$("#jeryo").click(function(){
+					
+					
+					let jeryo = $("#jeryoText").val();
+					$("#jeryoText").val("");
+					$("#jeryocan").append(jeryo + " ");
+					let rjeryo = "#" + jeryo;
+					console.log("w :" + rjeryo);
+					
+					i = i + rjeryo;
+					console.log("w :" + i);
+					
+					$("#data").val(i);
+					
+					let info = $("#data").val();
+					console.log("최종 : " + info);
+					
+				});
+			
+			
 			});
 		
 		</script>
@@ -82,7 +104,10 @@
 						<td id="rjeryo">재료</td>
 						<td>
 							<!-- input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
-							<input type="text" id="rjeryo" name="rjeryo" value="" placeholder="재료를 입력하세요." />
+							<input type="hidden" id="data" name="rjeryo" value="">
+							<input type="text" id="jeryoText" name="rjeryoSelect" value="" placeholder="재료를 입력하세요." />
+							<input id="jeryo" type="button" value="재료등록"><br>
+							<p id="jeryocan"></p>
 						</td>
 					</tr>
 <%  // 조리 시간 %>
