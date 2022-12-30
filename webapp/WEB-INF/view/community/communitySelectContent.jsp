@@ -47,7 +47,7 @@
 			//조회수 추가하기
 
 			//수정
-				$(document).on("click", "#communityUpdateBtn", function(){
+				$(document).on("click", "#UpdateBtn", function(){
 					$("#communitySelectContent").attr({
 						"action":"communityUpdateForm.ict",
 						"method":"GET",
@@ -57,7 +57,7 @@
 				}); //Update
 
 			//삭제
-				$(document).on("click", "#communityDeleteBtn", function(){
+				$(document).on("click", "#DeleteBtn", function(){
 					$("#communitySelectContent").attr({
 						"action":"communityDelete.ict",
 						"method":"GET",
@@ -68,7 +68,6 @@
 				
 			//신고
 				$(document).on("click", "#warning", function(){
-						alert("삭제버튼클릭");
 						$("#communitySelectContent").attr({
 							"action":"communityWarningForm.ict",
 							"method":"GET",
@@ -209,25 +208,31 @@
 				
 				<div>
 					<tr>
+						<td>좋아요</td>
 						<td><%= cvo.getLikecnt() %></td>
+					</tr>
+					<tr>
 						<td>조회수</td>
-						<td><button type="button" id="warning">신고</button></td>
+						<td><%= cvo.getChit() %></td>
 					</tr>
 					
 					<tr>
 						<td colspan="3">글내용</td>
 					</tr>	
 					<tr>
-						<td>
-							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>">
+						<td colspan="2">
+							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;">
 							<input type="hidden" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>"></td>
-							<td colspan="2"><%= cvo.getCcontent() %></td>
-						
 					</tr>
+						<tr>
+						<td colspan="2"><%= cvo.getCcontent() %></td>
+						</tr>
+
 					<tr>
 						<td colspan="3">
-							<button type="button" id="communityUpdateBtn">수정</button>
-							<button type="button" id="communityDeleteBtn">삭제</button>
+							<button type="button" id="UpdateBtn">수정</button>
+							<button type="button" id="DeleteBtn">삭제</button>
+							<button type="button" id="warning">신고</button>
 						</td>
 					</tr>
 				</div>

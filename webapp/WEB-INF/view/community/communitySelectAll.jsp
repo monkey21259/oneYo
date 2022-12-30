@@ -46,8 +46,6 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- communitySelectAll.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectAll.css">		
-		<!-- 댓글 기능 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/comment/commentForm.css">
 		<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
 		<!-- 제이쿼리cdn -->
