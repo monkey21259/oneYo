@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import main.ict.mem.vo.MemVO;
 import main.ict.warning.service.AdminWarningService;
 import main.ict.warning.vo.WarningVO;
 
@@ -56,7 +58,8 @@ public class AdminWarningController {
 		String wtnum = wvo.getWtnum();
 		String wcontent = wvo.getWcontent();
 		String insertdate = wvo.getInsertdate();
-		//신고당한 사람
+		
+//신고글 카테고리가 레시피인 경우(R)				
 		if(wvo.getWtnum().substring(0,1).equals("R")) {
 			
 			List<WarningVO> list = adminWarningService.adminWarningSelectRecipe(wvo);
@@ -76,20 +79,66 @@ public class AdminWarningController {
 		
 		} //if
 		
-		return "warning/adminWarningSelectContent";
+//신고글 카테고리가 레시피인 경우(T)				
+		if(wvo.getWtnum().substring(0,1).equals("T")) {
+			
+			List<WarningVO> list = adminWarningService.adminWarningSelectTip(wvo);
+			
+			logger.info("신고분야가 레시피(T) 인 글 갯수 >>> : " + list.size());
+			
+			if(list.size() > 0) {
+				 
+				model.addAttribute("list", list);
+				model.addAttribute("wcategory", wcategory);
+				model.addAttribute("wtnum", wtnum);
+				model.addAttribute("mnick", mnick);
+				model.addAttribute("wcontent", wcontent);
+				model.addAttribute("insertdate", insertdate);
+				return "warning/adminWarningSelectContent";
+			} //if
 		
-//		//신고글
-//		List<WarningVO> list = adminWarningService.adminWarningSelectContent(wvo);
-//		logger.info("wvo.getWnum() >>> : " + wvo.getWnum());
-//		
-//		logger.info("adminWarningSelectContent 갯수 >>> : " + list.size());
-//		
-//		if(list.size() == 1) {
-//			model.addAttribute("list", list);
-//		}
-
-//		
+		} //if
+		
+//신고글 카테고리가 레시피인 경우(C)				
+		if(wvo.getWtnum().substring(0,1).equals("C")) {
+			
+			List<WarningVO> list = adminWarningService.adminWarningSelectCommunity(wvo);
+			
+			logger.info("신고분야가 레시피(C) 인 글 갯수 >>> : " + list.size());
+			
+			if(list.size() > 0) {
+				 
+				model.addAttribute("list", list);
+				model.addAttribute("wcategory", wcategory);
+				model.addAttribute("wtnum", wtnum);
+				model.addAttribute("mnick", mnick);
+				model.addAttribute("wcontent", wcontent);
+				model.addAttribute("insertdate", insertdate);
+				return "warning/adminWarningSelectContent";
+			} //if
+		
+		} //if
+		return "warning/adminWarningSelectContent";
 
 	} //adminWarningSelectContent
+	
+//회원 경고
+	@GetMapping("adminCaution")
+	@ResponseBody
+	public Object adminCaution(MemVO mvo) {
+		logger.info("adminCaution() 함수진입 >>> : ");
+		logger.info("");
+		logger.info("mvo.getMnum : " + mvo.getMnum());
+		
+		String s = null;
+		
+		int nCnt = adminWarningService.adminMemberCaution(mvo);
+		logger.info("nCnt >>> : " + nCnt);
+		if(nCnt > 0) {
+			s = "updateOK";
+		}
+		logger.info("s >>> : " + s);
+		return s;
+	}
 	
 } //class

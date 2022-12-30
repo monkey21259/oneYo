@@ -20,14 +20,6 @@
 	String mnick = (String)request.getAttribute("mnick");
 	String wcontent = (String)request.getAttribute("wcontent");
 	String insertdate = (String)request.getAttribute("insertdate");
-
-// 	model.addAttribute("list", list);
-// 	model.addAttribute("wcategory", wcategory);
-// 	model.addAttribute("wtnum", wtnum);
-// 	model.addAttribute("mnick", mnick);
-// 	model.addAttribute("wcontent", wcontent);
-// 	model.addAttribute("insertdate", insertdate);
-
 %>
 <%
 	//	model.addAttribute("list", list);
@@ -38,19 +30,74 @@
 			int nCnt = list.size();
 			
 			WarningVO wvo = null;
-			
 			wvo = list.get(0);
-			
-			
-			
-			
-
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>신고</title>
+		
+<!-- 제이쿼리 -->		
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+			
+//경고버튼 클릭		
+		$(document).on("click", "#warningBtn", function(){
+		
+			//mid	
+				let mnum = $("#mnum").val();			
+				console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
+			
+			//mnick	
+				let mnick = $(this).parents().find("#mnick").val();
+				console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+				
+				let result = confirm(mnick + '님을 경고 하시겠습니까?');
+				
+				if(result == true){
+					let url = "adminCaution.ict";
+					let reqType = "GET";
+					let dataParam = {
+							mnum :$("#mnum").val(),
+					};
+				
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+				
+					$.ajax({
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError		
+					}); //ajax
+					
+					}else{
+						alert("취소되었습니다");
+						location.href="#";
+					} //if else
+			
+		//성공했을때
+			function whenSuccess(resData){
+				if(resData == 'updateOK'){
+					alert("경고 처리 되었습니다.");
+				} 
+			}
+			
+		//실패했을때
+			function whenError(e){
+				console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+			} //whenError	
+			
+		});//warningBtn버튼클릭
+		
+	}); //ready	
+
+</script>
+		
 		<style type="text/css">
 			@font-face{
 				src:url(/jshSpring/font/EF_Diary.ttf);
@@ -107,8 +154,10 @@
 					</td>
 					</tr> 
 					<tr>
-						<input type="hidden" name="mnum" value="<%=wvo.getWtmnum()%>">
+						<input type="hidden" id ="mnum" name="mnum" value="<%=wvo.getWtmnum()%>" />
+						<input type="hidden" id ="mnick" name="mnick" value="<%=wvo.getWtmnick()%>" />
 						<td>신고당한 사람</td>
+						
 						<td><%= wvo.getWtmnick() %></td> 
 						<td>신고자</td>
 						<td><%= mnick%></td>

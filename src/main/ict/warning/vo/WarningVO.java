@@ -2,22 +2,23 @@ package main.ict.warning.vo;
 
 public class WarningVO {
 
-	private String warningnum; //순번
-	private String wnum; //신고번호
-	private String wtnum; //신고글번호
-	private String wcategory; //신고분야
-	private String wcontent; //신고내용
-	private String mnum; //회원번호
-	private String deleteyn; //삭제여부
-	private String insertdate; //작성일
-	private String wtmnum;
-	private String wtmnick;
+	private String warningnum; 	//순번
+	private String wnum; 		//신고 번호
+	private String wtnum; 		//신고당한 글번호
+	private String wcategory; 	//신고분야
+	private String wcontent; 	//신고내용
+	private String mnum; 		//신고한 회원번호
+	private String deleteyn; 	//삭제여부
+	private String insertdate;	//작성일
+	private String wtmnum;		//신고당한사람회원번호
+	private String wtmnick;		//신고당한사람닉네임
 	
 	private String allnum;
 	private String allsubject;
 	private String value;
+
 //신고자 닉네임
-	private String mnick; //신고자 닉네임
+	private String mnick; //신고한사람 닉네임
 
 //디폴트생성자	
 	public WarningVO() {

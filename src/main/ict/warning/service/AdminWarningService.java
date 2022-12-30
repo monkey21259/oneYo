@@ -2,6 +2,7 @@ package main.ict.warning.service;
 
 import java.util.List;
 
+import main.ict.mem.vo.MemVO;
 import main.ict.warning.vo.WarningVO;
 
 public interface AdminWarningService {
@@ -11,5 +12,14 @@ public interface AdminWarningService {
 
 //신고분야(R)
 	public List<WarningVO> adminWarningSelectRecipe(WarningVO wvo);
+	
+//신고분야(T)
+	public List<WarningVO> adminWarningSelectTip(WarningVO wvo);
+	
+//신고분야(C)
+	public List<WarningVO> adminWarningSelectCommunity(WarningVO wvo);
+		
+//회원경고
+	public int adminMemberCaution(MemVO mvo);	
 	
 }

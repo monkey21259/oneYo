@@ -161,7 +161,6 @@
 <%
 				}//for
 %>
-
 				<tr>
 					<td colspan="11">
 					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
