@@ -17,6 +17,7 @@ import main.ict.recipe.service.RecipeService;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.warning.vo.WarningVO;
 import main.ict.common.ChabunUtils;
+import main.ict.common.CommonUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
@@ -71,11 +72,8 @@ public class RecipeController {
 		String rhour = rfu.getParameter("rhour");
 		String rminute = rfu.getParameter("rminute");
 		StringBuffer sb = new StringBuffer();
-		sb.append(rhour);
-		sb.append("시 ");
-		sb.append(rminute);
-		sb.append("분");
-		recipevo.setRtime(sb.toString());
+		String rtime = CommonUtils.hourToMinutes(rhour, rminute);
+		recipevo.setRtime(rtime);
 		
 		recipevo.setRperson(rfu.getParameter("rperson"));
 		recipevo.setRdiff(rfu.getParameter("rdiff"));

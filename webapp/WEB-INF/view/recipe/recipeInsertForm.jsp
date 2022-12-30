@@ -24,7 +24,7 @@
 					console.log(bar);
 					let time = $("#rhour").val();
 					console.log(time);
-					return false;
+				
 					//
 					$("#recipeInsertForm").attr({
 						"action": "/oneYo/recipeInsert.ict",
