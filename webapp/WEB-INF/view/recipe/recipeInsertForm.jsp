@@ -31,6 +31,11 @@
 					
 					// validation code area
 					
+					let bar = $("#rperson").val();
+					console.log(bar);
+					let time = $("#rhour").val();
+					console.log(time);
+				
 					//
 					$("#recipeInsertForm").attr({
 						"action": "/oneYo/recipeInsert.ict",
@@ -228,7 +233,7 @@
 								<option value=<%= hour %>><%= hour %></option>
 <%
 							}
-%>							</select>&nbsp;시&nbsp;
+%>							</select>&nbsp;시간&nbsp;
 							<select id="rminute" name="rminute" >
 								<option value="00" selected>00</option>
 <%	// ---- 분(0 ~ 59)
@@ -248,15 +253,15 @@
 						<td>인분</td>
 						<td>
 							<select id="rperson" name="rperson">
-								<option value="01" selected>1인분</option>
+								<option value="1인분" selected>1인분</option>
 <%  // ---- 몇 인분(max=10)
 							String rPerson = null;
 							for (int i=2; i<11; i++) {
 								rPerson = "";
-								if (i < 10) { rPerson += "0"; }
+								
 								rPerson += i;
 %>
-								<option value=<%= rPerson %>><%= i %>인분</option>
+								<option value="<%= rPerson %>인분"><%= i %>인분</option>
 <%
 							}
 %>							</select>
