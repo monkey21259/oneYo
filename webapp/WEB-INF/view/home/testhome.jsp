@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<%-- 변수 선언 방법 --%>
+	<%-- 변수 선언 방법 인터프리터 방식이므로 변수는 위에서 선언해야한다. --%>
 	<c:set var="RecipeList" value="${DataMap['RecipeList']}" />
 	<c:set var="TipList" value="${DataMap['TipList'] }" />
 	<c:set var="CommunityList" value="${DataMap['CommunityList']}" />
