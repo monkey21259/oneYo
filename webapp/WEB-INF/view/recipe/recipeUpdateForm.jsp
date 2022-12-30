@@ -216,9 +216,9 @@
 					<tr>
 						<td>글 내용</td>
 						<td>
-							<textarea id="rcontent" name="rcontent" cols="10" rows="5" readonly><%= recipevo.getRcontent() %></textarea><br />
+							<textarea id="rcontent" name="rcontent" cols="10" rows="5"><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
-							<img src="<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
+							<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
 						<!-- 사진 변경 시 Ajax(+ 태그 값 변경) >>> input type="file" 추가해서 로직 작성 필요 -->
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 						</td>

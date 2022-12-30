@@ -97,8 +97,7 @@
 			</div>
 			<form id="recipeSelectForm">
 				<input id="tnum" name="tnum" type="hidden" value="<%= recipevo.getRnum() %>">
-			<input id="mnum" name="mnum" type="hidden" value="<%= recipevo.getMnum() %>">
-			<input id="tsubject" name="tsubject" type="hidden" value="<%= recipevo.getRsubject() %>">
+				<input id="tsubject" name="tsubject" type="hidden" value="<%= recipevo.getRsubject() %>">
 				<table class="recipeTable">
 					<tr>
 						<td colspan="2" style="text-align:center;">
