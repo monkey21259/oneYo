@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import main.ict.common.ConstPack;
 import main.ict.mem.vo.MemVO;
 import main.ict.warning.service.AdminWarningService;
 import main.ict.warning.vo.WarningVO;
@@ -28,12 +29,32 @@ public class AdminWarningController {
 	public String adminWarningSelectAll(WarningVO wvo, Model model) {
 		logger.info("AdminWarningController 함수진입 >>> ");
 		
-		List<WarningVO> listAll = adminWarningService.adminWarningSelectAll(wvo);
+		//페이징==========
+		int pageSize = ConstPack.WARNING_PAGE_SIZE; //10
+		int groupSize = ConstPack.WARNING_GROUP_SIZE; //5
+		int curPage = ConstPack.WARNING_CUR_PAGE; //1
+		int totalCount = ConstPack.WARNING_TOTAL_COUNT; //0
 		
+		if(wvo.getCurPage() != null) {
+			curPage = Integer.parseInt(wvo.getCurPage());
+		} 
+		wvo.setPageSize(String.valueOf(pageSize));
+		wvo.setGroupSize(String.valueOf(groupSize));
+		wvo.setCurPage(String.valueOf(curPage));
+		
+		logger.info("wvo.getPageSize() >>> : " + wvo.getPageSize());
+		logger.info("wvo.getGroupSize() >>> : " + wvo.getGroupSize());
+		logger.info("wvo.getCurPage() >>> : " + wvo.getCurPage());
+		logger.info("wvo.getTotalCount() >>> : " + wvo.getTotalCount());
+		
+		//페이징==========
+		
+		List<WarningVO> listAll = adminWarningService.adminWarningSelectAll(wvo);
 		logger.info("adminWarningSelectAll 갯수 >>> : " + listAll.size());
 		
 		if(listAll.size() > 0) {
 			
+			model.addAttribute("pagingAWVO", wvo);
 			model.addAttribute("listAll", listAll);
 		}
 		

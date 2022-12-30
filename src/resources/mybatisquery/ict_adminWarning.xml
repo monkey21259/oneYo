@@ -5,6 +5,7 @@
 <mapper namespace="main.ict.warning.dao.AdminWarningDAO">
 <!-- 신고전체조회 -->
 	<select id="adminWarningSelectAll" resultType="warningvo">
+	SELECT * FROM(
 		SELECT	  ROW_NUMBER() OVER (ORDER BY A.WNUM)     AS      WARNINGNUM
 				, A.WNUM		AS 		WNUM
 				, A.WTNUM 		AS 		WTNUM
@@ -13,11 +14,15 @@
 				, B.MNUM 		AS 		MNUM
 				, B.MNICK 		AS 		MNICK
 				, TO_CHAR(TO_DATE(A.INSERTDATE),'YYYY-MM-DD') AS INSERTDATE
+				,CEIL(ROW_NUMBER() OVER(ORDER BY A.WNUM DESC) / #{pageSize, jdbcType=VARCHAR}) pageSize
+				, COUNT(A.WNUM) OVER() AS totalCount
 		FROM "ORCLICT00"."ICT_WARNING" A,
 			 "ORCLICT00"."ICT_MEMBER" B
 			  WHERE A.DELETEYN ='Y'
 			  AND A.MNUM = B.MNUM
 			  ORDER BY A.WNUM DESC
+		)WHERE pageSize = #{curPage, jdbcType=VARCHAR}
+		
 	</select>
 	
 <!-- 신고분야(R) 건별조회 -->
