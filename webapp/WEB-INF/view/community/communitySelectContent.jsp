@@ -34,14 +34,19 @@
 		<title>커뮤니티 게시글 조회</title>
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		
 		<!-- communitySelectContent.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectContent.css">
+		
 		<!-- 댓글 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
+		
 		<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		
 		<script type="text/javascript">
 			$(document).ready(function(){
 			//조회수 추가하기
