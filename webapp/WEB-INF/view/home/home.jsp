@@ -261,7 +261,7 @@
 %>
 	 	</div>
 	 	<div class="banner">
-	 	<img src="/oneYo/resource/img/001.png">
+	 	<img src="/oneYo/resource/img/002.png">
 	 	</div>
 	 	<div class="favorContainer">
 	 		<div class="postTitles">
