@@ -186,6 +186,12 @@ public class RecipeController {
 		
 		logger.info("recipeDelete() 함수 진입");
 		
+		recipevo.setPageSize(String.valueOf(ConstPack.RECIPE_PAGE_SIZE));
+		recipevo.setGroupSize(String.valueOf(ConstPack.RECIPE_GROUP_SIZE));
+		if(recipevo.getCurPage() == null) {
+			recipevo.setCurPage(String.valueOf(ConstPack.RECIPE_CUR_PAGE));
+		}//end of if
+		
 		int nCnt = recipeService.recipeDelete(recipevo);
 		logger.info("[Recipe Delete] Count: " + nCnt);
 		if (nCnt < 1) {  // FAIL
@@ -193,6 +199,7 @@ public class RecipeController {
 		}
 		
 		List<RecipeVO> recipeList = recipeService.recipeSelectAll(recipevo);
+		model.addAttribute("pagingVO", recipevo);
 		model.addAttribute("recipeList", recipeList);
 		return "./recipe/recipeSelectAll";
 	}

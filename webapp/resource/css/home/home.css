@@ -24,24 +24,28 @@
 
 /* 중앙 배너 */
 .banner {
-	width: 90%;
+	border: 1px solid red;
+	width: 718px;
 	height: 200px;
 	margin: 0px auto;
-	border: 1px solid red;
 }
 
 /* 인기글 Container */
 .favorContainer {
-	width: 90%;
+	width: 718px;
 	height: 400px;
-	margin: 15px auto 0px auto;
+	margin: 15px auto 0px;
 	border: 1px solid blue;
 }
 
 /* 인기글 타이틀을 묶은 div */
 .postTitles {
-	margin:0 10%;
+	margin:0 auto;
+	width: 540px;
 	height: 40px;
+	display: flex; /* flex 배치 */
+	align-items: center; /* 수직 중앙 배치 */
+	justify-content: center; /* 수평 중앙 배치 */
 }
 
 /* 게시판별 인기글 타이틀 */
@@ -50,18 +54,25 @@
 	display: flex;  /* 수직 중앙 배치를 위한 display 설정 */
 	align-items: center;  /* 수직 중앙 배치 */
 	justify-content: center;  /* 수평 중앙 배치 */
-	width: 24.6%;
+	width: 130px; /* (133 + 2 * 1) * 4 = 540 */
 	height: 40px;
 	border: 1px solid black;
 	cursor: pointer;
 }
 
+@media ( min-width: 2500px ) {
+	.favorPostTitle {
+		width: 125px;
+	}
+}
+
 /* 게시판별 인기글 */
 .favorPost {
-	width: 85%;
-	height: 300px;
-	margin: 5px auto 0px auto;
+	width: 630px;
+	height: 310px;
+	padding: 0 4px 0 33px;
 	border: 1px solid green;
+	margin: 5px auto 0px auto;
 }
 
 /* 게시판 div container */
@@ -73,15 +84,27 @@
 /* p1: 그림 & p2: 글 */
 .p1 {
 	float: left;
-	width: 49.6%;
+	width: 295px;
 	height: 148px;
-	border-radius: 20%;
+	border-radius: 15%;
 	border: 1px solid red;
+	margin: 2px;
 }
 
 .p2 {
-	width: 99.6%;
+	width: 595px;
 	height: 37px;
+	margin: 2px;
+}
+
+@media ( min-width: 2500px ) {
+	.p1 {
+		width: 290px;
+	}
+	
+	.p2 {
+		width: 590px;
+	}
 }
 
 /* 쉐프 소개 */
@@ -103,14 +126,23 @@
 	margin-right: auto;
 	width: 98%;
 	height: 60px;
+	display: flex; /* flex 배치 */
+	align-items: center; /* 수직 중앙 배치 */
+	justify-content: center; /* 수평 중앙 배치 */
 }
 
 .chefIcon {
 	float: left;
-	width: 9.6%;
+	width: 67px;
 	height: 58px;
 	border-radius: 99%;
 	border: 1px solid cyan;
+}
+
+@media ( min-width: 2500px ) {
+	.chefIcon {
+		width: 62px;
+	}
 }
 
 /* 레시피 분류 */
@@ -132,14 +164,23 @@
 	margin-right: auto;
 	width: 98%;
 	height: 60px;
+	display: flex; /* flex 배치 */
+	align-items: center; /* 수직 중앙 배치 */
+	justify-content: center; /* 수평 중앙 배치 */
 }
 
 .recipeIcon {
 	float: left;
-	width: 9.6%;
+	width: 67px;
 	height: 58px;
 	border-radius: 99%;
 	border: 1px solid cyan;
+}
+
+@media ( min-width: 2500px ) {
+	.recipeIcon {
+		width: 62px;
+	}
 }
 
 /* ---------------------- 중 앙 - 끝 -------------------- */

@@ -20,6 +20,8 @@
 <html lang='ko'>
 	<head>
 		<meta charset="UTF-8">
+		<!-- [221230] 반응형 페이지 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
 		<title>home.jsp</title>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
@@ -229,17 +231,14 @@
 <div id="left">
 좌측
 </div>
-
 	<div id="center">
 	<!-- 
 	1. (후순위) 첫째 라인: 배너
-	2. 둘째 라인: 레시피 / 전문가 / 커뮤니티 / 공지사항 >> 클릭 시 각 인기글을 확인 할 수 있도록 UI 구성
 	3. 셋째 라인: 쉐프소개 >> 각 쉐프의 프로필 사진이 노출되어 있고, 클릭 시 쉐프가 작성한 글을 확인할 수 있는 페이지로 이동함.
 	4. 넷째 라인: 레시피 분류 >> 한식,중식,양식,일식,디저트, 기타- 00,01,02,03,04,99(기타)
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
-	 	<div class="banner">
-	 	배너 영역. (로그인 테스트좀...)
+	 	<div>
 <%
 		if (mid == null || mid.equals("")) {
 %>
@@ -259,6 +258,9 @@
 <% 		
 		}
 %>
+	 	</div>
+	 	<div class="banner">
+	 	배너 영역.
 	 	</div>
 	 	<div class="favorContainer">
 	 		<div class="postTitles">
