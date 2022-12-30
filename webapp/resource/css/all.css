@@ -1,15 +1,34 @@
 @charset "UTF-8";
 
+/* -------------------------------- 웹폰트 -------------------------------- */
+/* 원스토어 pop */
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 나눔 스퀘어 네오 */
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 전체 설정 */
 * {
 	margin	: 0;
 	padding	: 0;
-}
-
-body {
+	
 	/* 폰트 글씨체 */
-	font-family	: '돋움';
+	font-family	: 'NanumSquareNeo-Variable', sans-serif;
+/* 	font-family	: '돋움'; */
+}
+body {
 	/* 폰트 사이즈 */
-	font-size	: 12px;
+	font-size	: 18px;
 	/* 폰트 색상 */
 	color		: #000;
 	
@@ -17,11 +36,13 @@ body {
 	background	: linear-gradient(#AC7B53, 80%, #E0E086);
 }
 
+/* 전체 ul(리스트) */
 ul {
 	/* ul 특유의 리스트 점 없애는 것 */
 	list-style	: none;
 }
 
+/* 전체 링크 */
 a {
 	/* 링크 폰트 색상 */
 	color	: #000;
@@ -31,18 +52,17 @@ a {
 
 /* 감출 요소 */
 .hidden_O {
-	
 	/* visibility : hidden - 숨김 (영역차지) */
 	visibility	: hidden;
 }
 .hidden_X {
-	
 	/* display : none - 숨김 (영역삭제) */
 	display	: none;
 }
 
 
 /* -------------------------------- 전체 영역 -------------------------------- */
+/* 고정된 창 제외 전체 감싸는 div */
 #all_div {
 	/* width 가로폭 */
 	width	: 1200px;
@@ -59,16 +79,19 @@ a {
 }
 
 /* -------------------------------- 상단 header -------------------------------- */
+/* 상단 전체 */
 #header {
 	/* 일단 보기 편하시라고 선그어놨어용 */
 	border-bottom	: 1px solid #ccc;
 }
 
+/* 상단 로고부분 양옆 영역 지정 */
 #header .logoSide {
 	width	: 490px;
 	height	: 120px;
 }
 
+/* 상단 로고 배치 */
 #header #logoLeft {
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
@@ -82,29 +105,38 @@ a {
 	float	: right;
 }
 
+/* 상단 로고 링크 영역 */
 #header #logoCenter a {
 	wigth	: 100%;
 }
 
+/* 상단 로고 이미지 담긴 영역 */
 #logo {
 	width	: 180px;
 	height	: 91px;
 	margin	: 15px 20px;
+	/* 중앙배치 */
 	text-align: center;
 }
 
+/* 상단 로고 이미지 */
 #logo img {
 	width	: 100%;
 	height	: auto;
 	
 }
 
+/* 상단 메뉴 전체 */
 .nav {
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+	
 	width	: 100%;
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
 }
 
+/* 상단 메뉴 버튼 영역 */
 .nav nav ul li {
 	/* 상단 메뉴바 가로 정렬 */
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
@@ -115,6 +147,7 @@ a {
 	margin	: 0 20px;
 }
 
+/* 상단 메뉴 버튼 영역 */
 .nav .menu_link div {
 /* 	background-color	: #93A603; */
 	/* 영역 지정 */
@@ -122,12 +155,14 @@ a {
 	height	: 100%;
 }
 
+/* 상단 메뉴 밑 줄 */
 #header hr {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
 }
 
 /* -------------------------------- 좌측 left -------------------------------- */
+/* 좌측 전체 */
 #left {
 	/* width 가로폭 */
 	width	: 200px;
@@ -136,18 +171,22 @@ a {
 }
 
 /* -------------------------------- 중앙 center -------------------------------- */
+/* 중앙 전체 */
 #center {
 	/* width 가로폭 */
 	width	: 798px;
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
 
-	border-left	: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-right: 1px solid #ccc;	/* 일단 보기 편하시라고 선그어놨어용 */
+	/* 일단 보기 편하시라고 선그어놨어용 */
+	border-left	: 1px solid #ccc;
+	/* 일단 보기 편하시라고 선그어놨어용 */
+	border-right: 1px solid #ccc;
 }
 
 
 /* -------------------------------- 우측 right -------------------------------- */
+/* 우측 전체 */
 #right {
 	/* width 가로폭 */
 	width	: 200px;
@@ -157,6 +196,7 @@ a {
 
 
 /* -------------------------------- 하단 footer -------------------------------- */
+/* 하단 전체 */
 #footer {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
@@ -170,11 +210,18 @@ a {
 
 
 /* -------------------------------- 사이드 바 -------------------------------- */
+/* 사이드바 몸통 */
 #sideBar {
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+	
 	/* width 가로폭 */
 	width	: 70px;
 	/* height 세로폭 */
 	height	: 500px;
+	
+	/* 중앙 정렬 */
+	text-align: center;
 	
 	/* 테두리 둥글게 */
 	border-radius	: 10px;
@@ -193,6 +240,7 @@ a {
 	z-index	: 10;
 }
 
+/* 사이드바 버튼 */
 #sideBar div {
 	/* margin div 주위 영역 */
 	margin	: 5px 5px;
@@ -210,6 +258,7 @@ a {
 }
 
 /* -------------------------------- 상단 searchBar -------------------------------- */
+/* 검색창 몸통 */
 #searchBar {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
@@ -239,6 +288,7 @@ a {
 	z-index	: 9;
 }
 
+/* 검색창 X버튼 */
 #searchBar div {
 	
 	/* #searchBar 사이즈 */

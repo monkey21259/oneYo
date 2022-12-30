@@ -179,6 +179,27 @@
 	</div>
 	<div id="logoRight" class="logoSide">
 	로고 옆공간 우측
+	 	<div>
+<%
+		if (mid == null || mid.equals("")) {
+%>
+			<button class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</button>
+	 		<button class="Choonsik" id="loginBtn" name="loginBtn">로그인</button>
+<%
+		} else {
+%>
+			<span><%= mid %>님 환영합니다.</span>
+			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
+	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
+	 		<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
+	 		</form>
+	 		<br /><b>임시용 레시피버튼</b>
+	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
+<% 		
+		}
+%>
+	 	</div>
 	</div>
 	
 	<hr>
@@ -239,27 +260,6 @@
 	4. 넷째 라인: 레시피 분류 >> 한식,중식,양식,일식,디저트, 기타- 00,01,02,03,04,99(기타)
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
-	 	<div>
-<%
-		if (mid == null || mid.equals("")) {
-%>
-			<button class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</button>
-	 		<button class="Choonsik" id="loginBtn" name="loginBtn">로그인</button>
-<%
-		} else {
-%>
-			<span><%= mid %>님 환영합니다.</span>
-			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
-	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
-	 		</form>
-	 		<br /><b>임시용 레시피버튼</b>
-	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
-<% 		
-		}
-%>
-	 	</div>
 	 	<div class="banner">
 	 	<img src="/oneYo/resource/img/001.png">
 	 	</div>

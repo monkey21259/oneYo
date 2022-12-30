@@ -67,12 +67,18 @@ $(document).ready(function(){
 	//	일반/전문가 등급 정하기				=====
 	$(document).on('click', '.btn', function(){
 		alert("plz 한글 주시오");
-		let grade = $(this).text();
+		let grade = $(this).find('input').val();
 		
-		if (grade == '일반') { $('#mgrade').val('0'); }
-		if (grade == '전문가') { $('#mgrade').val('1'); }
+		if (grade == '0') {
+			$('#mgrade').val('0');
+			$('#testtest').html("일반");
+		}
+		if (grade == '1') {
+			$('#mgrade').val('1');
+			$('#testtest').html("전문가");
+		}
 		
-		$('#testtest').html($('#mgrade').val());
+		
 	});	//	$('.btn').click()		=====
 	
 	//	이메일 선택 박스 변경시 text변경되는 함수		=====
@@ -142,10 +148,11 @@ $(document).ready(function(){
 			"enctype": "application/x-www-form-urlencoded"
 		}).submit();
 
-		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-		hiddenAction();
 		
 	});
+	
+	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
+	hiddenAction();
 		
 });  // document.ready
 </script>
@@ -199,51 +206,6 @@ $(document).ready(function(){
 	</div>
 	
 	<hr>
-	
-	<div class="nav">
-	<!-- 상단 메뉴바 -->
-		<nav>
-		<ul>
-			<li>
-				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
-				레시피
-				</div>
-				</a>
-			</li>
-			<li>
-				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
-				Tip
-				</div>
-				</a>
-			</li>
-			<li>
-				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
-				커뮤니티
-				</div>
-				</a>
-			</li>
-			<li>
-				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
-				공지사항
-				</div>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="menu_link">
-				<div>
-				더보기
-				</div>
-				</a>
-			</li>
-		</ul>
-		</nav>
-	</div>
-	
-	<hr>
 </div>
 
 <div id="left">
@@ -252,15 +214,58 @@ $(document).ready(function(){
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
+<div id="anne">
+회원 가입 등급
+</div>
 
-이거 다른건디 일단 쓰던거 마저 쓰기 ㅎㅎ;;
+<div class="grade_btn">
+	<div class="gradeTitle">
+		<table>
+			<tr>
+			<td>
+				<span>
+					일반 회원
+				</span>
+			</td>
+			<td class="between"></td>
+			<td class="between"></td>
+			<td>
+				<span>
+					전문가 회원
+				</span>
+			</td>
+			</tr>
+		</table>
+	</div>
+	<div class="gradeImg">
+		<table>
+			<tr>
+			<td>
+				<div class="btn">
+				<img alt="일반" src="/oneYo/resource/img/grade0.png">
+		<!-- 		<img alt="일반" src="/oneYo/resource/img/grade0_1_1.png"> -->
+		<!-- 		<img alt="일반" src="/oneYo/resource/img/grade0_1_2.png"> -->
+				<input type="hidden" value="0">
+				</div>
+			</td>
+			<td class="between"><div id="beLeft"></div></td>
+			<td class="between"></td>
+			<td>
+				<div class="btn">
+				<img alt="전문가" src="/oneYo/resource/img/grade1.png">
+				<input type="hidden" value="1">
+				</div>
+			</td>
+			</tr>
+		</table>
+	</div>
+	<input type="hidden" id="mgrade" name="mgrade" value="0">
+	<p id="testtest">
+	일반
+	</p>
+</div>
 
-<p id="testtest">
-일반
-</p>
-<button type="button" class="btn">일반</button>
-<button type="button" class="btn">전문가</button>
-<input type="hidden" id="mgrade" name="mgrade" value="0">
+
 
 <table>
 <%  // 추가 kgy
