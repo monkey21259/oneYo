@@ -66,11 +66,35 @@ UPDATEDATE          DATE
 				   ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD') AS UPDATEDATE
 				   ,CEIL(ROW_NUMBER() OVER(ORDER BY A.TNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
 				   ,COUNT(A.TNUM) OVER()					AS totalCount
+				   <if test="searchCategory != null">
+						<![CDATA[,#{searchCategory, jdbcType=VARCHAR}			AS searchCategory]]>
+					</if>
+					<if test="keyword != null and keyword != ''">
+						<![CDATA[,#{keyword, jdbcType=VARCHAR}				AS keyword]]>
+					</if>
+					<if test="startDate != null and startDate != ''">
+						<![CDATA[,#{startDate, jdbcType=VARCHAR}			AS startDate]]>
+					</if>
+					<if test="endDate != null and endDate != ''">
+						<![CDATA[,#{endDate, jdbcType=VARCHAR}				AS endDate]]>
+					</if>
 			FROM   "ORCLICT00"."ICT_TIP" A
-		          ,"ORCLICT00"."ICT_MEMBER"   B
+		          ,"ORCLICT00"."ICT_MEMBER" B
 			WHERE   A.MNUM = B.MNUM
 			AND     A.DELETEYN = 'Y'
 			AND     B.DELETEYN = 'Y'
+			<if test="searchCategory != ''">
+				<![CDATA[	AND A.TCATEGORY = #{searchCategory, jdbcType=VARCHAR}]]>
+			</if>
+			<if test="keyword != ''">
+				<![CDATA[	AND A.TSUBJECT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+			</if>
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				<![CDATA[	AND TO_CHAR(TO_DATE(#{startDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')
+							<= TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')]]>
+				<![CDATA[	AND TO_CHAR(TO_DATE(#{endDate, jdbcType=VARCHAR}), 'YYYY-MM-DD')
+							>= TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')]]>
+			</if>
 			ORDER BY A.TNUM DESC
 		)
 	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}

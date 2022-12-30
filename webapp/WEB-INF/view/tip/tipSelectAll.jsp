@@ -19,6 +19,12 @@
 	int curPage = 0;
 	int totalCount = 0;
 	
+	//searching
+	String searchCategory = "";
+	String keyword = "";
+	String startDate= "";
+	String endDate = "";
+	
 	if(request.getAttribute("list") !=null) {
 		list = (List<TipVO>)request.getAttribute("list");
 		if(list !=null && list.size() > 0) {
@@ -26,6 +32,8 @@
 				tvo = list.get(i);
 				logger.info("VO : " + tvo.toString());
 			}
+		}else if(list.size() == 0){
+			out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='tipSelectAll.ict';</script>");
 		}
 	}
 	
@@ -41,7 +49,10 @@
 <head>
 <meta charset="UTF-8">
 <title>oneYo(오내요)</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/datepicker-ko.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){		
@@ -67,6 +78,94 @@
 			
 			location.href = "tipSelectContent.ict?tnum=" + tnum;
 		});
+		
+		//서칭 카테고리 checkbox 하나만 선택되게 하는 로직
+		$('.category').click(function(){
+			if($(this).prop('checked') == true){
+				$('.category').prop('checked', false);
+				$(this).prop('checked', true);
+				$(this).attr('data', 'T');
+			}else{
+				$('.category').prop('checked', false);
+			}
+		});//end of mnum click function
+		
+		//datepicker 한글화
+		$.datepicker.setDefaults({
+			dateFormat: 'yymmdd',
+			prevText: '이전 달',
+			nextText: '다음 달',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			showMonthAfterYear: true,
+			yearSuffix: '년'
+		});
+		
+		//검색 시작일 텍스트 박스 누르면 나오는 달력
+		$('#startDate').datepicker({
+			dateFormat:'yy-mm-dd',
+		});//end of startDate datepicker()
+		
+		//검색 종료일 텍스트 박스 누르면 나오는 달력
+		$('#endDate').datepicker({
+			dateFormat:'yy-mm-dd',
+		});//end of startDate datepicker()
+		
+		//SEARCH를 위한 form 보내기
+		$('#searchBtn').click(function(){
+			var cate = document.getElementsByName('searchCategory');
+			var bool = false;
+			for(var i=0; i<cate.length; i++){
+				if(cate[i].hasAttribute('data')){
+					bool = true;
+				}//end of if
+			}//end of for
+			
+			if (($('#keyword').val() == '') && ($('#startDate').val() == '') && ($('#endDate').val() == '') && ($('.category').prop('checked') == false) && !bool) {
+				alert("검색할 카테고리, 키워드 또는 날짜를 설정하세요.");
+				$('#keyword').focus();
+			}else if(($('#keyword').val() == '') && ($('#startDate').val() == '') && ($('#endDate').val() != '')){
+				alert("검색 시작일을 설정하세요.");
+				$('#startDate').focus();
+			}else if(($('#keyword').val() == '') && ($('#startDate').val() != '') && ($('#endDate').val() == '')){
+				alert("검색 종료일을 설정하세요.");
+				$('#endDate').focus();
+			}else{
+				$('#tipSelectAllForm').attr({
+					'action':'tipSelectAll.ict',
+					'method':'GET',
+					'enctype':'application/x-www-form-urlencoded'
+				}).submit();//end of memList submit()
+			}//end of if-else
+		});//end of searchBtn click function
+		
+		//search 관련 input에 기존 값 적용하기
+		var searchCategoryVal = $('#searchCategoryVal').val();
+		var keywordVal = $('#keywordVal').val();
+		var startDateVal = $('#startDateVal').val();
+		var endDateVal = $('#endDateVal').val();
+		
+		$('.category[value=' + searchCategoryVal + ']').prop('checked', true);
+		$('#keyword').val(keywordVal);
+		$('#startDate').val(startDateVal);
+		$('#endDate').val(endDateVal);
+		
+		if(searchCategoryVal == null || searchCategoryVal == "" || searchCategoryVal == "null"){
+			$('.category').prop('checked', false);
+		}//end of if
+		if(keywordVal == null || keywordVal == "" || keywordVal == "null"){
+			$('#keyword').val('');
+		}//end of if
+		if(startDateVal == null || startDateVal == "" || startDateVal == "null"){
+			$('#startDate').val('');
+		}//end of if
+		if(endDateVal == null || endDateVal == "" || endDateVal == "null"){
+			$('#endDate').val('');
+		}//end of if
+		
 	});
 	
 </script>
@@ -75,6 +174,18 @@
 <form id="tipSelectAllForm">
 <table>
 	<thead>
+		<tr>
+			<td colspan="4">
+				<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="00">요리&nbsp;
+				<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="01">주방관리&nbsp;
+				<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="02">재료정보&nbsp;
+				<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="99">기타<br>
+				<input type="text" id="keyword" name="keyword" placeholder="제목 검색">
+				<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
+				<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
+				<input type="button" id="searchBtn" value="검색">
+			</td>
+		</tr>
 		<tr>
 			<th>글 번호</th>
 			<th>글 제목</th>
@@ -90,6 +201,11 @@
 		tvo = list.get(i);
 		
 		totalCount = Integer.parseInt(tvo.getTotalCount());
+		
+		searchCategory = tvo.getSearchCategory();
+		keyword = tvo.getKeyword();
+		startDate = tvo.getStartDate();
+		endDate = tvo.getEndDate();
 %>
 		<tr>
 			<td>
@@ -118,6 +234,10 @@
 %>
 		<tr>
 			<td colspan="4">
+				<input type="hidden" id="searchCategoryVal" value="<%=searchCategory %>">
+				<input type="hidden" id="keywordVal" value="<%=keyword %>">
+				<input type="hidden" id="startDateVal" value="<%=startDate %>">
+				<input type="hidden" id="endDateVal" value="<%=endDate %>">
 				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 					<jsp:param value="tipSelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
