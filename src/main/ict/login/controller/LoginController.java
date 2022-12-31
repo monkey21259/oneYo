@@ -149,7 +149,7 @@ public class LoginController {
 				// 회원가입 여부 체크
 				logger.info(mvo.getMid());
 				List<MemVO> memChkList = memService.memIdCheck(mvo);
-				if (memChkList != null && memChkList.size() == 1) {
+				if (memChkList != null && memChkList.size() == 1) {  // 로그인 성공시 세션 최초생성
 					
 					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동");
 					// 세션 생성 및 부여하기
@@ -336,11 +336,23 @@ public class LoginController {
 	
 	//로그인
 	@PostMapping(value="login")
-	public String login(MemVO mvo, Model model) {
+	public String login(HttpServletRequest req, MemVO mvo, Model model) {
 		logger.info("login() 함수 진입 : ");
 		
 		//서비스 호출
 		List<MemVO> loginList = loginService.login(mvo);
+		
+		logger.info("loginList.get(0) >>> : " + loginList.get(0));
+		
+		String mnum = loginList.get(0).getMnum();
+		logger.info("mnum >>>>>>>>>>>>>>>>>> : " + mnum);
+		
+		// 세션 생성 및 부여하기
+		O_Session mSession = O_Session.getInstance();
+		mSession.setSession(req, mnum);
+//		String mnum1 = mSession.getSession(req);
+//		System.out.println("mnum : " + mnum1);
+//		
 		if(loginList.size() == 1) {
 			return "home/home";
 		}else {

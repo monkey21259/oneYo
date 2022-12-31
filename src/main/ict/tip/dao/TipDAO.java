@@ -2,6 +2,7 @@ package main.ict.tip.dao;
 
 import java.util.List;
 
+import main.ict.mem.vo.MemVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
 
@@ -20,5 +21,7 @@ public interface TipDAO {
 	int tipDelete(TipVO tvo);
 	
 	public int tipWarningInsert(WarningVO wvo);
+	
+	List<MemVO> tipSession(MemVO mvo);
 
 }

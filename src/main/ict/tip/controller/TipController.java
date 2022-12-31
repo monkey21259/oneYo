@@ -1,9 +1,7 @@
 package main.ict.tip.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
@@ -13,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
+import main.ict.mem.vo.MemVO;
 import main.ict.tip.service.TipService;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
@@ -242,5 +242,24 @@ public class TipController {
 		}
 		
 		return "";
+	}
+	
+	//세션
+	@GetMapping("tipsession")
+	@ResponseBody
+	public Object tipsession(HttpServletRequest req, MemVO mvo) {
+		
+		String mnum = req.getParameter("mnum");
+		logger.info("mnum  >>>>>> : " + mnum);
+		mvo.setMnum(mnum);
+		logger.info("mnum  >>>>>> : " + mvo.getMnum());
+		
+		List<MemVO> list = tipService.tipSession(mvo);
+		
+		String mgrade = list.get(0).getMgrade();
+		logger.info("mgrade >>> : " + mgrade);	
+		
+		return mgrade;				
+		
 	}
 }

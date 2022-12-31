@@ -189,9 +189,12 @@ UPDATEDATE          DATE
 	                        'Y', 
 	                        SYSDATE)
 
-
-
-
 </insert>
+
+<select id="tipSession" parameterType="memvo" resultType="memvo">
+	SELECT A.MGRADE
+	FROM ICT_MEMBER A
+	WHERE A.MNUM = #{mnum}
+</select>
 
 </mapper>
