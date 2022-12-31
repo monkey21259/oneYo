@@ -296,6 +296,10 @@
 								<jsp:param value="<%=groupSize %>" name="groupSize"/>
 								<jsp:param value="<%=curPage %>" name="curPage"/>
 								<jsp:param value="<%=totalCount %>" name="totalCount"/>
+								<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
+								<jsp:param value="<%=keyword %>" name="keyword"/>
+								<jsp:param value="<%=startDate %>" name="startDate"/>
+								<jsp:param value="<%=endDate %>" name="endDate"/>
 						</jsp:include>
 					</td>
 				</tr>
