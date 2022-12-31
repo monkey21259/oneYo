@@ -10,11 +10,6 @@
 	
 }
 
-/* -------------------------------- 좌측 left -------------------------------- */
-#left {
-	
-}
-
 /* -------------------------------- 중앙 center -------------------------------- */
 #center {
 /* 	height	: 700px; */
@@ -33,7 +28,8 @@
 
 .grade_btn .gradeTitle span {
 	/* 글자테두리 */
-	text-shadow	: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff, 2px 2px #fff;
+	text-shadow	: -2px 0 #fff,		0 2px #fff,		2px 0 #fff,		0 -2px #fff,
+				  -2px -2px #fff,	2px -2px #fff,	-2px 2px #fff,	2px 2px #fff;
 	/* 폰트 */
 	font-family	: 'ONE-Mobile-POP';
 	font-size	: 30px;
@@ -67,11 +63,6 @@
 .btn img {
 	width	: 100%;
 	height	: auto;
-}
-
-/* -------------------------------- 우측 right -------------------------------- */
-#right {
-	
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */
