@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.ict.mem.vo.MemVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.warning.vo.WarningVO;
 
@@ -55,5 +56,11 @@ public class TipDAOImpl implements TipDAO {
 	public int tipWarningInsert(WarningVO wvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("tipWarningInsert", wvo);
+	}
+
+	@Override
+	public List<MemVO> tipSession(MemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("tipSession", mvo);
 	}
 }
