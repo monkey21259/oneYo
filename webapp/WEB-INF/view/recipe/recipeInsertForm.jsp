@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
 		<!-- recipeInsertForm.jsp 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipeInsertForm.css">
+		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_insertForm.css">
 		
 		<!-- 제이쿼리cdn -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -79,7 +79,6 @@
 	</head>
 	<body>
 		<section>
-			<form id="recipeInsertForm">
 				<div id="sideBar">
 	<div id="warningForm">
 	신고
@@ -178,7 +177,7 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			
+				<form id="recipeInsertForm">
 				<table class="recipeTable">
 					<tr>
 						<td colspan="2">
@@ -295,7 +294,7 @@
 						</td>
 					</tr>
 				</table>
-				
+				</form>
 					<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
@@ -315,7 +314,7 @@
 </div>
 
 </div>
-		</form>
+		
 		</section>
 	</body>
 </html>

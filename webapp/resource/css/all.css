@@ -174,7 +174,8 @@ a {
 /* 중앙 전체 */
 #center {
 	/* width 가로폭 */
-	width	: 798px;
+/* 	width	: 798px; */
+ 	width	: 100%; 
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
 
