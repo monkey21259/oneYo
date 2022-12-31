@@ -354,13 +354,17 @@
 					<input type="hidden" id="keywordVal" value="<%=keyword %>">
 					<input type="hidden" id="startDateVal" value="<%=startDate %>">
 					<input type="hidden" id="endDateVal" value="<%=endDate %>">
-					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+					<jsp:include page="/WEB-INF/view/tip/tipPaging.jsp" flush="true">
 						<jsp:param value="tipSelectAll.ict" name="url"/>
 							<jsp:param value="" name="str"/>
 							<jsp:param value="<%=pageSize %>" name="pageSize"/>
 							<jsp:param value="<%=groupSize %>" name="groupSize"/>
 							<jsp:param value="<%=curPage %>" name="curPage"/>
 							<jsp:param value="<%=totalCount %>" name="totalCount"/>
+							<jsp:param value="<%=searchCategory %>" name="searchCategory"/>
+							<jsp:param value="<%=keyword %>" name="keyword"/>
+							<jsp:param value="<%=startDate %>" name="startDate"/>
+							<jsp:param value="<%=endDate %>" name="endDate"/>
 					</jsp:include>
 				</td>
 			</tr>
