@@ -4,12 +4,20 @@
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.tip.vo.TipVO" %>
+<%@ page import="main.ict.common.O_Session" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
-
 <%
-	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("tipSelectAll.jsp 페이지 진입");
+Logger logger = LogManager.getLogger(this.getClass());
+logger.info("tipSelectAll.jsp 페이지 진입");
+
+O_Session mSession = O_Session.getInstance();
+String mnum = mSession.getSession(request);
+
+logger.info("mnum >>>>>>> : " + mnum);
+%>
+<%
+	
 	List<TipVO> list = null;
 	TipVO tvo = null;
 	
@@ -180,6 +188,47 @@
 			if(endDateVal == null || endDateVal == "" || endDateVal == "null"){
 				$('#endDate').val('');
 			}//end of if
+			
+			
+			let mnum ="";
+			
+			//글등록
+			$(document).on("click", "#insertBtn", function(){
+			
+				let url ="tipsession.ict";
+				let reqType="GET";
+				let dataParam={
+						mnum : "<%= mnum %>",
+				}
+				
+				$.ajax({
+					url:url,
+					type:reqType,
+					data:dataParam,
+					success:whenSuccess,
+					error:whenError		
+				}); //ajax
+				
+			
+				
+				function whenSuccess(resData){
+				//전문가
+					if("1" == resData){
+						location.href ="tipInsertForm.ict";
+								
+				}	else {
+					alert("전문가가 아닙니다.");
+				}
+					
+				} //success
+				
+				function whenError(e){
+					console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+				} //whenError	
+				
+				
+			}); //insertBtn
+			
 			
 			//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 			hiddenAction();
@@ -354,15 +403,24 @@
 					<input type="hidden" id="keywordVal" value="<%=keyword %>">
 					<input type="hidden" id="startDateVal" value="<%=startDate %>">
 					<input type="hidden" id="endDateVal" value="<%=endDate %>">
-					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+					<jsp:include page="/WEB-INF/view/tip/tipPaging.jsp" flush="true">
 						<jsp:param value="tipSelectAll.ict" name="url"/>
 							<jsp:param value="" name="str"/>
 							<jsp:param value="<%=pageSize %>" name="pageSize"/>
 							<jsp:param value="<%=groupSize %>" name="groupSize"/>
 							<jsp:param value="<%=curPage %>" name="curPage"/>
 							<jsp:param value="<%=totalCount %>" name="totalCount"/>
+							<jsp:param value="<%=searchCategory %>" name="searchCategory"/>
+							<jsp:param value="<%=keyword %>" name="keyword"/>
+							<jsp:param value="<%=startDate %>" name="startDate"/>
+							<jsp:param value="<%=endDate %>" name="endDate"/>
 					</jsp:include>
 				</td>
+			</tr>
+			
+			<tr>
+				<td><button type="button" id="insertBtn">글등록</button>
+			
 			</tr>
 		</tbody>
 	</table>

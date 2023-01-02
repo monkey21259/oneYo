@@ -33,7 +33,6 @@ public class AdminWarningController {
 		int pageSize = ConstPack.WARNING_PAGE_SIZE; //10
 		int groupSize = ConstPack.WARNING_GROUP_SIZE; //5
 		int curPage = ConstPack.WARNING_CUR_PAGE; //1
-		int totalCount = ConstPack.WARNING_TOTAL_COUNT; //0
 		
 		if(wvo.getCurPage() != null) {
 			curPage = Integer.parseInt(wvo.getCurPage());
@@ -45,18 +44,22 @@ public class AdminWarningController {
 		logger.info("wvo.getPageSize() >>> : " + wvo.getPageSize());
 		logger.info("wvo.getGroupSize() >>> : " + wvo.getGroupSize());
 		logger.info("wvo.getCurPage() >>> : " + wvo.getCurPage());
-		logger.info("wvo.getTotalCount() >>> : " + wvo.getTotalCount());
 		
 		//페이징==========
+		
+		//searching 프로퍼티 null값 방지
+		if(wvo.getSearchCategory() == null || wvo.getSearchCategory() == "null") {
+			wvo.setSearchCategory("");
+		}//end of if
 		
 		List<WarningVO> listAll = adminWarningService.adminWarningSelectAll(wvo);
 		logger.info("adminWarningSelectAll 갯수 >>> : " + listAll.size());
 		
-		if(listAll.size() > 0) {
+		//if(listAll.size() > 0) {
 			
 			model.addAttribute("pagingAWVO", wvo);
 			model.addAttribute("listAll", listAll);
-		}
+		//}
 		
 		return "warning/adminWarningSelectAll";
 	}

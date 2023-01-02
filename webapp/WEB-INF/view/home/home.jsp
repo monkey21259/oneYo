@@ -24,19 +24,6 @@
 	
 	logger.info("mid: " + mid);
 %>
-<%
-	//. ★ NULL일 때, HomeController에서 값을 안받아오므로 Validation 때 처리 필요 ★
-// 	Map<String, Object> dataMap = (Map<String, Object>)request.getAttribute("DataMap");
-	
-// 	List<RecipeVO> recipeList = (List<RecipeVO>)dataMap.get("RecipeList");
-// 	List<TipVO> tipList = (List<TipVO>)dataMap.get("TipList");
-// 	List<CommunityVO> communityList = (List<CommunityVO>)dataMap.get("CommunityList");
-// 	List<NoticeVO> noticeList = (List<NoticeVO>)dataMap.get("NoticeList");
-// 	logger.info(recipeList.size());		// 4
-// 	logger.info(tipList.size());		// 4
-// 	logger.info(communityList.size());	// 8
-// 	logger.info(noticeList.size());		// 1
-%>
 
 <c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
 <c:set var="TipList" value="${ DataMap['TipList'] }" />
@@ -111,6 +98,8 @@
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 				
+				//	홈으로 보내주는 all.js 함수
+				homeAction();
 			});
 			
 			function postClick(obj) {  // favorPostTitle
@@ -160,6 +149,17 @@
 	<div id="warningForm">
 	신고
 	</div>
+	<div class="warningForm">
+	신고<br>팝업
+	</div>
+	
+	<div class="searchBarBtn">
+	검색
+	</div>
+	
+	<div class="homeLink">
+	홈으로
+	</div>
 	
 	<div class="searchBarBtn">
 	검색
@@ -182,19 +182,21 @@
 	<input type="button" id="searchTextBtn" value="검색">
 </div>
 
+<div id="singo" class="hidden_X">
+신고 인클루드 이쪽으로
+</div>
+
+<div id="shadow" class="hidden_X"></div>
+
 <div id="all_div">
 
 <div id="header">
 	<div id="logoLeft" class="logoSide">
 	로고 옆공간 좌측
 	</div>
-	<div id="logoCenter">
-		<a href="home.ict">
-			<div id="logo">
-			<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
-			<!-- 379 X 186 -->
-			</div>
-		</a>
+	<div id="logo" class="homeLink">
+		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+		<!-- 379 X 186 -->
 	</div>
 	<div id="logoRight" class="logoSide">
 	로고 옆공간 우측
@@ -220,8 +222,6 @@
 %>
 	 	</div>
 	</div>
-	
-	<hr>
 	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
@@ -266,12 +266,8 @@
 		</nav>
 	</div>
 	
-	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
 	<div id="center">
 	<!-- 
 	1. (후순위) 첫째 라인: 배너
@@ -380,10 +376,6 @@
 		 	%>
 		 </div>
 	</div>
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

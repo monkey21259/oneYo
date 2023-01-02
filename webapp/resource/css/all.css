@@ -17,15 +17,18 @@
     font-style: normal;
 }
 
-/* 전체 설정 */
+/* -------------------------------- 전체 설정 -------------------------------- */
 * {
 	margin	: 0;
 	padding	: 0;
 	
 	/* 폰트 글씨체 */
-	font-family	: 'NanumSquareNeo-Variable', sans-serif;
-/* 	font-family	: '돋움'; */
+	font-family	: gulim, sans-serif;
+	font-weight	: 400;
+	font-style	: normal;
+/* 	font-family	: 'NanumSquareNeo-Variable', sans-serif; */
 }
+
 body {
 	/* 폰트 사이즈 */
 	font-size	: 18px;
@@ -33,7 +36,7 @@ body {
 	color		: #000;
 	
 	/* 배경색 위에서 부터 아래로 그라데이션!! */
-	background	: linear-gradient(#AC7B53, 80%, #E0E086);
+	background	: linear-gradient(#FCF4EF, 3%, #fff);
 }
 
 /* 전체 ul(리스트) */
@@ -72,17 +75,17 @@ a {
 	overflow: hidden;
 	
 	/* 일단 보기 편하시라고 선그어놨어용 */
-	border	: 1px solid #ccc;
+/* 	border	: 1px solid #ccc; */
 	
 	/* 배경색 위에서 부터 아래로 그라데이션!! */
-	background	: linear-gradient(#FCF4EF, /* #fef9f7,  */#fff);
+/* 	background	: linear-gradient(#FCF4EF, #fef9f7, #fff); */
 }
 
 /* -------------------------------- 상단 header -------------------------------- */
 /* 상단 전체 */
 #header {
 	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-bottom	: 1px solid #ccc;
+/* 	border-bottom	: 1px solid #ccc; */
 }
 
 /* 상단 로고부분 양옆 영역 지정 */
@@ -96,27 +99,20 @@ a {
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
 }
-#header #logoCenter {
+#header #logo {
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
+	
+	width	: 180px;
+	height	: 91px;
+	margin	: 15px 20px;
+	
+	/* 중앙배치 */
+	text-align: center;
 }
 #header #logoRight {
 	/* 해당 블럭 왼쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: right;
-}
-
-/* 상단 로고 링크 영역 */
-#header #logoCenter a {
-	wigth	: 100%;
-}
-
-/* 상단 로고 이미지 담긴 영역 */
-#logo {
-	width	: 180px;
-	height	: 91px;
-	margin	: 15px 20px;
-	/* 중앙배치 */
-	text-align: center;
 }
 
 /* 상단 로고 이미지 */
@@ -128,12 +124,27 @@ a {
 
 /* 상단 메뉴 전체 */
 .nav {
-	/* 폰트 */
-	font-family	: 'ONE-Mobile-POP';
-	
 	width	: 100%;
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
+}
+
+.nav * {
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+	/* 폰트 색상 */
+	color	: #93A603;
+	/* 폰트 사이즈 */
+	font-size	: 25px;
+	/* 폰트 테두리 */
+	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff,
+				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff;
+	
+	/* 중앙배치 */
+	text-align	: center;
+/* 	transform	: translateY(-50%); */
+	
+	background-color	: #AC7B53;
 }
 
 /* 상단 메뉴 버튼 영역 */
@@ -141,47 +152,31 @@ a {
 	/* 상단 메뉴바 가로 정렬 */
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
+	
+	/* 영역 지정 */
 	width	: 200px;
 	height	: 30px;
 	
-	margin	: 0 20px;
+	/* 영역 확장 */
+	padding	: 0 20px;
 }
 
 /* 상단 메뉴 버튼 영역 */
 .nav .menu_link div {
-/* 	background-color	: #93A603; */
+
 	/* 영역 지정 */
 	width	: 100%;
 	height	: 100%;
-}
-
-/* 상단 메뉴 밑 줄 */
-#header hr {
-	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
-	clear	: both;
-}
-
-/* -------------------------------- 좌측 left -------------------------------- */
-/* 좌측 전체 */
-#left {
-	/* width 가로폭 */
-	width	: 200px;
-	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
-	float	: left;
 }
 
 /* -------------------------------- 중앙 center -------------------------------- */
 /* 중앙 전체 */
 #center {
 	/* width 가로폭 */
-	width	: 798px;
-	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
-	float	: left;
-
-	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-left	: 1px solid #ccc;
-	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-right: 1px solid #ccc;
+ 	width	: 100%; 
+ 	
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
 }
 
 
@@ -203,7 +198,7 @@ a {
 	/* 해당 박스의 영역을 벗어 나면 보이지 않게끔!! */
 	overflow: hidden;
 	/* 일단 보기 편하시라고 선그어놨어용 */
-	border-top	: 1px solid #ccc;
+/* 	border-top	: 1px solid #ccc; */
 	
 	text-align: center;
 }
@@ -212,9 +207,6 @@ a {
 /* -------------------------------- 사이드 바 -------------------------------- */
 /* 사이드바 몸통 */
 #sideBar {
-	/* 폰트 */
-	font-family	: 'ONE-Mobile-POP';
-	
 	/* width 가로폭 */
 	width	: 70px;
 	/* height 세로폭 */
@@ -238,6 +230,11 @@ a {
 	
 	/* 10층에 쌓아서 아래의 요소보다 위에 드러남 */
 	z-index	: 10;
+}
+
+#sideBar * {
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
 }
 
 /* 사이드바 버튼 */
@@ -284,8 +281,37 @@ a {
 	top	: 30%;
 	right	: 25%;
 	
-	/* 9층에 쌓아서 아래의 요소보다 위에 드러남 */
-	z-index	: 9;
+	/* 12층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 12;
+}
+/* 신고창 몸통 */
+#singo {
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+	
+	/* #all_div의 약 67% 가로 폭 */
+	width	: 800px;
+	height	: 80px;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	/* 좌우 중앙 정렬 */
+	margin	: 0 auto;
+	text-align: center;
+	
+	/* 배경 색상 */
+	background-color	: #fff;
+	
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	/* 위치 지정 */
+	top	: 30%;
+	right	: 25%;
+	
+	/* 12층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 12;
 }
 
 /* 검색창 X버튼 */
@@ -300,4 +326,17 @@ a {
 	margin-left	: 98%;
 }
 
+/* 검색 시 어둡게 */
 
+#shadow{
+	position	: fixed;
+	left	: 0;
+	top		: 0;
+	width	: 100vw;
+	height	: 100vh;
+	background	: rgba(0, 0, 0, 0.52);
+	display	: none
+	
+	/* 11층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 11;
+}
