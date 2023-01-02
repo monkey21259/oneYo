@@ -21,12 +21,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import main.ict.common.ConstPack;
 import main.ict.common.O_Session;
+import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.service.HomeService;
 import main.ict.home.vo.HomeVO;
 import main.ict.mem.vo.MemVO;
+import main.ict.notice.service.NoticeService;
 import main.ict.notice.vo.NoticeVO;
+import main.ict.recipe.service.RecipeService;
 import main.ict.recipe.vo.RecipeVO;
+import main.ict.tip.service.TipService;
 import main.ict.tip.vo.TipVO;
 
 @Controller
@@ -37,6 +41,18 @@ public class HomeController {
 	
 	@Autowired(required=false)
 	private HomeService homeService;
+	
+	@Autowired(required=false)
+	private RecipeService recipeService;
+	
+	@Autowired(required=false)
+	private TipService tipService;
+	
+	@Autowired(required=false)
+	private CommunityService communityService;
+	
+	@Autowired(required=false)
+	private NoticeService noticeService;
 	
 	//	home 이동
 	// 2022-12-30 이성일 home 데이터 추가
@@ -84,6 +100,76 @@ public class HomeController {
 		m.addAttribute("mnum", req.getParameter("mnum"));
 		return "home/chefIntroduce";
 	}
+	
+	
+//	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo) { goSelectContent
+	@GetMapping(value="goSelectContent")
+	public String goSelectContent(HttpServletRequest req, Model model) {
+		logger.info("goSelectContent() 함수 진입");
+		
+		String num = req.getParameter("num");
+		if (num == null) {
+			logger.info("메인페이지에서 바로 글보기로 넘어올 때 값 설정이 제대로 되어있지 않습니다.");
+			return "#";
+		}
+		
+		String category;
+		try {
+			category = num.substring(0, 1);	// 카테고리별 분기처리
+			if (category.equals("R")) {		// Recipe
+				RecipeVO rvo = new RecipeVO();
+				rvo.setRnum(num);
+				
+				List<RecipeVO> recipeList = recipeService.recipeSelectContent(rvo);
+				logger.info("recipeList: " + recipeList);
+				if (recipeList != null) {
+					model.addAttribute("recipeList", recipeList);
+					return "./recipe/recipeSelectContent";
+				}
+			}
+			if (category.equals("T")) {		// Expert Tip
+				TipVO tvo = new TipVO();
+				tvo.setTnum(num);
+				
+				List<TipVO> list = tipService.tipSelectContent(tvo);
+				logger.info("list: " + list);
+				if (list != null) {
+					model.addAttribute("list", list);
+					return "./tip/tipSelectContent";
+				}
+			}
+			if (category.equals("C")) {		// Community
+				CommunityVO cvo = new CommunityVO();
+				cvo.setCnum(num);
+				
+				List<CommunityVO> listS = communityService.communitySelect(cvo);
+				logger.info("listS: " + listS);
+				if (listS != null) {
+					model.addAttribute("listS", listS);
+					return "./community/communitySelectContent";
+				}
+			}
+			if (category.equals("N")) {		// Notice
+				NoticeVO nvo = new NoticeVO();
+				nvo.setNnum(num);
+				
+				List<NoticeVO> scontList = noticeService.noticeSelectContent(nvo);
+				logger.info("scontList: " + scontList);
+				if (scontList != null) {
+					model.addAttribute("scontList", scontList);
+					return "./notice/noticeSelectContent";
+				}
+			}
+			
+		} catch (Exception e) {
+			logger.info("빈 문자열로 인한 IndexOutOfBoundsException이 발생하였습니다.");
+		}
+		logger.info("그 다른 어떠한 문제 발생");
+		return "#";
+	}
+	
+	
+	
 	
 	// SNS Logout
 //	@GetMapping(value="logout")
