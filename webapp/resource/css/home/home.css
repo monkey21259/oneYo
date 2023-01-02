@@ -73,6 +73,31 @@
 	padding: 0 4px 0 33px;
 	border: 1px solid green;
 	margin: 5px auto 0px auto;
+	overflow: hidden;
+}
+
+.favorPost1 {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+}
+
+.favorPost2 {
+	position: absolute;
+	z-index: 0;
+	background-color: white;
+}
+
+.favorPost3 {
+	position: absolute;
+	z-index: 0;
+	background-color: white;
+}
+
+.favorPost4 {
+	position: absolute;
+	z-index: 0;
+	background-color: white;
 }
 
 /* 게시판 div container */
@@ -86,8 +111,9 @@
 	float: left;
 	width: 295px;
 	height: 148px;
-	border-radius: 15%;
-	border: 1px solid red;
+	border-radius: 10%;
+	border: 2px solid #EEE;
+	box-shadow: 5px 5px 11px #AAA;
 	margin: 2px;
 }
 
@@ -105,6 +131,52 @@
 	.p2 {
 		width: 590px;
 	}
+}
+
+/* 레시피/전문가팁 링크 이미지 */
+.p11 {
+	float: left;
+	padding: 3px;
+	border-radius: 15%;
+	margin-right: 10px;
+	width: auto;
+	height: 145px;
+	box-shadow: 5px 5px 11px #AAA;
+}
+
+/* 레시피/전문가팁 제목, 조회수, 추천수 */
+.psubj {
+	margin-top: 16px;
+	height: 60px;
+	overflow: hidden;
+}
+
+.pcom {
+	margin-right: 10px;
+	word-break: keep-all;
+}
+
+/* 커뮤니티/공지사항 제목, 조회수, 추천수 */
+.psubj2 {
+	margin: 5px 5px 0 0;
+	float: left;
+	height: 20px;
+	overflow: hidden;
+}
+
+.pcont {
+	width: 100px;
+	overflow: hidden;
+}
+
+.pins {
+	width: 50px;
+	overflow: hidden;
+}
+
+/* 각 게시판 클릭 시 링크 */
+.pa {
+	cursor: pointer;
 }
 
 /* 쉐프 소개 */
