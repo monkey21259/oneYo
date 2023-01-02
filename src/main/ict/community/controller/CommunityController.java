@@ -20,6 +20,8 @@ import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.like.service.LikeService;
+import main.ict.like.vo.LikeVO;
 import main.ict.warning.vo.WarningVO;
 
 @Controller
@@ -34,6 +36,10 @@ public class CommunityController {
 //채번서비스호출	
 	@Autowired(required = false)  
 	private ChabunService chabunService;
+	
+//좋아요서비스호출
+	@Autowired(required=false)
+	private LikeService likeService;
 			
 //커뮤니티 게시글 등록폼(insertform)
 	@GetMapping("communityInsertForm")
@@ -153,8 +159,20 @@ public class CommunityController {
 	
 //커뮤니티 글조회(content)
 		@GetMapping("communitySelectContent")
-		public String communitySelectContent(CommunityVO cvo, Model model) {
+		public String communitySelectContent(HttpServletRequest req, CommunityVO cvo, Model model) {
 			logger.info("communitySelectContent 함수 진입 >>> : ");
+			
+			//좋아요 체크
+			LikeVO lvo = null;
+			lvo = new LikeVO();
+			O_Session os = O_Session.getInstance();
+			
+			lvo.setMnum(os.getSession(req));
+			lvo.setLikethis(cvo.getCnum());
+			List<LikeVO> likeList = likeService.likeCheck(lvo);
+			if(likeList.size() == 1) {
+				model.addAttribute("likeList", likeList);
+			}//end of if
 			
 			List<CommunityVO> listS = communityService.communitySelect(cvo);
 			logger.info("cvo.getCnum() >>> : " + cvo.getCnum());

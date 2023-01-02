@@ -18,6 +18,8 @@ import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
+import main.ict.like.service.LikeService;
+import main.ict.like.vo.LikeVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.tip.service.TipService;
 import main.ict.tip.vo.TipVO;
@@ -32,6 +34,9 @@ public class TipController {
 	
 	@Autowired(required=false)
 	private ChabunService chabunService;
+	
+	@Autowired(required=false)
+	private LikeService likeService;
 	
 	@GetMapping(value="tipInsertForm")
 	public String tipInsertForm() {
@@ -134,10 +139,22 @@ public class TipController {
 	}
 	
 	@GetMapping(value="tipSelectContent")
-	public String tipSelectAllForm(TipVO tvo, Model m) {
+	public String tipSelectAllForm(HttpServletRequest req, TipVO tvo, Model m) {
 		logger.info("tipSelectContent");
 		
 		logger.info(tvo.getTnum());
+		
+		//좋아요 체크
+		LikeVO lvo = null;
+		lvo = new LikeVO();
+		O_Session os = O_Session.getInstance();
+		
+		lvo.setMnum(os.getSession(req));
+		lvo.setLikethis(tvo.getTnum());
+		List<LikeVO> likeList = likeService.likeCheck(lvo);
+		if(likeList.size() == 1) {
+			m.addAttribute("likeList", likeList);
+		}//end of if
 		
 		List<TipVO> list = tipService.tipSelectContent(tvo);
 		
