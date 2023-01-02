@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.dao.HomeDAO;
 import main.ict.home.vo.HomeVO;
@@ -79,6 +80,20 @@ public class HomeServiceImpl implements HomeService {
 		// TODO Auto-generated method stub
 		logger.info("homeRestSelectRecipe() 함수 진입");
 		return homeDAO.homeRestSelectRecipe(rvo);
+	}
+
+	@Override
+	public List<TipVO> homeRestSelectTip(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("homeRestSelectTip() 함수 진입");
+		return homeDAO.homeRestSelectTip(tvo);
+	}
+
+	@Override
+	public List<CommunityVO> homeRestSelectCommunity(CommunityVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("homeRestSelectComment() 함수 진입");
+		return homeDAO.homeRestSelectCommunity(cvo);
 	}
 
 }
