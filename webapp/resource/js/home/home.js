@@ -3,7 +3,7 @@ function Slider(target) {
 	// status
 	let index = 1;		// 배열 인덱스
 	let isMoved = true;	// Flag
-	const speed = 1000;	// 애니메이션 속도
+	const speed = 2000;	// 애니메이션 속도
 
 	// direction
 	const transform = "transform " + speed / 1000 + "s";	// 이동할 속도
@@ -20,20 +20,21 @@ function Slider(target) {
 	container.style["flex-direction"] = "row";			// 가로 방향으로 flex 나열
 	container.style["width"] = sliderRects.width + "px";
 	container.style["height"] = sliderRects.height + "px";
-	container.style["transform"] = translate(index); 	// 애니메이션 설정 시 바뀔 형태를 가진 화살표 함수 객체
+	container.style["transform"] = translate(index); 	// 이동할 애니메이션 설정
 	
 	// 슬라이더 화면 목록
 	let boxes = [].slice.call(slider.children);						// banner의 자식요소 div(box)
 	boxes = [].concat(boxes[boxes.length - 1], boxes, boxes[0]);	// 끝 박스 + 원래 박스 + 첫 박스
 	
 	// 슬라이더 화면 스타일
-	const size = boxes.length;		// 현재 존재하는 div("box) 객체를 담는 리스트의 사이즈
+	const size = boxes.length;		// 현존하는 div("box") 객체를 담는 리스트의 사이즈
 	for (let i=0; i<size; i++) {
 		const box = boxes[i];
-		box.style["flex"] = "none";
-		box.style["flex-wrap"] = "wrap";
+		box.style["flex"] = "none";			// flex 속성 설정 X.
+		box.style["flex-wrap"] = "wrap";	// flexible item을 wrap할지 여부를 설정(필요할 경우 겹쳐짐)
 		box.style["height"] = "100%";
 		box.style["width"] = "100%";
+		box.style["z-index"] = 0;
 		container.appendChild(box.cloneNode(true));
 	}
 	
