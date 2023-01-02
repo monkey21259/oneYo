@@ -21,9 +21,6 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-		
-
-
 	O_Session	oSession = O_Session.getInstance();
 	String		mid = oSession.getSession(request);
 	
