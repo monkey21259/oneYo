@@ -107,4 +107,47 @@
 
 </select>
 
+<select id="homeRestSelectMem" parameterType="memvo" resultType="memvo">
+
+	SELECT		
+				A.MNUM		AS		MNUM
+		   	   ,A.MNICK		AS		MNICK
+		       ,A.MGRADE	AS		MGRADE
+		       ,A.MPROFILE	AS		MPROFILE
+	FROM 	    "ORCLICT00"."ICT_MEMBER"	A
+	WHERE 	    A.MNUM     = #{mnum}
+	AND 		A.MGRADE   = '1'
+	AND 		A.DELETEYN = 'Y'
+	ORDER BY	A.MNUM DESC
+
+</select>
+
+<select id="homeRestSelectRecipe" parameterType="recipevo" resultType="recipevo">
+
+	SELECT  
+		    B.RNUM 		AS		RNUM
+		   ,B.RSUBJECT 	AS		RSUBJECT
+		   ,B.RPHOTO 	AS		RPHOTO
+	FROM	(SELECT  
+					 MNUM
+					,MNICK
+					,MGRADE
+					,MPROFILE
+			 FROM	"ORCLICT00"."ICT_MEMBER"
+			 WHERE	DELETEYN = 'Y'
+			 AND	MNUM     = #{mnum}
+			 AND	MGRADE   = '1'		  	  )		A
+		   ,(SELECT 
+		   			RNUM
+		   		   ,RSUBJECT
+		   		   ,RPHOTO
+		   		   ,MNUM
+		     FROM	"ORCLICT00"."ICT_RECIPE"
+		     WHERE	DELETEYN = 'Y'			
+		     AND	MNUM 	 = #{mnum}		  )		B
+	WHERE	 A.MNUM = B.MNUM
+	ORDER BY B.RNUM DESC
+
+</select>
+
 </mapper>

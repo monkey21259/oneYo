@@ -11,6 +11,8 @@
 <%@ page import="main.ict.tip.vo.TipVO" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
 <%@ page import="main.ict.notice.vo.NoticeVO" %>
+<%@ page import="main.ict.home.vo.HomeVO" %>
+<%@ page import="main.ict.mem.vo.MemVO" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -29,6 +31,8 @@
 <c:set var="TipList" value="${ DataMap['TipList'] }" />
 <c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
 <c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
+<c:set var="MemList" value="${ DataMap['MemList'] }" />
+<c:set var="Count" value="${ DataMap['Count'] }" />
 
 <!DOCTYPE html>
 <html lang='ko'>
@@ -126,6 +130,10 @@
 						$(elem).css("z-index", 0);
 					}
 				});
+			}
+			
+			function chefIntroduce(mnum) {
+				location.href = "chefIntroduce.ict?mnum=" + mnum;
 			}
 		
 		</script>
@@ -364,14 +372,19 @@
 		 		<span style="position:relative;left:5%;">쉐프 소개</span>
 		 		<span style="position:relative;left:75%;">더 보기</span>
 		 	</div>
+		 	<%-- 2023-01-02 이성일 쉐프소개 임시  --%>
 		 	<div class="chefBody">
-		 	<%
-		 		for (int i=0; i<10; i++) {
-		 	%>
-		 		<div class="chefIcon"></div>
-		 	<%	
-		 		}
-		 	%>
+			 	<c:forEach items="${ MemList }" var="mvo" end="10">
+			 		<c:if test="${ mvo !=null }" >
+			 			<a class="pa" data-value="${ mvo.mnum }" onclick="chefIntroduce('${ mvo.mnum }')">
+				 			<div class="chefIcon">
+				 				<c:if test="${ mvo.mprofile !=null }">
+					 				<img class="chefIcon" src="/oneYo/img/mem/${ mvo.mprofile }">
+				 				</c:if>
+				 			</div>
+			 			</a>
+			 		</c:if>
+			 	</c:forEach>
 		 	</div>
 		 </div>
 		 <div class="recipeInfo">
@@ -397,8 +410,8 @@
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
 	</div>
 </div>
 
