@@ -21,11 +21,14 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-		
 
+	
+	String mid = (String)request.getAttribute("mid");
+	String mnick = (String)request.getAttribute("mnick");
 
-	O_Session	oSession = O_Session.getInstance();
-	String		mid = oSession.getSession(request);
+	O_Session oSession = O_Session.getInstance();
+	String mnum = oSession.getSession(request);
+
 	
 	logger.info("mid: " + mid);
 %>
@@ -65,9 +68,14 @@
 					postClick($(this));
 				});
 				
-				$('.pa').on("click", function() {  // 게시글 클릭 시
-// 					alert($(this).attr('data-value'));  // 게시글의 고유번호
-					
+				$('.pa').on("click", function() {				// 게시글 클릭 시
+// 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
+					$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
+					$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
+						"action": "/oneYo/goSelectContent.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
 				});
 				// ------------------------------------------
 				
@@ -222,7 +230,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-		if (mid == null || mid.equals("")) {
+		if (mnick == null || mnick.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
@@ -236,14 +244,12 @@
 				<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
-				<p><%= mid %> <span>님 환영합니다.</span></p>
+				<p><%= mnick %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
-<!-- 	 		<br /><b>임시용 레시피버튼</b> -->
-<!-- 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br /> -->
 <% 		
 		}
 %>
@@ -372,6 +378,9 @@
 					</a>
 				</c:forEach>
 	 		</div>
+	 		<form id="goSelectForm">
+	 			<input type="hidden" id="num" name="num" value="" />
+	 		</form>
 		 </div>
 		 <div class="chefInfo">
 		 	<div class="chefTop">

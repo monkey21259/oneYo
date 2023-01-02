@@ -19,11 +19,12 @@
 		}
 		
 		List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
+		logger.info("recipeList: " + recipeList);
 		
 		//세션부여
-				O_Session mSession = O_Session.getInstance();
-				String mnum = mSession.getSession(request);
-				logger.info("mnum >>> : " + mnum);
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(request);
+		logger.info("mnum >>> : " + mnum);
 		
 		if (recipeList.size() != 1) {
 			logger.info("[FAIL] recipeList.size() != 1");

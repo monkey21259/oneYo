@@ -141,7 +141,6 @@ public class TipController {
 	@GetMapping(value="tipSelectContent")
 	public String tipSelectAllForm(HttpServletRequest req, TipVO tvo, Model m) {
 		logger.info("tipSelectContent");
-		
 		logger.info(tvo.getTnum());
 		
 		//좋아요 체크
