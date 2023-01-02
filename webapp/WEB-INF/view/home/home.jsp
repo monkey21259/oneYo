@@ -159,9 +159,6 @@
 		</script>
 	</head>
 <body>
-<div id="realAll">
-
-<div id="backMenu"></div>
 
 <!--			all_div		-->
 <!--	┌─────────────────┐	-->
@@ -176,6 +173,10 @@
 <!--	├─────┴─────┴─────┤	-->
 <!--	│    footer	 	  │	-->
 <!--	└─────────────────┘	-->
+<div id="realAll">
+
+<div id="backMenu"></div>
+
 <div id="sideBar">
 	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
@@ -251,17 +252,17 @@
 		if (mnick == null || mnick.equals("")) {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
+				<span class="Choonsik" id="newMemBtn">회원가입</span>
 				<span class="Choonsik">:</span>
-		 		<span class="Choonsik" id="loginBtn" name="loginBtn">로그인</span>
+		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
-		 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
+		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 				<p><%= mnick %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
