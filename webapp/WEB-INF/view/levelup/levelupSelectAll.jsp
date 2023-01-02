@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="main.ict.levelup.vo.LevelupVO" %>
+<%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
+<%
+	//m.addAttribute("list", list);
+	Object obj = request.getAttribute("list");
+	if(obj == null){return;}
+	
+	List<LevelupVO> list = (List<LevelupVO>)obj;
+%>
 
 <!DOCTYPE html>
 <html>
@@ -17,9 +26,17 @@
 		console.log("levelupSelectAll.jsp 페이지 진입");
 		
 		$(document).on("click", "#levelupInsertBtn", function(){
+			
+			if($("#lvlv").text()==null){
+			
+			
 			alert("levelupInsertBtn 버튼 클릭 이벤트 발생");
 			if(confirm("등업글을 작성하시겠습니까?")){
 				location.href = "levelupInsertForm.ict?mnum=${list.get(0).getMnum()}";
+			} 
+			
+			}else{
+				alert("이미 등업신청을 하였습니다");
 			}
 			
 		});
@@ -63,7 +80,7 @@
 			<tbody>
 				<c:forEach items="${list}" var="lvvo">
 					<tr>	
-						<td>
+						<td id="lvlv">
 							${lvvo.lvnum}
 						</td>
 						<td onclick="levelupSelect('${lvvo.lvnum}')">

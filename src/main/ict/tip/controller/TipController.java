@@ -223,10 +223,11 @@ public class TipController {
 	}
 
 	@GetMapping(value="tipWarningForm")
-	public String tipWarningForm(TipVO tvo, Model m) {
+	public String tipWarningForm(HttpServletRequest req, TipVO tvo, Model m) {
 		
-		
-		tvo.setMnum("M202212260013");
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		tvo.setMnum(mnum);
 		m.addAttribute("tvo", tvo);
 		
 		return "tip/tipWarningForm";

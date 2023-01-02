@@ -345,16 +345,15 @@ public class LoginController {
 		logger.info("loginList.get(0) >>> : " + loginList.get(0));
 		
 		String mnum = loginList.get(0).getMnum();
-		String mnick = loginList.get(0).getMnick();
 		
 		// 세션 생성 및 부여하기
 		O_Session mSession = O_Session.getInstance();
 		mSession.setSession(req, mnum);
-		mSession.setSession(req, mnick);
 //		String mnum1 = mSession.getSession(req);
 //		System.out.println("mnum : " + mnum1);
 //		
 		if(loginList.size() == 1) {
+			model.addAttribute("list", loginList);
 			return "home/home";
 		}else {
 			String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";

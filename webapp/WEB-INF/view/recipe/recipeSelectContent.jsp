@@ -23,6 +23,7 @@
 		//세션부여
 				O_Session mSession = O_Session.getInstance();
 				String mnum = mSession.getSession(request);
+				logger.info("mnum >>> : " + mnum);
 		
 		if (recipeList.size() != 1) {
 			logger.info("[FAIL] recipeList.size() != 1");
@@ -30,6 +31,7 @@
 		logger.info(recipeList.toString());
 		
 		RecipeVO recipevo = recipeList.get(0);
+		logger.info(" recipevo.getMnum()>>>:" + recipevo.getMnum());
 %>
 
 <!DOCTYPE html>

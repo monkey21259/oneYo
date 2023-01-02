@@ -3,6 +3,8 @@ package main.ict.comment.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import main.ict.comment.service.CommentService;
 import main.ict.comment.vo.CommentVO;
 import main.ict.common.ChabunUtils;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 
 @Controller
@@ -36,7 +39,7 @@ public class CommentController {
 	//댓글 insert
 	@PostMapping(value="commentInsert")
 	@ResponseBody
-	public String commentInsert(CommentVO covo) {
+	public String commentInsert(HttpServletRequest req, CommentVO covo) {
 		logger.info("commentInsert() 함수 진입 : ");
 		
 		//ajax로 리턴할 메시지
@@ -46,6 +49,10 @@ public class CommentController {
 		String conum = ChabunUtils.getCommentChabun("d", chabunService.getCommentChabun().getConum());
 		//채번값 vo에 넣기
 		covo.setConum(conum);
+		
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		covo.setMnum(mnum);
 		
 		//서비스 호출
 		int insertCnt = commentService.commentInsert(covo);

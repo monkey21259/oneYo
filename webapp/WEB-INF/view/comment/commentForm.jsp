@@ -238,7 +238,6 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 		<!-- 게시글 사이즈에 따라 width 변경하기 -->
 			<form id="commentForm" name="commentForm">
 				<input type="hidden" id="cotnum" value="<%=cotnum %>">
-				<input type="hidden" id="mnum" value="<%=clientMnum %>">
 				<div><%=clientMnick %></div>
 				<textarea id="cocontent" rows="3" cols="50" placeholder="댓글 내용"></textarea>
 				<button type="button" id="insertBtn">댓글 달기</button>

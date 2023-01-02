@@ -87,11 +87,6 @@ public class CommunityController {
 		cvo.setMnum(mnum);
 		logger.info("mnum >>> : " + cvo.getMnum());
 
-		String mnick = "오징어";
-		cvo.setMnick(mnick);
-//		String mnick = req.getParameter("mnick");
-		logger.info("mnick >>> : " + cvo.getMnick());
-		
 		//insert
 		int nCnt = communityService.communityInsert(cvo);
 		logger.info("nCnt >>> : " + nCnt);
@@ -261,14 +256,16 @@ public class CommunityController {
 	} //communityDelete
 	
 	@GetMapping(value="communityWarningForm")
-	public String communityWarningForm(CommunityVO cvo, Model m) {
+	public String communityWarningForm(HttpServletRequest req, CommunityVO cvo, Model m) {
 		System.out.println("cvo.getCnum : " + cvo.getCnum());
 		System.out.println("cvo.getCsubject : " + cvo.getCsubject());
 		
 		String cnum = cvo.getCnum();
 		String csubject = cvo.getCsubject();
-		String mnum = "M202212260013";
-		
+
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+
 		m.addAttribute("mnum", mnum);
 		m.addAttribute("cnum", cnum);
 		m.addAttribute("csubject", csubject);

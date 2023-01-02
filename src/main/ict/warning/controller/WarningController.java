@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.common.ChabunUtils;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.warning.service.WarningService;
 import main.ict.warning.vo.WarningVO;
@@ -117,7 +118,8 @@ public class WarningController {
 		String wcontent = req.getParameter("wcontent");
 		wvo.setWcontent(wcontent);
 		
-		String mnum = "M202212200006";
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
 		wvo.setMnum(mnum);
 		
 		int nCnt = warningService.warningInsert(wvo);
