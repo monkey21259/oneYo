@@ -125,28 +125,70 @@ a {
 
 /* -------------------------------- 상단 login -------------------------------- */
 #loginDiv {
-	
 	/* 우측배치 */
 	text-align: right;
+	
+	/* width 가로폭 */
+ 	width	: 100%; 
+ 	height	: 100%; 
+}
+
+#loginDiv .loginBtnDiv {
+	
+	/* width 가로폭 */
+ 	width	: 100%; 
+ 	height	: 100%; 
+	
+	
+	/* Flexible Box */
+	display	: flex;
+	/* Flexible Box 내부 요소를 오른쪽 끝에 붙게 */
+	justify-content	: flex-end;
+	/* Flexible Box 내부 요소를 하단 끝에 붙게 (1줄 전용) */
+	align-items		: flex-end;
+	/* Flexible Box 내부 요소를 하단 끝에 붙게 (1줄 이상일 시) */
+/* 	align-content	: flex-end; */
+	/* Flexible Box 내부 요소를 중간을 띄우고 상하단에 바짝 붙이기 */
+/* 	align-content	: space-between; */
+	align-content	: flex-start;
+	flex-wrap: wrap;
 }
 
 #loginDiv .Choonsik {
-	margin	: 10px 5px;
-	margin-right	: 1%;
-	padding	: 10px 15px;
+	/* 폰트 사이즈 */
+	font-size	: 13px;
+	/* 폰트 색상 */
+	color		: #93A603;
 	
-	/* 배경색 위에서 부터 아래로 그라데이션!! */
-	background-color	: #222;
+	margin	: 10px 2px;
+	margin-bottom	: 1%;
+/* 	margin-right	: 1%; */
+	padding	: 4px 4px;
 	
-	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
-	float	: left;
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	/* 배경색 */
+/* 	background-color	: #E0E086; */
+	
 }
 
 #loginDiv p {
-	margin	: 10px 10px;
+	
+	/* width 가로폭 */
+ 	width	: 100%; 
+/* 	margin	: 10px 10px; */
 	
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
+}
+
+#loginDiv p span {
+	
+	/* 폰트 사이즈 */
+	font-size	: 15px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
 }
 
 /* -------------------------------- 상단 nav -------------------------------- */

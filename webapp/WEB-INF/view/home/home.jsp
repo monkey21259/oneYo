@@ -218,17 +218,24 @@
 <%
 		if (mid == null || mid.equals("")) {
 %>
-			<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
-	 		<span class="Choonsik" id="loginBtn" name="loginBtn">로그인</span>
+			<div class="loginBtnDiv">
+				<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="loginBtn" name="loginBtn">로그인</span>
+	 		</div>
 <%
 		} else {
 %>
-			<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-	 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
+			<div class="loginBtnDiv">
+				<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
+				<p><%= mid %> <span>님 환영합니다.</span></p>
+	 		</div>
+	 		<p></p>
 	 		<form id="logoutForm">
 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
-			<p><%= mid %>님 환영합니다.</p>
 <!-- 	 		<br /><b>임시용 레시피버튼</b> -->
 <!-- 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br /> -->
 <% 		
