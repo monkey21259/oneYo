@@ -49,4 +49,20 @@ public class LikeDAOImpl implements LikeDAO {
 		return sqlSession.selectOne("likeCount", lvo);
 	}//end of likeCount() method
 	
+	//기존 좋아요 취소 이력 있는지 체크
+	@Override
+	public List<LikeVO> likeNCheck(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		logger.info("likeCount() 함수 진입 : ");
+		return sqlSession.selectList("likeNCheck", lvo);
+	}//end of likeCount() method
+	
+	//기존에 DB에 있는 좋아요 취소한 이력 다시 좋아요
+	@Override
+	public int likeUpdate(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		logger.info("likeUpdate() 함수 진입 : ");
+		return (Integer)sqlSession.update("likeUpdate", lvo);
+	}//end of likeUpdate() method
+	
 }//end of LikeDAOImpl class

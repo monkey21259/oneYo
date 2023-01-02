@@ -66,4 +66,33 @@
 		
 	</select>
 	
+	<!-- 기존 좋아요 취소 이력 있는지 체크 -->
+	<select id="likeNCheck" parameterType="likevo" resultType="likevo">
+		
+		SELECT
+			 A.LNUM		AS LNUM
+			,A.MNUM		AS MNUM
+			,A.LIKETHIS	AS LIKETHIS
+			,A.LIKEYN		AS LIKEYN
+			,TO_CHAR(A.LIKEDATE, 'YYYY-MM-DD')	AS LIKEDATE
+		FROM ICT_LIKE A
+		WHERE	A.MNUM		= #{mnum, jdbcType=VARCHAR}
+		AND		A.LIKETHIS	= #{likethis, jdbcType=VARCHAR}
+		AND		A.LIKEYN	= 'N'
+		
+	</select>
+	
+	<!-- 기존에 DB에 있는 좋아요 취소한 이력 다시 좋아요 -->
+	<update id="likeUpdate" parameterType="likevo">
+		
+		UPDATE ICT_LIKE
+		SET
+			 LIKEYN = 'Y'
+			,LIKEDATE = SYSDATE
+		WHERE	MNUM		= #{mnum, jdbcType=VARCHAR}
+		AND		LIKETHIS	= #{likethis, jdbcType=VARCHAR}
+		AND		LIKEYN		= 'N'
+		
+	</update>
+	
 </mapper>

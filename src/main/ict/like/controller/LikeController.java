@@ -1,5 +1,7 @@
 package main.ict.like.controller;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +33,29 @@ public class LikeController {
 		//ajax로 반환할 문자열
 		String msg = "LIKE_NO";
 		
-		//채번 매기기
-		String lnum = ChabunUtils.getLikeChabun("d", chabunService.getLikeChabun().getLnum());
-		lvo.setLnum(lnum);
-		
-		//서비스 호출
-		int insertCnt = likeService.likeInsert(lvo);
-		if(insertCnt == 1) {
-			msg = "LIKE_YES";
-		}//end of if
+		//기존 좋아요 취소 이력 있는지 체크
+		List<LikeVO> likeList = likeService.likeNCheck(lvo);
+		if(likeList.size() == 0) {
+			//기존에 좋아요 취소한 이력이 없으면 새롭게 insert
+			
+			//채번 매기기
+			String lnum = ChabunUtils.getLikeChabun("d", chabunService.getLikeChabun().getLnum());
+			lvo.setLnum(lnum);
+			
+			//서비스 호출
+			int insertCnt = likeService.likeInsert(lvo);
+			if(insertCnt == 1) {
+				msg = "LIKE_YES";
+			}//end of if
+		}else {
+			//기존에 좋아요 취소한 이력이 있으면 DB에 있는 기존 값을 변경하기
+			
+			//서비스 호출
+			int updateCnt = likeService.likeUpdate(lvo);
+			if(updateCnt == 1) {
+				msg = "LIKE_YES";
+			}//end of if
+		}//end of if-else
 		
 		return msg;
 	}//end of likeInsert() method

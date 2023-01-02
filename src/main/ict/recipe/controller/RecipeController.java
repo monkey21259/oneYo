@@ -22,6 +22,8 @@ import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
+import main.ict.like.service.LikeService;
+import main.ict.like.vo.LikeVO;
 
 @Controller
 public class RecipeController {
@@ -33,6 +35,9 @@ public class RecipeController {
 	
 	@Autowired(required=false)
 	public ChabunService chabunService;
+	
+	@Autowired(required=false)
+	private LikeService likeService;
 	
 // I Form
 	@GetMapping(value="recipeInsertForm")
@@ -136,10 +141,22 @@ public class RecipeController {
 
 // S
 	@GetMapping(value="recipeSelectContent")
-	public String recipeSelectContent(RecipeVO recipevo, Model model) {
+	public String recipeSelectContent(HttpServletRequest req, RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeSelectContent() 함수 진입");
 //		logger.info(recipevo.toString());  // RecipeVO [rnum=R202212210004, ..., mnum=M202212200005]
+		
+		//좋아요 체크
+		LikeVO lvo = null;
+		lvo = new LikeVO();
+		O_Session os = O_Session.getInstance();
+		
+		lvo.setMnum(os.getSession(req));
+		lvo.setLikethis(recipevo.getRnum());
+		List<LikeVO> likeList = likeService.likeCheck(lvo);
+		if(likeList.size() == 1) {
+			model.addAttribute("likeList", likeList);
+		}//end of if
 		
 		List<RecipeVO> recipeList = recipeService.recipeSelectContent(recipevo);
 		if (recipeList == null || recipeList.size() != 1) {

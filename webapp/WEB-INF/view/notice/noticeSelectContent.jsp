@@ -175,7 +175,7 @@
 					<td colspan="2">
 						<%
 							Object likeObj = request.getAttribute("likeList");
-							String likeyn = "";
+							String likeyn = "Y";
 							if(likeObj == null) likeyn = "N";
 							O_Session os = O_Session.getInstance();
 							String mnum = os.getSession(request);

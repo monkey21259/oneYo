@@ -40,7 +40,7 @@ jsp:param name="likeyn" value="DB에서 조회된 회원의 좋아요 여부 / Y
 					$.ajax({
 						url: urlVal,
 						method: "POST",
-						data: { mnum: 'M202212260012',
+						data: { mnum: mnumVal,
 								likethis: likethisVal},
 						success: whenSuccess,
 						error: whenError
@@ -70,7 +70,7 @@ jsp:param name="likeyn" value="DB에서 조회된 회원의 좋아요 여부 / Y
 					$.ajax({
 						url: urlVal,
 						method: "POST",
-						data: { mnum: 'M202212260012',
+						data: { mnum: mnumVal,
 								likethis: likethisVal},
 						success: whenSuccess,
 						error: whenError
