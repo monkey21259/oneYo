@@ -22,7 +22,7 @@ public class LikeDAOImpl implements LikeDAO {
 	public List<LikeVO> likeCheck(LikeVO lvo) {
 		// TODO Auto-generated method stub
 		logger.info("likeCheck() 함수 진입 : ");
-		return null;
+		return sqlSession.selectList("likeCheck", lvo);
 	}//end of likeCheck() method
 	
 }//end of LikeDAOImpl class

@@ -4,6 +4,20 @@
 
 <mapper namespace="main.ict.like.dao.LikeDAO">
 	
-	
+	<!-- 세션에 저장된 회원이 좋아요 눌렀는지 확인하기 -->
+	<select id="likeCheck" parameterType="likevo" resultType="likevo">
+		
+		SELECT
+			 A.LNUM		AS LNUM
+			,A.MNUM		AS MNUM
+			,A.LIKETHIS	AS LIKETHIS
+			,A.LIKEYN		AS LIKEYN
+			,TO_CHAR(A.LIKEDATE, 'YYYY-MM-DD')	AS LIKEDATE
+		FROM ICT_LIKE A
+		WHERE	A.MNUM		= #{mnum, jdbcType=VARCHAR}
+		AND		A.LIKETHIS	= #{likethis, jdbcType=VARCHAR}
+		AND		A.LIKEYN	= 'Y'
+		
+	</select>
 	
 </mapper>
