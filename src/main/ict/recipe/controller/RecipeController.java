@@ -249,9 +249,11 @@ public class RecipeController {
 	}
 	
 	@GetMapping(value="recipeWarningForm")
-	public String recipeWarningForm(RecipeVO recipevo, Model m) {
+	public String recipeWarningForm(HttpServletRequest req, RecipeVO recipevo, Model m) {
 		
-		recipevo.setMnum("M202212260013");
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		recipevo.setMnum(mnum);
 		m.addAttribute("rvo", recipevo);
 		
 		return "recipe/recipeWarningForm";

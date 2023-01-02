@@ -61,6 +61,7 @@ public class NoticeController {
 		String nnum = ChabunUtils.getNoticeChabun("d", chabunService.getNoticeChabun().getNnum());
 		
 		//VO에 값 넣기
+		
 		nvo.setNnum(nnum);
 		nvo.setNsubject(fu.getParameter("nsubject"));
 		nvo.setNcontent(fu.getParameter("ncontent"));

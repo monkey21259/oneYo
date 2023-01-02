@@ -213,7 +213,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 				
 				function whenSuccess(resData){
 				//전문가
-					if("1" == resData){
+					if("1" == resData || "9"){
 						location.href ="tipInsertForm.ict";
 								
 				}	else {

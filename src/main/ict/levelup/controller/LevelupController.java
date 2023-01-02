@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.levelup.service.LevelupService;
 import main.ict.mem.vo.MemVO;
@@ -32,8 +33,12 @@ public class LevelupController {
 	private ChabunService chabunService;
 	
 	@GetMapping(value="levelupSelectAll")
-	public String levelupSelectAll(MemVO mvo, Model m) {
+	public String levelupSelectAll(HttpServletRequest req, MemVO mvo, Model m) {
 		logger.info("levelupSelectAll() 함수 진입");
+		
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		mvo.setMnum(mnum);		
 		
 		List<LevelupVO> list = levelupService.levelupSelectAll(mvo);
 		LevelupVO lvo = null;
@@ -84,7 +89,10 @@ public class LevelupController {
 		lvvo.setLvsubject(fu.getParameter("lvsubject"));
 		lvvo.setLvcontent(fu.getParameter("lvcontent"));
 		lvvo.setLvphoto(fu.getFileName("lvphoto"));
-		lvvo.setMnum(fu.getParameter("mnum"));
+	
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		lvvo.setMnum(mnum);
 		
 		logger.info(lvvo.getLvnum());
 		logger.info(lvvo.getLvsubject());

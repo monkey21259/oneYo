@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@page import="main.ict.common.O_Session"%>
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.notice.vo.NoticeVO" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.apache.log4j.LogManager" %>
 <%
 	request.setCharacterEncoding("UTF-8");
+	Logger logger = LogManager.getLogger(this.getClass());
+	
 	
 	Object obj = request.getAttribute("sallList");
 	if (obj == null) {
@@ -27,6 +32,11 @@
 	String keyword = "";
 	String startDate= "";
 	String endDate = "";
+	
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	logger.info("mnum >>> : " + mnum);
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -53,6 +63,11 @@
 			$(document).ready(function(){
 				//jQuery 충돌 방지(datepicker 때문)
 				//var $j = jQuery.noConflict();
+				
+				$(document).on("click", "#insertBtn", function(){
+					location.href="noticeInsertForm.ict";					
+				}); 
+				
 				
 				//datepicker 한글화
 				$.datepicker.setDefaults({
@@ -297,6 +312,14 @@
 					</td>
 				</tr>
 			</table>
+			
+			<%
+				if(mnum.equals("M000000000000")){
+			%>
+				<button type="button" id="insertBtn" name="insertBtn">글등록</button>
+				<%
+				}
+				%>
 				<input type="hidden" id="nnum" name="nnum">
 				<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
