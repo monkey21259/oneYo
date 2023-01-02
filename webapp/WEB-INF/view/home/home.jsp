@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="org.apache.log4j.LogManager" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.recipe.vo.RecipeVO" %>
+<%@ page import="main.ict.tip.vo.TipVO" %>
+<%@ page import="main.ict.community.vo.CommunityVO" %>
+<%@ page import="main.ict.notice.vo.NoticeVO" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 <% logger.info(".jsp 진입"); %>
@@ -15,6 +24,24 @@
 	
 	logger.info("mid: " + mid);
 %>
+<%
+	//. ★ NULL일 때, HomeController에서 값을 안받아오므로 Validation 때 처리 필요 ★
+// 	Map<String, Object> dataMap = (Map<String, Object>)request.getAttribute("DataMap");
+	
+// 	List<RecipeVO> recipeList = (List<RecipeVO>)dataMap.get("RecipeList");
+// 	List<TipVO> tipList = (List<TipVO>)dataMap.get("TipList");
+// 	List<CommunityVO> communityList = (List<CommunityVO>)dataMap.get("CommunityList");
+// 	List<NoticeVO> noticeList = (List<NoticeVO>)dataMap.get("NoticeList");
+// 	logger.info(recipeList.size());		// 4
+// 	logger.info(tipList.size());		// 4
+// 	logger.info(communityList.size());	// 8
+// 	logger.info(noticeList.size());		// 1
+%>
+
+<c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
+<c:set var="TipList" value="${ DataMap['TipList'] }" />
+<c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
+<c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
 
 <!DOCTYPE html>
 <html lang='ko'>
@@ -24,7 +51,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
 		<title>home.jsp</title>
 		<!-- 칸 나눈 css -->
-		
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
@@ -35,12 +61,21 @@
 		<script type="text/javascript">
 		
 			alert("[home.jsp] JS");
+			
 			$(document).ready(function() {
 				
 				alert("[home.jsp] jQuery");
+
+				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
 					postClick($(this));
 				});
+				
+				$('.pa').on("click", function() {  // 게시글 클릭 시
+// 					alert($(this).attr('data-value'));  // 게시글의 고유번호
+					
+				});
+				// ------------------------------------------
 				
 				$("#warningForm").click(function(){
 					location.href="warningForm.ict";
@@ -65,58 +100,42 @@
 						"enctype": "application/x-www-form-urlencoded"
 					}).submit();
 				});
-				
 				// ------------------------------------------
 				// 레시피 게시판 이동 (테스트) ---------------------
 				$("#recipeSAllBtn").on("click", function() {
 					console.log("[테스트] 레시피 게시판 이동");
 					location.href="/oneYo/recipeSelectAll.ict";
-// 					$("#recipeSAllForm").attr({
-// 						"action": "/oneYo/recipeSelectAll.ict",
-// 						"method": "GET",
-// 						"enctype": "application/x-www-form-urlencoded"
-// 					}).submit();
 				});
 				// ------------------------------------------
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				
 			});
 			
-			function postClick(obj) {
+			function postClick(obj) {  // favorPostTitle
 				
-				// 동적으로 div 태그를 생성해야 함. >> 여기서 분기가 필요.
-				let beforeV = $(".favorPost").attr("data-value");
-				let afterV  = obj.attr("data-value");
-				// data-value가 같을 경우 변화 없음.
-				if (beforeV == afterV) {
-					console.log("[SAME] " + beforeV);
+				let before_num = $(".postTitles").attr('data-num');
+				let after_num = obj.attr("data-num");  // 1 ~ 4
+				
+				if (before_num == after_num) {
+					console.log("동일한 카테고리입니다.");
 					return false;
 				}
 				
-				// data-value가 다른 경우 기존의 div 태그를 삭제하고,
-				$(".p1").detach();
-				$(".p2").detach();
-				$(".favorPost").attr("data-value", afterV);
-								
-				let dataNum = obj.attr("data-num");  // 4 || 8
-				if (dataNum == 4) {  // p1 -> 그림
-					for (let i=0; i<dataNum; i++) {
-						let $div = $("<div>");
-						$div.attr("class", "p1");
-						$div.text(i);
-						$(".favorPost").append($div);
+				// 값 갱신
+				$(".postTitles").attr('data-num', after_num);
+
+				// 클릭한 것에 해당하는 게시판 글 z-index 변경하기.
+				$(".favorPost").each(function(i, elem) {
+// 					console.log($(elem).attr("data-value"));
+// 					console.log($(obj).attr("data-value"));
+					if ($(elem).attr("data-value") == $(obj).attr("data-value")) {
+						$(elem).css("z-index", 1);
+					} else {
+						$(elem).css("z-index", 0);
 					}
-				} else if (dataNum == 8) {  // p2 -> 글
-					for (let i=0; i<dataNum; i++) {
-						let $div = $("<div>");
-						$div.attr("class", "p2");
-						$div.text(i);
-						$(".favorPost").append($div);
-					}
-				}
-				
-				
+				});
 			}
 		
 		</script>
@@ -264,35 +283,71 @@
 	 	<img src="/oneYo/resource/img/002.png">
 	 	</div>
 	 	<div class="favorContainer">
-	 		<div class="postTitles">
-			 	<div class="favorPostTitle" data-value="recipe" data-num="4">
+	 		<div class="postTitles" data-num="1">
+			 	<div class="favorPostTitle" data-value="recipe" data-num="1">
 			 		<span>레시피</span>
 			 	</div>
-			 	<div class="favorPostTitle" data-value="expert" data-num="4">
+			 	<div class="favorPostTitle" data-value="expert" data-num="2">
 			 		<span>전문가</span>
 			 	</div>
-			 	<div class="favorPostTitle" data-value="community" data-num="8">
+			 	<div class="favorPostTitle" data-value="community" data-num="3">
 			 		<span>커뮤니티</span>
 			 	</div>
-			 	<div class="favorPostTitle" data-value="notice" data-num="8">
+			 	<div class="favorPostTitle" data-value="notice" data-num="4">
 			 		<span>공지사항</span>
 			 	</div>
 		 	</div>
-	 		<div class="favorPost" data-value="recipe">
-	 			<!-- 초기값 : recipe 4개 화면 -->
-	 			<!-- 동적으로 변화하는 값 : 누른 값에 따라 개수가 달라짐 >> 4개 or 8개 -->
-	 			<div class="p1">
-	 				A (초기값)
-	 			</div>
-	 			<div class="p1">
-	 				B (초기값)
-	 			</div>
-	 			<div class="p1">
-	 				C (초기값)
-	 			</div>
-	 			<div class="p1">
-	 				D (초기값)
-	 			</div>
+	 		<div class="favorPost favorPost1" data-value="recipe">
+	 			<c:forEach items="${ RecipeList }" var="rvo">
+					<a class="pa" data-value="${ rvo.rnum }">
+						<div class="p1">
+							<img class="p11" src="/oneYo/img/recipe/${ rvo.rphoto }" />
+							<div class="psubj pcom">${ rvo.rsubject }</div><br />
+							<div class="pcom">조회수: ${ rvo.rhit }</div>
+							<div class="pcom">추천수: ${ rvo.likecnt }</div>				
+						</div>
+					</a>
+				</c:forEach>
+	 		</div>
+	 		<div class="favorPost favorPost2" data-value="expert">
+	 			<c:forEach items="${ TipList }" var="tvo">
+					<a class="pa" data-value="${ tvo.tnum }">
+						<div class="p1">
+							<img class="p11" src="/oneYo/img/tip/${ tvo.tphoto }" />
+							<div class="psubj pcom">${ tvo.tsubject }</div><br />
+							<div class="pcom">조회수: ${ tvo.thit }</div>
+							<div class="pcom">추천수: ${ tvo.likecnt }</div>				
+						</div>
+					</a>
+				</c:forEach>
+	 		</div>
+	 		<div class="favorPost favorPost3" data-value="community">
+	 			<c:forEach items="${ CommunityList }" var="cvo">
+					<a class="pa" data-value="${ cvo.cnum }">
+						<div class="p2">
+							<%-- 테이블로 구성하는게 나을듯 --%>
+							<div class="psubj2">글제목: ${ cvo.csubject }</div>
+							<div class="psubj2 pcont">글내용: ${ cvo.ccontent }</div>
+							<div class="psubj2">조회수: ${ cvo.chit }</div>
+							<div class="psubj2">추천수: ${ cvo.likecnt }</div>				
+							<div class="psubj2 pins">등록일: ${ cvo.insertdate }</div>				
+						</div>
+					</a>
+				</c:forEach>
+	 		</div>
+	 		<div class="favorPost favorPost4" data-value="notice">
+	 			<c:forEach items="${ NoticeList }" var="nvo">
+					<a class="pa" data-value="${ nvo.nnum }">
+						<div class="p2">
+							<%-- 테이블로 구성하는게 나을듯 --%>
+							<div class="psubj2">글제목: ${ nvo.nsubject }</div>
+							<div class="psubj2 pcont">글내용: ${ nvo.ncontent }</div>
+							<div class="psubj2">조회수: ${ nvo.nhit }</div>
+							<div class="psubj2">추천수: ${ nvo.likecnt }</div>				
+							<div class="psubj2 pins">등록일: ${ nvo.insertdate }</div>		
+						</div>
+					</a>
+				</c:forEach>
 	 		</div>
 		 </div>
 		 <div class="chefInfo">
@@ -343,56 +398,5 @@
 </div>
 
 </div>
-<%-- 변수 선언 방법 --%>
-	<c:set var="RecipeList" value="${DataMap['RecipeList']}" />
-	<c:set var="TipList" value="${DataMap['TipList'] }" />
-	<c:set var="CommunityList" value="${DataMap['CommunityList']}" />
-	<c:set var="NoticeList" value="${DataMap['NoticeList']}" />
-	<c:set var="MemberList" value="${DataMap['MemList']}" />
-	<c:set var="Count" value="${DataMap['Count'].get(0)}" />
-	
-	<%-- 글자를 화면에 출력 --%>
-	<c:out value="${RecipeList.get(0).rnum}" /><br>
-	<c:out value="${TipList.get(0).tnum}" /><br>
-	<c:out value="${CommunityList.get(0).cnum}" /><br>
-	<c:out value="${NoticeList.get(0).nnum}" /><br><br>
-	
-	<%-- 회원, 레시피, 팁, 커뮤니티 Total Count  --%>
-	<c:out value="총 회원 수 : ${Count.membercnt}명" /><br>
-	<c:out value="커뮤니티 글 : ${Count.communitycnt}개" /><br>
-	<c:out value="레시피 글 : ${Count.recipecnt}개" /><br>
-	<c:out value="전문가팁  : ${Count.tipcnt}개" /><br><br>
-	
-	<%-- for 문 사용법 1 --%>
-	<c:forEach items="${RecipeList}" var="rvo">
-		<c:out value="${rvo.rnum}" /><br>
-		<c:out value="${rvo.rsubject}" /><br>
-		<img src="/oneYo/img/recipe/${rvo.rphoto}" style="width:50px; height:50px;"><br>
-		<c:out value="조회수 : ${rvo.rhit}" /> &nbsp;&nbsp;&nbsp;
-		<c:out value="추천수 : ${rvo.likecnt}" /><br><br>
-	</c:forEach>
-	
-	<%-- for 문 사용법2 --%>
-	<div>
-		<table style="border:1px solid black;">
-			<c:forEach items="${MemberList}" var="mvo">
-				<tr style="border:1px solid black;">
-					<td style="border:1px solid black;">
-						<c:out value="${mvo.mnum}" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src="/oneYo/img/mem/${mvo.mprofile}">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<c:out value="${mvo.mnick}" />
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
 </body>
 </html>
