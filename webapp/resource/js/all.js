@@ -62,6 +62,16 @@ function hiddenAction() {
 	});
 }
 
+
+//	메뉴바 클릭액션
+function divClickAction() {
+	$(document).on('click', '.menu_link', function(){
+		
+			$('.menu_link').find('div').removeClass('divClick');
+			$(this).find('div').addClass('divClick');
+	});
+}
+
 //	#sideBar + 홈 로고  >>>  홈으로 이동
 function homeAction() {
 	
