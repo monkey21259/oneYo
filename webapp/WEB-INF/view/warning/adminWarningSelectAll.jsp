@@ -18,14 +18,21 @@
 	int groupSize = 0;
 	int curPage = 0;
 	int totalCount = 0;
+	
+	String searchCategory = "";
 
 
-//model.addAttribute("listAll", listAll)
+
 	Object obj = request.getAttribute("listAll");
-			if(obj == null){return; }
-			List<WarningVO> listAll = (List<WarningVO>)obj;	
-		
-			WarningVO wvo = null;
+	if(obj == null){
+		out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='adminWarningSelectAll.ict';</script>");
+	}
+	List<WarningVO> listAll = (List<WarningVO>)obj;
+	if(listAll.size() == 0){
+		out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='adminWarningSelectAll.ict';</script>");
+	}
+	
+	WarningVO wvo = null;
 %>
 <!DOCTYPE html>
 <html>
@@ -83,6 +90,7 @@
 		
 		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 		hiddenAction();
+		
 		
 	});	//ready
 	
@@ -193,6 +201,43 @@
 			<table border="1 solid">
 				<thead>
 					<tr>
+						<td colspan="6">
+							<button type="button" id="searchCategory-1" class="searchBtn" onclick="categorySearch('-1')">전체</button>&nbsp;
+							<button type="button" id="searchCategory00" class="searchBtn" onclick="categorySearch('00')">욕설 및 비방</button>&nbsp;
+							<button type="button" id="searchCategory01" class="searchBtn" onclick="categorySearch('01')">음란물</button>&nbsp;
+							<button type="button" id="searchCategory02" class="searchBtn" onclick="categorySearch('02')">불법광고</button>&nbsp;
+							<button type="button" id="searchCategory03" class="searchBtn" onclick="categorySearch('03')">도배성</button>&nbsp;
+							<button type="button" id="searchCategory04" class="searchBtn" onclick="categorySearch('04')">주제와 맞지 않음</button>&nbsp;
+							<button type="button" id="searchCategory99" class="searchBtn" onclick="categorySearch('99')">기타</button>
+							<input type="hidden" id="searchCategory" name="searchCategory">
+							<script>
+								//search 프로퍼티 담아서 폼 보내기
+								function categorySearch(s){
+									if(s != '-1'){
+										location.href="adminWarningSelectAll.ict?searchCategory=" + s;
+										/*
+										$("#adminWarningSelectAll").attr({
+											'action':'adminWarningSelectAll.ict?searchCategory=' + String.valueOf(s),
+											'method':'GET',
+											'enctype':'application/x-www-form-urlencoded'
+										}).submit();
+										*/
+									}else{
+										location.href="adminWarningSelectAll.ict"
+										/*
+										$("#adminWarningSelectAll").attr({
+											'action':'adminWarningSelectAll.ict',
+											'method':'GET',
+											'enctype':'application/x-www-form-urlencoded'
+										}).submit();
+										*/
+									}//end of if-else
+									
+								}//end of categorySearch() function
+							</script>
+						</td>
+					</tr>
+					<tr>
 						<th>NO</th>
 						<th>신고글번호</th> <!-- 신고당한 글번호 -->
 						<th>신고분야</th>
@@ -206,7 +251,8 @@
 			if(listAll.size() > 0){
 				for(int i=0; i<listAll.size(); i++){ 
 					wvo = listAll.get(i);
-						
+					
+					searchCategory = wvo.getSearchCategory();
 	%>
 				<tbody>
 					<tr>
@@ -244,20 +290,19 @@
 		curPage = Integer.parseInt(pagingAWPVO.getCurPage());
 		logger.info("curPage >>> : " + curPage );
 		
-		logger.info("cvo.getTotalCount() >>>>>>>>>>>>>>> : " + wvo.getTotalCount());
-		
 		logger.info("totalCount >>> : " + totalCount );
 
 %>
 		<tr>
 			<td colspan="6">
-				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+				<jsp:include page="/WEB-INF/view/warning/adminWarningPaging.jsp" flush="true">
 					<jsp:param value="adminWarningSelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
 						<jsp:param value="<%=pageSize %>" name="pageSize"/>
 						<jsp:param value="<%=groupSize %>" name="groupSize"/>
 						<jsp:param value="<%=curPage %>" name="curPage"/>
 						<jsp:param value="<%=totalCount %>" name="totalCount"/>
+						<jsp:param value="<%=searchCategory %>" name="searchCategory"/>
 				</jsp:include>
 			</td>
 		</tr>
