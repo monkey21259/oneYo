@@ -161,34 +161,43 @@
 <!--	├─────┴─────┴─────┤	-->
 <!--	│    footer	 	  │	-->
 <!--	└─────────────────┘	-->
-
 <div id="sideBar">
-	
-	<div class="homeLink">
-	홈으로
-	</div>
-	
-	<div class="searchBarBtn">
-	검색
-	</div>
-	
-	<div id="warningForm">
-	신고
-	</div>
-	
-	<div class="warningForm">
-	신고<br>팝업
-	</div>
-	
-	<div class="searchBarBtn">
-	my<br>Page
-	</div>
-	
-	<a href="javascript:window.scrollTo(0,0);">
-	<div id="go_top">
-	TOP▲
-	</div>
-	</a>
+	<label for="expand-menu"><div>메뉴</div></label>
+	<input type="checkbox" id="expand-menu" name="expand-menu" hidden>
+	<ul>
+		<li class="item">
+			<div class="homeLink">
+			홈으로
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			검색
+			</div>
+		</li>
+		<li class="item">
+			<div id="warningForm">
+			신고
+			</div>
+		</li>
+		<li class="item">
+			<div class="warningForm">
+			신고<br>팝업
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			my<br>Page
+			</div>
+		</li>
+		<li class="item">
+			<a href="javascript:window.scrollTo(0,0);">
+			<div id="go_top">
+			TOP▲
+			</div>
+			</a>
+		</li>
+	</ul>
 </div>
 
 <div id="searchBar" class="hidden_X">
