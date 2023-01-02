@@ -30,6 +30,9 @@
 		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		
+		<!-- 좋아요 스크립트 (외부파일) -->
+		<script type="text/javascript" src="/oneYo/resource/js/like/like.js" charset="UTF-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
@@ -50,36 +53,17 @@
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 				
+				//페이지 최초로 넘어왔을 때 좋아요 개수 표시하기
+				likeCount('nnum');
+				
 				//좋아요
 				$(document).on('click', '#notlike', function(){
-					let urlVal = "likeInsert.ict";
-					//let mnumVal =
-					let likethisVal = $('#nnum').val();
-					
-					$.ajax({
-						url: urlVal,
-						method: "POST",
-						data: { mnum: 'M202212260012',
-								likethis: likethisVal}
-						success: whenSuccess,
-						error: whenError
-					});//end of ajax
-					
-					function whenSuccess(resData){
-						if(resData == "LIKE_YES"){
-							
-						}
-					}//end of whenSuccess() function
-					
-					function whenError(e){
-						
-					}//end of whenError() function
-					
+					likeInsert('M202212260012', 'nnum');
 				});//end of notlike click function
 				
 				//좋아요 취소
 				$(document).on('click', '#like', function(){
-					
+					likeDelete('M202212260012', 'nnum');
 				});//end of like click function
 				
 			});//end of jQuery
@@ -203,19 +187,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<%
 							Object likeObj = request.getAttribute("likeList");
 							if (likeObj == null){
 						%>
-						<img src="/oneYo/img/like/notlike.png" id="notlike" width="20" height="20">
+						<span id="notlike"><img src="/oneYo/img/like/notlike.png" width="20" height="20"></span>
 						<%
 							}else{
 						%>
-						<img src="/oneYo/img/like/like.png" id="like" width="20" height="20">
+						<span id="like"><img src="/oneYo/img/like/like.png" width="20" height="20"></span>
 						<%
 							}
 						%>
+						&nbsp;<span id="likeCount"></span>명이 좋아합니다
 					</td>
 				</tr>
 				<tr>

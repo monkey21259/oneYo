@@ -10,6 +10,7 @@ import main.ict.comment.vo.CommentVO;
 import main.ict.common.chabun.dao.ChabunDAO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.like.vo.LikeVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -69,7 +70,11 @@ public class ChabunServiceImpl implements ChabunService {
 	}
 	
 	//좋아요
-	
+	@Override
+	public LikeVO getLikeChabun() {
+		// TODO Auto-generated method stub
+		return chabunDAO.getLikeChabun();
+	}//end of getLikeChabun() method
 	
 	//공지사항
 	@Override
@@ -92,6 +97,8 @@ public class ChabunServiceImpl implements ChabunService {
 		// TODO Auto-generated method stub
 		return chabunDAO.getWarningChabun();
 	}
+
+
 
 	
 }//end of ChabunServiceImpl class
