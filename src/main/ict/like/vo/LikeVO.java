@@ -7,6 +7,7 @@ public class LikeVO {
 	private String likethis;
 	private String likeyn;
 	private String likedate;
+	private String likecount; //좋아요 개수
 	
 	//default constructor
 	public LikeVO() {
@@ -14,13 +15,14 @@ public class LikeVO {
 	}
 	
 	//constructor using fields
-	public LikeVO(String lnum, String mnum, String likethis, String likeyn, String likedate) {
+	public LikeVO(String lnum, String mnum, String likethis, String likeyn, String likedate, String likecount) {
 		
 		this.lnum = lnum;
 		this.mnum = mnum;
 		this.likethis = likethis;
 		this.likeyn = likeyn;
 		this.likedate = likedate;
+		this.likecount = likecount;
 	}
 	
 	//getter
@@ -39,6 +41,9 @@ public class LikeVO {
 	public String getLikedate() {
 		return likedate;
 	}
+	public String getLikecount() {
+		return likecount;
+	}
 	
 	//setter
 	public void setLnum(String lnum) {
@@ -55,6 +60,9 @@ public class LikeVO {
 	}
 	public void setLikedate(String likedate) {
 		this.likedate = likedate;
+	}
+	public void setLikecount(String likecount) {
+		this.likecount = likecount;
 	}
 	
 }//end of LikeVO class

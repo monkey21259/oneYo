@@ -67,4 +67,18 @@ public class HomeServiceImpl implements HomeService {
 		return homeDAO.getCntList();
 	}
 
+	@Override
+	public List<MemVO> homeRestSelectMem(MemVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("homeRestSelectMem() 함수 진입");
+		return homeDAO.homeRestSelectMem(mvo);
+	}
+
+	@Override
+	public List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo) {
+		// TODO Auto-generated method stub
+		logger.info("homeRestSelectRecipe() 함수 진입");
+		return homeDAO.homeRestSelectRecipe(rvo);
+	}
+
 }

@@ -20,4 +20,50 @@
 		
 	</select>
 	
+	<!-- 좋아요 insert -->
+	<insert id="likeInsert" parameterType="likevo">
+		
+		INSERT INTO ICT_LIKE
+			(
+				 LNUM
+				,MNUM
+				,LIKETHIS
+				,LIKEYN
+				,LIKEDATE
+			)
+		VALUES
+			(
+				 #{lnum, jdbcType=VARCHAR}
+				,#{mnum, jdbcType=VARCHAR}
+				,#{likethis, jdbcType=VARCHAR}
+				,'Y'
+				,SYSDATE
+			)
+		
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<update id="likeDelete" parameterType="likevo">
+		
+		UPDATE ICT_LIKE
+		SET
+			 LIKEYN = 'N'
+			,LIKEDATE = SYSDATE
+		WHERE	MNUM		= #{mnum, jdbcType=VARCHAR}
+		AND		LIKETHIS	= #{likethis, jdbcType=VARCHAR}
+		AND		LIKEYN		= 'Y'
+		
+	</update>
+	
+	<!-- 좋아요 개수 카운트 -->
+	<select id="likeCount" parameterType="likevo" resultType="likevo">
+		
+		SELECT
+			COUNT(A.LNUM)	AS LIKECOUNT
+		FROM ICT_LIKE A
+		WHERE	A.LIKEYN = 'Y'
+		AND		A.LIKETHIS = #{likethis, jdbcType=VARCHAR}
+		
+	</select>
+	
 </mapper>

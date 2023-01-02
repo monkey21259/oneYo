@@ -11,6 +11,8 @@
 <%@ page import="main.ict.tip.vo.TipVO" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
 <%@ page import="main.ict.notice.vo.NoticeVO" %>
+<%@ page import="main.ict.home.vo.HomeVO" %>
+<%@ page import="main.ict.mem.vo.MemVO" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -32,6 +34,8 @@
 <c:set var="TipList" value="${ DataMap['TipList'] }" />
 <c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
 <c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
+<c:set var="MemList" value="${ DataMap['MemList'] }" />
+<c:set var="Count" value="${ DataMap['Count'] }" />
 
 <!DOCTYPE html>
 <html lang='ko'>
@@ -100,9 +104,10 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
-				
 				//	홈으로 보내주는 all.js 함수
 				homeAction();
+				//	메뉴바 클릭액션 all.js 함수
+				divClickAction();
 			});
 			
 			function postClick(obj) {  // favorPostTitle
@@ -129,6 +134,10 @@
 					}
 				});
 			}
+			
+			function chefIntroduce(mnum) {
+				location.href = "chefIntroduce.ict?mnum=" + mnum;
+			}
 		
 		</script>
 	</head>
@@ -149,16 +158,6 @@
 <!--	└─────────────────┘	-->
 
 <div id="sideBar">
-	<div id="warningForm">
-	신고
-	</div>
-	<div class="warningForm">
-	신고<br>팝업
-	</div>
-	
-	<div class="searchBarBtn">
-	검색
-	</div>
 	
 	<div class="homeLink">
 	홈으로
@@ -166,6 +165,18 @@
 	
 	<div class="searchBarBtn">
 	검색
+	</div>
+	
+	<div id="warningForm">
+	신고
+	</div>
+	
+	<div class="warningForm">
+	신고<br>팝업
+	</div>
+	
+	<div class="searchBarBtn">
+	my<br>Page
 	</div>
 	
 	<a href="javascript:window.scrollTo(0,0);">
@@ -186,7 +197,10 @@
 </div>
 
 <div id="singo" class="hidden_X">
-신고 인클루드 이쪽으로
+	<div class="warningForm">
+		X
+	</div>
+	신고 인클루드 이쪽으로
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -195,31 +209,31 @@
 
 <div id="header">
 	<div id="logoLeft" class="logoSide">
-	로고 옆공간 좌측
+<!-- 	로고 옆공간 좌측 -->
 	</div>
 	<div id="logo" class="homeLink">
 		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
 		<!-- 379 X 186 -->
 	</div>
 	<div id="logoRight" class="logoSide">
-	로고 옆공간 우측
-	 	<div>
+<!-- 	로고 옆공간 우측 -->
+	 	<div id="loginDiv">
 <%
 		if (mid == null || mid.equals("")) {
 %>
-			<button class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</button>
-	 		<button class="Choonsik" id="loginBtn" name="loginBtn">로그인</button>
+			<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
+	 		<span class="Choonsik" id="loginBtn" name="loginBtn">로그인</span>
 <%
 		} else {
 %>
-			<span><%= mid %>님 환영합니다.</span>
-			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
-	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
+			<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+	 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
 	 		<form id="logoutForm">
 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
-	 		<br /><b>임시용 레시피버튼</b>
-	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
+			<p><%= mid %>님 환영합니다.</p>
+<!-- 	 		<br /><b>임시용 레시피버튼</b> -->
+<!-- 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br /> -->
 <% 		
 		}
 %>
@@ -354,14 +368,19 @@
 		 		<span style="position:relative;left:5%;">쉐프 소개</span>
 		 		<span style="position:relative;left:75%;">더 보기</span>
 		 	</div>
+		 	<%-- 2023-01-02 이성일 쉐프소개 임시  --%>
 		 	<div class="chefBody">
-		 	<%
-		 		for (int i=0; i<10; i++) {
-		 	%>
-		 		<div class="chefIcon"></div>
-		 	<%	
-		 		}
-		 	%>
+			 	<c:forEach items="${ MemList }" var="mvo" end="10">
+			 		<c:if test="${ mvo !=null }" >
+			 			<a class="pa" data-value="${ mvo.mnum }" onclick="chefIntroduce('${ mvo.mnum }')">
+				 			<div class="chefIcon">
+				 				<c:if test="${ mvo.mprofile !=null }">
+					 				<img class="chefIcon" src="/oneYo/img/mem/${ mvo.mprofile }">
+				 				</c:if>
+				 			</div>
+			 			</a>
+			 		</c:if>
+			 	</c:forEach>
 		 	</div>
 		 </div>
 		 <div class="recipeInfo">
@@ -387,8 +406,8 @@
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
 	</div>
 </div>
 
