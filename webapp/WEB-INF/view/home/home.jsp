@@ -118,12 +118,21 @@
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
 				
+				// 배너 --------------------------------------
 				const s1 = new Slider(".banner");
 				
 				setInterval( function() {
 					  s1.next();
-					  s2.next();
-				}, 1000);
+				}, 3500);
+				
+				// 배너 이미지 클릭 시 이벤트 호출
+				$(".box").on("click", function() {
+					let category = $(this).attr('data-value');
+					if (category == "none") { return false; }
+					let ban_url = "/oneYo/" + category + "SelectAll.ict";
+					
+					location.href=ban_url;
+				});
 				
 			});
 			
@@ -280,30 +289,30 @@
 		<ul>
 			<li>
 				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
-				레시피
-				</div>
+					<div>
+						레시피
+					</div>
 				</a>
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
-				Tip
-				</div>
+					<div>
+						Tip
+					</div>
 				</a>
 			</li>
 			<li>
 				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
-				커뮤니티
-				</div>
+					<div>
+						커뮤니티
+					</div>
 				</a>
 			</li>
 			<li>
 				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
-				공지사항
-				</div>
+					<div>
+						공지사항
+					</div>
 				</a>
 			</li>
 			<li>
@@ -328,42 +337,43 @@
 	 -->
 	 	<!-- form & input(hidden) -->
 	 	<div id="slider" class="banner slider">  <!-- inner-list -->
-	 		<div class="box" id="" class="banimg"> <!-- inner -->
+	 		<div class="box" data-value="none"> <!-- inner -->
 				<img src="/oneYo/resource/img/001.png">
 	 		</div>
-	 		<div class="box" id="" class="banimg">
+	 		<div class="box" data-value="recipe">
 				<img src="/oneYo/resource/img/002.png">
 	 		</div>
-	 		<div class="box" id="" class="banimg">
+	 		<div class="box" data-value="tip">
 				<img src="/oneYo/resource/img/003.png">
 	 		</div>
-	 		<div class="box" id="" class="banimg">
+	 		<div class="box" data-value="community">
 				<img src="/oneYo/resource/img/004.png">
 	 		</div>
-	 		<div class="box" id="" class="banimg">
+	 		<div class="box" data-value="notice">
 				<img src="/oneYo/resource/img/005.png">
 	 		</div>
 	 	</div>
 	 	<div class="favorContainer">
 	 		<div class="postTitles" data-num="1">
 			 	<div class="favorPostTitle" data-value="recipe" data-num="1">
-			 		<span>레시피</span>
+			 		<span style="text-shadow: 2px 2px 8px red;">레시피</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="expert" data-num="2">
-			 		<span>전문가</span>
+			 		<span style="text-shadow: 2px 2px 8px blue;">전문가</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="community" data-num="3">
-			 		<span>커뮤니티</span>
+			 		<span style="text-shadow: 2px 2px 8px green;">커뮤니티</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="notice" data-num="4">
-			 		<span>공지사항</span>
+			 		<span style="text-shadow: 2px 2px 8px purple;">공지사항</span>
 			 	</div>
 		 	</div>
+		 	<hr class="favorhr" />
 	 		<div class="favorPost favorPost1" data-value="recipe">
 	 			<c:forEach items="${ RecipeList }" var="rvo">
 					<a class="pa" data-value="${ rvo.rnum }">
 						<div class="p1">
-							<img class="p11" src="/oneYo/img/recipe/${ rvo.rphoto }" />
+							<img class="p11" src="/oneYo/img/recipe/${ rvo.rphoto }" onerror="this.src='/oneYo/img/잔망루피.jpg';"/>
 							<div class="psubj pcom">${ rvo.rsubject }</div><br />
 							<div class="pcom">조회수: ${ rvo.rhit }</div>
 							<div class="pcom">추천수: ${ rvo.likecnt }</div>				
@@ -375,7 +385,7 @@
 	 			<c:forEach items="${ TipList }" var="tvo">
 					<a class="pa" data-value="${ tvo.tnum }">
 						<div class="p1">
-							<img class="p11" src="/oneYo/img/tip/${ tvo.tphoto }" />
+							<img class="p11" src="/oneYo/img/tip/${ tvo.tphoto }" onerror="this.src='/oneYo/img/잔망루피.jpg';"/>
 							<div class="psubj pcom">${ tvo.tsubject }</div><br />
 							<div class="pcom">조회수: ${ tvo.thit }</div>
 							<div class="pcom">추천수: ${ tvo.likecnt }</div>				
@@ -384,29 +394,41 @@
 				</c:forEach>
 	 		</div>
 	 		<div class="favorPost favorPost3" data-value="community">
+	 			<div class="psubj2" style="width:200px;text-align:center;">제목</div>
+				<div class="psubj2 pcont" style="text-align:center;">내용</div>
+				<div class="psubj2" style="text-align:center;">조회수</div>
+				<div class="psubj2" style="text-align:center;">좋아요</div>			
+				<div class="psubj2 pins" style="text-align:center;">등록일</div>
+				<br /><hr class="favorhr"/>
 	 			<c:forEach items="${ CommunityList }" var="cvo">
 					<a class="pa" data-value="${ cvo.cnum }">
 						<div class="p2">
 							<%-- 테이블로 구성하는게 나을듯 --%>
-							<div class="psubj2">글제목: ${ cvo.csubject }</div>
-							<div class="psubj2 pcont">글내용: ${ cvo.ccontent }</div>
-							<div class="psubj2">조회수: ${ cvo.chit }</div>
-							<div class="psubj2">추천수: ${ cvo.likecnt }</div>				
-							<div class="psubj2 pins">등록일: ${ cvo.insertdate }</div>				
+							<div class="psubj2" style="width:200px;text-align:left;">${ cvo.csubject }</div>
+							<div class="psubj2 pcont">${ cvo.ccontent }</div>
+							<div class="psubj2">${ cvo.chit }</div>
+							<div class="psubj2">${ cvo.likecnt }</div>			
+							<div class="psubj2 pins">${ cvo.insertdate }</div>				
 						</div>
 					</a>
 				</c:forEach>
 	 		</div>
 	 		<div class="favorPost favorPost4" data-value="notice">
+		 		<div class="psubj2" style="width:200px;text-align:center;">제목</div>
+				<div class="psubj2 pcont" style="text-align:center;">내용</div>
+				<div class="psubj2" style="text-align:center;">조회수</div>
+				<div class="psubj2" style="text-align:center;">좋아요</div>			
+				<div class="psubj2 pins" style="text-align:center;">등록일</div>	
+				<br /><hr class="favorhr" />
 	 			<c:forEach items="${ NoticeList }" var="nvo">
 					<a class="pa" data-value="${ nvo.nnum }">
 						<div class="p2">
 							<%-- 테이블로 구성하는게 나을듯 --%>
-							<div class="psubj2">글제목: ${ nvo.nsubject }</div>
-							<div class="psubj2 pcont">글내용: ${ nvo.ncontent }</div>
-							<div class="psubj2">조회수: ${ nvo.nhit }</div>
-							<div class="psubj2">추천수: ${ nvo.likecnt }</div>				
-							<div class="psubj2 pins">등록일: ${ nvo.insertdate }</div>		
+							<div class="psubj2" style="width:200px;text-align:left;">${ nvo.nsubject }</div>
+							<div class="psubj2 pcont">${ nvo.ncontent }</div>
+							<div class="psubj2">${ nvo.nhit }</div>
+							<div class="psubj2">${ nvo.likecnt }</div>				
+							<div class="psubj2 pins">${ nvo.insertdate }</div>		
 						</div>
 					</a>
 				</c:forEach>
