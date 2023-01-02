@@ -342,18 +342,17 @@ public class LoginController {
 		//서비스 호출
 		List<MemVO> loginList = loginService.login(mvo);
 		
-		logger.info("loginList.get(0) >>> : " + loginList.get(0));
-		
-		String mnum = loginList.get(0).getMnum();
-		String mid = loginList.get(0).getMid();
-		String mnick = loginList.get(0).getMnick();
-		// 세션 생성 및 부여하기
-		O_Session mSession = O_Session.getInstance();
-		mSession.setSession(req, mnum);
-//		String mnum1 = mSession.getSession(req);
-//		System.out.println("mnum : " + mnum1);
-//		
 		if(loginList.size() == 1) {
+			
+			logger.info("loginList.get(0) >>> : " + loginList.get(0));
+			
+			String mnum = loginList.get(0).getMnum();
+			String mid = loginList.get(0).getMid();
+			String mnick = loginList.get(0).getMnick();
+			// 세션 생성 및 부여하기
+			O_Session mSession = O_Session.getInstance();
+			mSession.setSession(req, mnum);
+			
 			model.addAttribute("mid", mid);
 			model.addAttribute("mnick", mnick);
 			return "home/gotohome";

@@ -153,9 +153,6 @@ $(document).ready(function(){
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
@@ -167,10 +164,6 @@ $(document).ready(function(){
 <input type="hidden" id="mnum" name="mnum" value="<%= mnum %>">
 <input type="hidden" id="mkey" name="mkey" value="">
 	<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

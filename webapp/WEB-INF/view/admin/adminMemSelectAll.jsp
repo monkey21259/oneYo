@@ -17,7 +17,6 @@
 
 	//model.addAttribute("adminMemSelectAll", list);
 	Object obj = request.getAttribute("adminMemSelectAll");
-	if(obj == null){return; }
 	
 	List<MemVO> list = (List<MemVO>)obj;
 	//vo호출
