@@ -14,6 +14,6 @@
 		<typeAlias type="main.ict.warning.vo.WarningVO" alias="warningvo"/>			<!-- 신고 -->
 		<typeAlias type="main.ict.comment.vo.CommentVO" alias="commentvo"/> 		<!-- 댓글 -->
 		<typeAlias type="main.ict.home.vo.HomeVO" alias="homevo"/>                  <!-- 홈(메인) -->
-		
+		<typeAlias type="main.ict.like.vo.LikeVO" alias="likevo"/>                  <!-- 좋아요 -->
 	</typeAliases> 
 </configuration>  

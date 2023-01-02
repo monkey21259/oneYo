@@ -25,6 +25,9 @@ public class WarningVO {
 	private String groupSize;
 	private String curPage;
 	private String totalCount;
+	
+//서칭
+	private String searchCategory;
 
 //디폴트생성자	
 	public WarningVO() {
@@ -256,5 +259,14 @@ public WarningVO(String warningnum, String wnum, String wtnum, String wcategory,
 
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
+	}
+	
+	//search getter, setter
+	public String getSearchCategory() {
+		return searchCategory;
+	}
+	
+	public void setSearchCategory(String searchCategory) {
+		this.searchCategory = searchCategory;
 	}
 } //class
