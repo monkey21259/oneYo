@@ -24,7 +24,7 @@
                ,#{tcontent}
                ,#{tphoto}
                ,#{tcategory}
-               ,'M202212200001'
+               ,#{mnum}
                ,'Y'
                ,SYSDATE
                ,SYSDATE
