@@ -43,7 +43,7 @@ if (list != null && list.size() > 0) {
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
-<!-- communitySelectContent.jsp 전용 -->
+<!-- profileSelect.jsp 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/mypage/profileSelect.css">
 
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->

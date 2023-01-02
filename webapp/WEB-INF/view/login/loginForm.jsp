@@ -5,6 +5,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	Object obj = request.getAttribute("msg");
+	System.out.println("obj >>>>>>> : " + obj);
+	
 	if(obj != null){
 		out.println("<script>alert('아이디 또는 비밀번호가 일치하지 않습니다.');</script>");
 	}//end of if
@@ -131,9 +133,7 @@
 	<div id="logoRight" class="logoSide">
 	로고 옆공간 우측
 	</div>
-	
-	<hr>
-	
+
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -178,10 +178,6 @@
 	</div>
 	
 	<hr>
-</div>
-
-<div id="left">
-좌측
 </div>
 
 <div id="center">
@@ -230,10 +226,6 @@
 				</tr>
 			</table>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

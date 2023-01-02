@@ -8,7 +8,6 @@
 <%
 	//m.addAttribute("list", list);
 	Object obj = request.getAttribute("list");
-	if(obj == null){return;}
 	
 	List<LevelupVO> list = (List<LevelupVO>)obj;
 %>
@@ -27,7 +26,7 @@
 		
 		$(document).on("click", "#levelupInsertBtn", function(){
 			
-			if($("#lvlv").text()==null){
+			if($("#lvlv").val()==null){
 			
 			
 			alert("levelupInsertBtn 버튼 클릭 이벤트 발생");

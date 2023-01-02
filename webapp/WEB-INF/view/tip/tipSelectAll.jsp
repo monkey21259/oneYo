@@ -213,7 +213,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 				
 				function whenSuccess(resData){
 				//전문가
-					if("1" == resData || "9"){
+					if("1" == resData|| "9" == resData){
 						location.href ="tipInsertForm.ict";
 								
 				}	else {
@@ -283,8 +283,6 @@ logger.info("mnum >>>>>>> : " + mnum);
 		로고 옆공간 우측
 		</div>
 		
-		<hr>
-		
 		<div class="nav">
 		<!-- 상단 메뉴바 -->
 			<nav>
@@ -330,11 +328,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 		
 		<hr>
 	</div>
-	
-	<div id="left">
-	좌측
-	</div>
-	
+		
 	<div id="center">
 	<!-- -------------------------------페이지 전용 center------------------------------- -->
 	<table>
@@ -425,10 +419,6 @@ logger.info("mnum >>>>>>> : " + mnum);
 		</tbody>
 	</table>
 	<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

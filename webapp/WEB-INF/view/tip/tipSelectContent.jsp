@@ -148,8 +148,6 @@
 	로고 옆공간 우측
 	</div>
 	
-	<hr>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -196,10 +194,6 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
-
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 <div id="container">
@@ -211,7 +205,7 @@
 			<input id="tnum" name="tnum" type="hidden" value="<%= tvo.getTnum() %>">
 			<input id="mnum" name="mnum" type="hidden" value="<%= tvo.getMnum() %>">
 			<input id="tsubject" name="tsubject" type="hidden" value="<%= tvo.getTsubject() %>">
-			<div id="content">사진 : 
+			<div id="content">
 				<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>"  style="width:200px; height:200px;">
 				<br>
 				내용 : <%= tvo.getTcontent() %>
@@ -251,17 +245,12 @@
 				
 				%>
 				
-				
 				<input id="warningBtn" type="button" value="신고">
 			</div>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 			<jsp:param name="cotnum" value="<%=tvo.getTnum() %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

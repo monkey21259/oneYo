@@ -16,7 +16,6 @@
 <%
 	//	model.addAttribute("listS", listS);
 	Object obj = request.getAttribute("listS");
-	if (obj == null){ return; }
 	
 	List<CommunityVO> list = (List<CommunityVO>)obj;
 	int nCnt = list.size();
