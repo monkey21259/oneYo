@@ -400,7 +400,7 @@
 		 	<div class="chefBody">
 			 	<c:forEach items="${ MemList }" var="mvo" end="10">
 			 		<c:if test="${ mvo !=null }" >
-			 			<a class="pa" data-value="${ mvo.mnum }" onclick="chefIntroduce('${ mvo.mnum }')">
+			 			<a onclick="chefIntroduce('${ mvo.mnum }')">
 				 			<div class="chefIcon">
 				 				<c:if test="${ mvo.mprofile !=null }">
 					 				<img class="chefIcon" src="/oneYo/img/mem/${ mvo.mprofile }">

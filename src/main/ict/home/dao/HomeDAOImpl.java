@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.vo.HomeVO;
 import main.ict.mem.vo.MemVO;
@@ -65,6 +66,18 @@ public class HomeDAOImpl implements HomeDAO {
 	public List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("homeRestSelectRecipe", rvo);
+	}
+
+	@Override
+	public List<TipVO> homeRestSelectTip(TipVO tvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("homeRestSelectTip", tvo);
+	}
+
+	@Override
+	public List<CommunityVO> homeRestSelectCommunity(CommunityVO cvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("homeRestSelectCommunity", cvo);
 	}
 
 }
