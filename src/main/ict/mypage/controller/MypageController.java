@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import main.ict.common.GoogleMail;
+import main.ict.common.O_Session;
 import main.ict.community.vo.CommunityVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.mypage.service.MypageService;
@@ -28,11 +29,15 @@ public class MypageController {
 	private MypageService mypageService;
 	
 	@GetMapping(value="mypageHome")
-	public String mypageHome(MemVO mvo, Model m) {
+	public String mypageHome(HttpServletRequest req, MemVO mvo, Model m) {
 		logger.info("mypageHome() 페이지 진입");
 		
-		// 임시로 mnum 지정
-		mvo.setMnum("M202212200001");
+		//세션
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		logger.info("mnum >>> : " + mnum);
+		
+		mvo.setMnum(mnum);
 		
 		List<RecipeVO> rList = mypageService.selectMyRecipe(mvo);
 		List<CommunityVO> cList = mypageService.selectMyCommunity(mvo);

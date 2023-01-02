@@ -7,15 +7,23 @@
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.common.CodeUtils" %>
+<%@ page import="main.ict.common.O_Session" %>
+
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 <%
+		
 		Object recipeObj = request.getAttribute("recipeList");
 		if (recipeObj == null) {
 			logger.info("[FAIL] getAttribute -> recipeObj is null");
 		}
 		
 		List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
+		
+		//세션부여
+				O_Session mSession = O_Session.getInstance();
+				String mnum = mSession.getSession(request);
+		
 		if (recipeList.size() != 1) {
 			logger.info("[FAIL] recipeList.size() != 1");
 		}
@@ -149,8 +157,6 @@
 	로고 옆공간 우측
 	</div>
 	
-	<hr>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -267,8 +273,16 @@
 					<tr>
 						<td colspan="2" style="text-align:right;">
 							<input type="button" id="warningBtn" value="신고">
+							<% 
+							if(mnum.equals(recipevo.getMnum())){
+							%>
+							
 							<a class="btn" id="recipeUpdateFormBtn">수정</a>
 							<a class="btn" id="recipeDeleteBtn">삭제</a>
+							
+							<%
+							}
+							 %>
 						</td>
 					</tr>
 				</table>

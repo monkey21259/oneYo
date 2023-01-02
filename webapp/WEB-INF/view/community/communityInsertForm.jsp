@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>커뮤니티 게시판 글쓰기</title>
+		<title>oneYo(오내요)</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0
 							maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		
@@ -13,10 +13,13 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- communityInsertForm.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/community/communityInsertForm.css">
-		<!-- 제이쿼리cdn -->
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		
+		<!-- 제이쿼리cdn -->
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		
 		<script type="text/javascript">		
 		$(document).ready(function(){
 			console.log("cphoto >>> : " + cphoto);
@@ -89,8 +92,6 @@
 	<div id="logoRight" class="logoSide">
 	로고 옆공간 우측
 	</div>
-	
-	<hr>
 	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->

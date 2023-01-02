@@ -5,6 +5,7 @@
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
+<%@ page import="main.ict.common.O_Session" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -21,6 +22,11 @@
 		out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='communitySelectAll.ict';</script>");
 	}
 	List<CommunityVO> listAll = (List<CommunityVO>)obj;	
+	
+	//세션
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	
 %>
 <%
 	int pageSize = 0;
@@ -191,9 +197,6 @@
 	<div id="logoRight" class="logoSide">
 	로고 옆공간 우측
 	</div>
-	
-	<hr>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -248,7 +251,7 @@
 	<div>
 		<div>
 			<button type="button">인기글</button> 			
-			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
+		
 		</div>
 	</div>
 
@@ -352,6 +355,16 @@
 				</tbody>	
 	
 			</table>
+			
+			<div>
+			<%
+			if(mnum.length() > 0){
+			%>
+			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
+			<%
+			}
+			%>
+			</div>
 			
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>

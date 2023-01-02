@@ -65,9 +65,9 @@
 			}
 		});
 		
-		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-		hiddenAction();
-		
+			//	검색 바 없어졌다 생기기 액션주는 all.js 함수
+			hiddenAction();
+	});
 
 </script>
 <title>오내요(oneYo)</title>

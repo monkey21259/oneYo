@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.mem.vo.MemVO;
 import main.ict.tip.service.TipService;
@@ -62,6 +63,12 @@ public class TipController {
 		tvo.setTcontent(fu.getParameter("tcontent"));
 		tvo.setTcategory(fu.getParameter("tcategory"));
 		tvo.setTphoto(fu.getFileName("tphoto"));
+		
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		logger.info("mnum >>>> : " + mnum);
+		
+		tvo.setMnum(mnum);
 		
 		// 파일 업로드 체크
 		if(tvo.getTphoto() == null)
@@ -133,6 +140,9 @@ public class TipController {
 		logger.info(tvo.getTnum());
 		
 		List<TipVO> list = tipService.tipSelectContent(tvo);
+		
+			logger.info(list.get(0).getMnum());
+
 		if(list !=null && list.size() == 1) {
 			m.addAttribute("list", list);
 			return "tip/tipSelectContent";

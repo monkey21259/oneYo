@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.apache.log4j.LogManager" %>
 <% request.setCharacterEncoding("UTF-8"); %>
+<%@ page import="main.ict.common.O_Session" %>
+
+<%
+request.setCharacterEncoding("UTF-8"); 
+Logger logger = LogManager.getLogger(this.getClass());
+logger.info("mypageHome.jsp 페이지 진입");
+
+//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	logger.info("mnum >>> : " + mnum);
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +26,7 @@
 <!-- 전체 css -->
 	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 	
-	<!-- communityWarningForm.jsp 전용 -->
+	<!-- myPageHome.jsp 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/mypage/myPageHome.css">
 	
 	<!-- jQuery -->
@@ -38,7 +52,7 @@
 	}
 	
 	function levelup(mnum){
-		alert("등업 버튼 클릭");s
+		alert("등업 버튼 클릭");
 		alert("mnum : " + mnum);
 		location.href = "levelupSelectAll.ict?mnum=" + mnum;
 	}
@@ -157,10 +171,6 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
-
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 
@@ -178,11 +188,19 @@
 				<br />
 				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;">
 				<br />
-				<c:if test="${mvo.mgrade eq '0'}"> 
-					<span id="mgrade" style="border:1px solid black;">
-					일반 등급
-					</span>
-				</c:if>
+				<c:choose>
+					<c:when test="${mvo.mgrade eq '0'}"> 
+						<span id="mgrade" style="border:1px solid black;">
+						일반 등급
+						</span>
+					</c:when>
+					<c:when test="${mvo.mgrade eq '1'}"> 
+						<span id="mgrade" style="border:1px solid black;">
+						전문가 등급
+						</span>
+					</c:when>
+				</c:choose>
+				<!-- 관리자 등급 추가하기!!!!!!! -->
 				<br />
 			</c:forEach>
 		</div>
@@ -236,15 +254,9 @@
 		<div>
 			<button type="button" onclick="levelup('${mnum}')">등업 목록</button>
 		</div>
-	</div>
-	</form>
-	
+	</div>	
 
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">
@@ -262,5 +274,3 @@
 		</form>
 	</body>
 </html>	
-</body>
-</html>

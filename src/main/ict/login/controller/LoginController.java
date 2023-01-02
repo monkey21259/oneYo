@@ -345,11 +345,12 @@ public class LoginController {
 		logger.info("loginList.get(0) >>> : " + loginList.get(0));
 		
 		String mnum = loginList.get(0).getMnum();
-		logger.info("mnum >>>>>>>>>>>>>>>>>> : " + mnum);
+		String mnick = loginList.get(0).getMnick();
 		
 		// 세션 생성 및 부여하기
 		O_Session mSession = O_Session.getInstance();
 		mSession.setSession(req, mnum);
+		mSession.setSession(req, mnick);
 //		String mnum1 = mSession.getSession(req);
 //		System.out.println("mnum : " + mnum1);
 //		

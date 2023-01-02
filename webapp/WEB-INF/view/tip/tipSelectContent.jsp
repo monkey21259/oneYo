@@ -5,14 +5,21 @@
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.tip.vo.TipVO" %>
 <%@ page import="main.ict.common.ConstPack" %>
+<%@ page import="main.ict.common.O_Session" %>
 
-<% request.setCharacterEncoding("UTF-8"); %>
+<% request.setCharacterEncoding("UTF-8"); 
+
+%>
 
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("tipSelectContent.jsp 페이지 진입");
-	TipVO tvo = null;
 	
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	
+	TipVO tvo = null;
 	
 	if(request.getAttribute("list") !=null) {
 		List<TipVO> list = (List<TipVO>)request.getAttribute("list");
@@ -219,8 +226,21 @@
 				<br>
 				작성자 : <%= tvo.getMnick() %>
 				<br>
+				
+				<%
+ 				if(mnum.equals(tvo.getMnum())){
+				
+				%>
+				
 				<input id="updateBtn" type="button" value="수정">
 				<input id="deleteBtn" type="button" value="삭제">
+				
+				<%
+ 				}
+				
+				%>
+				
+				
 				<input id="warningBtn" type="button" value="신고">
 			</div>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
