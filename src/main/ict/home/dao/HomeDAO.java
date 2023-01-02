@@ -18,5 +18,7 @@ public interface HomeDAO {
 	List<NoticeVO> getNoticeList();
 	List<MemVO> getMemList();
 	List<HomeVO> getCntList();
+	List<MemVO> homeRestSelectMem(MemVO mvo);
+	List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo);
 
 }

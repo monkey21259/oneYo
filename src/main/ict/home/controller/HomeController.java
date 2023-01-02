@@ -78,6 +78,12 @@ public class HomeController {
 		return "home/home";
 	}
 	
+	@GetMapping(value="chefIntroduce")
+	public String chefIntroduce() {
+		logger.info("chefIntroduce() 함수 진입");
+		return "home/chefIntroduce";
+	}
+	
 	// SNS Logout
 //	@GetMapping(value="logout")
 //	public String logout(HttpServletRequest req, MemVO mvo) {

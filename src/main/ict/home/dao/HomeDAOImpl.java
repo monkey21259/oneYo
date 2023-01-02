@@ -55,4 +55,16 @@ public class HomeDAOImpl implements HomeDAO {
 		return sqlSession.selectList("getCntList");
 	}
 
+	@Override
+	public List<MemVO> homeRestSelectMem(MemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("homeRestSelectMem", mvo);
+	}
+
+	@Override
+	public List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("homeRestSelectRecipe", rvo);
+	}
+
 }
