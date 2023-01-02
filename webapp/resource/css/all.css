@@ -23,10 +23,10 @@
 	padding	: 0;
 	
 	/* 폰트 글씨체 */
+/* 	font-family	: 'NanumSquareNeo-Variable', sans-serif; */
 	font-family	: gulim, sans-serif;
 	font-weight	: 400;
 	font-style	: normal;
-/* 	font-family	: 'NanumSquareNeo-Variable', sans-serif; */
 }
 
 body {
@@ -123,6 +123,32 @@ a {
 	
 }
 
+/* -------------------------------- 상단 login -------------------------------- */
+#loginDiv {
+	
+	/* 우측배치 */
+	text-align: right;
+}
+
+#loginDiv .Choonsik {
+	margin	: 10px 5px;
+	margin-right	: 1%;
+	padding	: 10px 15px;
+	
+	/* 배경색 위에서 부터 아래로 그라데이션!! */
+	background-color	: #222;
+	
+	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
+	float	: left;
+}
+
+#loginDiv p {
+	margin	: 10px 10px;
+	
+	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
+	clear	: both;
+}
+
 /* -------------------------------- 상단 nav -------------------------------- */
 /* 상단 메뉴 전체 */
 .nav {
@@ -153,7 +179,8 @@ a {
 	height	: 30px;
 	
 	/* 영역 확장 */
-	padding	: 0 20px;
+	padding	: 3px 20px;
+	margin-bottom	: 20px;
 }
 
 /* 상단 메뉴 버튼 영역 */
@@ -309,8 +336,8 @@ a {
 	top	: 30%;
 	right	: 25%;
 	
-	/* 12층에 쌓아서 아래의 요소보다 위에 드러남 */
-	z-index	: 12;
+	/* 40층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 40;
 }
 /* 신고창 몸통 */
 #singo {
@@ -338,8 +365,9 @@ a {
 	top	: 30%;
 	right	: 25%;
 	
-	/* 12층에 쌓아서 아래의 요소보다 위에 드러남 */
-	z-index	: 12;
+	/* 40층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 40;
+	z-index	: 40;
 }
 
 /* 검색창 X버튼 */
@@ -369,13 +397,21 @@ a {
 
 #shadow{
 	position	: fixed;
+	
 	left	: 0;
 	top		: 0;
+	
+/*
+	px	: 절대 값
+	%	: 부모속성의 퍼센트
+	vw(idth) & vh(eight) : 현재 창의 사이즈의 퍼센트
+*/
 	width	: 100vw;
 	height	: 100vh;
-	background	: rgba(0, 0, 0, 0.52);
-	display	: none
 	
-	/* 11층에 쌓아서 아래의 요소보다 위에 드러남 */
-	z-index	: 11;
+	background	: rgba(0, 0, 0, 0.52);
+/* 	display	: none; */
+	
+	/* 30층에 쌓아서 아래의 요소보다 위에 드러남 */
+	z-index	: 30;
 }

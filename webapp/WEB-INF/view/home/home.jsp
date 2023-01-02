@@ -97,7 +97,6 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
-				
 				//	홈으로 보내주는 all.js 함수
 				homeAction();
 				//	메뉴바 클릭액션 all.js 함수
@@ -199,31 +198,31 @@
 
 <div id="header">
 	<div id="logoLeft" class="logoSide">
-	로고 옆공간 좌측
+<!-- 	로고 옆공간 좌측 -->
 	</div>
 	<div id="logo" class="homeLink">
 		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
 		<!-- 379 X 186 -->
 	</div>
 	<div id="logoRight" class="logoSide">
-	로고 옆공간 우측
-	 	<div>
+<!-- 	로고 옆공간 우측 -->
+	 	<div id="loginDiv">
 <%
 		if (mid == null || mid.equals("")) {
 %>
-			<button class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</button>
-	 		<button class="Choonsik" id="loginBtn" name="loginBtn">로그인</button>
+			<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
+	 		<span class="Choonsik" id="loginBtn" name="loginBtn">로그인</span>
 <%
 		} else {
 %>
-			<span><%= mid %>님 환영합니다.</span>
-			<button class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</button>
-	 		<button class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</button>
+			<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+	 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
 	 		<form id="logoutForm">
 	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
-	 		<br /><b>임시용 레시피버튼</b>
-	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br />
+			<p><%= mid %>님 환영합니다.</p>
+<!-- 	 		<br /><b>임시용 레시피버튼</b> -->
+<!-- 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br /> -->
 <% 		
 		}
 %>
