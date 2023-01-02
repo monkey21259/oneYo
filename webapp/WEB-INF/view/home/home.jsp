@@ -83,6 +83,8 @@
 				hiddenAction();
 				//	홈으로 보내주는 all.js 함수
 				homeAction();
+				//	메뉴바 클릭액션 all.js 함수
+				divClickAction();
 			});
 			
 			function postClick(obj) {
@@ -140,16 +142,6 @@
 <!--	└─────────────────┘	-->
 
 <div id="sideBar">
-	<div id="warningForm">
-	신고
-	</div>
-	<div class="warningForm">
-	신고<br>팝업
-	</div>
-	
-	<div class="searchBarBtn">
-	검색
-	</div>
 	
 	<div class="homeLink">
 	홈으로
@@ -157,6 +149,18 @@
 	
 	<div class="searchBarBtn">
 	검색
+	</div>
+	
+	<div id="warningForm">
+	신고
+	</div>
+	
+	<div class="warningForm">
+	신고<br>팝업
+	</div>
+	
+	<div class="searchBarBtn">
+	my<br>Page
 	</div>
 	
 	<a href="javascript:window.scrollTo(0,0);">
@@ -177,7 +181,10 @@
 </div>
 
 <div id="singo" class="hidden_X">
-신고 인클루드 이쪽으로
+	<div class="warningForm">
+		X
+	</div>
+	신고 인클루드 이쪽으로
 </div>
 
 <div id="shadow" class="hidden_X"></div>

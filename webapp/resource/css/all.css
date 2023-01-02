@@ -88,6 +88,7 @@ a {
 /* 	border-bottom	: 1px solid #ccc; */
 }
 
+/* -------------------------------- 상단 logo -------------------------------- */
 /* 상단 로고부분 양옆 영역 지정 */
 #header .logoSide {
 	width	: 490px;
@@ -122,6 +123,7 @@ a {
 	
 }
 
+/* -------------------------------- 상단 nav -------------------------------- */
 /* 상단 메뉴 전체 */
 .nav {
 	width	: 100%;
@@ -132,13 +134,6 @@ a {
 .nav * {
 	/* 폰트 */
 	font-family	: 'ONE-Mobile-POP';
-	/* 폰트 색상 */
-	color	: #93A603;
-	/* 폰트 사이즈 */
-	font-size	: 25px;
-	/* 폰트 테두리 */
-	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff,
-				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff;
 	
 	/* 중앙배치 */
 	text-align	: center;
@@ -164,9 +159,41 @@ a {
 /* 상단 메뉴 버튼 영역 */
 .nav .menu_link div {
 
+	/* 폰트 색상 */
+	color	: #F0F2CC;
+	/* 폰트 사이즈 */
+	font-size	: 25px;
+	/* 폰트 테두리 */
+/* 	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff, */
+/* 				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff; */
+	
 	/* 영역 지정 */
 	width	: 100%;
 	height	: 100%;
+}
+
+/* 상단 메뉴 버튼 영역에 마우스 올렸을 시 */
+.nav .menu_link div:hover {
+
+	/* 폰트 색상 */
+	color	: #E0E086;
+	/* 폰트 사이즈 */
+	font-size	: 25px;
+	/* 폰트 테두리 */
+/* 	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff, */
+/* 				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff; */
+}
+
+/* 상단 메뉴 버튼 영역에 마우스 클릭이후 */
+.nav .menu_link .divClick {
+
+	/* 폰트 색상 */
+	color	: #E0E086;
+	/* 폰트 사이즈 */
+	font-size	: 25px;
+	/* 폰트 테두리 */
+/* 	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff, */
+/* 				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff; */
 }
 
 /* -------------------------------- 중앙 center -------------------------------- */
@@ -185,6 +212,7 @@ a {
 #right {
 	/* width 가로폭 */
 	width	: 200px;
+	
 	/* 해당 블럭 왼쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: right;
 }
@@ -318,6 +346,17 @@ a {
 #searchBar div {
 	
 	/* #searchBar 사이즈 */
+	width	: 13px;
+	height	: 19px;
+	
+	/* 위치 지정 */
+	margin-right	: 1%;
+	margin-left	: 98%;
+}
+/* 신고창 X버튼 */
+#singo div {
+	
+	/* #singo 사이즈 */
 	width	: 13px;
 	height	: 19px;
 	
