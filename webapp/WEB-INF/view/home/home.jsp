@@ -250,9 +250,7 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
+
 	<div id="center">
 	<!-- 
 	1. (후순위) 첫째 라인: 배너
@@ -327,9 +325,6 @@
 	</div>
 </div>
 
-<div id="right">
-우측
-</div>
 
 <div id="footer">
 	<div>
