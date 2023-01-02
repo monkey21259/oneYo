@@ -53,9 +53,6 @@ public class LikeController {
 		//ajax로 반환할 문자열
 		String msg = "DEL_NO";
 		
-		//mnum값 세팅
-		lvo.setMnum("M202212260012"); //이후 세션에 담긴 MNUM 값으로 변경할 것
-		
 		//서비스 호출
 		int deleteCnt = likeService.likeDelete(lvo);
 		if(deleteCnt == 1) {
