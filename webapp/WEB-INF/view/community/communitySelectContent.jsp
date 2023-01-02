@@ -183,10 +183,6 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
-
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 		
@@ -246,10 +242,6 @@
 			<jsp:param name="cotnum" value="<%=cvo.getCnum() %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

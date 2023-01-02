@@ -20,6 +20,7 @@ import main.ict.common.ChabunUtils;
 import main.ict.common.CommonUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 
 @Controller
@@ -80,7 +81,13 @@ public class RecipeController {
 		recipevo.setRcontent(rfu.getParameter("rcontent"));
 		recipevo.setRphoto(rfu.getFileName("rphoto"));
 		recipevo.setRhit(rfu.getParameter("rhit"));
-		recipevo.setMnum("M202212230011");  // TODO TEMP -----------------------------
+		
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		
+		recipevo.setMnum(mnum);  // TODO TEMP -----------------------------
+		logger.info("mnum >>>>>>>>>>>>>>>: " + mnum);
+		
 		recipevo.setWarning("0");
 		
 		logger.info(recipevo.toString());

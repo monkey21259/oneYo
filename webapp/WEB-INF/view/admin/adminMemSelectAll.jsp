@@ -40,10 +40,16 @@
 <title>회원목록</title>
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		<!-- adminHome.jsp 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/admin/adminHome.css">
+		
+		<!-- adminMemSelectAll.jsp 전용 -->
+		<link rel="stylesheet" href="/oneYo/resource/css/admin/adminMemSelectAll.css">
+		
 		<!-- 제이쿼리cdn -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<!-- 페이징 기능 전용 -->
+		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
+		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript">
@@ -201,10 +207,6 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
-
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 	<h3>회원목록</h3>
@@ -286,10 +288,6 @@
 %>
 			</table>
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">

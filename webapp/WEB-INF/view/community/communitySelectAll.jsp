@@ -240,9 +240,6 @@
 	<hr>
 </div>
 
-<div id="left">
-좌측
-</div>
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
@@ -340,6 +337,10 @@
 					<jsp:param name="groupSize" value="<%=groupSize %>" />
 					<jsp:param name="curPage" value="<%=curPage %>"/>
 					<jsp:param name="totalCount" value="<%=totalCount %>"/>
+					<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
+					<jsp:param value="<%=keyword %>" name="keyword"/>
+					<jsp:param value="<%=startDate %>" name="startDate"/>
+					<jsp:param value="<%=endDate %>" name="endDate"/>
 					</jsp:include>
 				</td>
 			</tr>
@@ -354,11 +355,7 @@
 			
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
-
-<div id="right">
-우측
-</div>
-
+  
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
