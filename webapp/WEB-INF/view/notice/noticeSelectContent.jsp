@@ -3,6 +3,7 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.notice.vo.NoticeVO" %>
+<%@ page import="main.ict.common.O_Session" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	
@@ -30,9 +31,6 @@
 		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		
-		<!-- 좋아요 스크립트 (외부파일) -->
-		<script type="text/javascript" src="/oneYo/resource/js/like/like.js" charset="UTF-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
@@ -52,19 +50,6 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
-				
-				//페이지 최초로 넘어왔을 때 좋아요 개수 표시하기
-				likeCount('nnum');
-				
-				//좋아요
-				$(document).on('click', '#notlike', function(){
-					likeInsert('M202212260012', 'nnum');
-				});//end of notlike click function
-				
-				//좋아요 취소
-				$(document).on('click', '#like', function(){
-					likeDelete('M202212260012', 'nnum');
-				});//end of like click function
 				
 			});//end of jQuery
 		</script>
@@ -190,17 +175,16 @@
 					<td colspan="2">
 						<%
 							Object likeObj = request.getAttribute("likeList");
-							if (likeObj == null){
+							String likeyn = "";
+							if(likeObj == null) likeyn = "N";
+							O_Session os = O_Session.getInstance();
+							String mnum = os.getSession(request);
 						%>
-						<span id="notlike"><img src="/oneYo/img/like/notlike.png" width="20" height="20"></span>
-						<%
-							}else{
-						%>
-						<span id="like"><img src="/oneYo/img/like/like.png" width="20" height="20"></span>
-						<%
-							}
-						%>
-						&nbsp;<span id="likeCount"></span>명이 좋아합니다
+						<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+							<jsp:param name="mnum" value="<%=mnum %>"/>
+							<jsp:param name="likethis" value="<%=nvo.getNnum() %>"/>
+							<jsp:param name="likeyn" value="<%=likeyn %>"/>
+						</jsp:include>
 					</td>
 				</tr>
 				<tr>

@@ -126,11 +126,9 @@ public class NoticeController {
 		//좋아요 체크
 		LikeVO lvo = null;
 		lvo = new LikeVO();
-		lvo.setMnum("M202212260012"); //이후 세션에 담긴 MNUM 값으로 변경할 것
-		/*
 		O_Session os = O_Session.getInstance();
+		
 		lvo.setMnum(os.getSession(req));
-		*/
 		lvo.setLikethis(nvo.getNnum());
 		List<LikeVO> likeList = likeService.likeCheck(lvo);
 		if(likeList.size() == 1) {
