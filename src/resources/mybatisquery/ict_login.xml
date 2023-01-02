@@ -8,9 +8,10 @@
 	<select id="login" parameterType="memvo" resultType="memvo">
 		
 		SELECT
-			 A.MNUM	AS MNUM
-			,A.MID	AS MID
-			,A.MPW	AS MPW
+			 A.MNUM		AS 		MNUM
+			,A.MID		AS 		MID
+			,A.MPW		AS 		MPW
+			,A.MNICK 	AS 		MNICK
 		FROM ICT_MEMBER A
 		WHERE	A.MID = #{mid, jdbcType=VARCHAR}
 		AND		A.MPW = #{mpw, jdbcType=VARCHAR}

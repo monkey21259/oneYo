@@ -5,6 +5,7 @@
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
+<%@ page import="main.ict.common.O_Session" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -23,15 +24,21 @@
 	
 	CommunityVO cvo = null;
 	
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	
+	
 	if(nCnt == 1){
 		cvo = list.get(0);
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>커뮤니티 게시글 조회</title>
+		<title>oneYo(오내요)</title>
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
@@ -135,8 +142,6 @@
 	로고 옆공간 우측
 	</div>
 	
-	<hr>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -231,8 +236,17 @@
 
 					<tr>
 						<td colspan="3">
+						<%
+						if(mnum.equals(cvo.getMnum())){ //관리자 추가하기
+							logger.info("mnum >>> : " + mnum);
+							logger.info("cvo.getMnum() >>> : " + cvo.getMnum());
+						
+						%>
 							<button type="button" id="UpdateBtn">수정</button>
 							<button type="button" id="DeleteBtn">삭제</button>
+						<%
+						}
+						%>
 							<button type="button" id="warning">신고</button>
 						</td>
 					</tr>

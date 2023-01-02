@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.community.service.CommunityService;
 import main.ict.community.vo.CommunityVO;
@@ -81,8 +82,8 @@ public class CommunityController {
 		cvo.setCphoto(cphoto);
 		logger.info("cphoto >>> : " +  cvo.getCphoto());
 	
-//		String mnum = req.getParameter("mnum");
-		String mnum = "M202212200008";
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
 		cvo.setMnum(mnum);
 		logger.info("mnum >>> : " + cvo.getMnum());
 
