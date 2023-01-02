@@ -21,12 +21,14 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
+
 	
 	String mid = (String)request.getAttribute("mid");
 	String mnick = (String)request.getAttribute("mnick");
 
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
+
 	
 	logger.info("mid: " + mid);
 %>
@@ -66,9 +68,14 @@
 					postClick($(this));
 				});
 				
-				$('.pa').on("click", function() {  // 게시글 클릭 시
-// 					alert($(this).attr('data-value'));  // 게시글의 고유번호
-					
+				$('.pa').on("click", function() {				// 게시글 클릭 시
+// 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
+					$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
+					$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
+						"action": "/oneYo/goSelectContent.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
 				});
 				// ------------------------------------------
 				
@@ -143,6 +150,9 @@
 		</script>
 	</head>
 <body>
+<div id="realAll">
+
+<div id="backMenu"></div>
 
 <!--			all_div		-->
 <!--	┌─────────────────┐	-->
@@ -240,8 +250,6 @@
 	 		<form id="logoutForm">
 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
-<!-- 	 		<br /><b>임시용 레시피버튼</b> -->
-<!-- 	 		<input type="button" id="recipeSAllBtn" name="recipeSAllBtn" value="레시피 게시판 가기" /><br /> -->
 <% 		
 		}
 %>
@@ -370,6 +378,9 @@
 					</a>
 				</c:forEach>
 	 		</div>
+	 		<form id="goSelectForm">
+	 			<input type="hidden" id="num" name="num" value="" />
+	 		</form>
 		 </div>
 		 <div class="chefInfo">
 		 	<div class="chefTop">
@@ -419,6 +430,7 @@
 	</div>
 </div>
 
+</div>
 </div>
 </body>
 </html>

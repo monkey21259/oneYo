@@ -134,9 +134,8 @@ public class TipController {
 	}
 	
 	@GetMapping(value="tipSelectContent")
-	public String tipSelectAllForm(TipVO tvo, Model m) {
+	public String tipSelectContent(TipVO tvo, Model m) {
 		logger.info("tipSelectContent");
-		
 		logger.info(tvo.getTnum());
 		
 		List<TipVO> list = tipService.tipSelectContent(tvo);
