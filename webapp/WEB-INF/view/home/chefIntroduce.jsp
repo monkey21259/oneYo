@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% request.setCharacterEncoding("UTF-8"); %>
+
+<%= request.getAttribute("mnum") %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,15 @@
 		alert("chefIntroduce.jsp 페이지 jQuery ready() 함수 진입");
 		console.log("chefIntroduce.jsp 페이지 jQuery ready() 함수 진입");
 
-		
+			$.ajax({
+				type:'GET',
+				url: '/oneYo/mem/<%= request.getParameter("mnum") %>.ict',
+				dataType : 'text',
+				success : function(result) {
+					console.log(result);
+					alert(result);
+				}
+			}); //$.ajax()
 		
 	});
 

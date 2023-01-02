@@ -79,8 +79,9 @@ public class HomeController {
 	}
 	
 	@GetMapping(value="chefIntroduce")
-	public String chefIntroduce() {
+	public String chefIntroduce(HttpServletRequest req, Model m) {
 		logger.info("chefIntroduce() 함수 진입");
+		m.addAttribute("mnum", req.getParameter("mnum"));
 		return "home/chefIntroduce";
 	}
 	
