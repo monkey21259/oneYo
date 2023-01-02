@@ -16,6 +16,8 @@ import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
 import main.ict.common.chabun.service.ChabunService;
+import main.ict.like.service.LikeService;
+import main.ict.like.vo.LikeVO;
 import main.ict.notice.service.NoticeService;
 import main.ict.notice.vo.NoticeVO;
 
@@ -28,6 +30,9 @@ public class NoticeController {
 	
 	@Autowired(required=false)
 	private ChabunService chabunService;
+	
+	@Autowired(required=false)
+	private LikeService likeService;
 	
 	//글쓰기 폼 이동
 	@GetMapping(value="noticeInsertForm")
@@ -115,6 +120,16 @@ public class NoticeController {
 	public String noticeSelectContent(NoticeVO nvo, Model model) {
 		logger.info("noticeSelectContent() 함수 진입 : ");
 		logger.info("nvo.getNnum() : " + nvo.getNnum());
+		
+		//좋아요 체크
+		LikeVO lvo = null;
+		lvo = new LikeVO();
+		lvo.setMnum("M202212260012"); //이후 세션에 담긴 MNUM 값으로 변경할 것
+		lvo.setLikethis(nvo.getNnum());
+		List<LikeVO> likeList = likeService.likeCheck(lvo);
+		if(likeList.size() == 1) {
+			model.addAttribute("likeList", likeList);
+		}//end of if
 		
 		//서비스 호출
 		List<NoticeVO> scontList = noticeService.noticeSelectContent(nvo);

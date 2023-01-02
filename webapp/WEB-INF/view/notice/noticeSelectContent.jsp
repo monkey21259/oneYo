@@ -50,6 +50,38 @@
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 				
+				//좋아요
+				$(document).on('click', '#notlike', function(){
+					let urlVal = "likeInsert.ict";
+					//let mnumVal =
+					let likethisVal = $('#nnum').val();
+					
+					$.ajax({
+						url: urlVal,
+						method: "POST",
+						data: { mnum: 'M202212260012',
+								likethis: likethisVal}
+						success: whenSuccess,
+						error: whenError
+					});//end of ajax
+					
+					function whenSuccess(resData){
+						if(resData == "LIKE_YES"){
+							
+						}
+					}//end of whenSuccess() function
+					
+					function whenError(e){
+						
+					}//end of whenError() function
+					
+				});//end of notlike click function
+				
+				//좋아요 취소
+				$(document).on('click', '#like', function(){
+					
+				});//end of like click function
+				
 			});//end of jQuery
 		</script>
 	</head>
@@ -168,6 +200,22 @@
 					<td colspan="2">
 						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"><br>
 						<%=nvo.getNcontent() %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%
+							Object likeObj = request.getAttribute("likeList");
+							if (likeObj == null){
+						%>
+						<img src="/oneYo/img/like/notlike.png" id="notlike" width="20" height="20">
+						<%
+							}else{
+						%>
+						<img src="/oneYo/img/like/like.png" id="like" width="20" height="20">
+						<%
+							}
+						%>
 					</td>
 				</tr>
 				<tr>
