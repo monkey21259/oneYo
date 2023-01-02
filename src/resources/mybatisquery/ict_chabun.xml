@@ -72,7 +72,13 @@
 	
 	<!-- 좋아요 -->
 	<!-- INDEX : SYS_C0011796 -->
-	
+	<select id="getLikeChabun" resultType="likevo">
+		
+		SELECT /* + INDEX_DESC(A SYS_C0011796) */
+		    NVL(MAX(SUBSTR(A.LNUM, -4)), 0) + 1 AS LNUM
+		FROM ICT_LIKE A
+		
+	</select>
 	
 	<!-- 공지사항 -->
 	<!-- INDEX : SYS_C0011790 -->

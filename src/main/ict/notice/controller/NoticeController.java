@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import main.ict.common.ChabunUtils;
 import main.ict.common.ConstPack;
 import main.ict.common.FileUpload;
+import main.ict.common.O_Session;
 import main.ict.common.chabun.service.ChabunService;
 import main.ict.like.service.LikeService;
 import main.ict.like.vo.LikeVO;
@@ -117,7 +118,7 @@ public class NoticeController {
 	
 	//SELECT CONTENT
 	@GetMapping(value="noticeSelectContent")
-	public String noticeSelectContent(NoticeVO nvo, Model model) {
+	public String noticeSelectContent(HttpServletRequest req, NoticeVO nvo, Model model) {
 		logger.info("noticeSelectContent() 함수 진입 : ");
 		logger.info("nvo.getNnum() : " + nvo.getNnum());
 		
@@ -125,6 +126,10 @@ public class NoticeController {
 		LikeVO lvo = null;
 		lvo = new LikeVO();
 		lvo.setMnum("M202212260012"); //이후 세션에 담긴 MNUM 값으로 변경할 것
+		/*
+		O_Session os = O_Session.getInstance();
+		lvo.setMnum(os.getSession(req));
+		*/
 		lvo.setLikethis(nvo.getNnum());
 		List<LikeVO> likeList = likeService.likeCheck(lvo);
 		if(likeList.size() == 1) {

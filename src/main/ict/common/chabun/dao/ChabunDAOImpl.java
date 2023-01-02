@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.levelup.vo.LevelupVO;
+import main.ict.like.vo.LikeVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -63,7 +64,11 @@ public class ChabunDAOImpl implements ChabunDAO {
 	}
 	
 	//좋아요
-	
+	@Override
+	public LikeVO getLikeChabun() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getLikeChabun");
+	}//end of getLikeChabun() method
 	
 	//공지사항
 	@Override

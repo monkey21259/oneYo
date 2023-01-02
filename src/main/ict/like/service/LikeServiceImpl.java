@@ -26,5 +26,29 @@ public class LikeServiceImpl implements LikeService {
 		logger.info("likeCheck() 함수 진입 : ");
 		return likeDAO.likeCheck(lvo);
 	}//end of likeCheck() method
+
+	//좋아요 insert
+	@Override
+	public int likeInsert(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		logger.info("likeInsert() 함수 진입 : ");
+		return likeDAO.likeInsert(lvo);
+	}//end of likeInsert() method
+
+	//좋아요 취소
+	@Override
+	public int likeDelete(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		logger.info("likeDelete() 함수 진입 : ");
+		return likeDAO.likeDelete(lvo);
+	}//end of likeDelete() method
+
+	//좋아요 개수 카운트
+	@Override
+	public LikeVO likeCount(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		logger.info("likeCount() 함수 진입 : ");
+		return likeDAO.likeCount(lvo);
+	}//end of likeCount() method
 	
 }//end of LikeServiceImpl class
