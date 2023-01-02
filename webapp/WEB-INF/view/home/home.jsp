@@ -168,8 +168,8 @@
 <!--	│    footer	 	  │	-->
 <!--	└─────────────────┘	-->
 <div id="sideBar">
-	<label for="expand-menu"><div>메뉴</div></label>
-	<input type="checkbox" id="expand-menu" name="expand-menu" hidden>
+	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<ul>
 		<li class="item">
 			<div class="homeLink">
