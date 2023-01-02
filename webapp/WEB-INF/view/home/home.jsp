@@ -49,6 +49,7 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
 		<script type="text/javascript">
 		
 			alert("[home.jsp] JS");
@@ -110,6 +111,14 @@
 				homeAction();
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
+				
+				const s1 = new Slider(".banner");
+				
+				setInterval( function() {
+					  s1.next();
+					  s2.next();
+				}, 1000);
+				
 			});
 			
 			function postClick(obj) {  // favorPostTitle
@@ -140,7 +149,7 @@
 			function chefIntroduce(mnum) {
 				location.href = "chefIntroduce.ict?mnum=" + mnum;
 			}
-		
+			
 		</script>
 	</head>
 <body>
@@ -302,8 +311,23 @@
 	4. 넷째 라인: 레시피 분류 >> 한식,중식,양식,일식,디저트, 기타- 00,01,02,03,04,99(기타)
 	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
-	 	<div class="banner">
-	 	<img src="/oneYo/resource/img/002.png">
+	 	<!-- form & input(hidden) -->
+	 	<div id="slider" class="banner slider">  <!-- inner-list -->
+	 		<div class="box" id="" class="banimg"> <!-- inner -->
+				<img src="/oneYo/resource/img/001.png">
+	 		</div>
+	 		<div class="box" id="" class="banimg">
+				<img src="/oneYo/resource/img/002.png">
+	 		</div>
+	 		<div class="box" id="" class="banimg">
+				<img src="/oneYo/resource/img/003.png">
+	 		</div>
+	 		<div class="box" id="" class="banimg">
+				<img src="/oneYo/resource/img/004.png">
+	 		</div>
+	 		<div class="box" id="" class="banimg">
+				<img src="/oneYo/resource/img/005.png">
+	 		</div>
 	 	</div>
 	 	<div class="favorContainer">
 	 		<div class="postTitles" data-num="1">

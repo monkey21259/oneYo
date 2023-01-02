@@ -17,22 +17,29 @@
 
 /* ---------------------- 중 앙 - 시작 ------------------- */
 
-/* 중앙 center */
-#center {
-	
-}
-
 /* 중앙 배너 */
 .banner {
 	border: 1px solid red;
-	width: 718px;
-	height: 200px;
-	margin: 0px auto;
+	width: 1202px;  /**/
+	height: 302px;  /**/
+	margin: 0px;
+	
+/* 	display: flex; */
+/* 	transition: 0.8s ease-out; */
+}
+
+.banimg {
+	/* ING */
+}
+
+.box {
+	display: flex;
+	float: left;
 }
 
 /* 인기글 Container */
 .favorContainer {
-	width: 718px;
+	width: 1198px;  /**/
 	height: 400px;
 	margin: 15px auto 0px;
 	border: 1px solid blue;
@@ -41,7 +48,7 @@
 /* 인기글 타이틀을 묶은 div */
 .postTitles {
 	margin:0 auto;
-	width: 540px;
+	width: 1100px;
 	height: 40px;
 	display: flex; /* flex 배치 */
 	align-items: center; /* 수직 중앙 배치 */
@@ -54,7 +61,7 @@
 	display: flex;  /* 수직 중앙 배치를 위한 display 설정 */
 	align-items: center;  /* 수직 중앙 배치 */
 	justify-content: center;  /* 수평 중앙 배치 */
-	width: 130px; /* (133 + 2 * 1) * 4 = 540 */
+	width: 270px; /* 현재 가로: 1100px */
 	height: 40px;
 	border: 1px solid black;
 	cursor: pointer;
@@ -68,9 +75,9 @@
 
 /* 게시판별 인기글 */
 .favorPost {
-	width: 630px;
+	width: 1198px;  /**/
 	height: 310px;
-	padding: 0 4px 0 33px;
+	padding: 0px;
 	border: 1px solid green;
 	margin: 5px auto 0px auto;
 	overflow: hidden;
@@ -109,7 +116,7 @@
 /* p1: 그림 & p2: 글 */
 .p1 {
 	float: left;
-	width: 295px;
+	width: 290px;  /* 295 -> 290 */
 	height: 148px;
 	border-radius: 10%;
 	border: 2px solid #EEE;
@@ -118,18 +125,18 @@
 }
 
 .p2 {
-	width: 595px;
+	width: 590px;  /* 595 -> 590 */
 	height: 37px;
 	margin: 2px;
 }
 
 @media ( min-width: 2500px ) {
 	.p1 {
-		width: 290px;
+		width: 285px;  /* 290 -> 285 */
 	}
 	
 	.p2 {
-		width: 590px;
+		width: 585px;  /* 590 -> 585 */
 	}
 }
 
