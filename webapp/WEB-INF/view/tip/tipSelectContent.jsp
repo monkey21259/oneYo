@@ -226,6 +226,17 @@
 				<br>
 				작성자 : <%= tvo.getMnick() %>
 				<br>
+				<%
+					Object likeObj = request.getAttribute("likeList");
+					String likeyn = "Y";
+					if(likeObj == null) likeyn = "N";
+				%>
+				<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+					<jsp:param name="mnum" value="<%=mnum %>"/>
+					<jsp:param name="likethis" value="<%=tvo.getTnum() %>"/>
+					<jsp:param name="likeyn" value="<%=likeyn %>"/>
+				</jsp:include>
+				<br>
 				
 				<%
  				if(mnum.equals(tvo.getMnum())){

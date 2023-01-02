@@ -150,4 +150,66 @@
 
 </select>
 
+<select id="homeRestSelectTip" parameterType="tipvo" resultType="tipvo">
+
+	SELECT  
+		    B.TNUM 		AS		TNUM
+		   ,B.TSUBJECT 	AS		TSUBJECT
+		   ,B.TPHOTO 	AS		TPHOTO
+		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+	FROM	(SELECT  
+					 MNUM
+					,MNICK
+					,MGRADE
+					,MPROFILE
+					,INSERTDATE
+			 FROM	"ORCLICT00"."ICT_MEMBER"
+			 WHERE	DELETEYN = 'Y'
+			 AND	MNUM     = #{mnum}
+			 AND	MGRADE   = '1'		  	  )		A
+		   ,(SELECT 
+		   			TNUM
+		   		   ,TSUBJECT
+		   		   ,TPHOTO
+		   		   ,INSERTDATE
+		   		   ,MNUM
+		     FROM	"ORCLICT00"."ICT_TIP"
+		     WHERE	DELETEYN = 'Y'			
+		     AND	MNUM 	 = #{mnum})				B	
+	WHERE	 A.MNUM = B.MNUM
+	ORDER BY B.TNUM DESC
+
+</select>
+
+<select id="homeRestSelectCommunity" parameterType="communityvo" resultType="communityvo">
+
+	SELECT  
+		    B.CNUM 		AS		CNUM
+		   ,B.CSUBJECT 	AS		CSUBJECT
+		   ,B.CPHOTO 	AS		CPHOTO
+		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+	FROM	(SELECT  
+					 MNUM
+					,MNICK
+					,MGRADE
+					,MPROFILE
+					,INSERTDATE
+			 FROM	"ORCLICT00"."ICT_MEMBER"
+			 WHERE	DELETEYN = 'Y'
+			 AND	MNUM     = #{mnum}
+			 AND	MGRADE   = '1'		  	  )		A
+		   ,(SELECT 
+		   			CNUM
+		   		   ,CSUBJECT
+		   		   ,CPHOTO
+		   		   ,INSERTDATE
+		   		   ,MNUM
+		     FROM	"ORCLICT00"."ICT_COMMUNITY"
+		     WHERE	DELETEYN = 'Y'			
+		     AND	MNUM 	 = #{mnum} )			B
+	WHERE	 A.MNUM = B.MNUM
+	ORDER BY B.CNUM DESC
+
+</select>
+
 </mapper>

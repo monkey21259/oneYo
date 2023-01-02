@@ -21,8 +21,14 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-	O_Session	oSession = O_Session.getInstance();
-	String		mid = oSession.getSession(request);
+
+	
+	String mid = (String)request.getAttribute("mid");
+	String mnick = (String)request.getAttribute("mnick");
+
+	O_Session oSession = O_Session.getInstance();
+	String mnum = oSession.getSession(request);
+
 	
 	logger.info("mid: " + mid);
 %>
@@ -170,34 +176,43 @@
 <!--	├─────┴─────┴─────┤	-->
 <!--	│    footer	 	  │	-->
 <!--	└─────────────────┘	-->
-
 <div id="sideBar">
-	
-	<div class="homeLink">
-	홈으로
-	</div>
-	
-	<div class="searchBarBtn">
-	검색
-	</div>
-	
-	<div id="warningForm">
-	신고
-	</div>
-	
-	<div class="warningForm">
-	신고<br>팝업
-	</div>
-	
-	<div class="searchBarBtn">
-	my<br>Page
-	</div>
-	
-	<a href="javascript:window.scrollTo(0,0);">
-	<div id="go_top">
-	TOP▲
-	</div>
-	</a>
+	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<ul>
+		<li class="item">
+			<div class="homeLink">
+			홈으로
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			검색
+			</div>
+		</li>
+		<li class="item">
+			<div id="warningForm">
+			신고
+			</div>
+		</li>
+		<li class="item">
+			<div class="warningForm">
+			신고<br>팝업
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			my<br>Page
+			</div>
+		</li>
+		<li class="item">
+			<a href="javascript:window.scrollTo(0,0);">
+			<div id="go_top">
+			TOP▲
+			</div>
+			</a>
+		</li>
+	</ul>
 </div>
 
 <div id="searchBar" class="hidden_X">
@@ -233,7 +248,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-		if (mid == null || mid.equals("")) {
+		if (mnick == null || mnick.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn" name="newMemBtn">회원가입</span>
@@ -247,11 +262,11 @@
 				<span class="Choonsik" id="#" name="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn" name="logoutBtn">로그아웃</span>
-				<p><%= mid %> <span>님 환영합니다.</span></p>
+				<p><%= mnick %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
 <% 		
 		}
@@ -409,7 +424,7 @@
 		 	<div class="chefBody">
 			 	<c:forEach items="${ MemList }" var="mvo" end="10">
 			 		<c:if test="${ mvo !=null }" >
-			 			<a class="pa" data-value="${ mvo.mnum }" onclick="chefIntroduce('${ mvo.mnum }')">
+			 			<a onclick="chefIntroduce('${ mvo.mnum }')">
 				 			<div class="chefIcon">
 				 				<c:if test="${ mvo.mprofile !=null }">
 					 				<img class="chefIcon" src="/oneYo/img/mem/${ mvo.mprofile }">

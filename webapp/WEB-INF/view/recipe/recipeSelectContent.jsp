@@ -272,6 +272,20 @@
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 						</td>
 					</tr>
+					<tr>
+						<td colspan="2">
+							<%
+								Object likeObj = request.getAttribute("likeList");
+								String likeyn = "Y";
+								if(likeObj == null) likeyn = "N";
+							%>
+							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+								<jsp:param name="mnum" value="<%=mnum %>"/>
+								<jsp:param name="likethis" value="<%=recipevo.getRnum() %>"/>
+								<jsp:param name="likeyn" value="<%=likeyn %>"/>
+							</jsp:include>
+						</td>
+					</tr>
 <%  // 글쓰기 버튼 %>
 					<tr>
 						<td colspan="2" style="text-align:right;">

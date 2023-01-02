@@ -223,19 +223,32 @@
 					</tr>
 					
 					<tr>
-						<td colspan="3">글내용</td>
+						<td colspan="2">글내용</td>
 					</tr>	
 					<tr>
 						<td colspan="2">
 							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;">
 							<input type="hidden" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>"></td>
 					</tr>
-						<tr>
-						<td colspan="2"><%= cvo.getCcontent() %></td>
-						</tr>
-
 					<tr>
-						<td colspan="3">
+						<td colspan="2"><%= cvo.getCcontent() %></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<%
+								Object likeObj = request.getAttribute("likeList");
+								String likeyn = "Y";
+								if(likeObj == null) likeyn = "N";
+							%>
+							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+								<jsp:param name="mnum" value="<%=mnum %>"/>
+								<jsp:param name="likethis" value="<%=cvo.getCnum() %>"/>
+								<jsp:param name="likeyn" value="<%=likeyn %>"/>
+							</jsp:include>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
 						<%
 						if(mnum.equals(cvo.getMnum())){ //관리자 추가하기
 							logger.info("mnum >>> : " + mnum);

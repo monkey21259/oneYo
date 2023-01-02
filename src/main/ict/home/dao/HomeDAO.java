@@ -2,6 +2,7 @@ package main.ict.home.dao;
 
 import java.util.List;
 
+import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.vo.HomeVO;
 import main.ict.mem.vo.MemVO;
@@ -20,5 +21,7 @@ public interface HomeDAO {
 	List<HomeVO> getCntList();
 	List<MemVO> homeRestSelectMem(MemVO mvo);
 	List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo);
+	List<TipVO> homeRestSelectTip(TipVO tvo);
+	List<CommunityVO> homeRestSelectCommunity(CommunityVO covo);
 
 }

@@ -324,10 +324,15 @@ a {
 /* -------------------------------- 사이드 바 -------------------------------- */
 /* 사이드바 몸통 */
 #sideBar {
+	
+	display: block;
+	
 	/* width 가로폭 */
-	width	: 70px;
+	width	: 100px;
 	/* height 세로폭 */
-	height	: 500px;
+/* 	height	: 500px; */
+	
+	padding: 10px;
 	
 	/* 중앙 정렬 */
 	text-align: center;
@@ -336,10 +341,14 @@ a {
 	border-radius	: 10px;
 	
 	/* 배경 색상 */
-	background-color	: #F0F2CC;
+	background-color	: #93A603;
+	color	: #000;
 	
 	/* 화면 스크롤 해도 고정하게 하는 */
 	position	: fixed;
+	
+	overflow	: hidden; /* 반응형 애니메이션용 */
+	transition	: all 0.5s ease; /* 반응형 애니메이션 */
 	
 	/* 위치 지정 */
 	top	: 20%;
@@ -355,12 +364,16 @@ a {
 }
 
 /* 사이드바 버튼 */
-#sideBar div {
+#sideBar li div, #sideBar > label {
+	
+	display: block;
+	
 	/* margin div 주위 영역 */
 	margin	: 5px 5px;
+	padding: 2px;
 	
 	/* width 가로폭 */
-	width	: 60px;
+	width	: 80px;
 	/* height 세로폭 */
 	height	: 50px;
 	
@@ -369,7 +382,19 @@ a {
 	
 	/* 배경색 */
 	background-color	: #fff;
+	
+	/* 마우스 커서 선택 */
+	cursor	: pointer;
 }
+
+#sideBar #sideMenu:not(:checked) ~ ul { /* 데스크탑 화면에서도 메뉴를 접었더 펼칠 수 있음 */
+    display	: none;
+}
+#sideMenu:checked ~ ul { /* 체크박스 체크되었으면 메뉴 목록 표시 - 반응형 표시용 */
+    display	: block;
+    height	: auto;
+}
+
 
 /* -------------------------------- 상단 searchBar -------------------------------- */
 /* 검색창 몸통 */
