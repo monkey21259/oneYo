@@ -79,3 +79,26 @@ function homeAction() {
 		location.href = "home.ict";
 	});
 }
+
+// 마이페이지로 이동
+function mypageHomeAction() {
+	
+	$(document).on('click', '.mypageHome', function(){
+	//회원인 경우에만 넘어가게 하기
+		location.href = "mypageHome.ict";
+	});
+}
+
+// 회원가입 페이지 이동
+function joinAction(){
+$(document).on('click', '#newMemBtn', function() {
+		location.href="memGrade.ict";
+	});
+}
+
+//로그인
+function loginAction(){
+	$(document).on('click', '#loginBtn', function() {
+		location.href="loginForm.ict";
+	});
+}

@@ -51,6 +51,15 @@
 		homeAction();
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
+		
 		
 	});
 
@@ -96,7 +105,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -231,7 +240,7 @@
 						내용
 					</th>
 					<th>
-						사진 대충
+						사진
 					</th>
 					<th>
 						등록일
@@ -269,11 +278,6 @@
 </div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->  
 </div>
-
-<div id="right">
-우측
-</div>
-
 <div id="footer">    
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />

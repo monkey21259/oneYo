@@ -62,7 +62,14 @@
 	homeAction();
 	//	메뉴바 클릭액션 all.js 함수
 	divClickAction();
+	// 마이페이지로 보내주는 all.js 함수
+	mypageHomeAction();
+			
+	//회원가입 으로 보내주는 all.js 함수
+	joinAction();
 	
+	//로그인으로 보내주는 all.js 함수
+	loginAction();
 	});
 	
 </script>
@@ -100,7 +107,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -219,6 +226,42 @@
 </div>
 
 <div id="center">
+<!-- -------------------------------페이지 전용 center------------------------------- -->
+
+<input type="hidden" name="mnum" value="<%= tvo.getMnum()%>">
+<input type="hidden" name="wtnum" value="<%= tvo.getTnum() %>">
+<table border="1">
+<tr><td>
+<h3 align="center">신고하기</h3>
+</td></tr>
+<tr><td>
+<select id="box" name="wcategory">
+<option value="50">선택하세요 </option>
+<option value="00">욕설 및 비방 </option>
+<option value="01">음란물</option>
+<option value="02">불법광고</option>
+<option value="03">도배성</option>
+<option value="04">주제와 맞지 않음 </option>
+<option value="99">기타</option>
+</td></tr>
+<tr><td colspan="2">
+글 카테고리
+: 전문가 팁</td>
+</tr>
+<tr><td colspan="2">
+글 제목 : 
+
+<%= tvo.getTsubject() %>
+</td></tr>
+<tr><td>
+<textarea id="content" rows="30" cols="80" name="wcontent" readonly>신고할 내용을 작성해주세요</textarea>
+</td></tr>
+<tr><td colspan="2">
+<input type="button" id="datain" value="신고">
+<input type="reset" value="다시쓰기">
+</td></tr>
+</table>
+
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 

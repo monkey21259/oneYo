@@ -147,10 +147,22 @@
 			
 			//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 			hiddenAction();
+			
 			//	홈으로 보내주는 all.js 함수
 			homeAction();
+			
 			//	메뉴바 클릭액션 all.js 함수
 			divClickAction();
+			
+			// 마이페이지로 보내주는 all.js 함수
+			mypageHomeAction();
+					
+			//회원가입 으로 보내주는 all.js 함수
+			joinAction();
+			
+			//로그인으로 보내주는 all.js 함수
+			loginAction();
+			
 			
 		}); //ready
 	
@@ -187,7 +199,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -338,7 +350,6 @@
 						<th>글제목</th>
 						<th>닉네임</th>
 						<th>조회수</th>
-						<th>좋아요</th>
 						<th>날짜</th>
 					</tr>
 				</thead>
@@ -357,7 +368,6 @@
 						<td><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></a></td>
 						<td><%= cvo.getMnick() %></td>
 						<td><%= cvo.getChit() %></td>
-						<td><%= 1 %></td>                 <!-- 나중에 추가하기 -->
 						<td><%= cvo.getInsertdate()%></td>
 					</tr>
 		<%

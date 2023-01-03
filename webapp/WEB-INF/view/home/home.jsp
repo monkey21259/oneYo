@@ -112,6 +112,15 @@
 				homeAction();
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
+				// 마이페이지로 보내주는 all.js 함수
+				mypageHomeAction();
+						
+				//회원가입 으로 보내주는 all.js 함수
+				joinAction();
+				
+				//로그인으로 보내주는 all.js 함수
+				loginAction();
+				
 				
 				// 배너 --------------------------------------
 				const s1 = new Slider(".banner");
@@ -206,7 +215,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>

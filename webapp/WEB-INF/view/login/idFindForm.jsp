@@ -5,14 +5,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>아이디 찾기</title>
+		
+		<!-- jQuery -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
 		<!-- idFindForm.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/login/idFindForm.css">
-		
-		<!-- jQuery -->
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
@@ -61,6 +62,10 @@
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
 				
+				// 마이페이지로 보내주는 all.js 함수
+				mypageHomeAction();
+						
+				
 			});//end of jQuery
 		</script>
 	</head>
@@ -95,7 +100,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
