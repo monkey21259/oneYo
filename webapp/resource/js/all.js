@@ -102,3 +102,15 @@ function loginAction(){
 		location.href="loginForm.ict";
 	});
 }
+
+//	사이드바 조작
+function sidebarLabel() {
+	$(document).on('click', '#sideLabel',function(){
+		
+		if($('#sideMenu').prop('checked')) {
+			$('#sideLabel').html('&lt;');
+		}else {
+			$('#sideLabel').html('&gt;');
+		}
+	});
+}

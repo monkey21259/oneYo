@@ -121,6 +121,8 @@
 				//로그인으로 보내주는 all.js 함수
 				loginAction();
 				
+				sidebarLabel();
+				
 				
 				// 배너 --------------------------------------
 				const s1 = new Slider(".banner");
@@ -190,9 +192,9 @@
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
@@ -227,7 +229,7 @@
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
