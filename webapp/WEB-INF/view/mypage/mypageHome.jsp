@@ -247,7 +247,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 				${mvo.mnick}
 				</span>
 				<br />
-				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;">
+				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;" onerror="this.src='/oneYo/resource/img/grade0.png'" >
 				<br />
 				<c:choose>
 					<c:when test="${mvo.mgrade eq '0'}"> 
