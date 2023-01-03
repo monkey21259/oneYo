@@ -228,6 +228,125 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
+				<form id="recipeInsertForm">
+				<table class="recipeTable">
+					<tr>
+						<td colspan="2">
+							<span>레시피 글쓰기</span>
+						</td>
+					</tr>
+<%  // 글 제목 %>
+					<tr>
+						<td>글 제목</td>
+						<td>
+							<input type="text" id="rsubject" name="rsubject" value="" placeholder="제목 입력란" />
+						</td>
+					</tr>
+<%  // 요리 분야 %>
+					<tr>
+						<td>요리 분야</td>
+						<td>
+							<select id="rcategory" name="rcategory">
+								<option value="00">한식</option>
+								<option value="01">중식</option>
+								<option value="02">양식</option>
+								<option value="03">일식</option>
+								<option value="04">디저트</option>
+								<option value="99">기타</option>
+							</select>
+						</td>
+					</tr>
+<%  // 음식 재료 %>
+					<tr>
+						<td id="rjeryo">재료</td>
+						<td>
+							<!-- input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
+							<input type="hidden" id="data" name="rjeryo" value="">
+							<input type="text" id="jeryoText" name="rjeryoSelect" value="" placeholder="재료를 입력하세요." />
+							<input id="jeryo" type="button" value="재료등록"><br>
+							<p id="jeryocan"></p>
+						</td>
+					</tr>
+<%  // 조리 시간 %>
+					<tr>
+						<td>시간</td>
+						<td>
+							<select id="rhour" name="rhour" >
+								<option value="00" selected>00</option>
+<%	// ---- 시(0 ~ 23)
+							String hour = null;
+							for (int i=1; i<24; i++) {
+								hour = "";
+								if (i < 10) { hour += "0"; }
+								hour += i;
+%>
+								<option value=<%= hour %>><%= hour %></option>
+<%
+							}
+%>							</select>&nbsp;시간&nbsp;
+							<select id="rminute" name="rminute" >
+								<option value="00" selected>00</option>
+<%	// ---- 분(0 ~ 59)
+							String minute = null;
+							for (int i=1; i<60; i++) {
+								minute = "";
+								if (i < 10) { minute += "0"; }
+								minute += i;
+%>								
+								<option value=<%= minute %>><%= minute %></option>
+<%							
+							}
+%>							</select>&nbsp;분&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td>인분</td>
+						<td>
+							<select id="rperson" name="rperson">
+								<option value="1인분" selected>1인분</option>
+<%  // ---- 몇 인분(max=10)
+							String rPerson = null;
+							for (int i=2; i<11; i++) {
+								rPerson = "";
+								
+								rPerson += i;
+%>
+								<option value="<%= rPerson %>인분"><%= i %>인분</option>
+<%
+							}
+%>							</select>
+						</td>
+					</tr>
+<%  // 난이도: 쉬움(0), 보통(1), 어려움(2) %>
+					<tr>
+						<td>난이도</td>
+						<td>
+							<select id="rdiff" name="rdiff">
+								<option value="0">쉬움</option>
+								<option value="1">보통</option>
+								<option value="2">어려움</option>
+							</select>
+						</td>
+					</tr>
+<%  // 글 내용 %>
+					<tr>
+						<td>글 내용</td>
+						<td>
+							<textarea id="rcontent" name="rcontent" cols="10" rows="5">내용을 입력하세요.
+							</textarea><br />
+<%  // 음식 사진 %>
+							<input type="file" id="rphoto" name="rphoto" />
+						</td>
+					</tr>
+<%  // 글쓰기 버튼 %>
+					<tr>
+						<td colspan="2" style="text-align:right;">
+							<a id="recipeInsertBtn">글쓰기</a>
+						</td>
+					</tr>
+				</table>
+				</form>
+					<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
 <div id="footer">
