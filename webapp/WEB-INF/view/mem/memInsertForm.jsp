@@ -27,10 +27,12 @@
 
 <%
 	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
-	if (mvo != null) { logger.info("SNS-LoginVO was created"); }
-	
-	String mkey = (String)request.getAttribute("mkey");
-	if (mkey != null) { logger.info("[Kakao] INSERT form start!"); }
+	String mkey = "";
+	logger.info(mvo.toString());
+	if (mvo != null) {
+		logger.info("SNS-LoginVO was created");
+		mkey = mvo.getMkey();
+	}
 %>
 
 <!DOCTYPE html>
@@ -224,6 +226,7 @@ $(document).ready(function(){
 					mcategory += "#" + $(this).val();
 				}
 			});
+			alert("mcategory: " + mcategory);  // 230103 김기영 추가
 			$('#mcategory').val(mcategory);
 			console.log("mcategory >>> : " + $('#mcategory').val());
 			//	mcategory 복수	=====================
@@ -422,7 +425,7 @@ $(document).ready(function(){
 <table border=1>
 <!-- mid 아이디 -->
 <%
-	if (mvo == null) {
+	if (mvo == null) {	// SNS 로그인 케이스가 아닌 경우
 %>
 <tr>
 	<td>
@@ -550,7 +553,7 @@ $(document).ready(function(){
 	</td>
 </tr>
 <%
-	} else {
+	} else {	// SNS 로그인 케이스인 경우 (mvo != null)
 %>
 <tr>
 	<td>
@@ -599,15 +602,15 @@ $(document).ready(function(){
 	</td>
 	<td>
 <%
-	if (mkey == null) {
+		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우
 %>
 		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly />
 <%	
-	} else {
+		} else {
 %>
 		<input type="text" id="mnick" name="mnick" value="" />
 <%
-	}
+		}
 %>
 	</td>
 	<td>
@@ -620,7 +623,7 @@ $(document).ready(function(){
 	</td>
 	<td>
 <%
-	if (mkey == null) {
+		if (mkey.equals("Naver")) {
 %>
 		<% String[] mhpParts = CodeUtils.getMhpParts(mvo.getMhp()); %>
 		<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="<%= mhpParts[0] %>" readonly />
@@ -628,14 +631,14 @@ $(document).ready(function(){
 		- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="<%= mhpParts[2] %>" readonly />
 		<input type="hidden" id="mhp" name="mhp" value="<%= mvo.getMhp() %>" />
 <%
-	} else {
+		} else {
 %>
 		<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="" />
 		- <input type="text" id="mhp1" name="mhp1" class="mhp notNull" value="" />
 		- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="" />
 		<input type="hidden" id="mhp" name="mhp" value="" />
 <%
-	}
+		}
 %>
 	</td>
 	<td>

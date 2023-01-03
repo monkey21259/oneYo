@@ -19,5 +19,26 @@ public abstract class CommonUtils {
 		
 		return String.valueOf(iVal).concat("분");
 	}
+	
+	public static String minuteToHour(String minutes) {
+		
+		logger.info("minuteToHour() 함수 진입.");
+		if (minutes != null && minutes.equals("") && minutes.equals("분")) {
+			logger.info("함수 인자가 유효하지 않습니다.");
+			return "";
+		}
+		
+		minutes = minutes.split("분")[0];
+		int min = Integer.parseInt(minutes);
+		int hour = 0;
+		if (min > 60) {
+			hour = min / 60;
+			min = min % 60;
+		}
+		logger.info("hour: " + hour);
+		logger.info("min: " + min);
+		
+		return hour + "시" + min + "분";
+	}
 		
 } //class 

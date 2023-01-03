@@ -33,8 +33,6 @@
 			
 			if($("#lvlv").val()==null){
 			
-			
-			alert("levelupInsertBtn 버튼 클릭 이벤트 발생");
 			if(confirm("등업글을 작성하시겠습니까?")){
 				location.href = "levelupInsertForm.ict?mnum=${list.get(0).getMnum()}";
 			} 
@@ -51,18 +49,27 @@
 		homeAction();
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
+		
 		
 	});
 
-	function levelupSelect(lvnum) {
+// 	function levelupSelect(lvnum) {
 		
-		alert("levelupSelect() 함수 진입");
-		console.log(lvnum);
+// 		alert("levelupSelect() 함수 진입");
+// 		console.log(lvnum);
 		
-		if(confirm("등업글을 확인하시겠습니까?")){
-			location.href="#";
-		}
-	}
+// 		if(confirm("등업글을 확인하시겠습니까?")){
+// 			location.href="#";
+// 		}
+// 	}
 
 </script>
 </head>
@@ -96,7 +103,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -231,7 +238,7 @@
 						내용
 					</th>
 					<th>
-						사진 대충
+						사진
 					</th>
 					<th>
 						등록일
@@ -260,7 +267,9 @@
 				</c:forEach>
 				<tr> 
 					<td colspan="5">
+				
 						<button type="button" id="levelupInsertBtn">등업 신청</button>
+
 					</td>
 				</tr>
 			</tbody>
@@ -269,11 +278,6 @@
 </div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->  
 </div>
-
-<div id="right">
-우측
-</div>
-
 <div id="footer">    
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />

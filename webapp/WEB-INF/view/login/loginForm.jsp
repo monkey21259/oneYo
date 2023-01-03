@@ -20,8 +20,9 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- loginForm.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/login/loginForm.css" />
-		
+		<!-- Naver Login -->
 		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+		<!-- Kakao Login -->
 		<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js"
 			    integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/" crossorigin="anonymous"></script>
 		<!-- 제이쿼리 -->
@@ -66,7 +67,7 @@
 				// 인가 코드 받기 요청
 				console.log($(Kakao));
 				Kakao.Auth.authorize({
-				      redirectUri: 'http://localhost:8088/oneYo/loginForm.ict'
+				      redirectUri: 'http://192.168.219.125:8088/oneYo/loginForm.ict'
 				});
 			}
 			
@@ -79,7 +80,7 @@
 				let uri = "https://nid.naver.com/oauth2.0/authorize";
 				let responseType = "code";
 				let clientId = "<%= ConstPack.M_NAVER_CID %>";
-				let redirectURI = "http://localhost:8088/oneYo/loginForm.ict";
+				let redirectURI = "http://192.168.219.125:8088/oneYo/loginForm.ict";
 				let state = "<%= ConstPack.M_NAVER_STATE %>";
 				
 				let apiURL = uri + "?response_type=" + responseType

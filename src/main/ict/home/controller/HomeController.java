@@ -56,10 +56,12 @@ public class HomeController {
 	
 	//	home 이동
 	// 2022-12-30 이성일 home 데이터 추가
-	@GetMapping("home")
+	@GetMapping(value="home")
 	public String home(HttpServletRequest req, Model model) {
 		
 		logger.info("home() >>> : home.jsp");
+		
+		logger.info((String)req.getParameter("client_id"));
 		
 		Map<String, Object> dataMap = new HashMap();
 		
@@ -88,13 +90,8 @@ public class HomeController {
 		if(cntList !=null && cntList.size() == 1)
 			dataMap.put("Count", cntList);
 		
-		String mid = req.getParameter("mid");
-		String mnick = req.getParameter("mnick");
-		
 		model.addAttribute("DataMap", dataMap);
-		model.addAttribute("mid", mid);
-		model.addAttribute("mnick", mnick);
-		// testhome.jsp에서 el 데이터 확인
+		
 		return "home/home";
 	}
 	

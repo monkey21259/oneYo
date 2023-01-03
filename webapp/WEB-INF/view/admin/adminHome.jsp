@@ -159,10 +159,21 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				
 				//	홈으로 보내주는 all.js 함수
 				homeAction();
+				
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
+				
+				// 마이페이지로 보내주는 all.js 함수
+				mypageHomeAction();
+						
+				//회원가입 으로 보내주는 all.js 함수
+				joinAction();
+				
+				//로그인으로 보내주는 all.js 함수
+				loginAction();
 				
 			}); //reday
 		</script>
@@ -199,7 +210,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -328,7 +339,7 @@
 
 	<h3>등업</h3>
 		<hr>
-		<button type="button" id="levelupmoreBtn" style="float: right;">더보기</button><br>
+		<button type="button" id="levelupmoreBtn" style="float: left;">더보기</button><br>
 			<table border="1 solid">
 				<thead>
 					<tr>
@@ -373,7 +384,7 @@
 <!-- 신고  -->	
 	<h3>신고</h3>
 		<hr>
-		<button type="button" id="warningmoreBtn" style="float: right;">더보기</button><br>
+		<button type="button" id="warningmoreBtn" style="float: left;">더보기</button><br>
 			<table border="1 solid">
 				<thead>
 					<tr>
@@ -411,7 +422,7 @@
 <!-- 레시피  -->	
 	<h3>레시피</h3>
 		<hr>
-		<button type="button" id="recipemoreBtn" style="float: right;">더보기</button><br>
+		<button type="button" id="recipemoreBtn" style="float: left;">더보기</button><br>
 			<table border="1 solid">
 				<thead>
 					<tr>
@@ -453,7 +464,7 @@
 		
 	<h3>전문가팁</h3>
 		<hr>
-		<button type="button" id="tipmoreBtn" style="float: right;">더보기</button><br>
+		<button type="button" id="tipmoreBtn" style="float: left;">더보기</button><br>
 			<table border="1 solid">
 				<thead>
 					<tr>
@@ -493,7 +504,7 @@
 <!-- 커뮤니티 -->	
 	<h3>커뮤니티</h3>
 		<hr>
-		<button type="button" id="communitymoreBtn" style="float: right;">더보기</button><br>
+		<button type="button" id="communitymoreBtn" style="float: left;">더보기</button><br>
 			<table border="1 solid">
 				<thead>
 					<tr>

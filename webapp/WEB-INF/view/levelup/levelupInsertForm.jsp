@@ -53,6 +53,14 @@
 		homeAction();
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
 		
 	});
 
@@ -90,7 +98,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -246,18 +254,14 @@
 	<!-- -------------------------------페이지 전용 center------------------------------- -->  
 </div>
 
-<div id="right">
-우측
-</div>
-
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
 	</div>
 </div>
 

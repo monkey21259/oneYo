@@ -24,7 +24,10 @@
 		//세션부여
 		O_Session mSession = O_Session.getInstance();
 		String mnum = mSession.getSession(request);
+		String mid = (String)mSession.getAttribute(request, "mid");
+		
 		logger.info("mnum >>> : " + mnum);
+		logger.info("mid: " + mid);
 		
 		if (recipeList.size() != 1) {
 			logger.info("[FAIL] recipeList.size() != 1");
@@ -85,6 +88,58 @@
 					}).submit();
 					
 				});
+				
+				//경고 : 관리자
+				$(document).on("click", "#cautionBtn", function(){
+					
+					//mid
+					let mnum = $("#mnum").val();
+					console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
+					
+					//mnick
+					let mnick = $("#mnick").val();
+					console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+					
+					let result = confirm(mnick + '님을 경고 하시겠습니까?');
+					
+					if(result == true){
+						let url = "adminCaution.ict";
+						let reqType = "GET";
+						let dataParam = {
+								mnum :$("#mnum").val(),
+							};
+					
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+					
+					$.ajax({
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError
+					}); //ajax
+					
+					}else{
+						alert("취소되었습니다");
+						location.href="#";
+					} //if else
+					
+					//성공했을때
+					function whenSuccess(resData){
+						if(resData == 'updateOK'){
+							alert("경고 처리 되었습니다.");
+							$('#cautionBtn').prop('disabled', true);
+						} 
+					}
+					
+					//실패했을때
+					function whenError(e){
+						console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+					} //whenError	
+				
+				});//cautionBtn버튼클릭
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
@@ -201,7 +256,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -209,20 +264,34 @@
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+<%
+		String mSNSid = mid;
+		if (mid != null && !(mid.equals(""))) {
+			if (mid.length() > 5) {
+				mSNSid = mid.substring(0, 6);
+				if (mSNSid.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (mSNSid.equals("kakao_")) {
+					mSNSid = "kakao";
+				}
+			}
+		}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
 <% 		
-// 		}
+		}
 %>
 	 	</div>
 	</div>
@@ -365,6 +434,10 @@
 							<a class="btn" id="recipeDeleteBtn">삭제</a>
 							
 							<%
+							}else if(mnum.equals("M000000000000")){
+							%>
+								<button type="button" id="cautionBtn">경고</button>
+							<%
 							}
 							 %>
 						</td>
@@ -374,6 +447,7 @@
 <% // rnum, rhit, mnum, warning, deleteyn, insertdate, updatedate %>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
+				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
 	<!-- 데이터 사용여부 검토 필요 -->
 				<input type="hidden" id="rhit" name="rhit" value="<%= recipevo.getRhit() %>" />	<!-- 조회수 -->
 				<!-- <input type="hidden" id="warning" name="warning" value="" /> -->	<!-- 경고 -->

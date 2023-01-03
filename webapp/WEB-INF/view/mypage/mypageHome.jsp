@@ -41,6 +41,43 @@ logger.info("mypageHome.jsp 페이지 진입");
 	$(document).ready(function(){
 		console.log("mypageHome.jsp 페이지 제이쿼리 ready() 진입");
 		
+		$(document).on('click', '#levelupBtn', function(){
+			
+			let mnum = $("#mnum").val();
+			console.log("mnum >>> : " + mnum);
+
+			let url = "mgradeChk.ict";
+			let reqType = "GET";
+			let dataParam ={
+				mnum : mnum,
+			};
+					
+			$.ajax({
+				url:url,
+				type:reqType,
+				data:dataParam,
+				success:whenSuccess,
+				error:whenError		
+			}); //ajax
+			
+			//성공했을때
+			function whenSuccess(resData){
+				if(resData == '1'){
+					alert("이미 등업신청 완료되었습니다.");
+				} else{
+					location.href = "levelupSelectAll.ict?mnum=" + mnum;
+				}
+			} //whenSuccess
+			
+		//실패했을때
+			function whenError(e){
+				console("등업신청 오류(error) : "  + e.responseText);
+			} //whenError	
+			
+			
+		});// levelupBtn
+		
+		
 		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 		hiddenAction();
 		//	홈으로 보내주는 all.js 함수
@@ -48,7 +85,17 @@ logger.info("mypageHome.jsp 페이지 진입");
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
 		
-	});
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
+		
+		
+	}); //ready
 	
 	function profileModify(mnum){
 		alert("프로필 영역 클릭");
@@ -57,11 +104,11 @@ logger.info("mypageHome.jsp 페이지 진입");
 		location.href="mypagePWChk.ict?mnum=" + mnum;
 	}
 	
-	function levelup(mnum){
-		alert("등업 버튼 클릭");
-		alert("mnum : " + mnum);
-		location.href = "levelupSelectAll.ict?mnum=" + mnum;
-	}
+// 	function levelup(mnum){
+// 		alert("등업 버튼 클릭");
+// 		alert("mnum : " + mnum);
+// 		location.href = "levelupSelectAll.ict?mnum=" + mnum;
+// 	}
 	
 	function recipeSelect(rnum){
 		alert("레시피 글 클릭");
@@ -114,7 +161,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -237,6 +284,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 
 	<div id="container" style="text-align:center;">
 	<c:set var="mnum" value="${mList.get(0).getMnum()}" />
+	<input type="hidden" id="mnum" value="${mList.get(0).getMnum()}" />
 		<div id="profile_div" onclick="profileModify('${mnum}')" style="border:1px solid black; float:left;">
 			<c:forEach items="${mList}" var="mvo">
 				<span id="mnum" style="display:none">
@@ -247,7 +295,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 				${mvo.mnick}
 				</span>
 				<br />
-				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;">
+				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;" onerror="this.src='/oneYo/resource/img/grade0.png'" >
 				<br />
 				<c:choose>
 					<c:when test="${mvo.mgrade eq '0'}"> 
@@ -260,8 +308,13 @@ logger.info("mypageHome.jsp 페이지 진입");
 						전문가 등급
 						</span>
 					</c:when>
+					<c:when test="${mvo.mgrade eq '9'}"> 
+						<span id="mgrade" style="border:1px solid black;">
+						관리자
+					</span>
+					</c:when>
 				</c:choose>
-				<!-- 관리자 등급 추가하기!!!!!!! -->
+
 				<br />
 			</c:forEach>
 		</div>
@@ -313,7 +366,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 			</c:forEach>
 		</div>
 		<div>
-			<button type="button" onclick="levelup('${mnum}')">등업 목록</button>
+			<button type="button" id="levelupBtn">등업 목록</button>
 		</div>
 	</div>	
 

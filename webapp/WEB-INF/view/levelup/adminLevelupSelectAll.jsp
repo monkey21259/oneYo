@@ -10,14 +10,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0
 						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <title>Insert title here</title>
+
+<!-- jQuery -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
 <!-- adminWarningSelectAll.jsp 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupSelectAll.css">		
 
-<!-- jQuery -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
@@ -42,11 +44,21 @@
 		
 		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 		hiddenAction();
+		
 		//	홈으로 보내주는 all.js 함수
 		homeAction();
+		
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
 		
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
 	});
 </script>
 
@@ -82,7 +94,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -255,19 +267,14 @@
 	
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
-
-<div id="right">
-우측
-</div>
-
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
 	</div>
 </div>
 

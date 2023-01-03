@@ -195,7 +195,7 @@ public abstract class CodeUtils {
 		
 		logger.info("getMhpParts() 함수 진입");
 		String[] mhpParts = {"", "", ""};
-		if (mhp == null || mhp.equals("null")) {
+		if (mhp == null || mhp.equals("null") || mhp.equals("")) {
 			return mhpParts;
 		}
 		return mhp.split("-");

@@ -115,4 +115,27 @@ public class MypageController {
 		return msg;
 	}
 
+	
+	//등업목록 mgrade 
+	@GetMapping("mgradeChk")
+	@ResponseBody
+	public String mgradeChk(HttpServletRequest req, MemVO mvo) {
+		logger.info("mgradeChk 함수진입 >>> ");
+		
+		//세션
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+			
+		//세션에서 받은 mnum
+		mvo.setMnum(mnum);
+		logger.info("mnum >>>>>>>>>>>>>> : " + mvo.getMnum());
+		
+		List<MemVO> list = mypageService.selectMyProfile(mvo);
+		
+		//회원등급 담는 변수
+		String mgrade= list.get(0).getMgrade();
+		logger.info("mgrade >>>>>>>>>> : " + mgrade);
+		
+		return mgrade;
+	}
 }

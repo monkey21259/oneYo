@@ -21,16 +21,12 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-
-	
-	String mid = (String)request.getAttribute("mid");
-	String mnick = (String)request.getAttribute("mnick");
-
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
-
+	String mid = (String)oSession.getAttribute(request, "mid");
 	
 	logger.info("mid: " + mid);
+	logger.info("mnum: " + mnum);
 %>
 
 <c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
@@ -117,6 +113,15 @@
 				homeAction();
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
+				// 마이페이지로 보내주는 all.js 함수
+				mypageHomeAction();
+						
+				//회원가입 으로 보내주는 all.js 함수
+				joinAction();
+				
+				//로그인으로 보내주는 all.js 함수
+				loginAction();
+				
 				
 				// 배너 --------------------------------------
 				const s1 = new Slider(".banner");
@@ -211,7 +216,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -258,7 +263,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -272,7 +277,21 @@
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-				<p><%= mnick %> <span>님 환영합니다.</span></p>
+<%
+		String mSNSid = mid;  // M22...
+		if (mid != null && !(mid.equals(""))) {
+			if (mid.length() > 5) {
+				String checkSNS = mid.substring(0, 6);
+				if (checkSNS.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (checkSNS.equals("kakao_")) {
+					mSNSid = "kakao";
+				}
+			}
+		}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">

@@ -18,6 +18,9 @@
 	//세션부여
 	O_Session mSession = O_Session.getInstance();
 	String mnum = mSession.getSession(request);
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+	
+	
 	
 	TipVO tvo = null;
 	
@@ -84,6 +87,58 @@
 			}
 
 		});
+		
+		//경고 : 관리자
+		$(document).on("click", "#cautionBtn", function(){
+			
+			//mid
+			let mnum = $("#mnum").val();
+			console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
+			
+			//mnick
+			let mnick = $("#mnick").val();
+			console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+			
+			let result = confirm(mnick + '님을 경고 하시겠습니까?');
+			
+			if(result == true){
+				let url = "adminCaution.ict";
+				let reqType = "GET";
+				let dataParam = {
+						mnum :$("#mnum").val(),
+					};
+			
+			console.log("url : " + url);
+			console.log("reqType : " + reqType);
+			console.log("dataParam : " + dataParam);
+			
+			$.ajax({
+				url:url,
+				type:reqType,
+				data:dataParam,
+				success:whenSuccess,
+				error:whenError
+			}); //ajax
+			
+			}else{
+				alert("취소되었습니다");
+				location.href="#";
+			} //if else
+			
+			//성공했을때
+			function whenSuccess(resData){
+				if(resData == 'updateOK'){
+					alert("경고 처리 되었습니다.");
+					$('#cautionBtn').prop('disabled', true);
+				} 
+			}
+			
+			//실패했을때
+			function whenError(e){
+				console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+			} //whenError	
+		
+		});//cautionBtn버튼클릭
 		
 		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 		hiddenAction();
@@ -268,6 +323,7 @@
 			<input id="tnum" name="tnum" type="hidden" value="<%= tvo.getTnum() %>">
 			<input id="mnum" name="mnum" type="hidden" value="<%= tvo.getMnum() %>">
 			<input id="tsubject" name="tsubject" type="hidden" value="<%= tvo.getTsubject() %>">
+			<input id="mnick" name="mnick" type="hidden" value="<%=tvo.getMnick() %>">
 			<div id="content">
 				<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>"  style="width:200px; height:200px;">
 				<br>
@@ -294,7 +350,7 @@
 					<jsp:param name="likeyn" value="<%=likeyn %>"/>
 				</jsp:include>
 				<br>
-				
+				<input id="warningBtn" type="button" value="신고">
 				<%
  				if(mnum.equals(tvo.getMnum())){
 				
@@ -304,14 +360,17 @@
 				<input id="deleteBtn" type="button" value="삭제">
 				
 				<%
+ 				}else if(mnum.equals("M000000000000")){
+ 				%>
+					<button type="button" id="cautionBtn">경고</button>
+				<%
  				}
 				
 				%>
-				
-				<input id="warningBtn" type="button" value="신고">
 			</div>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 			<jsp:param name="cotnum" value="<%=tvo.getTnum() %>"/>
+			<jsp:param name="mnick" value="<%=mnick %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
