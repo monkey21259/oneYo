@@ -91,6 +91,7 @@ public class RecipeController {
 		String mnum = mSession.getSession(req);
 		
 		recipevo.setMnum(mnum);  // TODO TEMP -----------------------------
+		logger.info("rmnum : " + recipevo.getRnum());
 		logger.info("mnum >>>>>>>>>>>>>>>: " + mnum);
 		
 		recipevo.setWarning("0");
@@ -107,10 +108,10 @@ public class RecipeController {
 		
 		List<RecipeVO> recipeList = new ArrayList<RecipeVO>();
 		recipeList.add(recipevo);
-		
+		model.addAttribute("rnum", rnum);
 		model.addAttribute("recipeList", recipeList);
 		// TODO 추후 좋아요, 싫어요, 신고, 댓글 추가 필요
-		return "./recipe/recipeSelectContent";
+		return "./recipe/recipeInsert";
 	}
 	
 // S_ALL
@@ -152,7 +153,7 @@ public class RecipeController {
 		O_Session os = O_Session.getInstance();
 		
 		lvo.setMnum(os.getSession(req));
-		lvo.setLikethis(recipevo.getRnum());
+		lvo.setLikethis(req.getParameter("rnum"));
 		List<LikeVO> likeList = likeService.likeCheck(lvo);
 		if(likeList.size() == 1) {
 			model.addAttribute("likeList", likeList);
@@ -184,11 +185,15 @@ public class RecipeController {
 	
 // U
 	@PostMapping(value="recipeUpdate")
-	public String recipeUpdate(RecipeVO recipevo, Model model) {
+	public String recipeUpdate(HttpServletRequest req, RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeUpdate() 함수 진입");
 		logger.info(recipevo.toString());
 		
+		String rhour = req.getParameter("rhour");
+		String rminute = req.getParameter("rminute");
+		String rtime = CommonUtils.hourToMinutes(rhour, rminute);
+		recipevo.setRtime(rtime);
 		int nCnt = recipeService.recipeUpdate(recipevo);
 		logger.info("[Recipe Update] Count: " + nCnt);
 		if (nCnt < 1) {  // FAIL

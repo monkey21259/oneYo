@@ -45,20 +45,24 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>공지사항</title>
 		
-			<!-- 전체 css -->
+		<!-- jQuery -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<!-- jQuery 캘린더 -->
+		<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/datepicker-ko.js"></script>
+		<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
+		
+		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		
+		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- noticeSelectAll.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/notice/noticeSelectAll.css">		
 		<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
 		
-		<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-		<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/datepicker-ko.js"></script>
-		
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
-		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				//jQuery 충돌 방지(datepicker 때문)
@@ -145,6 +149,10 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				//	홈으로 보내주는 all.js 함수
+				homeAction();
+				//	메뉴바 클릭액션 all.js 함수
+				divClickAction();
 				
 			});//end of jQuery
 		</script>

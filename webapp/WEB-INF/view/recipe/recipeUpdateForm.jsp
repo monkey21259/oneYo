@@ -21,16 +21,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>recipeSelectContent.jsp</title>
-	<!-- 전체 css -->
-	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-	
-	<!-- recipeupdateForm.jsp 전용 -->
-	<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_updateForm.css">		
-		
+	<!-- jQuery -->
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 	<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 	
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- 전체 css -->
+	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+	<!-- recipeupdateForm.jsp 전용 -->
+	<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_updateForm.css">		
+		
 		<script type="text/javascript">
 			
 			console.log("[recipeSelectContent.jsp] JS");
@@ -96,9 +96,38 @@
 					}).submit();
 				});
 				
-
+				let selectjeryo = "<%=recipevo.getRjeryo()%>";
+				let valJeryo = selectjeryo.replaceAll("#", " ");
+				console.log("valJeryo : " + valJeryo);
+				$("#jeryocan").text(valJeryo + " ");
+				$("#data").val("<%=recipevo.getRjeryo()%>");
+				let i = "";
+				$("#jeryo").click(function(){
+					
+					
+					let jeryo = $("#jeryoText").val();
+					$("#jeryoText").val("");
+					$("#jeryocan").append(jeryo + " ");
+					let rjeryo = "#" + jeryo;
+					console.log("w :" + rjeryo);
+					i = $("#data").val();
+					i = i + rjeryo;
+					console.log("w :" + i);
+					
+					$("#data").val(i);
+					
+					let info = $("#data").val();
+					console.log("최종 : " + info);
+					
+				});
+				
+				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				//	홈으로 보내주는 all.js 함수
+				homeAction();
+				//	메뉴바 클릭액션 all.js 함수
+				divClickAction();
 			});
 		
 		</script>
@@ -305,12 +334,20 @@
 					</tr>
 <%  // 음식 재료 %>
 					<tr>
-						<td id="rjeryo">재료</td>
+					<td id="rjeryo">재료</td>
 						<td>
 							<!-- input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
-							<input type="text" id="rjeryo" name="rjeryo"
-								   value="<%= recipevo.getRjeryo() %>" />
-						</td>
+							<input type="hidden" id="data" name="rjeryo" value="">
+							<input type="text" id="jeryoText" name="rjeryoSelect" value="" placeholder="재료를 입력하세요." />
+							<input id="jeryo" type="button" value="재료등록"><br>
+							<p id="jeryocan"></p>
+						</td>			
+<!-- 						<td id="rjeryo">재료</td> -->
+<!-- 						<td> -->
+<!-- 							input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
+<!-- 							<input type="text" id="rjeryo" name="rjeryo" -->
+<%-- 								   value="<%= recipevo.getRjeryo() %>" /> --%>
+<!-- 						</td> -->
 					</tr>
 <%  // 조리 시간 %>
 					<tr>
@@ -348,15 +385,15 @@
 						<td>인분</td>
 						<td>
 							<select id="rperson" name="rperson">
-								<option value="01">1인분</option>
+								<option value="1인분">1인분</option>
 <%  // ---- 몇 인분(max=10)
 							String rPerson = null;
 							for (int i=2; i<11; i++) {
 								rPerson = "";
-								if (i < 10) { rPerson += "0"; }
+								
 								rPerson += i;
 %>
-								<option value=<%= rPerson %>><%= i %>인분</option>
+								<option value="<%= rPerson %>인분"><%= i %>인분</option>
 <%
 							}
 %>							</select>
@@ -379,7 +416,7 @@
 						<td>
 							<textarea id="rcontent" name="rcontent" cols="50" rows="5"><%= recipevo.getRcontent() %></textarea><br />
 <%  // 음식 사진 %>
-							<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" onerror="this.src='/oneYo/img/recipe/잔망루피.jpg'" />
+							<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" />
 						<!-- 사진 변경 시 Ajax(+ 태그 값 변경) >>> input type="file" 추가해서 로직 작성 필요 -->
 							<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 						</td>
