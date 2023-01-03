@@ -18,6 +18,9 @@
 	//세션부여
 	O_Session mSession = O_Session.getInstance();
 	String mnum = mSession.getSession(request);
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+	
+	
 	
 	TipVO tvo = null;
 	
@@ -367,6 +370,7 @@
 			</div>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 			<jsp:param name="cotnum" value="<%=tvo.getTnum() %>"/>
+			<jsp:param name="mnick" value="<%=mnick %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
