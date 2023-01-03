@@ -47,20 +47,21 @@ if (list != null && list.size() > 0) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	
+<title>profilePhotoUpdateForm.jsp</title>
+
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+	
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
 <!-- tipSelectAll.jsp 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/mypage/profilePhotoUpdateForm.css">	
 	
-<title>profilePhotoUpdateForm.jsp</title>
-
-	<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
-	<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-	
-	
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	alert("profilePhotoUpdateForm.jsp");
@@ -100,6 +101,10 @@ $(document).ready(function(){
 	});
 	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 	hiddenAction();
+	//	홈으로 보내주는 all.js 함수
+	homeAction();
+	//	메뉴바 클릭액션 all.js 함수
+	divClickAction();
 });
 </script>
 </head>

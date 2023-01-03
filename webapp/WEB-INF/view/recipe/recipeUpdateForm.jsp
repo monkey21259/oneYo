@@ -21,16 +21,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>recipeSelectContent.jsp</title>
-	<!-- 전체 css -->
-	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-	
-	<!-- recipeupdateForm.jsp 전용 -->
-	<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_updateForm.css">		
-		
+	<!-- jQuery -->
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 	<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 	
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- 전체 css -->
+	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+	<!-- recipeupdateForm.jsp 전용 -->
+	<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_updateForm.css">		
+		
 		<script type="text/javascript">
 			
 			console.log("[recipeSelectContent.jsp] JS");
@@ -96,9 +96,12 @@
 					}).submit();
 				});
 				
-
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				//	홈으로 보내주는 all.js 함수
+				homeAction();
+				//	메뉴바 클릭액션 all.js 함수
+				divClickAction();
 			});
 		
 		</script>
