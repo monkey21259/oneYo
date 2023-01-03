@@ -370,7 +370,7 @@
 			</div>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 			<jsp:param name="cotnum" value="<%=tvo.getTnum() %>"/>
-			<jsp:param name="mnick" value="<%=mnick %>"/>
+			<jsp:param name="clientMnick" value="<%=mnick %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>

@@ -25,6 +25,7 @@
 		O_Session mSession = O_Session.getInstance();
 		String mnum = mSession.getSession(request);
 		String mid = (String)mSession.getAttribute(request, "mid");
+		String mnick = (String)mSession.getAttribute(request, "mnick");
 		
 		logger.info("mnum >>> : " + mnum);
 		logger.info("mid: " + mid);
@@ -457,6 +458,7 @@
 			</form>
 			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+				<jsp:param name="clientMnick" value="<%=mnick %>"/>
 			</jsp:include>
 				<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
