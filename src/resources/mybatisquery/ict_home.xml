@@ -128,6 +128,7 @@
 		    B.RNUM 		AS		RNUM
 		   ,B.RSUBJECT 	AS		RSUBJECT
 		   ,B.RPHOTO 	AS		RPHOTO
+		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
 	FROM	(SELECT  
 					 MNUM
 					,MNICK
@@ -142,6 +143,7 @@
 		   		   ,RSUBJECT
 		   		   ,RPHOTO
 		   		   ,MNUM
+		   		   ,INSERTDATE
 		     FROM	"ORCLICT00"."ICT_RECIPE"
 		     WHERE	DELETEYN = 'Y'			
 		     AND	MNUM 	 = #{mnum}		  )		B

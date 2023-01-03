@@ -110,5 +110,4 @@ public abstract class ConstPack {
 	public static final String[] TIP_ARR = {"요리", "주방관리", "재료정보", "기타"};
 	public static final String[] TIP_IND_ARR = {"00", "01", "02", "99"};
 	
-	
 }//end of ConstPack abstract class

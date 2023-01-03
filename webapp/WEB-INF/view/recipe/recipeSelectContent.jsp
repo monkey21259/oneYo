@@ -25,6 +25,7 @@
 		O_Session mSession = O_Session.getInstance();
 		String mnum = mSession.getSession(request);
 		String mid = (String)mSession.getAttribute(request, "mid");
+		String mnick = (String)mSession.getAttribute(request, "mnick");
 		
 		logger.info("mnum >>> : " + mnum);
 		logger.info("mid: " + mid);
@@ -271,18 +272,18 @@
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-		String mSNSid = mid;
-		if (mid != null && !(mid.equals(""))) {
-			if (mid.length() > 5) {
-				mSNSid = mid.substring(0, 6);
-				if (mSNSid.equals("naver_")) {
-					mSNSid = "naver"; 
-				}
-				if (mSNSid.equals("kakao_")) {
-					mSNSid = "kakao";
+			String mSNSid = mid;  // M22...
+			if (mid != null && !(mid.equals(""))) {
+				if (mid.length() > 5) {
+					String checkSNS = mid.substring(0, 6);
+					if (checkSNS.equals("naver_")) {
+						mSNSid = "naver"; 
+					}
+					if (checkSNS.equals("kakao_")) {
+						mSNSid = "kakao";
+					}
 				}
 			}
-		}
 %>
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
@@ -457,6 +458,7 @@
 			</form>
 			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+				<jsp:param name="clientMnick" value="<%=mnick %>"/>
 			</jsp:include>
 				<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>

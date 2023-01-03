@@ -205,6 +205,41 @@ SELECT
 	WHERE  A.MNUM = B.MNUM
 
 </select>
+
+<!-- recipeCategorySelectAll 23-01-03 이성일 추가 -->
+<select id="recipeCategorySelectAll" parameterType="recipevo" resultType="recipevo">
+
+	SELECT *
+	FROM
+		(
+			SELECT
+			     A.RNUM         RNUM
+			    ,A.RSUBJECT     RSUBJECT
+			    ,A.RCONTENT     RCONTENT
+			    ,A.RPHOTO       RPHOTO
+			    ,A.RJERYO       RJERYO
+			    ,A.RTIME        RTIME
+			    ,A.RPERSON      RPERSON
+			    ,A.RDIFF        RDIFF
+			    ,A.RCATEGORY    RCATEGORY
+			    ,A.WARNING      WARNING
+			    ,A.MNUM         MNUM
+			    ,A.RHIT         RHIT
+			    ,A.DELETEYN     DELETEYN
+			    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+			    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
+			    ,CEIL(ROW_NUMBER() OVER(ORDER BY A.RNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
+				,COUNT(A.RNUM) OVER()					AS totalCount
+			FROM
+			    ICT_RECIPE A
+			WHERE A.DELETEYN = 'Y'
+			AND	  A.RCATEGORY = #{rcategory}
+			ORDER BY 1
+		 )
+	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
+
+</select>
+
 <insert id="recipeWarningInsert" parameterType="warningvo">
 
 	INSERT INTO ICT_WARNING(WNUM, 

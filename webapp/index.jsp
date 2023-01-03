@@ -62,6 +62,10 @@
 				<a href="commentForm.ict">댓글 테스트</a>
 				<hr>
 				<a href="recipeSearch.ict?rjeryo=양배추&rjeryo=참치&rjeryo=양파">레시피 게시판 재료 검색 테스트</a>
+				<hr>
+				<a href="chefIntroduce.ict?mnum=M202212200002">쉐프 소개 테스트(현재 M202212200002)</a>
+				<hr>
+				<a href="recipeCategorySelectAll.ict?rcategory=01">레시피 분류 조회 테스트(현재 카테고리 01)</a>
 			</div>
 		</div>
 	</body>

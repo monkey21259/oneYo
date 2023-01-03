@@ -17,4 +17,7 @@ public interface RecipeService {
 	
 	//신고
 	public int recipeWarningInsert(WarningVO wvo);
+	
+	// 레시피 카테고리별 SelectAll
+	public List<RecipeVO> recipeCategorySelectAll(RecipeVO recipevo);
 }
