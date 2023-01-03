@@ -85,15 +85,16 @@
 						error:whenError		
 					}); //ajax
 					
-					}else{
-						alert("취소되었습니다");
-						location.href="#";
-					} //if else
+				}else{
+					alert("취소되었습니다");
+					location.href="#";
+				} //if else
 			
 		//성공했을때
 			function whenSuccess(resData){
 				if(resData == 'updateOK'){
 					alert("경고 처리 되었습니다.");
+					$('#warningBtn').prop('disabled', true);
 				} 
 			}
 			
