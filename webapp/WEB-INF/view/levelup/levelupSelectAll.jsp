@@ -2,10 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ page import="main.ict.levelup.vo.LevelupVO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="main.ict.common.O_Session" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
+	O_Session oSession = O_Session.getInstance();
+	String mnum = oSession.getSession(request);
+	String mid = (String)oSession.getAttribute(request, "mid");
+	
 	//m.addAttribute("list", list);
 	Object obj = request.getAttribute("list");
 	
@@ -150,7 +155,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -158,20 +163,34 @@
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+<%
+			String mSNSid = mid;  // M22...
+			if (mid != null && !(mid.equals(""))) {
+				if (mid.length() > 5) {
+					String checkSNS = mid.substring(0, 6);
+					if (checkSNS.equals("naver_")) {
+						mSNSid = "naver"; 
+					}
+					if (checkSNS.equals("kakao_")) {
+						mSNSid = "kakao";
+					}
+				}
+			}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
 <% 		
-// 		}
+		}
 %>
 	 	</div>
 	</div>
