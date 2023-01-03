@@ -56,5 +56,11 @@ public class RecipeDAOImpl implements RecipeDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("recipeWarningInsert", wvo);
 	}
+
+	@Override
+	public List<RecipeVO> recipeCategorySelectAll(RecipeVO recipevo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("recipeCategorySelectAll", recipevo);
+	}
 	
 }

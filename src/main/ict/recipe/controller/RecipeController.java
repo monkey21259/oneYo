@@ -145,6 +145,33 @@ public class RecipeController {
 		// TODO 페이징, 조건 검색(?)
 		return "./recipe/recipeSelectAll";
 	}
+	
+//	S_ALL 분야 검색
+	@GetMapping(value="recipeCategorySelectAll")
+	public String recipeCategorySelectAll(RecipeVO recipevo, Model model) {
+		
+		logger.info("recipeCategorySelectAll() 함수 진입");
+		
+		recipevo.setPageSize(String.valueOf(ConstPack.RECIPE_PAGE_SIZE));
+		recipevo.setGroupSize(String.valueOf(ConstPack.RECIPE_GROUP_SIZE));
+		if(recipevo.getCurPage() == null) {
+			recipevo.setCurPage(String.valueOf(ConstPack.RECIPE_CUR_PAGE));
+		}//end of if
+		
+		logger.info(recipevo.getRcategory());
+		
+		List<RecipeVO> recipeList = recipeService.recipeCategorySelectAll(recipevo);
+		if (recipeList == null || recipeList.size() < 1) {
+			logger.info("[FAIL] Recipe SelectAll");
+			return "#";
+		}
+		logger.info(recipeList.toString());
+		
+		model.addAttribute("pagingVO", recipevo);
+		model.addAttribute("recipeList", recipeList);
+		
+		return "./recipe/recipeSelectAll";
+	}
 
 // S
 	@GetMapping(value="recipeSelectContent")
