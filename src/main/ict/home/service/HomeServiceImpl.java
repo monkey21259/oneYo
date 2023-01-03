@@ -96,4 +96,18 @@ public class HomeServiceImpl implements HomeService {
 		return homeDAO.homeRestSelectCommunity(cvo);
 	}
 
+	@Override
+	public List<RecipeVO> chefRecipeSelectAll(RecipeVO rvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefRecipeSelectAll() 함수 진입");
+		return homeDAO.chefRecipeSelectAll(rvo);
+	}
+
+	@Override
+	public List<RecipeVO> chefTipSelectAll(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefTipSelectAll() 함수 진입");
+		return homeDAO.chefTipSelectAll(tvo);
+	}
+
 }

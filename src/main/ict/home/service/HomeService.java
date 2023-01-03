@@ -19,9 +19,13 @@ public interface HomeService {
 	List<NoticeVO> getNoticeList();
 	List<MemVO> getMemList();
 	List<HomeVO> getCntList();
+	
 	List<MemVO> homeRestSelectMem(MemVO mvo);
 	List<RecipeVO> homeRestSelectRecipe(RecipeVO rvo);
 	List<TipVO> homeRestSelectTip(TipVO tvo);
 	List<CommunityVO> homeRestSelectCommunity(CommunityVO cvo);
-
+	
+	List<RecipeVO> chefRecipeSelectAll(RecipeVO rvo);
+	List<RecipeVO> chefTipSelectAll(TipVO tvo);
+	
 }
