@@ -228,7 +228,7 @@
 		<li class="item">
 			<div class="mypageHome">
 			<span>
-			my<br>Page
+			my<br>Page 
 			</span>
 			</div>
 		</li>
