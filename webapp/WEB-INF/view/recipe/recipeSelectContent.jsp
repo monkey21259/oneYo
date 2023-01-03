@@ -142,12 +142,8 @@
 				
 				});//cautionBtn버튼클릭
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
+				//	all.js 함수 전부 불러오기
+				allJavaScript();
 			}); 
 		
 		</script>
@@ -162,7 +158,7 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
 		<!-- recipeSelectContent.jsp 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectContent.css">
+		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipeSelectContent.css">
 		
 		<!-- 댓글 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
@@ -185,44 +181,56 @@
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -344,13 +352,182 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			<div class="recipeSectionHeader">
-				<span class="t">레시피(Recipe) 글보기</span>
-			</div>
+<!-- 			<div class="recipeSectionHeader"> -->
+<!-- 				<span class="t">레시피(Recipe) 글보기</span> -->
+<!-- 			</div> -->
 			<form id="recipeSelectForm">
 				<input id="tnum" name="tnum" type="hidden" value="<%= recipevo.getRnum() %>">
 				<input id="tsubject" name="tsubject" type="hidden" value="<%= recipevo.getRsubject() %>">
-				<table class="recipeTable">
+				<div id="viewTable">
+				<table id="selectContent">
+					<tr>
+						<td rowspan="4">
+							<div class="imgSelect">
+								<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg"  />
+								<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
+							</div>
+						</td>
+						<td class="selectTd cateTd">
+							<span>레시피</span>
+						</td>
+						<td rowspan="3">
+							<div class="imgWriter">
+								작성자 프로필 이미지
+							</div>
+						</td>
+					</tr>
+					<tr> <%  // 글 제목 %>
+						<td class="selectTd subjectTd">
+							<p><%= recipevo.getRsubject() %></p>
+<!-- 							<br><span style="text-align:right;">작성자 닉네임이 넣는 곳</span> -->
+						</td>
+					</tr>
+					<!-- 작성자 -->
+					<tr>
+						<td class="selectTd">
+							<div class="writerDiv">
+								닉네임 넣어주세용
+							</div>
+						</td>
+					</tr>
+					<tr> <%  // 요리 분야 %>
+						<td class="selectTd" colspan="2">
+						<!-- 요리분야 -->
+							<div class="oneTd">
+								<table>
+									<tr>
+										<td class="nameTd">
+										요리분야
+										</td>
+									</tr>
+									<tr>
+										<td class="valTd">
+											<%= CodeUtils.getRcategory(recipevo.getRcategory()) %>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- 조리시간 -->
+							<div class="oneTd">
+								<table>
+									<tr>
+										<td class="nameTd">
+										조리시간
+										</td>
+									</tr>
+									<tr>
+										<td class="valTd">
+											<%= recipevo.getRtime() %>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- 인분 -->
+							<div class="oneTd">
+								<table>
+									<tr>
+										<td class="nameTd">
+										식사인원
+										</td>
+									</tr>
+									<tr>
+										<td class="valTd">
+											<%= CodeUtils.getRperson(recipevo.getRperson()) %>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!-- 난이도 -->
+							<div class="oneTd">
+								<table>
+									<tr>
+										<td class="nameTd">
+										난이도
+										</td>
+									</tr>
+									<tr>
+										<td class="valTd">
+											<%= CodeUtils.getRdiff(recipevo.getRdiff()) %>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="twoTd">
+								<table>
+									<tr>
+										<td class="nameTd">
+											재료
+										</td>
+									</tr>
+									<tr>
+										<td class="valTd">
+											<%= recipevo.getRjeryo() %>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<%= recipevo.getRcontent() %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<%
+								Object likeObj = request.getAttribute("likeList");
+								String likeyn = "Y";
+								if(likeObj == null) likeyn = "N";
+							%>
+							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+								<jsp:param name="mnum" value="<%=mnum %>"/>
+								<jsp:param name="likethis" value="<%=recipevo.getRnum() %>"/>
+								<jsp:param name="likeyn" value="<%=likeyn %>"/>
+							</jsp:include>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" style="text-align:right;">
+							<input type="button" id="warningBtn" value="신고">
+							<% 
+							if(mnum.equals(recipevo.getMnum())){
+							%>
+							
+							<a class="btn" id="recipeUpdateFormBtn">수정</a>
+							<a class="btn" id="recipeDeleteBtn">삭제</a>
+							
+							<%
+							}else if(mnum.equals("M000000000000")){
+							%>
+								<button type="button" id="cautionBtn">경고</button>
+							<%
+							}
+							 %>
+						</td>
+					</tr>
+				</table>
+				</div>
+				
+				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
+				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
+				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
+	<!-- 데이터 사용여부 검토 필요 -->
+				<input type="hidden" id="rhit" name="rhit" value="<%= recipevo.getRhit() %>" />	<!-- 조회수 -->
+				<!-- <input type="hidden" id="warning" name="warning" value="" /> -->	<!-- 경고 -->
+				<!-- deleteyn 삭제 -->
+				<!-- <input type="hidden" id="insertdate" name="insertdate" value="<%= recipevo.getInsertdate() %>" /> -->	<!-- 일간/주간/월간 -->
+				<input type="hidden" id="updatedate" name="updatedate" value="<%= recipevo.getUpdatedate() %>" />	<!-- 작성(수정) 시간 -->
+				
+				</form>
+			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+				<jsp:param name="clientMnick" value="<%=mnick %>"/>
+			</jsp:include>
+				
+	<!-- -------------------------------페이지 전용 center 위가 편집 후 아래가 편집 전 ------------------------------- -->			
+				
+				<%-- <table class="recipeTable">
 					<tr>
 						<td colspan="2" style="text-align:center;">
 							<span>레시피 글쓰기</span>
@@ -412,9 +589,9 @@
 					<tr>
 						<td colspan="2">
 							<%
-								Object likeObj = request.getAttribute("likeList");
-								String likeyn = "Y";
-								if(likeObj == null) likeyn = "N";
+// 								Object likeObj = request.getAttribute("likeList");
+// 								String likeyn = "Y";
+// 								if(likeObj == null) likeyn = "N";
 							%>
 							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
 								<jsp:param name="mnum" value="<%=mnum %>"/>
@@ -444,22 +621,11 @@
 						</td>
 					</tr>
 				</table>
-				!!! <%= recipevo.getLikecnt() %> !!!
+				!!! <%= recipevo.getLikecnt() %> !!! --%>
+				<!-- -------------------------------페이지 전용 center 위가 편집 전 아래가 편집 후 ------------------------------- -->
 <% // rnum, rhit, mnum, warning, deleteyn, insertdate, updatedate %>
-				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
-				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
-				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
-	<!-- 데이터 사용여부 검토 필요 -->
-				<input type="hidden" id="rhit" name="rhit" value="<%= recipevo.getRhit() %>" />	<!-- 조회수 -->
-				<!-- <input type="hidden" id="warning" name="warning" value="" /> -->	<!-- 경고 -->
-				<!-- deleteyn 삭제 -->
-				<!-- <input type="hidden" id="insertdate" name="insertdate" value="<%= recipevo.getInsertdate() %>" /> -->	<!-- 일간/주간/월간 -->
-				<input type="hidden" id="updatedate" name="updatedate" value="<%= recipevo.getUpdatedate() %>" />	<!-- 작성(수정) 시간 -->
-			</form>
-			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
-				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
-				<jsp:param name="clientMnick" value="<%=mnick %>"/>
-			</jsp:include>
+				
+			
 				<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
@@ -467,7 +633,7 @@
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
 		<span>팀 소개: ~~~</span>
-	</div>
+	</div> 
 	<div>
 		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
 		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
