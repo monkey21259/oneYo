@@ -36,6 +36,12 @@ jsp:param name="likeyn" value="DB에서 조회된 회원의 좋아요 여부 / Y
 					let urlVal = "likeInsert.ict";
 					let mnumVal = $('#mnum').val();
 					let likethisVal = $('#likethis').val();
+					alert(mnumVal);
+					
+					if(mnumVal == null || mnumVal == 'null' || typeof mnumVal == 'undefined' || mnumVal == ''){
+						alert('로그인이 필요한 기능입니다.');
+						return;
+					}//end of if
 					
 					$.ajax({
 						url: urlVal,
