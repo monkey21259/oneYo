@@ -189,34 +189,42 @@
 
 /* 쉐프 소개 */
 .chefInfo {
-	width: 90%;
-	height: 130px;
+	width: 1190px;
+	height: 200px;
+	padding-top: 15px;
+	border: 1px solid #AAA;
 	margin: 15px auto 0px auto;
-	border: 1px solid blue;
+	box-shadow: 3px 5px 8px #444;
 }
 
 .chefTop {
-	margin-top: 5px;
+	margin: 8px 0px;
 	width: 100%;
 	height: 30px;
+}
+
+.chefTitle {
+	padding: 8px;
 }
 
 .chefBody {
 	margin-left: auto;
 	margin-right: auto;
-	width: 98%;
-	height: 60px;
+	width: 1002px;
+	height: 140px;
 	display: flex; /* flex 배치 */
 	align-items: center; /* 수직 중앙 배치 */
 	justify-content: center; /* 수평 중앙 배치 */
+	overflow-x: hidden;
 }
 
 .chefIcon {
 	float: left;
-	width: 67px;
-	height: 58px;
+	width: 100px;
+	padding: 0px;
+	height: 130px;
+	margin: 0px;
 	border-radius: 99%;
-	border: 1px solid cyan;
 }
 
 @media ( min-width: 2500px ) {
@@ -225,16 +233,36 @@
 	}
 }
 
+.chefImg {
+	float: left;
+	width: 100px;
+	padding: 0px;
+	height: 100px;
+	margin: 0px;
+	border-radius: 99%;
+}
+
+.chefName {
+	position: relative;
+	top: 8px;
+	width: 100px;
+	text-align: center;
+	overflow-x: hidden;
+}
+
+
 /* 레시피 분류 */
 .recipeInfo {
-	width: 90%;
-	height: 130px;
+	width: 1190px;
+	height: 170px;
+	padding-top: 15px;
+	border: 1px solid #AAA;
 	margin: 15px auto 0px auto;
-	border: 1px solid blue;
+	box-shadow: 3px 5px 8px #444;
 }
 
 .recipeTop {
-	margin-top: 5px;
+	margin: 8px 0px;
 	width: 100%;
 	height: 30px;
 }
@@ -247,6 +275,10 @@
 	display: flex; /* flex 배치 */
 	align-items: center; /* 수직 중앙 배치 */
 	justify-content: center; /* 수평 중앙 배치 */
+}
+
+.recipeTitle {
+	padding: 8px;
 }
 
 .recipeIcon {

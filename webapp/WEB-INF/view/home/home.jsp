@@ -350,10 +350,7 @@
 
 	<div id="center">
 	<!-- 
-	1. (후순위) 첫째 라인: 배너
-	3. 셋째 라인: 쉐프소개 >> 각 쉐프의 프로필 사진이 노출되어 있고, 클릭 시 쉐프가 작성한 글을 확인할 수 있는 페이지로 이동함.
 	4. 넷째 라인: 레시피 분류 >> 한식,중식,양식,일식,디저트, 기타- 00,01,02,03,04,99(기타)
-	5. 다섯째 라인: footer >> 사이트 개발자 및 팀소개 / 회원가입 수, 레시피 수, 전문가 팁 수, 커뮤니티 수 표시
 	 -->
 	 	<!-- form & input(hidden) -->
 	 	<div id="slider" class="banner slider">  <!-- inner-list -->
@@ -459,18 +456,24 @@
 		 </div>
 		 <div class="chefInfo">
 		 	<div class="chefTop">
-		 		<span style="position:relative;left:5%;">쉐프 소개</span>
-		 		<span style="position:relative;left:75%;">더 보기</span>
+		 		<span class="chefTitle" style="position:relative;left:5%;font-size:25px;">
+		 			<span style="color:#93A603;">쉐프</span> 소개
+		 		</span>
+		 		<span class="chefTitle" style="position:relative;left:75%;font-size:25px;">
+		 			더 보기
+		 		</span>
 		 	</div>
 		 	<%-- 2023-01-02 이성일 쉐프소개 임시  --%>
 		 	<div class="chefBody">
-			 	<c:forEach items="${ MemList }" var="mvo" end="10">
+			 	<c:forEach items="${ MemList }" var="mvo">
 			 		<c:if test="${ mvo !=null }" >
-			 			<a onclick="chefIntroduce('${ mvo.mnum }')">
+			 			<a onclick="chefIntroduce('${ mvo.mnum }')" style="height:120px;">
 				 			<div class="chefIcon">
-				 				<c:if test="${ mvo.mprofile !=null }">
-					 				<img class="chefIcon" src="/oneYo/img/mem/${ mvo.mprofile }">
+				 				<c:if test="${ mvo.mprofile != null }">
+					 				<img class="chefImg" style="box-shadow: 1px 1px 3px #AAA;"
+					 					 src="/oneYo/img/mem/${ mvo.mprofile }">
 				 				</c:if>
+				 				<div class="chefName">${ mvo.mnick }</div>
 				 			</div>
 			 			</a>
 			 		</c:if>
@@ -479,8 +482,12 @@
 		 </div>
 		 <div class="recipeInfo">
 			<div class="recipeTop">
-		 		<span style="position:relative;left:5%;">레시피 분류</span>
-		 		<span style="position:relative;left:73%;">더 보기</span>
+		 		<span class="recipeTitle" style="position:relative;left:5%;font-size:25px;">
+		 			<span style="color:#93A603;">레시피</span> 분류
+		 		</span>
+		 		<span class="recipeTitle" style="position:relative;left:73%;font-size:25px;">
+		 			더 보기
+		 		</span>
 			</div>
 			<div class="recipeBody">
 		 	<%
@@ -490,8 +497,8 @@
 		 	<%	
 		 		}
 		 	%>
-		 </div>
-	</div>
+		 	</div>
+		</div>
 </div>
 
 <div id="footer">
