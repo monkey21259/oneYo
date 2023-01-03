@@ -140,10 +140,21 @@
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
+				
 				//	홈으로 보내주는 all.js 함수
 				homeAction();
+				
 				//	메뉴바 클릭액션 all.js 함수
 				divClickAction();
+				
+				// 마이페이지로 보내주는 all.js 함수
+				mypageHomeAction();
+						
+				//회원가입 으로 보내주는 all.js 함수
+				joinAction();
+				
+				//로그인으로 보내주는 all.js 함수
+				loginAction();
 				
  			}); //ready
 		
@@ -152,21 +163,47 @@
 	<body>
 	
 		<form id="communitySelectContent" name="communitySelectContent">
-		
-		<div id="sideBar">
-	<div id="warningForm">
-	신고
-	</div>
-	
-	<div class="searchBarBtn">
-	검색
-	</div>
-	
-	<a href="javascript:window.scrollTo(0,0);">
-	<div id="go_top">
-	TOP▲
-	</div>
-	</a>
+<div id="realAll">
+
+<div id="backMenu"></div>
+
+<div id="sideBar">
+	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<ul>
+		<li class="item">
+			<div class="homeLink">
+			홈으로
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			검색
+			</div>
+		</li>
+		<li class="item">
+			<div id="warningForm">
+			신고
+			</div>
+		</li>
+		<li class="item">
+			<div class="warningForm">
+			신고<br>팝업
+			</div>
+		</li>
+		<li class="item">
+			<div class="mypageHome">
+			my<br>Page
+			</div>
+		</li>
+		<li class="item">
+			<a href="javascript:window.scrollTo(0,0);">
+			<div id="go_top">
+			TOP▲
+			</div>
+			</a>
+		</li>
+	</ul>
 </div>
 
 <div id="searchBar" class="hidden_X">
@@ -179,22 +216,53 @@
 	<input type="button" id="searchTextBtn" value="검색">
 </div>
 
+<div id="singo" class="hidden_X">
+	<div class="warningForm">
+		X
+	</div>
+	신고 인클루드 이쪽으로
+</div>
+
+<div id="shadow" class="hidden_X"></div>
+
 <div id="all_div">
 
 <div id="header">
 	<div id="logoLeft" class="logoSide">
-	로고 옆공간 좌측
+<!-- 	로고 옆공간 좌측 -->
 	</div>
-	<div id="logoCenter">
-		<a href="home.ict">
-			<div id="logo">
-			<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
-			<!-- 379 X 186 -->
-			</div>
-		</a>
+	<div id="logo" class="homeLink">
+		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+		<!-- 379 X 186 -->
 	</div>
 	<div id="logoRight" class="logoSide">
-	로고 옆공간 우측
+<!-- 	로고 옆공간 우측 -->
+	 	<div id="loginDiv">
+<%
+// 		if (mnick == null || mnick.equals("")) {
+%>
+			<div class="loginBtnDiv">
+				<span class="Choonsik" id="newMemBtn">회원가입</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="loginBtn">로그인</span>
+	 		</div>
+<%
+// 		} else {
+%>
+			<div class="loginBtnDiv">
+				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
+<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+	 		</div>
+	 		<p></p>
+	 		<form id="logoutForm">
+<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 		</form>
+<% 		
+// 		}
+%>
+	 	</div>
 	</div>
 	
 	<div class="nav">
@@ -240,29 +308,22 @@
 		</nav>
 	</div>
 	
-	<hr>
 </div>
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-		
-	<h3>게시글 보기</h3>
-	<hr>
 			<input type="hidden" id="mnum" name="mnum" value="<%=cvo.getMnum() %>">
 			<input type="hidden" id="csubject" name="csubject" value="<%=cvo.getCsubject() %>">
 			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
 			<table>
 				<div>
 					<tr>
-						<td>글제목</td>
+						<td>제목</td>
 						<td colspan="2"><%=cvo.getCsubject() %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2">
-							<%= cvo.getMnick()%>
-							<input id="mnick" name="mnick" value="<%=cvo.getMnick() %>">
-						</td>
+						<td colspan="2"><%= cvo.getMnick()%></td>
 					</tr>
 					<tr>
 						<td>작성시간</td>
@@ -281,16 +342,17 @@
 					</tr>
 					
 					<tr>
-						<td colspan="2">글내용</td>
-					</tr>	
+						<td colspan="2">내용</td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= cvo.getCcontent() %></td>
+					</tr>
 					<tr>
 						<td colspan="2">
 							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;">
 							<input type="hidden" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>"></td>
 					</tr>
-					<tr>
-						<td colspan="2"><%= cvo.getCcontent() %></td>
-					</tr>
+					
 					<tr>
 						<td colspan="2">
 							<%
