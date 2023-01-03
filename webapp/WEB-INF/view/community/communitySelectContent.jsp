@@ -86,6 +86,58 @@
 						}).submit();
 				}); //신고
 				
+				//경고 : 관리자
+				$(document).on("click", "#warningBtn", function(){
+					
+					//mid
+					let mnum = $("#mnum").val();
+					console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
+					
+					//mnick
+					let mnick = $("#mnick").val();
+					console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+					
+					let result = confirm(mnick + '님을 경고 하시겠습니까?');
+					
+					if(result == true){
+						let url = "adminCaution.ict";
+						let reqType = "GET";
+						let dataParam = {
+								mnum :$("#mnum").val(),
+							};
+					
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+					
+					$.ajax({
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError
+					}); //ajax
+					
+					}else{
+						alert("취소되었습니다");
+						location.href="#";
+					} //if else
+					
+					//성공했을때
+					function whenSuccess(resData){
+						if(resData == 'updateOK'){
+							alert("경고 처리 되었습니다.");
+							$('#warningBtn').prop('disabled', true);
+						} 
+					}
+					
+					//실패했을때
+					function whenError(e){
+						console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+					} //whenError	
+				
+				});//warningBtn버튼클릭
+				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 				//	홈으로 보내주는 all.js 함수
@@ -207,7 +259,10 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%= cvo.getMnick()%></td>
+						<td colspan="2">
+							<%= cvo.getMnick()%>
+							<input id="mnick" name="mnick" value="<%=cvo.getMnick() %>">
+						</td>
 					</tr>
 					<tr>
 						<td>작성시간</td>
@@ -252,6 +307,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
+							<button type="button" id="warning">신고</button>
 						<%
 						if(mnum.equals(cvo.getMnum())){ //관리자 추가하기
 							logger.info("mnum >>> : " + mnum);
@@ -261,9 +317,12 @@
 							<button type="button" id="UpdateBtn">수정</button>
 							<button type="button" id="DeleteBtn">삭제</button>
 						<%
+						}else if(mnum.equals("M000000000000")){
+						%>
+							<button type="button" id="warningBtn">경고</button>
+						<%
 						}
 						%>
-							<button type="button" id="warning">신고</button>
 						</td>
 					</tr>
 				</div>
