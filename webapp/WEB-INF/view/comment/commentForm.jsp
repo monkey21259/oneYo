@@ -7,7 +7,6 @@ jsp:param name="cotnum" value="각 게시글 번호"
 위 태그 꼭 작성해주세요.
 **************************************
 세션 적용 후
-jsp:param name="clientMnum" value="세션에 담긴 mnum"
 jsp:param name="clientMnick" value="세션에 담긴 mnick"
 위 태그 작성해주세요.
 -->
@@ -15,15 +14,7 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 	request.setCharacterEncoding("UTF-8");
 	String cotnum = null;
 	cotnum = request.getParameter("cotnum");
-	//clientMnick = request.getParameter("clientMnick");
-	//clientMnum = request.getParameter("clientMnum");
-	
-	//각 게시판 인크루드 전 임시로 사용하는 테스트 글번호
-	//cotnum = "N202212230013";
-	
-	//댓글을 작성하려는 고객의 닉네임 & 회원번호 -> 세션 적용 후 값 변경할 것!
-	String clientMnick = "댓글테스터";
-	String clientMnum = "M202212260012";
+	String clientMnick = request.getParameter("clientMnick");
 %>
 <!DOCTYPE html>
 <html>

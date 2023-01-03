@@ -26,6 +26,7 @@
 	String mid = (String)oSession.getAttribute(request, "mid");
 	
 	logger.info("mid: " + mid);
+	logger.info("mnum: " + mnum);
 %>
 
 <c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
@@ -292,14 +293,14 @@
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-		String mSNSid = mid;
+		String mSNSid = mid;  // M22...
 		if (mid != null && !(mid.equals(""))) {
 			if (mid.length() > 5) {
-				mSNSid = mid.substring(0, 6);
-				if (mSNSid.equals("naver_")) {
+				String checkSNS = mid.substring(0, 6);
+				if (checkSNS.equals("naver_")) {
 					mSNSid = "naver"; 
 				}
-				if (mSNSid.equals("kakao_")) {
+				if (checkSNS.equals("kakao_")) {
 					mSNSid = "kakao";
 				}
 			}

@@ -331,6 +331,7 @@ public class RecipeController {
 		String mnum = mSession.getSession(req);
 		recipevo.setMnum(mnum);
 		m.addAttribute("rvo", recipevo);
+		logger.info(recipevo.toString());
 		
 		return "recipe/recipeWarningForm";
 	}

@@ -320,7 +320,7 @@ public class LoginController {
 					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동 - 카카오");
 					// 세션 생성 및 부여하기
 					O_Session mSession = O_Session.getInstance();
-					mSession.setSession(req, mvo.getMnum());
+					mSession.setSession(req, memChkList.get(0).getMnum());
 					mSession.addAttribute(req, "mid", mvo.getMid());
 					mSession.addAttribute(req, "access_token", access_token);
 					
@@ -355,11 +355,13 @@ public class LoginController {
 			
 			String mnum = loginList.get(0).getMnum();
 			String mid = loginList.get(0).getMid();
+			String mnick = loginList.get(0).getMnick();
+			
 			// 세션 생성 및 부여하기
 			O_Session mSession = O_Session.getInstance();
 			mSession.setSession(req, mnum);
 			mSession.addAttribute(req, "mid", mid);
-			
+			mSession.addAttribute(req, "mnick", mnick);
 			return "home/gotohome";
 		}else {
 			String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
