@@ -47,7 +47,6 @@
 				let i = "";
 				$("#jeryo").click(function(){
 					
-					
 					let jeryo = $("#jeryoText").val();
 					$("#jeryoText").val("");
 					$("#jeryocan").append(jeryo + " ");

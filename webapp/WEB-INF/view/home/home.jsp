@@ -270,12 +270,14 @@
 <%
 		String mSNSid = mid;
 		if (mid != null && !(mid.equals(""))) {
-			mSNSid = mid.substring(0, 6);
-			if (mSNSid.equals("naver_")) {
-				mSNSid = "naver"; 
-			}
-			if (mSNSid.equals("kakao_")) {
-				mSNSid = "kakao";
+			if (mid.length() > 5) {
+				mSNSid = mid.substring(0, 6);
+				if (mSNSid.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (mSNSid.equals("kakao_")) {
+					mSNSid = "kakao";
+				}
 			}
 		}
 %>
