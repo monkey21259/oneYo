@@ -24,6 +24,7 @@ jsp:param name="likeyn" value="DB에서 조회된 회원의 좋아요 여부 / Y
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
