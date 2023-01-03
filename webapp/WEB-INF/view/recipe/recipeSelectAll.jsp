@@ -273,7 +273,35 @@
 			</div>
 			<div class="recipeCategory">
 				<!-- (조건 검색) 카테고리 넣는 공간 -->
-				카테고리 넣는 공간
+				<div>
+					<a href="recipeCategorySelectAll.ict?rcategory=00">
+						<img src="/oneYo/img/recipe/rcategory/recipekorea.png" style="width:300px; height:120px; float:left;">
+					</a>
+				</div>
+					<a href="recipeCategorySelectAll.ict?rcategory=01">
+						<img src="/oneYo/img/recipe/rcategory/recipechina.png" style="width:300px; height:120px; float:left;">
+					</a>
+				<div>
+					<a href="recipeCategorySelectAll.ict?rcategory=02">
+						<img src="/oneYo/img/recipe/rcategory/recipeyang.png" style="width:300px; height:120px; float:left;">
+					</a>
+				</div>
+				
+				<div>
+					<a href="recipeCategorySelectAll.ict?rcategory=03">
+						<img src="/oneYo/img/recipe/rcategory/recipejapan.png" style="width:300px; height:120px; float:left;">
+					</a>
+				</div>
+				<div>
+					<a href="recipeCategorySelectAll.ict?rcategory=04">
+						<img src="/oneYo/img/recipe/rcategory/recipedesert.png" style="width:300px; height:120px; float:left;">
+					</a>
+				</div>
+				<div>
+					<a href="recipeCategorySelectAll.ict?rcategory=99">
+						<img src="/oneYo/img/recipe/rcategory/recipeelse.png" style="width:300px; height:120px; float:left;">
+					</a>
+				</div>
 			</div>
 			<div class="recipeSearchBtnDiv">
 				<!-- 카테고리 조건 검색 -->
