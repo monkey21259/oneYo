@@ -102,3 +102,37 @@ function loginAction(){
 		location.href="loginForm.ict";
 	});
 }
+
+//	사이드바 조작
+function sidebarLabel() {
+	$(document).on('click', '#sideLabel',function(){
+		
+		if($('#sideMenu').prop('checked')) {
+			$('#sideLabel').html('&lt;&lt;&nbsp;&nbsp;&nbsp;');
+		}else {
+			$('#sideLabel').html('&gt;&gt;&nbsp;&nbsp;&nbsp;');
+		}
+	});
+}
+
+function sidebarAnimate() {
+	// 기본 위치(top)값
+	var floatPosition = parseInt($(".sidebar").css('top'))
+	
+	// scroll 인식
+	$(window).scroll(function() {
+	  
+//		// 현재 스크롤 위치
+//		var currentTop = $(window).scrollTop();
+//		var bannerTop = currentTop + floatPosition + "px";
+//		
+//		//이동 애니메이션
+//		$(".sidebar").stop().animate({
+//			"top" : bannerTop
+//		}, 500);
+		
+		
+//		$('.sidebar').animate({top:$(window).scrollTop()+"px" },{queue: false, duration: 500});
+	
+	}).scroll();
+}

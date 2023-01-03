@@ -172,6 +172,9 @@ a {
 	/* 배경색 */
 /* 	background-color	: #E0E086; */
 	
+	/* 마우스 커서 선택 */
+	cursor	: pointer;
+	
 }
 
 #loginDiv p {
@@ -321,81 +324,6 @@ a {
 }
 
 
-/* -------------------------------- 사이드 바 -------------------------------- */
-/* 사이드바 몸통 */
-#sideBar {
-	
-	display: block;
-	
-	/* width 가로폭 */
-	width	: 100px;
-	/* height 세로폭 */
-/* 	height	: 500px; */
-	
-	padding: 10px;
-	
-	/* 중앙 정렬 */
-	text-align: center;
-	
-	/* 테두리 둥글게 */
-	border-radius	: 10px;
-	
-	/* 배경 색상 */
-	background-color	: #93A603;
-	color	: #000;
-	
-	/* 화면 스크롤 해도 고정하게 하는 */
-	position	: fixed;
-	
-	overflow	: hidden; /* 반응형 애니메이션용 */
-	transition	: all 0.5s ease; /* 반응형 애니메이션 */
-	
-	/* 위치 지정 */
-	top	: 20%;
-	right	: 1%;
-	
-	/* 10층에 쌓아서 아래의 요소보다 위에 드러남 */
-	z-index	: 30;
-}
-
-#sideBar * {
-	/* 폰트 */
-	font-family	: 'ONE-Mobile-POP';
-}
-
-/* 사이드바 버튼 */
-#sideBar li div, #sideBar > label {
-	
-	display: block;
-	
-	/* margin div 주위 영역 */
-	margin	: 5px 5px;
-	padding: 2px;
-	
-	/* width 가로폭 */
-	width	: 80px;
-	/* height 세로폭 */
-	height	: 50px;
-	
-	/* 테두리 둥글게 */
-	border-radius	: 10px;
-	
-	/* 배경색 */
-	background-color	: #fff;
-	
-	/* 마우스 커서 선택 */
-	cursor	: pointer;
-}
-
-#sideBar #sideMenu:not(:checked) ~ ul { /* 데스크탑 화면에서도 메뉴를 접었더 펼칠 수 있음 */
-    display	: none;
-}
-#sideMenu:checked ~ ul { /* 체크박스 체크되었으면 메뉴 목록 표시 - 반응형 표시용 */
-    display	: block;
-    height	: auto;
-}
-
-
 /* -------------------------------- 상단 searchBar -------------------------------- */
 /* 검색창 몸통 */
 #searchBar {
@@ -502,3 +430,127 @@ a {
 	/* 30층에 쌓아서 아래의 요소보다 위에 드러남 */
 	z-index	: 30;
 }
+
+/* -------------------------------- 사이드바 실험 -------------------------------- */
+div[class="sidebar"] {
+	width	: 90px;
+	height	: 400px;
+	
+	padding: 10px;
+	
+	background	: #F0F2CC;
+	
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	top	: calc(50% - 200px);
+	right	: -120px;
+	
+	z-index	: 29;
+	
+	overflow	: hidden; /* 반응형 애니메이션용 */
+	transition	: all 0.5s ease; /* 반응형 애니메이션 */
+	
+	/* 중앙 정렬 */
+	text-align: center;
+	
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px 10px 10px 30px;
+	
+	box-shadow: 2px 2px 2px 0 #93A603;
+}
+input[id="sideMenu"]:checked + label + div {
+	right	: 30px;
+	z-index	: 29;
+}
+
+input[id="sideMenu"] + label {
+	display	: block;
+	
+	width	: 50px;
+	height	: 50px;
+	
+/* 	padding	: auto; */
+	line-height	: 50px;
+	
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	/* 중앙 정렬 */
+	text-align: center;
+	
+	top	: calc(35% - 25px);
+	right	: -20px;
+	
+	cursor	: pointer;
+	
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+/* 	color	: #fff; */
+	color	: #93A603;
+	/* 글자테두리 */
+	text-shadow	: -2px 0 #fff,		0 2px #fff,		2px 0 #fff,		0 -2px #fff,
+				  -2px -2px #fff,	2px -2px #fff,	-2px 2px #fff,	2px 2px #fff;
+	
+	z-index	: 28;
+	background-color	: #F0F2CC;
+	
+	overflow	: hidden; /* 반응형 애니메이션용 */
+	transition	: all 0.5s ease; /* 반응형 애니메이션 */
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px 0 0 30px;
+	
+	box-shadow: 2px 2px 2px 0 #93A603;
+	
+}
+input[id="sideMenu"]:checked + label {
+	right	: 120px;
+}
+
+/* 사이드바 버튼 */
+.sidebar * {
+	/* 폰트 */
+	font-family	: 'ONE-Mobile-POP';
+/* 	color	: #AC7B53; */
+}
+.sidebar li div {
+	
+/* 	display: block; */
+	
+	/* margin div 주위 영역 */
+	margin	: 5px 5px;
+	padding: 2px;
+	
+	/* width 가로폭 */
+	width	: 80px;
+	/* height 세로폭 */
+	height	: 70px;
+	
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	
+	/* 배경색 */
+	background-color	: #fff;
+	
+	/* 마우스 커서 선택 */
+	cursor	: pointer;
+	
+	/* 정렬 */
+	display	: flex;
+	align-items: center;
+	justify-content: center;
+}
+.sidebar li div span {
+}
+
+
+
+
+
+
+
