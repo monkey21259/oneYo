@@ -320,7 +320,7 @@ public class LoginController {
 					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동 - 카카오");
 					// 세션 생성 및 부여하기
 					O_Session mSession = O_Session.getInstance();
-					mSession.setSession(req, mvo.getMnum());
+					mSession.setSession(req, memChkList.get(0).getMnum());
 					mSession.addAttribute(req, "mid", mvo.getMid());
 					mSession.addAttribute(req, "access_token", access_token);
 					

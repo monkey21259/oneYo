@@ -26,6 +26,7 @@
 	String mid = (String)oSession.getAttribute(request, "mid");
 	
 	logger.info("mid: " + mid);
+	logger.info("mnum: " + mnum);
 %>
 
 <c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />

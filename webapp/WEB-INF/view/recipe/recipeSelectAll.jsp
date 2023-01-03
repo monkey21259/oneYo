@@ -14,7 +14,10 @@
 <%
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
+	String mid = (String)oSession.getAttribute(request, "mid");
+	
 	logger.info("mnum: " + mnum);
+	logger.info("mid: " + mid);
 %>
 
 <!DOCTYPE html>
@@ -52,6 +55,27 @@
 						"enctype": "application/x-www-form-urlencoded"
 					}).submit();
 				});
+				
+				// 로그인 / 로그아웃 / 회원가입 / 마이페이지 ----------
+				$("#newMemBtn").on("click", function() {
+					console.log("[회원가입] 버튼 클릭");
+					location.href="/oneYo/memGrade.ict";
+				});
+				
+				$("#loginBtn").on("click", function() {
+					console.log("[로그인] 버튼 클릭");
+					location.href="/oneYo/loginForm.ict";
+				});
+				
+				$("#logoutBtn").on("click", function() {
+					console.log("[로그아웃] 버튼 클릭");
+					$("#logoutForm").attr({
+						"action": "/oneYo/logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+				// ------------------------------------------
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
@@ -154,7 +178,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -162,20 +186,34 @@
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+<%
+		String mSNSid = mid;
+		if (mid != null && !(mid.equals(""))) {
+			if (mid.length() > 5) {
+				mSNSid = mid.substring(0, 6);
+				if (mSNSid.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (mSNSid.equals("kakao_")) {
+					mSNSid = "kakao";
+				}
+			}
+		}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
 <% 		
-// 		}
+		}
 %>
 	 	</div>
 	</div>
@@ -258,19 +296,19 @@
 					</a>/
 				</div>
 				<div class="t">&nbsp;인기글</div>
-				<%
+<%
 				
-				if(mnum.length() > 0){
+				if (mnum.length() > 0) {
 				
-				%>
+%>
 				<div class="tright">
 					<a href="/oneYo/recipeInsertForm.ict">
 						<span>글 등록 버튼</span>
 					</a>
 				</div>
-				<%
+<%
 				}
-				%>
+%>
 			</div>
 <%
 			Object pagingObj = request.getAttribute("pagingVO");
