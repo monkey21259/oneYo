@@ -505,13 +505,42 @@
 		 		</span>
 			</div>
 			<div class="recipeBody">
-		 	<%
-		 		for (int i=0; i<10; i++) {
-		 	%>
-		 		<div class="recipeIcon"></div>
-		 	<%	
-		 		}
-		 	%>
+				<!-- 한식 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=00">
+		 				<img src="/oneYo/img/home/rcategory/00.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
+		 		<!-- 중식 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=01">
+		 				<img src="/oneYo/img/home/rcategory/01.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
+		 		<!-- 양식 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=02">
+		 				<img src="/oneYo/img/home/rcategory/02.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
+		 		<!-- 일식 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=03">
+		 				<img src="/oneYo/img/home/rcategory/03.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
+		 		<!-- 디저트 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=04">
+		 				<img src="/oneYo/img/home/rcategory/04.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
+		 		<!-- 기타 -->
+		 		<div class="recipeIcon">
+		 			<a href="recipeCategorySelectAll.ict?rcategory=99">
+		 				<img src="/oneYo/img/home/rcategory/99.png" width="67px" height="58px">
+		 			</a>
+		 		</div>
 		 	</div>
 		</div>
 </div>
