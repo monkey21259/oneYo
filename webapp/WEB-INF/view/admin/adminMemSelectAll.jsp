@@ -1,12 +1,14 @@
-<%@page import="main.ict.common.CodeUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="main.ict.common.CodeUtils"%>
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>   
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="main.ict.mem.vo.MemVO" %>
 <%@ page import="main.ict.common.O_Session" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("UTF-8");
  
@@ -37,19 +39,27 @@
 	
 %>
 
+
+<c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
+<c:set var="TipList" value="${ DataMap['TipList'] }" />
+<c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
+<c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
+<c:set var="MemList" value="${ DataMap['MemList'] }" />
+<c:set var="Count" value="${ DataMap['Count'] }" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원목록</title>
+<title>oneYo(오내요)</title>
+		<!-- 제이쿼리cdn -->
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
 		<!-- adminMemSelectAll.jsp 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/admin/adminMemSelectAll.css">
-		
-		<!-- 제이쿼리cdn -->
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<link rel="stylesheet" href="/oneYo/resource/css/admin/adminMemSelectAll.css">		
 		
 		<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
@@ -109,21 +119,17 @@
 					
 				}); //deleteBtn
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
+				$("#logoutBtn").on("click", function() {
+					console.log("[로그아웃] 버튼 클릭");
+					$("#logoutForm").attr({
+						"action": "/oneYo/logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
 				
-				// 마이페이지로 보내주는 all.js 함수
-				mypageHomeAction();
-						
-				//회원가입 으로 보내주는 all.js 함수
-				joinAction();
-				
-				//로그인으로 보내주는 all.js 함수
-				loginAction();
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 				
 			}); //ready
@@ -136,46 +142,56 @@
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="mypageHome">
-			my<br>Page
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
-
+	</div>
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
@@ -383,13 +399,16 @@
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
 	</div>
 </div>
 
 </div>
 </div>
 </form>
+	<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 </body>
 </html>

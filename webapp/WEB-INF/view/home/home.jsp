@@ -42,13 +42,13 @@
 		<meta charset="UTF-8">
 		<!-- [221230] 반응형 페이지 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
-		<title>home.jsp</title>
+		<title>oneYo(오내요)</title>
+		<!-- jQuery -->
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
-		<!-- jQuery -->
-		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -106,25 +106,9 @@
 					location.href="/oneYo/recipeSelectAll.ict";
 				});
 				// ------------------------------------------
-				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
-				// 마이페이지로 보내주는 all.js 함수
-				mypageHomeAction();
-						
-				//회원가입 으로 보내주는 all.js 함수
-				joinAction();
-				
-				//로그인으로 보내주는 all.js 함수
-				loginAction();
-				
-				sidebarLabel();
-// 				sidebarAnimate();
-				
+		
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 				// 배너 --------------------------------------
 				const s1 = new Slider(".banner");
@@ -299,7 +283,7 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%

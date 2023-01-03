@@ -15,6 +15,6 @@ public interface MypageService {
 
 	List<TipVO> selectMyTip(MemVO mvo);
 
-	List<MemVO> selectMyProfile(MemVO mvo);
+	List<MemVO> selectMyProfile(MemVO mvo);	
 
 }
