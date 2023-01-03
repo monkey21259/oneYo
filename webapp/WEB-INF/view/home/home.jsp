@@ -142,6 +142,16 @@
 					location.href=ban_url;
 				});
 				
+				// 이미지 길이 리사이즈 --------------------------
+				$(".p11").each(function(i, element) {
+					let width = $(element).css('width');
+					let length = $(element).css('width').length;
+					
+					if (parseInt(width.substring(0, length - 2)) > 145) {
+						$(element).css('width', 145);
+					}
+				});
+				
 			});
 			
 			function postClick(obj) {  // favorPostTitle
@@ -474,7 +484,7 @@
 		 		<span class="chefTitle" style="position:relative;left:5%;font-size:25px;">
 		 			<span style="color:#93A603;">쉐프</span> 소개
 		 		</span>
-		 		<span class="chefTitle" style="position:relative;left:75%;font-size:25px;">
+		 		<span class="chefTitle" style="position:relative;left:75%;font-size:25px;cursor:pointer;">
 		 			더 보기
 		 		</span>
 		 	</div>
@@ -500,7 +510,7 @@
 		 		<span class="recipeTitle" style="position:relative;left:5%;font-size:25px;">
 		 			<span style="color:#93A603;">레시피</span> 분류
 		 		</span>
-		 		<span class="recipeTitle" style="position:relative;left:73%;font-size:25px;">
+		 		<span class="recipeTitle" style="position:relative;left:73%;font-size:25px;cursor:pointer;">
 		 			더 보기
 		 		</span>
 			</div>
@@ -508,37 +518,37 @@
 				<!-- 한식 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=00">
-		 				<img src="/oneYo/img/home/rcategory/00.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/00.png">
 		 			</a>
 		 		</div>
 		 		<!-- 중식 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=01">
-		 				<img src="/oneYo/img/home/rcategory/01.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/01.png">
 		 			</a>
 		 		</div>
 		 		<!-- 양식 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=02">
-		 				<img src="/oneYo/img/home/rcategory/02.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/02.png">
 		 			</a>
 		 		</div>
 		 		<!-- 일식 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=03">
-		 				<img src="/oneYo/img/home/rcategory/03.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/03.png">
 		 			</a>
 		 		</div>
 		 		<!-- 디저트 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=04">
-		 				<img src="/oneYo/img/home/rcategory/04.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/04.png">
 		 			</a>
 		 		</div>
 		 		<!-- 기타 -->
 		 		<div class="recipeIcon">
 		 			<a href="recipeCategorySelectAll.ict?rcategory=99">
-		 				<img src="/oneYo/img/home/rcategory/99.png" width="67px" height="58px">
+		 				<img class="recipeImg" src="/oneYo/img/home/rcategory/99.png">
 		 			</a>
 		 		</div>
 		 	</div>

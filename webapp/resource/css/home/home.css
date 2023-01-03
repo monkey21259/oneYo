@@ -32,6 +32,7 @@
 .box {
 	display: flex;
 	float: left;
+	cursor: pointer;
 }
 
 /* 인기글 Container */
@@ -120,7 +121,6 @@
 	float: left;
 	width: 290px;  /* 295 -> 290 */
 	height: 148px;
-	border-radius: 10%;
 	border: 2px solid #EEE;
 	box-shadow: 5px 5px 11px #AAA;
 	margin: 2px;
@@ -205,6 +205,7 @@
 
 .chefTitle {
 	padding: 8px;
+	cursor: default;
 }
 
 .chefBody {
@@ -225,6 +226,7 @@
 	height: 130px;
 	margin: 0px;
 	border-radius: 99%;
+	cursor: pointer;
 }
 
 @media ( min-width: 2500px ) {
@@ -279,20 +281,28 @@
 
 .recipeTitle {
 	padding: 8px;
+	cursor: default;
 }
 
 .recipeIcon {
 	float: left;
-	width: 67px;
-	height: 58px;
+	width: 100px;
+	padding: 0px;
+	height: 100px;
 	border-radius: 99%;
-	border: 1px solid cyan;
+	box-shadow: 3px 5px 8px #444;
+	cursor: pointer;
 }
 
 @media ( min-width: 2500px ) {
 	.recipeIcon {
 		width: 62px;
 	}
+}
+
+.recipeImg {
+	width: 100px;
+	height: 100px;
 }
 
 /* ---------------------- 중 앙 - 끝 -------------------- */
