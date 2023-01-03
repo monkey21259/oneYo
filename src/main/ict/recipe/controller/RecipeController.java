@@ -97,12 +97,11 @@ public class RecipeController {
 		O_Session mSession = O_Session.getInstance();
 		String mnum = mSession.getSession(req);
 		
-		recipevo.setMnum(mnum);  // TODO TEMP -----------------------------
-		logger.info("rmnum : " + recipevo.getRnum());
-		logger.info("mnum >>>>>>>>>>>>>>>: " + mnum);
+		recipevo.setMnum(mnum);
+		logger.info("rnum : " + recipevo.getRnum());
+		logger.info("mnum : " + recipevo.getMnum());
 		
 		recipevo.setWarning("0");
-		
 		logger.info(recipevo.toString());
 
 		// INSERT
@@ -117,7 +116,7 @@ public class RecipeController {
 		recipeList.add(recipevo);
 		model.addAttribute("rnum", rnum);
 		model.addAttribute("recipeList", recipeList);
-		// TODO 추후 좋아요, 싫어요, 신고, 댓글 추가 필요
+
 		return "./recipe/recipeInsert";
 	}
 	

@@ -5,6 +5,7 @@
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.common.CodeUtils" %>
+<%@ page import="main.ict.common.CommonUtils" %>
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 <%
@@ -46,25 +47,28 @@
 				
 				/* 조리 시간 */ // 00시 10분
 				var rhour, rminute;
-				if ("<%= recipevo.getRtime() %>".includes("시")) {  /* 시간이 포함된 경우 */
-					rhour = "<%= recipevo.getRtime() %>".split('시')[0];
+<%-- 				console.log("<%= recipevo.getRtime() %>");		// 255분 --%>
+<%-- 				console.log("<%= recipevo.getRperson() %>");	// 6인분 --%>
+				
+				let hour_min = "<%= CommonUtils.minuteToHour(recipevo.getRtime()) %>";
+				
+				if (hour_min.includes("시")) {  /* 시간이 포함된 경우 */
+					rhour = hour_min.split('시')[0].trim();
+					console.log(rhour);
 					$("#rhour option[value='" + rhour + "']").prop('selected', true);
 				}
 				if (rhour === undefined) {
-					rminute = "<%= recipevo.getRtime() %>".split('분')[0].trim();
+					rminute = hour_min.split('분')[0].trim();
 				} else {
-					rminute = "<%= recipevo.getRtime() %>".split('시')[1]
-														  .split('분')[0]
-														  .trim();
+					rminute = hour_min.split('시')[1]
+									  .split('분')[0]
+									  .trim();
 				}
 				$("#rminute option[value='" + rminute + "']").prop('selected', true);
 				
 				/* 인분 */ // 2인분
-				var rperson = "<%= recipevo.getRperson() %>".split("인분")[0];
-				if (rperson != "10") {
-					rperson = "0" + rperson;
-				}
-				$("#rperson option[value='" + rperson + "']").prop('selected', true);
+<%-- 				var rperson = "<%= recipevo.getRperson() %>".split("인분")[0]; --%>
+				$("#rperson option[value='" + "<%= recipevo.getRperson() %>" + "']").prop('selected', true);
 				
 				/* 난이도 */
 				var rdiff = "<%= CodeUtils.getRdiffVal(recipevo.getRdiff()) %>";
@@ -354,28 +358,18 @@
 						<td>시간</td>
 						<td>
 							<select id="rhour" name="rhour">
-								<option value="00">00</option>
 <%	// ---- 시(0 ~ 23)
-							String hour = null;
-							for (int i=1; i<24; i++) {
-								hour = "";
-								if (i < 10) { hour += "0"; }
-								hour += i;
+							for (int i=0; i<24; i++) {
 %>
-								<option value=<%= hour %>><%= hour %></option>
+								<option value=<%= i %>><%= i %></option>
 <%
 							}
-%>							</select>&nbsp;시&nbsp;
+%>							</select>&nbsp;시간&nbsp;
 							<select id="rminute" name="rminute">
-								<option value="00">00</option>
 <%	// ---- 분(0 ~ 59)
-							String minute = null;
-							for (int i=1; i<60; i++) {
-								minute = "";
-								if (i < 10) { minute += "0"; }
-								minute += i;
+							for (int i=0; i<60; i++) {
 %>								
-								<option value=<%= minute %>><%= minute %></option>
+								<option value=<%= i %>><%= i %></option>
 <%							
 							}
 %>							</select>&nbsp;분&nbsp;
@@ -385,15 +379,10 @@
 						<td>인분</td>
 						<td>
 							<select id="rperson" name="rperson">
-								<option value="1인분">1인분</option>
 <%  // ---- 몇 인분(max=10)
-							String rPerson = null;
-							for (int i=2; i<11; i++) {
-								rPerson = "";
-								
-								rPerson += i;
+							for (int i=1; i<11; i++) {
 %>
-								<option value="<%= rPerson %>인분"><%= i %>인분</option>
+								<option value="<%= i %>인분"><%= i %>인분</option>
 <%
 							}
 %>							</select>

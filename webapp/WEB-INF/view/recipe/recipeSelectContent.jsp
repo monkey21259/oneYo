@@ -86,6 +86,58 @@
 					
 				});
 				
+				//경고 : 관리자
+				$(document).on("click", "#cautionBtn", function(){
+					
+					//mid
+					let mnum = $("#mnum").val();
+					console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
+					
+					//mnick
+					let mnick = $("#mnick").val();
+					console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+					
+					let result = confirm(mnick + '님을 경고 하시겠습니까?');
+					
+					if(result == true){
+						let url = "adminCaution.ict";
+						let reqType = "GET";
+						let dataParam = {
+								mnum :$("#mnum").val(),
+							};
+					
+					console.log("url : " + url);
+					console.log("reqType : " + reqType);
+					console.log("dataParam : " + dataParam);
+					
+					$.ajax({
+						url:url,
+						type:reqType,
+						data:dataParam,
+						success:whenSuccess,
+						error:whenError
+					}); //ajax
+					
+					}else{
+						alert("취소되었습니다");
+						location.href="#";
+					} //if else
+					
+					//성공했을때
+					function whenSuccess(resData){
+						if(resData == 'updateOK'){
+							alert("경고 처리 되었습니다.");
+							$('#cautionBtn').prop('disabled', true);
+						} 
+					}
+					
+					//실패했을때
+					function whenError(e){
+						console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+					} //whenError	
+				
+				});//cautionBtn버튼클릭
+				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
 				//	홈으로 보내주는 all.js 함수
@@ -365,6 +417,10 @@
 							<a class="btn" id="recipeDeleteBtn">삭제</a>
 							
 							<%
+							}else if(mnum.equals("M000000000000")){
+							%>
+								<button type="button" id="cautionBtn">경고</button>
+							<%
 							}
 							 %>
 						</td>
@@ -374,6 +430,7 @@
 <% // rnum, rhit, mnum, warning, deleteyn, insertdate, updatedate %>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
+				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
 	<!-- 데이터 사용여부 검토 필요 -->
 				<input type="hidden" id="rhit" name="rhit" value="<%= recipevo.getRhit() %>" />	<!-- 조회수 -->
 				<!-- <input type="hidden" id="warning" name="warning" value="" /> -->	<!-- 경고 -->
