@@ -19,15 +19,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jQuery -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
 <!-- adminLevelupContent.jsp 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupContent.css">
-
-<!-- jQuery -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>		
@@ -75,11 +74,21 @@
 		
 		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 		hiddenAction();
+		
 		//	홈으로 보내주는 all.js 함수
 		homeAction();
+		
 		//	메뉴바 클릭액션 all.js 함수
 		divClickAction();
 		
+		// 마이페이지로 보내주는 all.js 함수
+		mypageHomeAction();
+				
+		//회원가입 으로 보내주는 all.js 함수
+		joinAction();
+		
+		//로그인으로 보내주는 all.js 함수
+		loginAction();
 	});
 
 
@@ -88,11 +97,10 @@
 
 </head>
 <body>
-<br>
-
 
 <form name="levelupForm" id="levelupForm">
-		 	 <div id="realAll">
+
+<div id="realAll">
 
 <div id="backMenu"></div>
 
@@ -121,7 +129,7 @@
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div class="mypageHome">
 			my<br>Page
 			</div>
 		</li>
@@ -241,7 +249,7 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-<h1 align="center">등업</h1>
+<h1 align="center">등업신청</h1>
 <table>
 	<tr>
 		<td>제목</td>
@@ -278,10 +286,6 @@
 </table>	 
 
 <!-- -------------------------------페이지 전용 center------------------------------- -->  
-</div>
-
-<div id="right">
-우측
 </div>
 
 <div id="footer">
