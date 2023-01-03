@@ -21,14 +21,9 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-
-	
-	String mid = (String)request.getAttribute("mid");
-	String mnick = (String)request.getAttribute("mnick");
-
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
-
+	String mid = (String)oSession.getAttribute(request, "mid");
 	
 	logger.info("mid: " + mid);
 %>
@@ -258,7 +253,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -272,7 +267,19 @@
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-				<p><%= mnick %> <span>님 환영합니다.</span></p>
+<%
+		String mSNSid = mid;
+		if (mid != null && !(mid.equals(""))) {
+			mSNSid = mid.substring(0, 6);
+			if (mSNSid.equals("naver_")) {
+				mSNSid = "naver"; 
+			}
+			if (mSNSid.equals("kakao_")) {
+				mSNSid = "kakao";
+			}
+		}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">

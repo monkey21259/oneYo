@@ -144,6 +144,7 @@ public class LoginController {
 				mvo.setMnick((String)response.get("nickname"));
 				mvo.setMemail((String)response.get("email"));
 				mvo.setMhp((String)response.get("mobile"));
+				mvo.setMkey("Naver");
 				mvo.setAccess_token(access_token);
 				
 				// 회원가입 여부 체크
@@ -151,13 +152,18 @@ public class LoginController {
 				List<MemVO> memChkList = memService.memIdCheck(mvo);
 				if (memChkList != null && memChkList.size() == 1) {  // 로그인 성공시 세션 최초생성
 					
-					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동");
+					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동 - 네이버");
 					// 세션 생성 및 부여하기
 					O_Session mSession = O_Session.getInstance();
-					mSession.setSession(req, mvo.getMid());
+					mSession.setSession(req, memChkList.get(0).getMnum());
+					mSession.addAttribute(req, "mid", mvo.getMid());
 					mSession.addAttribute(req, "access_token", access_token);
 					
-					return "home/home";  // 메인 페이지로 이동하기
+					// 추가 230103 김기영
+					model.addAttribute("client_id", ConstPack.M_NAVER_CID);
+					model.addAttribute("client_secret", ConstPack.M_NAVER_CSECRET);
+					
+					return "home/gotohome";  // 메인 페이지로 이동하기
 				}
 				
 				logger.info("[NEW] 회원가입이 필요합니다.");
@@ -191,7 +197,7 @@ public class LoginController {
 			// redirect_uri	String	인가 코드가 리다이렉트된 URI	O
 			String grantType = "authorization_code";
 			String clientId = "d00ed47ba28a4cf79b2ef80cee3bfdc0";
-			String redirect_uri = "http://localhost:8088/oneYo/loginForm.ict";
+			String redirect_uri = "http://192.168.219.125:8088/oneYo/loginForm.ict";
 			String accessToken = "";
 			String refreshToken = "";
 			
@@ -311,13 +317,14 @@ public class LoginController {
 				List<MemVO> memChkList = memService.memIdCheck(mvo);
 				if (memChkList != null && memChkList.size() == 1) {
 					
-					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동");
+					logger.info("[SUCCESS] 회원가입 이력 존재: 메인페이지로 이동 - 카카오");
 					// 세션 생성 및 부여하기
 					O_Session mSession = O_Session.getInstance();
-					mSession.setSession(req, mvo.getMid());
+					mSession.setSession(req, mvo.getMnum());
+					mSession.addAttribute(req, "mid", mvo.getMid());
 					mSession.addAttribute(req, "access_token", access_token);
 					
-					return "home/home";  // 메인 페이지로 이동하기
+					return "home/gotohome";  // 메인 페이지로 이동하기
 				}
 				
 				logger.info("[NEW] 회원가입이 필요합니다.");
@@ -348,13 +355,11 @@ public class LoginController {
 			
 			String mnum = loginList.get(0).getMnum();
 			String mid = loginList.get(0).getMid();
-			String mnick = loginList.get(0).getMnick();
 			// 세션 생성 및 부여하기
 			O_Session mSession = O_Session.getInstance();
 			mSession.setSession(req, mnum);
+			mSession.addAttribute(req, "mid", mid);
 			
-			model.addAttribute("mid", mid);
-			model.addAttribute("mnick", mnick);
 			return "home/gotohome";
 		}else {
 			String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";

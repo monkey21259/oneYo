@@ -42,6 +42,7 @@
 		mnick = mvo.getMnick();
 		memail = mvo.getMemail();
 		mhp = mvo.getMhp();
+		mkey = mvo.getMkey();
 	}
 %>
 
@@ -148,7 +149,6 @@ $(document).ready(function(){
 			"enctype": "application/x-www-form-urlencoded"
 		}).submit();
 
-		
 	});
 	
 	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
@@ -360,8 +360,6 @@ $(document).ready(function(){
 	일반
 	</p>
 </div>
-
-
 
 <table>
 <%  // 추가 kgy

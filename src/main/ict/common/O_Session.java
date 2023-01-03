@@ -10,7 +10,7 @@ public class O_Session {
 	
 	static Logger logger = LogManager.getLogger(O_Session.class);
 
-	private static final String M_SESSION_ID = "mid";
+	private static final String M_SESSION_NUM = "mnum";
 	private static final String M_SESSION_ACC_TOK = "access_token";  // 코드 리팩토링할때 활용 가능.
 	
 	private static class LazyHolder {
@@ -34,6 +34,7 @@ public class O_Session {
 	public boolean addAttribute(final HttpServletRequest req, String attr, Object obj) {
 		
 		logger.info("addAttribute() 함수 진입");
+		logger.info("세 번째 아규먼트: " + (String)obj);
 		HttpSession hSession = req.getSession(false);
 		if (hSession != null) {
 			hSession.setAttribute(attr, obj);
@@ -48,7 +49,7 @@ public class O_Session {
 		System.out.println("[killSession] hSession: " + hSession);
 		if (hSession != null) {
 			// 속성 제거 후 객체 메모리 해제
-			hSession.removeAttribute(M_SESSION_ID);
+			hSession.removeAttribute(M_SESSION_NUM);
 			hSession.invalidate();
 		}
 	}
@@ -60,7 +61,7 @@ public class O_Session {
 		int			nCnt = 0;			// 세션 유무 체크 변수
 		
 		hSession = req.getSession();
-		session_val = (String)hSession.getAttribute(M_SESSION_ID);
+		session_val = (String)hSession.getAttribute(M_SESSION_NUM);
 		logger.info("userID: " + userID);
 		logger.info("session_val: " + session_val);
 		if (session_val != null) {
@@ -76,9 +77,10 @@ public class O_Session {
 		}
 		
 		if (nCnt == 0) {  // 정상적으로 세션이 처리되지 않는 경우
-			hSession.setAttribute(M_SESSION_ID, userID);	// 값을 만들거나 덮어씌우기
+			hSession.setAttribute(M_SESSION_NUM, userID);	// 값을 만들거나 덮어씌우기
 			hSession.setMaxInactiveInterval(60*60*9);		// 9h : 세션 지속시간
 			
+			logger.info("최초 세팅: " + hSession.getAttribute(M_SESSION_NUM));
 			return false;
 		}
 		return true;
@@ -90,7 +92,7 @@ public class O_Session {
 		HttpSession hSession = req.getSession(false);
 		
 		if (hSession != null) {
-			Object obj = hSession.getAttribute(M_SESSION_ID);
+			Object obj = hSession.getAttribute(M_SESSION_NUM);
 			if (obj != null) {
 				strSession = (String)obj;
 			}

@@ -47,7 +47,8 @@
 <select id="memIdCheck" parameterType="memvo" resultType="memvo">
 	
 	SELECT
-			A.MID		MID
+			 A.MID		MID
+			,A.MNUM		MNUM
 	FROM
 			ICT_MEMBER	A
 	WHERE
