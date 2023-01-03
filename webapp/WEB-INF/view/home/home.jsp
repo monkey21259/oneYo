@@ -122,6 +122,7 @@
 				loginAction();
 				
 				sidebarLabel();
+// 				sidebarAnimate();
 				
 				
 				// 배너 --------------------------------------
@@ -193,38 +194,50 @@
 <div id="backMenu"></div>
 
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
-	<label for="sideMenu" id="sideLabel">&lt;</label>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="mypageHome">
+			<span>
 			my<br>Page
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
