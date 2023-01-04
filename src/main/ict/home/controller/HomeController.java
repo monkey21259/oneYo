@@ -96,9 +96,85 @@ public class HomeController {
 	}
 	
 	@GetMapping(value="chefIntroduce")
-	public String chefIntroduce(HttpServletRequest req,RecipeVO rvo , Model m) {
+	public String chefIntroduce() {
 		logger.info("chefIntroduce() 함수 진입");
 		return "home/chefIntroduce";
+	}
+	
+	@GetMapping(value="chefRecipeShowMore")
+	public String chefRecipeShowMore(RecipeVO rvo, Model m) {
+		logger.info("chefRecipeShowMore() 함수 진입");
+		
+		if (rvo !=null) {
+			rvo.setPageSize(String.valueOf(ConstPack.RECIPE_PAGE_SIZE));
+			rvo.setPageSize(String.valueOf(ConstPack.RECIPE_GROUP_SIZE));
+			
+			if(rvo.getCurPage() == null) {
+				rvo.setCurPage(String.valueOf(ConstPack.RECIPE_CUR_PAGE));
+			} // end of if
+			
+			List<RecipeVO> recipeList = homeService.chefRecipeShowMore(rvo);
+			
+			if (recipeList !=null && recipeList.size() > 0) {
+				logger.info("조회된 recipeList의 사이즈 : " + recipeList.size());
+				m.addAttribute("pagingrVO", rvo);
+				m.addAttribute("recipeList", recipeList);
+				m.addAttribute("chefMnum", rvo.getMnum());
+				return "home/showMore";
+			} // end of if
+			
+		} // end of if
+		
+		return "home/home";
+	}
+	
+	@GetMapping(value="chefTipShowMore")
+	public String chefTipShowMore(TipVO tvo, Model m) {
+		logger.info("chefTipShowMore() 함수 진입");
+		
+		if (tvo !=null) {
+			tvo.setPageSize(String.valueOf(ConstPack.TIP_PAGE_SIZE));
+			tvo.setPageSize(String.valueOf(ConstPack.TIP_GROUP_SIZE));
+			
+			if(tvo.getCurPage() == null) {
+				tvo.setCurPage(String.valueOf(ConstPack.TIP_CUR_PAGE));
+			} // end of if
+			
+			List<TipVO> tipList = homeService.chefTipShowMore(tvo);
+			
+			if (tipList !=null && tipList.size() > 0) {
+				logger.info("조회된 tipList의 사이즈 : " + tipList.size());
+				m.addAttribute("pagingtVO", tvo);
+				m.addAttribute("tipList", tipList);
+				m.addAttribute("chefMnum", tvo.getMnum());
+				return "home/showMore";
+			}
+		} // end of if
+		return "home/home";
+	}
+	
+	@GetMapping(value="chefCommunityShowMore")
+	public String chefCommunityShowMore(CommunityVO cvo, Model m) {
+		logger.info("chefCommunityShowMore() 함수 진입");
+		if (cvo !=null) {
+			cvo.setPageSize(String.valueOf(ConstPack.COMMUNITY_PAGE_SIZE));
+			cvo.setPageSize(String.valueOf(ConstPack.COMMUNITY_GROUP_SIZE));
+			
+			if(cvo.getCurPage() == null) {
+				cvo.setCurPage(String.valueOf(ConstPack.COMMUNITY_CUR_PAGE));
+			} // end of if
+			
+			List<CommunityVO> communityList = homeService.chefCommunityShowMore(cvo);
+			
+			if (communityList !=null && communityList.size() > 0) {
+				logger.info("조회된 tipList의 사이즈 : " + communityList.size());
+				m.addAttribute("pagingcVO", cvo);
+				m.addAttribute("communityList", communityList);
+				m.addAttribute("chefMnum", cvo.getMnum());
+				return "home/showMore";
+			}
+		} // end of if
+		return "home/home";
 	}
 	
 //	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo) { goSelectContent

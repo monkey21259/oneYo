@@ -17,7 +17,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>커뮤니티 신고</title>
+	<title>oneYo(오내요)</title>
 	<!-- jQuery -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -175,15 +175,25 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">:</span>
+<%
+			}
+%>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 		String mSNSid = mid;

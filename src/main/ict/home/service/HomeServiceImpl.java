@@ -117,4 +117,25 @@ public class HomeServiceImpl implements HomeService {
 		logger.info("getCondVOList() 함수 진입");
 		return homeDAO.getCondVOList(ovo);
 	}
+	
+	public List<RecipeVO> chefRecipeShowMore(RecipeVO rvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefRecipeShowMore() 함수 진입");
+		return homeDAO.chefRecipeShowMore(rvo);
+	}
+
+	@Override
+	public List<TipVO> chefTipShowMore(TipVO tvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefTipShowMore() 함수 진입");
+		return homeDAO.chefTipShowMore(tvo);
+	}
+
+	@Override
+	public List<CommunityVO> chefCommunityShowMore(CommunityVO cvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefCommunityShowMore() 함수 진입");
+		return homeDAO.chefCommunityShowMore(cvo);
+	}
+
 }

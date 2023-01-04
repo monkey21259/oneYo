@@ -7,6 +7,11 @@
     
 <% request.setCharacterEncoding("UTF-8"); %>
 
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("chefIntroduce.jsp 페이지 진입");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,17 +78,19 @@
 		// 레시피 더보기
 		$(document).on("click", "#recipeShowMore", function(){
 			alert("레시피  보기");
-			location.href = "";
+			location.href = "chefRecipeShowMore.ict?mnum=" + mnum;
 		});
 		
+		// 전문가팁 더보기
 		$(document).on("click", "#tipShowMore", function(){
 			alert("팁 더보기");
-			location.href = "";
+			location.href = "chefTipShowMore.ict?mnum=" + mnum;
 		});
 		
+		// 커뮤니티 더보기
 		$(document).on("click", "#communityShowMore", function(){
 			alert("커뮤니티 더 보기");
-			location.href = "";
+			location.href = "chefCommunityShowMore.ict?mnum=" + mnum;
 		});
 	});
 	

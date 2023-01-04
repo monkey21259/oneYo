@@ -28,6 +28,9 @@ public interface HomeService {
 	
 	List<RecipeVO> chefRecipeSelectAll(RecipeVO rvo);
 	List<RecipeVO> chefTipSelectAll(TipVO tvo);
+	List<RecipeVO> chefRecipeShowMore(RecipeVO rvo);
+	List<TipVO> chefTipShowMore(TipVO tvo);
+	List<CommunityVO> chefCommunityShowMore(CommunityVO cvo);
 	
 	// 각 게시글 + 일간/주간/월간 조회: 230104 김기영 추가
 	List<ObjectVO> getCondVOList(ObjectVO ovo);

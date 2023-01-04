@@ -139,6 +139,30 @@ public class RecipeController {
 			return "#";
 		}
 //		logger.info(recipeList.toString());
+		logger.info("0 : " + recipeList.get(0).toString());
+		logger.info("1 : " + recipeList.get(1).toString());
+		List<String> recipeLike = recipeService.recipeSelectLike();
+		logger.info("recipeLike.size : " + recipeLike.size());
+		
+		
+		for(int i=0; i < recipeList.size(); i++) {
+			recipeList.get(i).setLikecnt("0");
+		}
+		
+		int like;
+		for(int i=0; i < recipeList.size(); i++) {
+			for(int j=0; j < recipeLike.size(); j++) {
+				like = 0;
+				if(recipeList.get(i).getRnum().equals(recipeLike.get(j))) {
+					logger.info("recipeLike.get(j) : " +  recipeList.get(i).getRnum() + recipeLike.get(j));
+					
+					like = (Integer.parseInt(recipeList.get(i).getLikecnt()) + 1);
+					recipeList.get(i).setLikecnt(String.valueOf(like));
+					logger.info("recipeList.get(i).getLikecnt : " + recipeList.get(i).getLikecnt());
+					}
+				}
+			}
+			
 		
 		model.addAttribute("pagingVO", recipevo);
 		model.addAttribute("recipeList", recipeList);
@@ -256,10 +280,12 @@ public class RecipeController {
 	public String recipeUpdateForm(RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeUpdateForm() 함수 진입");
+		logger.info("recipevo.getRnum : " + recipevo.getRnum());
+		List<RecipeVO> list = recipeService.recipeSelectOne(recipevo);
 		
-		// (O) rnum, rhit, mnum, updatedate, (X) warning, deleteyn, insertdate 
-		// (221224) rnum, rhit, mnum, updatedate
-		logger.info(recipevo.toString());
+		recipevo = list.get(0);
+		
+		logger.info("recipevo : " + recipevo.toString());
 		model.addAttribute("recipevo", recipevo);
 		return "./recipe/recipeUpdateForm";
 	}
@@ -349,6 +375,11 @@ public class RecipeController {
 		}
 		
 		return "./recipe/recipeSearch";
+	}
+	
+	@GetMapping(value="recipeSearchForm")
+	public String recipeSearch() {
+		return "/recipe/recipeSearchForm";
 	}
 	
 	@GetMapping(value="recipeWarningForm")
