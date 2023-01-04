@@ -9,6 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js" charset="UTF-8"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -64,6 +66,15 @@
 			</c:forEach>
 		</table>
 	</div>
-
+<div id="footer">
+	<div>
+		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
+		<span>팀 소개: ~~~</span>
+	</div>
+	<div>
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
+	</div>
+</div>
 </body>
 </html>

@@ -60,14 +60,12 @@ if (list != null && list.size() > 0) {
 <script type="text/javascript">
 
 $(document).ready(function(){
-	alert("profileSelect.jsp");
 	
 	$(document).on('click', '.mprBtn', function(){
 		alert("mprBtn");
 		
 		$('#mkey').val("MPROFILE");
 		
-
 		$('#profileSelect').attr({
 			 'action'	: "profileSelect.ict"
 			,'method'	: "POST"
@@ -75,23 +73,25 @@ $(document).ready(function(){
 		}).submit();
 		
 	});	//	.mprBtn 프로필 버튼
-	
+
+	//등업신청 클릭
 	$(document).on('click', '.mgrBtn', function(){
-		alert("mgrBtn");
-		
+				
 		$('#mkey').val("MGRADE");
+		
+		let mnum = $("#mnum").val();
+		console.log("mnum >>> : " + mnum);
 
-
-// 		$('#profileSelect').attr({
-// 			 'action'	: "profileSelect.ict"
-// 			,'method'	: "POST"
-// 			,"enctype"	: "application/x-www-form-urlencoded"
-// 		}).submit();
+		$('#profileSelect').attr({
+			 'action'	: "levelupSelectAll.ict?mnum=" + mnum
+			,'method'	: "GET"
+			,"enctype"	: "application/x-www-form-urlencoded"
+		}).submit();
 		
 	});	//	.mgrBtn 등업 버튼
-	
+
+	//비밀번호 수정
 	$(document).on('click', '.mpwBtn', function(){
-		alert("mpwBtn");
 		
 		$('#mkey').val("MPW");
 
@@ -104,11 +104,11 @@ $(document).ready(function(){
 		
 	});	//	.mpwBtn 비번 변경 버튼
 	
+	//이메일 변경
 	$(document).on('click', '.memailBtn', function(){
-		alert("memailBtn");
 		
 		$('#mkey').val("MEMAIL");
-
+	
 
 		$('#profileSelect').attr({
 			 'action'	: "profileSelect.ict"
@@ -119,8 +119,7 @@ $(document).ready(function(){
 	});	//	.memailBtn 이메일 버튼
 	
 	$(document).on('click', '.memBtn', function(){
-		alert("memBtn");
-		
+	
 		$('#mkey').val("MEM");
 
 		$('#profileSelect').attr({
@@ -132,7 +131,6 @@ $(document).ready(function(){
 	});	//	.memBtn 기타 버튼
 	
 	$(document).on('click', '.delBtn', function(){
-		alert("delBtn");
 
 		$('#profileSelect').attr({
 			 'action'	: "memDelete.ict"
@@ -142,12 +140,16 @@ $(document).ready(function(){
 		
 	});	//	.memBtn 기타 버튼
 	
-	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-	hiddenAction();
-	//	홈으로 보내주는 all.js 함수
-	homeAction();
-	//	메뉴바 클릭액션 all.js 함수
-	divClickAction();
+	$("#logoutBtn").on("click", function() {
+		$("#logoutForm").attr({
+			"action": "/oneYo/logout.ict",
+			"method": "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+	});
+		
+	//all.js 에 있는 모든 함수 연결
+	allJavaScript();
 	
 });
 </script>
@@ -160,45 +162,56 @@ $(document).ready(function(){
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -237,18 +250,18 @@ $(document).ready(function(){
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-			String mSNSid = mid;  // M22...
+			String mSNSid = mid; 
 			if (mid != null && !(mid.equals(""))) {
 				if (mid.length() > 5) {
 					String checkSNS = mid.substring(0, 6);
@@ -264,9 +277,7 @@ $(document).ready(function(){
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 	
 <% 		
 		}
 %>
@@ -326,6 +337,31 @@ $(document).ready(function(){
 <table>
 <!-- 프로필 -->
 <tr>
+	<td>회원번호</td>
+	<td  colspan="2"><%= mvo.getMnum() %></td>
+</tr>
+<tr>
+<td>아이디</td>
+<td  colspan="2">
+	<input type="hidden" id="mnum" name="mnum" value="<%= mvo.getMnum() %>">
+	<input type="hidden" id="mkey" name="mkey" value="">
+	<%= mvo.getMid() %>
+	</td>
+</tr>
+<!-- 인증절차? 필요?? -->
+<tr>
+	<td>
+	비밀번호
+	</td>
+	<td>
+	******
+<%-- 	<%= mvo.getMpw() %> --%>
+	</td>
+	<td>
+	<input type="button" class="mpwBtn" value="비밀번호 변경">
+	</td>
+</tr>
+<tr>
 	<td>
 	닉네임
 	</td>
@@ -341,8 +377,8 @@ $(document).ready(function(){
 	프로필 사진
 	</td>
 	<td>
-	<img src="/oneYo/img/mem/<%= mvo.getMprofile() %>" width="150" height="150" alt="image">
-	<br><%= mvo.getMprofile() %>
+	<img src="/oneYo/img/mem/<%= mvo.getMprofile() %>" width="50" height="50" alt="image"  onerror="this.src='/oneYo/resource/img/grade0.png'">
+	<br>
 	</td>
 </tr>
 <tr>
@@ -352,22 +388,17 @@ $(document).ready(function(){
 	<td>
 	<%= CodeUtils.getMgradeVal(mvo.getMgrade()) %>
 	</td>
+	<%
+	if(mvo.getMgrade().equals("0")){
+	%>
 	<td>
 	<input type="button" class="mgrBtn" value="등업 신청">
 	</td>
+	<%
+	}
+	%>
 </tr>
-<!-- 인증절차? 필요?? -->
-<tr>
-	<td>
-	비밀번호
-	</td>
-	<td>
-	<%= mvo.getMpw() %>
-	</td>
-	<td>
-	<input type="button" class="mpwBtn" value="비밀번호 변경">
-	</td>
-</tr>
+
 <tr>
 	<td>
 	이메일
@@ -379,21 +410,6 @@ $(document).ready(function(){
 	<input type="button" class="memailBtn" value="이메일 변경">
 	</td>
 </tr>
-
-<!-- 고정값 -->
-<tr>
-	<td>
-	아이디
-	</td>
-	<td>
-	<input type="hidden" id="mnum" name="mnum" value="<%= mvo.getMnum() %>">
-	<input type="hidden" id="mkey" name="mkey" value="">
-	<%= mvo.getMid() %>
-	</td>
-	<td rowspan="4">
-	<input type="button" class="memBtn" value="개인정보 수정">
-	</td>
-</tr>
 <!-- 기타 -->
 <tr>
 	<td>
@@ -401,6 +417,10 @@ $(document).ready(function(){
 	</td>
 	<td>
 	<%= mvo.getMname() %>
+	</td>
+
+	<td rowspan="3">
+	<input type="button" class="memBtn" value="개인정보 수정">
 	</td>
 </tr>
 <tr>
@@ -425,7 +445,7 @@ $(document).ready(function(){
 	<td>
 	경고 누적 횟수
 	</td>
-	<td>
+	<td  colspan="2">
 	<%= mvo.getMwarning() %> 회
 	</td>
 </tr>
@@ -433,7 +453,7 @@ $(document).ready(function(){
 	<td>
 	가입일
 	</td>
-	<td>
+	<td colspan="2">
 	<%= mvo.getInsertdate() %>
 	</td>
 </tr>
@@ -441,22 +461,18 @@ $(document).ready(function(){
 	<td>
 	수정일
 	</td>
-	<td>
+	<td colspan="2">
 	<%= mvo.getUpdatedate() %>
 	</td>
 </tr>
 </table>
-<input type="button" class="delBtn" value="회원탈퇴">
+<input type="button" class="delBtn" value="탈퇴하기">
 
 </div>
-
-<hr>
- MNUM<br>
-<%= mvo.getMnum() %>
-<hr>
-,DELETEYN<br>
-<%= mvo.getDeleteyn() %>
-<hr>
+<!-- <hr> -->
+<!-- ,DELETEYN<br> -->
+<%-- <%= mvo.getDeleteyn() %> --%>
+<!-- <hr> -->
 
 <%
 	}
@@ -477,9 +493,10 @@ $(document).ready(function(){
 </div>
 
 </div>
-</div>
 
 		</form>
-		</div>
+			<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 		</form>
 	</body>
 </html>

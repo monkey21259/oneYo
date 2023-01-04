@@ -67,6 +67,16 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public List<String> recipeSelectLike() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("recipeSelectLike");
+
+	
+		
+
+	}
+
+	@Override
+	public List<RecipeVO> recipeSelectOne(RecipeVO recipevo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("recipeSelectOne", recipevo);
 	}
 	
 }

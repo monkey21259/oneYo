@@ -107,8 +107,8 @@ logger.info("mypageHome.jsp 페이지 진입");
 	}); //ready
 	
 	function profileModify(mnum){
-		alert("프로필 영역 클릭");
-		alert("mnum : " + mnum);
+// 		alert("프로필 영역 클릭");
+// 		alert("mnum : " + mnum);
 		// mnum 현재 상수 : 'M202212260012'
 		location.href="mypagePWChk.ict?mnum=" + mnum;
 	}
@@ -120,20 +120,20 @@ logger.info("mypageHome.jsp 페이지 진입");
 // 	}
 	
 	function recipeSelect(rnum){
-		alert("레시피 글 클릭");
-		alert("rnum : " + rnum);
+// 		alert("레시피 글 클릭");
+// 		alert("rnum : " + rnum);
 		location.href = "recipeSelectContent.ict?rnum=" + rnum;
 	}
 	
 	function communitySelect(cnum){
-		alert("커뮤니티 글 클릭");
-		alert("cnum : " + cnum);
+// 		alert("커뮤니티 글 클릭");
+// 		alert("cnum : " + cnum);
 		location.href = "communitySelectContent.ict?cnum=" + cnum;
 	}
 	
 	function tipSelect(tnum){
-		alert("전문가 팁 글 클릭");
-		alert("tnum : " + tnum);
+// 		alert("전문가 팁 글 클릭");
+// 		alert("tnum : " + tnum);
 		location.href = "tipSelectContent.ict?tnum=" + tnum;
 	}
 
@@ -145,7 +145,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 
 <div id="backMenu"></div>
 
-<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
@@ -234,15 +234,15 @@ logger.info("mypageHome.jsp 페이지 진입");
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...

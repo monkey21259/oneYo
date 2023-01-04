@@ -53,16 +53,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>profileInfoUpdateForm.jsp</title>
+<title>oneYo(오내요)</title>
 <!-- jQuery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+
 <!-- 칸 나눈 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
+
 <script type="text/javascript">
 $(document).ready(function(){
-	alert("profileInfoUpdateForm.jsp");
 	
 	var mcat = '<%= mvo.getMcategory() %>';
 	if (mcat != null && mcat.length > 0) {
@@ -134,12 +136,17 @@ $(document).ready(function(){
 		}
 	});
 	
-	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-	hiddenAction();
-	//	홈으로 보내주는 all.js 함수
-	homeAction();
-	//	메뉴바 클릭액션 all.js 함수
-	divClickAction();
+	$("#logoutBtn").on("click", function() {
+		console.log("[로그아웃] 버튼 클릭");
+		$("#logoutForm").attr({
+			"action": "/oneYo/logout.ict",
+			"method": "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+	});
+	
+	//all.js 에 있는 모든 함수 연결
+	allJavaScript();
 	
 });
 </script>
@@ -152,45 +159,57 @@ $(document).ready(function(){
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
+
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -229,18 +248,18 @@ $(document).ready(function(){
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-			String mSNSid = mid;  // M22...
+			String mSNSid = mid;  
 			if (mid != null && !(mid.equals(""))) {
 				if (mid.length() > 5) {
 					String checkSNS = mid.substring(0, 6);
@@ -256,9 +275,7 @@ $(document).ready(function(){
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 	
 <% 		
 		}
 %>
@@ -393,6 +410,8 @@ profileInfoUpdateForm.jsp
 </div>
 
 </form>
-
+	<form id="logoutForm">
+	 	<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 	</form>
 </body>
 </html>

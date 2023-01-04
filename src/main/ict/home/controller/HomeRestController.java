@@ -17,6 +17,7 @@ import main.ict.tip.vo.TipVO;
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.service.HomeService;
+import main.ict.home.vo.HomeVO;
 
 @RestController
 public class HomeRestController {
@@ -192,6 +193,32 @@ public class HomeRestController {
 		} // end of if
 		
 		return json_output.toJSONString();
+	}
+	
+	@GetMapping(value="/info")
+	public String homeRestInformation() {
+		logger.info("homeRestInformation() 함수 진입");
+		
+		HomeVO hvo = null;
+		JSONObject json_obj = new JSONObject();
+		List<HomeVO> list = homeService.getCntList();
+		
+		// list.size() : 1
+		if(list !=null && list.size() == 1) {
+			
+			logger.info(list);
+			hvo = list.get(0);
+
+			if(hvo !=null) {
+				
+				json_obj.put("RecipeCnt", hvo.getRecipecnt());
+				json_obj.put("CommunityCnt", hvo.getCommunitycnt());
+				json_obj.put("TipCnt", hvo.getTipcnt());
+				json_obj.put("MemberCnt", hvo.getMembercnt());
+				
+			}
+		}		
+		return json_obj.toJSONString();
 	}
 	
 }

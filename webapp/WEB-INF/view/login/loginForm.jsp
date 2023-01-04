@@ -35,13 +35,13 @@
 				
 				Kakao.init('e5b444ec5e807f1a8556e5ac6dd99c83'); // 사용하려는 앱의 JavaScript 키 입력
 				
-				$(document).on('click', '#loginBtn', function(){
+				$(document).on('click', '#loginButton', function(){
 					$('#loginForm').attr({
 						'action':'login.ict',
 						'method':'POST',
 						'enctype':'application/x-www-form-urlencoded'
 					}).submit(); //end of submit
-				}); //end of loginBtn click function
+				}); //end of loginButton click function
 				
 				$("#kakaoLogin").on("click", function() {
 					console.log("카카오 로그인 시작");
@@ -53,12 +53,17 @@
 					loginWithNaver();
 				});
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 			}); //end of jQuery & window.onload
 			
@@ -175,15 +180,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 // 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
 	 		</div>
@@ -261,7 +266,7 @@
 				</tr>
 				<tr>
 					<td>
-						<button id="loginBtn">로그인</button>
+						<button id="loginButton">로그인</button>
 					</td>
 				</tr>
 				<tr>

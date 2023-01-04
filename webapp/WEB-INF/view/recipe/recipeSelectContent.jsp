@@ -144,6 +144,15 @@
 				
 				});//cautionBtn버튼클릭
 				
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+				
 				//	all.js 함수 전부 불러오기
 				allJavaScript();
 			}); 
@@ -271,15 +280,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...
@@ -370,11 +379,11 @@
 							</div>
 						</td>
 						<td id="recipe" class="selectTd cateTd">
-							<span>{{recipe}}</span>
+							<span>레시피</span>
 						</td>
 						<td rowspan="3">
 							<div id="imgWriter" class="imgWriter">
-								{{writerphoto}}
+								<img src="/oneYo/img/mem/<%=recipevo.getMprofile() %>" onerror="/oneYo/img/recipe/noimg.png" width="85" height="85"/>
 							</div>
 						</td>
 					</tr>
@@ -388,8 +397,9 @@
 					<tr>
 						<td class="selectTd">
 							<div class="writerDiv">
-								닉네임 넣어주세용
+								<p><%=recipevo.getMnick() %></p>
 							</div>
+							
 						</td>
 					</tr>
 					<tr> <%  // 요리 분야 %>
@@ -510,16 +520,6 @@
 					</tr>
 				</table>
 				</div>
-				<script>
-				
-				new Vue({
-					el :'#selectContent',
-					data:{recipe:"레시피",writerphoto:"작성자 프로필 이미지"}
-					
-				})
-				
-
-				</script>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
 				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
