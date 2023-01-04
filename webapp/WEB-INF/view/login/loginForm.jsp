@@ -35,13 +35,24 @@
 				
 				Kakao.init('e5b444ec5e807f1a8556e5ac6dd99c83'); // 사용하려는 앱의 JavaScript 키 입력
 				
-				$(document).on('click', '#loginBtn', function(){
+				// 로그인 / 회원가입 ----------
+				$("#newMemBtn").on("click", function() {
+					console.log("[회원가입] 버튼 클릭");
+					location.href="/oneYo/memGrade.ict";
+				});
+				
+				$("#loginBtn").on("click", function() {
+					console.log("[로그인] 버튼 클릭");
+					location.href="/oneYo/loginForm.ict";
+				});
+				
+				$(document).on('click', '#loginButton', function(){
 					$('#loginForm').attr({
 						'action':'login.ict',
 						'method':'POST',
 						'enctype':'application/x-www-form-urlencoded'
 					}).submit(); //end of submit
-				}); //end of loginBtn click function
+				}); //end of loginButton click function
 				
 				$("#kakaoLogin").on("click", function() {
 					console.log("카카오 로그인 시작");
@@ -261,7 +272,7 @@
 				</tr>
 				<tr>
 					<td>
-						<button id="loginBtn">로그인</button>
+						<button id="loginButton">로그인</button>
 					</td>
 				</tr>
 				<tr>

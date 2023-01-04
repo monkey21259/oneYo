@@ -20,6 +20,18 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<script type="text/javascript">
 			$(document).ready(function(){
+				
+				// 로그인 / 회원가입 ----------
+				$("#newMemBtn").on("click", function() {
+					console.log("[회원가입] 버튼 클릭");
+					location.href="/oneYo/memGrade.ict";
+				});
+				
+				$("#loginBtn").on("click", function() {
+					console.log("[로그인] 버튼 클릭");
+					location.href="/oneYo/loginForm.ict";
+				});
+				
 				$(document).on('click', '#resetPWBtn', function(){
 					let mpw = $('#mpw').val();
 					let mpw_r = $('#mpw_r').val();
