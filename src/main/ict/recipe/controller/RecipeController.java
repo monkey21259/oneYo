@@ -256,10 +256,12 @@ public class RecipeController {
 	public String recipeUpdateForm(RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeUpdateForm() 함수 진입");
+		logger.info("recipevo.getRnum : " + recipevo.getRnum());
+		List<RecipeVO> list = recipeService.recipeSelectOne(recipevo);
 		
-		// (O) rnum, rhit, mnum, updatedate, (X) warning, deleteyn, insertdate 
-		// (221224) rnum, rhit, mnum, updatedate
-		logger.info(recipevo.toString());
+		recipevo = list.get(0);
+		
+		logger.info("recipevo : " + recipevo.toString());
 		model.addAttribute("recipevo", recipevo);
 		return "./recipe/recipeUpdateForm";
 	}

@@ -97,6 +97,7 @@
 	       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')    AS      INSERTDATE
 	       ,TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD')    AS      UPDATEDATE
 	       ,B.MNICK         AS      MNICK
+	       ,B.MPROFILE      AS      MPROFILE
 	       ,NVL((SELECT COUNT(LNUM)
 	             FROM "ORCLICT00"."ICT_LIKE"
 	             WHERE LIKETHIS = #{ rnum }), 0)     AS    LIKECNT
@@ -110,7 +111,7 @@
 	AND     A.RNUM = #{ rnum } group by A.RNUM, A.RSUBJECT, A.RCONTENT, A.RPHOTO, A.WARNING, 
 	        A.MNUM, A.RHIT, A.DELETEYN, TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD'), TO_DATE(A.INSERTDATE), 
 	        A.INSERTDATE, 'YYYY-MM-DD', TO_CHAR(TO_DATE(A.UPDATEDATE), 'YYYY-MM-DD'), TO_DATE(A.UPDATEDATE), A.UPDATEDATE, 
-	        'YYYY-MM-DD', B.MNICK, A.RJERYO, A.RTIME, A.RPERSON, 
+	        'YYYY-MM-DD', B.MNICK, B.MPROFILE, A.RJERYO, A.RTIME, A.RPERSON, 
 	        A.RDIFF, A.RCATEGORY
 
 </select>
@@ -138,6 +139,40 @@ SELECT
 	   AND A.RNUM = #{ rnum, jdbcType=VARCHAR }
 	   AND A.MNUM = #{ mnum, jdbcType=VARCHAR }
  -->
+
+
+<select id="recipeSelectOne" parameterType="recipevo" resultType="recipevo">
+		SELECT
+				 A.RNUM         RNUM
+			    ,A.RSUBJECT     RSUBJECT
+			    ,A.RCONTENT     RCONTENT
+			    ,A.RPHOTO       RPHOTO
+			    ,A.RJERYO       RJERYO
+			    ,A.RTIME        RTIME
+			    ,A.RPERSON      RPERSON
+			    ,A.RDIFF        RDIFF
+			    ,A.RCATEGORY    RCATEGORY
+			    ,A.WARNING      WARNING
+			    ,A.MNUM         MNUM
+			    ,B.MNICK        MNICK
+		        ,B.MPROFILE     MPROFILE
+		        ,A.RHIT         RHIT
+			    ,A.DELETEYN     DELETEYN
+			    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+			    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
+			  FROM
+			    ICT_RECIPE A, ICT_MEMBER B
+			  WHERE
+				 A.DELETEYN = 'Y'
+			   	 AND A.RNUM = #{ rnum, jdbcType=VARCHAR }
+		         AND A.MNUM = B.MNUM
+			   	
+
+
+
+
+</select>
+
 
 <!-- UPDATE -->
 <update id="recipeUpdate" parameterType="recipevo">
