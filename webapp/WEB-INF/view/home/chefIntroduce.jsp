@@ -76,11 +76,13 @@
 			location.href = "";
 		});
 		
+		// 전문가팁 더보기
 		$(document).on("click", "#tipShowMore", function(){
 			alert("팁 더보기");
 			location.href = "";
 		});
 		
+		// 커뮤니티 더보기
 		$(document).on("click", "#communityShowMore", function(){
 			alert("커뮤니티 더 보기");
 			location.href = "";
