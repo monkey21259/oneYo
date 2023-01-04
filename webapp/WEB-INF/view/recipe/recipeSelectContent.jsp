@@ -370,11 +370,11 @@
 							</div>
 						</td>
 						<td id="recipe" class="selectTd cateTd">
-							<span>{{recipe}}</span>
+							<span>레시피</span>
 						</td>
 						<td rowspan="3">
 							<div id="imgWriter" class="imgWriter">
-								{{writerphoto}}
+								<img src="/oneYo/img/mem/<%=recipevo.getMprofile() %>" onerror="/oneYo/img/recipe/noimg.png" width="85" height="85"/>
 							</div>
 						</td>
 					</tr>
@@ -388,8 +388,9 @@
 					<tr>
 						<td class="selectTd">
 							<div class="writerDiv">
-								닉네임 넣어주세용
+								<p><%=recipevo.getMnick() %></p>
 							</div>
+							
 						</td>
 					</tr>
 					<tr> <%  // 요리 분야 %>
@@ -512,16 +513,6 @@
 					</tr>
 				</table>
 				</div>
-				<script>
-				
-				new Vue({
-					el :'#selectContent',
-					data:{recipe:"레시피",writerphoto:"작성자 프로필 이미지"}
-					
-				})
-				
-
-				</script>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
 				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
