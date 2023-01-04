@@ -6,12 +6,24 @@
 
 <%@ page import="main.ict.mem.vo.MemVO" %>
 <%@ page import="main.ict.common.CodeUtils" %>
+<%@ page import="main.ict.common.O_Session" %>
 
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
 	
 	logger.info("~~ memInsertForm.jsp ~~");
+%>
+
+<%
+	// 세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+	
+	logger.info("mnum >>> : " + mnum);
+	logger.info("mid: " + mid);
 %>
 
 <%
@@ -435,7 +447,7 @@ $(document).ready(function(){
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -443,20 +455,20 @@ $(document).ready(function(){
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik mypageHome">마이페이지</span>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+				<p><%= mnick %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
 <% 		
-// 		}
+		}
 %>
 	 	</div>
 	</div>
@@ -699,6 +711,7 @@ $(document).ready(function(){
 		닉네임
 	</td>
 	<td>
+
 <%
 		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우
 %>
@@ -706,10 +719,17 @@ $(document).ready(function(){
 <%	
 		} else {
 %>
-		<input type="text" id="mnick" name="mnick" value="" />
-<%
-		}
-%>
+
+<%-- <% --%>
+<!-- // 		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우 -->
+<%-- %> --%>
+<%-- 		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly /> --%>
+<%-- <%	 --%>
+<!-- // 		} else { -->
+<%-- %> --%>
+<%-- <% --%>
+<!-- // 		} -->
+<%-- %> --%>
 	</td>
 	<td>
 	</td>
@@ -730,81 +750,81 @@ $(document).ready(function(){
 		<input type="hidden" id="mhp" name="mhp" value="<%= mvo.getMhp() %>" />
 <%
 		} else {
-%>
-		<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="" />
-		- <input type="text" id="mhp1" name="mhp1" class="mhp notNull" value="" />
-		- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="" />
-		<input type="hidden" id="mhp" name="mhp" value="" />
-<%
-		}
-%>
-	</td>
-	<td>
-	</td>
-</tr>
-<!-- memail 이메일 -->
-<tr>
-	<td>
-		이메일
-	</td>
-	<td>
-		<%= mvo.getMemail() %>
-		<input type="hidden" id="memail" name="memail" value="<%= mvo.getMemail() %>">
-		<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>">
-	</td>
-	<td>
-	</td>
-</tr>
-<!-- mprofile 프로필 사진 -->
-<tr>
-	<td>
-		프로필 사진
-	</td>
-	<td>
-		<input type="file" id="mprofile" name="mprofile">
-	</td>
-	<td>
-	</td>
-</tr>
-<!-- mcategory 요리 분야 -->
-<tr>
-	<td>
-		LIKE
-	</td>
-	<td>
-		<ul>
-		<li>
-			<input type="checkbox" class="mcategory" value="00">한식
-		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="01">중식
-		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="02">양식
-		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="03">일식
-		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="04">간식
-		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="99">기타
-		</li>
-		</ul>
-		<input type="hidden" id="mcategory" name="mcategory" value="">
-	</td>
-	<td>
-	</td>
-</tr>
-<tr>
-	<td colspan="3">
-		<input type="button" id="formBtn" name="formBtn" value="회원가입">
-	</td>
-</tr>
-<%
-	}
-%>
+			%>
+					<input type="text" id="mhp0" name="mhp0" class="mhp notNull" value="" />
+					- <input type="text" id="mhp1" name="mhp1" class="mhp notNull" value="" />
+					- <input type="text" id="mhp2" name="mhp2" class="mhp notNull" value="" />
+					<input type="hidden" id="mhp" name="mhp" value="" />
+			<%
+					}
+			%>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<!-- memail 이메일 -->
+			<tr>
+				<td>
+					이메일
+				</td>
+				<td>
+					<%= mvo.getMemail() %>
+					<input type="hidden" id="memail" name="memail" value="<%= mvo.getMemail() %>">
+					<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>">
+				</td>
+				<td>
+				</td>
+			</tr>
+			<!-- mprofile 프로필 사진 -->
+			<tr>
+				<td>
+					프로필 사진
+				</td>
+				<td>
+					<input type="file" id="mprofile" name="mprofile">
+				</td>
+				<td>
+				</td>
+			</tr>
+			<!-- mcategory 요리 분야 -->
+			<tr>
+				<td>
+					LIKE
+				</td>
+				<td>
+					<ul>
+					<li>
+						<input type="checkbox" class="mcategory" value="00">한식
+					</li>
+					<li>
+						<input type="checkbox" class="mcategory" value="01">중식
+					</li>
+					<li>
+						<input type="checkbox" class="mcategory" value="02">양식
+					</li>
+					<li>
+						<input type="checkbox" class="mcategory" value="03">일식
+					</li>
+					<li>
+						<input type="checkbox" class="mcategory" value="04">간식
+					</li>
+					<li>
+						<input type="checkbox" class="mcategory" value="99">기타
+					</li>
+					</ul>
+					<input type="hidden" id="mcategory" name="mcategory" value="">
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<input type="button" id="formBtn" name="formBtn" value="회원가입">
+				</td>
+			</tr>
+			<%
+				}
+			%>
 </table>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
