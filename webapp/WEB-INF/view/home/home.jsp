@@ -120,8 +120,11 @@
 					});
 					
 					function whenSuccess(retData) {
-						console.log(retData);
-						alert(retData);
+						console.log(retData);		// Object
+						console.log(retData.abc);	// Array(1) -> TEST: "TEST입니다."
+						
+						
+						
 					};
 					
 				});

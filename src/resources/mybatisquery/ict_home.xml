@@ -244,7 +244,7 @@
 	 </if>
 	  FROM
 	 <if test='boardCategory.equals("레시피")'>
-	     ICT_RECIPE     A
+	    ICT_RECIPE     A
 	 </if>
 	 <if test='boardCategory.equals("전문가팁")'>
 	    ICT_TIP        B
@@ -256,7 +256,21 @@
 	    ICT_NOTICE     D
 	 </if>
 	 WHERE DELETEYN = 'Y'
-	 ORDER BY 1
+	 <!-- DAILY -->
+	 <if test='dateCondition.equals("D")'>
+	   <![CDATA[ AND SYSDATE - INSERTDATE = 1 ]]>
+	 </if>
+	 <!-- WEEKLY -->
+	 <if test='dateCondition.equals("W")'>
+	   <![CDATA[ AND SYSDATE - INSERTDATE < 8 ]]>
+	 </if>
+	 <!-- MONTHLY -->
+	 <if test='dateCondition.equals("M")'>
+	   <![CDATA[ AND SYSDATE - INSERTDATE < 31 ]]>
+	 </if>
+	 <!-- AND ROWNUM < ? -->
+	 ORDER BY HIT DESC
+	 
 </select>
 
 <select id="chefRecipeShowMore" parameterType="recipevo" resultType="recipevo">

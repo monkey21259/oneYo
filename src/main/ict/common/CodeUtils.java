@@ -1,5 +1,10 @@
 package main.ict.common;
 
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -73,7 +78,7 @@ public abstract class CodeUtils {
 	}	//	프로필 조회 시 선호 카테고리 뷰
 	
 	
-	
+// 레시피 -------------------------------------------------------
 	public static String getRcategory(String catV) {
 		
 		logger.info("getRcategory() - 음식 카테고리 매핑 함수 진입.");
@@ -189,6 +194,7 @@ public abstract class CodeUtils {
 		
 		return rPerson + "인분";
 	}
+// 레시피 끝 -----------------------------------------------------
 	
 	public static String[] getMhpParts(String mhp) {
 		
@@ -304,6 +310,29 @@ public abstract class CodeUtils {
 		return retStr;
 	}
 	
+// VO -> Map --------------------------------------------------------------------
+	public static Map<String, Object> convertToMap(Object obj) throws Exception {
+		
+		logger.info("convertToMap() 함수 진입.");
+		if (obj == null) {
+			return Collections.emptyMap();
+		}
+		
+		Map<String, Object> convertMap = new HashMap<>();		// 리턴할 Map 객체
+		
+		Field[] fields = obj.getClass().getDeclaredFields();	// 인자가 가진 property field
+		for (Field field: fields) {
+			field.setAccessible(true);	// field 액세스 가능
+			if (field.get(obj) != null) {
+				convertMap.put(field.getName(), field.get(obj));
+				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
+			}
+		}
+		
+		return convertMap;
+	}
+// VO -> Map 끝 ------------------------------------------------------------------
+
 	public static void main(String[] args) {
 		
 		
