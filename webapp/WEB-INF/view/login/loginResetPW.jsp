@@ -21,17 +21,6 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
-				// 로그인 / 회원가입 ----------
-				$("#newMemBtn").on("click", function() {
-					console.log("[회원가입] 버튼 클릭");
-					location.href="/oneYo/memGrade.ict";
-				});
-				
-				$("#loginBtn").on("click", function() {
-					console.log("[로그인] 버튼 클릭");
-					location.href="/oneYo/loginForm.ict";
-				});
-				
 				$(document).on('click', '#resetPWBtn', function(){
 					let mpw = $('#mpw').val();
 					let mpw_r = $('#mpw_r').val();
@@ -50,6 +39,18 @@
 						return;
 					}
 				});//end of resetPWBtn click function
+				
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 				hiddenAction();
@@ -143,15 +144,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 // 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
 	 		</div>
