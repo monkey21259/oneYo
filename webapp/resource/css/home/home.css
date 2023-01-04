@@ -73,12 +73,17 @@
 }
 
 .favorCond {
-    width: 150px;
+    width: 148px;
     height: 40px;
     display: flex;
+    margin-left: 2px;
     justify-content: center; /* 수평 중앙 배치 */
     align-items: center; /* 수직 중앙 배치 */
     font-size: 20px;
+}
+
+.favorCond option {
+	text-align:right;
 }
 
 .favorhr {

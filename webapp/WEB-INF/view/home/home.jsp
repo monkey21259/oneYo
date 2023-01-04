@@ -100,10 +100,32 @@
 					}).submit();
 				});
 				// ------------------------------------------
-				// 레시피 게시판 이동 (테스트) ---------------------
-				$("#recipeSAllBtn").on("click", function() {
-					console.log("[테스트] 레시피 게시판 이동");
-					location.href="/oneYo/recipeSelectAll.ict";
+				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
+				$("#favorCond").on("change", function() {
+// 					console.log($("#favorCond option:selected").val());	// W, M, D
+// 					console.log($(".postTitles").attr("data-num"));		// 1, 2, 3, 4
+
+// 					let urlV = "/oneYo/";
+// 					let typeV = "GET";
+// 					let dataV = {
+// 						"cond": $("#favorCond selected").val(),
+// 						"category": $(".postTitles").attr("data-num")
+// 					};
+// 					let dataTypeV = "JSON";
+					
+// 					$.ajax({
+// 						url: urlV,
+// 						type: typeV,
+// 						data: dataV,
+// 						dataType: dataType,
+// 						success: whenSuccess
+// 					});
+					
+// 					function whenSuccess(retData) {
+// 						console.log(retData);
+// 						alert(retData);
+// 					}
+					
 				});
 				// ------------------------------------------
 				
@@ -411,10 +433,10 @@
 			 	</div>
 		 	</div>
 		 	<div>
-		 		<select class="favorCond">
-		 			<option style="text-align:right;">일간&nbsp;</option>
-		 			<option style="text-align:right;">주간&nbsp;</option>
-		 			<option style="text-align:right;">월간&nbsp;</option>
+		 		<select id="favorCond" class="favorCond">
+		 			<option value="D">일간&nbsp;</option>
+		 			<option value="W">주간&nbsp;</option>
+		 			<option value="M">월간&nbsp;</option>
 		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />
