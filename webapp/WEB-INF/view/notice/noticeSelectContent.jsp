@@ -16,7 +16,7 @@
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
 	String mid = (String)oSession.getAttribute(request, "mid");
-	
+	String mnick = (String)oSession.getAttribute(request, "mnick");
 
 %>
 <!DOCTYPE html>
@@ -263,7 +263,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"  onerror="this.src='/oneYo/img/community/noimg.jpg'"><br>
+						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"><br>
 					</td>
 				</tr>
 				<tr>
@@ -295,6 +295,7 @@
 			</table>
 		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
 			<jsp:param name="cotnum" value="<%=nvo.getNnum() %>"/>
+			<jsp:param name="clientMnick" value="<%=mnick %>"/>
 		</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>

@@ -93,7 +93,13 @@ public class CommunityController {
 		logger.info("ccontent >>> : " + cvo.getCcontent());
 		
 		String cphoto = fu.getFileName("cphoto");
-		cvo.setCphoto(cphoto);
+		
+		// 파일 업로드 체크
+		if(cphoto == null) {
+			cvo.setCphoto("noimg.png");
+		}
+			cvo.setCphoto(cphoto);
+			
 		logger.info("cphoto >>> : " +  cvo.getCphoto());
 	
 		O_Session mSession = O_Session.getInstance();
@@ -294,13 +300,11 @@ public class CommunityController {
 		logger.info("ccontent >>> : " + cvo.getCcontent());
 
 		
-		String cphoto = fu.getFileName("cphoto");
-		if(cphoto == null) {
-			cphoto =" ";
+		if(fu.getFileName("cphoto") != null && fu.getFileName("cphoto").length() > 0) {
+			cvo.setCphoto(fu.getFileName("cphoto"));
+		}else {
+			cvo.setCphoto("noimg.png");
 		}
-		cvo.setCphoto(cphoto);
-		logger.info("cphoto >>> : " +  cvo.getCphoto());
-		
 		//update
 		int nCnt = communityService.communityUpdate(cvo);
 		logger.info("nCnt >>> : " + nCnt);
