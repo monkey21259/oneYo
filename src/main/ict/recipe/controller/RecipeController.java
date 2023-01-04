@@ -139,6 +139,30 @@ public class RecipeController {
 			return "#";
 		}
 //		logger.info(recipeList.toString());
+		logger.info("0 : " + recipeList.get(0).toString());
+		logger.info("1 : " + recipeList.get(1).toString());
+		List<String> recipeLike = recipeService.recipeSelectLike();
+		logger.info("recipeLike.size : " + recipeLike.size());
+		
+		
+		for(int i=0; i < recipeList.size(); i++) {
+			recipeList.get(i).setLikecnt("0");
+		}
+		
+		int like;
+		for(int i=0; i < recipeList.size(); i++) {
+			for(int j=0; j < recipeLike.size(); j++) {
+				like = 0;
+				if(recipeList.get(i).getRnum().equals(recipeLike.get(j))) {
+					logger.info("recipeLike.get(j) : " +  recipeList.get(i).getRnum() + recipeLike.get(j));
+					
+					like = (Integer.parseInt(recipeList.get(i).getLikecnt()) + 1);
+					recipeList.get(i).setLikecnt(String.valueOf(like));
+					logger.info("recipeList.get(i).getLikecnt : " + recipeList.get(i).getLikecnt());
+					}
+				}
+			}
+			
 		
 		model.addAttribute("pagingVO", recipevo);
 		model.addAttribute("recipeList", recipeList);

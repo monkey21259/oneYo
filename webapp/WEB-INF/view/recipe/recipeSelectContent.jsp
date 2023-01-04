@@ -144,6 +144,15 @@
 				
 				});//cautionBtn버튼클릭
 				
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+				
 				//	all.js 함수 전부 불러오기
 				allJavaScript();
 			}); 
@@ -271,15 +280,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...

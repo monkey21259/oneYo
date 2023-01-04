@@ -63,9 +63,18 @@ public class MypageController {
 
 	//	마이페이지 넘어가기 전 비밀번호 확인 폼으로 이동
 	@GetMapping("mypagePWChk")
-	public String mypagePWChk() {
-		
+	public String mypagePWChk(MemVO mvo, Model model) {
 		logger.info("mypagePWChk() >>> : mypagePWChk.jsp");
+		
+		List<MemVO> list = mypageService.selectMyProfile(mvo);
+		
+		String mpw = list.get(0).getMpw();
+		mvo.setMpw(mpw);
+		logger.info("mpw >>>> : " + mvo.getMpw());
+	
+		if(list.size() == 1) {
+			model.addAttribute("list", list);
+		}
 		
 		return "mypage/mypagePWChk";
 	}
@@ -128,13 +137,13 @@ public class MypageController {
 			
 		//세션에서 받은 mnum
 		mvo.setMnum(mnum);
-		logger.info("mnum >>>>>>>>>>>>>> : " + mvo.getMnum());
+		logger.info("mnum >>> : " + mvo.getMnum());
 		
 		List<MemVO> list = mypageService.selectMyProfile(mvo);
 		
 		//회원등급 담는 변수
 		String mgrade= list.get(0).getMgrade();
-		logger.info("mgrade >>>>>>>>>> : " + mgrade);
+		logger.info("mgrade >>> : " + mgrade);
 		
 		return mgrade;
 	}

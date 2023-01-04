@@ -62,6 +62,7 @@
 			    ,A.RCATEGORY    RCATEGORY
 			    ,A.WARNING      WARNING
 			    ,A.MNUM         MNUM
+			    ,B.MNICK        MNICK
 			    ,A.RHIT         RHIT
 			    ,A.DELETEYN     DELETEYN
 			    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
@@ -69,13 +70,26 @@
 			    ,CEIL(ROW_NUMBER() OVER(ORDER BY A.RNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
 				,COUNT(A.RNUM) OVER()					AS totalCount
 			FROM
-			    ICT_RECIPE A
+			    ICT_RECIPE A, ICT_MEMBER B
 			WHERE A.DELETEYN = 'Y'
+			AND A.MNUM = B.MNUM
 			ORDER BY 1
 		 )
 	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
 
 </select>
+
+<select id="recipeSelectLike" resultType="String">
+
+	SELECT A.LIKETHIS  LIKECNT
+  FROM ICT_LIKE A, ICT_RECIPE B
+  WHERE A.LIKETHIS = B.RNUM
+  AND A.LIKEYN = 'Y'
+
+
+</select>
+
+
 
 <!-- SELECT -->
 <select id="recipeSelectContent" parameterType="recipevo" resultType="recipevo">

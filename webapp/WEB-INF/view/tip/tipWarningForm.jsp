@@ -62,20 +62,18 @@
 		
 	});
 	
-	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-	hiddenAction();
-	//	홈으로 보내주는 all.js 함수
-	homeAction();
-	//	메뉴바 클릭액션 all.js 함수
-	divClickAction();
-	// 마이페이지로 보내주는 all.js 함수
-	mypageHomeAction();
+	//로그아웃
+	$("#logoutBtn").on("click", function() {
+		$("#logoutForm").attr({
+			"action": "logout.ict",
+			"method": "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+	});
 			
-	//회원가입 으로 보내주는 all.js 함수
-	joinAction();
+	//all.js 에 있는 모든 함수 연결
+	allJavaScript();
 	
-	//로그인으로 보내주는 all.js 함수
-	loginAction();
 	});
 	
 </script>
@@ -164,15 +162,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...

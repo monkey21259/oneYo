@@ -7,7 +7,7 @@
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.common.O_Session" %>
-
+<%@ page import="main.ict.common.CodeUtils" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 
@@ -77,12 +77,17 @@
 				});
 				// ------------------------------------------
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 			});
 		
@@ -94,6 +99,12 @@
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 	</head>
+	<style>
+	#rphoto{
+		border-radius:15px;
+	}
+	
+	</style>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
 <!--  -->
@@ -182,15 +193,15 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...
@@ -375,7 +386,11 @@
 						<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
 							<div class="recipes">
 								<div style="margin:10%;height:77%;">
-									<%= recipevo.getRsubject() %>
+									<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" width="190" height="150" id="rphoto"><br>
+									<%= recipevo.getRsubject() %><br>
+									<%= CodeUtils.getRcategory(recipevo.getRcategory()) %><br>
+									<%= recipevo.getMnick() %><br>
+									조회수: <%= recipevo.getRhit() %>&nbsp;좋아요 : <%=recipevo.getLikecnt() %>
 								</div>
 							</div>
 							<input type="hidden" class="rnum" value="<%= recipevo.getRnum() %>" />
