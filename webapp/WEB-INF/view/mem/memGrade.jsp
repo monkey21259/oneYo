@@ -65,17 +65,6 @@ alert("test3");
 $(document).ready(function(){
 	alert("test4");
 	
-	// 로그인 / 회원가입 ----------
-	$("#newMemBtn").on("click", function() {
-		console.log("[회원가입] 버튼 클릭");
-		location.href="/oneYo/memGrade.ict";
-	});
-	
-	$("#loginBtn").on("click", function() {
-		console.log("[로그인] 버튼 클릭");
-		location.href="/oneYo/loginForm.ict";
-	});
-	
 	//	일반/전문가 등급 정하기				=====
 	$(document).on('click', '.btn', function(){
 		alert("plz 한글 주시오");
@@ -168,7 +157,19 @@ $(document).ready(function(){
 	homeAction();
 	//	메뉴바 클릭액션 all.js 함수
 	divClickAction();
-		
+	
+	//로그아웃
+	$("#logoutBtn").on("click", function() {
+		$("#logoutForm").attr({
+			"action": "logout.ict",
+			"method": "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+	});
+			
+	//all.js 에 있는 모든 함수 연결
+	allJavaScript();
+	
 });  // document.ready
 </script>
 </head>
@@ -256,15 +257,15 @@ $(document).ready(function(){
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 // 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
 	 		</div>
