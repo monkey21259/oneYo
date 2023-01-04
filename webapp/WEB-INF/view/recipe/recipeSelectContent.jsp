@@ -313,7 +313,7 @@
 		<ul>
 			<li>
 				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				레시피
 				</div>
 				</a>
@@ -472,7 +472,9 @@
 					</tr>
 					<tr>
 						<td colspan="3">
-							<%= recipevo.getRcontent() %>
+							<div class="neyong">
+								<%= recipevo.getRcontent() %>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -531,10 +533,12 @@
 				<input type="hidden" id="updatedate" name="updatedate" value="<%= recipevo.getUpdatedate() %>" />	<!-- 작성(수정) 시간 -->
 				
 				</form>
-			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
-				<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
-				<jsp:param name="clientMnick" value="<%=mnick %>"/>
-			</jsp:include>
+				<div class="comments">
+					<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+						<jsp:param name="cotnum" value="<%=recipevo.getRnum() %>"/>
+						<jsp:param name="clientMnick" value="<%=mnick %>"/>
+					</jsp:include>
+				</div>
 				
 	<!-- -------------------------------페이지 전용 center 위가 편집 후 아래가 편집 전 ------------------------------- -->			
 				

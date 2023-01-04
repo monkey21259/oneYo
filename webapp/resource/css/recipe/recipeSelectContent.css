@@ -15,7 +15,7 @@
 	
 }
 
-#center #viewTable {
+#center #viewTable #selectContent {
 	width	: 900px;
 	margin	: 0 auto;
 }
@@ -40,6 +40,7 @@
 #center #selectContent .selectTd {
 	width	: 450px;
 /* 	height	: 300px; */
+	margin-left	: 10px;
 	
 	/* 정렬 */
 	display	: flex;
@@ -81,7 +82,8 @@
 }
 
 #center #selectContent .selectTd .oneTd  {
-	width	: 125px;
+/* 	width	: 125px; */
+	width	: 112px;
 /* 	height	: 300px; */
 }
 #center #selectContent .selectTd .oneTd table  {
@@ -109,6 +111,23 @@
 	font-size	: 18px;
 	/* 폰트 색상 */
 /* 	color		: #93A603; */
+}
+
+#center #selectContent .neyong  {
+	width	: 700px;
+	margin	: 30px auto;
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	letter-spacing	: 2px;
+	line-height	: 140%;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+}
+
+
+#center .comments {
+	width	: 800px;
+	margin	: 10px auto;
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */
