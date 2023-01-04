@@ -134,38 +134,13 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 						return false;
 					}//end of if
 					
-					//새로운 댓글이 담겨질 li태그
-					var newLi = $('<li>');
-					newLi.addClass('item');
+					//새로운 댓글이 담겨질 div태그
+					var newDiv = $('<div>');
+					newDiv.addClass('item');
 					
-					//작성자 정보가 담길 p태그
-					var writerP = $('<p>');
-					writerP.addClass('writer');
-					
-					//댓글번호가 담길 hidden타입 input태그
-					var conumHidden = $('<input>');
-					conumHidden.attr({'type':'hidden', 'value':conum});
-					conumHidden.addClass('conum');
-					
-					//댓글 내용이 담길 p태그
-					var cocontentP = $('<p>');
-					cocontentP.html(decodeURIComponent(cocontent));
-					cocontentP.addClass('cocontent');
-					
-					//댓글 작성자 회원번호가 담길 hidden타입 input태그
-					var mnumHidden = $('<input>');
-					mnumHidden.attr({'type':'hidden', 'value':mnum});
-					mnumHidden.addClass('mnum');
-					
-					//댓글 작성자 닉네임이 담길 span태그
-					var mnickSpan = $('<span>');
-					mnickSpan.html(decodeURIComponent(mnick) + "   ");
-					mnickSpan.addClass('mnick');
-					
-					//댓글 작성일이 담길 p태그
-					var insertdateP = $('<p>');
-					insertdateP.html(decodeURIComponent(insertdate));
-					insertdateP.addClass('insertdate');
+					//작성자 닉네임, 삭제 버튼이 담길 div태그
+					var writerDiv = $('<div>');
+					writerDiv.addClass('writer');
 					
 					//댓글 삭제 버튼 input태그
 					var deleteBtn = $('<input>');
@@ -178,10 +153,33 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 						deleteBtn.attr({'type':'hidden'});
 					}//end of if-else
 					
+					writerDiv.html(decodeURIComponent(mnick));
+					
+					//댓글번호가 담길 hidden타입 input태그
+					var conumHidden = $('<input>');
+					conumHidden.attr({'type':'hidden', 'value':conum});
+					conumHidden.addClass('conum');
+					
+					//댓글 작성자 회원번호가 담길 hidden타입 input태그
+					var mnumHidden = $('<input>');
+					mnumHidden.attr({'type':'hidden', 'value':mnum});
+					mnumHidden.addClass('mnum');
+					
+					//댓글 내용이 담길 div태그
+					var cocontentDiv = $('<div>');
+					cocontentDiv.html(decodeURIComponent(cocontent));
+					cocontentDiv.addClass('cocontent');
+					
+					//댓글 작성일이 담길 p태그
+					var insertdateDiv = $('<div>');
+					insertdateDiv.html(decodeURIComponent(insertdate) + "&nbsp;&nbsp;&nbsp;");
+					insertdateDiv.addClass('insertdate');
+					
 					//생성한 태그들 조립하기
-					writerP.append(mnickSpan).append(deleteBtn).append(conumHidden).append(mnumHidden);
-					newLi.append(writerP).append(cocontentP).append(insertdateP);
-					$('#commentList').append(newLi);
+					writerDiv.append(conumHidden).append(mnumHidden);
+					insertdateDiv.append(deleteBtn);
+					newDiv.append(writerDiv).append(cocontentDiv).append(insertdateDiv);
+					$('#commentList').append(newDiv);
 					
 				}//end of addNewItem() function
 				
@@ -238,9 +236,9 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 			}
 %>
 				<input type="hidden" id="cotnum" value="<%=cotnum %>">
-				<ul id="commentList">
-					<!-- 댓글 내용 li태그 들어갈 자리 -->
-				</ul>
+				<div id="commentList">
+					<!-- 댓글 내용 table태그 들어갈 자리 -->
+				</div>
 			</form>
 	</body>
 </html>
