@@ -84,7 +84,7 @@ public class TipController {
 		
 		// 파일 업로드 체크
 		if(tvo.getTphoto() == null)
-			tvo.setTphoto("no_img.jpg");
+			tvo.setTphoto("noimg.png");
 		
 		logger.info("tvo 프로퍼티 : \n" + tvo.toString());
 		int insertResult = tipService.tipInsert(tvo);
@@ -261,8 +261,9 @@ public class TipController {
 		
 		logger.info("tvo : " + tvo.toString());
 		
+		// 파일 업로드 체크
 		if(tvo.getTphoto() == null)
-			tvo.setTphoto("no_img.jpg");
+			tvo.setTphoto("noimg.png");
 		
 		int updateCnt = tipService.tipUpdate(tvo);
 		if(updateCnt == 1) {

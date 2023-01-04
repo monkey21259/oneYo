@@ -363,8 +363,8 @@
 					<tr>
 						<td rowspan="4">
 							<div class="imgSelect">
-								<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg"  />
-								<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
+								<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" style="width:300px; height:300px"/>
+								<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>"/>
 							</div>
 						</td>
 						<td class="selectTd cateTd">

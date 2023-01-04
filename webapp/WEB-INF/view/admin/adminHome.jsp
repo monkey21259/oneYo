@@ -162,23 +162,8 @@
 					
 				}); 
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
-				
-				// 마이페이지로 보내주는 all.js 함수
-				mypageHomeAction();
-						
-				//회원가입 으로 보내주는 all.js 함수
-				joinAction();
-				
-				//로그인으로 보내주는 all.js 함수
-				loginAction();
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
 				
 			}); //reday
 		</script>
@@ -190,44 +175,56 @@
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="mypageHome">
-			my<br>Page
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -571,13 +568,16 @@
 		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: </span> / <span>레시피글 수: </span><br />
-		<span>전문가팁글 수: </span> / <span>커뮤니티글 수: </span><br />
+		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
+		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+
 	</div>
 </div>
 
 </div>
 </div>
-		
+		<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 	</body>
 </html>
