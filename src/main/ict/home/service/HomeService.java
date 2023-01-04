@@ -27,5 +27,8 @@ public interface HomeService {
 	
 	List<RecipeVO> chefRecipeSelectAll(RecipeVO rvo);
 	List<RecipeVO> chefTipSelectAll(TipVO tvo);
+	List<RecipeVO> chefRecipeShowMore(RecipeVO rvo);
+	List<TipVO> chefTipShowMore(TipVO tvo);
+	List<CommunityVO> chefCommunityShowMore(CommunityVO cvo);
 	
 }
