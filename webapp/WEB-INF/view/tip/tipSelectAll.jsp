@@ -241,7 +241,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 			});
 					
 			//all.js 에 있는 모든 함수 연결
-			allJavaScript();
+			allJavaScript("<%=mnum%>");
 			
 		});// ready
 		
