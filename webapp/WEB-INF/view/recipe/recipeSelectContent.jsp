@@ -52,6 +52,8 @@
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		<!-- vue cdn -->
+		<script type="text/javascript" src="https://unpkg.com/vue@2.3.3"></script>
 		<script type="text/javascript">
 			
 			console.log("[recipeSelectContent.jsp] JS");
@@ -367,12 +369,12 @@
 								<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>" />
 							</div>
 						</td>
-						<td class="selectTd cateTd">
-							<span>레시피</span>
+						<td id="recipe" class="selectTd cateTd">
+							<span>{{recipe}}</span>
 						</td>
 						<td rowspan="3">
-							<div class="imgWriter">
-								작성자 프로필 이미지
+							<div id="imgWriter" class="imgWriter">
+								{{writerphoto}}
 							</div>
 						</td>
 					</tr>
@@ -508,7 +510,16 @@
 					</tr>
 				</table>
 				</div>
+				<script>
 				
+				new Vue({
+					el :'#selectContent',
+					data:{recipe:"레시피",writerphoto:"작성자 프로필 이미지"}
+					
+				})
+				
+
+				</script>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
 				<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" />
 				<input type="hidden" id="mnick" name="mnick" value="<%=recipevo.getMnick() %>"/>
