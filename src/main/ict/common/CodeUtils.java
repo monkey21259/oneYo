@@ -10,7 +10,6 @@ public abstract class CodeUtils {
 	//	프로필 조회 시 선호 카테고리 뷰
 	public static String getMCategorys(String mCatV) {
 		
-		
 		String mcate = "";
 		
 		if (mCatV == null || mCatV.length() == 0) return mcate;
@@ -281,6 +280,30 @@ public abstract class CodeUtils {
 		
 	} //getAdminRcate
 		
+// value-category 바인딩
+	public static String getCategory(String categoryNumber) {
+		
+		String retStr = "";
+		if (categoryNumber == null) { return retStr; }
+		if (categoryNumber.equals("1")) {
+			retStr = "레시피";
+			return retStr;
+		}
+		if (categoryNumber.equals("2")) {
+			retStr = "전문가팁";
+			return retStr;
+		}
+		if (categoryNumber.equals("3")) {
+			retStr = "커뮤니티";
+			return retStr;
+		}
+		if (categoryNumber.equals("4")) {
+			retStr = "공지사항";
+			return retStr;
+		}
+		return retStr;
+	}
+	
 	public static void main(String[] args) {
 		
 		

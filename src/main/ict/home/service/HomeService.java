@@ -5,6 +5,7 @@ import java.util.List;
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.vo.HomeVO;
+import main.ict.home.vo.ObjectVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -27,5 +28,8 @@ public interface HomeService {
 	
 	List<RecipeVO> chefRecipeSelectAll(RecipeVO rvo);
 	List<RecipeVO> chefTipSelectAll(TipVO tvo);
+	
+	// 각 게시글 + 일간/주간/월간 조회: 230104 김기영 추가
+	List<ObjectVO> getCondVOList(ObjectVO ovo);
 	
 }

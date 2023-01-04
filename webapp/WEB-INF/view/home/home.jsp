@@ -102,29 +102,25 @@
 				// ------------------------------------------
 				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
 				$("#favorCond").on("change", function() {
-// 					console.log($("#favorCond option:selected").val());	// W, M, D
-// 					console.log($(".postTitles").attr("data-num"));		// 1, 2, 3, 4
+					
+					let dateCondition = $("#favorCond option:selected").val();	// W, M, D
+					let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
+					let condCategory = dateCondition + boardCategory;
 
-// 					let urlV = "/oneYo/";
-// 					let typeV = "GET";
-// 					let dataV = {
-// 						"cond": $("#favorCond selected").val(),
-// 						"category": $(".postTitles").attr("data-num")
-// 					};
-// 					let dataTypeV = "JSON";
+					let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
+					let typeV = "GET";
+					let dataTypeV = "json";
+					$.ajax({
+						url: urlV,
+						type: typeV,
+						dataType: dataTypeV,
+						success: whenSuccess
+					});
 					
-// 					$.ajax({
-// 						url: urlV,
-// 						type: typeV,
-// 						data: dataV,
-// 						dataType: dataType,
-// 						success: whenSuccess
-// 					});
-					
-// 					function whenSuccess(retData) {
-// 						console.log(retData);
-// 						alert(retData);
-// 					}
+					function whenSuccess(retData) {
+						console.log(retData);
+						alert(retData);
+					};
 					
 				});
 				// ------------------------------------------

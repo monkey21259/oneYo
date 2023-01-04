@@ -6,12 +6,24 @@
 
 <%@ page import="main.ict.mem.vo.MemVO" %>
 <%@ page import="main.ict.common.CodeUtils" %>
+<%@ page import="main.ict.common.O_Session" %>
 
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
 	
 	logger.info("~~ memInsertForm.jsp ~~");
+%>
+
+<%
+	// 세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+	
+	logger.info("mnum >>> : " + mnum);
+	logger.info("mid: " + mid);
 %>
 
 <%
@@ -338,7 +350,7 @@ $(document).ready(function(){
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -346,20 +358,20 @@ $(document).ready(function(){
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+				<p><%= mnick %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
 	 		</form>
 <% 		
-// 		}
+		}
 %>
 	 	</div>
 	</div>
@@ -601,17 +613,17 @@ $(document).ready(function(){
 		닉네임
 	</td>
 	<td>
-<%
-		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우
-%>
-		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly />
-<%	
-		} else {
-%>
+<%-- <% --%>
+<!-- // 		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우 -->
+<%-- %> --%>
+<%-- 		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly /> --%>
+<%-- <%	 --%>
+<!-- // 		} else { -->
+<%-- %> --%>
 		<input type="text" id="mnick" name="mnick" value="" />
-<%
-		}
-%>
+<%-- <% --%>
+<!-- // 		} -->
+<%-- %> --%>
 	</td>
 	<td>
 	</td>
