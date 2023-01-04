@@ -52,13 +52,6 @@
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
-				
 			});//end of jQuery
 		</script>
 	</head>
