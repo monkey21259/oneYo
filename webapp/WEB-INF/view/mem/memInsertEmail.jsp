@@ -31,6 +31,17 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	// 로그인 / 회원가입 ----------
+	$("#newMemBtn").on("click", function() {
+		console.log("[회원가입] 버튼 클릭");
+		location.href="/oneYo/memGrade.ict";
+	});
+	
+	$("#loginBtn").on("click", function() {
+		console.log("[로그인] 버튼 클릭");
+		location.href="/oneYo/loginForm.ict";
+	});
+	
 	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
 	hiddenAction();
 	//	홈으로 보내주는 all.js 함수

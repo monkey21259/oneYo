@@ -65,6 +65,17 @@ alert("test3");
 $(document).ready(function(){
 	alert("test4");
 	
+	// 로그인 / 회원가입 ----------
+	$("#newMemBtn").on("click", function() {
+		console.log("[회원가입] 버튼 클릭");
+		location.href="/oneYo/memGrade.ict";
+	});
+	
+	$("#loginBtn").on("click", function() {
+		console.log("[로그인] 버튼 클릭");
+		location.href="/oneYo/loginForm.ict";
+	});
+	
 	//	일반/전문가 등급 정하기				=====
 	$(document).on('click', '.btn', function(){
 		alert("plz 한글 주시오");

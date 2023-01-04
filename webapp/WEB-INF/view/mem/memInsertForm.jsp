@@ -28,8 +28,8 @@
 <%
 	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
 	String mkey = "";
-	logger.info(mvo.toString());
 	if (mvo != null) {
+		logger.info(mvo.toString());
 		logger.info("SNS-LoginVO was created");
 		mkey = mvo.getMkey();
 	}
@@ -58,6 +58,17 @@ $(document).ready(function(){
 // 		$('.mcategory').prop('checked', false);
 // 		$(this).prop('checked', true);
 // 	});	//	mcategory 단수	=====================
+	
+	// 로그인 / 회원가입 ----------
+	$("#newMemBtn").on("click", function() {
+		console.log("[회원가입] 버튼 클릭");
+		location.href="/oneYo/memGrade.ict";
+	});
+	
+	$("#loginBtn").on("click", function() {
+		console.log("[로그인] 버튼 클릭");
+		location.href="/oneYo/loginForm.ict";
+	});
 	
 	//	아이디 중복 검사 이후 재 입력 시도
 	$(document).on('click', '#mid', function(){
