@@ -84,5 +84,11 @@ public class RecipeServiceImpl implements RecipeService {
 		logger.info("recipeCategorySelectAll() 함수 진입");
 		return recipeDAO.recipeCategorySelectAll(recipevo);
 	}
+
+	@Override
+	public List<String> recipeSelectLike() {
+		// TODO Auto-generated method stub
+		return recipeDAO.recipeSelectLike();
+	}
 	
 }

@@ -28,8 +28,8 @@
 <%
 	MemVO mvo = (MemVO)request.getAttribute("mvoSNS");
 	String mkey = "";
-	logger.info(mvo.toString());
 	if (mvo != null) {
+		logger.info(mvo.toString());
 		logger.info("SNS-LoginVO was created");
 		mkey = mvo.getMkey();
 	}

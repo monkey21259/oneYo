@@ -7,7 +7,7 @@
 
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.common.O_Session" %>
-
+<%@ page import="main.ict.common.CodeUtils" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 
@@ -94,6 +94,12 @@
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 	</head>
+	<style>
+	#rphoto{
+		border-radius:15px;
+	}
+	
+	</style>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
 <!--  -->
@@ -375,7 +381,11 @@
 						<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
 							<div class="recipes">
 								<div style="margin:10%;height:77%;">
-									<%= recipevo.getRsubject() %>
+									<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" width="190" height="150" id="rphoto"><br>
+									<%= recipevo.getRsubject() %><br>
+									<%= CodeUtils.getRcategory(recipevo.getRcategory()) %><br>
+									<%= recipevo.getMnick() %><br>
+									조회수: <%= recipevo.getRhit() %>&nbsp;좋아요 : <%=recipevo.getLikecnt() %>
 								</div>
 							</div>
 							<input type="hidden" class="rnum" value="<%= recipevo.getRnum() %>" />
