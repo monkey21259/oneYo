@@ -377,6 +377,11 @@ public class RecipeController {
 		return "./recipe/recipeSearch";
 	}
 	
+	@GetMapping(value="recipeSearchForm")
+	public String recipeSearch() {
+		return "/recipe/recipeSearchForm";
+	}
+	
 	@GetMapping(value="recipeWarningForm")
 	public String recipeWarningForm(HttpServletRequest req, RecipeVO recipevo, Model m) {
 		

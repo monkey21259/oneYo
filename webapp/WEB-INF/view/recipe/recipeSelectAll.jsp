@@ -90,6 +90,11 @@
 				allJavaScript();
 				
 			});
+			
+			function recipeSearch() {
+				alert("recipeSearch() 함수 시작");
+				location.href = "recipeSearchForm.ict";
+			}
 		
 		</script>
 		<!-- recipe_selectAll.jsp 전용 -->
@@ -316,7 +321,7 @@
 			</div>
 			<div class="recipeSearchBtnDiv">
 				<!-- 카테고리 조건 검색 -->
-				<a class="recipeSearchBtn" href="javascript:void(0);">검색</a>
+				<a class="recipeSearchBtn" href="javascript:recipeSearch();">검색</a>
 			</div>
 			<div class="recipeSearchPeriodContainer">
 				<div class="t">
