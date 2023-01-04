@@ -362,39 +362,73 @@
 				<input id="tsubject" name="tsubject" type="hidden" value="<%= recipevo.getRsubject() %>">
 				<div id="viewTable">
 				<table id="selectContent">
+					<!-- 좋아요 -->
 					<tr>
-						<td rowspan="4">
+						<td colspan="2">
+							<%
+								Object likeObj = request.getAttribute("likeList");
+								String likeyn = "Y";
+								if(likeObj == null) likeyn = "N";
+							%>
+							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+								<jsp:param name="mnum" value="<%=mnum %>"/>
+								<jsp:param name="likethis" value="<%=recipevo.getRnum() %>"/>
+								<jsp:param name="likeyn" value="<%=likeyn %>"/>
+							</jsp:include>
+						</td>
+					</tr>
+					<!-- 수정삭제경고신고 -->
+					<tr>
+						<td colspan="3" style="text-align:right;">
+					<% 
+						if(mnum.equals(recipevo.getMnum())){
+					%>
+							<span class="btn" id="recipeUpdateFormBtn">수정</span>
+							<span class="btn" id="recipeDeleteBtn">삭제</span>
+					<%
+						}else if(!mnum.equals(recipevo.getMnum()) && mnum.equals("M000000000000")){
+					%>
+							<span class="btn" id="cautionBtn">경고</span>
+					<%
+						}else {
+					%>
+							<span class="btn" id="warningBtn">신고</span>
+					<%
+						}
+					 %>
+						</td>
+					</tr>
+					<!-- 글 이미지 + 카테고리 -->
+					<tr>
+						<td rowspan="3">
 							<div class="imgSelect">
-								<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg" style="width:300px; height:300px"/>
+								<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="recipeImg" name="recipeImg"/>
 								<input type="hidden" id="rphoto" name="rphoto" value="<%= recipevo.getRphoto() %>"/>
 							</div>
 						</td>
 						<td id="recipe" class="selectTd cateTd">
 							<span>레시피</span>
 						</td>
-						<td rowspan="3">
-							<div id="imgWriter" class="imgWriter">
-								<img src="/oneYo/img/mem/<%=recipevo.getMprofile() %>" onerror="/oneYo/img/recipe/noimg.png" width="85" height="85"/>
-							</div>
-						</td>
+<!-- 						<td rowspan="3"> -->
+<!-- 							<div id="imgWriter" class="imgWriter"> -->
+<%-- 								<img src="/oneYo/img/mem/<%=recipevo.getMprofile() %>" onerror="/oneYo/img/recipe/noimg.png" width="85" height="85"/> --%>
+<!-- 							</div> -->
+<!-- 						</td> -->
 					</tr>
-					<tr> <%  // 글 제목 %>
+					<!-- 글 제목 + 글 작성자 -->
+					<tr class="subjectTr"> <%  // 글 제목 %>
 						<td class="selectTd subjectTd">
 							<p><%= recipevo.getRsubject() %></p>
-<!-- 							<br><span style="text-align:right;">작성자 닉네임이 넣는 곳</span> -->
-						</td>
-					</tr>
-					<!-- 작성자 -->
-					<tr>
-						<td class="selectTd">
+							<div id="hrDiv"></div>
 							<div class="writerDiv">
-								<p><%=recipevo.getMnick() %></p>
+								<%=recipevo.getMnick() %>
 							</div>
-							
 						</td>
 					</tr>
+					<!-- 글 내용 (분야 시간 인원 난이도 재료) -->
 					<tr> <%  // 요리 분야 %>
-						<td class="selectTd" colspan="2">
+						<td class="selectTd infoTd">
+<!-- 						<td class="selectTd" colspan="2"> -->
 						<!-- 요리분야 -->
 							<div class="oneTd">
 								<table>
@@ -455,6 +489,7 @@
 									</tr>
 								</table>
 							</div>
+							<!-- 재료 -->
 							<div class="twoTd">
 								<table>
 									<tr>
@@ -471,6 +506,7 @@
 							</div>
 						</td>
 					</tr>
+					<!-- 본문 -->
 					<tr>
 						<td colspan="3">
 							<div class="neyong">
@@ -478,39 +514,7 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td colspan="3">
-							<%
-								Object likeObj = request.getAttribute("likeList");
-								String likeyn = "Y";
-								if(likeObj == null) likeyn = "N";
-							%>
-							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
-								<jsp:param name="mnum" value="<%=mnum %>"/>
-								<jsp:param name="likethis" value="<%=recipevo.getRnum() %>"/>
-								<jsp:param name="likeyn" value="<%=likeyn %>"/>
-							</jsp:include>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3" style="text-align:right;">
-							<input type="button" id="warningBtn" value="신고">
-							<% 
-							if(mnum.equals(recipevo.getMnum())){
-							%>
-							
-							<a class="btn" id="recipeUpdateFormBtn">수정</a>
-							<a class="btn" id="recipeDeleteBtn">삭제</a>
-							
-							<%
-							}else if(mnum.equals("M000000000000")){
-							%>
-								<button type="button" id="cautionBtn">경고</button>
-							<%
-							}
-							 %>
-						</td>
-					</tr>
+					
 				</table>
 				</div>
 				<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" />
