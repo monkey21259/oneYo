@@ -71,7 +71,52 @@ $(document).ready(function(){
 		
 	});
 	
-	//	ID 아이디 중복 검사
+
+	
+	$(document).on('click', '#nickCheck', function(){
+		
+		alert("닉네임 확인 중! >>> ");
+		
+		let idCheckURL = "memNickCheck.ict";
+		let reqType = "POST";
+		let dataParam = { mnick : $('#mnick').val(), };
+		
+		$.ajax({
+			 url 	: idCheckURL
+			,type	: reqType
+			,data	: dataParam
+			,success: whenSuccess
+			,error	: whenError
+		});
+		
+		function whenSuccess(resData) {
+			console.log("resData >>> : " + resData);
+			
+			if ("ID_YES" == resData) {
+				
+				alert("사용 가능한 닉네임입니다");
+			
+				
+				
+				
+			}else if("ID_NO" == resData) {
+				
+				alert("이미 사용중인 닉네입니다");
+			
+				
+				$('#mnick').val('');
+				$('#mnick').focus();
+			}
+		}	//	ajax 수행문
+		
+		function whenError() {
+			alert("에러 발생, 콘솔을 확인 해 주세요.");
+			console.log("에러 발생 e >>> : " + e.responseText);
+		}
+		
+	});	//
+	
+	
 	$(document).on('click', '#midBtn', function(){
 		
 		alert("아이디 확인 중! >>> ");
@@ -168,6 +213,53 @@ $(document).ready(function(){
 	$(document).on('click', '#formBtn', function(){
 		
 		//	NOT NULL 데이터 NULL 체크			=====================
+		
+		if( $('#mnick').text() == null){
+			alert("닉네임을 기입해주세요");
+			$("#mnick").focus();
+			return false;
+		
+			
+		}else{
+			let idCheckURL = "memNickCheck.ict";
+			let reqType = "POST";
+			let dataParam = { mnick : $('#mnick').val(), };
+			
+			$.ajax({
+				 url 	: idCheckURL
+				,type	: reqType
+				,data	: dataParam
+				,success: whenSuccess
+				,error	: whenError
+			});
+			
+			function whenSuccess(resData) {
+				console.log("resData >>> : " + resData);
+				
+				if ("ID_YES" == resData) {
+					
+					alert("사용 가능한 닉네임입니다");
+				
+					
+					
+					
+				}else if("ID_NO" == resData) {
+					
+					alert("이미 사용중인 닉네입니다");
+				
+					
+					$('#mnick').val('');
+					$('#mnick').focus();
+				}
+			}	//	ajax 수행문
+			
+			function whenError() {
+				alert("에러 발생, 콘솔을 확인 해 주세요.");
+				console.log("에러 발생 e >>> : " + e.responseText);
+			}	
+		}		
+			
+			
 			
 		let cnt = 0;			//	null갯수 체크 변수
 		let thisNull = null;	//	포커싱 위한 변수
@@ -481,6 +573,7 @@ $(document).ready(function(){
 		<input type="text" id="mnick" name="mnick">
 	</td>
 	<td>
+		<input type="button" id="nickCheck" value="닉네임 중복확인">
 	</td>
 </tr>
 <!-- mhp 휴대폰 -->
@@ -609,7 +702,7 @@ $(document).ready(function(){
 <%
 		if ((mkey.equals("Naver") || mkey.equals("Kakao")) && mvo.getMnick() != null) {  // (네이버 or 카카오) + 닉네임이 유효한 경우
 %>
-		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>" readonly />
+		<input type="text" id="mnick" name="mnick" value="<%= mvo.getMnick() %>"  />
 <%	
 		} else {
 %>
