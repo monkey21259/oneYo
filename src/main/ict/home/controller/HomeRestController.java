@@ -229,10 +229,12 @@ public class HomeRestController {
 	}
 	
 	@GetMapping(value="/condCategory/{cc}", produces="text/json;charset=UTF-8")
-	public void homeRESTCateCond(@PathVariable String cc, HttpServletResponse res) {	// return JSON
+	public void homeRESTCateCond(@PathVariable String cc, HttpServletResponse res) {	// return JSONString -> void
 		
 		logger.info("homeRESTCateCond() 함수 진입. cc: " + cc);  // ex) W1
-		if (cc == null && cc.length() == 0) {
+		if (cc == null || cc.length() == 0) {
+			logger.info("cc == null || cc.length() == 0");
+//			return null;
 			return;
 		}
 		
@@ -267,35 +269,39 @@ public class HomeRestController {
 		JSONArray  jsonArr = new JSONArray();
 		
 		// jsonArr에 담겨질 JSONObject
-		JSONObject obj = null;
-		Map<String, Object> oMap = null;
+		JSONObject jObj = null;
+//		Map<String, Object> oMap = null;
+		logger.info("oList: " + oList);
 		if (oList != null) {
 			try {
-				oMap = CodeUtils.convertToMap(oList.get(0));
+				if (oList.size() == 0) { throw new Exception("사이즈 부족"); }
+				for (ObjectVO _ovo: oList) {
+//					oMap = CodeUtils.convertToMap(oList.get(0));
+					jObj = CodeUtils.convertToJSONObj(_ovo);
+					jsonArr.add(jObj);
+				}
 			} catch (Exception e) {
-				logger.info("[FAIL] VO -> Map: " + e.getMessage());
+				logger.info("[FAIL] VO -> JSONObject: " + e.getMessage());
+//				oMap = Collections.emptyMap();
+				jObj = new JSONObject();
+				jsonArr = new JSONArray();
+				jsonArr.add(jObj);
 			}
-		} else {
-			oMap = Collections.emptyMap();
 		}
-		logger.info("oMap.toString(): " + oMap.toString());
+//		logger.info("oMap.toString(): " + oMap.toString());
+		logger.info("jObj.toString(): " + jObj.toString());
 		
 //		obj = new JSONObject(oMap);  // json-simple-1.1.1.jar에서 지원.
+//		StringWriter out = new StringWriter();
+//		try {
+//			JSONObject.writeJSONString(oMap, out);
+//		} catch (Exception e) {
+//			logger.info("[FAIL] Write JSONObject to JSONString.");
+//		}
+//		logger.info("out.toString(): " + out.toString());
 		
-		StringWriter out = new StringWriter();
-		try {
-			JSONObject.writeJSONString(oMap, out);
-		} catch (Exception e) {
-			logger.info("[FAIL] Write JSONObject to JSONString.");
-		}
-		logger.info("out.toString(): " + out.toString());
-		logger.info("obj.toString(): " + obj.toString());
-		
-//		JSONArray jsonArr = new JSONArray();
-//		jsonArr.add(jsonObj);
-//		
-//		JSONObject obj = new JSONObject();
-//		obj.put("abc", jsonArr);
+		// JSONObject --------------------------
+		jsonObj.put("jsonArr", jsonArr);
 		
 		try {
 			logger.info("JSONObject 보내기 시도");
@@ -304,7 +310,7 @@ public class HomeRestController {
 			logger.info(e.getMessage());
 		}
 		
-		return;	// void
+		return;	// String -> void
 	}
 
 }

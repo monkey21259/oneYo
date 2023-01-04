@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 
 public abstract class CodeUtils {
 	
@@ -313,7 +314,7 @@ public abstract class CodeUtils {
 // VO -> Map --------------------------------------------------------------------
 	public static Map<String, Object> convertToMap(Object obj) throws Exception {
 		
-		logger.info("convertToMap() 함수 진입.");
+//		logger.info("convertToMap() 함수 진입.");
 		if (obj == null) {
 			return Collections.emptyMap();
 		}
@@ -325,13 +326,37 @@ public abstract class CodeUtils {
 			field.setAccessible(true);	// field 액세스 가능
 			if (field.get(obj) != null) {
 				convertMap.put(field.getName(), field.get(obj));
-				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
+//				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
 			}
 		}
 		
 		return convertMap;
 	}
 // VO -> Map 끝 ------------------------------------------------------------------
+	
+// VO -> JSONObject -------------------------------------------------------------
+	@SuppressWarnings("unchecked")	// Warning 방지 -> jsonObj.put(String, Object)
+	public static JSONObject convertToJSONObj(Object obj) throws Exception {
+		
+//		logger.info("convertToJSONObj() 함수 진입.");
+		if (obj == null) {
+			logger.info("Object obj is null");
+			return null;
+		}
+		
+		JSONObject jsonObj = new JSONObject();
+		Field[] fields = obj.getClass().getDeclaredFields();	// 인자가 가진 property field
+		for (Field field: fields) {
+			field.setAccessible(true);	// field 액세스 가능
+			if (field.get(obj) != null) {
+				jsonObj.put(field.getName(), field.get(obj));
+//				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
+			}
+		}
+		
+		return jsonObj;
+	}
+// VO -> JSONObject 끝 -----------------------------------------------------------
 
 	public static void main(String[] args) {
 		

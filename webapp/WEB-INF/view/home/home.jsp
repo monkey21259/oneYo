@@ -64,7 +64,8 @@
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
-					postClick($(this));
+					homeRESTCateCond();
+					postClick($(this));  // TODO 변경 필요! 값 띄우기
 				});
 				
 				$('.pa').on("click", function() {				// 게시글 클릭 시
@@ -104,29 +105,7 @@
 				// ------------------------------------------
 				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
 				$("#favorCond").on("change", function() {
-					
-					let dateCondition = $("#favorCond option:selected").val();	// W, M, D
-					let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
-					let condCategory = dateCondition + boardCategory;
-
-					let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
-					let typeV = "GET";
-					let dataTypeV = "json";
-					$.ajax({
-						url: urlV,
-						type: typeV,
-						dataType: dataTypeV,
-						success: whenSuccess
-					});
-					
-					function whenSuccess(retData) {
-						console.log(retData);		// Object
-						console.log(retData.abc);	// Array(1) -> TEST: "TEST입니다."
-						
-						
-						
-					};
-					
+					homeRESTCateCond();
 				});
 				// ------------------------------------------
 				
@@ -174,6 +153,7 @@
 				
 				let before_num = $(".postTitles").attr('data-num');
 				let after_num = obj.attr("data-num");  // 1 ~ 4
+				$("#postTitles").val(after_num);
 				
 				if (before_num == after_num) {
 					console.log("동일한 카테고리입니다.");
@@ -197,6 +177,30 @@
 			
 			function chefIntroduce(mnum) {
 				location.href = "chefIntroduce.ict?mnum=" + mnum;
+			}
+			
+			function homeRESTCateCond() {
+				
+				let dateCondition = $("#favorCond option:selected").val();	// W, M, D
+				let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
+				let condCategory = dateCondition + boardCategory;
+
+				let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
+				let typeV = "GET";
+				let dataTypeV = "json";
+				$.ajax({
+					url: urlV,
+					type: typeV,
+					dataType: dataTypeV,
+					success: whenSuccess
+				});
+				
+				function whenSuccess(retData) {
+					console.log(retData);		// Object
+//						console.log(retData.abc);	// Array(1) -> TEST: "TEST입니다."
+					
+				};
+				
 			}
 			
 		</script>
