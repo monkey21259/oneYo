@@ -82,20 +82,165 @@
 	
 }
 
-/* -------------------------------- 좌측 left -------------------------------- */
-#left {
-	
-}
-
 /* -------------------------------- 중앙 center -------------------------------- */
 #center {
 	
 }
 
-/* -------------------------------- 우측 right -------------------------------- */
-#right {
-	
+
+.choiceAll {
+	width	: 1200px;
+	margin	: auto;
 }
+
+.choiceAll .choiceTable {
+	width	: 100%;
+}
+.choiceAll .choiceThree, .choiceAll .choiceFour {
+	width	: 100%;
+	display	: flex;
+	justify-content	: center;
+}
+.choiceThree {
+	margin-bottom	: 60px;
+}
+/* 주목 받을 3개 전체 */
+.choiceThree .selectOne {
+	width	: 32%;
+	margin	: 0 3px;
+}
+/* 주목 받을 4개 전체 */
+.choiceFour .selectOne {
+	width	: 24%;
+	margin	: 0 3px;
+	margin-bottom	: 30px;
+}
+
+.selectOne {
+	background-color	: #fff;
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	display	: inline-flex;
+	
+	box-shadow: 2px 2px 2px -1px #AC7B53;
+}
+
+/* 선택 테이블별 전체 */
+.selectOne .selectTable {
+	width	: 100%;
+}
+.selectOne .selectTable td {
+	display	: inline-flex;
+	margin	: 2px auto;
+}
+/* 선택 테이블의 사진부분 */
+.selectOne .selectTable .imgTd div {
+	width	: 98%;
+	height	: 98%;
+	
+	margin	: auto;
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	overflow	: hidden;
+	background-color	: #fcc;
+}
+.selectOne .selectTable .imgTd div * {
+	width	: 100%;
+}
+
+/* 선택 테이블의 제목+작성자+날짜 부분 */
+.choiceThree .selectOne .selectTable .nameTd, .selectOne .selectTable .dayTd {
+	width	: 90%;
+	overflow	: hidden;
+	margin	: 0 5%;
+}
+
+/* 선택 테이블의 제목+작성자 */
+.choiceThree .selectOne .selectTable .nameTd {
+	/* 폰트 사이즈 */
+	font-size	: 20px;
+	font-weight	: bold;
+	align-items	: flex-end;
+}
+/* 선택 테이블의 제목 */
+.choiceThree .selectOne .selectTable .nameTd div {
+	/* 폰트 사이즈 */
+	font-size	: 20px;
+	font-weight	: bold;
+	width	: 100%;
+}
+/* 선택 테이블의 "작성자" */
+.choiceThree .selectOne .selectTable .nameTd p {
+	/* 폰트 사이즈 */
+	font-size	: 13px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	margin-right	: 3px;
+}
+/* 선택 테이블의 작성자 */
+.choiceThree .selectOne .selectTable .nameTd span {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #666;
+}
+
+
+/* 선택 테이블의 날짜 부분 */
+.choiceThree .selectOne .selectTable .dayTd div {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #666;
+	margin-bottom	: 10px;
+}
+
+/* 선택 테이블의 제목+작성자+날짜 부분 */
+.choiceFour .selectOne .selectTable .nameTd, .selectOne .selectTable .dayTd {
+	width	: 90%;
+	overflow	: hidden;
+	margin-left	: 5%;
+}
+
+
+/* 선택 테이블의 제목+작성자 */
+.choiceFour .selectOne .selectTable .nameTd {
+	align-items	: flex-end;
+}
+/* 선택 테이블의 제목 */
+.choiceFour .selectOne .selectTable .nameTd div {
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	font-weight	: bold;
+	width	: 100%;
+}
+/* 선택 테이블의 "작성자" */
+.choiceFour .selectOne .selectTable .nameTd p {
+	/* 폰트 사이즈 */
+	font-size	: 10px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	margin-right	: 3px;
+}
+/* 선택 테이블의 작성자 */
+.choiceFour .selectOne .selectTable .nameTd span {
+	/* 폰트 사이즈 */
+	font-size	: 14px;
+	/* 폰트 색상 */
+	color		: #666;
+}
+
+
+/* 선택 테이블의 날짜 부분 */
+.choiceFour .selectOne .selectTable .dayTd div {
+	/* 폰트 사이즈 */
+	font-size	: 14px;
+	/* 폰트 색상 */
+	color		: #666;
+	
+	margin-bottom	: 8px;
+}
+
 
 /* -------------------------------- 하단 footer -------------------------------- */
 #footer {
