@@ -10,19 +10,105 @@
 	
 }
 
-/* -------------------------------- 좌측 left -------------------------------- */
-#left {
-	
-}
-
 /* -------------------------------- 중앙 center -------------------------------- */
 #center {
 	
 }
 
-/* -------------------------------- 우측 right -------------------------------- */
-#right {
+#center #viewTable {
+	width	: 900px;
+	margin	: 0 auto;
+}
+
+#center #selectContent .imgSelect {
+	width	: 300px;
+	height	: 300px;
+}
+#center #selectContent .imgWriter {
+	width	: 85px;
+	height	: 85px;
 	
+	/* 영역 확인용 임시 */
+	background-color	: #ffaaaa;
+}
+#center #selectContent .selectTd .writerDiv {
+	width	: 100%;
+	/* 중앙배치 */
+	text-align: right;
+}
+
+#center #selectContent .selectTd {
+	width	: 450px;
+/* 	height	: 300px; */
+	
+	/* 정렬 */
+	display	: flex;
+	flex-wrap: wrap;
+	align-items: center;
+/* 	justify-content: center; */
+}
+
+/* 카테고리 */
+#center #selectContent .selectTd span {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	width	: 100%;
+}
+#center #selectContent .cateTd {
+	height	: 20px;
+}
+
+/* 제목 */
+#center #selectContent .selectTd p {
+	/* 폰트 사이즈 */
+	font-size	: 33px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+}
+#center #selectContent .subjectTd {
+	align-items: center;
+/* 	justify-content: center; */
+}
+
+
+/* 작성자 */
+#center #selectContent .selectTd .writerDiv {
+/* 	height	: 150px; */
+	/* 폰트 색상 */
+	color		: #AC7B53;
+}
+
+#center #selectContent .selectTd .oneTd  {
+	width	: 125px;
+/* 	height	: 300px; */
+}
+#center #selectContent .selectTd .oneTd table  {
+	margin	: 10px auto;
+	/* 중앙 정렬 */
+	text-align: center;
+}
+
+#center #selectContent .selectTd .twoTd  {
+	width	: 500px;
+/* 	height	: 300px; */
+	margin-top	: 20px;
+}
+
+#center #selectContent .selectTd .nameTd  {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+	color		: #AC7B53;
+}
+
+#center #selectContent .selectTd .valTd  {
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */

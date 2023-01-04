@@ -33,9 +33,9 @@
 	String startDate= "";
 	String endDate = "";
 	
-	O_Session mSession = O_Session.getInstance();
-	String mnum = mSession.getSession(request);
-	logger.info("mnum >>> : " + mnum);
+	O_Session oSession = O_Session.getInstance();
+	String mnum = oSession.getSession(request);
+	String mid = (String)oSession.getAttribute(request, "mid");
 		
 %>
 <!DOCTYPE html>
@@ -58,8 +58,10 @@
 		
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+	
 		<!-- noticeSelectAll.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/notice/noticeSelectAll.css">		
+		
 		<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
 		
@@ -147,12 +149,18 @@
 					$('#endDate').val('');
 				}//end of if
 				
-				//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-				hiddenAction();
-				//	홈으로 보내주는 all.js 함수
-				homeAction();
-				//	메뉴바 클릭액션 all.js 함수
-				divClickAction();
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+			
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
+			
 				
 			});//end of jQuery
 		</script>
@@ -162,46 +170,56 @@
 			<div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
-
+	</div>
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
@@ -235,7 +253,7 @@
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
 <%
-// 		if (mnick == null || mnick.equals("")) {
+		if (mid == null || mid.equals("")) {
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
@@ -243,24 +261,36 @@
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
-// 		} else {
+		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
 				<span class="Choonsik">:</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-<%-- 				<p><%= mnick %> <span>님 환영합니다.</span></p> --%>
+<%
+		String mSNSid = mid;
+		if (mid != null && !(mid.equals(""))) {
+			if (mid.length() > 5) {
+				String checkSNS = mid.substring(0, 6);
+				if (checkSNS.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (checkSNS.equals("kakao_")) {
+					mSNSid = "kakao";
+				}
+			}
+		}
+%>
+				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-<%-- 	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" /> --%>
-	 		</form>
+		 	
 <% 		
-// 		}
+		}
 %>
+
 	 	</div>
 	</div>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
@@ -308,7 +338,7 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			
+	<h3>공지사항</h3>	
 			<table>
 				<tr>
 					<td colspan="4">
@@ -324,10 +354,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td>순번</td>
+					<td>NO</td>
 					<td>제목</td>
-					<td>일자</td>
 					<td>조회 수</td>
+					<td>작성일</td>
+					
 				</tr>
 		<%
 			for(int i=0; i<sallList.size(); i++){
@@ -348,10 +379,10 @@
 						<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
 					</td>
 					<td>
-						<%=nvo.getInsertdate() %>
+						<%=nvo.getNhit() %>
 					</td>
 					<td>
-						<%=nvo.getNhit() %>
+						<%=nvo.getInsertdate() %>
 					</td>
 				</tr>
 		<%
@@ -405,5 +436,8 @@
 </div>
 			
 		</form>
+		<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 	</body>
 </html>

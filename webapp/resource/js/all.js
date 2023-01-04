@@ -13,6 +13,35 @@
 })(document);
 //	폰트 210 굴림	===========================================================
 
+//	all.js 파일 모든 함수 압축
+//	allJavaScript();
+function allJavaScript() {
+	
+//	#searchBar + #singo  >>>  보이게 안보이게 조정
+	hiddenAction();
+	
+//	메뉴바 클릭액션
+	divClickAction();
+	
+//	#sideBar + 홈 로고  >>>  홈으로 이동
+	homeAction();
+	
+//	마이페이지로 이동
+	mypageHomeAction();
+	
+//	회원가입 페이지 이동
+	joinAction();
+	
+//	로그인
+	loginAction();
+	
+//	사이드바 조작
+	sidebarLabel();
+	
+//	사이드바 애니메이팅 (임시)
+//	sidebarAnimate();
+	
+}
 
 
 //	#searchBar  >>>  보이게 안보이게 조정

@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+<%@ page import="java.util.Map" %>    
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="org.apache.log4j.LogManager" %>
-<% request.setCharacterEncoding("UTF-8"); %>
+
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.home.vo.HomeVO" %>
+<%@ page import="main.ict.mem.vo.MemVO" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
 request.setCharacterEncoding("UTF-8"); 
@@ -16,8 +21,15 @@ logger.info("mypageHome.jsp 페이지 진입");
 	String mnum = mSession.getSession(request);
 	String mid = (String)mSession.getAttribute(request, "mid");
 	logger.info("mnum >>> : " + mnum);
+	logger.info("mid >>> : " + mid);
 %>
 
+<c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
+<c:set var="TipList" value="${ DataMap['TipList'] }" />
+<c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
+<c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
+<c:set var="MemList" value="${ DataMap['MemList'] }" />
+<c:set var="Count" value="${ DataMap['Count'] }" />
 
 <!DOCTYPE html>
 <html>
@@ -78,22 +90,18 @@ logger.info("mypageHome.jsp 페이지 진입");
 			
 		});// levelupBtn
 		
+		$("#logoutBtn").on("click", function() {
+			console.log("[로그아웃] 버튼 클릭");
+			$("#logoutForm").attr({
+				"action": "/oneYo/logout.ict",
+				"method": "GET",
+				"enctype": "application/x-www-form-urlencoded"
+			}).submit();
+		});
 		
-		//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-		hiddenAction();
-		//	홈으로 보내주는 all.js 함수
-		homeAction();
-		//	메뉴바 클릭액션 all.js 함수
-		divClickAction();
 		
-		// 마이페이지로 보내주는 all.js 함수
-		mypageHomeAction();
-				
-		//회원가입 으로 보내주는 all.js 함수
-		joinAction();
-		
-		//로그인으로 보내주는 all.js 함수
-		loginAction();
+		//all.js 에 있는 모든 함수 연결
+		allJavaScript();
 		
 		
 	}); //ready
@@ -137,44 +145,57 @@ logger.info("mypageHome.jsp 페이지 진입");
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="mypageHome">
-			my<br>Page
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
+
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -402,5 +423,8 @@ logger.info("mypageHome.jsp 페이지 진입");
 </div>
 </div>
 		</form>
+		<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 	</body>
 </html>	
