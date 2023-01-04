@@ -68,6 +68,10 @@ public class NoticeController {
 		nvo.setNcontent(fu.getParameter("ncontent"));
 		nvo.setNphoto(fu.getFileName("nphoto"));
 		
+		if(nvo.getNphoto() == null)
+			nvo.setNphoto("noimg.png");
+		
+		
 		//서비스 호출
 		int insertCnt = noticeService.noticeInsert(nvo);
 		
@@ -185,6 +189,10 @@ public class NoticeController {
 		nvo.setNnum(fu.getParameter("nnum"));
 		nvo.setNsubject(fu.getParameter("nsubject"));
 		nvo.setNcontent(fu.getParameter("ncontent"));
+		
+//		if(nvo.getNphoto() == null)
+//			nvo.setNphoto("noimg.png");
+		
 		if(fu.getFileName("nphoto") != null && fu.getFileName("nphoto").length() > 0) {
 			nvo.setNphoto(fu.getFileName("nphoto"));
 		}else {

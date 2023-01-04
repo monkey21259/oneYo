@@ -269,7 +269,7 @@
 				<tr>
 					<td>사진</td>
 					<td>
-						<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;" onerror="this.src='/oneYo/img/noimg.png'">
+						<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;">
 						<input type="file" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>">
 					</td>
 				</tr>

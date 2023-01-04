@@ -263,7 +263,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"  onerror="this.src='/oneYo/img/community/noimg.jpg'"><br>
+						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"><br>
 					</td>
 				</tr>
 				<tr>

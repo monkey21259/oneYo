@@ -253,7 +253,7 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td><input type="file" id="cphoto" name="cphoto" onerror="this.src='/oneYo/resource/img/noimg.png'"></td>
+					<td><input type="file" id="cphoto" name="cphoto"></td>
 				</tr>
 				</table>
 			

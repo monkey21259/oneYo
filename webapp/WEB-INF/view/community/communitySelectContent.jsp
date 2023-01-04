@@ -346,6 +346,7 @@
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 			<input type="hidden" id="mnum" name="mnum" value="<%=cvo.getMnum() %>">
+			<input type="hidden" id="mnick" name="mnick" value="<%=cvo.getMnick() %>">
 			<input type="hidden" id="csubject" name="csubject" value="<%=cvo.getCsubject() %>">
 			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
 			<table>
