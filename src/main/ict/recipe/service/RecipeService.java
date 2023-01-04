@@ -21,5 +21,9 @@ public interface RecipeService {
 	// 레시피 카테고리별 SelectAll
 	public List<RecipeVO> recipeCategorySelectAll(RecipeVO recipevo);
 
+
+	public List<String> recipeSelectLike();
+
 	List<RecipeVO> recipeSelectOne(RecipeVO recipevo);
+
 }

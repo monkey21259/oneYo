@@ -50,7 +50,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>profileEmailUpdateForm.jsp</title>
+<title>oneYo(오내요)</title>
 <!-- jQuery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
@@ -59,7 +59,6 @@
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 <script type="text/javascript">
 $(document).ready(function(){
-	alert("profileEmailUpdateForm.jsp");
 	
 	var random = Math.floor(Math.random() * 1000000 + 1);
 	var mkey = "<%= mkey %>";
@@ -68,11 +67,11 @@ $(document).ready(function(){
 
 	//	이메일 선택 박스 변경시 text변경되는 함수		=====
 	$(document).on('change', '#memail2', function(){
-		alert("memail2 >>> : " + $('#memail2').val());
+// 		alert("memail2 >>> : " + $('#memail2').val());
 		
 		let emails = ["", "gmail.com", "naver.com", "kakao.com", ""];
 		let emailKey = parseInt($('#memail2').val());
-		alert("email2 >>> : " + emails[emailKey]);
+// 		alert("email2 >>> : " + emails[emailKey]);
 		
 		$('#memail1').val(emails[emailKey]);
 		if (emailKey == '4') {
@@ -85,9 +84,9 @@ $(document).ready(function(){
 	
 	//	form 전송하기						=====
 	$(document).on('click', '.memailBtn', function(){
-		alert("#memailBtn >>> : "
-				+ $('#memail0').val() + "@" + $('#memail1').val()
-				+ "/" + $('#mailKey').val());
+// 		alert("#memailBtn >>> : "
+// 				+ $('#memail0').val() + "@" + $('#memail1').val()
+// 				+ "/" + $('#mailKey').val());
 		
 		let cnt = 0;
 		$('.memail').each(function(){
@@ -185,12 +184,17 @@ $(document).ready(function(){
 		
 	});	//	$('#memailBtn').click()		=====
 	
-	//	검색 바 없어졌다 생기기 액션주는 all.js 함수
-	hiddenAction();
-	//	홈으로 보내주는 all.js 함수
-	homeAction();
-	//	메뉴바 클릭액션 all.js 함수
-	divClickAction();
+	$("#logoutBtn").on("click", function() {
+		console.log("[로그아웃] 버튼 클릭");
+		$("#logoutForm").attr({
+			"action": "/oneYo/logout.ict",
+			"method": "GET",
+			"enctype": "application/x-www-form-urlencoded"
+		}).submit();
+	});
+	
+	//all.js 에 있는 모든 함수 연결
+	allJavaScript();
 	
 });
 </script>
@@ -202,44 +206,58 @@ $(document).ready(function(){
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
+
+
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -278,15 +296,15 @@ $(document).ready(function(){
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik" id="#" onclick="javascript:alert('준비중입니다.');">마이페이지</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...
@@ -305,9 +323,7 @@ $(document).ready(function(){
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 		
 <% 		
 		}
 %>
@@ -365,11 +381,11 @@ $(document).ready(function(){
 <input type="hidden" id="mkey" name="mkey" value="">
 <table>
 <tr>
-	<td>
-	이메일 >>> : <%= mvo.getMemail() %>
-	</td>
+	<td>기존 이메일 주소</td>
+	<td><%= mvo.getMemail() %></td>
 </tr>
 <tr>
+<td>변경할 이메일 주소</td>
 	<td>
 	<input type="text" id="memail0" name="memail0" class="memail">
 	@ <input type="text" id="memail1" name="memail1" class="memail" readonly>
@@ -384,6 +400,7 @@ $(document).ready(function(){
 	</td>
 </tr>
 <tr>
+	<td>인증번호</td>
 	<td>
 	<input type="text" id="mailKey_r" name="mailKey_r" hidden="true">
 	</td>
@@ -391,7 +408,6 @@ $(document).ready(function(){
 </table>
 
 <input type="button" class="memailBtn" value="이메일 변경">
-<input type="button" class="testBtn" value="test">
  
 <%
 		}
@@ -416,6 +432,9 @@ $(document).ready(function(){
 </div>
 
 </form>
+		<form id="logoutForm">
+	 		<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 	</form>
 
 </body>
 </html>

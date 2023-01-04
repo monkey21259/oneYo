@@ -20,7 +20,6 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
 			/*
@@ -225,18 +224,23 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 	</head>
 	<body>
 		<!-- 화면에 보일 div태그 -->
-		<div id="commentdiv" style="width:50%">
 		<!-- 게시글 사이즈에 따라 width 변경하기 -->
 			<form id="commentForm" name="commentForm">
-				<input type="hidden" id="cotnum" value="<%=cotnum %>">
-				<div><%=clientMnick %></div>
+<%
+			if (clientMnick != null && clientMnick.length() > 0 && !(clientMnick.equals("null"))) {
+%>
+				<div id="inputComment">
+				<div id="inputNick"><%=clientMnick %></div>
 				<textarea id="cocontent" rows="3" cols="50" placeholder="댓글 내용"></textarea>
 				<button type="button" id="insertBtn">댓글 달기</button>
-				<hr>
+				</div>
+<%	
+			}
+%>
+				<input type="hidden" id="cotnum" value="<%=cotnum %>">
 				<ul id="commentList">
 					<!-- 댓글 내용 li태그 들어갈 자리 -->
 				</ul>
 			</form>
-		</div>
 	</body>
 </html>

@@ -86,9 +86,17 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
+	public List<String> recipeSelectLike() {
+		// TODO Auto-generated method stub
+		return recipeDAO.recipeSelectLike();
+	
+	//	return recipeDAO.recipeSelectOne(recipevo);
+
+}
+
+	@Override
 	public List<RecipeVO> recipeSelectOne(RecipeVO recipevo) {
 		// TODO Auto-generated method stub
 		return recipeDAO.recipeSelectOne(recipevo);
 	}
-	
 }
