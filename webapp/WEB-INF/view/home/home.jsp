@@ -222,13 +222,13 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+		<li class="item">
+			<div id="warningForm">
+			<span>
+			신고
+			</span>
+			</div>
+		</li>
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -320,7 +320,7 @@
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
 <% 		
 		}
@@ -409,6 +409,13 @@
 			 	<div class="favorPostTitle" data-value="notice" data-num="4">
 			 		<span style="text-shadow: 2px 2px 8px purple;">공지사항</span>
 			 	</div>
+		 	</div>
+		 	<div>
+		 		<select class="favorCond">
+		 			<option style="text-align:right;">일간&nbsp;</option>
+		 			<option style="text-align:right;">주간&nbsp;</option>
+		 			<option style="text-align:right;">월간&nbsp;</option>
+		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />
 	 		<div class="favorPost favorPost1" data-value="recipe">
