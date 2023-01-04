@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 	<!-- tipInsertForm.jsp 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/tip/tipInsertForm.css">
+	<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -78,7 +80,7 @@
 				"enctype": "application/x-www-form-urlencoded"
 			}).submit();
 		});
-				
+		
 		//all.js 에 있는 모든 함수 연결
 		allJavaScript();
 	});
@@ -93,46 +95,70 @@
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+				<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
+			<div class="mypageHome">
+			<span>
+			마이<br>페이지 
+			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
-
+	</div>
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
@@ -177,9 +203,19 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">|</span>
-		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
+<%
+         if(mid.equals("admin")){
+%>
+            <span class="Choonsik adminHome">관리자페이지</span>
+<%
+         }else{
+%>
+            <span class="Choonsik mypageHome">마이페이지</span>
+<%
+         }
+%>
+            <span class="Choonsik">|</span>
+             <span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...
 			if (mid != null && !(mid.equals(""))) {
@@ -197,9 +233,7 @@
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+
 <% 		
 		}
 %>
@@ -219,7 +253,7 @@
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				Tip
 				</div>
 				</a>
@@ -290,19 +324,22 @@
 	<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 
 </div>
 </div>
 		</form>
+			 		<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 		</form>
 	</body>
 </html>

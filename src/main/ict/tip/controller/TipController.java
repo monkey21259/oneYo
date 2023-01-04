@@ -332,14 +332,19 @@ public class TipController {
 	@ResponseBody
 	public Object tipsession(HttpServletRequest req, MemVO mvo) {
 		
+		String mgrade ="";
+		
 		String mnum = req.getParameter("mnum");
-		logger.info("mnum  >>>>>> : " + mnum);
 		mvo.setMnum(mnum);
 		logger.info("mnum  >>>>>> : " + mvo.getMnum());
 		
+		if(mnum.length() > 0) {
 		List<MemVO> list = tipService.tipSession(mvo);
 		
-		String mgrade = list.get(0).getMgrade();
+		mgrade = list.get(0).getMgrade();
+		} else {
+		mgrade = "";
+		}
 		logger.info("mgrade >>> : " + mgrade);	
 		
 		return mgrade;				

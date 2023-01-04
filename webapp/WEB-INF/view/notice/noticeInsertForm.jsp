@@ -28,6 +28,10 @@
 		<!-- communityInsertForm.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/notice/noticeInsertForm.css">
 		
+		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		
+		
 		<script type="text/javascript">	
 			$(document).ready(function(){
 				
@@ -94,12 +98,26 @@
 			</span>
 			</div>
 		</li>
-		<li class="item">
+				<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+	<%
+		} else if(mid.equals("admin")){
+	%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+	<%
+		}
+	%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
@@ -221,7 +239,7 @@
 			</li>
 			<li>
 				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				공지사항
 				</div>
 				</a>
@@ -265,14 +283,14 @@
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 

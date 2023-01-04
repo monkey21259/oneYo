@@ -14,8 +14,9 @@ logger.info("tipSelectAll.jsp 페이지 진입");
 O_Session mSession = O_Session.getInstance();
 String mnum = mSession.getSession(request);
 String mid = (String)mSession.getAttribute(request, "mid");
-
+logger.info("mid >>> : " + mid);
 logger.info("mnum >>>>>>> : " + mnum);
+
 %>
 <%
 	
@@ -62,8 +63,8 @@ logger.info("mnum >>>>>>> : " + mnum);
 						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	
 	<!-- 제이쿼리 -->
-	<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
 	<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/datepicker-ko.js"></script>
 	
@@ -78,6 +79,10 @@ logger.info("mnum >>>>>>> : " + mnum);
 	
 	<!-- 페이징 기능 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
+	
+	<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		
 	<script type="text/javascript">
 	
 		$(document).ready(function(){		
@@ -196,7 +201,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 			
 			//글등록
 			$(document).on("click", "#insertBtn", function(){
-			
+
 				let url ="tipsession.ict";
 				let reqType="GET";
 				let dataParam={
@@ -211,15 +216,15 @@ logger.info("mnum >>>>>>> : " + mnum);
 					error:whenError		
 				}); //ajax
 				
-			
 				
 				function whenSuccess(resData){
 				//전문가
-					if("1" == resData|| "9" == resData){
+					if ("1" == resData|| "9" == resData){
 						location.href ="tipInsertForm.ict";
 								
-				}	else {
-					alert("전문가가 아닙니다.");
+				}	else{
+					alert("전문가 등급만 등록할 수 있습니다.");
+					 $("#insertBtn").hide();
 				}
 					
 				} //success
@@ -240,8 +245,11 @@ logger.info("mnum >>>>>>> : " + mnum);
 				}).submit();
 			});
 					
-			//all.js 에 있는 모든 함수 연결
-			allJavaScript("<%=mnum%>");
+		//all.js 에 있는 모든 함수 연결
+		allJavaScript();
+
+// 			//all.js 에 있는 모든 함수 연결
+<%-- 			allJavaScript("<%=mnum%>"); --%>
 			
 		});// ready
 		
@@ -253,45 +261,72 @@ logger.info("mnum >>>>>>> : " + mnum);
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
+		
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
+			<div class="mypageHome">
+			<span>
+			마이<br>페이지 
+			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -338,20 +373,18 @@ logger.info("mnum >>>>>>> : " + mnum);
 %>
 			<div class="loginBtnDiv">
 <%
-			if(mid.equals("M000000000000")){
-				System.out.println("********************" + mid);
+         if(mid.equals("admin")){
 %>
-				<span class="Choonsik adminHome">관리자페이지</span>
+            <span class="Choonsik adminHome">관리자페이지</span>
 <%
-			}else{
-				System.out.println("%%%%%%%%%%%%%%%%%%%%" + mid);
+         }else{
 %>
-				<span class="Choonsik mypageHome">마이페이지</span>
+            <span class="Choonsik mypageHome">마이페이지</span>
 <%
-			}
+         }
 %>
-				<span class="Choonsik">|</span>
-		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
+            <span class="Choonsik">|</span>
+             <span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
 			String mSNSid = mid;  // M22...
 			if (mid != null && !(mid.equals(""))) {
@@ -369,9 +402,6 @@ logger.info("mnum >>>>>>> : " + mnum);
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
 <% 		
 		}
 %>
@@ -391,7 +421,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				Tip
 				</div>
 				</a>
@@ -515,14 +545,14 @@ logger.info("mnum >>>>>>> : " + mnum);
 	<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 
@@ -530,5 +560,8 @@ logger.info("mnum >>>>>>> : " + mnum);
 </div>
 			
 		</form>
+			<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 		</form>
 	</body>
 </html>
