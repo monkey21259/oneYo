@@ -58,6 +58,20 @@
 	
 </select>
 
+<select id="memNickCheck" parameterType="memvo" resultType="memvo">
+	
+	SELECT
+			 A.MNICK	MNICK
+			,A.MNUM		MNUM
+	FROM
+			ICT_MEMBER	A
+	WHERE
+			A.DELETEYN	= 'Y'
+		AND
+			A.MNICK		= #{ mnick }
+	
+</select>
+
 <select id="memSelect" parameterType="memvo" resultType="memvo">
 
 SELECT

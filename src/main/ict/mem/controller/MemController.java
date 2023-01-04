@@ -128,6 +128,25 @@ public class MemController {
 		return msg;
 	}
 	
+
+	
+	
+	@PostMapping("memNickCheck")
+	@ResponseBody
+	public Object memNickCheck(MemVO mvo) {
+		
+		logger.info("memNickCheck(mvo) >>> :" + mvo.getMnick());
+		
+		List<MemVO> list = null;
+		list = memService.memNickCheck(mvo);
+		
+		String msg = "";
+		
+		if (list.size() == 0) { msg = "ID_YES"; }
+		else { msg = "ID_NO"; }
+		
+		return msg;
+	}
 	//	회원가입 데이터 전송
 	@PostMapping("memInsert")
 	public String memInsert(HttpServletRequest req/* , MemVO mvo, Model model */) {

@@ -11,7 +11,11 @@ public interface MemDAO {
 
 	//	ID 아이디 중복 검사	"memIdCheck"
 	public List<MemVO> memIdCheck(MemVO mvo);
-
+	
+	//닉네임 체크
+	public List<MemVO> memNickCheck(MemVO mvo);
+	
+	
 	//	프로필 조회 목적 memSelect "profileSelect"
 	public List<MemVO> memSelect(MemVO mvo);
 

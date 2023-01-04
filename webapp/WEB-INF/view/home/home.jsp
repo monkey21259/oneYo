@@ -102,10 +102,28 @@
 					}).submit();
 				});
 				// ------------------------------------------
-				// 레시피 게시판 이동 (테스트) ---------------------
-				$("#recipeSAllBtn").on("click", function() {
-					console.log("[테스트] 레시피 게시판 이동");
-					location.href="/oneYo/recipeSelectAll.ict";
+				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
+				$("#favorCond").on("change", function() {
+					
+					let dateCondition = $("#favorCond option:selected").val();	// W, M, D
+					let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
+					let condCategory = dateCondition + boardCategory;
+
+					let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
+					let typeV = "GET";
+					let dataTypeV = "json";
+					$.ajax({
+						url: urlV,
+						type: typeV,
+						dataType: dataTypeV,
+						success: whenSuccess
+					});
+					
+					function whenSuccess(retData) {
+						console.log(retData);
+						alert(retData);
+					};
+					
 				});
 				// ------------------------------------------
 				
@@ -217,13 +235,13 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+		<li class="item">
+			<div id="warningForm">
+			<span>
+			신고
+			</span>
+			</div>
+		</li>
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -325,7 +343,7 @@
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
 <% 		
 		}
@@ -414,6 +432,13 @@
 			 	<div class="favorPostTitle" data-value="notice" data-num="4">
 			 		<span style="text-shadow: 2px 2px 8px purple;">공지사항</span>
 			 	</div>
+		 	</div>
+		 	<div>
+		 		<select id="favorCond" class="favorCond">
+		 			<option value="D">일간&nbsp;</option>
+		 			<option value="W">주간&nbsp;</option>
+		 			<option value="M">월간&nbsp;</option>
+		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />
 	 		<div class="favorPost favorPost1" data-value="recipe">

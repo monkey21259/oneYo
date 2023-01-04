@@ -215,6 +215,50 @@
 
 </select>
 
+<select id="getCondVOList" parameterType="objectvo" resultType="objectvo">
+
+	SELECT
+	 <if test='boardCategory.equals("레시피")'>
+	     A.RNUM         AS NUM
+	    ,A.RSUBJECT     AS SUBJECT
+	    ,A.RPHOTO       AS PHOTO
+	    ,A.RHIT         AS HIT
+	 </if>
+	 <if test='boardCategory.equals("전문가팁")'>
+	     B.TNUM         AS NUM
+	    ,B.TSUBJECT     AS SUBJECT
+	    ,B.TPHOTO       AS PHOTO
+	    ,B.THIT         AS HIT
+	 </if>
+	 <if test='boardCategory.equals("커뮤니티")'>
+	     C.CNUM         AS NUM
+	    ,C.CSUBJECT     AS SUBJECT
+	    ,C.CCONTENT     AS CONTENT
+	    ,C.CHIT         AS HIT
+	 </if>
+	 <if test='boardCategory.equals("공지사항")'>
+	     D.NNUM         AS NUM
+	    ,D.NSUBJECT     AS SUBJECT
+	    ,D.NCONTENT     AS CONTENT
+	    ,D.NHIT         AS HIT
+	 </if>
+	  FROM
+	 <if test='boardCategory.equals("레시피")'>
+	     ICT_RECIPE     A
+	 </if>
+	 <if test='boardCategory.equals("전문가팁")'>
+	    ICT_TIP        B
+	 </if>
+	 <if test='boardCategory.equals("커뮤니티")'>
+	    ICT_COMMUNITY  C
+	 </if>
+	 <if test='boardCategory.equals("공지사항")'>
+	    ICT_NOTICE     D
+	 </if>
+	 WHERE DELETEYN = 'Y'
+	 ORDER BY 1
+</select>
+
 <select id="chefRecipeShowMore" parameterType="recipevo" resultType="recipevo">
 
 	SELECT *
