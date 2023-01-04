@@ -172,7 +172,7 @@ function sidebarAnimate() {
 //	관리자 페이지로 이동
 function adminHomeAction(){
 	
-	$(document).on('click', '.mypageHome', function(){
+	$(document).on('click', '.adminHome', function(){
 		//관리자인 경우에만 넘어가게 하기
 		location.href = "adminHome.ict";
 	});

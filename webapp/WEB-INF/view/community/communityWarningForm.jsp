@@ -182,7 +182,17 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
+<%
+			}
+%>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%

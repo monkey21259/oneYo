@@ -337,7 +337,19 @@ logger.info("mnum >>>>>>> : " + mnum);
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("M000000000000")){
+				System.out.println("********************" + mid);
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+				System.out.println("%%%%%%%%%%%%%%%%%%%%" + mid);
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
+<%
+			}
+%>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
