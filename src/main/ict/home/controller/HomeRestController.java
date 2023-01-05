@@ -202,7 +202,7 @@ public class HomeRestController {
 		return json_output.toJSONString();
 	}
 	
-	@GetMapping(value="/info")
+	@GetMapping(value="/info", produces="application/json; charset=UTF8")
 	public String homeRestInformation() {
 		logger.info("homeRestInformation() 함수 진입");
 		

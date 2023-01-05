@@ -135,8 +135,20 @@
 							jeryo.shift();
 							console.log(jeryo);
 							
-							
-							
+							if(jeryo !=null) {
+								let queryString = "?";
+								for(let i=0; i<jeryo.length; i++) {
+									if(i != (jeryo.length - 1)) {
+										queryString += "rjeryo=" + jeryo[i] + "&";
+									}else if(i == (jeryo.length - 1)) {
+										queryString += "rjeryo=" + jeryo[i];
+									}
+								}
+								console.log(queryString);
+								$("#jeryo").text("");
+								$("#jeryoList").text("");
+								location.href = "recipeSearch.ict" + queryString;
+							}
 						}
 					}
 				});
