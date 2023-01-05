@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>oneYo(오내요)</title>
 </head>
 <body>
 <script type="text/javascript">
