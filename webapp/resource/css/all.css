@@ -70,6 +70,8 @@ a {
 #all_div {
 	/* width 가로폭 */
 	width	: 1200px;
+	/* min-height 최소 세로 폭 */
+	min-height	: 100vh;
 	/* margin 상하단 0 좌우 자동(중앙정렬) */
 	margin	: 0 auto;
 	padding	: 20px auto;

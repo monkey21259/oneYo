@@ -12,6 +12,7 @@ import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.dao.HomeDAO;
 import main.ict.home.vo.HomeVO;
+import main.ict.home.vo.ObjectVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -111,6 +112,12 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
+	public List<ObjectVO> getCondVOList(ObjectVO ovo) {
+		
+		logger.info("getCondVOList() 함수 진입");
+		return homeDAO.getCondVOList(ovo);
+	}
+	
 	public List<RecipeVO> chefRecipeShowMore(RecipeVO rvo) {
 		// TODO Auto-generated method stub
 		logger.info("chefRecipeShowMore() 함수 진입");

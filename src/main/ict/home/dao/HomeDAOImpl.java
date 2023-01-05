@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import main.ict.comment.vo.CommentVO;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.vo.HomeVO;
+import main.ict.home.vo.ObjectVO;
 import main.ict.mem.vo.MemVO;
 import main.ict.notice.vo.NoticeVO;
 import main.ict.recipe.vo.RecipeVO;
@@ -93,6 +94,11 @@ public class HomeDAOImpl implements HomeDAO {
 	}
 
 	@Override
+	public List<ObjectVO> getCondVOList(ObjectVO ovo) {
+		
+		return sqlSession.selectList("getCondVOList", ovo);
+	}
+	
 	public List<RecipeVO> chefRecipeShowMore(RecipeVO rvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("chefRecipeShowMore", rvo);
@@ -109,5 +115,4 @@ public class HomeDAOImpl implements HomeDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("chefCommunityShowMore", cvo);
 	}
-
 }

@@ -64,6 +64,12 @@ public class MemDAOImpl implements MemDAO {
 		
 		return (Integer)sqlSession.update("memDelete", mvo);
 	}	//	회원 탈퇴 "memDelete"
+
+	@Override
+	public List<MemVO> memNickCheck(MemVO mvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memNickCheck", mvo);
+	}
 	
 	
 }

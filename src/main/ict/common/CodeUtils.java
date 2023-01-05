@@ -1,7 +1,13 @@
 package main.ict.common;
 
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 
 public abstract class CodeUtils {
 	
@@ -9,7 +15,6 @@ public abstract class CodeUtils {
 	
 	//	프로필 조회 시 선호 카테고리 뷰
 	public static String getMCategorys(String mCatV) {
-		
 		
 		String mcate = "";
 		
@@ -74,7 +79,7 @@ public abstract class CodeUtils {
 	}	//	프로필 조회 시 선호 카테고리 뷰
 	
 	
-	
+// 레시피 -------------------------------------------------------
 	public static String getRcategory(String catV) {
 		
 		logger.info("getRcategory() - 음식 카테고리 매핑 함수 진입.");
@@ -190,6 +195,7 @@ public abstract class CodeUtils {
 		
 		return rPerson + "인분";
 	}
+// 레시피 끝 -----------------------------------------------------
 	
 	public static String[] getMhpParts(String mhp) {
 		
@@ -281,6 +287,77 @@ public abstract class CodeUtils {
 		
 	} //getAdminRcate
 		
+// value-category 바인딩
+	public static String getCategory(String categoryNumber) {
+		
+		String retStr = "";
+		if (categoryNumber == null) { return retStr; }
+		if (categoryNumber.equals("1")) {
+			retStr = "레시피";
+			return retStr;
+		}
+		if (categoryNumber.equals("2")) {
+			retStr = "전문가팁";
+			return retStr;
+		}
+		if (categoryNumber.equals("3")) {
+			retStr = "커뮤니티";
+			return retStr;
+		}
+		if (categoryNumber.equals("4")) {
+			retStr = "공지사항";
+			return retStr;
+		}
+		return retStr;
+	}
+	
+// VO -> Map --------------------------------------------------------------------
+	public static Map<String, Object> convertToMap(Object obj) throws Exception {
+		
+//		logger.info("convertToMap() 함수 진입.");
+		if (obj == null) {
+			return Collections.emptyMap();
+		}
+		
+		Map<String, Object> convertMap = new HashMap<>();		// 리턴할 Map 객체
+		
+		Field[] fields = obj.getClass().getDeclaredFields();	// 인자가 가진 property field
+		for (Field field: fields) {
+			field.setAccessible(true);	// field 액세스 가능
+			if (field.get(obj) != null) {
+				convertMap.put(field.getName(), field.get(obj));
+//				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
+			}
+		}
+		
+		return convertMap;
+	}
+// VO -> Map 끝 ------------------------------------------------------------------
+	
+// VO -> JSONObject -------------------------------------------------------------
+	@SuppressWarnings("unchecked")	// Warning 방지 -> jsonObj.put(String, Object)
+	public static JSONObject convertToJSONObj(Object obj) throws Exception {
+		
+//		logger.info("convertToJSONObj() 함수 진입.");
+		if (obj == null) {
+			logger.info("Object obj is null");
+			return null;
+		}
+		
+		JSONObject jsonObj = new JSONObject();
+		Field[] fields = obj.getClass().getDeclaredFields();	// 인자가 가진 property field
+		for (Field field: fields) {
+			field.setAccessible(true);	// field 액세스 가능
+			if (field.get(obj) != null) {
+				jsonObj.put(field.getName(), field.get(obj));
+//				logger.info("field.getName(): " + field.getName() + " & field.get(obj): " + field.get(obj));
+			}
+		}
+		
+		return jsonObj;
+	}
+// VO -> JSONObject 끝 -----------------------------------------------------------
+
 	public static void main(String[] args) {
 		
 		

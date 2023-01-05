@@ -65,5 +65,11 @@ public class MemServiceImpl implements MemService {
 		
 		return memDAO.memDelete(mvo);
 	}
+
+	@Override
+	public List<MemVO> memNickCheck(MemVO mvo) {
+		// TODO Auto-generated method stub
+		return memDAO.memNickCheck(mvo);
+	}
 	
 }

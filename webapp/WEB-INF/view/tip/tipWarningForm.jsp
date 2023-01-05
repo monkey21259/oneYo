@@ -18,61 +18,64 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전문가팁 신고</title>
+<title>oneYo(오내요)</title>
 	<!-- jQuery -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 	<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 	
-<!-- 전체 css -->
+	<!-- 전체 css -->
 	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 	
 	<!-- communityWarningForm.jsp 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/community/communityWarningForm.css">
 	
+	<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		
 	<script type="text/javascript">
 
 	$(document).ready(function(){
 	
-	$("#datain").click(function(){
-		
-		let box = $("#box").val();
-		
-		if(box != '50'){
-		
-		$("#submit").attr({
-			"action":"tipWarningInsert.ict",
-			"method":"GET",
-			"enctype":"application/x-www-form-urlencoded"
-		}).submit();
-		
-		alert("신고 되었습니다");
-	
-		}else{
-			alert("신고할 카테고리를 선택해주세요");
-			return false;
-		}
-		});
-	
-	$("#content").click(function(){
-		
-		$("#content").text("");
-		$("#content").prop("readonly", false);
-		
-	});
-	
-	//로그아웃
-	$("#logoutBtn").on("click", function() {
-		$("#logoutForm").attr({
-			"action": "logout.ict",
-			"method": "GET",
-			"enctype": "application/x-www-form-urlencoded"
-		}).submit();
-	});
+		$("#datain").click(function(){
 			
-	//all.js 에 있는 모든 함수 연결
-	allJavaScript();
+			let box = $("#box").val();
+			
+			if(box != '50'){
+			
+			$("#submit").attr({
+				"action":"tipWarningInsert.ict",
+				"method":"GET",
+				"enctype":"application/x-www-form-urlencoded"
+			}).submit();
+			
+			alert("신고 되었습니다");
+		
+			}else{
+				alert("신고할 카테고리를 선택해주세요");
+				return false;
+			}
+			});
+		
+		$("#content").click(function(){
+			
+			$("#content").text("");
+			$("#content").prop("readonly", false);
+			
+		});
+		
+		//로그아웃
+		$("#logoutBtn").on("click", function() {
+			$("#logoutForm").attr({
+				"action": "logout.ict",
+				"method": "GET",
+				"enctype": "application/x-www-form-urlencoded"
+			}).submit();
+		});
+				
+		//all.js 에 있는 모든 함수 연결
+		allJavaScript();
 	
 	});
 	
@@ -86,44 +89,70 @@
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
-			my<br>Page
+			<span>
+			마이<br>페이지 
+			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -169,11 +198,21 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
-				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">|</span>
-		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-			String mSNSid = mid;  // M22...
+         if(mid.equals("admin")){
+%>
+            <span class="Choonsik adminHome">관리자페이지</span>
+<%
+         }else{
+%>
+            <span class="Choonsik mypageHome">마이페이지</span>
+<%
+         }
+%>
+            <span class="Choonsik">|</span>
+             <span class="Choonsik" id="logoutBtn">로그아웃</span>
+<%
+			String mSNSid = mid;
 			if (mid != null && !(mid.equals(""))) {
 				if (mid.length() > 5) {
 					String checkSNS = mid.substring(0, 6);
@@ -189,9 +228,7 @@
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 	
 <% 		
 		}
 %>
@@ -211,7 +248,7 @@
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				Tip
 				</div>
 				</a>
@@ -286,16 +323,18 @@
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 
 </div>
 </div>
 		</form>
+		<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 	</body>
 </html>

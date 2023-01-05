@@ -123,43 +123,56 @@
 <div id="backMenu"></div>
 
 <div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -205,7 +218,17 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
+<%
+			}
+%>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
@@ -281,6 +304,124 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
+				
+				
+				<!-- aaaa -->
+				
+				
+<div class="choiceAll">
+		<div class="choiceThree">
+<%
+	for (int i = 0; i < 3; i++) {
+%>
+		<!-- 한 게시글 -->
+			<div class="selectOne">
+				<table class="selectTable">
+					<!-- 썸네일 -->
+					<tr>
+						<td class="imgTd">
+							<div>
+							<img src="/testWeb/img/asd.png">
+							</div>
+						</td>
+					</tr>
+					<!-- 제목 -->
+					<tr>
+						<td class="nameTd">
+							<div>
+							제목어쩌고저쩌고
+							</div>
+						</td>
+					</tr>
+					<!-- 작성자 -->
+					<tr>
+						<td class="nameTd">
+							<p>
+							작성자
+							</p>
+							<span>
+							우짜고
+							</span>
+						</td>
+					</tr>
+					<!-- 작성일 -->
+					<tr>
+						<td class="dayTd">
+							<div>
+							2023.01.04
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<%
+	}
+%>
+			</div>
+			<div class="choiceTable">
+				<table>
+<%
+	for (int i = 0; i < 3; i++) {
+%>
+					<tr>
+					<td class="choiceFour">
+<%
+		for (int j = 0; j < 4; j++) {
+%>
+						<!-- 한 게시글 -->
+						<div class="selectOne">
+							<table class="selectTable">
+								<!-- 썸네일 -->
+								<tr>
+									<td class="imgTd">
+										<div>
+										<img src="/testWeb/img/asd.png">
+										</div>
+									</td>
+								</tr>
+								<!-- 제목 -->
+								<tr>
+									<td class="nameTd">
+										<div>
+										제목어쩌고저쩌고
+										</div>
+									</td>
+								</tr>
+								<!-- 작성자 -->
+								<tr>
+									<td class="nameTd">
+										<p>
+										작성자
+										</p>
+										<span>
+										우짜고
+										</span>
+									</td>
+								</tr>
+								<!-- 작성일 -->
+								<tr>
+									<td class="dayTd">
+										<div>
+										2023.01.04
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+<%
+		}
+%>
+					</td>
+					</tr>
+<%
+	}
+%>
+			</table>
+		</div>
+	</div>
+				
+				<!-- aaaa -->
+				
 				
 <!-- Section -->		
 		<section>

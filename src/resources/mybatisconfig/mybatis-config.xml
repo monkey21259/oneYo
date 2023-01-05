@@ -4,7 +4,7 @@
 
 <configuration>
 	<typeAliases>
-		
+		<typeAlias type="main.ict.home.vo.ObjectVO" alias="objectvo" />
 		<typeAlias type="main.ict.mem.vo.MemVO" alias="memvo"/>
 		<typeAlias type="main.ict.community.vo.CommunityVO" alias="communityvo"/> 	<!-- 커뮤니티 -->
 		<typeAlias type="main.ict.notice.vo.NoticeVO" alias="noticevo"/>			<!-- 공지사항 -->

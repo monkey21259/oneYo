@@ -1,6 +1,11 @@
 package main.ict.home.controller;
 
+import java.io.StringWriter;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -15,9 +20,11 @@ import main.ict.mem.vo.MemVO;
 import main.ict.recipe.vo.RecipeVO;
 import main.ict.tip.vo.TipVO;
 import main.ict.comment.vo.CommentVO;
+import main.ict.common.CodeUtils;
 import main.ict.community.vo.CommunityVO;
 import main.ict.home.service.HomeService;
 import main.ict.home.vo.HomeVO;
+import main.ict.home.vo.ObjectVO;
 
 @RestController
 public class HomeRestController {
@@ -221,4 +228,89 @@ public class HomeRestController {
 		return json_obj.toJSONString();
 	}
 	
+	@GetMapping(value="/condCategory/{cc}", produces="text/json;charset=UTF-8")
+	public void homeRESTCateCond(@PathVariable String cc, HttpServletResponse res) {	// return JSONString -> void
+		
+		logger.info("homeRESTCateCond() 함수 진입. cc: " + cc);  // ex) W1
+		if (cc == null || cc.length() == 0) {
+			logger.info("cc == null || cc.length() == 0");
+//			return null;
+			return;
+		}
+		
+		String dateCondition = cc.substring(0, 1);	// 일간D/주간W/월간M
+		String boardCategory = cc.substring(1);		// 레시피/팁/커뮤니티/공지사항
+		logger.info("dateCondition: " + dateCondition);	// ex) W -> Week
+		// 1: 레시피 -> A / 2: 전문가 -> B / 3: 커뮤니티 -> C / 4: 공지사항 -> D
+//		logger.info("boardCategory(before): " + boardCategory);	// ex) 1
+		boardCategory = CodeUtils.getCategory(boardCategory);
+		logger.info("boardCategory(after): " + boardCategory);	// ex) A
+
+		ObjectVO ovo = new ObjectVO();
+		// DTO Setting
+		ovo.setDateCondition(dateCondition);
+		ovo.setBoardCategory(boardCategory);
+
+		List<ObjectVO> oList = homeService.getCondVOList(ovo);
+		if (oList != null) {
+			logger.info("oList is not null");
+			logger.info(oList.toString());
+		}
+		
+		// JSONArray를 사용해서 리스트 받기 -> 각 VO를 Map으로 변경해서 할당.
+		
+		// ** 테스트케이스 ** //
+//		JSONObject testObj = new JSONObject();  // 
+//		testObj.put("TEST", "TEST입니다.");  // VO를 Map으로 받아서 다 넣어야됨.
+		
+		// JSONArray(jsonArr)를 담을 최종 JSONObject
+		JSONObject jsonObj = new JSONObject();
+		// JSONObject를 담을 Array
+		JSONArray  jsonArr = new JSONArray();
+		
+		// jsonArr에 담겨질 JSONObject
+		JSONObject jObj = null;
+//		Map<String, Object> oMap = null;
+		logger.info("oList: " + oList);
+		if (oList != null) {
+			try {
+				if (oList.size() == 0) { throw new Exception("사이즈 부족"); }
+				for (ObjectVO _ovo: oList) {
+//					oMap = CodeUtils.convertToMap(oList.get(0));
+					jObj = CodeUtils.convertToJSONObj(_ovo);
+					jsonArr.add(jObj);
+				}
+			} catch (Exception e) {
+				logger.info("[FAIL] VO -> JSONObject: " + e.getMessage());
+//				oMap = Collections.emptyMap();
+				jObj = new JSONObject();
+				jsonArr = new JSONArray();
+				jsonArr.add(jObj);
+			}
+		}
+//		logger.info("oMap.toString(): " + oMap.toString());
+		logger.info("jObj.toString(): " + jObj.toString());
+		
+//		obj = new JSONObject(oMap);  // json-simple-1.1.1.jar에서 지원.
+//		StringWriter out = new StringWriter();
+//		try {
+//			JSONObject.writeJSONString(oMap, out);
+//		} catch (Exception e) {
+//			logger.info("[FAIL] Write JSONObject to JSONString.");
+//		}
+//		logger.info("out.toString(): " + out.toString());
+		
+		// JSONObject --------------------------
+		jsonObj.put("jsonArr", jsonArr);
+		
+		try {
+			logger.info("JSONObject 보내기 시도");
+			res.getWriter().print(jsonObj);
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+		}
+		
+		return;	// String -> void
+	}
+
 }

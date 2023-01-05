@@ -64,7 +64,8 @@
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
-					postClick($(this));
+					homeRESTCateCond();
+					postClick($(this));  // TODO 변경 필요! 값 띄우기
 				});
 				
 				$('.pa').on("click", function() {				// 게시글 클릭 시
@@ -102,10 +103,9 @@
 					}).submit();
 				});
 				// ------------------------------------------
-				// 레시피 게시판 이동 (테스트) ---------------------
-				$("#recipeSAllBtn").on("click", function() {
-					console.log("[테스트] 레시피 게시판 이동");
-					location.href="/oneYo/recipeSelectAll.ict";
+				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
+				$("#favorCond").on("change", function() {
+					homeRESTCateCond();
 				});
 				// ------------------------------------------
 				
@@ -153,6 +153,7 @@
 				
 				let before_num = $(".postTitles").attr('data-num');
 				let after_num = obj.attr("data-num");  // 1 ~ 4
+				$("#postTitles").val(after_num);
 				
 				if (before_num == after_num) {
 					console.log("동일한 카테고리입니다.");
@@ -176,6 +177,30 @@
 			
 			function chefIntroduce(mnum) {
 				location.href = "chefIntroduce.ict?mnum=" + mnum;
+			}
+			
+			function homeRESTCateCond() {
+				
+				let dateCondition = $("#favorCond option:selected").val();	// W, M, D
+				let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
+				let condCategory = dateCondition + boardCategory;
+
+				let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
+				let typeV = "GET";
+				let dataTypeV = "json";
+				$.ajax({
+					url: urlV,
+					type: typeV,
+					dataType: dataTypeV,
+					success: whenSuccess
+				});
+				
+				function whenSuccess(retData) {
+					console.log(retData);		// Object
+//						console.log(retData.abc);	// Array(1) -> TEST: "TEST입니다."
+					
+				};
+				
 			}
 			
 		</script>
@@ -217,13 +242,13 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+		<li class="item">
+			<div id="warningForm">
+			<span>
+			신고
+			</span>
+			</div>
+		</li>
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -294,7 +319,17 @@
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
+<%
+			}
+%>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
@@ -315,7 +350,7 @@
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
 <% 		
 		}
@@ -404,6 +439,13 @@
 			 	<div class="favorPostTitle" data-value="notice" data-num="4">
 			 		<span style="text-shadow: 2px 2px 8px purple;">공지사항</span>
 			 	</div>
+		 	</div>
+		 	<div>
+		 		<select id="favorCond" class="favorCond">
+		 			<option value="D">일간&nbsp;</option>
+		 			<option value="W">주간&nbsp;</option>
+		 			<option value="M">월간&nbsp;</option>
+		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />
 	 		<div class="favorPost favorPost1" data-value="recipe">
