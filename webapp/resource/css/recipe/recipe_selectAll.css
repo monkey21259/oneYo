@@ -1,76 +1,76 @@
 @charset "UTF-8";
 
-/* 게시판명(레시피) div */
-.recipeSectionHeader {
-	text-align: center;
-	height: 50px;
-}
+/* /* 게시판명(레시피) div */ */
+/* .recipeSectionHeader { */
+/* 	text-align: center; */
+/* 	height: 50px; */
+/* } */
 
-/* 게시판(레시피) 타이틀 span */
-.recipeSectionHeader .t {
-	font-size: 35px;
+/* /* 게시판(레시피) 타이틀 span */ */
+/* .recipeSectionHeader .t { */
+/* 	font-size: 35px; */
 	
-}
+/* } */
 
-/* 레시피 카테고리 div */
-.recipeCategory {
-	margin-top: 5px;
-	border: 1px solid #333;
-	height: 250px;
-}
+/* /* 레시피 카테고리 div */ */
+/* .recipeCategory { */
+/* 	margin-top: 5px; */
+/* 	border: 1px solid #333; */
+/* 	height: 250px; */
+/* } */
 
-/* 레시피 카테고리 조건 검색 div */
-.recipeSearchBtnDiv {
-	margin-top: 5px;
-	border: 1px solid red;
-	height: 25px;
-	text-align: right;
-}
+/* /* 레시피 카테고리 조건 검색 div */ */
+/* .recipeSearchBtnDiv { */
+/* 	margin-top: 5px; */
+/* 	border: 1px solid red; */
+/* 	height: 25px; */
+/* 	text-align: right; */
+/* } */
 
-/* 레시피 카테고리 조건 검색 버튼 a */
-.recipeSearchBtn {
-	position: relative;
-	top: 2px;
-}
+/* /* 레시피 카테고리 조건 검색 버튼 a */ */
+/* .recipeSearchBtn { */
+/* 	position: relative; */
+/* 	top: 2px; */
+/* } */
 
-/* 월간/주간/일간 인기글 및 글 등록 버튼을 포함한 Container */
-.recipeSearchPeriodContainer {
-	margin-top: 5px;
-	padding: 0px 30px;
-	border: 1px solid #333;
-	height: 50px;
-}
+/* /* 월간/주간/일간 인기글 및 글 등록 버튼을 포함한 Container */ */
+/* .recipeSearchPeriodContainer { */
+/* 	margin-top: 5px; */
+/* 	padding: 0px 30px; */
+/* 	border: 1px solid #333; */
+/* 	height: 50px; */
+/* } */
 
-.recipeSearchPeriodContainer a {
-	text-decoration-line: none;
-}
+/* .recipeSearchPeriodContainer a { */
+/* 	text-decoration-line: none; */
+/* } */
 
-/* 월간/주간/일간 인기글 */
-.t {
-	float: left;
-}
+/* /* 월간/주간/일간 인기글 */ */
+/* .t { */
+/* 	float: left; */
+/* } */
 
-.tright {
-	float: right;
-}
+/* .tright { */
+/* 	float: right; */
+/* } */
 
-/* 레시피 게시글 전체리스트 div */
-.recipeSection {
-	margin: 5px 100px 0 100px;
-	border: 1px solid blue;
-	padding: 0px;
-}
+/* /* 레시피 게시글 전체리스트 div */ */
+/* .recipeSection { */
+/* 	margin: 5px 100px 0 100px; */
+/* 	border: 1px solid blue; */
+/* 	padding: 0px; */
+/* } */
 
-/* 레시피 div */
-.recipes {
-	margin-top: 5px;
-	margin-right: 5px;
-	border-radius: 50px;
-	border: 1px solid blue;
-	width: 24%;
-	height: 300px;
-	float: left;
-}
+/* /* 레시피 div */ */
+/* .recipes { */
+/* 	margin-top: 5px; */
+/* 	margin-right: 5px; */
+/* 	border-radius: 50px; */
+/* 	border: 1px solid blue; */
+/* 	width: 24%; */
+/* 	height: 300px; */
+/* 	float: left; */
+/* } */
 
 /* -------------------------------- 전체 영역 -------------------------------- */
 #all_div {
@@ -89,11 +89,13 @@
 
 
 .choiceAll {
-	width	: 1200px;
-	margin	: auto;
+	width	: 100%;
 }
 
-.choiceAll .choiceTable {
+.choiceAll .choiceTableDiv {
+	width	: 100%;
+}
+.choiceAll .choiceTableDiv .choiceTable {
 	width	: 100%;
 }
 .choiceAll .choiceThree, .choiceAll .choiceFour {
@@ -101,25 +103,32 @@
 	display	: flex;
 	justify-content	: center;
 }
+.choiceAll .choiceFour {
+	height	: 340px;
+}
 .choiceThree {
 	margin-bottom	: 60px;
 }
 /* 주목 받을 3개 전체 */
-.choiceThree .selectOne {
+.choiceThree a {
 	width	: 32%;
 	margin	: 0 3px;
 }
 /* 주목 받을 4개 전체 */
-.choiceFour .selectOne {
+.choiceFour a {
 	width	: 24%;
+	height	: 100%;
 	margin	: 0 3px;
 	margin-bottom	: 30px;
 }
 
 .selectOne {
+	width	: 100%;
+	height	: 100%;
 	background-color	: #fff;
 	/* 테두리 둥글게 */
 	border-radius	: 30px;
+	overflow	: hidden;
 	display	: inline-flex;
 	
 	box-shadow: 2px 2px 2px -1px #AC7B53;
@@ -128,24 +137,38 @@
 /* 선택 테이블별 전체 */
 .selectOne .selectTable {
 	width	: 100%;
+	height	: 100%;
 }
 .selectOne .selectTable td {
 	display	: inline-flex;
 	margin	: 2px auto;
 }
 /* 선택 테이블의 사진부분 */
+.selectOne .selectTable .imgTd {
+	width	: 272px;
+	height	: 200px;
+/* 	width	: 100%; */
+/* 	height	: 100%; */
+}
 .selectOne .selectTable .imgTd div {
-	width	: 98%;
-	height	: 98%;
-	
+	width	: 97%;
+	height	: 97%;
 	margin	: auto;
+	
 	/* 테두리 둥글게 */
 	border-radius	: 30px;
 	overflow	: hidden;
 	background-color	: #fcc;
 }
-.selectOne .selectTable .imgTd div * {
-	width	: 100%;
+.selectOne .selectTable .imgTd div img {
+/* 	max-width	: 100%; */
+/* 	max-height	: 100%; */
+	width	: 264px;
+	height	: 194px;
+/* 	object-fit	: cover; */
+	object-fit	: contain;
+/* 	object-fit	: none; */
+	margin	: auto;
 }
 
 /* 선택 테이블의 제목+작성자+날짜 부분 */
@@ -179,6 +202,36 @@
 }
 /* 선택 테이블의 작성자 */
 .choiceThree .selectOne .selectTable .nameTd span {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #666;
+}
+
+/* 선택 테이블의 조회+좋아요+카테고리 */
+.choiceFour .selectOne .selectTable .optionTd {
+	/* 폰트 사이즈 */
+	font-size	: 20px;
+	font-weight	: bold;
+	align-items	: flex-end;
+}
+/* 선택 테이블의 카테고리 */
+.choiceFour .selectOne .selectTable .optionTd div {
+	/* 폰트 사이즈 */
+	font-size	: 20px;
+	font-weight	: bold;
+	width	: 100%;
+}
+/* 선택 테이블의 "조회+좋아요" */
+.choiceFour .selectOne .selectTable .optionTd span {
+	/* 폰트 사이즈 */
+	font-size	: 13px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	margin-right	: 3px;
+}
+/* 선택 테이블의 조회+좋아요 */
+.choiceFour .selectOne .selectTable .optionTd p {
 	/* 폰트 사이즈 */
 	font-size	: 16px;
 	/* 폰트 색상 */
@@ -225,7 +278,7 @@
 /* 선택 테이블의 작성자 */
 .choiceFour .selectOne .selectTable .nameTd span {
 	/* 폰트 사이즈 */
-	font-size	: 14px;
+	font-size	: 13px;
 	/* 폰트 색상 */
 	color		: #666;
 }
