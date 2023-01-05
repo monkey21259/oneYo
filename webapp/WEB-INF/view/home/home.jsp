@@ -249,41 +249,73 @@
 					}
 					
 					if (boardCategory == 3 || boardCategory == 4) {
-						_condPost.html('<div class="psubj2 pcont" style="text-align:center;">작성자</div><div class="psubj2" style="width:200px;text-align:center;">제목</div><div class="psubj2" style="text-align:center;">조회수</div><div class="psubj2" style="text-align:center;">좋아요</div><div class="psubj2 pins" style="text-align:center;">등록일</div><br /><hr class="favorhr"/>');
+						let constPostStr = '<div class="psubj2" style="text-align:center;">NO</div>';
+						constPostStr += '<div class="psubj2" style="width:440px;text-align:center;">제목</div>';
+						constPostStr += '	<div class="psubj2" style="text-align:center;">작성자</div>';
+						constPostStr += '	<div class="psubj2" style="width:130px;text-align:center;">조회수</div>';
+						constPostStr += '	<div class="psubj2" style="width:130px;text-align:center;">좋아요</div>';
+						constPostStr += '	<div class="psubj2 pins" style="text-align:center;">작성일</div><br />';
+						constPostStr += '<hr class="favorhr"/>';
+						_condPost.html(constPostStr);
+						
 						for (let i=0; i<jsonArr.length; i++) {
 							let pa = $("<a>");
 							pa.addClass("pa");
-							pa.attr("data-value", jsonArr[i].num);
+							pa.attr("data-value", jsonArr[i].num);	// <a>
 							
 							let p2 = $("<div>");
-							p2.addClass("p2");
+							p2.addClass("p2");				// <div> : 전체 내용을 감싸는 div 태그.
+							
+							let pno = $("<div>");
+							pno.addClass("psubj2");			
+							pno.css("text-align", "center");
+							pno.text(i);					// <div> : NO
 							
 							let psubj = $("<div>");
 							psubj.addClass("psubj2");
 							psubj.css({
-								"width": "200px",
+								"width": "440px",
 								"text-align": "left"
 							});
-							psubj.text(jsonArr[i].subject);
+							psubj.text(jsonArr[i].subject);	// <div> : 제목
 							
-							let pcont = $("<div>");
-							pcont.addClass("psubj2 pcont");
-							pcont.text(jsonArr[i].content);
+							let pnick = $("<div>");
+							pnick.addClass("psubj2");
+							pnick.css({
+								"text-align": "center",
+							});
+							if (boardCategory == 4) {
+								pnick.text("관리자");
+							} else {
+								pnick.text(jsonArr[i].nick);	// <div> : 작성자(닉네임)  >> MNICK	
+							}
 							
 							let phit =  $("<div>");
 							phit.addClass("psubj2");
-							phit.text(jsonArr[i].hit);
+							phit.css({
+								"text-align": "center",
+								"width": "130px"
+							});
+							phit.text(jsonArr[i].hit);		// <div> : 조회수
 							
 							let plike =  $("<div>");
 							plike.addClass("psubj2");
-							plike.text(jsonArr[i].likecnt);
+							plike.css({
+								"text-align": "center",
+								"width": "130px"
+							});
+							plike.text(jsonArr[i].likecnt);	// <div> : 좋아요
 							
 							let pinsertdate = $("<div>");
 							pinsertdate.addClass("psubj2 pins");
-							pinsertdate.text(jsonArr[i].insertdate);
+							pinsertdate.css({
+								"text-align": "center",
+							});
+							pinsertdate.text(jsonArr[i].insertdate);	// <div> : 작성일
 	 
+							p2.append(pno);
 							p2.append(psubj);
-							p2.append(pcont);
+							p2.append(pnick);
 							p2.append(phit);
 							p2.append(plike);
 							p2.append(pinsertdate);
@@ -535,23 +567,23 @@
 	 	<div class="favorContainer">
 	 		<div class="postTitles" data-num="1">
 			 	<div class="favorPostTitle" data-value="recipe" data-num="1">
-			 		<span style="text-shadow: 2px 2px 8px red;">레시피</span>
+			 		<span>레시피</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="tip" data-num="2">
-			 		<span style="text-shadow: 2px 2px 8px blue;">전문가</span>
+			 		<span>전문가</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="community" data-num="3">
-			 		<span style="text-shadow: 2px 2px 8px green;">커뮤니티</span>
+			 		<span>커뮤니티</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="notice" data-num="4">
-			 		<span style="text-shadow: 2px 2px 8px purple;">공지사항</span>
+			 		<span>공지사항</span>
 			 	</div>
 		 	</div>
 		 	<div>
 		 		<select id="favorCond" class="favorCond">
-		 			<option value="D">일간&nbsp;</option>
-		 			<option value="W">주간&nbsp;</option>
-		 			<option value="M" selected>월간&nbsp;</option>
+		 			<option value="D">일간 인기글&nbsp;</option>
+		 			<option value="W">주간 인기글&nbsp;</option>
+		 			<option value="M" selected>월간 인기글&nbsp;</option>
 		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />

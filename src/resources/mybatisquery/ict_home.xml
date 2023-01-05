@@ -235,14 +235,17 @@
 	 <if test='boardCategory.equals("커뮤니티")'>
 	     C.CNUM         AS NUM
 	    ,C.CSUBJECT     AS SUBJECT
-	    ,C.CCONTENT     AS CONTENT
+<!-- 	    ,C.CCONTENT     AS CONTENT MNICK -->
+		,(SELECT M.MNICK
+			FROM "ORCLICT00"."ICT_MEMBER" M
+		   WHERE C.MNUM = M.MNUM)	AS NICK
 	    ,C.CHIT         AS HIT
 	    ,TO_CHAR(C.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
 	 <if test='boardCategory.equals("공지사항")'>
 	     D.NNUM         AS NUM
 	    ,D.NSUBJECT     AS SUBJECT
-	    ,D.NCONTENT     AS CONTENT
+<!-- 	    ,D.NCONTENT     AS CONTENT --> <!-- MNICK : 관리자 -->
 	    ,D.NHIT         AS HIT
 	    ,TO_CHAR(D.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
@@ -263,7 +266,15 @@
 	    "ORCLICT00"."ICT_TIP"        B
 	 </if>
 	 <if test='boardCategory.equals("커뮤니티")'>
-	    "ORCLICT00"."ICT_COMMUNITY"  C
+	    (SELECT
+	    	 CNUM
+	    	,CSUBJECT
+	    	,MNUM
+	    	,INSERTDATE
+	        ,CHIT
+	        ,DELETEYN
+	       FROM "ORCLICT00"."ICT_COMMUNITY"
+	      ORDER BY CHIT DESC) C
 	 </if>
 	 <if test='boardCategory.equals("공지사항")'>
 	    "ORCLICT00"."ICT_NOTICE"     D
@@ -282,7 +293,13 @@
 	 <if test='dateCondition.equals("M")'>
 	   <![CDATA[ AND SYSDATE - INSERTDATE < 31 ]]>
 	 </if>
-	 <![CDATA[ORDER BY HIT DESC]]>
+	 <if test='!(boardCategory.equals("공지사항"))'>
+	 	<![CDATA[ORDER BY HIT DESC]]>
+	 </if>
+	 <if test='(boardCategory.equals("공지사항"))'>
+	 	<![CDATA[ORDER BY INSERTDATE DESC]]>
+	 </if>
+	 
 	 
 </select>
 
