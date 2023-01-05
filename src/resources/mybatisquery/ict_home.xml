@@ -223,39 +223,53 @@
 	    ,A.RSUBJECT     AS SUBJECT
 	    ,A.RPHOTO       AS PHOTO
 	    ,A.RHIT         AS HIT
+	    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
 	 <if test='boardCategory.equals("전문가팁")'>
 	     B.TNUM         AS NUM
 	    ,B.TSUBJECT     AS SUBJECT
 	    ,B.TPHOTO       AS PHOTO
 	    ,B.THIT         AS HIT
+	    ,TO_CHAR(B.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
 	 <if test='boardCategory.equals("커뮤니티")'>
 	     C.CNUM         AS NUM
 	    ,C.CSUBJECT     AS SUBJECT
 	    ,C.CCONTENT     AS CONTENT
 	    ,C.CHIT         AS HIT
+	    ,TO_CHAR(C.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
 	 <if test='boardCategory.equals("공지사항")'>
 	     D.NNUM         AS NUM
 	    ,D.NSUBJECT     AS SUBJECT
 	    ,D.NCONTENT     AS CONTENT
 	    ,D.NHIT         AS HIT
+	    ,TO_CHAR(D.INSERTDATE, 'YYYY-MM-DD')	AS INSERTDATE
 	 </if>
-	  FROM
+	 	,NVL((SELECT COUNT(LNUM)
+	 		 	FROM "ORCLICT00"."ICT_LIKE"	L
+	 		   WHERE 
+				 <if test='boardCategory.equals("레시피")'>RNUM</if>
+				 <if test='boardCategory.equals("전문가팁")'>TNUM</if>
+				 <if test='boardCategory.equals("커뮤니티")'>CNUM</if>
+				 <if test='boardCategory.equals("공지사항")'>NNUM</if>
+	 		   		= L.LIKETHIS
+	 		  	 AND L.LIKEYN = 'Y'), 0)	AS LIKECNT
+	   FROM
 	 <if test='boardCategory.equals("레시피")'>
-	    ICT_RECIPE     A
+	    "ORCLICT00"."ICT_RECIPE"     A
 	 </if>
 	 <if test='boardCategory.equals("전문가팁")'>
-	    ICT_TIP        B
+	    "ORCLICT00"."ICT_TIP"        B
 	 </if>
 	 <if test='boardCategory.equals("커뮤니티")'>
-	    ICT_COMMUNITY  C
+	    "ORCLICT00"."ICT_COMMUNITY"  C
 	 </if>
 	 <if test='boardCategory.equals("공지사항")'>
-	    ICT_NOTICE     D
+	    "ORCLICT00"."ICT_NOTICE"     D
 	 </if>
-	 WHERE DELETEYN = 'Y'
+	 <![CDATA[WHERE DELETEYN = 'Y']]> 
+	 <![CDATA[AND ROWNUM <= 8]]>
 	 <!-- DAILY -->
 	 <if test='dateCondition.equals("D")'>
 	   <![CDATA[ AND SYSDATE - INSERTDATE = 1 ]]>
@@ -268,8 +282,7 @@
 	 <if test='dateCondition.equals("M")'>
 	   <![CDATA[ AND SYSDATE - INSERTDATE < 31 ]]>
 	 </if>
-	 <!-- AND ROWNUM < ? -->
-	 ORDER BY HIT DESC
+	 <![CDATA[ORDER BY HIT DESC]]>
 	 
 </select>
 
