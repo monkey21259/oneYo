@@ -202,12 +202,12 @@ public class RecipeController {
 	public String recipeSelectContent(HttpServletRequest req, HttpServletResponse res, RecipeVO recipevo, Model model) {
 		
 		logger.info("recipeSelectContent() 함수 진입");
-//		logger.info(recipevo.toString());  // RecipeVO [rnum=R202212210004, ..., mnum=M202212200005]
+		logger.info(recipevo.toString());  // RecipeVO [rnum=R202212210004, ..., mnum=M202212200005]
 		
 		//조회 수 올리기============================================
 		String boardNum = recipevo.getRnum();
-		String boardFlag = boardNum.substring(0, 1);
 		logger.info("boardNum : " + boardNum);
+		String boardFlag = boardNum.substring(0, 1);
 		logger.info("boardFlag : " + boardFlag);
 		
 		HitVO hvo = null;

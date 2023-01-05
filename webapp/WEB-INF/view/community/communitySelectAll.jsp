@@ -167,6 +167,37 @@
 		}); //ready
 	
 		</script>
+	<style>
+	
+	.link{
+		margin:2px;
+		list-style-type:none;
+		float:left;
+		padding:9px 15px 9px 15px;
+		border:1px solid #ebebeb; 
+		}
+	.hi{
+		color:#888;
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	.hello{
+	color:#ff5e5e;
+		text-decoration: none;
+		
+	}
+	#list{
+		text-align:center;
+		
+	}
+	#block{
+	display:inline-block;
+	
+	}
+	
+	
+	</style>
 	</head>
  	<body>
  	<form id="communitySelectAll" name="communitySelectAll">
@@ -439,14 +470,17 @@
 				
 				
 				%>
+				
 				<tr>
 				<td colspan="6">
+				<br>
 				<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
 				<input type="hidden" id="keywordVal" value="<%=keyword %>">
 				<input type="hidden" id="startDateVal" value="<%=startDate %>">
 				<input type="hidden" id="endDateVal" value="<%=endDate %>">
 				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 					<jsp:param name="url" value="communitySelectAll.ict" />
+					<jsp:param value="" name="str"/>
 					<jsp:param name="pageSize" value="<%=pageSize %>" />
 					<jsp:param name="groupSize" value="<%=groupSize %>" />
 					<jsp:param name="curPage" value="<%=curPage %>"/>

@@ -45,8 +45,8 @@
 /* 인기글 타이틀을 묶은 div */
 .postTitles {
 	float: left;
-	margin:0 100px;
-	width: 750px;
+/* 	margin:0 100px; */
+	width: 1020px;
 	height: 40px;
 	display: flex; /* flex 배치 */
 	align-items: center; /* 수직 중앙 배치 */
@@ -62,8 +62,12 @@
 	width: 270px; /* 현재 가로: 1100px */
 	height: 40px;
 	border: 1px solid #CCC;
+	border-radius: 35px;
+	margin-right: 5px;
 	cursor: pointer;
-	background-color: #F0F2CC;
+	background-color: #688402;
+	font-weight: bold;
+	color: #EEE;
 }
 
 @media ( min-width: 2500px ) {
@@ -73,16 +77,19 @@
 }
 
 .favorCond {
+	position: relative;
+	left: 27px;
     width: 148px;
     height: 40px;
     display: flex;
     margin-left: 2px;
     justify-content: center; /* 수평 중앙 배치 */
     align-items: center; /* 수직 중앙 배치 */
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .favorCond option {
+	font-size: 15px;
 	text-align:right;
 }
 
@@ -189,17 +196,11 @@
 .psubj2 {
 	margin: 5px 5px 0 0;
 	float: left;
-	width: 115px;
+	width: 150px;
 	height: 20px;
 	overflow: hidden;
 	text-align:right;
-}
-
-.pcont {
-	width: 570px !important;
-	text-align:left;
 	text-overflow: ellipsis;
-/* 	overflow: hidden; */
 }
 
 /* 각 게시판 클릭 시 링크 */

@@ -38,13 +38,18 @@
 			$(document).ready(function() {
 				
 				console.log("[recipeSelectAll.jsp] jQuery");
-				$(".recipes").on("click", function() {
+				$(".selectOne").on("click", function() {
 					
 					console.log("[click] recipes");
 					
-					var recipeInfos = $(this).siblings();
-					var rnum = recipeInfos[0].value;
-					var mnum = recipeInfos[1].value;
+					var recipeInfos = $(this).children();
+					var rnum = $(recipeInfos[0]).val();
+					var mnum = $(recipeInfos[1]).val();
+					
+// 					console.log($(recipeInfos[0]));  // rnum 
+// 					console.log($(recipeInfos[0]).val());  // R202301020048 
+// 					console.log($(recipeInfos[1]));  // mnum
+// 					console.log($(recipeInfos[1]).val());  // M202212300018
 					
 					$("#rnum").val(rnum);
 					$("#mnum").val(mnum);
@@ -54,6 +59,7 @@
 						"method": "GET",
 						"enctype": "application/x-www-form-urlencoded"
 					}).submit();
+					
 				});
 				
 				// 로그인 / 로그아웃 / 회원가입 / 마이페이지 ----------
@@ -89,7 +95,7 @@
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
 				
-			});
+			}); // end of $(document).ready();
 			
 			function recipeSearch() {
 				alert("recipeSearch() 함수 시작");
@@ -103,16 +109,41 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+	<style>
+	
+	.link{
+		margin:2px;
+		list-style-type:none;
+		float:left;
+		padding:9px 15px 9px 15px;
+		border:1px solid #ebebeb; 
+		}
+	.hi{
+		color:#888;
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	.hello{
+	color:#ff5e5e;
+		text-decoration: none;
+		
+	}
+	#list{
+		text-align:center;
+		
+	}
+	#block{
+	display:inline-block;
+	
+	}
+	
+	
+	</style>
 	</head>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
-<!--  -->
-		<header></header>
-<!--  -->
-		<nav></nav>
-<!--  -->
-		<aside></aside>
-			<div id="realAll">
+		<div id="realAll">
 
 <div id="backMenu"></div>
 
@@ -145,17 +176,31 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+				신고<br>팝업
 			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="mypageHome">
-			<span>
-			my<br>Page 
-			</span>
-			</div>
-		</li>
+<%
+      if (mid == null || !(mid.equals("admin"))) {
+%>
+	         <div class="mypageHome">
+	         <span>
+	         	마이<br>페이지 
+	         </span>
+	         </div>
+<%
+      } else if (mid.equals("admin")) {
+%>
+	         <div class="adminHome">
+	         <span>
+		         	관리자<br>페이지 
+	         </span>
+	         </div>
+<%
+      }
+%>
+      	</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
@@ -306,8 +351,6 @@
 				<span class="t">레시피(Recipe) 게시판</span>
 			</div>
 			
-			
-			
 			<div class="recipeCategory">
 				<!-- (조건 검색) 카테고리 넣는 공간 -->
 				<div>
@@ -379,11 +422,6 @@
 				}
 %>
 			</div>
-			
-			
-			
-			
-			
 <%
 			Object pagingObj = request.getAttribute("pagingVO");
 			if (pagingObj == null) {
@@ -408,16 +446,6 @@
 // 			int rTotalHeight = 308 * (recipeList.size() / 4 + 1);
 // 			logger.info(recipeList.size());
 %>
-			
-			
-			
-			
-<%-- <div class="recipeSection" style="height:<%= rTotalHeight %>px"> <!-- loop --> --%>
-			
-			
-				<!-- aaaa -->
-				
-				
 <div class="choiceAll">
 <!-- 		<div class="choiceThree"> -->
 <%
@@ -520,7 +548,7 @@
 								<tr>
 									<td class="imgTd">
 										<div>
-										<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="rphoto">
+											<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="rphoto">
 										</div>
 									</td>
 								</tr>
@@ -572,7 +600,7 @@
 			</table>
 		</div>
 	</div>
-				
+				<br><br><br>
 				<!-- aaaa -->
 				
 				
@@ -591,28 +619,6 @@
 						<jsp:param value="<%=totalCount %>" name="totalCount"/>
 					</jsp:include>
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-
-
-
 <!-- 			<div class="recipeSearchBtnDiv"> -->
 <!-- 				카테고리 조건 검색 -->
 <!-- 				<a class="recipeSearchBtn" href="javascript:recipeSearch();">검색</a> -->
@@ -648,9 +654,6 @@
 // 				}
 %>
 <!-- 			</div> -->
-			
-			
-			
 			
 <%
 // 			Object pagingObj = request.getAttribute("pagingVO");
@@ -718,6 +721,9 @@
 <%-- 								<jsp:param value="<%=curPage %>" name="curPage"/> --%>
 <%-- 								<jsp:param value="<%=totalCount %>" name="totalCount"/> --%>
 <%-- 						</jsp:include> --%>
+
+	<input type="hidden" id="rnum" name="rnum" value="" />
+	<input type="hidden" id="mnum" name="mnum" value="" />
 </form>
 	</section>
 					<!-- -------------------------------페이지 전용 center------------------------------- -->

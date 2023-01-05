@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ page import="java.io.File" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
-
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 //-----------------
@@ -22,41 +21,8 @@
 	str = request.getParameter("str");
 	logger.info("빈깡통보냄 str : " + str);
 	
-	//서칭 변수
-	String searchFilter = null;
-	String keyword = null;
-	String startDate = null;
-	String endDate = null;
-	searchFilter = request.getParameter("searchFilter");
-	keyword = request.getParameter("keyword");
-	startDate = request.getParameter("startDate");
-	endDate = request.getParameter("endDate");
-	
-	//서칭 null 체크
-	if(searchFilter == null || searchFilter.length() == 0 || searchFilter.equals("null")){
-		searchFilter = "";
-	}//end of if
-	if(keyword == null || keyword.length() == 0 || keyword.equals("null")){
-		keyword = "";
-	}//end of if
-	if(startDate == null || startDate.length() == 0 || startDate.equals("null")){
-		startDate = "";
-	}//end of if
-	if(endDate == null || endDate.length() == 0 || endDate.equals("null")){
-		endDate = "";
-	}//end of if
-	
-	logger.info("searchFilter : " + searchFilter);
-	logger.info("keyword : " + keyword);
-	logger.info("startDate : " + startDate);
-	logger.info("endDate : " + endDate);
-	
 	if(str != null){
 		str = str + "&";
-		str = str.concat("searchFilter=").concat(searchFilter).concat("&");
-		str = str.concat("keyword=").concat(keyword).concat("&");
-		str = str.concat("startDate=").concat(startDate).concat("&");
-		str = str.concat("endDate=").concat(endDate).concat("&");
 		logger.info("str + & : " + str);
 	}
 
@@ -130,12 +96,19 @@
 	//boardSelectList.jsp&curPage=0		
 %>	
 	<!-- 쿼리스트링 날릴려고 작성한 곳 -->
-	<a href="<%=url %>?<%=str %>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url %>?<%=str %>curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
+	<div align="center">
+	<ul id="block">
+			<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi">&lt;</a>
+			</li>
 <%		
 	}else{
 %>	
- <!--  ◁◁-->&nbsp;&nbsp;&nbsp;<!--◀-->&nbsp;&nbsp;&nbsp;
+ 	<div align="center">
+	<ul id="block">
+			<li class="link">
+				<span class="hi">&lt;</span>
+			</li>
 <%
 	} 
 	//다음 링크를 위해 증가시킴
@@ -154,13 +127,17 @@
 		logger.info("그룹범위내에서 페이지 링크if");
 
 %>	
-	<%=linkPage %>
+	<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hello"><%=linkPage%></a>
+			</li>
 <% 	
 	}else{
 		logger.info("그룹범위내에서 페이지 링크 else");
 		logger.info("linkPage 값 증가 : " + linkPage);
 %>
-	[<a href="<%=url %>?<%=str %>curPage=<%=linkPage%>"><%=linkPage %></a>]&nbsp;
+	<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi"><%=linkPage%></a>
+			</li>
 	
 
 <% 	
@@ -180,9 +157,11 @@
 		//boardSelectList.jsp?&curPage=6
 		//boardSelectList.jsp?&curPage=40		
 %>	
-	<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>">▶</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url %>?<%=str %>curPage=<%=pageCount %>">▷▷</a>&nbsp;&nbsp;&nbsp;
-	
+	<li class="link">
+			<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi">&gt;</a>
+		</li>
+		</ul>
+		</div>
 <% 	
 	//마지막 페이지의 경우
 	}else{
@@ -190,16 +169,15 @@
 		logger.info("다음그룹이 있는경우 pageCount : " + pageCount);
 		logger.info("다음그룹이 있는경우 _else");
 %>	
-	<!--    ▶-->&nbsp;&nbsp;&nbsp;<!--  ▷▷-->&nbsp;&nbsp;&nbsp; 
+	<li class="link">
+			<span class="hi">&gt;</span>
+		</li>
+		</ul>
+		</div> 
 <% 
 	}
 	
 %>
 </p>
-
-
-
-
-
 
 
