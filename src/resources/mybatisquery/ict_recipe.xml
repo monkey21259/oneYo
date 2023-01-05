@@ -72,8 +72,9 @@
 			FROM
 			    ICT_RECIPE A, ICT_MEMBER B
 			WHERE A.DELETEYN = 'Y'
+			AND   B.DELETEYN = 'Y'
 			AND A.MNUM = B.MNUM
-			ORDER BY 1
+			ORDER BY A.RNUM DESC
 		 )
 	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
 
@@ -256,36 +257,45 @@ SELECT
 </select>
 
 <!-- recipeCategorySelectAll 23-01-03 이성일 추가 -->
+<!-- recipeCategorySelectAll 23-01-05 이성일 추가
+           변경사항 : 좋아요 카운트 추가					 -->
 <select id="recipeCategorySelectAll" parameterType="recipevo" resultType="recipevo">
 
 	SELECT *
 	FROM
 		(
 			SELECT
-			     A.RNUM         RNUM
-			    ,A.RSUBJECT     RSUBJECT
-			    ,A.RCONTENT     RCONTENT
-			    ,A.RPHOTO       RPHOTO
-			    ,A.RJERYO       RJERYO
-			    ,A.RTIME        RTIME
-			    ,A.RPERSON      RPERSON
-			    ,A.RDIFF        RDIFF
-			    ,A.RCATEGORY    RCATEGORY
-			    ,A.WARNING      WARNING
-			    ,A.MNUM         MNUM
-			    ,A.RHIT         RHIT
-			    ,A.DELETEYN     DELETEYN
-			    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
-			    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
-			    ,CEIL(ROW_NUMBER() OVER(ORDER BY A.RNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
-				,COUNT(A.RNUM) OVER()					AS totalCount
-			FROM
-			    ICT_RECIPE A
+				     A.RNUM         RNUM
+				    ,A.RSUBJECT     RSUBJECT
+				    ,A.RCONTENT     RCONTENT
+				    ,A.RPHOTO       RPHOTO
+				    ,A.RJERYO       RJERYO
+				    ,A.RTIME        RTIME
+				    ,A.RPERSON      RPERSON
+				    ,A.RDIFF        RDIFF
+				    ,A.RCATEGORY    RCATEGORY
+				    ,A.WARNING      WARNING
+				    ,A.MNUM         MNUM
+				    ,B.MNICK        MNICK
+				    ,A.RHIT         RHIT
+				    ,A.DELETEYN     DELETEYN
+				    ,TO_CHAR(A.INSERTDATE, 'YYYY-MM-DD')   INSERTDATE
+				    ,TO_CHAR(A.UPDATEDATE, 'YYYY-MM-DD')   UPDATEDATE
+				    ,CEIL(ROW_NUMBER() OVER(ORDER BY A.RNUM DESC)/#{pageSize})	AS pagesize
+					,COUNT(A.RNUM) OVER()								AS totalCount
+				   ,(SELECT COUNT(LIKETHIS)
+				   	 FROM ORCLICT00.ICT_LIKE
+				   	 WHERE A.RNUM = LIKETHIS
+				   	 AND   LIKEYN = 'Y')								AS	LIKECNT
+			FROM	 "ORCLICT00"."ICT_RECIPE"	A
+					,"ORCLICT00"."ICT_MEMBER"	B
 			WHERE A.DELETEYN = 'Y'
-			AND	  A.RCATEGORY = #{rcategory}
-			ORDER BY 1
+			AND	  B.DELETEYN = 'Y'
+			AND   A.RCATEGORY = #{rcategory}
+			AND   A.MNUM = B.MNUM
+			ORDER BY A.RNUM DESC
 		 )
-	WHERE	pageSize = #{curPage, jdbcType=VARCHAR}
+	WHERE	pageSize = #{curPage}
 
 </select>
 
