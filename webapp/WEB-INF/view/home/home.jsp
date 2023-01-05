@@ -249,7 +249,7 @@
 					}
 					
 					if (boardCategory == 3 || boardCategory == 4) {
-						_condPost.html('<div class="psubj2" style="width:200px;text-align:center;">제목</div><div class="psubj2 pcont" style="text-align:center;">내용</div><div class="psubj2" style="text-align:center;">조회수</div><div class="psubj2" style="text-align:center;">좋아요</div><div class="psubj2 pins" style="text-align:center;">등록일</div><br /><hr class="favorhr"/>');
+						_condPost.html('<div class="psubj2 pcont" style="text-align:center;">작성자</div><div class="psubj2" style="width:200px;text-align:center;">제목</div><div class="psubj2" style="text-align:center;">조회수</div><div class="psubj2" style="text-align:center;">좋아요</div><div class="psubj2 pins" style="text-align:center;">등록일</div><br /><hr class="favorhr"/>');
 						for (let i=0; i<jsonArr.length; i++) {
 							let pa = $("<a>");
 							pa.addClass("pa");
@@ -315,7 +315,6 @@
 <div id="realAll">
 
 <div id="backMenu"></div>
-
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
@@ -334,13 +333,13 @@
 			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			<span>
-			신고
-			</span>
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -349,11 +348,27 @@
 			</div>
 		</li>
 		<li class="item">
+	<%
+	
+		logger.info("mid>>>>>>>>>>>>>" + mid);
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+	<%
+		} else if(mid.equals("admin")){
+	%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+	<%
+		}
+	%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
