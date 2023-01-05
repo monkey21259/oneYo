@@ -109,6 +109,37 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+	<style>
+	
+	.link{
+		margin:2px;
+		list-style-type:none;
+		float:left;
+		padding:9px 15px 9px 15px;
+		border:1px solid #ebebeb; 
+		}
+	.hi{
+		color:#888;
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	.hello{
+	color:#ff5e5e;
+		text-decoration: none;
+		
+	}
+	#list{
+		text-align:center;
+		
+	}
+	#block{
+	display:inline-block;
+	
+	}
+	
+	
+	</style>
 	</head>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
@@ -569,7 +600,7 @@
 			</table>
 		</div>
 	</div>
-				
+				<br><br><br>
 				<!-- aaaa -->
 				
 				
