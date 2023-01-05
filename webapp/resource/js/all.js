@@ -117,8 +117,11 @@ function mypageHomeAction() {
 	
 	$(document).on('click', '.mypageHome', function(){
 	let mid = $('#mid').val();
+	let mpw = $('#mpw').val();
 	
-	if(mid == "null" || mid == " " || mid == null){
+	alert("마이페이지 버튼 클릭했을 떄 mid >>>> : " + mid);
+	
+	if(mid == "null" || mid == "" || mid == null && mpw.length() > 0){
 		alert("로그인 후 이용해 주세요.");
 	
 		} else{

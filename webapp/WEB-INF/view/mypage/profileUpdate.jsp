@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>profileUpdate.jsp</title>
+<title>oneYo(오내요)</title>
 </head>
 <body>
 <script>

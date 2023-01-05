@@ -541,7 +541,30 @@
 					<tr>
 						<td colspan="3">
 							<div class="neyong">
-								<%= recipevo.getRcontent() %>
+								<!-- <%= recipevo.getRcontent() %> -->
+								<table>
+									<%
+										String s = recipevo.getRcontent();
+										String[] ss = s.split("#");
+										for(int i=1; i<ss.length; i++){
+									%>
+									<tr>
+										<td colspan="3"><br></td>
+									</tr>
+									<tr>
+										<td style="width: 50px; height: 50px; text-align: center; vertical-align:middle;">
+											<img src="/oneYo/img/numbering/number<%=i %>.png" width="45" height="45">
+										</td>
+										<td>&nbsp;&nbsp;</td>
+										<td style="text-align: left; vertical-align:middle;">
+											<%=ss[i] %>
+										</td>
+									</tr>
+									
+									<%
+										}
+									%>
+								</table>
 							</div>
 						</td>
 					</tr>

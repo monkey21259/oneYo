@@ -7,6 +7,7 @@
 <%@ page import="main.ict.mem.vo.MemVO" %>
 <%@ page import="main.ict.common.CodeUtils" %>
 <%@ page import="main.ict.common.O_Session" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
 <%
 	Logger logger = null;
@@ -51,15 +52,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memInsertForm.jsp</title>
+<title>oneYo(오내요)</title>
 <!-- jQuery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
-<!-- memInsertEmail.jsp 전용 -->
-<link rel="stylesheet" href="/oneYo/resource/css/mem/memInsertEmail.css">
+<!-- memInsertForm.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/mem/memInsertForm.css">
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js" charset="UTF-8"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	alert("hihi, <%= memail %>. 회원가입 진행합니다.");
@@ -81,7 +85,7 @@ $(document).ready(function(){
 			$('#midBtn').attr('disabled', false);
 		}
 		
-	});
+	}); //아이디중복체크
 	
 
 	
@@ -107,9 +111,6 @@ $(document).ready(function(){
 			if ("ID_YES" == resData) {
 				
 				alert("사용 가능한 닉네임입니다");
-			
-				
-				
 				
 			}else if("ID_NO" == resData) {
 				
@@ -126,7 +127,7 @@ $(document).ready(function(){
 			console.log("에러 발생 e >>> : " + e.responseText);
 		}
 		
-	});	//
+	});	//닉네임 체크 함수 nickCheck
 	
 	
 	$(document).on('click', '#midBtn', function(){
@@ -263,12 +264,12 @@ $(document).ready(function(){
 					$('#mnick').val('');
 					$('#mnick').focus();
 				}
-			}	//	ajax 수행문
+			}	//	ajax(success) 수행문
 			
 			function whenError() {
 				alert("에러 발생, 콘솔을 확인 해 주세요.");
 				console.log("에러 발생 e >>> : " + e.responseText);
-			}	
+			}// whenErrorr	
 		}		
 			
 			
@@ -342,29 +343,21 @@ $(document).ready(function(){
 				,'method'	: 'POST'
 				,'enctype'	: 'multipart/form-data'
 			}).submit();
-		}
+		} //if
 		
 	});	//	form 전송 버튼
-	
-	//로그아웃
-	$("#logoutBtn").on("click", function() {
-		$("#logoutForm").attr({
-			"action": "logout.ict",
-			"method": "GET",
-			"enctype": "application/x-www-form-urlencoded"
-		}).submit();
-	});
 			
 	//all.js 에 있는 모든 함수 연결
 	allJavaScript();
 	
-});
+}); //ready
+
 </script>
 <style type="text/css">
-.mhp {
-	width	: 40px;
-}
-</style>
+ .mhp { 
+ 	width	: 40px; 
+ } 
+<!-- </style> -->
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -375,44 +368,59 @@ $(document).ready(function(){
 
 <div id="backMenu"></div>
 
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
+			</span>
 			</div>
 		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
+			<span>
 			신고<br>팝업
+			</span>
 			</div>
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+			<div class="mypageHome">
+			<span>
+			마이<br>페이지
+			</span>
 			</div>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
+	</div>
+
+
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -446,30 +454,11 @@ $(document).ready(function(){
 	<div id="logoRight" class="logoSide">
 <!-- 	로고 옆공간 우측 -->
 	 	<div id="loginDiv">
-<%
-		if (mid == null || mid.equals("")) {
-%>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
-<%
-		} else {
-%>
-			<div class="loginBtnDiv">
-				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">|</span>
-		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
-				<p><%= mnick %> <span>님 환영합니다.</span></p>
-	 		</div>
-	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
-<% 		
-		}
-%>
 	 	</div>
 	</div>
 	
@@ -530,7 +519,7 @@ $(document).ready(function(){
 	}
 %>
 
-회원가입 포오옴
+오내요 회원가입
 <table border=1>
 <!-- mid 아이디 -->
 <%
@@ -538,7 +527,7 @@ $(document).ready(function(){
 %>
 <tr>
 	<td>
-		ID
+		아이디
 	</td>
 	<td>
 		<input type="text" id="mid" name="mid" class="notNull">
@@ -551,7 +540,7 @@ $(document).ready(function(){
 <!-- mpw 비밀번호 -->
 <tr>
 	<td class="mpw_td" rowspan='2'>
-		PW
+		비밀번호
 	</td>
 	<td>
 		<input type="text" id="mpw" name="mpw" class="notNull">
@@ -629,7 +618,7 @@ $(document).ready(function(){
 <!-- mcategory 요리 분야 -->
 <tr>
 	<td>
-		LIKE
+		관심 요리분야
 	</td>
 	<td>
 		<ul>
@@ -667,7 +656,7 @@ $(document).ready(function(){
 %>
 <tr>
 	<td>
-		ID
+		아이디
 	</td>
 	<td>
 		<input type="text" id="mid" name="mid" value="<%= mvo.getMid() %>" readonly />
@@ -680,7 +669,7 @@ $(document).ready(function(){
 <!-- mpw 비밀번호 -->
 <tr>
 	<td class="mpw_td" rowspan='2'>
-		PW
+		비밀번호
 	</td>
 	<td>
 		<input type="password" id="mpw" name="mpw" value="<%= mvo.getMpw() %>" readonly />
@@ -789,7 +778,7 @@ $(document).ready(function(){
 			<!-- mcategory 요리 분야 -->
 			<tr>
 				<td>
-					LIKE
+					관심요리분야
 				</td>
 				<td>
 					<ul>
@@ -830,21 +819,21 @@ $(document).ready(function(){
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 
 </div>
 </div>
-
-</form>
-
-</body>
+			
+		</form>
+	</body>
 </html>

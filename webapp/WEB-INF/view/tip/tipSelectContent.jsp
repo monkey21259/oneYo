@@ -381,7 +381,7 @@
 			<input id="mnum" name="mnum" type="hidden" value="<%= tvo.getMnum() %>">
 			<input id="tsubject" name="tsubject" type="hidden" value="<%= tvo.getTsubject() %>">
 			<input id="mnick" name="mnick" type="hidden" value="<%=tvo.getMnick() %>">
-			<div id="content">
+			<div id="content" style="white-space: pre-line;">
 				<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>"  style="width:200px; height:200px;">
 				<br>
 				내용 : <%= tvo.getTcontent() %>

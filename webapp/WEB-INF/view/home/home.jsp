@@ -29,12 +29,7 @@
 	logger.info("mnum: " + mnum);
 %>
 
-<c:set var="RecipeList" value="${ DataMap['RecipeList'] }" />
-<c:set var="TipList" value="${ DataMap['TipList'] }" />
-<c:set var="CommunityList" value="${ DataMap['CommunityList'] }" />
-<c:set var="NoticeList" value="${ DataMap['NoticeList'] }" />
 <c:set var="MemList" value="${ DataMap['MemList'] }" />
-<c:set var="Count" value="${ DataMap['Count'] }" />
 
 <!DOCTYPE html>
 <html lang='ko'>
@@ -64,8 +59,8 @@
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
+					postClick($(this));
 					homeRESTCateCond();
-					postClick($(this));  // TODO 변경 필요! 값 띄우기
 				});
 				
 				$('.pa').on("click", function() {				// 게시글 클릭 시
@@ -147,13 +142,17 @@
 					}
 				});
 				
+				// 초기화면설정 >> recipe + 월간
+				postClick($(".postTitles:first-child"));
+				homeRESTCateCond();
+				
 			});
 			
 			function postClick(obj) {  // favorPostTitle
 				
 				let before_num = $(".postTitles").attr('data-num');
 				let after_num = obj.attr("data-num");  // 1 ~ 4
-				$("#postTitles").val(after_num);
+				$(".postTitles").val(after_num);
 				
 				if (before_num == after_num) {
 					console.log("동일한 카테고리입니다.");
@@ -163,14 +162,14 @@
 				// 값 갱신
 				$(".postTitles").attr('data-num', after_num);
 
-				// 클릭한 것에 해당하는 게시판 글 z-index 변경하기.
+// 				클릭한 것에 해당하는 게시판 글 z-index 변경하기.
 				$(".favorPost").each(function(i, elem) {
 // 					console.log($(elem).attr("data-value"));
 // 					console.log($(obj).attr("data-value"));
 					if ($(elem).attr("data-value") == $(obj).attr("data-value")) {
-						$(elem).css("z-index", 1);
+						$(elem).css("z-index", 11);
 					} else {
-						$(elem).css("z-index", 0);
+						$(elem).css("z-index", 10);
 					}
 				});
 			}
@@ -196,9 +195,102 @@
 				});
 				
 				function whenSuccess(retData) {
-					console.log(retData);		// Object
-//						console.log(retData.abc);	// Array(1) -> TEST: "TEST입니다."
+					let jsonArr = retData.jsonArr;  // JSON Array
+					// 글 별로 분기처리 >> 1(레시피), 2(전문가팁), 3(커뮤니티), 4(공지사항)
+// 					console.log(boardCategory);		// 분기할 카테고리 숫자
 					
+					// favorPost + 숫자인 element 찾기
+					let _condPost = $(".favorPost" + boardCategory);
+					let _condPostDV = _condPost.attr("data-value");
+					
+					_condPost.empty();
+// 					console.log(jsonArr.length);  // 1 ~ 8
+					if ((boardCategory == 1 || boardCategory == 2)
+							&& jsonArr !== null && jsonArr[0].num !== undefined) {
+						for (let i=0; i<jsonArr.length; i++) {
+							let pa = $("<a>");
+							pa.addClass("pa");
+							pa.attr("data-value", jsonArr[i].num);
+							
+							let p1 = $("<div>");
+							p1.addClass("p1");
+							
+							let imgCover = $("<div>");
+							imgCover.addClass("imgCover");
+							
+							let p11 = $("<img>");
+							p11.addClass("p11");
+							p11.attr("src", "/oneYo/img/" + _condPostDV + "/" + jsonArr[i].photo);
+							p11.attr("onerror", "this.src='/oneYo/img/잔망루피.jpg'");
+							
+							let psubj = $("<div>");
+							psubj.addClass("psubj pcom");
+							psubj.text(jsonArr[i].subject);
+							
+							let br = $("<br>");
+							
+							let pcom1 = $("<div>");
+							pcom1.addClass("pcom");
+							pcom1.text("조회수: " + jsonArr[i].hit);
+							
+							let pcom2 =  $("<div>");
+							pcom2.addClass("pcom");
+							pcom2.text("추천수: " + jsonArr[i].likecnt);
+	
+							imgCover.append(p11);
+							p1.append(imgCover);
+							p1.append(psubj);
+							p1.append(br);
+							p1.append(pcom1);
+							p1.append(pcom2);
+							pa.append(p1);
+							_condPost.append(pa);
+						}
+					}
+					
+					if (boardCategory == 3 || boardCategory == 4) {
+						_condPost.html('<div class="psubj2" style="width:200px;text-align:center;">제목</div><div class="psubj2 pcont" style="text-align:center;">내용</div><div class="psubj2" style="text-align:center;">조회수</div><div class="psubj2" style="text-align:center;">좋아요</div><div class="psubj2 pins" style="text-align:center;">등록일</div><br /><hr class="favorhr"/>');
+						for (let i=0; i<jsonArr.length; i++) {
+							let pa = $("<a>");
+							pa.addClass("pa");
+							pa.attr("data-value", jsonArr[i].num);
+							
+							let p2 = $("<div>");
+							p2.addClass("p2");
+							
+							let psubj = $("<div>");
+							psubj.addClass("psubj2");
+							psubj.css({
+								"width": "200px",
+								"text-align": "left"
+							});
+							psubj.text(jsonArr[i].subject);
+							
+							let pcont = $("<div>");
+							pcont.addClass("psubj2 pcont");
+							pcont.text(jsonArr[i].content);
+							
+							let phit =  $("<div>");
+							phit.addClass("psubj2");
+							phit.text(jsonArr[i].hit);
+							
+							let plike =  $("<div>");
+							plike.addClass("psubj2");
+							plike.text(jsonArr[i].likecnt);
+							
+							let pinsertdate = $("<div>");
+							pinsertdate.addClass("psubj2 pins");
+							pinsertdate.text(jsonArr[i].insertdate);
+	 
+							p2.append(psubj);
+							p2.append(pcont);
+							p2.append(phit);
+							p2.append(plike);
+							p2.append(pinsertdate);
+							pa.append(p2);
+							_condPost.append(pa);
+						}
+					}
 				};
 				
 			}
@@ -430,7 +522,7 @@
 			 	<div class="favorPostTitle" data-value="recipe" data-num="1">
 			 		<span style="text-shadow: 2px 2px 8px red;">레시피</span>
 			 	</div>
-			 	<div class="favorPostTitle" data-value="expert" data-num="2">
+			 	<div class="favorPostTitle" data-value="tip" data-num="2">
 			 		<span style="text-shadow: 2px 2px 8px blue;">전문가</span>
 			 	</div>
 			 	<div class="favorPostTitle" data-value="community" data-num="3">
@@ -444,74 +536,14 @@
 		 		<select id="favorCond" class="favorCond">
 		 			<option value="D">일간&nbsp;</option>
 		 			<option value="W">주간&nbsp;</option>
-		 			<option value="M">월간&nbsp;</option>
+		 			<option value="M" selected>월간&nbsp;</option>
 		 		</select>
 		 	</div>
 		 	<hr class="favorhr" />
-	 		<div class="favorPost favorPost1" data-value="recipe">
-	 			<c:forEach items="${ RecipeList }" var="rvo">
-					<a class="pa" data-value="${ rvo.rnum }">
-						<div class="p1">
-							<img class="p11" src="/oneYo/img/recipe/${ rvo.rphoto }" onerror="this.src='/oneYo/img/잔망루피.jpg';"/>
-							<div class="psubj pcom">${ rvo.rsubject }</div><br />
-							<div class="pcom">조회수: ${ rvo.rhit }</div>
-							<div class="pcom">추천수: ${ rvo.likecnt }</div>				
-						</div>
-					</a>
-				</c:forEach>
-	 		</div>
-	 		<div class="favorPost favorPost2" data-value="expert">
-	 			<c:forEach items="${ TipList }" var="tvo">
-					<a class="pa" data-value="${ tvo.tnum }">
-						<div class="p1">
-							<img class="p11" src="/oneYo/img/tip/${ tvo.tphoto }" onerror="this.src='/oneYo/img/잔망루피.jpg';"/>
-							<div class="psubj pcom">${ tvo.tsubject }</div><br />
-							<div class="pcom">조회수: ${ tvo.thit }</div>
-							<div class="pcom">추천수: ${ tvo.likecnt }</div>				
-						</div>
-					</a>
-				</c:forEach>
-	 		</div>
-	 		<div class="favorPost favorPost3" data-value="community">
-	 			<div class="psubj2" style="width:200px;text-align:center;">제목</div>
-				<div class="psubj2 pcont" style="text-align:center;">내용</div>
-				<div class="psubj2" style="text-align:center;">조회수</div>
-				<div class="psubj2" style="text-align:center;">좋아요</div>			
-				<div class="psubj2 pins" style="text-align:center;">등록일</div>
-				<br /><hr class="favorhr"/>
-	 			<c:forEach items="${ CommunityList }" var="cvo">
-					<a class="pa" data-value="${ cvo.cnum }">
-						<div class="p2">
-							<%-- 테이블로 구성하는게 나을듯 --%>
-							<div class="psubj2" style="width:200px;text-align:left;">${ cvo.csubject }</div>
-							<div class="psubj2 pcont">${ cvo.ccontent }</div>
-							<div class="psubj2">${ cvo.chit }</div>
-							<div class="psubj2">${ cvo.likecnt }</div>			
-							<div class="psubj2 pins">${ cvo.insertdate }</div>				
-						</div>
-					</a>
-				</c:forEach>
-	 		</div>
-	 		<div class="favorPost favorPost4" data-value="notice">
-		 		<div class="psubj2" style="width:200px;text-align:center;">제목</div>
-				<div class="psubj2 pcont" style="text-align:center;">내용</div>
-				<div class="psubj2" style="text-align:center;">조회수</div>
-				<div class="psubj2" style="text-align:center;">좋아요</div>			
-				<div class="psubj2 pins" style="text-align:center;">등록일</div>	
-				<br /><hr class="favorhr" />
-	 			<c:forEach items="${ NoticeList }" var="nvo">
-					<a class="pa" data-value="${ nvo.nnum }">
-						<div class="p2">
-							<%-- 테이블로 구성하는게 나을듯 --%>
-							<div class="psubj2" style="width:200px;text-align:left;">${ nvo.nsubject }</div>
-							<div class="psubj2 pcont">${ nvo.ncontent }</div>
-							<div class="psubj2">${ nvo.nhit }</div>
-							<div class="psubj2">${ nvo.likecnt }</div>				
-							<div class="psubj2 pins">${ nvo.insertdate }</div>		
-						</div>
-					</a>
-				</c:forEach>
-	 		</div>
+	 		<div class="favorPost favorPost1" data-value="recipe"></div>
+	 		<div class="favorPost favorPost2" data-value="tip"></div>
+	 		<div class="favorPost favorPost3" data-value="community"></div>
+	 		<div class="favorPost favorPost4" data-value="notice"></div>
 	 		<form id="goSelectForm">
 	 			<input type="hidden" id="num" name="num" value="" />
 	 		</form>

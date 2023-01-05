@@ -470,11 +470,18 @@ logger.info("mnum >>>>>>> : " + mnum);
 				</td>
 			</tr>
 			<tr>
+				<!-- 
 				<th>글 번호</th>
 				<th>글 제목</th>
 				<th>글 내용</th>
 				<th>글 조회수</th>
 				<th>작성자</th>
+				<th>등록일</th>
+				 -->
+				<th>NO</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
 				<th>등록일</th>
 			</tr>
 		</thead>
@@ -498,6 +505,7 @@ logger.info("mnum >>>>>>> : " + mnum);
 					<%= tvo.getTsubject() %>
 					<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
 				</td>
+				<!-- 
 				<td class="tcontent">
 					<%= tvo.getTcontent() %>
 					<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
@@ -507,6 +515,13 @@ logger.info("mnum >>>>>>> : " + mnum);
 				</td>
 				<td>
 					<%= tvo.getMnick() %>
+				</td>
+				 -->
+				<td>
+					<%= tvo.getMnick() %>
+				</td>
+				<td>
+					<%= tvo.getThit() %>
 				</td>
 				<td>
 					<%= tvo.getInsertdate() %>

@@ -384,7 +384,7 @@
 				<tr>
 					<td>NO</td>
 					<td>제목</td>
-					<td>조회 수</td>
+					<td>조회수</td>
 					<td>작성일</td>
 					
 				</tr>

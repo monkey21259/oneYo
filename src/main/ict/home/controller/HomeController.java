@@ -65,30 +65,10 @@ public class HomeController {
 		
 		Map<String, Object> dataMap = new HashMap();
 		
-		List<RecipeVO> rList = homeService.getRecipeList();
-		List<TipVO> tList = homeService.getTipList();
-		List<CommunityVO> cList = homeService.getCommunityList();
-		List<NoticeVO> nList = homeService.getNoticeList();
 		List<MemVO> mList = homeService.getMemList();
-		List<HomeVO> cntList = homeService.getCntList();
-		
-		if(rList !=null && rList.size() > 0)
-			dataMap.put("RecipeList", rList);
-		
-		if(tList !=null && tList.size() > 0)
-			dataMap.put("TipList", tList);
-		
-		if(cList !=null && cList.size() > 0)
-			dataMap.put("CommunityList", cList);
-		
-		if(nList !=null && nList.size() > 0)
-			dataMap.put("NoticeList", nList);
 		
 		if(mList !=null && mList.size() > 0)
 			dataMap.put("MemList", mList);
-		
-		if(cntList !=null && cntList.size() == 1)
-			dataMap.put("Count", cntList);
 		
 		model.addAttribute("DataMap", dataMap);
 		
