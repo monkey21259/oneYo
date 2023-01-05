@@ -328,7 +328,7 @@ public class TipController {
 	}
 	
 	//세션
-	@GetMapping("tipsession")
+	@GetMapping(value="tipsession", produces="application/text; charset=UTF-8")
 	@ResponseBody
 	public Object tipsession(HttpServletRequest req, MemVO mvo) {
 		

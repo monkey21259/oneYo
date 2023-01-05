@@ -118,7 +118,7 @@ function mypageHomeAction() {
 	$(document).on('click', '.mypageHome', function(){
 	let mid = $('#mid').val();
 	
-	if(mid == "null"){
+	if(mid == "null" || mid == " " || mid == null){
 		alert("로그인 후 이용해 주세요.");
 	
 		} else{
