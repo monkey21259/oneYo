@@ -115,4 +115,10 @@ public class HomeDAOImpl implements HomeDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("chefCommunityShowMore", cvo);
 	}
+
+	@Override
+	public List<HomeVO> chefListShowMore(HomeVO hvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("chefListShowMore", hvo);
+	}
 }

@@ -8,6 +8,7 @@
 <%@ page import="main.ict.community.vo.CommunityVO" %>
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.tip.vo.TipVO" %>
+<%@ page import="main.ict.home.vo.HomeVO" %>
 
 <% Logger logger = LogManager.getLogger(this.getClass()); %>
 <% logger.info(".jsp 진입"); %>
@@ -17,50 +18,17 @@
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
 	String mid = (String)oSession.getAttribute(request, "mid");
+	List<HomeVO> list = null;
+	HomeVO hvo = null;
 	
-	// 2023-01-04 이성일 추가 : 현재 쉐프 mnum
-	String chefMnum = "";
+	// 2023-01-05 쉐프 목록
 	
-	CommunityVO cvo = null;
-	RecipeVO rvo = null;
-	TipVO tvo = null;
-	List<CommunityVO> communityList = null;
-	List<RecipeVO> recipeList = null;
-	List<TipVO> tipList = null;
-	
-	if (request.getAttribute("chefMnum") !=null) {
-		chefMnum = (String)request.getAttribute("chefMnum");
+	if (request.getAttribute("list") !=null) {
+		list = (List<HomeVO>)request.getAttribute("list");
 	}
-	
-	if (request.getAttribute("communityList") !=null) {
-		communityList = (List<CommunityVO>)request.getAttribute("communityList");
-		logger.info("");
-		for (int i=0; i < communityList.size(); i++) {
-			cvo = communityList.get(i);
-			logger.info("커뮤니티 게시판 PK[" + i + "] : " + cvo.getCnum());
-		}
-	}
-	
-	if (request.getAttribute("recipeList") !=null) {
-		recipeList = (List<RecipeVO>)request.getAttribute("recipeList");
-		for (int i=0; i < recipeList.size(); i++) {
-			rvo = recipeList.get(i);
-			logger.info("레시피 게시판 PK[" + i + "] : " + rvo.getRnum());
-		}
-	}
-	
-	if (request.getAttribute("tipList") !=null) {
-		tipList = (List<TipVO>)request.getAttribute("tipList");
-		for (int i=0; i < tipList.size(); i++) {
-			tvo = tipList.get(i);
-			logger.info("전문가팁 게시판 PK[" + i + "] : " + tvo.getTnum());
-		}
-	}
-	
-	
+
 	logger.info("mid: " + mid);
 	logger.info("mnum: " + mnum);
-	logger.info("chefMnum : " + chefMnum);
 %>
 
 <!DOCTYPE html>
@@ -139,31 +107,8 @@
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
 				
-				// 더보기 게시판 버튼(레시피, 전문가팁, 커뮤니티)
-//				<button id="recipeBtn" style="width:200px;">레시피</button>
-//				<button id="tipBtn" style="width:200px;">전문가 팁</button>
-//				<button id="communitytBtn" style="width:200px;">커뮤니티</button>
-
-				$(document).on("click","#recipeBtn", function(){
-					alert("recipeBtn 버튼 클릭");
-					location.href = "chefRecipeShowMore.ict?mnum=<%= chefMnum %>";
-					
-				});
-				
-				$(document).on("click","#tipBtn", function(){
-					alert("tipBtn 버튼 클릭");
-					location.href = "chefTipShowMore.ict?mnum=<%= chefMnum %>";
-					
-				});
-				
-				$(document).on("click","#communitytBtn", function(){
-					alert("communitytBtn 버튼 클릭");
-					location.href = "chefCommunityShowMore.ict?mnum=<%= chefMnum %>";
-					
-				});
-				
 			});
-			
+
 			function postClick(obj) {  // favorPostTitle
 				
 				let before_num = $(".postTitles").attr('data-num');
@@ -187,11 +132,6 @@
 						$(elem).css("z-index", 0);
 					}
 				});
-			}
-			
-			function recipeSelectContent(rnum) {
-				alert(rnum);
-				location.href = "recipeSelectContent.ict?rnum=" + rnum;
 			}
 			
 		</script>
@@ -373,67 +313,52 @@
 
 <div id="center" style="text-align:center;">
 <!--
- 
-2023-01-04 쉐프소개 더 보기 작업 할 부분
-2023-01-04 쉐프소개 더 보기 작업 할 부분 
-2023-01-04 쉐프소개 더 보기 작업 할 부분 
-2023-01-04 쉐프소개 더 보기 작업 할 부분 
-2023-01-04 쉐프소개 더 보기 작업 할 부분 
-2023-01-04 쉐프소개 더 보기 작업 할 부분  
-communityList
-recipeList
-tipList
-
+2023-01-05
+쉐프 더 보기 작업할 공간
+2023-01-05
+쉐프 더 보기 작업할 공간
+2023-01-05
+쉐프 더 보기 작업할 공간
+2023-01-05
+쉐프 더 보기 작업할 공간
+2023-01-05
+쉐프 더 보기 작업할 공간
+2023-01-05
+쉐프 더 보기 작업할 공간
 -->
-	<div id="btnarea" style="display:inline-block;">
-		<button id="recipeBtn" style="width:200px;">레시피</button>
-		<button id="tipBtn" style="width:200px;">전문가 팁</button>
-		<button id="communitytBtn" style="width:200px;">커뮤니티</button>
-	</div>
-<%
-	// 커뮤니티 글이 조회된 경우
-	if (communityList !=null && communityList.size() > 0) {
-		for (int i=0; i < communityList.size(); i++) {
-			cvo = communityList.get(i);
-%>
-		<div class="communityTemp">
-			<img src="/oneYo/img/community/<%= cvo.getCphoto() %>" style="wdith:100px; height:100px;">
-			<span><%= cvo.getCsubject() %></span>
-		</div>
-<%		
-		}
-	}
-%>
 
+<h3>쉐프 더보기</h3>
+<table>
 <%
-	// 커뮤니티 글이 조회된 경우
-	if (recipeList !=null && recipeList.size() > 0) {
-		for (int i=0; i < recipeList.size(); i++) {
-			rvo = recipeList.get(i);
-%>
-		<div class="recipeTemp" onclick="recipeSelectContent('<%= rvo.getRnum() %>')">
-			<img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="wdith:100px; height:100px;">
-			<span><%= rvo.getRsubject() %></span><br/>
-		</div>
-<%					
+	if (list !=null && list.size() > 0) {
+		for (int i=0; i < list.size(); i++) {
+			hvo = list.get(i);
+%> 
+		<tr>
+			<th>회원번호</th>
+			<th>닉네임</th>
+			<th>프로필</th>
+			<th>레시피 작성</th>
+			<th>레시피 조회수</th>
+			<th>전문가팁 작성</th>
+			<th>전문가팁 조회수</th>
+			<th>활동기간</th>
+		</tr>
+		<tr>
+			<td><span><%= hvo.getMnum() %></span></td>
+			<td><span><%= hvo.getMnick() %></span></td>
+			<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
+			<td><span><%= hvo.getTotalrecipe() %></span></td>
+			<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
+			<td><span><%= hvo.getTotaltip() %></span></td>
+			<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
+			<td><span><%= hvo.getSubscription() %>일</span></td>
+		</tr>
+<%
 		}
 	}
 %>
-
-<%
-	// 커뮤니티 글이 조회된 경우
-	if (tipList !=null && tipList.size() > 0) {
-		for (int i=0; i < tipList.size(); i++) {
-			tvo = tipList.get(i);
-%>
-		<div class="tipTemp">
-			<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>" style="wdith:100px; height:100px;">
-			<span><%= tvo.getTsubject() %></span>
-		</div>
-<%					
-		}
-	}
-%>
+</table>
 
 </div>
 

@@ -376,4 +376,43 @@
 
 </select>
 
+<select id="chefListShowMore" parameterType="homevo" resultType="homevo">
+
+	SELECT   A.MNUM							AS		MNUM
+			,A.MNICK						AS		MNICK
+			,A.MPROFILE						AS		MPROFILE
+			,(SELECT COUNT(RNUM)
+			  FROM   "ORCLICT00"."ICT_RECIPE"
+			  WHERE  A.MNUM = MNUM)			AS		TOTALRECIPE
+		    ,NVL((SELECT SUM(RHIT)
+			      FROM   "ORCLICT00"."ICT_RECIPE"
+			      WHERE  A.MNUM = MNUM), 0)	AS		TOTALRECIPEHITCNT
+			,(SELECT COUNT(TNUM)
+			  FROM   "ORCLICT00"."ICT_TIP"
+			  WHERE  A.MNUM = MNUM)			AS		TOTALTIP
+		    ,NVL((SELECT SUM(THIT)
+			      FROM   "ORCLICT00"."ICT_TIP"
+			      WHERE  A.MNUM = MNUM), 0)	AS		TOTALTIPHITCNT
+			,FLOOR(SYSDATE - A.INSERTDATE)	AS 		SUBSCRIPTION  
+	FROM   "ORCLICT00"."ICT_MEMBER" A
+	WHERE   A.DELETEYN = 'Y'
+	AND		A.MGRADE   = '1'
+	<if test='sortcondition.equals("a")'>
+	ORDER BY TOTALRECIPE DESC
+	</if>
+	<if test='sortcondition.equals("b")'>
+	ORDER BY TOTALRECIPEHITCNT DESC
+	</if>
+	<if test='sortcondition.equals("c")'>
+	ORDER BY TOTALTIP DESC
+	</if>
+	<if test='sortcondition.equals("d")'>
+	ORDER BY TOTALTIPHITCNT DESC
+	</if>
+	<if test='sortcondition.equals("no")'>
+	ORDER BY TOTALRECIPE DESC
+	</if>
+
+</select>
+
 </mapper>

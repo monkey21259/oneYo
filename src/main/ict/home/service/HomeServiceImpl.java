@@ -138,4 +138,11 @@ public class HomeServiceImpl implements HomeService {
 		return homeDAO.chefCommunityShowMore(cvo);
 	}
 
+	@Override
+	public List<HomeVO> chefListShowMore(HomeVO hvo) {
+		// TODO Auto-generated method stub
+		logger.info("chefListShowMore() 함수 진입");
+		return homeDAO.chefListShowMore(hvo);
+	}
+
 }

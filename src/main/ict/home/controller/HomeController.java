@@ -157,6 +157,35 @@ public class HomeController {
 		return "home/home";
 	}
 	
+	@GetMapping(value="chefListShowMore")
+	public String chefListShowMore(HttpServletRequest req, Model m) {
+		logger.info("chefListShowMore() 함수 진입");
+		
+		String sortCondition = "";
+		HomeVO hvo = new HomeVO();
+		
+		if(req.getParameter("sortCondition") !=null) {
+			sortCondition = req.getParameter("sortCondition");
+			logger.info("조회 조건 sortCondition : " + sortCondition);
+			hvo.setSortcondition(sortCondition);
+		}else {
+			sortCondition = "no";
+			hvo.setSortcondition(sortCondition);
+		}
+		
+		List<HomeVO> list = homeService.chefListShowMore(hvo);
+		
+		if(list !=null && list.size() > 0) {
+			for (int i=0; i < list.size(); i++) {
+				logger.info(list.get(i).toString());
+			}
+			m.addAttribute("list", list);
+			return "home/pilot";
+		}
+		
+		return "#";
+	}
+	
 //	public List<RecipeVO> recipeSelectContent(RecipeVO recipevo) { goSelectContent
 	@GetMapping(value="goSelectContent")
 	public String goSelectContent(HttpServletRequest req, Model model) {

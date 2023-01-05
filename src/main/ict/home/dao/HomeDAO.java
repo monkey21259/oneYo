@@ -31,6 +31,7 @@ public interface HomeDAO {
 	List<RecipeVO> chefRecipeShowMore(RecipeVO rvo);
 	List<TipVO> chefTipShowMore(TipVO tvo);
 	List<CommunityVO> chefCommunityShowMore(CommunityVO cvo);
+	List<HomeVO> chefListShowMore(HomeVO hvo);
 
 	// 각 게시글 + 일간/주간/월간 조회: 230104 김기영 추가
 	List<ObjectVO> getCondVOList(ObjectVO ovo);
