@@ -403,11 +403,11 @@
 		%>
 				<tbody>
 					<tr>
-						<td><%= cvo.getCommunitynum()%></td>
-						<td><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></a></td>
-						<td><%= cvo.getMnick() %></td>
-						<td><%= cvo.getChit() %></td>
-						<td><%= cvo.getInsertdate()%></td>
+						<td style="text-align:center;"><%= cvo.getCommunitynum()%></td>
+						<td style="text-align:left;"><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></a></td>
+						<td style="text-align:center;"><%= cvo.getMnick() %></td>
+						<td style="text-align:center;"><%= cvo.getChit() %></td>
+						<td style="text-align:center;"><%= cvo.getInsertdate()%></td>
 					</tr>
 		<%
 		totalCount = Integer.parseInt(cvo.getTotalCount());

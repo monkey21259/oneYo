@@ -206,7 +206,7 @@
 			</span>
 			</div>
 		</li>
-				<li class="item">
+		<li class="item">
 	<%
 		if(mid == null || !mid.equals("admin")){
 	%>
@@ -400,16 +400,16 @@
 				endDate = nvo.getEndDate();
 		%>
 				<tr>
-					<td>
+					<td style="text-align:center;">
 						<%= nvo.getNoticeno() %>
 					</td>
-					<td>
+					<td style="text-align:left;">
 						<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
 					</td>
-					<td>
+					<td style="text-align:center;">
 						<%=nvo.getNhit() %>
 					</td>
-					<td>
+					<td style="text-align:center;">
 						<%=nvo.getInsertdate() %>
 					</td>
 				</tr>
