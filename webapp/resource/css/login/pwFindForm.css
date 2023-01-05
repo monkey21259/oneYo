@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
-
 /* -------------------------------- 전체 영역 -------------------------------- */
 #all_div {
-	 
+	
 }
 
 /* -------------------------------- 상단 header -------------------------------- */
@@ -11,19 +10,110 @@
 	
 }
 
-/* -------------------------------- 좌측 left -------------------------------- */
-#left {
-	
-}
 
 /* -------------------------------- 중앙 center -------------------------------- */
+
+
 #center {
-	
+	 margin: auto;
+     width: 500px;
+     height : 600px;
+     background-color: white;
+     border-radius: 30px;
+     text-align: center;
+     padding: 20px;
+	 border-color: #93A603;
+	 margin-bottom	: 20px;
+     box-shadow: 0px 5px 20px -5px;
 }
 
-/* -------------------------------- 우측 right -------------------------------- */
-#right {
-	
+#center table{	
+	overflow : hidden; /*테두리 영역 넘어가면 숨김*/
+	padding-top:25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    
+}
+
+/* 테이블 좌측영역*/
+table .name{
+	text-align:left;
+	padding:0px 10px 0px 0px;		
+}
+
+/*테이블우측영역*/
+table .info{
+	text-align:center;
+	width:60%;	
+}
+
+
+hr {
+    background:#93A603;
+    height:1px;
+    border:0;
+}
+
+
+#subject{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+}
+
+#content{
+	font-size : 15px;
+}
+
+#center input {
+		    height: 45px;
+		    width: 300px;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
+		    outline: none; /*테두리제거*/
+		    border : none;
+		    padding-left: 10px;
+}
+
+/* 이메일 확인버튼 */
+#emailBtn:hover {
+      	    font-size : 14px;
+      	    font-weight: bold;
+            color : white;
+            border-radius: 5px;
+            background-color: #93A603;
+            border : none;
+            width : 60%;
+            height:40px;
+            margin-top:20px;
+         	margin-bottom: 20px;
+         	letter-spacing: 1px;
+         	
+        }
+        
+  #emailBtn {
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 60%;
+             height:40px;
+            margin-top:20px;
+         	margin-bottom: 20px;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+        }    
+
+
+/* 아이디 , 비밀번호 찾기 영역*/
+#center .alink {
+padding-bottom: 20px;
+}
+
+#center .alink a:hover {
+	color:#93A603;
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */

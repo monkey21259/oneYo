@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-.loginSNS {
-	width:70%;
-	height:50px;
-	cursor:pointer;
-	 border-radius: 5px;
-}
-
-
 /* -------------------------------- 전체 영역 -------------------------------- */
 #all_div {
 	
@@ -20,6 +12,7 @@
 
 
 /* -------------------------------- 중앙 center -------------------------------- */
+
 
 #center {
 	 margin: auto;
@@ -35,20 +28,19 @@
 }
 
 #center table{
-	align:center;	
 	overflow : hidden; /*테두리 영역 넘어가면 숨김*/
-	margin-left: 50px;
+	padding-top:25px;
+    margin-left: 50px;
     margin-right: 50px;
 }
 
-.logo{
-	 width:300px; 
-	 height:150px;
- 	 text-align:center;
- 	 display : block;
-	 padding-bottom: 50px;
-	 padding-left:40px;
-	
+table .name{
+	text-align:left;
+	padding:10px 10px 10px 0px;	
+}
+
+#center table tr{
+	padding: 5px 10px 5px 10px;
 }
 
 hr {
@@ -57,54 +49,35 @@ hr {
     border:0;
 }
 
-
-/* 아이디, 비밀번호 옆에 있는 아이콘*/
-.loginImg{
-	width : 40px; 
-	height : 40px;
-	vertical-align: middle;
-}
-#center #login {
+#subject{
 	font-size : 30px;
-	padding: 15px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
 	
 }
-
 #center input {
-    height: 45px;
-    width: 300px;
-    margin-bottom: 10px;
-/*     background-color:#FAFAFA; */
-    outline: none; /*테두리제거*/
-    border : none;
-/*     border: #EFEFEF 1px solid; */
-/*     border-radius: 6px; */
-    padding-left: 10px;
+		    height: 45px;
+		    width: 250px;
+		    font-size : 18px;
+		    font-weight: bold;
+		    text-align:center;
+		    outline: none; /*테두리제거*/
+		    border : none;
+		    padding-left: 10px;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
 }
 
-/* 로그인 버튼 */
-#loginButton {
-   			font-size : 14px;
-            color : #93A603;
-            border-radius: 5px;
-            background-color: white;
-         	border:3px solid #93A603;
-            width : 100%;
-             height:40px;
-            margin-top:20px;
-         	margin-bottom: 20px;
-         	letter-spacing: 1px;
-         	cursor:pointer;
-        }      
-        
- #loginButton:hover {
+/* 이메일 확인버튼 */
+#emailBtn:hover {
       	    font-size : 14px;
       	    font-weight: bold;
             color : white;
             border-radius: 5px;
             background-color: #93A603;
             border : none;
-            width : 100%;
+            width : 60%;
             height:40px;
             margin-top:20px;
          	margin-bottom: 20px;
@@ -112,11 +85,24 @@ hr {
          	
         }
         
-  
+  #emailBtn {
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 60%;
+             height:40px;
+            margin-top:20px;
+         	margin-bottom: 20px;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+        }    
+
 
 /* 아이디 , 비밀번호 찾기 영역*/
-#center .alink{
-padding-bottom: 20px;
+#center .alink {
+	padding: 30px 20px 0px 20px;
 }
 
 #center .alink a:hover {
