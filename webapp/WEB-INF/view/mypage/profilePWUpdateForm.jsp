@@ -76,7 +76,7 @@ $(document).ready(function(){
 		let mpw = $('#mpw').val();
 		
 		if (!chk) {	// 구 비밀번호 확인 안했을 시
-// 			alert("test!! >>> " + chk);
+// 			
 
 			if (mpw_old == $('#mpw_old_r').val()) {
 				alert("비밀번호 확인 성공");
@@ -95,7 +95,7 @@ $(document).ready(function(){
 				$('#mpw').prop('readonly', true);
 				$('#mpw_r').prop('readonly', true);
 				
-// 				alert("mkey >>> : " + $('#mkey').val());
+// 			
 				$('#profileUpdateForm').attr({
 					 "action"	: "memUpdate.ict"
 					,"method"	: "POST"

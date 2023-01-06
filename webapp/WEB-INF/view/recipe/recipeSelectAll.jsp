@@ -98,7 +98,7 @@
 			}); // end of $(document).ready();
 			
 			function recipeSearch() {
-				alert("recipeSearch() 함수 시작");
+				
 				location.href = "recipeSearchForm.ict";
 			}
 		

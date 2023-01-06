@@ -70,7 +70,7 @@
 		$(document).on("click", "#inputBtn", function(){
 			
 			console.log("inputBtn 버튼 클릭 이벤트 발생");
-			alert("inputBtn 버튼 클릭 이벤트 발생");
+			
 			
 			var tsubject_val = $("#tsubject").val();
 			console.log("글제목 : " + tsubject_val);

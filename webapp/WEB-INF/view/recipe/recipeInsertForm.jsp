@@ -94,7 +94,7 @@
 				
 // 				alert("[recipeInsertForm.jsp] jQuery");
 				$("#recipeInsertBtn").on("click", function() {
-					alert("recipeInsertBtn >>> Click");
+					
 					
 					// validation code area
 					
