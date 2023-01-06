@@ -102,10 +102,9 @@ public class HomeController {
 				m.addAttribute("chefMnum", rvo.getMnum());
 				return "home/showMore";
 			} // end of if
-			
 		} // end of if
-		
-		return "home/home";
+		m.addAttribute("chefMnum", rvo.getMnum());
+		return "home/showMore";
 	}
 	
 	@GetMapping(value="chefTipShowMore")
@@ -130,7 +129,8 @@ public class HomeController {
 				return "home/showMore";
 			}
 		} // end of if
-		return "home/home";
+		m.addAttribute("chefMnum", tvo.getMnum());
+		return "home/showMore";
 	}
 	
 	@GetMapping(value="chefCommunityShowMore")
@@ -154,7 +154,8 @@ public class HomeController {
 				return "home/showMore";
 			}
 		} // end of if
-		return "home/home";
+		m.addAttribute("chefMnum", cvo.getMnum());
+		return "home/showMore";
 	}
 	
 	@GetMapping(value="chefListShowMore")

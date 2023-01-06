@@ -283,7 +283,7 @@
 	 <![CDATA[AND ROWNUM <= 8]]>
 	 <!-- DAILY -->
 	 <if test='dateCondition.equals("D")'>
-	   <![CDATA[ AND SYSDATE - INSERTDATE = 1 ]]>
+	   <![CDATA[ AND INSERTDATE BETWEEN TO_DATE(SYSDATE, 'YY-MM-DD') - 1 AND TO_DATE(SYSDATE, 'YY-MM-DD') ]]>
 	 </if>
 	 <!-- WEEKLY -->
 	 <if test='dateCondition.equals("W")'>
@@ -292,6 +292,18 @@
 	 <!-- MONTHLY -->
 	 <if test='dateCondition.equals("M")'>
 	   <![CDATA[ AND SYSDATE - INSERTDATE < 31 ]]>
+	 </if>
+	 <if test='boardCategory.equals("레시피")'>
+	 	AND A.RHIT NOT IN(0)
+	 </if>
+	 <if test='boardCategory.equals("전문가팁")'>
+	 	AND B.THIT NOT IN(0)
+	 </if>
+	 <if test='boardCategory.equals("커뮤니티")'>
+	 	AND C.CHIT NOT IN(0)
+	 </if>
+	 <if test='boardCategory.equals("공지사항")'>
+	 	AND D.NHIT NOT IN(0)
 	 </if>
 	 <if test='!(boardCategory.equals("공지사항"))'>
 	 	<![CDATA[ORDER BY HIT DESC]]>
