@@ -27,18 +27,18 @@
 	}
 
 	//서칭 변수
-		String searchFilter = null;
+		String searchCategory = null;
 		String keyword = null;
 		String startDate = null;
 		String endDate = null;
-		searchFilter = request.getParameter("searchFilter");
+		searchCategory = request.getParameter("searchCategory");
 		keyword = request.getParameter("keyword");
 		startDate = request.getParameter("startDate");
 		endDate = request.getParameter("endDate");
 		
 		//서칭 null 체크
-		if(searchFilter == null || searchFilter.length() == 0 || searchFilter.equals("null")){
-			searchFilter = "";
+		if(searchCategory == null || searchCategory.length() == 0 || searchCategory.equals("null")){
+			searchCategory = "";
 		}//end of if
 		if(keyword == null || keyword.length() == 0 || keyword.equals("null")){
 			keyword = "";
@@ -50,14 +50,14 @@
 			endDate = "";
 		}//end of if
 		
-		logger.info("searchFilter : " + searchFilter);
+		logger.info("searchCategory : " + searchCategory);
 		logger.info("keyword : " + keyword);
 		logger.info("startDate : " + startDate);
 		logger.info("endDate : " + endDate);
 		
 		if(str != null){
 			str = str + "&";
-			str = str.concat("searchFilter=").concat(searchFilter).concat("&");
+			str = str.concat("searchCategory=").concat(searchCategory).concat("&");
 			str = str.concat("keyword=").concat(keyword).concat("&");
 			str = str.concat("startDate=").concat(startDate).concat("&");
 			str = str.concat("endDate=").concat(endDate).concat("&");

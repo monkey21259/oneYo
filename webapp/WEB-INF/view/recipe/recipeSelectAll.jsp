@@ -542,7 +542,7 @@
 								<tr>
 									<td class="optionTd">
 										<span>조회수 :</span>
-										<p><%= recipevo.getRhit() %></p>
+										<p><%= recipevo.getRhit() %></p>&nbsp;&nbsp;
 										<span>좋아요 :</span>
 										<p><%=recipevo.getLikecnt() %></p>
 									</td>
