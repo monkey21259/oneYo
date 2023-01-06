@@ -115,6 +115,9 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 								row[3] : mnick
 								row[4] : insertdate
 								*/
+								if(i > 0) {
+									$('#commentList').append($('<hr>'));
+								}
 								//댓글 조립하고 ul에 추가하기
 								addNewItem(row[0], row[1], row[2], row[3], row[4]);
 							}//end of for
@@ -143,14 +146,25 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 					writerDiv.addClass('writer');
 					
 					//댓글 삭제 버튼 input태그
-					var deleteBtn = $('<input>');
+// 					var deleteBtn = $('<input>');
 					
+// 					//접속한 고객 회원번호와 조회된 댓글 작성자의 회원번호가 같다면 삭제 버튼 보이기
+// 					if(mnum == $('#mnum').val()){
+// 						deleteBtn.attr({'type':'button', 'value':'삭제'});
+// 						deleteBtn.addClass('deleteBtn');
+// 					}else{
+// 						deleteBtn.attr({'type':'hidden'});
+// 					}//end of if-else
+					
+					//댓글 삭제 버튼 input태그
+					var deleteBtn = $('<div>');
+					deleteBtn.html('삭제');
 					//접속한 고객 회원번호와 조회된 댓글 작성자의 회원번호가 같다면 삭제 버튼 보이기
 					if(mnum == $('#mnum').val()){
-						deleteBtn.attr({'type':'button', 'value':'삭제'});
 						deleteBtn.addClass('deleteBtn');
 					}else{
-						deleteBtn.attr({'type':'hidden'});
+						deleteBtn.addClass('deleteBtn');
+						deleteBtn.addClass('hidden_O');
 					}//end of if-else
 					
 					writerDiv.html(decodeURIComponent(mnick));
@@ -172,13 +186,15 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 					
 					//댓글 작성일이 담길 p태그
 					var insertdateDiv = $('<div>');
-					insertdateDiv.html(decodeURIComponent(insertdate) + "&nbsp;&nbsp;&nbsp;");
+					insertdateDiv.html(decodeURIComponent(insertdate));
+// 					insertdateDiv.html(decodeURIComponent(insertdate) + "&nbsp;&nbsp;&nbsp;");
 					insertdateDiv.addClass('insertdate');
 					
 					//생성한 태그들 조립하기
 					writerDiv.append(conumHidden).append(mnumHidden);
-					insertdateDiv.append(deleteBtn);
-					newDiv.append(writerDiv).append(cocontentDiv).append(insertdateDiv);
+// 					insertdateDiv.append(deleteBtn);
+// 					newDiv.append(writerDiv).append(cocontentDiv).append(insertdateDiv);
+					newDiv.append(writerDiv).append(insertdateDiv).append(cocontentDiv).append(deleteBtn);
 					$('#commentList').append(newDiv);
 					
 				}//end of addNewItem() function

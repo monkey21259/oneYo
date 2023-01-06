@@ -454,7 +454,8 @@
 				<table class="choiceTable">
 <%
 					RecipeVO recipevo = null;
-	 				for (int i=0; i<recipeList.size(); i++) {
+					
+	 				for (int i = 0; i<recipeList.size(); i++) {
 	 					recipevo = recipeList.get(i);
 	 					
 	 					totalCount = Integer.parseInt(recipevo.getTotalCount());
@@ -495,7 +496,7 @@
 								</tr>
 								<!-- 분류 -->
 								<tr>
-									<td class="nameTd">
+									<td class="cateTd">
 										<p>
 										<%= CodeUtils.getRcategory(recipevo.getRcategory()) %>
 										</p>
@@ -533,6 +534,16 @@
 						</a>
 <%
 					if (i % 4 == 3) {
+%>
+					</td>
+					</tr>
+<%
+					}else if (recipeList.size() == i + 1 && (i + 1) % 4 > 0) {
+						for (int j = 0; j < 4 - (i + 1) % 4; j++) {
+%>
+						<div class="notOne hidden_O"></div>
+<%
+						}
 %>
 					</td>
 					</tr>

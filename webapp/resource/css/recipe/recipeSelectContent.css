@@ -188,6 +188,11 @@
 #center .comments {
 	width	: 800px;
 	margin	: 10px auto;
+	
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	background-color	: #ddd;
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */
