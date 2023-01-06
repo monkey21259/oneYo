@@ -37,6 +37,61 @@
 // 			alert("[recipeInsertForm.jsp] JS");
 			$(document).ready(function() {
 				
+				//요리 단계 추가하기에서 for문 변수의 역할을 할 n
+				var n = 1;
+				
+				//요리 단계 추가하기 : addRcontentBtn click function
+				$(document).on('click', '#addRcontentBtn', function(){
+					
+					//img태그 생성 - .rcontent input태그 생성 - .neyong div태그 생성
+					//.neyong div에 img태그 append & .rcontent input태그 append
+					//#neyong div에 .neyong div태그 append
+					
+					//태그 생성을 위해 i 증가
+					n += 1;
+					
+					//단계 나타내는 img태그
+					var newImg = $('<img>');
+					newImg.attr({
+						'src':'/oneYo/img/numbering/number' + n.toString() + '.png',
+						'width':'45',
+						'height':'45'
+					});
+					
+					//사용자가 내용 입력할 input 태그
+					var newInput = $('<input>');
+					newInput.attr({
+						'type':'text',
+						'placeholder':'내용을 입력해주세요'
+					});
+					newInput.addClass('rcontent');
+					newInput.css({'width':'634px', 'height':'20px'});
+					
+					//img태그와 input태그가 담길 div태그
+					var newDiv = $('<div>');
+					newDiv.addClass('neyong');
+					newDiv.css({'display':'flex', 'align-items':'center'});
+					
+					//div태그 조립하기
+					newDiv.append(newImg).append('&nbsp;').append(newInput);
+					
+					//부모 div태그에 새로운 div태그 붙이기
+					$('#neyong').append(newDiv);
+					
+				});//end of addRcontentBtn click function
+				
+				//요리 마지막 단계 빼기 : removeRcontentBtn click function
+				$(document).on('click', '#removeRcontentBtn', function(){
+					
+					if(n > 1){
+					$('#neyong .neyong:nth-child(' + (n+1) + ')').remove();
+					n -= 1;
+					}else{
+						alert("1단계 이상 작성해주세요.");
+					}//end of if-else
+					
+				});//end of removeRcontentBtn click function
+				
 // 				alert("[recipeInsertForm.jsp] jQuery");
 				$("#recipeInsertBtn").on("click", function() {
 					alert("recipeInsertBtn >>> Click");
@@ -47,15 +102,29 @@
 					console.log(bar);
 					let time = $("#rhour").val();
 					console.log(time);
-				
-					//
+					
+					//내용 단계별로 묶기(구분자 : #)===================
+					let rcontentList = $('.rcontent');
+					
+					let rcontentVal = "";
+					
+					for(let j=0; j<rcontentList.length; j++){
+						let content = rcontentList[j].value;
+						rcontentVal += "#" + content;
+					}//end of for
+					
+					$('#rcontent').val(rcontentVal);
+					//내용 단계별로 묶기(구분자 : #)===================
+					
 					$("#recipeInsertForm").attr({
 						"action": "/oneYo/recipeInsert.ict",
 						"method": "POST",
 						"enctype": "multipart/form-data"
 					}).submit();
+					
 				});
 				
+				//재료 추가
 				let i = "";
 				$("#jeryo").click(function(){
 					
@@ -63,7 +132,8 @@
 					
 					let jeryoSpan = $("<span>");
 					jeryoSpan.addClass('je');
-					jeryoSpan.html(jeryo);
+					jeryoSpan.html(jeryo 
+							+ "&nbsp;<img class='delJeryo' src='/oneYo/img/numbering/delete.png' width='10' height='10'>");
 					
 					$("#jeryoText").val("");
 					$("#jeryocan").append(jeryoSpan);
@@ -80,6 +150,12 @@
 					console.log("최종 : " + info);
 					
 				});
+				
+				//재료 삭제
+				$(document).on('click', '.delJeryo', function(){
+					let clickedSpan = this.parentNode;
+					clickedSpan.remove();
+				});//end of .delJeryo click function
 				
 				//로그아웃
 				$("#logoutBtn").on("click", function() {
@@ -191,7 +267,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+      <jsp:param value="" name=""/>
+    </jsp:include>   
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -486,9 +564,16 @@
 					<!-- 본문 -->
 					<tr>
 						<td>
-							<div class="neyong">
-								<textarea id="rcontent" name="rcontent" cols="10" rows="5">내용을 입력하세요.</textarea><br />
+							<div class="neyong" id="neyong" style="display:table;">
+								<input type="hidden" id="rcontent" name="rcontent">
+								<div class="neyong" style="display:flex; align-items:center;">
+									<img src="/oneYo/img/numbering/number1.png" width="45" height="45">&nbsp;
+									<input type="text" class="rcontent" style="width:634px; height:20px;" placeholder="내용을 입력해주세요">
+								</div>
 							</div>
+							&nbsp;&nbsp;
+							<button type="button" id="addRcontentBtn">단계 추가하기</button>
+							<button type="button" id="removeRcontentBtn">단계 빼기</button>
 						</td>
 					</tr>
 					
