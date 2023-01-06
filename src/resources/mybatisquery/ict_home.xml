@@ -414,17 +414,20 @@
 	FROM   "ORCLICT00"."ICT_MEMBER" A
 	WHERE   A.DELETEYN = 'Y'
 	AND		A.MGRADE   = '1'
-	<if test='sortcondition.equals("a")'>
+	<if test='sortcondition.equals("totalrecipe")'>
 	ORDER BY TOTALRECIPE DESC
 	</if>
-	<if test='sortcondition.equals("b")'>
+	<if test='sortcondition.equals("totalrecipehit")'>
 	ORDER BY TOTALRECIPEHITCNT DESC
 	</if>
-	<if test='sortcondition.equals("c")'>
+	<if test='sortcondition.equals("totaltip")'>
 	ORDER BY TOTALTIP DESC
 	</if>
-	<if test='sortcondition.equals("d")'>
+	<if test='sortcondition.equals("totaltiphit")'>
 	ORDER BY TOTALTIPHITCNT DESC
+	</if>
+	<if test='sortcondition.equals("subscription")'>
+	ORDER BY SUBSCRIPTION DESC
 	</if>
 	<if test='sortcondition.equals("no")'>
 	ORDER BY TOTALRECIPE DESC

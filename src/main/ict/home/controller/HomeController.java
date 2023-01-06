@@ -180,7 +180,7 @@ public class HomeController {
 				logger.info(list.get(i).toString());
 			}
 			m.addAttribute("list", list);
-			return "home/pilot";
+			return "home/chefShowMore";
 		}
 		
 		return "#";
