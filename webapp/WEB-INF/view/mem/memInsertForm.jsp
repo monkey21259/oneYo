@@ -66,7 +66,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	alert("hihi, <%= memail %>. 회원가입 진행합니다.");
+	alert(<%= memail %>. 회원가입 진행합니다.");
 	
 // 	//	mcategory 단수	=====================
 // 	$(document).on('click', '.mcategory', function(){
@@ -91,7 +91,7 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#nickCheck', function(){
 		
-		alert("닉네임 확인 중! >>> ");
+		console.log("닉네임 확인 중! >>> ");
 		
 		let idCheckURL = "memNickCheck.ict";
 		let reqType = "POST";
@@ -123,7 +123,7 @@ $(document).ready(function(){
 		}	//	ajax 수행문
 		
 		function whenError() {
-			alert("에러 발생, 콘솔을 확인 해 주세요.");
+			alert("예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
 			console.log("에러 발생 e >>> : " + e.responseText);
 		}
 		
@@ -132,7 +132,7 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#midBtn', function(){
 		
-		alert("아이디 확인 중! >>> ");
+		console.log("아이디 확인 중! >>> ");
 		
 		let idCheckURL = "memIdCheck.ict";
 		let reqType = "POST";
@@ -151,7 +151,7 @@ $(document).ready(function(){
 			
 			if ("ID_YES" == resData) {
 				
-				alert("아이디 사용 가능 : ID_YES");
+				alert("사용 가능한 아이디입니다");
 				console.log("아이디 사용 가능 : ID_YES");
 				
 				$('#mid').prop('readonly', true);
@@ -160,7 +160,7 @@ $(document).ready(function(){
 				
 			}else if("ID_NO" == resData) {
 				
-				alert("아이디 사용 불가능 : ID_NO");
+				alert("이미 사용중인 아이디입니다");
 				console.log("아이디 사용 불가능 : ID_NO");
 				
 				$('#mid').val('');
@@ -169,7 +169,7 @@ $(document).ready(function(){
 		}	//	ajax 수행문
 		
 		function whenError() {
-			alert("에러 발생, 콘솔을 확인 해 주세요.");
+			alert("예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
 			console.log("에러 발생 e >>> : " + e.responseText);
 		}
 		
@@ -192,7 +192,7 @@ $(document).ready(function(){
 	
 	//	비밀번호 확인
 	$(document).on('click', '#mpwBtn', function(){
-		alert("비밀번호 확인 중입니다.");
+		console.log("비밀번호 확인 중입니다.");
 		
 		let pw = $('#mpw').val();
 		let pw_r = $('#mpw_r').val();

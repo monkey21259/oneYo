@@ -22,7 +22,7 @@
 
 	$(document).ready(function(){
 		
-		alert("chefIntroduce.jsp 페이지 jQuery ready() 함수 진입");
+		console.log("chefIntroduce.jsp 페이지 jQuery ready() 함수 진입");
 		console.log("chefIntroduce.jsp 페이지 jQuery ready() 함수 진입");
 		
 		var mnum = '<%= request.getParameter("mnum") %>';
@@ -38,7 +38,7 @@
 			
 		// 레시피버튼을 누를 경우
 		$(document).on("click", "#recipeBtn", function(){
-			alert("recipeBtn 버튼 클릭 이벤트 발생");
+			console.log("recipeBtn 버튼 클릭 이벤트 발생");
 			
 			$.ajax({
 				type:'GET',
@@ -51,7 +51,7 @@
 		
 		// 팁버튼을 누를 경우
 		$(document).on("click", "#tipBtn", function(){
-			alert("tipBtn 버튼 클릭 이벤트 발생");
+			console.log("tipBtn 버튼 클릭 이벤트 발생");
 			
 			$.ajax({
 				type:'GET',
@@ -64,7 +64,7 @@
 		
 		// 커뮤니티 누를 경우
 		$(document).on("click", "#communitytBtn", function(){
-			alert("communityBtn 버튼 클릭 이벤트 발생");
+			console.log("communityBtn 버튼 클릭 이벤트 발생");
 			
 			$.ajax({
 				type:'GET',
@@ -77,19 +77,19 @@
 		
 		// 레시피 더보기
 		$(document).on("click", "#recipeShowMore", function(){
-			alert("레시피  보기");
+			console.log("레시피  보기");
 			location.href = "chefRecipeShowMore.ict?mnum=" + mnum;
 		});
 		
 		// 전문가팁 더보기
 		$(document).on("click", "#tipShowMore", function(){
-			alert("팁 더보기");
+			console.log("팁 더보기");
 			location.href = "chefTipShowMore.ict?mnum=" + mnum;
 		});
 		
 		// 커뮤니티 더보기
 		$(document).on("click", "#communityShowMore", function(){
-			alert("커뮤니티 더 보기");
+			console.log("커뮤니티 더 보기");
 			location.href = "chefCommunityShowMore.ict?mnum=" + mnum;
 		});
 	});
@@ -133,7 +133,7 @@
 	}
 	
 	function whenErrorRecipe(request,status,error) {
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	}
 	
 	function whenSuccessTip(data) {
@@ -174,7 +174,7 @@
 	}
 	
 	function whenErrorTip(request,status,error) {
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	}
 	
 	function whenSuccessCommunity(data) {
@@ -215,7 +215,7 @@
 	}
 	
 	function whenErrorCommunity(request,status,error) {
-		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	}
 
 </script>
