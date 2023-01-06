@@ -373,7 +373,9 @@ logger.info("mnum >>>>>>> : " + mnum);
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -561,8 +563,9 @@ logger.info("mnum >>>>>>> : " + mnum);
 	<%
 		}
 	%>
-			<tr>
+			<tr>			
 				<td colspan="4">
+				<br>
 					<input type="hidden" id="searchCategoryVal" value="<%=searchCategory %>">
 					<input type="hidden" id="keywordVal" value="<%=keyword %>">
 					<input type="hidden" id="startDateVal" value="<%=startDate %>">

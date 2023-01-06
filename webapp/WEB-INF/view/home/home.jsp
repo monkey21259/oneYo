@@ -77,6 +77,11 @@
 				$("#warningForm").click(function(){
 					location.href="warningForm.ict";
 				});
+				//쉐프 더보기
+				$("#chefListShowMore").click(function(){
+					location.href="chefListShowMore.ict";
+				});
+				
 				
 				// 로그인 / 로그아웃 / 회원가입 / 마이페이지 ----------
 				$("#newMemBtn").on("click", function() {
@@ -182,7 +187,8 @@
 				
 				let dateCondition = $("#favorCond option:selected").val();	// W, M, D
 				let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
-				let condCategory = dateCondition + boardCategory;
+				let viewCount = "8";										// 보여줄 게시글 개수
+				let condCategory = dateCondition + boardCategory + viewCount;
 
 				let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
 				let typeV = "GET";
@@ -428,7 +434,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -600,7 +608,7 @@
 		 		<span class="chefTitle" style="position:relative;left:5%;font-size:25px;">
 		 			<span style="color:#93A603;">쉐프</span> 소개
 		 		</span>
-		 		<span class="chefTitle" style="position:relative;left:75%;font-size:25px;cursor:pointer;">
+		 		<span id="chefListShowMore" class="chefTitle" style="position:relative;left:75%;font-size:25px;cursor:pointer;">
 		 			더 보기
 		 		</span>
 		 	</div>

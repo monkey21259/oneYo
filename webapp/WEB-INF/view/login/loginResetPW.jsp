@@ -23,6 +23,8 @@
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		<!-- loginResetPW.jsp 전용 css -->
+		<link rel="stylesheet" href="/oneYo/resource/css/login/loginResetPW.css">
 		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
@@ -30,20 +32,18 @@
 			$(document).ready(function(){
 						
 				let mid = $("#mid").val();
-				alert("mid>>> : " + mid);
 				
 				//사이드 바 마이페이지 클릭하면 null로 변환(비회원이니까)
 				$(".resetPW").on("click", function(){
 					$("#mid").val(null);
-					alert("마이페이지버튼 클릭했을때 mid>>> : " + mid);
+
 				});
 				
 				// null로 바꾼거 다시 활성화 시키기 
 				
 				
 				$(document).on('click', '#resetPWBtn', function(){
-					alert("비밀번호 리셋 버튼 클릭 >>> ");
-					
+			
 					let mpw = $('#mpw').val();
 					let mpw_r = $('#mpw_r').val();
 					
@@ -142,7 +142,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -215,23 +217,24 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			<table border="1">
+			<p id="subject">비밀번호변경</p>
+			<p id="content">변경할 비밀번호를 입력해주세요.</p>
+			<table>
 				<tr>
-					<td><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" style="width:180px; height:95px;"></td>
-				</tr>
-				<tr>
+					<td class="name">새 비밀번호</td>
 					<td>
 						<input type="hidden" id="mid" name="mid" value="<%=pwFindVO.getMid() %>">
-						<input type="password" id="mpw" name="mpw" placeholder="새 비밀번호">
+						<input type="password" id="mpw" name="mpw" placeholder="새 비밀번호"><hr>
 					</td>
 				</tr>
 				<tr>
+					<td class="name">비밀번호 확인</td>
 					<td>
-						<input type="password" id="mpw_r" name="mpw_r" placeholder="새 비밀번호  확인">
+						<input type="password" id="mpw_r" name="mpw_r" placeholder="비밀번호  확인"><hr>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<button type="button" id="resetPWBtn">비밀번호 수정</button>
 					</td>
 				</tr>

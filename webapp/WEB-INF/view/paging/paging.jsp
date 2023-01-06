@@ -26,6 +26,44 @@
 		logger.info("str + & : " + str);
 	}
 
+	//서칭 변수
+		String searchFilter = null;
+		String keyword = null;
+		String startDate = null;
+		String endDate = null;
+		searchFilter = request.getParameter("searchFilter");
+		keyword = request.getParameter("keyword");
+		startDate = request.getParameter("startDate");
+		endDate = request.getParameter("endDate");
+		
+		//서칭 null 체크
+		if(searchFilter == null || searchFilter.length() == 0 || searchFilter.equals("null")){
+			searchFilter = "";
+		}//end of if
+		if(keyword == null || keyword.length() == 0 || keyword.equals("null")){
+			keyword = "";
+		}//end of if
+		if(startDate == null || startDate.length() == 0 || startDate.equals("null")){
+			startDate = "";
+		}//end of if
+		if(endDate == null || endDate.length() == 0 || endDate.equals("null")){
+			endDate = "";
+		}//end of if
+		
+		logger.info("searchFilter : " + searchFilter);
+		logger.info("keyword : " + keyword);
+		logger.info("startDate : " + startDate);
+		logger.info("endDate : " + endDate);
+		
+		if(str != null){
+			str = str + "&";
+			str = str.concat("searchFilter=").concat(searchFilter).concat("&");
+			str = str.concat("keyword=").concat(keyword).concat("&");
+			str = str.concat("startDate=").concat(startDate).concat("&");
+			str = str.concat("endDate=").concat(endDate).concat("&");
+			logger.info("str + & : " + str);
+		}
+	
 %>
 <%
 	//페이지 네비게이션 관련 변수

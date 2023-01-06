@@ -290,7 +290,7 @@
 <h3>쉐프 더보기</h3>
 <table>
 		<tr>
-			<td colspan="8" style="text-align:right;">
+			<td colspan="7" style="text-align:right;">
 				<button type="button" onclick="sortProccess('totalrecipe')">레시피 작성순</button>
 				<button type="button" onclick="sortProccess('totalrecipehit')">레시피 조회수순</button>
 				<button type="button" onclick="sortProccess('totaltip')">전문가 팁 작성순</button>
@@ -304,7 +304,6 @@
 			hvo = list.get(i);
 %> 
 		<tr>
-			<th>회원번호</th>
 			<th>닉네임</th>
 			<th>프로필</th>
 			<th>레시피 작성</th>
@@ -314,7 +313,6 @@
 			<th>활동기간</th>
 		</tr>
 		<tr>
-			<td><span><%= hvo.getMnum() %></span></td>
 			<td><span><%= hvo.getMnick() %></span></td>
 			<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
 			<td><span><%= hvo.getTotalrecipe() %></span></td>

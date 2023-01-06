@@ -119,6 +119,7 @@
 		</script>
 	</head>
 	<body>
+<<<<<<< HEAD
 	<form id="noticeInsertForm" name="noticeInsertForm">
 		<div id="realAll">
 			<div id="backMenu"></div>
@@ -199,7 +200,9 @@
 					<div class="warningForm">
 						X
 					</div>
-					신고 인클루드 이쪽으로
+					<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+						<jsp:param value="" name=""/>
+					</jsp:include>	
 				</div>
 				<div id="shadow" class="hidden_X"></div>
 				<div id="all_div">

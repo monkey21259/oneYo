@@ -164,7 +164,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -272,6 +274,9 @@
 						<a href="pwFindForm.ict" class="alink_btn">비밀번호 찾기</a>&nbsp;|
 						<a href="memGrade.ict" class="alink_btn">회원가입</a>
 					</td>
+				</tr>
+				<tr>
+				<td id="snslogin">-----------------SNS로그인-----------------<br><br></td>
 				</tr>
 				<tr>
 					<td> <!-- 카카오 -->

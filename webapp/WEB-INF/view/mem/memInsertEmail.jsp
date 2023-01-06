@@ -112,7 +112,9 @@ $(document).ready(function(){
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -188,9 +190,21 @@ $(document).ready(function(){
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-이메일이 전송되었습니다.
-<a href="home.ict">돌아가기</a><br>
-<a href="memGrade.ict">다시 인증하기</a>
+	<p id="subject">회원가입</p>
+		<p id="content">이메일이 전송되었습니다. <br>
+		메일에 있는 경로에서 회원가입을 진행하여주세요.</p>
+		<hr>
+<br>
+
+	<button type="button" class="button">
+		<a href="memGrade.ict">메일 다시 입력하기</a>
+	</button>
+	
+	<button type="button" class="button">
+		<a href="home.ict">홈으로이동</a><br>
+	</button>
+
+</div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
