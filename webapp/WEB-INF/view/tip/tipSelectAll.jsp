@@ -563,8 +563,9 @@ logger.info("mnum >>>>>>> : " + mnum);
 	<%
 		}
 	%>
-			<tr>
+			<tr>			
 				<td colspan="4">
+				<br>
 					<input type="hidden" id="searchCategoryVal" value="<%=searchCategory %>">
 					<input type="hidden" id="keywordVal" value="<%=keyword %>">
 					<input type="hidden" id="startDateVal" value="<%=startDate %>">

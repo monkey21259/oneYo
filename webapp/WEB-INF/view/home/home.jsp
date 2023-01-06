@@ -77,6 +77,11 @@
 				$("#warningForm").click(function(){
 					location.href="warningForm.ict";
 				});
+				//쉐프 더보기
+				$("#chefListShowMore").click(function(){
+					location.href="chefListShowMore.ict";
+				});
+				
 				
 				// 로그인 / 로그아웃 / 회원가입 / 마이페이지 ----------
 				$("#newMemBtn").on("click", function() {
@@ -602,7 +607,7 @@
 		 		<span class="chefTitle" style="position:relative;left:5%;font-size:25px;">
 		 			<span style="color:#93A603;">쉐프</span> 소개
 		 		</span>
-		 		<span class="chefTitle" style="position:relative;left:75%;font-size:25px;cursor:pointer;">
+		 		<span id="chefListShowMore" class="chefTitle" style="position:relative;left:75%;font-size:25px;cursor:pointer;">
 		 			더 보기
 		 		</span>
 		 	</div>
