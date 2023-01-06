@@ -228,25 +228,15 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 			if (clientMnick != null && clientMnick.length() > 0 && !(clientMnick.equals("null"))) {
 %>
 				<div id="inputComment">
-				<table>
-				<tr>
-					<td id="inputNick">
+					<div id="inputNick">
 						<%=clientMnick %>
-					</td>
-				</tr>
-				<tr>
-					<td>
+					</div>
+					<div id="insertNeyong">
 						<textarea id="cocontent" rows="3" cols="50" placeholder="댓글 내용"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span id="insertBtn">
-							댓글 달기
-						</span>
-					</td>
-				</tr>
-				</table>
+					</div>
+					<div id="insertBtn">
+						댓글 달기
+					</div>
 				</div>
 <%	
 			}

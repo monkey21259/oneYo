@@ -5,3 +5,36 @@
 <!-- 댓글 기능 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
 */
+
+/* 입력 칸의 부모 */
+#inputComment {
+	/* 정렬 편집용 세팅 */
+	display	: flex;
+	flex-wrap	: wrap;
+	
+	margin-bottom	: 20px;
+}
+
+/* 입력하는 사람 닉네임 */
+#inputComment #inputNick {
+	width	: 100%;
+}
+
+/* 입력하는 내용을 담은 div */
+#inputComment #insertNeyong {
+	width	: 90%;
+	margin	: auto;
+	margin-left	: 5px;
+}
+#inputComment #insertNeyong #cocontent {
+	width	: 100%;
+	/* 높이조절 */
+	resize	: vertical;
+}
+
+/* 입력하는 버튼 */
+#inputComment #insertBtn {
+	width	: 100px;
+	height	: 30px;
+}
+

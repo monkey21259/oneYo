@@ -98,21 +98,15 @@
 .choiceAll .choiceTableDiv .choiceTable {
 	width	: 100%;
 }
-.choiceAll .choiceThree, .choiceAll .choiceFour {
+.choiceAll .choiceFour {
 	width	: 100%;
 	display	: flex;
 	justify-content	: center;
 }
 .choiceAll .choiceFour {
+/* 	min-height	: 340px; */
 	height	: 340px;
-}
-.choiceThree {
-	margin-bottom	: 60px;
-}
-/* 주목 받을 3개 전체 */
-.choiceThree a {
-	width	: 32%;
-	margin	: 0 3px;
+	margin-bottom	: 30px;
 }
 /* 주목 받을 4개 전체 */
 .choiceFour a {
@@ -131,7 +125,7 @@
 	overflow	: hidden;
 	display	: inline-flex;
 	
-	box-shadow: 2px 2px 2px -1px #AC7B53;
+	box-shadow: 1px 1px 4px -1px #AC7B53;
 }
 
 /* 선택 테이블별 전체 */
@@ -149,6 +143,7 @@
 	height	: 200px;
 /* 	width	: 100%; */
 /* 	height	: 100%; */
+	margin	: auto;
 }
 .selectOne .selectTable .imgTd div {
 	width	: 97%;
@@ -157,96 +152,73 @@
 	
 	/* 테두리 둥글게 */
 	border-radius	: 30px;
+	
+	/* 빠져나가지 못하게 */
 	overflow	: hidden;
-	background-color	: #fcc;
+	
+	box-shadow	: inset 1px 1px 4px 0px #AC7B53;
+	background-color	: #FCF4EF;
+/* 	z-index	: 0; */
 }
 .selectOne .selectTable .imgTd div img {
-/* 	max-width	: 100%; */
-/* 	max-height	: 100%; */
 	width	: 264px;
 	height	: 194px;
-/* 	object-fit	: cover; */
+	
 	object-fit	: contain;
-/* 	object-fit	: none; */
+	
 	margin	: auto;
+	
+	position	: relative;
+/* 	z-index	: -1; */
 }
 
 /* 선택 테이블의 제목+작성자+날짜 부분 */
-.choiceThree .selectOne .selectTable .nameTd, .selectOne .selectTable .dayTd {
+.selectOne .selectTable .dayTd, .selectOne .selectTable .optionTd {
 	width	: 90%;
 	overflow	: hidden;
 	margin	: 0 5%;
 }
 
-/* 선택 테이블의 제목+작성자 */
-.choiceThree .selectOne .selectTable .nameTd {
-	/* 폰트 사이즈 */
-	font-size	: 20px;
-	font-weight	: bold;
-	align-items	: flex-end;
-}
-/* 선택 테이블의 제목 */
-.choiceThree .selectOne .selectTable .nameTd div {
-	/* 폰트 사이즈 */
-	font-size	: 20px;
-	font-weight	: bold;
-	width	: 100%;
-}
-/* 선택 테이블의 "작성자" */
-.choiceThree .selectOne .selectTable .nameTd p {
-	/* 폰트 사이즈 */
-	font-size	: 13px;
-	/* 폰트 색상 */
-	color		: #93A603;
-	margin-right	: 3px;
-}
-/* 선택 테이블의 작성자 */
-.choiceThree .selectOne .selectTable .nameTd span {
-	/* 폰트 사이즈 */
-	font-size	: 16px;
-	/* 폰트 색상 */
-	color		: #666;
-}
 
 /* 선택 테이블의 조회+좋아요+카테고리 */
 .choiceFour .selectOne .selectTable .optionTd {
 	/* 폰트 사이즈 */
 	font-size	: 20px;
 	font-weight	: bold;
+	
+	justify-content: flex-end;
 	align-items	: flex-end;
+	
 }
 /* 선택 테이블의 카테고리 */
 .choiceFour .selectOne .selectTable .optionTd div {
 	/* 폰트 사이즈 */
-	font-size	: 20px;
-	font-weight	: bold;
-	width	: 100%;
+	font-size	: 18px;
+/* 	min-width	: 20%; */
+	
+	display	: inline;
 }
 /* 선택 테이블의 "조회+좋아요" */
 .choiceFour .selectOne .selectTable .optionTd span {
 	/* 폰트 사이즈 */
-	font-size	: 13px;
+	font-size	: 10px;
 	/* 폰트 색상 */
-	color		: #93A603;
+	color		: #666;
+	
 	margin-right	: 3px;
 }
 /* 선택 테이블의 조회+좋아요 */
 .choiceFour .selectOne .selectTable .optionTd p {
 	/* 폰트 사이즈 */
-	font-size	: 16px;
+	font-size	: 13px;
 	/* 폰트 색상 */
 	color		: #666;
+	
+	display	: inline;
+	
+	margin-right	: 6px;
 }
 
-
-/* 선택 테이블의 날짜 부분 */
-.choiceThree .selectOne .selectTable .dayTd div {
-	/* 폰트 사이즈 */
-	font-size	: 16px;
-	/* 폰트 색상 */
-	color		: #666;
-	margin-bottom	: 10px;
-}
 
 /* 선택 테이블의 제목+작성자+날짜 부분 */
 .choiceFour .selectOne .selectTable .nameTd, .selectOne .selectTable .dayTd {
@@ -262,10 +234,15 @@
 }
 /* 선택 테이블의 제목 */
 .choiceFour .selectOne .selectTable .nameTd div {
+	width	: 100%;
+	height	: 42px;
+	/* 세로 중앙정렬 */
+	display	: flex;
+	align-items: center;
 	/* 폰트 사이즈 */
 	font-size	: 18px;
 	font-weight	: bold;
-	width	: 100%;
+	color	: #000;
 }
 /* 선택 테이블의 "작성자" */
 .choiceFour .selectOne .selectTable .nameTd p {

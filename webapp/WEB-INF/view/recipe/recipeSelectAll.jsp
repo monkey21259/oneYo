@@ -302,7 +302,7 @@
 		<ul>
 			<li>
 				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				레시피
 				</div>
 				</a>
@@ -447,54 +447,6 @@
 // 			logger.info(recipeList.size());
 %>
 <div class="choiceAll">
-<!-- 		<div class="choiceThree"> -->
-<%
-// 	for (int i = 0; i < 3; i++) {
-%>
-<!-- 		<!-- 한 게시글 --> -->
-<!-- 			<div class="selectOne"> -->
-<!-- 				<table class="selectTable"> -->
-<!-- 					썸네일 -->
-<!-- 					<tr> -->
-<!-- 						<td class="imgTd"> -->
-<!-- 							<div> -->
-<!-- 							<img src="/testWeb/img/asd.png"> -->
-<!-- 							</div> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					제목 -->
-<!-- 					<tr> -->
-<!-- 						<td class="nameTd"> -->
-<!-- 							<div> -->
-<!-- 							제목어쩌고저쩌고 -->
-<!-- 							</div> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					작성자 -->
-<!-- 					<tr> -->
-<!-- 						<td class="nameTd"> -->
-<!-- 							<p> -->
-<!-- 							작성자 -->
-<!-- 							</p> -->
-<!-- 							<span> -->
-<!-- 							우짜고 -->
-<!-- 							</span> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					작성일 -->
-<!-- 					<tr> -->
-<!-- 						<td class="dayTd"> -->
-<!-- 							<div> -->
-<!-- 							2023.01.04 -->
-<!-- 							</div> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 				</table> -->
-<!-- 			</div> -->
-<%
-// 	}
-%>
-<!-- 			</div> -->		
 			
 			<div class="choiceTableDiv">
 				<table class="choiceTable">
@@ -504,22 +456,13 @@
 	 					recipevo = recipeList.get(i);
 	 					
 	 					totalCount = Integer.parseInt(recipevo.getTotalCount());
-%>
-				
-<%
-// 	for (int e = 0; e < 3; e++) {
-%>
-					
-<%
-					if (i % 4 == 0) {
+
+						if (i % 4 == 0) {
 %>
 					<tr>
 					<td class="choiceFour">
 <%
-					}
-%>
-<%
-// 		for (int j = 0; j < 4; j++) {
+						}
 %>
 						<!-- 한 게시글 -->
 						<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
@@ -527,21 +470,17 @@
 							<input type="hidden" class="rnum" value="<%= recipevo.getRnum() %>" />
 							<input type="hidden" class="mnum" value="<%= recipevo.getMnum() %>" />
 							<table class="selectTable">
-								<!-- 분류 -->
-								<tr>
-									<td class="optionTd">
-										<div>
-										<%= CodeUtils.getRcategory(recipevo.getRcategory()) %>
-										</div>
-									</td>
-								</tr>
 								<!-- 조회좋아 -->
 								<tr>
 									<td class="optionTd">
-										<span>조회수 :</span>
-										<p><%= recipevo.getRhit() %></p>
-										<span>좋아요 :</span>
-										<p><%=recipevo.getLikecnt() %></p>
+										<div>
+											<span>조회수 :</span>
+											<p><%= recipevo.getRhit() %></p>
+										</div>
+										<div>
+											<span>좋아요 :</span>
+											<p><%=recipevo.getLikecnt() %></p>
+										</div>
 									</td>
 								</tr>
 								<!-- 썸네일 -->
@@ -550,6 +489,14 @@
 										<div>
 											<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="rphoto">
 										</div>
+									</td>
+								</tr>
+								<!-- 분류 -->
+								<tr>
+									<td class="nameTd">
+										<p>
+										<%= CodeUtils.getRcategory(recipevo.getRcategory()) %>
+										</p>
 									</td>
 								</tr>
 								<!-- 제목 -->
@@ -583,33 +530,18 @@
 						</div>
 						</a>
 <%
-// 		}
-%>
-					
-<%
 					if (i % 4 == 3) {
 %>
 					</td>
 					</tr>
 <%
 					}
-%>
-<%
-	}
+				}
 %>
 			</table>
 		</div>
 	</div>
 				<br><br><br>
-				<!-- aaaa -->
-				
-				
-<%
-// 	 				}
-%>
-<%-- 						<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" /> --%>
-<%-- 						<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" /> --%>
-<!-- 					</div> -->
 					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
 						<jsp:param value="recipeSelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
@@ -618,109 +550,6 @@
 						<jsp:param value="<%=curPage %>" name="curPage"/>
 						<jsp:param value="<%=totalCount %>" name="totalCount"/>
 					</jsp:include>
-				
-<!-- 			<div class="recipeSearchBtnDiv"> -->
-<!-- 				카테고리 조건 검색 -->
-<!-- 				<a class="recipeSearchBtn" href="javascript:recipeSearch();">검색</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="recipeSearchPeriodContainer"> -->
-<!-- 				<div class="t"> -->
-<!-- 					<a href="javascript:void(0);"> -->
-<!-- 						<span>&nbsp;일간&nbsp;</span> -->
-<!-- 					</a>/ -->
-<!-- 				</div> -->
-<!-- 				<div class="t"> -->
-<!-- 					<a href="javascript:void(0);"> -->
-<!-- 						<span>&nbsp;주간&nbsp;</span> -->
-<!-- 					</a>/ -->
-<!-- 				</div> -->
-<!-- 				<div class="t"> -->
-<!-- 					<a href="javascript:void(0);"> -->
-<!-- 						<span>&nbsp;월간&nbsp;</span> -->
-<!-- 					</a>/ -->
-<!-- 				</div> -->
-<!-- 				<div class="t">&nbsp;인기글</div> -->
-<%
-				
-// 				if (mnum.length() > 0) {
-				
-%>
-<!-- 				<div class="tright"> -->
-<!-- 					<a href="/oneYo/recipeInsertForm.ict"> -->
-<!-- 						<span>글 등록 버튼</span> -->
-<!-- 					</a> -->
-<!-- 				</div> -->
-<%
-// 				}
-%>
-<!-- 			</div> -->
-			
-<%
-// 			Object pagingObj = request.getAttribute("pagingVO");
-// 			if (pagingObj == null) {
-// 				logger.info("[FAIL] getAttribute -> pagingObj is null");
-// 			}
-// 			RecipeVO pagingVO = (RecipeVO)pagingObj;
-// 			int pageSize = Integer.parseInt(pagingVO.getPageSize());
-// 			int groupSize = Integer.parseInt(pagingVO.getGroupSize());
-// 			int curPage = Integer.parseInt(pagingVO.getCurPage());
-// 			int totalCount = 0;
-			
-// 			Object recipeObj = request.getAttribute("recipeList");
-// 			if (recipeObj == null) {
-// 				logger.info("[FAIL] getAttribute -> recipeObj is null");
-// 			}
-			
-// 			List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
-// 			if (recipeList.size() < 1) {
-// 				logger.info("[FAIL] Type Casting -> recipeList.size() < 1");
-// 			}
-			
-// 			int rTotalHeight = 308 * (recipeList.size() / 4 + 1);
-// 			logger.info(recipeList.size());
-%>
-<!-- 				<form id="recipeInsertForm"> -->
-			
-<%-- 					<div class="recipeSection" style="height:<%= rTotalHeight %>px"> <!-- loop --> --%>
-<%
-// 					RecipeVO recipevo = null;
-// 	 				for (int i=0; i<recipeList.size(); i++) {
-// 	 					recipevo = recipeList.get(i);
-	 					
-// 	 					totalCount = Integer.parseInt(recipevo.getTotalCount());
-%>
-<!-- 						<a href="javascript:void(0);">  클릭 시 해당 내용이 있는 Content로 이동 -->
-<!-- 							<div class="recipes"> -->
-<!-- 								<div style="margin:10%;height:77%;"> -->
-<%-- 									<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" width="190" height="150" id="rphoto"><br> --%>
-<%-- 									<%= recipevo.getRsubject() %><br> --%>
-<%-- 									<%= CodeUtils.getRcategory(recipevo.getRcategory()) %><br> --%>
-<%-- 									<%= recipevo.getMnick() %><br> --%>
-<%-- 									조회수: <%= recipevo.getRhit() %>&nbsp;좋아요 : <%=recipevo.getLikecnt() %> --%>
-<!-- 								</div> -->
-<!-- 							</div> -->
-<%-- 							<input type="hidden" class="rnum" value="<%= recipevo.getRnum() %>" /> --%>
-<%-- 							<input type="hidden" class="mnum" value="<%= recipevo.getMnum() %>" /> --%>
-<!-- 						</a> -->
-<%
-// 						if (i % 4 == 0 && i > 0) {
-%>
-							<br />
-<%
-// 						}
-// 	 				}
-%>
-<%-- 						<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" /> --%>
-<%-- 						<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" /> --%>
-<!-- 					</div> -->
-<%-- 					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true"> --%>
-<%-- 							<jsp:param value="recipeSelectAll.ict" name="url"/> --%>
-<%-- 								<jsp:param value="" name="str"/> --%>
-<%-- 								<jsp:param value="<%=pageSize %>" name="pageSize"/> --%>
-<%-- 								<jsp:param value="<%=groupSize %>" name="groupSize"/> --%>
-<%-- 								<jsp:param value="<%=curPage %>" name="curPage"/> --%>
-<%-- 								<jsp:param value="<%=totalCount %>" name="totalCount"/> --%>
-<%-- 						</jsp:include> --%>
 
 	<input type="hidden" id="rnum" name="rnum" value="" />
 	<input type="hidden" id="mnum" name="mnum" value="" />
