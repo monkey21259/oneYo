@@ -18,6 +18,8 @@
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		<!-- loginShowId.jsp 전용 css -->
+		<link rel="stylesheet" href="/oneYo/resource/css/login/loginShowId.css">
 		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
@@ -175,21 +177,20 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-		
-			<table border="1">
+		<p id="subject">아이디 찾기</p>
+			<p id="content">회원님의 가입된 아이디 정보 입니다.</p>
+			<table>
 				<tr>
-					<td colspan="2"><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" style="width:180px; height:95px;"></td>
+					<td class="name">아이디</td>
+					<td><input type="text" value="<%=idShowVO.getMid() %>" readonly /><hr></td>
+				</tr>
+
+				<tr>
+					<td class="name">가입일</td>
+					<td><input type="text" value="<%=idShowVO.getInsertdate() %>" readonly /><hr></td>
 				</tr>
 				<tr>
-					<td>가입된 아이디</td>
-					<td><%=idShowVO.getMid() %></td>
-				</tr>
-				<tr>
-					<td>가입일</td>
-					<td><%=idShowVO.getInsertdate() %></td>
-				</tr>
-				<tr>
-					<td colspan="2">
+					<td colspan="2" class="alink">
 						<a href="loginForm.ict">로그인</a>&nbsp;|
 						<a href="pwFindForm.ict">비밀번호 찾기</a>&nbsp;|
 						<a href="memGrade.ict">회원가입</a>

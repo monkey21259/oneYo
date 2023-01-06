@@ -239,47 +239,54 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-		
-			<table border="1">
+
+			<table>
 				<tr>
-					<td><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" style="width:180px; height:95px;"></td>
+				<td><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" class="logo"></td>
 				</tr>
+				
 				<tr>
 					<td>
+						<img src="/oneYo/resource/img/login.png" class="loginImg">
 						<input type="text" id="mid" name="mid" placeholder="아이디">
+						 <hr>
 					</td>
 				</tr>
+				
 				<tr>
 					<td>
+						<img src="/oneYo/resource/img/login_pass.png" class="loginImg">
 						<input type="password" id="mpw" name="mpw" placeholder="비밀번호">
+						 <hr>
 					</td>
 				</tr>
+				
 				<tr>
 					<td>
 						<button id="loginButton">로그인</button>
 					</td>
 				</tr>
 				<tr>
-					<td>
-						<a href="idFindForm.ict">아이디 찾기</a>&nbsp;|
-						<a href="pwFindForm.ict">비밀번호 찾기</a>&nbsp;|
-						<a href="memGrade.ict">회원가입</a>
+					<td class="alink">
+						<a href="idFindForm.ict" class="alink_btn">아이디 찾기</a>&nbsp;|
+						<a href="pwFindForm.ict" class="alink_btn">비밀번호 찾기</a>&nbsp;|
+						<a href="memGrade.ict" class="alink_btn">회원가입</a>
 					</td>
 				</tr>
 				<tr>
 					<td> <!-- 카카오 -->
-						<img src="/oneYo/img/login/kakao_login.png"
+<!-- 						<img src="/oneYo/img/login/kakao_login.png" -->
+							<img src="/oneYo/resource/img/login_kakao.png"
 							 alt="NO_IMAGE" class="loginSNS" id="kakaoLogin" />
+					<br>
 					</td>
 				</tr>
 				<tr>
 					<td> <!-- 네이버 -->
-						<img src="/oneYo/img/login/naver_login.png"
+<!-- 						<img src="/oneYo/img/login/naver_login.png" -->
+							<img src="/oneYo/resource/img/login_naver.png"
 							 alt="NO_IMAGE" class="loginSNS" id="naverLogin" />
 					</td>
-				</tr>
-				<tr>
-					<td>구글 로그인 자리</td>
 				</tr>
 			</table>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->

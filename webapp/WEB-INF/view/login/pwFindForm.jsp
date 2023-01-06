@@ -208,22 +208,20 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
+			<p id="subject">비밀번호 찾기</p>
+			<p id="content">가입하신 계정의 아이디와 이메일을 입력해주세요.</p>
 		
-		
-			<table border="1">
+			<table>
 				<tr>
-					<td colspan="2"><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" style="width:180px; height:95px;"></td>
-				</tr>
-				<tr>
-					<td>아이디</td>
+					<td class="name">아이디</td>
 					<td>
-						<input type="text" id="mid" name="mid" placeholder="아이디">
+						<input type="text" id="mid" name="mid" placeholder="아이디"><hr>
 					</td>
 				</tr>
 				<tr>
-					<td>이메일주소</td>
+					<td class="name">이메일</td>
 					<td>
-						<input type="text" id="memail" name="memail" placeholder="이메일 주소">
+						<input type="text" id="memail" name="memail" placeholder="이메일주소(@포함한 이메일 주소 입력해주세요)"><hr>
 					</td>
 				</tr>
 				<tr>
@@ -232,7 +230,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td class="alink" colspan="2">
 						<a href="loginForm.ict">로그인</a>&nbsp;|
 						<a href="idFindForm.ict">아이디 찾기</a>&nbsp;|
 						<a href="memGrade.ict">회원가입</a>
