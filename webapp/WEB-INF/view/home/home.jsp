@@ -187,7 +187,8 @@
 				
 				let dateCondition = $("#favorCond option:selected").val();	// W, M, D
 				let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
-				let condCategory = dateCondition + boardCategory;
+				let viewCount = $('#viewCount').val();						// 보여줄 게시글 개수
+				let condCategory = dateCondition + boardCategory + viewCount;
 
 				let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
 				let typeV = "GET";
@@ -592,6 +593,7 @@
 		 			<option value="W">주간 인기글&nbsp;</option>
 		 			<option value="M" selected>월간 인기글&nbsp;</option>
 		 		</select>
+		 		<input type="hidden" id="viewCount" value="8">
 		 	</div>
 		 	<hr class="favorhr" />
 	 		<div class="favorPost favorPost1" data-value="recipe"></div>

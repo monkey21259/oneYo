@@ -305,7 +305,7 @@
 	      ORDER BY NHIT DESC) D
 	 </if>
 	 <![CDATA[WHERE DELETEYN = 'Y']]> 
-	 <![CDATA[AND ROWNUM <= 8]]>
+	 <![CDATA[AND ROWNUM <= #{viewCount, jdbcType=NUMERIC}]]>
 	 <!-- DAILY -->
 	 <if test='dateCondition.equals("D")'>
 	   <![CDATA[ AND INSERTDATE BETWEEN TO_DATE(SYSDATE, 'YY-MM-DD') - 1 AND TO_DATE(SYSDATE, 'YY-MM-DD') ]]>

@@ -239,7 +239,8 @@ public class HomeRestController {
 		}
 		
 		String dateCondition = cc.substring(0, 1);	// 일간D/주간W/월간M
-		String boardCategory = cc.substring(1);		// 레시피/팁/커뮤니티/공지사항
+		String boardCategory = cc.substring(1, 2);	// 레시피/팁/커뮤니티/공지사항
+		String viewCount = cc.substring(2);			// 보여줄 게시글 개수
 		logger.info("dateCondition: " + dateCondition);	// ex) W -> Week
 		// 1: 레시피 -> A / 2: 전문가 -> B / 3: 커뮤니티 -> C / 4: 공지사항 -> D
 //		logger.info("boardCategory(before): " + boardCategory);	// ex) 1
@@ -250,6 +251,7 @@ public class HomeRestController {
 		// DTO Setting
 		ovo.setDateCondition(dateCondition);
 		ovo.setBoardCategory(boardCategory);
+		ovo.setViewCount(Integer.parseInt(viewCount));
 
 		List<ObjectVO> oList = homeService.getCondVOList(ovo);
 		if (oList != null) {

@@ -27,6 +27,7 @@ public class ObjectVO {
 	// 조건별 처리
 	private String dateCondition;	// 일간/주간/월간
 	private String boardCategory;	// 게시판 카테고리
+	private int viewCount;		// 보여질 게시글 개수
 	
 	// getter
 	public String getNum() {
@@ -88,6 +89,9 @@ public class ObjectVO {
 	}
 	public String getBoardCategory() {
 		return boardCategory;
+	}
+	public int getViewCount() {
+		return viewCount;
 	}
 	
 	// setter
@@ -151,6 +155,9 @@ public class ObjectVO {
 	public void setBoardCategory(String boardCategory) {
 		this.boardCategory = boardCategory;
 	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
 	
 	@Override
 	public String toString() {
@@ -159,7 +166,7 @@ public class ObjectVO {
 				+ likecnt + ", hit=" + hit + ", warning=" + warning + ", deleteyn=" + deleteyn + ", insertdate="
 				+ insertdate + ", updatedate=" + updatedate + ", jeryo=" + jeryo + ", time=" + time + ", person="
 				+ person + ", diff=" + diff + ", dateCondition=" + dateCondition + ", boardCategory=" + boardCategory
-				+ "]";
+				+ ", viewCount=" + viewCount + "]";
 	}
 	
 }
