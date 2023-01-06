@@ -121,7 +121,7 @@ function mypageHomeAction() {
 	
 	alert("마이페이지 버튼 클릭했을 떄 mid >>>> : " + mid);
 	
-	if(mid == "null" || mid == "" || mid == null || mpw.length() > 0){
+	if(mid == "null" || mid == "" || mid == null){
 		alert("로그인 후 이용해 주세요.");
 	
 		} else{

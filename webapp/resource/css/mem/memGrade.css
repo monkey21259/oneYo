@@ -13,11 +13,27 @@
 /* -------------------------------- 중앙 center -------------------------------- */
 #center {
 /* 	height	: 700px; */
+	margin:0 auto;
 }
 
 #anne {
-	
 	border-bottom	: 1px solid;
+	margin:0 auto;
+}
+
+
+#subject{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	text-align: center;
+}
+
+#content{
+	font-size : 15px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .grade_btn .gradeTitle {
@@ -64,6 +80,81 @@
 	width	: 100%;
 	height	: auto;
 }
+
+/*등급버튼 클릭했을 때 나오는 문구*/
+.gradetable table{
+	margin	: 0 auto;
+	margin-top	: -20px;
+}
+
+#gradeChk{
+	text-algn:center;
+	padding-top:40px;
+}
+
+.emailChk table {
+	margin	: 0 auto;
+	margin-top	: -20px;
+	align:center;
+}
+
+#center input {
+		    height: 45px;
+		    width: 200px;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
+		    padding-left: 10px;
+			border: 1px solid #cccccc;
+			border-radius: 5px;
+		}
+
+/*메일 선택 버튼 memail2*/
+#memail2{
+		height: 47px;
+	    width: 200px;
+	    margin-left : 15px;
+	    margin-top: 5px;
+	    margin-bottom: 5px;
+		padding-left: 10px;
+		border: 1px solid #cccccc;
+		border-radius: 5px;
+}
+
+/*이메일인증버튼*/
+#center table #buttontable{
+	text-align:center;
+}
+
+#memailBtn {
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 50%;
+            height:40px;
+            margin-top:20px;
+         	margin-bottom: 20px;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+			border-radius: 5px;
+        }  
+
+#memailBtn:hover {
+      	    font-size : 14px;
+      	    font-weight: bold;
+            color : white;
+            border-radius: 5px;
+            background-color: #93A603;
+            border : none;
+            width : 50%;
+            height:40px;
+            margin-top:20px;
+         	margin-bottom: 20px;
+         	letter-spacing: 1px;
+         	
+        }
+        
 
 /* -------------------------------- 하단 footer -------------------------------- */
 #footer {

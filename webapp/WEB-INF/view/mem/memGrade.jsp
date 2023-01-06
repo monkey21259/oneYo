@@ -65,35 +65,30 @@
 	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 <script type="text/javascript">
 
-alert("test3");
 $(document).ready(function(){
-	alert("test4");
 	
-	//	일반/전문가 등급 정하기				=====
+//	일반/전문가 등급 정하기				=====
 	$(document).on('click', '.btn', function(){
-		alert("plz 한글 주시오");
 		let grade = $(this).find('input').val();
 		
 		if (grade == '0') {
 			$('#mgrade').val('0');
-			$('#testtest').html("일반");
+			$('#gradeChk').html("[일반]등급으로 회원가입합니다.");
 		}
 		if (grade == '1') {
 			$('#mgrade').val('1');
-			$('#testtest').html("전문가");
+			alert("전문가 등급으로 회원가입 시 관리자의 승인이 필요합니다.");
+			$('#gradeChk').html("[전문가]등급으로 회원가입합니다.");
 		}
-		
 		
 	});	//	$('.btn').click()		=====
 	
 	//	이메일 선택 박스 변경시 text변경되는 함수		=====
 	$(document).on('change', '#memail2', function(){
-		alert("memail2 >>> : " + $('#memail2').val());
-		
+				
 		let emails = ["", "gmail.com", "naver.com", "kakao.com", ""];
 		let emailKey = parseInt($('#memail2').val());
-		alert("email2 >>> : " + emails[emailKey]);
-		
+				
 		$('#memail1').val(emails[emailKey]);
 		if (emailKey == '4') {
 			$('#memail1').attr("readonly", false);
@@ -106,7 +101,7 @@ $(document).ready(function(){
 	
 	//	form 전송하기						=====
 	$(document).on('click', '#memailBtn', function(){
-		alert("#memailBtn >>> : "
+		console.log("#memailBtn >>> : "
 				+ $('#memail0').val() + "@" + $('#memail1').val()
 				+ "/" + $('#mgrade').val());
 		
@@ -135,9 +130,7 @@ $(document).ready(function(){
 			let link = "/oneYo/memInsertEmail.ict"
 								+ "?mgrade=" + $('#mgrade').val()
 								+ "&memail=" + $('#memail').val();
-			
-			alert(link);
-		
+				
 			location.href = link;
 		}
 		
@@ -154,16 +147,7 @@ $(document).ready(function(){
 		}).submit();
 
 	});
-	
-	//로그아웃
-	$("#logoutBtn").on("click", function() {
-		$("#logoutForm").attr({
-			"action": "logout.ict",
-			"method": "GET",
-			"enctype": "application/x-www-form-urlencoded"
-		}).submit();
-	});
-			
+				
 	//all.js 에 있는 모든 함수 연결
 	allJavaScript();
 	
@@ -320,7 +304,8 @@ $(document).ready(function(){
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 <div id="anne">
-회원 가입 등급
+	<p id="subject">회원가입</p>
+		<p id="content">가입할 등급을 클릭하고 이메일을 적어주세요</p>
 </div>
 
 <div class="grade_btn">
@@ -365,12 +350,15 @@ $(document).ready(function(){
 		</table>
 	</div>
 	<input type="hidden" id="mgrade" name="mgrade" value="0">
-	<p id="testtest">
-	일반
-	</p>
-</div>
+	</div>
+	
+<div class="gradetable">
 
 <table>
+<tr>
+<td colspan="2" id="gradeChk">&nbsp;</td> <!-- 버튼클릭하면 일반.전문가 표시됨 -->
+</tr>
+
 <%  // 추가 kgy
 	if (snsFlag == false) {
 %>
@@ -378,7 +366,7 @@ $(document).ready(function(){
 <td>
 	<input type="text" id="memail0" name="memail0">
 	@ <input type="text" id="memail1" name="memail1" readonly>
-	<select id="memail2">
+<select id="memail2">
 		<option value="0">선택해주세요.</option>
 		<option value="1">gmail.com</option>
 		<option value="2">naver.com</option>
@@ -389,8 +377,8 @@ $(document).ready(function(){
 </td>
 </tr>
 <tr>
-<td>
-	<input type="button" id="memailBtn" name="memailBtn" value="이메일 인증">
+<td colspan="2" id="buttontable">
+	<button type="button" id="memailBtn" name="memailBtn">이메일 인증</button>
 </td>
 </tr>
 <%	// 추가 kgy
@@ -413,6 +401,7 @@ $(document).ready(function(){
 	}
 %>
 </table>
+</div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 

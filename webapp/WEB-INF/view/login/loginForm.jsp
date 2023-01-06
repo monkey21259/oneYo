@@ -276,6 +276,9 @@
 					</td>
 				</tr>
 				<tr>
+				<td id="snslogin">-----------------SNS로그인-----------------<br><br></td>
+				</tr>
+				<tr>
 					<td> <!-- 카카오 -->
 <!-- 						<img src="/oneYo/img/login/kakao_login.png" -->
 							<img src="/oneYo/resource/img/login_kakao.png"
