@@ -434,6 +434,7 @@
 			int groupSize = Integer.parseInt(pagingVO.getGroupSize());
 			int curPage = Integer.parseInt(pagingVO.getCurPage());
 			int totalCount = 0;
+			String rcategory = pagingVO.getRcategory();
 			
 			Object recipeObj = request.getAttribute("recipeList");
 			if (recipeObj == null) {
@@ -612,13 +613,14 @@
 <%-- 						<input type="hidden" id="rnum" name="rnum" value="<%= recipevo.getRnum() %>" /> --%>
 <%-- 						<input type="hidden" id="mnum" name="mnum" value="<%= recipevo.getMnum() %>" /> --%>
 <!-- 					</div> -->
-					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
-						<jsp:param value="recipeSelectAll.ict" name="url"/>
+					<jsp:include page="/WEB-INF/view/recipe/recipePaging.jsp" flush="true">
+						<jsp:param value="recipeCategorySelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
 						<jsp:param value="<%=pageSize %>" name="pageSize"/>
 						<jsp:param value="<%=groupSize %>" name="groupSize"/>
 						<jsp:param value="<%=curPage %>" name="curPage"/>
 						<jsp:param value="<%=totalCount %>" name="totalCount"/>
+						<jsp:param value="<%=rcategory %>" name="rcategory"/>
 					</jsp:include>
 				
 <!-- 			<div class="recipeSearchBtnDiv"> -->
