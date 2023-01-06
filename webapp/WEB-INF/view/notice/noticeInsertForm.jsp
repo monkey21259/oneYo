@@ -119,7 +119,6 @@
 		</script>
 	</head>
 	<body>
-<<<<<<< HEAD
 	<form id="noticeInsertForm" name="noticeInsertForm">
 		<div id="realAll">
 			<div id="backMenu"></div>
@@ -202,7 +201,7 @@
 					</div>
 					<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
 						<jsp:param value="" name=""/>
-					</jsp:include>	
+					</jsp:include>
 				</div>
 				<div id="shadow" class="hidden_X"></div>
 				<div id="all_div">
