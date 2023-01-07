@@ -9,7 +9,7 @@
 %>
 <!DOCTYPE html>
 <html>
-	<head>
+	<head> 
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>
 		<!-- jQuery -->

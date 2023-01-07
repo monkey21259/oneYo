@@ -446,7 +446,7 @@ public class LoginController {
 			//송부할 메일 제목
 			String mailSubject = "[오내요]오내요 아이디 찾기 안내입니다.";
 			//송부할 메세지 *****마지막에 IP주소 바꿀 것!*****
-			String sendMsg = "<a href='http://localhost:8088/oneYo/loginShowId.ict?mid=" + _mvo.getMid() + "&insertdate=" + _mvo.getInsertdate() + "'>가입한 아이디 보러가기</a>";
+			String sendMsg = "<a href='http://localhost:8088/oneYo/loginShowId.ict?mid=" + _mvo.getMid() + "&insertdate=" + _mvo.getInsertdate() + "'><img src='/oneYo/resource/img/idFind.png'></a>";
 			GoogleMail gm = new GoogleMail();
 			gm.authumMail(receiveMail, mailSubject, sendMsg);
 			
@@ -491,7 +491,7 @@ public class LoginController {
 			//송부할 메일 제목
 			String mailSubject = "[오내요]오내요 비밀번호 찾기 안내입니다.";
 			//송부할 메세지 *****마지막에 IP주소 바꿀 것!*****
-			String sendMsg = "<a href='http://localhost:8088/oneYo/loginResetPWForm.ict?mid=" + _mvo.getMid() + "'>비밀번호 변경하기</a>";
+			String sendMsg = "<a href='http://localhost:8088/oneYo/loginResetPWForm.ict?mid=" + _mvo.getMid() + "'><img src='/oneYo/resource/img/pwFind.png'></a>";
 			GoogleMail gm = new GoogleMail();
 			gm.authumMail(receiveMail, mailSubject, sendMsg);
 			

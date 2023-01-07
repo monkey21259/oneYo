@@ -13,7 +13,7 @@
 	MemVO pwFindVO = (MemVO)obj;
 %>
 <!DOCTYPE html>
-<html>
+<html> 
 	<head>
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>

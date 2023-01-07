@@ -6,8 +6,8 @@
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
-		<!-- 전체 css -->
+		 
+		<!-- 전체 css --> 
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		
 		<!-- communitySelectContent.jsp 전용 -->

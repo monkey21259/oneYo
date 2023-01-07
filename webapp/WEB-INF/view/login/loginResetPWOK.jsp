@@ -11,5 +11,5 @@
 			alert("비밀번호가 변경되었습니다. 로그인해주세요.");
 			location.href="loginForm.ict";
 		</script>
-	</body>
+	</body> 
 </html>
