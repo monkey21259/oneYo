@@ -193,7 +193,7 @@
 			<span>
 			홈으로
 			</span>
-			</div>
+			</div> 
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
