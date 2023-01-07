@@ -55,24 +55,20 @@ public class MemController {
 		memail = mvo.getMemail();
 		
 		String subject = "";
-		subject = "오내요 이메일 인증";
+		subject = "[오내요]오내요 회원가입 이메일 인증번호 입니다.";
 		
 		String sendUrl = "";
 //		sendUrl = "http://localhost:8088/oneYo/memInsertForm.ict?memail=";
-		sendUrl = "http://192.168.219.119:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
+		sendUrl = "http://192.168.219.104:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
 		sendUrl += memail + "&mgrade=" + mvo.getMgrade();
 		 
 		String sendMsg = "";
 		//	보낼 내용
 		StringBuffer neyong = null;
 		neyong = new StringBuffer();
-		neyong.append(" <p style='background-color:#AC7B53;'> ");
-		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ 오늘은 내가 요리사 ~~~</span> ");
-		neyong.append(" <br> ");
-		neyong.append(" <a style='text-decoration:none;color:#000;' href='" + sendUrl + "'><span style='color:#93A603;background-color:#F0F2CC;'>오내요 회원가입 이메일 인증</span></a> ");
-		neyong.append(" <br> ");
-		neyong.append(" <span style='color:#E0E086;background-color:#AC7B53;'>~~~ oneYo ~~~</span> ");
-		neyong.append(" </p> ");
+		neyong.append(" <div align='center'>");
+		neyong.append(" <a href='" + sendUrl + "'><img src='http://localhost:8088/oneYo/resource/img/memInsert.png'></a> ");
+		neyong.append(" </div> ");
 		sendMsg = neyong.toString();
 		
 		logger.info(sendMsg);

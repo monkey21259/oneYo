@@ -227,7 +227,7 @@
 							let p11 = $("<img>");
 							p11.addClass("p11");
 							p11.attr("src", "/oneYo/img/" + _condPostDV + "/" + jsonArr[i].photo);
-							p11.attr("onerror", "this.src='/oneYo/img/잔망루피.jpg'");
+							p11.attr("onerror", "this.src='/oneYo/resource/img/noimg.png'");
 							
 							let psubj = $("<div>");
 							psubj.addClass("psubj pcom");

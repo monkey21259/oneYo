@@ -168,37 +168,7 @@
 				
 			});//end of jQuery
 		</script>
-	<style>
-	
-	.link{
-		margin:2px;
-		list-style-type:none;
-		float:left;
-		padding:9px 15px 9px 15px;
-		border:1px solid #ebebeb; 
-		}
-	.hi{
-		color:#888;
-		text-decoration: none;
-		font-weight: 500;
-	}
 
-	.hello{
-	color:#ff5e5e;
-		text-decoration: none;
-		
-	}
-	#list{
-		text-align:center;
-		
-	}
-	#block{
-	display:inline-block;
-	
-	}
-	
-	
-	</style>
 	</head>
 	<body>
 		<form id="selectAllForm" name="selectAllForm">
@@ -223,13 +193,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -399,28 +362,60 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-	<h3>공지사항</h3>	
-			<table>
-				<tr>
-					<td colspan="4">
+	<div id="anne">
+	<p id="subject">공지사항</p>
+	</div>
+	
+<!-- 검색바 -->
+	<div class="SearchPeriodContainer">
+		<div>
+			<div class="search_fill">
+				<div>
+					<span>
 						<select id="searchFilter" name="searchFilter">
 							<option id="00" value="00">전체</option>
 							<option id="01" value="01">제목</option>
-							<option id="02" value="02">내용</option>
+							<option id="02" value="02">작성자</option>
 						</select>
 						<input type="text" id="keyword" name="keyword" placeholder="검색어 입력">
+					</span>
+						
+					<span class="date_style">
+					검색기간조회:
 						<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
 						<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
-						<input type="button" id="searchBtn" value="검색">
-					</td>
-				</tr>
-				<tr>
-					<td>NO</td>
-					<td>제목</td>
-					<td>조회수</td>
-					<td>작성일</td>
+					</span>
 					
-				</tr>
+					<span class="BtnTwo">
+						<span class="SearchBtnDiv tright searchBtn">	
+						<button type="button" id="searchBtn">검색</button>
+						</span>
+					<%
+					if(mnum.equals("M000000000000")){
+					%>
+						<span class="SearchBtnDiv tright">
+							<button type="button" id="insertBtn" name="insertBtn">글등록</button>
+						</span>
+					<%
+					}
+					%>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>		
+</div>
+
+<!-- 게시판 -->
+			<table class="table-fill">
+				<thead>
+					<tr>
+						<th width="10%">NO</th>
+						<th width="65%">제목</th>
+						<th width="10%">조회수</th>
+						<th width="15%">작성일</th>
+					</tr>
+				</thead>
 		<%
 			for(int i=0; i<sallList.size(); i++){
 				NoticeVO nvo = sallList.get(i);
@@ -432,54 +427,52 @@
 				startDate = nvo.getStartDate();
 				endDate = nvo.getEndDate();
 		%>
-				<tr>
-					<td style="text-align:center;">
-						<%= nvo.getNoticeno() %>
-					</td>
-					<td style="text-align:left;">
-						<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
-					</td>
-					<td style="text-align:center;">
-						<%=nvo.getNhit() %>
-					</td>
-					<td style="text-align:center;">
-						<%=nvo.getInsertdate() %>
-					</td>
-				</tr>
+				<tbody>			
+					<tr>
+						<td style="text-align:center;">
+							<%= nvo.getNoticeno() %>
+						</td>
+						<td style="text-align:left;">
+							<a href="noticeSelectContent.ict?nnum=<%=nvo.getNnum()%>"><%=nvo.getNsubject() %></a>
+						</td>
+						<td style="text-align:center;">
+							<%=nvo.getNhit() %>
+						</td>
+						<td style="text-align:center;">
+							<%=nvo.getInsertdate() %>
+						</td>
+					</tr>
+				</tbody>
+		
 		<%
 			}//end of for
 		%>
-				
-				<tr>
-					<td colspan="4">
-					<br>
-						<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
-						<input type="hidden" id="keywordVal" value="<%=keyword %>">
-						<input type="hidden" id="startDateVal" value="<%=startDate %>">
-						<input type="hidden" id="endDateVal" value="<%=endDate %>">
-						<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
-							<jsp:param value="noticeSelectAll.ict" name="url"/>
-								<jsp:param value="" name="str"/>
-								<jsp:param value="<%=pageSize %>" name="pageSize"/>
-								<jsp:param value="<%=groupSize %>" name="groupSize"/>
-								<jsp:param value="<%=curPage %>" name="curPage"/>
-								<jsp:param value="<%=totalCount %>" name="totalCount"/>
-								<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
-								<jsp:param value="<%=keyword %>" name="keyword"/>
-								<jsp:param value="<%=startDate %>" name="startDate"/>
-								<jsp:param value="<%=endDate %>" name="endDate"/>
-						</jsp:include>
-					</td>
-				</tr>
 			</table>
+					
+			<div>
+				<span>
+				<br><br>
+				<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
+				<input type="hidden" id="keywordVal" value="<%=keyword %>">
+				<input type="hidden" id="startDateVal" value="<%=startDate %>">
+				<input type="hidden" id="endDateVal" value="<%=endDate %>">
+				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+					<jsp:param name="url" value="communitySelectAll.ict" />
+					<jsp:param value="" name="str"/>
+					<jsp:param name="pageSize" value="<%=pageSize %>" />
+					<jsp:param name="groupSize" value="<%=groupSize %>" />
+					<jsp:param name="curPage" value="<%=curPage %>"/>
+					<jsp:param name="totalCount" value="<%=totalCount %>"/>
+					<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
+					<jsp:param value="<%=keyword %>" name="keyword"/>
+					<jsp:param value="<%=startDate %>" name="startDate"/>
+					<jsp:param value="<%=endDate %>" name="endDate"/>
+					</jsp:include>
+				</span>
+			</div>
+
 			
-			<%
-				if(mnum.equals("M000000000000")){
-			%>
-				<button type="button" id="insertBtn" name="insertBtn">글등록</button>
-				<%
-				}
-				%>
+		
 				<input type="hidden" id="nnum" name="nnum">
 				<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
@@ -493,7 +486,6 @@
 		<span></span> / <span></span><br />
 		<span></span> / <span></span><br />
 	</div>
-</div>
 </div>
 </div>
 			

@@ -49,7 +49,7 @@
 						,A.NHIT									AS NHIT
 						,CEIL(ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)/#{pageSize, jdbcType=VARCHAR})	AS pagesize
 						,COUNT(A.NNUM) OVER()									AS totalCount
-						,ROW_NUMBER() OVER(ORDER BY A.NNUM DESC)				AS NOTICENO
+						,ROW_NUMBER() OVER(ORDER BY A.NNUM)				AS NOTICENO
 						<if test="searchFilter != null and searchFilter != ''">
 							<![CDATA[,#{searchFilter, jdbcType=VARCHAR}			AS searchFilter]]>
 						</if>

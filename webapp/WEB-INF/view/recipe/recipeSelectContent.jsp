@@ -9,36 +9,37 @@
 <%@ page import="main.ict.common.CodeUtils" %>
 <%@ page import="main.ict.common.O_Session" %>
 
-
-<% Logger logger = LogManager.getLogger(this.getClass()); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
-		
-		Object recipeObj = request.getAttribute("recipeList");
-		if (recipeObj == null) {
-			logger.info("[FAIL] getAttribute -> recipeObj is null");
-		}
-		
-		List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
-		logger.info("recipeList: " + recipeList);
-		
-		//세션부여
-		O_Session mSession = O_Session.getInstance();
-		String mnum = mSession.getSession(request);
-		String mid = (String)mSession.getAttribute(request, "mid");
-		String mnick = (String)mSession.getAttribute(request, "mnick");
-		
-		logger.info("mnum >>> : " + mnum);
-		logger.info("mid: " + mid);
-		
-		if (recipeList.size() != 1) {
-			logger.info("[FAIL] recipeList.size() != 1");
-		}
-		logger.info(recipeList.toString());
-		
-		RecipeVO recipevo = recipeList.get(0);
-		logger.info(" recipevo.getMnum()>>>:" + recipevo.getMnum());
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("[recipeSelectContent.jsp] .jsp 진입");
 %>
-
+<%
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+	
+	logger.info("mnum >>> : " + mnum);
+	logger.info("mid: " + mid);
+%>
+<%
+	Object recipeObj = request.getAttribute("recipeList");
+	if (recipeObj == null) {
+		logger.info("[FAIL] getAttribute -> recipeObj is null");
+	}
+	
+	List<RecipeVO> recipeList = (List<RecipeVO>)recipeObj;
+	logger.info("recipeList: " + recipeList);
+	if (recipeList.size() != 1) {
+		logger.info("[FAIL] recipeList.size() != 1");
+	}
+	logger.info(recipeList.toString());
+	
+	RecipeVO recipevo = recipeList.get(0);
+	logger.info(" recipevo.getMnum()>>>:" + recipevo.getMnum());
+%>
 <!DOCTYPE html>
 <html lang='ko'>
 	<head>
@@ -46,21 +47,19 @@
 		<title>recipeSelectContent.jsp</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0
 							maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-							
-		
-		<!-- jQuery -->
+<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<!-- recipeSelectContent.jsp 전용 -->
+<!-- recipeSelectContent.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipeSelectContent.css">
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		<!-- 칸 나눈 css -->
+<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		<!-- 댓글 기능 전용 -->
+<!-- 댓글 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
-		<!-- vue cdn -->
+<!-- vue cdn -->
 		<script type="text/javascript" src="https://unpkg.com/vue@2.3.3"></script>
-		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 			
@@ -176,85 +175,75 @@
 
 	</head>
 	<body>
-	<% logger.info("[recipeSelectContent.jsp] .jsp 진입"); %>
-	<% request.setCharacterEncoding("UTF-8"); %>
-<!--  -->
-		<header></header>
-<!--  -->
-		<nav></nav>
-<!--  -->
-		<aside></aside>
 <!-- Section -->
 		<section>
 			<div id="realAll">
-
 <div id="backMenu"></div>
-
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
-	<ul>
-		<li class="item">
-			<div class="homeLink">
-			<span>
-			홈으로
-			</span>
-			</div>
-		</li>
-		<li class="item">
-			<div class="searchBarBtn">
-			<span>
-			검색
-			</span>
-			</div>
-		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
-		<li class="item">
-			<div class="warningForm">
-			<span>
-			신고<br>팝업
-			</span>
-			</div>
-		</li>
-		
-		<li class="item">
-	<%
-		if(mid == null || !mid.equals("admin")){
-	%>
-			<div class="mypageHome">
-			<span>
-			마이<br>페이지 
-			</span>
-			</div>
-			<%
-		} else if(mid.equals("admin")){
-			%>
-			<div class="adminHome">
-			<span>
-			관리자<br>페이지 
-			</span>
-			</div>
-			<%
-		}
+		<ul>
+			<li class="item">
+				<div class="homeLink">
+				<span>
+				홈으로
+				</span>
+				</div>
+			</li>
+			<li class="item">
+				<div class="searchBarBtn">
+				<span>
+				검색
+				</span>
+				</div>
+			</li>
+	<!-- 		<li class="item"> -->
+	<!-- 			<div id="warningForm"> -->
+	<!-- 			<span> -->
+	<!-- 			신고 -->
+	<!-- 			</span> -->
+	<!-- 			</div> -->
+	<!-- 		</li> -->
+			<li class="item">
+				<div class="warningForm">
+				<span>
+				신고<br>팝업
+				</span>
+				</div>
+			</li>
+			
+			<li class="item">
+		<%
+			if(mid == null || !mid.equals("admin")){
 		%>
-		</li>
-
-		<li class="item">
-			<a href="javascript:window.scrollTo(0,0);">
-			<div id="go_top">
-			<span>
-			TOP▲
-			</span>
-			</div>
-			</a>
-		</li>
-	</ul>
+				<div class="mypageHome">
+				<span>
+				마이<br>페이지 
+				</span>
+				</div>
+				<%
+			} else if(mid.equals("admin")){
+				%>
+				<div class="adminHome">
+				<span>
+				관리자<br>페이지 
+				</span>
+				</div>
+				<%
+			}
+			%>
+			</li>
+	
+			<li class="item">
+				<a href="javascript:window.scrollTo(0,0);">
+				<div id="go_top">
+				<span>
+				TOP▲
+				</span>
+				</div>
+				</a>
+			</li>
+		</ul>
 	</div>
 
 <div id="searchBar" class="hidden_X">
@@ -419,16 +408,16 @@
 							<span class="btn" id="recipeUpdateFormBtn">수정</span>
 							<span class="btn" id="recipeDeleteBtn">삭제</span>
 					<%
-						}else if(!mnum.equals(recipevo.getMnum()) && mnum.equals("M000000000000")){
+						} else if (!mnum.equals(recipevo.getMnum()) && mnum.equals("M000000000000")) {
 					%>
 							<span class="btn" id="cautionBtn">경고</span>
 					<%
-						}else if(mnum.length() > 0) {
+						} else if (mnum.length() > 0) {
 					%>
 							<span class="btn" id="warningBtn">신고</span>
 					<%
 						}
-					 %>
+					%>
 						</td>
 					</tr>
 					<!-- 글 이미지 + 카테고리 -->

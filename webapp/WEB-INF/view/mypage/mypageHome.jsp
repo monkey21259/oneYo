@@ -10,6 +10,7 @@
 <%@ page import="main.ict.mem.vo.MemVO" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 request.setCharacterEncoding("UTF-8"); 
@@ -348,88 +349,156 @@ logger.info("mypageHome.jsp 페이지 진입");
 	<div id="container" style="text-align:center;">
 	<c:set var="mnum" value="${mList.get(0).getMnum()}" />
 	<input type="hidden" id="mnum" value="${mList.get(0).getMnum()}" />
-		<div id="profile_div" onclick="profileModify('${mnum}')" style="border:1px solid black; float:left;">
-			<c:forEach items="${mList}" var="mvo">
-				<span id="mnum" style="display:none">
-				${mvo.mnum}
-				</span>
-				<br />
-				<span id="mnick" style="border:1px solid black;">
-				${mvo.mnick}
-				</span>
-				<br />
-				<img src="/oneYo/img/mem/${mvo.mprofile}" style="width:50px; height:50px; margin-top:3px;" onerror="this.src='/oneYo/resource/img/grade0.png'" >
-				<br />
-				<c:choose>
-					<c:when test="${mvo.mgrade eq '0'}"> 
-						<span id="mgrade" style="border:1px solid black;">
-						일반 등급
-						</span>
-					</c:when>
-					<c:when test="${mvo.mgrade eq '1'}"> 
-						<span id="mgrade" style="border:1px solid black;">
-						전문가 등급
-						</span>
-					</c:when>
-					<c:when test="${mvo.mgrade eq '9'}"> 
-						<span id="mgrade" style="border:1px solid black;">
-						관리자
+		<div id="profile_div" style="display:table; margin:auto; width:80%;">
+			<div style="display:flex; align-items:center; line-height:80%;">
+				<c:forEach items="${mList}" var="mvo">
+					<span id="mnum" style="display:none">
+						${mvo.mnum}
 					</span>
-					</c:when>
-				</c:choose>
-
-				<br />
-			</c:forEach>
-		</div>
-		<div id="community_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
-			<c:forEach items="${cList}" var="cvo">
-				<div style="border:1px solid black;" onclick="communitySelect('${cvo.cnum}')">
-					<br />
-					${cvo.cnum}
-					<br />
-					${cvo.csubject}
-					<br />
-					${cvo.ccontent}
-					<br />
-					${cvo.chit}
-					<br />
-					${cvo.insertdate}
-					<br />
+					<div style="display:inline-block; text-align:center;">
+						<img src="/oneYo/img/mem/${mvo.mprofile}" onclick="profileModify('${mnum}')" onerror="this.src='/oneYo/resource/img/grade0.png'" >
+					</div>
+					<div style="display:inline-block; text-align:left; width: 360px;">
+						<div style="display:inline-block; padding-left:15px;">
+							<b>닉네임</b><br><br>
+							<b>등&nbsp;&nbsp;&nbsp;급</b><br><br>
+							<b>가입일</b>
+						</div>
+						<div style="display:inline-block; padding-left:8px;">
+							<span id="mnick">
+								${mvo.mnick}
+							</span>
+							<br><br>
+							<c:choose>
+								<c:when test="${mvo.mgrade eq '0'}"> 
+									<span id="mgrade">
+									일반 회원
+									</span>
+								</c:when>
+								<c:when test="${mvo.mgrade eq '1'}"> 
+									<span id="mgrade">
+									전문가 회원
+									</span>
+								</c:when>
+								<c:when test="${mvo.mgrade eq '9'}"> 
+									<span id="mgrade">
+									관리자
+								</span>
+								</c:when>
+							</c:choose>
+							<br><br>
+							<span id="insertdate">
+								${mvo.insertdate}
+							</span>
+						</div>
+					</div>
+				</c:forEach>
+				<div style="display:inline-block; text-align:left; width: 500px; text-align:right;">
+					<button type="button" class="centerBtn" onclick="profileModify('${mnum}')">프로필 수정</button>&nbsp;&nbsp;
+					<button type="button" id="levelupBtn" class="centerBtn">등업 목록</button>
 				</div>
-			</c:forEach>
+			</div>
 		</div>
-		<div id="recipe_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
-			<c:forEach items="${rList}" var="rvo">
-				<div style="border:1px solid black;" onclick="recipeSelect('${rvo.rnum}')">
-					<br />
-					${rvo.rnum}
-					<br />
-					${rvo.rsubject}
-					<br />
-					${rvo.rcontent}
-					<br />
-					${rvo.insertdate}
-					<br />
-				</div>
-			</c:forEach>
+		<br>
+		<div class="neyongContainer">
+		<div class="gubunDiv">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b class="gubun">레시피</b>
+			<br><br>
+			<hr>
+			<br><br>
 		</div>
-		<div id="tip_div" style="display:inline-block; float:left; margin-left:10px; border:1px solid black;">
-			<c:forEach items="${tList}" var="tvo">
-				<div style="border:1px solid black;" onclick="tipSelect('${tvo.tnum}')">
-					<br />
-					${tvo.tnum}
-					<br />
-					${tvo.tsubject}
-					<br />
-					${tvo.tcontent}
-					<br />
-					${tvo.insertdate}
-					<br />
-				</div>
-			</c:forEach>
+		<div id="recipe_div" style="width:940px; margin:auto;">
+			<c:choose>
+				<c:when test="${fn:length(rList) eq 0}">
+					<b>작성한 글이 없습니다</b>
+				</c:when>
+				<c:when test="${fn:length(rList) gt 0}">
+					<div class="neyong" style="border-top:0">
+						<div class="neyong_left"><b>&nbsp;&nbsp;&nbsp;&nbsp;제목</b></div>
+						<div class="neyong_right"><b>작성일&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+					</div>
+					<c:forEach items="${rList}" var="rvo">
+						<div class="neyong" onclick="recipeSelect('${rvo.rnum}')">
+							<div class="neyong_left">
+								<span style="display:none">${rvo.rnum}</span>
+								${rvo.rsubject}
+							</div>
+							<div class="neyong_right">
+								<span style="display:none">${rvo.rcontent}</span>
+								${rvo.insertdate}
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+			</c:choose>
 		</div>
-		<div>
-			<button type="button" id="levelupBtn">등업 목록</button>
+		<div class="gubunDiv">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b class="gubun">팁</b>
+			<br><br>
+			<hr>
+			<br><br>
+		</div>
+		<div id="tip_div" style="width:940px; margin:auto;">
+			<c:choose>
+				<c:when test="${fn:length(tList) eq 0}">
+					<b>작성한 글이 없습니다</b>
+				</c:when>
+				<c:when test="${fn:length(tList) gt 0}">
+					<div class="neyong" style="border-top:0">
+						<div class="neyong_left"><b>&nbsp;&nbsp;&nbsp;&nbsp;제목</b></div>
+						<div class="neyong_right"><b>작성일&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+					</div>
+					<c:forEach items="${tList}" var="tvo">
+						<div class="neyong" onclick="tipSelect('${tvo.tnum}')">
+							<div class="neyong_left">
+								<span style="display:none">${tvo.tnum}</span>
+								${tvo.tsubject}
+							</div>
+							<div class="neyong_right">
+								<span style="display:none">${tvo.tcontent}</span>
+								${tvo.insertdate}
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</div>
+		<div class="gubunDiv">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b class="gubun">커뮤니티</b>
+			<br><br>
+			<hr>
+			<br><br>
+		</div>
+		
+		<div id="community_div" style="width:940px; margin:auto;">
+			<c:choose>
+				<c:when test="${fn:length(cList) eq 0}">
+					<b>작성한 글이 없습니다</b>
+				</c:when>
+				<c:when test="${fn:length(cList) gt 0}">
+					<div class="neyong" style="border-top:0">
+						<div class="neyong_left"><b>&nbsp;&nbsp;&nbsp;&nbsp;제목</b></div>
+						<div class="neyong_right"><b>작성일&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+					</div>
+					<c:forEach items="${cList}" var="cvo">
+						<div class="neyong" onclick="communitySelect('${cvo.cnum}')">
+							<div class="neyong_left">
+								<span style="display:none">${cvo.cnum}</span>
+								${cvo.csubject}
+							</div>
+							<div class="neyong_right">
+								<span style="display:none">${cvo.ccontent}</span>
+								<span style="display:none">${cvo.chit}</span>
+								${cvo.insertdate}
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</div>
 		</div>
 	</div>	
 

@@ -410,27 +410,27 @@
 
 			
 			<div class="recipeSearchPeriodContainer">
-				<div class="recipeSearchAll">
-					<div class="t">
-						<a href="javascript:void(0);">
-							<span>일간</span>
-						</a>
-					</div>
-					|
-					<div class="t">
-						<a href="javascript:void(0);">
-							<span>주간</span>
-						</a>
-					</div>
-					|
-					<div class="t">
-						<a href="javascript:void(0);">
-							<span>월간</span>
-						</a>
-					</div>
-					|
-					<div class="t"><span>인기글</span></div>
-				</div>
+<!-- 				<div class="recipeSearchAll"> -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>일간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>주간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>월간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"><span>인기글</span></div> -->
+<!-- 				</div> -->
 				<div class="recipeBtnTwo">
 					<a class="recipeSearchBtn" href="javascript:recipeSearch();">
 						<div class="recipeSearchBtnDiv">
@@ -602,14 +602,14 @@
 					<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 

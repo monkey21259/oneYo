@@ -20,6 +20,80 @@
 	
 }
 
+.centerBtn {
+	font-size : 14px;
+	color : #93A603;
+	border-radius: 5px;
+	background-color: white;
+	border:3px solid #93A603;
+	width : 150px;
+	height:40px;
+	margin-top:5px;
+	margin-bottom: 5px;
+	letter-spacing: 1px;
+	cursor:pointer;
+}
+
+b {
+	font-size : 18px;
+	color : #93A603;
+	letter-spacing: 1px;
+}
+
+img {
+	width:102px;
+	height:102px;
+	border-radius:5px;
+	cursor:pointer;
+}
+
+hr {
+	width:960px;
+	margin: auto;
+	background: #d1d1d1;
+	height: 1px;
+	border: 0;
+}
+
+.gubun {
+	font-size : 30px;
+	letter-spacing: 5px;
+}
+
+.gubunDiv {
+	display: inline-block;
+	width: 960px;
+	line-height: 70%;
+	text-align: left;
+	margin-top: 70px;
+}
+
+.neyong {
+	border-bottom:1px solid #d1d1d1;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.neyong_left {
+	display: inline-block;
+	width: 680px;
+	text-align: left;
+}
+
+.neyong_right {
+	display: inline-block;
+	width: 180px;
+	text-align: right;
+}
+
+.neyongContainer {
+	width: 970px;
+	margin: auto;
+	border-radius: 10px;
+	background-color:white;
+	box-shadow: 5px 5px 5px -5px;
+}
+
 /* -------------------------------- 우측 right -------------------------------- */
 #right {
 	

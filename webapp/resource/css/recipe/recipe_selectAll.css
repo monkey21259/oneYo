@@ -110,7 +110,8 @@
 	margin-bottom	: 38px;
 	
 	display	: flex;
-	justify-content	: space-between;
+/* 	justify-content	: space-between; */
+	justify-content	: flex-end;
 }
 
 .recipeSearchPeriodContainer .recipeSearchAll {

@@ -158,13 +158,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -336,22 +329,23 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-	<h3>회원목록</h3>
-		<hr>
-			<table border="1 solid">
+	<div id="anne">
+	<p id="subject">회원목록</p>
+	</div>
+			<table class="table-fill">
 				<thead>
 					<tr>
-						<th>NO</th>
-						<th>아이디</th>
-						<th>이름</th>
-						<th>닉네임</th>
-						<th>이메일</th>
-						<th>회원등급</th>
-						<th>프로필사진</th>
-						<th>관심요리분야</th>
-						<th>경고횟수</th>
-						<th>등록일</th>
-						<th>탈퇴</th>
+						<th width="5%">NO</th>
+						<th width="5%">아이디</th>
+						<th width="10%">이름</th>
+						<th width="10%">닉네임</th>
+						<th width="15%">이메일</th>
+						<th width="10%">회원등급</th>
+						<th width="10%">프로필사진</th>
+						<th width="10%">관심요리분야</th>
+						<th width="5%">경고횟수</th>
+						<th width="10%">등록일</th>
+						<th width="8%">탈퇴</th>
 					</tr>					
 				</thead>
 <%
@@ -386,7 +380,7 @@
 						<td><%= mvo.getMnick() %></td>
 						<td><%= mvo.getMemail() %></td>
 						<td><%= CodeUtils.getMgradeVal(mvo.getMgrade()) %></td>
-						<td><img src="/oneYo/img/mem/<%= mvo.getMprofile() %>" style="width:50px; height:50px;"></td>
+						<td><img src="/oneYo/img/mem/<%= mvo.getMprofile() %>"></td>
 						<td><%= CodeUtils.getAdminRcate(mvo.getMcategory()) %></td>
 						<td><%= mvo.getMwarning() %></td>
 						<td><%= mvo.getInsertdate() %></td>
@@ -396,24 +390,29 @@
 						</td>
 					</tr>
 				</tbody>
+
 <%
 				}//for
 %>
-				<tr>
-					<td colspan="11">
-					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
-						<jsp:param name="url" value="adminMemSelectAll.ict" />
-						<jsp:param name="pageSize" value="<%=pageSize %>" />
-						<jsp:param name="groupSize" value="<%=groupSize %>" />
-						<jsp:param name="curPage" value="<%=curPage %>"/>
-						<jsp:param name="totalCount" value="<%=totalCount %>"/>
+			</table>
+			
+				<div>
+					<span>
+						<br><br>
+						<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+							<jsp:param name="url" value="adminMemSelectAll.ict" />
+							<jsp:param name="pageSize" value="<%=pageSize %>" />
+							<jsp:param name="groupSize" value="<%=groupSize %>" />
+							<jsp:param name="curPage" value="<%=curPage %>"/>
+							<jsp:param name="totalCount" value="<%=totalCount %>"/>
 						</jsp:include>
-					</td>
-				</tr>
+					</span>
+				</div>
 <%
 			}//if
+			
 %>
-			</table>
+			
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 

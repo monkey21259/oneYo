@@ -96,9 +96,7 @@ public class LoginController {
 				String access_token = (String)jObj.get("access_token");
 //				String refreshToken = (String)jObj.get("refresh_token");
 				String tokenType = (String)jObj.get("token_type");
-//				logger.info(accessToken);
-//				logger.info(tokenType);
-				
+
 				// Naver Get Profile API ----------------
 				logger.info("[Naver] 프로필 API 정보 가져오기");
 				url = "https://openapi.naver.com/v1/nid/me";
@@ -187,14 +185,9 @@ public class LoginController {
 			logger.info("전달된 코드(code): " + code);
 			model.addAttribute("code", code);
 			
-			// POST /oauth/token HTTP/1.1
-			// Host: kauth.kakao.com
-			// Content-type: application/x-www-form-urlencoded;charset=utf-8
+			
 			String reqURL = "https://kauth.kakao.com/oauth/token";
-			// 전달할 소스
-			// grant_type	String	authorization_code로 고정	O
-			// client_id	String	앱 REST API 키 - [내 애플리케이션] > [앱 키]에서 확인 가능	O
-			// redirect_uri	String	인가 코드가 리다이렉트된 URI	O
+		
 			String grantType = "authorization_code";
 			String clientId = "d00ed47ba28a4cf79b2ef80cee3bfdc0";
 			String redirect_uri = "http://192.168.219.125:8088/oneYo/loginForm.ict";
@@ -235,25 +228,11 @@ public class LoginController {
 				}
 				logger.info("result: " + result);
 
-				/*
-				 * result:
-				 * {
-				 * 	"access_token":"aK_BZlu6EtFAUiC6BINSn3cc-g8gY2jPlgfljBq8CioljgAAAYVXwJ8b",
-				 * 	"token_type":"bearer",
-				 * 	"refresh_token":"LfYgWFTeHBw0WM5FmjfkEIn0uBquxa3MreSKrVxvCioljgAAAYVXwJ8a",
-				 * 	"expires_in":21599,
-				 * 	"scope":"birthday account_email gender profile_nickname",
-				 * 	"refresh_token_expires_in":5183999
-				 * }
-				 */
+				
 				JSONParser jsonParser = new JSONParser();
 				JSONObject jObj = (JSONObject)jsonParser.parse(result);
 				String access_token = (String)jObj.get("access_token");
-//				GET/POST /v2/user/me HTTP/1.1
-//				Host: kapi.kakao.com
-//				Authorization: Bearer ${ACCESS_TOKEN}/KakaoAK ${APP_ADMIN_KEY}
-//				Content-type: application/x-www-form-urlencoded;
-//				charset=utf-8
+
 				
 				reqURL = "https://kapi.kakao.com/v2/user/me";
 				url = new URL(reqURL);
@@ -285,17 +264,7 @@ public class LoginController {
 				}
 				br.close();
 				logger.info("result: " + result);
-				// 필요한 데이터(또는 사용 가능성이 있는 데이터)를 제외하고 모두 삭제해놓은 상태
-//				{	"id":1111111111,
-//					"connected_at":"2022-12-09T09:42:46Z",  // TEMP
-//					"kakao_account":
-//						{
-//							"profile":{"nickname":"abc"},
-//							"email":"abc@nate.com",
-//							"birthday":"1231",  // TEMP
-//							"gender":"male"     // TEMP
-//						}
-//				}
+
 				jObj = (JSONObject)jsonParser.parse(result);
 				// ID
 				String id = ConstPack.M_KAKAO_FR_ID;
@@ -446,7 +415,11 @@ public class LoginController {
 			//송부할 메일 제목
 			String mailSubject = "[오내요]오내요 아이디 찾기 안내입니다.";
 			//송부할 메세지 *****마지막에 IP주소 바꿀 것!*****
-			String sendMsg = "<a href='http://localhost:8088/oneYo/loginShowId.ict?mid=" + _mvo.getMid() + "&insertdate=" + _mvo.getInsertdate() + "'>가입한 아이디 보러가기</a>";
+			StringBuffer neyong = new StringBuffer();
+			neyong.append(" <div align='center'>");
+			neyong.append("<a href='http://localhost:8088/oneYo/loginShowId.ict?mid=" + _mvo.getMid() + "&insertdate=" + _mvo.getInsertdate() + "'><img src='http://localhost:8088/oneYo/resource/img/idFind.png'></a>");
+			neyong.append(" </div> ");
+			String sendMsg = neyong.toString();
 			GoogleMail gm = new GoogleMail();
 			gm.authumMail(receiveMail, mailSubject, sendMsg);
 			
@@ -491,7 +464,11 @@ public class LoginController {
 			//송부할 메일 제목
 			String mailSubject = "[오내요]오내요 비밀번호 찾기 안내입니다.";
 			//송부할 메세지 *****마지막에 IP주소 바꿀 것!*****
-			String sendMsg = "<a href='http://localhost:8088/oneYo/loginResetPWForm.ict?mid=" + _mvo.getMid() + "'>비밀번호 변경하기</a>";
+			StringBuffer neyong = new StringBuffer();
+			neyong.append(" <div align='center'>");
+			neyong.append("<a href='http://localhost:8088/oneYo/loginResetPWForm.ict?mid=" + _mvo.getMid() + "'><img src='http://localhost:8088/oneYo/resource/img/pwFind.png'></a>");
+			neyong.append(" </div> ");
+			String sendMsg = neyong.toString();
 			GoogleMail gm = new GoogleMail();
 			gm.authumMail(receiveMail, mailSubject, sendMsg);
 			
