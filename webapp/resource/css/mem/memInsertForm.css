@@ -17,9 +17,230 @@
 
 /* -------------------------------- 중앙 center -------------------------------- */
 #center {
+/* 	height	: 700px; */
+	margin:0 auto;
 	
 }
 
+#anne {
+	border-bottom	: 1px solid;
+	margin:0 auto;
+}
+
+
+#subject{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	text-align: center;
+}
+
+#content{
+	font-size : 15px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#center table{	
+	width	: 900px;
+	margin	: 0 auto;
+/*      text-align: center; */
+     padding: 20px;
+/* 	 border-color: #93A603; */
+	margin-bottom	: 20px;
+	
+	overflow : hidden; 테두리 영역 넘어가면 숨김
+ 
+}
+
+#center tr{
+		height: 45px;
+		width: 300px;
+		margin-bottom:15px;
+}
+/*테이블 좌측영역*/
+#center .name{
+		 height: 45px;
+		 width: 140px;
+}
+
+/*아이디중복확인,비밀번호체크, 닉네임 체크버튼*/
+#center .chkBtn{
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 180px;
+            height:45px;
+            margin:auto;
+            display:block;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+			border-radius: 5px;
+        }  
+
+#center .chkBtn:hover {
+      	    font-size : 14px;
+      	    font-weight: bold;
+            color : white;
+            border-radius: 5px;
+            background-color: #93A603;
+            border : none;
+            width : 180px;
+            height:45px;
+            margin:auto;
+            display:block;
+         	letter-spacing: 1px;
+         	
+        }
+
+#center input {
+		    height: 45px;
+		    width: 450px;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
+		    padding-left: 10px;
+		    border: 1px solid #cccccc;
+			border-radius: 5px;
+}
+
+
+/*전화번호*/
+#center .mhp{
+	width:129px;
+	 margin-top: 5px;
+		    margin-bottom: 5px;
+		    margin-top: 5px;
+		    padding-left: 10px;
+		    border: 1px solid #cccccc;
+			border-radius: 5px;
+}
+
+/*메일 테두리*/
+#memailtd{
+		width:450px;
+			margin-top: 5px;
+		    margin-bottom: 5px;
+		    padding-left: 10px;
+		    border: 1px solid #cccccc;
+			border-radius: 5px;
+	
+}
+     
+/*프로필 사진첨부*/
+
+.filebox .upload-name {
+    display: inline-block;
+     height: 45px;
+   	 width: 450px;
+   	 margin-top: 5px;
+   	 margin-bottom: 5px;
+   	 padding-left: 10px;
+   	 border: 1px solid #cccccc;
+	 border-radius: 5px;
+}
+
+/*사진첨부 기존디자인없애기*/
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding-left: 10px;
+    overflow: hidden;
+    border: 0;
+}
+
+/*프로필 사진 첨부버튼*/
+#center .filebox label{
+/* 			display:block; */
+			display: flex;
+	        justify-content: center;
+	        align-items: center;
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 180px;
+            height:45px;
+            margin: 0 10px 0 10px;
+            padding-left: 10px;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+			border-radius: 5px;
+			
+			
+        }  
+
+#center .filebox label:hover {
+           	display: flex;
+	        justify-content: center;
+	        align-items: center;
+      	    font-size : 14px;
+      	    font-weight: bold;
+            color : white;
+            border-radius: 5px;
+            background-color: #93A603;
+            border:3px solid #93A603;
+            width : 180px;
+            height:45px;
+            
+            margin: 0 10px 0 10px;
+         	letter-spacing: 1px;
+        }
+   
+.filebox *{
+ vertical-align: middle;
+ }  
+/*관심요리분야*/        
+#center .mcategory{
+	width:20px;
+	vertical-align: middle;
+	
+}
+
+/*관심요리분야 체크박스*/
+#center .catelist{
+	 display: inline-block; 
+	 margin-right:40px;
+	 margin-right:40px;
+}
+
+
+/*회원가입버튼*/
+    
+#center #formBtn{
+   			font-size : 14px;
+            color : #93A603;
+            border-radius: 5px;
+            background-color: white;
+         	border:3px solid #93A603;
+            width : 440px;
+            height:45px;
+            margin:auto;
+            display:block;
+         	letter-spacing: 1px;
+         	cursor:pointer;
+			border-radius: 5px;
+        }  
+
+#center #formBtn:hover {
+      	    font-size : 14px;
+      	    font-weight: bold;
+            color : white;
+            border-radius: 5px;
+            background-color: #93A603;
+            border : none;
+            width : 440px;
+            height:45px;
+            margin:auto;
+            display:block;
+         	letter-spacing: 1px;
+         	
+        }
+ 
 /* -------------------------------- 우측 right -------------------------------- */
 #right {
 	

@@ -382,7 +382,7 @@ profileInfoUpdateForm.jsp
 </tr>
 <tr>
 	<td>
-	선호하는 요리분야
+	관심있는 요리분야
 	</td>
 	<td>
 	<ul>

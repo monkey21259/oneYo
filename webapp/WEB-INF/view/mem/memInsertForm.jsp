@@ -65,8 +65,8 @@
 <script type="text/javascript" src="/oneYo/resource/js/common/common_count.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function(){
-	alert(<%= memail %>. 회원가입 진행합니다.");
 	
 // 	//	mcategory 단수	=====================
 // 	$(document).on('click', '.mcategory', function(){
@@ -131,8 +131,6 @@ $(document).ready(function(){
 	
 	
 	$(document).on('click', '#midBtn', function(){
-		
-		console.log("아이디 확인 중! >>> ");
 		
 		let idCheckURL = "memIdCheck.ict";
 		let reqType = "POST";
@@ -220,13 +218,18 @@ $(document).ready(function(){
 			
 		}
 	});	//	비밀번호 확인
-	
+
+	//프로필사진 첨부 
+	$("#mprofile").on('change',function(){
+	  var fileName = $("#mprofile").val();
+	  $(".upload-name").val(fileName);
+	});
 	
 	//	form 전송 버튼
 	$(document).on('click', '#formBtn', function(){
 		
 		//	NOT NULL 데이터 NULL 체크			=====================
-		
+		alert("닉네임확인버튼클릭");
 		if( $('#mnick').text() == null){
 			alert("닉네임을 기입해주세요");
 			$("#mnick").focus();
@@ -253,8 +256,6 @@ $(document).ready(function(){
 					
 					alert("사용 가능한 닉네임입니다");
 				
-					
-					
 					
 				}else if("ID_NO" == resData) {
 					
@@ -353,11 +354,7 @@ $(document).ready(function(){
 }); //ready
 
 </script>
-<style type="text/css">
- .mhp { 
- 	width	: 40px; 
- } 
-<!-- </style> -->
+
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -419,8 +416,6 @@ $(document).ready(function(){
 		</li>
 	</ul>
 	</div>
-
-
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
@@ -521,44 +516,47 @@ $(document).ready(function(){
 	}
 %>
 
-오내요 회원가입
-<table border=1>
+<div id="anne">
+	<p id="subject">회원가입</p>
+		<p id="content">정보를 입력하여주세요.</p>
+</div>
+
+<table>
 <!-- mid 아이디 -->
 <%
-	if (mvo == null) {	// SNS 로그인 케이스가 아닌 경우
+	if (mvo == null) {	// SNS 로그인 케이스가 아닌 경우======================================
 %>
 <tr>
-	<td>
+	<td class="name">
 		아이디
 	</td>
 	<td>
 		<input type="text" id="mid" name="mid" class="notNull">
 	</td>
 	<td>
-		<input type="button" id="midBtn" name="midBtn" value="아이디 확인">
-		<input type="button" id="testID" name="testID" value="ㅌㅅㅌ">
+		<input type="button" id="midBtn" name="midBtn" class="chkBtn" value="아이디 확인">
 	</td>
 </tr>
 <!-- mpw 비밀번호 -->
 <tr>
-	<td class="mpw_td" rowspan='2'>
+	<td class="mpw_td name" rowspan='2'>
 		비밀번호
 	</td>
 	<td>
-		<input type="text" id="mpw" name="mpw" class="notNull">
+		<input type="password" id="mpw" name="mpw" class="notNull">
 	</td>
 	<td class="mpw_td" rowspan='2'>
-		<input type="button" id="mpwBtn" name="mpwBtn" value="비밀번호 확인">
+		<input type="button" id="mpwBtn" name="mpwBtn" class="chkBtn" value="비밀번호 확인">
 	</td>
 </tr>
 <tr id="mpw_r_tr">
 	<td>
-		<input type="text" id="mpw_r" name="mpw_r">
+		<input type="password" id="mpw_r" name="mpw_r">
 	</td>
 </tr>
 <!-- mname 이름 -->
 <tr>
-	<td>
+	<td class="name">
 		이름
 	</td>
 	<td>
@@ -569,19 +567,19 @@ $(document).ready(function(){
 </tr>
 <!-- mnick 닉네임 -->
 <tr>
-	<td>
+	<td class="name">
 		닉네임
 	</td>
 	<td>
 		<input type="text" id="mnick" name="mnick">
 	</td>
 	<td>
-		<input type="button" id="nickCheck" value="닉네임 중복확인">
+		<input type="button" id="nickCheck" class="chkBtn" value="닉네임 중복확인">
 	</td>
 </tr>
 <!-- mhp 휴대폰 -->
 <tr>
-	<td>
+	<td class="name">
 		휴대폰
 	</td>
 	<td>
@@ -595,12 +593,11 @@ $(document).ready(function(){
 </tr>
 <!-- memail 이메일 -->
 <tr>
-	<td>
+	<td  class="name" id="email">
 		이메일
 	</td>
 	<td>
-		<%= memail %>
-		<input type="hidden" id="memail" name="memail" value="<%= memail %>">
+		<input type="text" id="memail" name="memail" value="<%= memail %>" readonly/>
 		<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>">
 	</td>
 	<td>
@@ -608,39 +605,46 @@ $(document).ready(function(){
 </tr>
 <!-- mprofile 프로필 사진 -->
 <tr>
-	<td>
+	<td class="name">
 		프로필 사진
 	</td>
 	<td>
-		<input type="file" id="mprofile" name="mprofile">
+			<div class="filebox">
+		    <input class="upload-name" value="사진선택">
+		</div>
 	</td>
 	<td>
+		<div class="filebox">
+		    <label for="mprofile">사진선택</label> 
+		    <input type="file" id="mprofile" name="mprofile" hidden="true">
+		</div>
 	</td>
 </tr>
 <!-- mcategory 요리 분야 -->
 <tr>
-	<td>
+	<td class="name">
 		관심 요리분야
 	</td>
 	<td>
 		<ul>
-		<li>
-			<input type="checkbox" class="mcategory" value="00">한식
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="00">&nbsp; 한식
 		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="01">중식
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="01">&nbsp; 중식
 		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="02">양식
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="02">&nbsp; 양식
 		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="03">일식
+		<br>
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="03">&nbsp; 일식
 		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="04">간식
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="04">&nbsp; 간식
 		</li>
-		<li>
-			<input type="checkbox" class="mcategory" value="99">기타
+		<li class="catelist">
+			<input type="checkbox" class="mcategory" value="99">&nbsp; 기타
 		</li>
 		</ul>
 		<input type="hidden" id="mcategory" name="mcategory" value="">
@@ -648,16 +652,12 @@ $(document).ready(function(){
 	<td>
 	</td>
 </tr>
-<tr>
-	<td colspan="3">
-		<input type="button" id="formBtn" name="formBtn" value="회원가입">
-	</td>
-</tr>
+
 <%
-	} else {	// SNS 로그인 케이스인 경우 (mvo != null)
+	} else {	// SNS 로그인 케이스인 경우 (mvo != null)=========================================
 %>
 <tr>
-	<td>
+	<td class="name">
 		아이디
 	</td>
 	<td>
@@ -665,16 +665,17 @@ $(document).ready(function(){
 	</td>
 	<td>
 		<input type="button" id="midBtn" name="midBtn" value="아이디 확인">
-		<input type="button" id="testID" name="testID" value="ㅌㅅㅌ">
 	</td>
 </tr>
 <!-- mpw 비밀번호 -->
 <tr>
-	<td class="mpw_td" rowspan='2'>
+	<td class="mpw_td name">
 		비밀번호
 	</td>
 	<td>
 		<input type="password" id="mpw" name="mpw" value="<%= mvo.getMpw() %>" readonly />
+	</td>
+	<td>
 	</td>
 	<td class="mpw_td" rowspan='2'>
 		<input type="button" id="mpwBtn" name="mpwBtn" value="비밀번호 확인" />
@@ -687,7 +688,7 @@ $(document).ready(function(){
 </tr>
 <!-- mname 이름 -->
 <tr>
-	<td>
+	<td class="name">
 		이름
 	</td>
 	<td>
@@ -698,7 +699,7 @@ $(document).ready(function(){
 </tr>
 <!-- mnick 닉네임 -->
 <tr>
-	<td>
+	<td class="name">
 		닉네임
 	</td>
 	<td>
@@ -727,7 +728,7 @@ $(document).ready(function(){
 </tr>
 <!-- mhp 휴대폰 -->
 <tr>
-	<td>
+	<td class="name">
 		휴대폰
 	</td>
 	<td>
@@ -755,7 +756,7 @@ $(document).ready(function(){
 			</tr>
 			<!-- memail 이메일 -->
 			<tr>
-				<td>
+				<td class="name">
 					이메일
 				</td>
 				<td>
@@ -768,7 +769,7 @@ $(document).ready(function(){
 			</tr>
 			<!-- mprofile 프로필 사진 -->
 			<tr>
-				<td>
+				<td class="name">
 					프로필 사진
 				</td>
 				<td>
@@ -779,45 +780,45 @@ $(document).ready(function(){
 			</tr>
 			<!-- mcategory 요리 분야 -->
 			<tr>
-				<td>
-					관심요리분야
-				</td>
-				<td>
-					<ul>
-					<li>
-						<input type="checkbox" class="mcategory" value="00">한식
-					</li>
-					<li>
-						<input type="checkbox" class="mcategory" value="01">중식
-					</li>
-					<li>
-						<input type="checkbox" class="mcategory" value="02">양식
-					</li>
-					<li>
-						<input type="checkbox" class="mcategory" value="03">일식
-					</li>
-					<li>
-						<input type="checkbox" class="mcategory" value="04">간식
-					</li>
-					<li>
-						<input type="checkbox" class="mcategory" value="99">기타
-					</li>
-					</ul>
-					<input type="hidden" id="mcategory" name="mcategory" value="">
-				</td>
-				<td>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="button" id="formBtn" name="formBtn" value="회원가입">
-				</td>
-			</tr>
+		<td class="name">
+		관심 요리분야
+		</td>
+		<td>
+			<ul>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="00">&nbsp; 한식
+			</li>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="01">&nbsp; 중식
+			</li>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="02">&nbsp; 양식
+			</li>
+			<br>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="03">&nbsp; 일식
+			</li>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="04">&nbsp; 간식
+			</li>
+			<li class="catelist">
+				<input type="checkbox" class="mcategory" value="99">&nbsp; 기타
+			</li>
+			</ul>
+			<input type="hidden" id="mcategory" name="mcategory" value="">
+		</td>
+		<td>
+		</td>
+	</tr>
+			
 			<%
 				}
 	}
 			%>
 </table>
+<div>
+		<input type="button" id="formBtn" name="formBtn" value="회원가입">
+</div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 

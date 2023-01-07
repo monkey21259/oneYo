@@ -43,7 +43,7 @@
 					
 					function whenSuccess(resData){
 						if(resData == "FIND_YES"){
-							alert("입력하신 이메일 주소로 송부된 URL을 클릭해주세요.");
+							alert("입력하신 이메일 주소로 인증메일이 발송되었습니다.");
 						}else{
 							alert("이름 또는 이메일 주소가 일치하지 않습니다.");
 							$('#mname').val('');
@@ -247,7 +247,6 @@
 			</table>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
-
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
@@ -262,5 +261,7 @@
 </div>
 </div>
 		</form>
+		
+		<div align="center" >adfasdf</div>
 	</body>
 </html>
