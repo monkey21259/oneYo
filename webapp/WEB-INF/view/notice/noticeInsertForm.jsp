@@ -72,7 +72,7 @@
 				// jQuery 함수 인자에 동적으로 값을 넣을 수 없음.
 				// (ex) $("#nphoto[data-value='" + cntImg + "']") >>> cntImg가 안먹힘.
 				$(".nphoto").on("change", function() {
-					alert("[.nphoto -> onchange] 파일 선택 완료");
+				
 					
 					let fileName = $(this).val();
 					// 파일 미선택시

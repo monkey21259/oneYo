@@ -51,11 +51,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-			alert("[home.jsp] JS");
+			console.log("[home.jsp] JS");
 			
 			$(document).ready(function() {
 				
-				alert("[home.jsp] jQuery");
+				console.log("[home.jsp] jQuery");
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭

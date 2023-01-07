@@ -119,7 +119,7 @@ function mypageHomeAction() {
 	let mid = $('#mid').val();
 	let mpw = $('#mpw').val();
 	
-	alert("마이페이지 버튼 클릭했을 떄 mid >>>> : " + mid);
+	console.log("마이페이지 버튼 클릭했을 떄 mid >>>> : " + mid);
 	
 	if(mid == "null" || mid == "" || mid == null){
 		alert("로그인 후 이용해 주세요.");

@@ -72,7 +72,7 @@ if (list != null && list.size() > 0) {
 	
 <script type="text/javascript">
 $(document).ready(function(){
-	alert("profilePhotoUpdateForm.jsp");
+	
 	
 	//	처음 로딩시에는 기존 닉네임이 입력되어 있으나 클릭하면 사라지게 하는 함수
 	$(document).on('click', '#mnick', function(){
@@ -89,7 +89,7 @@ $(document).ready(function(){
 		if(!$('#mprofile').val()) {
 			$("#fileName").html('');
 		}else {
-			alert("입력o >>> : " + $('#mprofile').val());
+			
 			
 			var fileValue = $("#mprofile").val().split("\\");
 			var fileName = fileValue[fileValue.length-1]; // 파일명
@@ -100,7 +100,7 @@ $(document).ready(function(){
 	//	정보 보내기
 	$(document).on('click', '.mprBtn', function(){
 
-		alert("mkey >>> : " + $('#mkey').val());
+	
 		$('#profileUpdateForm').attr({
 			 "action"	: "memUpdate.ict"
 			,"method"	: "POST"

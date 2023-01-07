@@ -5,3 +5,134 @@
 <!-- 댓글 기능 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
 */
+
+/* 입력 칸의 부모 */
+#inputComment {
+	
+	width	: 700px;
+	
+	/* 정렬 편집용 세팅 */
+	display	: flex;
+	flex-wrap	: wrap;
+	justify-content	: flex-end;
+	
+	margin	: 20px auto;
+	
+}
+
+/* 입력하는 사람 닉네임 */
+#inputComment #inputNick {
+	width	: 100%;
+	
+	margin-top	: 20px;
+	margin-bottom	: 10px;
+}
+
+/* 입력하는 내용을 담은 div */
+#inputComment #insertNeyong {
+	width	: 100%;
+	margin	: auto;
+/* 	margin-left	: 5px; */
+}
+#inputComment #insertNeyong #cocontent {
+	width	: 100%;
+	/* 높이조절 */
+	resize	: vertical;
+}
+
+/* 입력하는 버튼 */
+#inputComment #insertBtn {
+	width	: 100px;
+	height	: 40px;
+	
+	margin-right	: -1%;
+	
+	text-align	: center;
+	line-height: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+#commentList {
+	
+	width	: 700px;
+	
+	/* 정렬 편집용 세팅 */
+	display	: flex;
+	flex-wrap	: wrap;
+	
+	margin	: 20px auto;
+	
+}
+
+#commentList .item {
+	
+	width	: 100%;
+	
+	/* 정렬 편집용 세팅 */
+	display	: flex;
+	flex-wrap	: wrap;
+	
+	margin	: 20px auto;
+	
+}
+/* 작성자 */
+#commentList .item .writer {
+	
+/* 	width	: 100%; */
+	
+	/* 정렬 편집용 세팅 */
+/* 	display	: flex; */
+/* 	flex-wrap	: wrap; */
+	
+/* 	margin	: 20px auto; */
+	
+}
+/* 작성일 */
+#commentList .item .insertdate {
+	
+/* 	width	: 50%; */
+	
+	/* 정렬 편집용 세팅 */
+/* 	display	: flex; */
+/* 	flex-wrap	: wrap; */
+	
+/* 	margin	: 20px auto; */
+	
+}
+/* 댓글내용 */
+#commentList .item .cocontent {
+	
+/* 	width	: 50%; */
+	
+	/* 정렬 편집용 세팅 */
+/* 	display	: flex; */
+/* 	flex-wrap	: wrap; */
+	
+/* 	margin	: 20px auto; */
+	
+}
+/* 삭제버튼 */
+#commentList .item .deleteBtn {
+	
+/* 	width	: 50%; */
+	
+	/* 정렬 편집용 세팅 */
+/* 	display	: flex; */
+/* 	flex-wrap	: wrap; */
+	
+/* 	margin	: 20px auto; */
+	
+}
+
+
+
+

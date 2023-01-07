@@ -132,7 +132,7 @@ $(document).ready(function(){
 			$('#mcategory').val(mcategory);
 			console.log("mcategory >>> : " + $('#mcategory').val());
 			
-			alert("mkey >>> : " + $('#mkey').val());
+			
 			
 			$('#profileUpdateForm').attr({
 				 "action"	: "memUpdate.ict"
@@ -382,7 +382,7 @@ profileInfoUpdateForm.jsp
 </tr>
 <tr>
 	<td>
-	선호하는 요리분야
+	관심있는 요리분야
 	</td>
 	<td>
 	<ul>

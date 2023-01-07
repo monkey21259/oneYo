@@ -59,13 +59,11 @@
 					});
 					
 					//사용자가 내용 입력할 input 태그
-					var newInput = $('<input>');
+					var newInput = $('<textarea>');
 					newInput.attr({
-						'type':'text',
 						'placeholder':'내용을 입력해주세요'
 					});
 					newInput.addClass('rcontent');
-					newInput.css({'width':'634px', 'height':'20px'});
 					
 					//img태그와 input태그가 담길 div태그
 					var newDiv = $('<div>');
@@ -94,7 +92,7 @@
 				
 // 				alert("[recipeInsertForm.jsp] jQuery");
 				$("#recipeInsertBtn").on("click", function() {
-					alert("recipeInsertBtn >>> Click");
+					
 					
 					// validation code area
 					
@@ -195,7 +193,7 @@
 			<span>
 			홈으로
 			</span>
-			</div>
+			</div> 
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
@@ -568,7 +566,7 @@
 								<input type="hidden" id="rcontent" name="rcontent">
 								<div class="neyong" style="display:flex; align-items:center;">
 									<img src="/oneYo/img/numbering/number1.png" width="45" height="45">&nbsp;
-									<input type="text" class="rcontent" style="width:634px; height:20px;" placeholder="내용을 입력해주세요">
+									<textarea class="rcontent" placeholder="내용을 입력해주세요"></textarea>
 								</div>
 							</div>
 							&nbsp;&nbsp;

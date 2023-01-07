@@ -51,11 +51,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-			alert("[home.jsp] JS");
+			console.log("[home.jsp] JS");
 			
 			$(document).ready(function() {
 				
-				alert("[home.jsp] jQuery");
+				console.log("[home.jsp] jQuery");
 				
 				$("#warningForm").click(function(){
 					location.href="warningForm.ict";

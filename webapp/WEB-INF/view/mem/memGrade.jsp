@@ -112,7 +112,7 @@ $(document).ready(function(){
 			if ($(this).val() == "" || $(this).val() == null) {
 				cnt += 1;
 				
-				alert("이메일을 마저 작성 해주세요.");
+				alert("이메일을 작성 해주세요.");
 				$("#memail0").focus();
 				
 				return false;

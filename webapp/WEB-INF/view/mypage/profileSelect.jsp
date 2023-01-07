@@ -65,7 +65,7 @@ if (list != null && list.size() > 0) {
 $(document).ready(function(){
 	
 	$(document).on('click', '.mprBtn', function(){
-		alert("mprBtn");
+		
 		
 		$('#mkey').val("MPROFILE");
 		

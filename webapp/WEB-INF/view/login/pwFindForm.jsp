@@ -41,7 +41,7 @@
 					
 					function whenSuccess(resData){
 						if(resData == "FIND_YES"){
-							alert("입력하신 이메일 주소로 송부된 URL을 클릭해주세요.");
+							alert("입력하신 이메일 주소로 인증메일이 발송되었습니다.");
 						}else{
 							alert("아이디 또는 이메일 주소가 일치하지 않습니다.");
 							$('#mid').val('');
