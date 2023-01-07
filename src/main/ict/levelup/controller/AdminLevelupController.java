@@ -44,18 +44,15 @@ public class AdminLevelupController {
 		String mnum = req.getParameter("mnum");
 		lvo.setMnum(mnum);
 		
-		
 		List<LevelupVO> list = adminLevelupService.levelupSelectContent(lvo);
 		
 		if(list.size() > 0) {
-			
-			
 			m.addAttribute("list", list);
 			m.addAttribute("mnick", mnick);
 			return "levelup/adminLevelupSelectContent";
 		}
-		
-		return "";
+		logger.info("List<LevelupVO> list의 사이즈가 적절하지 않습니다.");
+		return "#";
 	}
 	
 	@GetMapping(value="levelupNope")

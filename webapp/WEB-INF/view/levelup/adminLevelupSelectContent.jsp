@@ -1,103 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
+
 <%@ page import="java.util.List" %>
+
 <%@ page import="main.ict.levelup.vo.LevelupVO" %>
 <%@ page import="main.ict.common.O_Session" %>
-<%
-	request.setCharacterEncoding("UTF-8");
 
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("adminLevelupSelectContent.jsp 진입 .");	
+%>
+<%
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+%>
+<%
 	List<LevelupVO> list = (List<LevelupVO>)request.getAttribute("list");
-	
 	LevelupVO lvo = list.get(0);
 
 	String mnick = (String)request.getAttribute("mnick");
-
-	O_Session oSession = O_Session.getInstance();
-	String mnum = oSession.getSession(request);
-	String mid = (String)oSession.getAttribute(request, "mid");
 %>
 
-
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html lang='ko'>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
 <!-- jQuery -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 전체 css -->
-<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-
+		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 <!-- adminLevelupContent.jsp 전용 -->
-<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupContent.css">
-
+		<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupContent.css">
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
-<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>	
-
+		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>	
 <!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
-	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>	
-		
-<script type="text/javascript">
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		<script type="text/javascript">
 
-	$(document).ready(function(){
-		
-		$("#nopeBtn").click(function(){
-			
-			let result = confirm('등업을 거부하시겠습니까?');
-			if(result == true){
-			
-			$("#levelupForm").attr({
-				"action":"levelupNope.ict",
-				"method":"GET",
-				"enctype":"application/x-www-form-urlencoded"
-			}).submit();
-			
-			alert("등업이 거부되었습니다.");
-			
-			}else{
-				alert("취소되었습니다.");
-			}
-		});
-		
-		
-		$("#okeyBtn").click(function(){
-			
-			let result = confirm('등업을 승인하시겠습니까?');
-			if(result == true){
-			
-			$("#levelupForm").attr({
-				"action":"levelupOkey.ict",
-				"method":"GET",
-				"enctype":"application/x-www-form-urlencoded"		
-			}).submit();
+			$(document).ready(function(){
 				
-			alert("등업이 승인되었습니다.");
-			
-			}else{
-				alert("취소되었습니다.");
-			}	
-		});
-		
-		//로그아웃
-		$("#logoutBtn").on("click", function() {
-			$("#logoutForm").attr({
-				"action": "logout.ict",
-				"method": "GET",
-				"enctype": "application/x-www-form-urlencoded"
-			}).submit();
-		});
+				$("#nopeBtn").click(function(){
+					
+					let result = confirm('등업을 거부하시겠습니까?');
+					if(result == true){
+					
+					$("#levelupForm").attr({
+						"action":"levelupNope.ict",
+						"method":"GET",
+						"enctype":"application/x-www-form-urlencoded"
+					}).submit();
+					
+					alert("등업이 거부되었습니다.");
+					
+					}else{
+						alert("취소되었습니다.");
+					}
+				});
 				
-		//all.js 에 있는 모든 함수 연결
-		allJavaScript();
-	});
+				
+				$("#okeyBtn").click(function(){
+					
+					let result = confirm('등업을 승인하시겠습니까?');
+					if(result == true){
+					
+					$("#levelupForm").attr({
+						"action":"levelupOkey.ict",
+						"method":"GET",
+						"enctype":"application/x-www-form-urlencoded"		
+					}).submit();
+						
+					alert("등업이 승인되었습니다.");
+					
+					}else{
+						alert("취소되었습니다.");
+					}	
+				});
+				
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
+			});
 
-
-
-</script>
-
-</head>
-<body>
+		</script>
+	</head>
+	<body>
 
 <form name="levelupForm" id="levelupForm">
 
@@ -299,45 +299,106 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-<h1 align="center">등업신청</h1>
-<table>
-	<tr>
-		<td>제목</td>
-		<td colspan="4" style="text-align:left; width:400;">
-			<font size="4" style="color:black"><%= lvo.getLvsubject() %></font>
-		</td>
-		<td class="td_2"> 작성일자 :<%= lvo.getInsertdate() %>
-		</td>
-		</tr>
-		<tr>
-			<input type="hidden" name="lvnum" value="<%=lvo.getLvnum() %>">
-			<input type="hidden" name="mnum" value="<%=lvo.getMnum() %>">
-			<td>작성자</td>
-			<td><%= mnick %></td>
-		</tr>
-		<tr>
-			<td colspan="6" style="text-align:left">
-			<img src="/oneYo/img/levelup/<%=lvo.getLvphoto() %>" border="1" width="100" height="100" alt="image"><br>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="6" style="text-align:left" >
-			<span name="kbcontent" id="kbcontent" rows="5" cols="100"><%= lvo.getLvcontent() %></span>
-			</td>
-		</tr>		
-</tr>
-<tr>
-<td colspan="6" align="center">
-<br><br>
-<button type="button" class="btns" id="nopeBtn">거부</button>
-<button type="button" class="btns" id="okeyBtn">승인</button>
-</td>				
-</tr>
-</table>	 
-
+			<input type="hidden" name="lvnum" value="<%= lvo.getLvnum() %>">
+			<input type="hidden" name="mnum" value="<%= lvo.getMnum() %>">
+			<div class="reqHeader">
+				등업신청 승인/거부
+			</div>
+			<div class="reqHeaderUnderLine">
+				-------------------
+			</div>
+			<div id="viewTable">
+				<table id="selectContent">
+					<tr class="subjectTr">
+						<td>
+						<!-- 글 이미지 + 카테고리 -->
+						<%
+							if (lvo.getLvphoto() == null) {
+						%>
+							<script>
+								
+								$(document).ready(function() {
+									
+									let subjectTr = $(".subjectTr");
+									subjectTr.css({
+										"display": "flex",
+										"justify-content": "center",
+										"margin-bottom": "20px"
+									});
+									
+									$(".selectTd").css({
+										"width": "100%"
+									});
+									
+								});
+							
+							</script>
+						<%
+							} else {
+						%>
+							<div class="imgSelect" style="margin-bottom: 20px;">
+								<img class="levelupImg" src="/oneYo/img/levelup/<%= lvo.getLvphoto() %>">
+								<input type="hidden" id="nphoto" name="nphoto" value="<%= lvo.getLvphoto() %>"/> 
+							</div>
+						<%
+							}
+						%>
+						</td>
+						<td class="selectTd subjectTd">
+							<p style="text-align:left;word-break:keep-all;overflow:hidden;">
+								<%= lvo.getLvsubject() %><br />
+							</p>
+							<div id="hrDiv"></div>
+							<div class="writerDiv" style="text-align:left;margin-top:10px;">
+								작성자 :&nbsp;&nbsp;&nbsp; <%= mnick %>
+							</div>
+							<div class="writerDiv">
+								작성일자 : <%= lvo.getInsertdate() %>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="contentBody">
+							<%= lvo.getLvcontent() %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:right;">
+							<div class="thirdContents">
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												<button type="button" class="btns levelupButton" id="okeyBtn">승인</button>
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												<button type="button" class="btns levelupButton" id="nopeBtn">거부</button>
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>	 
 <!-- -------------------------------페이지 전용 center------------------------------- -->  
-</div>
-
+			</div>
+			<div style="height:25px;"></div>
+		</div>
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
