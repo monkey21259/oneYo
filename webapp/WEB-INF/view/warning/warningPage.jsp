@@ -31,7 +31,7 @@
 					});
 			
 			function whenSuccess(data){
-				alert("ajax 성공");
+				
 				data = data.split("&");
 				for(let i=0; i < data.length; i++){
 					let value = data[i].split("/");
@@ -41,7 +41,7 @@
 			
 			}
 			function whenError(e){
-				alert("실패함 : " + e.responseText);
+				
 			}
 		
 		}); 	

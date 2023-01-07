@@ -37,8 +37,7 @@
 #center table{
 	align:center;	
 	overflow : hidden; /*테두리 영역 넘어가면 숨김*/
-	margin-left: 50px;
-    margin-right: 50px;
+	margin:auto;
 }
 
 .logo{
@@ -46,8 +45,7 @@
 	 height:150px;
  	 text-align:center;
  	 display : block;
-	 padding-bottom: 50px;
-	 padding-left:40px;
+ 	 margin:auto;
 	
 }
 
@@ -66,7 +64,8 @@ hr {
 }
 #center #login {
 	font-size : 30px;
-	padding: 15px;
+/* 	padding: 15px; */
+
 	
 }
 
@@ -112,7 +111,11 @@ hr {
          	
         }
         
-  
+/*sns로그인*/        
+#snslogin {
+  	font-size : 14px;
+  	color : #444;
+  }
 
 /* 아이디 , 비밀번호 찾기 영역*/
 #center .alink{

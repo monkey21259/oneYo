@@ -30,7 +30,7 @@
 	$(document).ready(function(){
 		
 		$(document).on("click", "#insertBtn", function(){
-			alert("insertBtn 버튼 클릭 이벤트 발생");
+			console.log("insertBtn 버튼 클릭 이벤트 발생");
 			
 			let mnum = $("#mnum").val();
 			let lvsubject = $("#lvsubject").val();

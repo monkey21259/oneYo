@@ -59,13 +59,11 @@
 					});
 					
 					//사용자가 내용 입력할 input 태그
-					var newInput = $('<input>');
+					var newInput = $('<textarea>');
 					newInput.attr({
-						'type':'text',
 						'placeholder':'내용을 입력해주세요'
 					});
 					newInput.addClass('rcontent');
-					newInput.css({'width':'634px', 'height':'20px'});
 					
 					//img태그와 input태그가 담길 div태그
 					var newDiv = $('<div>');
@@ -94,7 +92,7 @@
 				
 // 				alert("[recipeInsertForm.jsp] jQuery");
 				$("#recipeInsertBtn").on("click", function() {
-					alert("recipeInsertBtn >>> Click");
+					
 					
 					// validation code area
 					
@@ -568,7 +566,7 @@
 								<input type="hidden" id="rcontent" name="rcontent">
 								<div class="neyong" style="display:flex; align-items:center;">
 									<img src="/oneYo/img/numbering/number1.png" width="45" height="45">&nbsp;
-									<input type="text" class="rcontent" style="width:634px; height:20px;" placeholder="내용을 입력해주세요">
+									<textarea class="rcontent" placeholder="내용을 입력해주세요"></textarea>
 								</div>
 							</div>
 							&nbsp;&nbsp;
@@ -635,28 +633,33 @@
 <!-- 							<select id="rhour" name="rhour" > -->
 <!-- 								<option value="00" selected>00</option> -->
 <%-- <%	// ---- 시(0 ~ 23) --%>
+<!-- 
 // 							String hour = null;
 // 							for (int i=1; i<24; i++) {
 // 								hour = "";
 // 								if (i < 10) { hour += "0"; }
 // 								hour += i;
+ -->
 <%-- %> --%>
 <%-- 								<option value=<%= hour %>><%= hour %></option> --%>
 <%-- <% --%>
-// 							}
+<!-- // 							} -->
 <%-- %>							</select>&nbsp;시간&nbsp; --%>
 <!-- 							<select id="rminute" name="rminute" > -->
 <!-- 								<option value="00" selected>00</option> -->
 <%-- <%	// ---- 분(0 ~ 59) --%>
+<!-- 
 // 							String minute = null;
 // 							for (int i=1; i<60; i++) {
 // 								minute = "";
 // 								if (i < 10) { minute += "0"; }
 // 								minute += i;
+ -->
 <%-- %>								 --%>
 <%-- 								<option value=<%= minute %>><%= minute %></option> --%>
 <%-- <%							 --%>
-// 							}
+<!-- 
+// 							} -->
 <%-- %>							</select>&nbsp;분&nbsp; --%>
 <!-- 						</td> -->
 <!-- 					</tr> -->
@@ -666,15 +669,17 @@
 <!-- 							<select id="rperson" name="rperson"> -->
 <!-- 								<option value="1인분" selected>1인분</option> -->
 <%-- <%  // ---- 몇 인분(max=10) --%>
+<!-- 
 // 							String rPerson = null;
 // 							for (int i=2; i<11; i++) {
 // 								rPerson = "";
 								
 // 								rPerson += i;
+ -->
 <%-- %> --%>
 <%-- 								<option value="<%= rPerson %>인분"><%= i %>인분</option> --%>
 <%-- <% --%>
-// 							}
+<!-- // 							} -->
 <%-- %>							</select> --%>
 <!-- 						</td> -->
 <!-- 					</tr> -->

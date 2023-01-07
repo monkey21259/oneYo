@@ -40,11 +40,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-			alert("[home.jsp] JS");
+		
 			
 			$(document).ready(function() {
 				
-				alert("[home.jsp] jQuery");
+				
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
@@ -97,7 +97,7 @@
 				allJavaScript();
 				
 				$(document).on("click", "#jeryoBtn", function(){
-					alert("jeryoBtn 버튼 클릭 이벤트 발생");
+					
 					let jeryo = $("#jeryo");
 					let jeryoList = $("#jeryoList");
 					console.log("입력된 재료 : " + jeryo.val());
@@ -122,13 +122,13 @@
 				
 				$(document).on("click", "#recipeSearchBtn", function(){
 					
-					alert("recipeSearchBtn 클릭 이벤트 발생");
+					
 					let jeryoList = $("#jeryoList");
 					console.log(jeryoList.text());
 					
 					if(jeryoList.text() != '등록된 재료가 없습니다.') {
 						if(jeryoList.text() !=null && jeryoList.text().length > 0 && typeof jeryoList.text() !='undefined') {
-							alert("정상상태 재료리스트 : " + jeryoList.text());
+							
 							
 							let jeryo = jeryoList.text().replaceAll(" ", "");
 							jeryo = jeryo.split("#");

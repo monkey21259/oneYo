@@ -19,6 +19,103 @@
 #center {
 	
 }
+  /* 글 등록 헤더 */
+.insertHeader {
+	width: 1180px;
+    height: 100px;
+    margin: 0px auto;
+    border: 1px solid #EEE;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: #657202;
+    background-color: #E3E69E;
+    box-shadow: 2px 2px 8px #AAA;
+    font-weight: 500;
+}
+
+.insertHeaderUnderLine {
+	position: relative;
+	text-align: center;
+    font-size: 35px;
+    top: -45px;
+    color: #BBB;
+}
+  /* 글 등록하는 영역 */
+.insBody {
+	width: 800px;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 50px auto;
+}
+
+.insBody table tbody tr, .insBody table tbody td {
+	padding-bottom: 10px;
+}
+
+.insBody table tbody tr td:nth-child(1) {
+	font-size: 25px;
+	margin-right: 5px;
+	width: 65px;
+}
+
+.insBodyArea {
+    font-size: 20px;
+    width: 610px;
+    height: 32px;
+    padding: 0px 8px;
+	border: 1px solid #657202;
+    border-radius: 100px;
+    margin: 0px 5px;
+}
+
+.insBodyTextArea {
+	height: 300px;
+    width : 550px;
+    border: 1px solid #657202;
+    border-radius: 45px;
+    padding: 45px;
+    font-size: 20px;
+    resize: none; /* 크기조절 드래그 방지 */
+}
+
+.inputFile {
+	float: left;
+	color: #F0F2CC;
+	padding: 8px 30px;
+	border: 1px solid #DDD;
+	border-radius: 35px;
+	background-color: #AC7B53;
+}
+
+.nphoto {
+	display: none;
+}
+
+.outputFileName {
+	float: left;
+	width: 387px;
+	height: 20px;
+	position: relative;
+	top: 10px;
+	left: 15px;
+	overflow: hidden;
+}
+
+.insertBtn {
+	width: 120px;
+	height: 30px;
+	font-size: 19px;
+	border: none;
+	box-shadow: 2px 2px 8px #AAA;
+	float: left;
+	position: relative;
+	top: 3px;
+	left: 10px;
+	background-color: #E0E086;
+}
 
 /* -------------------------------- 우측 right -------------------------------- */
 #right {

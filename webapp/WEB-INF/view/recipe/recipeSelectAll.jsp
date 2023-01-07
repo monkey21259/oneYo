@@ -98,7 +98,7 @@
 			}); // end of $(document).ready();
 			
 			function recipeSearch() {
-				alert("recipeSearch() 함수 시작");
+				
 				location.href = "recipeSearchForm.ict";
 			}
 		
@@ -349,39 +349,58 @@
 <!-- Section -->		
 		<section>				
 <form id="recipeInsertForm">
-			<div class="recipeSectionHeader">
-				<span class="t">레시피(Recipe) 게시판</span>
-			</div>
+
+<!-- 			<div class="recipeSectionHeader"> -->
+<!-- 				<span class="t">레시피(Recipe) 게시판</span> -->
+<!-- 			</div> -->
 			
+<!-- 			<div class="postTitles" data-num="1"> -->
+<!-- 			 	<div class="favorPostTitle" data-value="recipe" data-num="1"> -->
+<!-- 			 		<span>레시피</span> -->
+<!-- 			 	</div> -->
+<!-- 			 	<div class="favorPostTitle" data-value="tip" data-num="2"> -->
+<!-- 			 		<span>전문가</span> -->
+<!-- 			 	</div> -->
+<!-- 			 	<div class="favorPostTitle" data-value="community" data-num="3"> -->
+<!-- 			 		<span>커뮤니티</span> -->
+<!-- 			 	</div> -->
+<!-- 			 	<div class="favorPostTitle" data-value="notice" data-num="4"> -->
+<!-- 			 		<span>공지사항</span> -->
+<!-- 			 	</div> -->
+<!-- 		 	</div> -->
+		 	
+		 	
 			<div class="recipeCategory">
 				<!-- (조건 검색) 카테고리 넣는 공간 -->
-				<div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=00">
-						<img src="/oneYo/img/recipe/rcategory/recipekorea.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipekorea.png">
 					</a>
 				</div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=01">
-						<img src="/oneYo/img/recipe/rcategory/recipechina.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipechina.png">
 					</a>
-				<div>
+				</div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=02">
-						<img src="/oneYo/img/recipe/rcategory/recipeyang.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipeyang.png">
 					</a>
 				</div>
 				
-				<div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=03">
-						<img src="/oneYo/img/recipe/rcategory/recipejapan.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipejapan.png">
 					</a>
 				</div>
-				<div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=04">
-						<img src="/oneYo/img/recipe/rcategory/recipedesert.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipedesert.png">
 					</a>
 				</div>
-				<div>
+				<div class="recipeCate">
 					<a href="recipeCategorySelectAll.ict?rcategory=99">
-						<img src="/oneYo/img/recipe/rcategory/recipeelse.png" style="width:300px; height:120px; float:left;">
+						<img src="/oneYo/img/recipe/rcategory/recipeelse.png">
 					</a>
 				</div>
 			</div>
@@ -389,27 +408,36 @@
 			
 			
 
-			<div class="recipeSearchBtnDiv">
-				<!-- 카테고리 조건 검색 -->
-				<a class="recipeSearchBtn" href="javascript:recipeSearch();">검색</a>
-			</div>
+			
 			<div class="recipeSearchPeriodContainer">
-				<div class="t">
-					<a href="javascript:void(0);">
-						<span>&nbsp;일간&nbsp;</span>
-					</a>/
+				<div class="recipeSearchAll">
+					<div class="t">
+						<a href="javascript:void(0);">
+							<span>일간</span>
+						</a>
+					</div>
+					|
+					<div class="t">
+						<a href="javascript:void(0);">
+							<span>주간</span>
+						</a>
+					</div>
+					|
+					<div class="t">
+						<a href="javascript:void(0);">
+							<span>월간</span>
+						</a>
+					</div>
+					|
+					<div class="t"><span>인기글</span></div>
 				</div>
-				<div class="t">
-					<a href="javascript:void(0);">
-						<span>&nbsp;주간&nbsp;</span>
-					</a>/
-				</div>
-				<div class="t">
-					<a href="javascript:void(0);">
-						<span>&nbsp;월간&nbsp;</span>
-					</a>/
-				</div>
-				<div class="t">&nbsp;인기글</div>
+				<div class="recipeBtnTwo">
+					<a class="recipeSearchBtn" href="javascript:recipeSearch();">
+						<div class="recipeSearchBtnDiv">
+							<!-- 카테고리 조건 검색 -->
+							검색
+						</div>
+					</a>
 <%
 				
 				if (mnum.length() > 0) {
@@ -417,12 +445,13 @@
 %>
 				<div class="tright">
 					<a href="/oneYo/recipeInsertForm.ict">
-						<span>글 등록 버튼</span>
+						<span>글 등록</span>
 					</a>
 				</div>
 <%
 				}
 %>
+				</div>
 			</div>
 <%
 			Object pagingObj = request.getAttribute("pagingVO");
@@ -434,6 +463,7 @@
 			int groupSize = Integer.parseInt(pagingVO.getGroupSize());
 			int curPage = Integer.parseInt(pagingVO.getCurPage());
 			int totalCount = 0;
+			String rcategory = pagingVO.getRcategory();
 			
 			Object recipeObj = request.getAttribute("recipeList");
 			if (recipeObj == null) {
@@ -562,6 +592,7 @@
 						<jsp:param value="<%=groupSize %>" name="groupSize"/>
 						<jsp:param value="<%=curPage %>" name="curPage"/>
 						<jsp:param value="<%=totalCount %>" name="totalCount"/>
+						<jsp:param value="<%=rcategory %>" name="rcategory"/>
 					</jsp:include>
 
 	<input type="hidden" id="rnum" name="rnum" value="" />

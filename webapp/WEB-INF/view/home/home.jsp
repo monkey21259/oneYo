@@ -51,11 +51,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-			alert("[home.jsp] JS");
+			console.log("[home.jsp] JS");
 			
 			$(document).ready(function() {
 				
-				alert("[home.jsp] jQuery");
+				console.log("[home.jsp] jQuery");
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
@@ -187,7 +187,8 @@
 				
 				let dateCondition = $("#favorCond option:selected").val();	// W, M, D
 				let boardCategory = $(".postTitles").attr("data-num");		// 1, 2, 3
-				let condCategory = dateCondition + boardCategory;
+				let viewCount = "8";										// 보여줄 게시글 개수
+				let condCategory = dateCondition + boardCategory + viewCount;
 
 				let urlV = "/oneYo/condCategory/" + condCategory + ".ict";
 				let typeV = "GET";

@@ -291,7 +291,9 @@ SELECT
 					,"ORCLICT00"."ICT_MEMBER"	B
 			WHERE A.DELETEYN = 'Y'
 			AND	  B.DELETEYN = 'Y'
-			AND   A.RCATEGORY = #{rcategory}
+			<if test='rcategory != null and rcategory != ""'>
+				<![CDATA[AND   A.RCATEGORY = #{rcategory}]]>
+			</if>
 			AND   A.MNUM = B.MNUM
 			ORDER BY A.RNUM DESC
 		 )

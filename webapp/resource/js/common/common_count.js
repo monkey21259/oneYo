@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	alert("import JavaScript jQuery ready()");
+	console.log("import JavaScript jQuery ready()");
 	
 	$.ajax({
 		url: '/oneYo/info.ict',

@@ -69,11 +69,11 @@ $(document).ready(function(){
 
 	//	이메일 선택 박스 변경시 text변경되는 함수		=====
 	$(document).on('change', '#memail2', function(){
-// 		alert("memail2 >>> : " + $('#memail2').val());
+
 		
 		let emails = ["", "gmail.com", "naver.com", "kakao.com", ""];
 		let emailKey = parseInt($('#memail2').val());
-// 		alert("email2 >>> : " + emails[emailKey]);
+
 		
 		$('#memail1').val(emails[emailKey]);
 		if (emailKey == '4') {
@@ -86,9 +86,7 @@ $(document).ready(function(){
 	
 	//	form 전송하기						=====
 	$(document).on('click', '.memailBtn', function(){
-// 		alert("#memailBtn >>> : "
-// 				+ $('#memail0').val() + "@" + $('#memail1').val()
-// 				+ "/" + $('#mailKey').val());
+	
 		
 		let cnt = 0;
 		$('.memail').each(function(){
@@ -153,7 +151,7 @@ $(document).ready(function(){
 				}	//	ajax 수행문
 				
 				function whenError() {
-					alert("에러 발생, 콘솔을 확인 해 주세요.");
+					
 					console.log("에러 발생 e >>> : " + e.responseText);
 				}
 				
@@ -164,7 +162,7 @@ $(document).ready(function(){
 					//	인증번호를 올바르게 기입하는데에 성공하였다면
 					
 					$('#mkey').val(mkey);
-					alert("mkey >>> : " + $('#mkey').val());
+				
 					
 					$('#profileUpdateForm').attr({
 						 "action"	: "memUpdate.ict"

@@ -83,11 +83,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-			alert("[home.jsp] JS");
+			console.log("[home.jsp] JS");
 			
 			$(document).ready(function() {
 				
-				alert("[home.jsp] jQuery");
+				console.log("[home.jsp] jQuery");
 
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
@@ -145,19 +145,19 @@
 //				<button id="communitytBtn" style="width:200px;">커뮤니티</button>
 
 				$(document).on("click","#recipeBtn", function(){
-					alert("recipeBtn 버튼 클릭");
+					console.log("recipeBtn 버튼 클릭");
 					location.href = "chefRecipeShowMore.ict?mnum=<%= chefMnum %>";
 					
 				});
 				
 				$(document).on("click","#tipBtn", function(){
-					alert("tipBtn 버튼 클릭");
+					console.log("tipBtn 버튼 클릭");
 					location.href = "chefTipShowMore.ict?mnum=<%= chefMnum %>";
 					
 				});
 				
 				$(document).on("click","#communitytBtn", function(){
-					alert("communitytBtn 버튼 클릭");
+					console.log("communitytBtn 버튼 클릭");
 					location.href = "chefCommunityShowMore.ict?mnum=<%= chefMnum %>";
 					
 				});
@@ -190,7 +190,7 @@
 			}
 			
 			function recipeSelectContent(rnum) {
-				alert(rnum);
+				console.log(rnum);
 				location.href = "recipeSelectContent.ict?rnum=" + rnum;
 			}
 			

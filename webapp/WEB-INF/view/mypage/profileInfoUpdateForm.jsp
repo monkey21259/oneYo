@@ -132,7 +132,7 @@ $(document).ready(function(){
 			$('#mcategory').val(mcategory);
 			console.log("mcategory >>> : " + $('#mcategory').val());
 			
-			alert("mkey >>> : " + $('#mkey').val());
+			
 			
 			$('#profileUpdateForm').attr({
 				 "action"	: "memUpdate.ict"

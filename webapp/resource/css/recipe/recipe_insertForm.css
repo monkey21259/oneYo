@@ -105,12 +105,14 @@
 	/* 제목 적히는 곳 높이 */
 	height	: 30px;
 	width	: 100%;
+	
+	font-size	: 20px;
 }
 
 /* 제목과 작성자 사이 선 */
 #center #insertContent .selectTd #hrDiv {
 	height	: 6px;
-	width	: 98%;
+	width	: 87%;
 /* 	margin	: auto; */
 	border-bottom	: 1px solid #AC7B53;
 }
@@ -123,8 +125,9 @@
 	color		: #666;
 	/* 공간 높이 */
 	height	: 21px;
-	width	: 99%;
+	width	: 80%;
 	margin	: auto;
+	margin-left	: 2px;
 	/* 중앙배치 */
 /* 	text-align: right; */
 /* 	border-top	: 1px solid #AC7B53; */
@@ -189,7 +192,7 @@
 
 /* 본문 */
 #center #insertContent .neyong {
-	width	: 800px;
+	width	: 700px;
 	margin	: auto;
 	margin-left	: 0;
 /* 	margin-left	: 3%; */
@@ -199,9 +202,11 @@
 	width	: 98%;
 	margin	: auto;
 	/* 폰트 사이즈 */
-	font-size	: 18px;
+	font-size	: 16px;
 	letter-spacing	: 1px;
 	line-height	: 150%;
+	
+	resize	: vertical;
 }
 
 /* -------------------------------- 하단 footer -------------------------------- */
