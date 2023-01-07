@@ -64,7 +64,7 @@
 				});
 				
 				$('.pa').on("click", function() {				// 게시글 클릭 시
-// 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
+ 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
 					$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
 					$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
 						"action": "/oneYo/goSelectContent.ict",
