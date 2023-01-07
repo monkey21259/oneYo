@@ -78,7 +78,7 @@ public class HomeController {
 	@GetMapping(value="chefIntroduce")
 	public String chefIntroduce() {
 		logger.info("chefIntroduce() 함수 진입");
-		return "home/chefIntroduce";
+		return "home/pilot";
 	}
 	
 	@GetMapping(value="chefRecipeShowMore")

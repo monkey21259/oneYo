@@ -70,21 +70,25 @@ public class HomeRestController {
 		} // end of if
 		
 		if(rList !=null && rList.size() > 0) {
-			JSONObject json_tip_obj = null;
-			JSONArray json_tip_array = new JSONArray();
+			JSONObject json_recipe_obj = null;
+			JSONArray json_recipe_array = new JSONArray();
 			
 			for(int i=0; i < rList.size(); i++) {
 				rvo = rList.get(i);
 				logger.info("레시피 정보 : " + rvo.toString());
 				
-				json_tip_obj = new JSONObject();
-				json_tip_obj.put("rnum", rvo.getRnum());
-				json_tip_obj.put("rsubject", rvo.getRsubject());
-				json_tip_obj.put("rphoto", rvo.getRphoto());
-				json_tip_obj.put("rsubject", rvo.getRsubject());
-				json_tip_array.add(json_tip_obj);
+				json_recipe_obj = new JSONObject();
+				json_recipe_obj.put("rnum", rvo.getRnum());
+				json_recipe_obj.put("rsubject", rvo.getRsubject());
+				json_recipe_obj.put("rcategory", rvo.getRcategory());
+				json_recipe_obj.put("rphoto", rvo.getRphoto());
+				json_recipe_obj.put("mnick", rvo.getMnick());
+				json_recipe_obj.put("rhit", rvo.getRhit());
+				json_recipe_obj.put("insertdate", rvo.getInsertdate());
+				json_recipe_obj.put("likecnt", rvo.getLikecnt());
+				json_recipe_array.add(json_recipe_obj);
 			} // end of for
-			json_output.put("recipe", json_tip_array);
+			json_output.put("recipe", json_recipe_array);
 		} // end of if
 		
 		return json_output.toJSONString();
@@ -136,8 +140,12 @@ public class HomeRestController {
 				json_tip_obj = new JSONObject();
 				json_tip_obj.put("tnum", tvo.getTnum());
 				json_tip_obj.put("tsubject", tvo.getTsubject());
+				json_tip_obj.put("tcategory", tvo.getTcategory());
 				json_tip_obj.put("tphoto", tvo.getTphoto());
-				json_tip_obj.put("tsubject", tvo.getTsubject());
+				json_tip_obj.put("mnick", tvo.getMnick());
+				json_tip_obj.put("thit", tvo.getThit());
+				json_tip_obj.put("insertdate", tvo.getInsertdate());
+				json_tip_obj.put("likecnt", tvo.getLikecnt());
 				json_tip_array.add(json_tip_obj);
 			} // end of for
 			json_output.put("tip", json_tip_array);

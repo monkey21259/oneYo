@@ -3,6 +3,7 @@
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="java.util.List" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="main.ict.common.O_Session" %>
 <%@ page import="main.ict.community.vo.CommunityVO" %>
@@ -18,17 +19,6 @@
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
 	String mid = (String)oSession.getAttribute(request, "mid");
-	List<HomeVO> list = null;
-	HomeVO hvo = null;
-	
-	// 2023-01-05 쉐프 목록
-	
-	if (request.getAttribute("list") !=null) {
-		list = (List<HomeVO>)request.getAttribute("list");
-	}
-
-	logger.info("mid: " + mid);
-	logger.info("mnum: " + mnum);
 %>
 
 <!DOCTYPE html>
@@ -43,7 +33,7 @@
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
-		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
+		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -80,18 +70,358 @@
 						"enctype": "application/x-www-form-urlencoded"
 					}).submit();
 				});
+				
+				var mnum = '<%= request.getParameter("mnum") %>';
+				
+				// 페이지 진입 후 기본적으로 recipe 데이터가 보여짐
+				$.ajax({
+					type:'GET',
+					url: '/oneYo/recipe/' + mnum + '.ict',
+					dataType: 'text',
+					success: whenSuccess,
+					error: whenError
+				});
+					
+				// 레시피버튼을 누를 경우
+				$(document).on("click", "#recipeBtn", function(){
+					console.log("recipeBtn 버튼 클릭 이벤트 발생");
+					
+					$.ajax({
+						type:'GET',
+						url: '/oneYo/recipe/' + mnum + '.ict',
+						dataType : 'text',
+						success : whenSuccess,
+						error: whenError
+					});
+				});
+				
+				// 팁버튼을 누를 경우
+				$(document).on("click", "#tipBtn", function(){
+					console.log("tipBtn 버튼 클릭 이벤트 발생");
+					
+					$.ajax({
+						type:'GET',
+						url: '/oneYo/tip/' + mnum + '.ict',
+						dataType : 'text',
+						success : whenSuccess,
+						error: whenError
+					});
+				});
+				
+				// 커뮤니티 누를 경우
+				$(document).on("click", "#communityBtn", function(){
+					console.log("communityBtn 버튼 클릭 이벤트 발생");
+					
+					$.ajax({
+						type:'GET',
+						url: '/oneYo/community/' + mnum + '.ict',
+						dataType : 'text',
+						success : whenSuccess,
+						error: whenError
+					});
+				});
+				
+				// 레시피 더보기
+				$(document).on("click", "#recipeShowMore", function(){
+					console.log("레시피  보기");
+					location.href = "chefRecipeShowMore.ict?mnum=" + mnum;
+				});
+				
+				// 전문가팁 더보기
+				$(document).on("click", "#tipShowMore", function(){
+					console.log("팁 더보기");
+					location.href = "chefTipShowMore.ict?mnum=" + mnum;
+				});
+				
+				// 커뮤니티 더보기
+				$(document).on("click", "#communityShowMore", function(){
+					console.log("커뮤니티 더 보기");
+					location.href = "chefCommunityShowMore.ict?mnum=" + mnum;
+				});
 
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
 				
 			});
 			
-			function sortProccess(sortType) {
-				if(sortType !=null && sortType !="" && typeof sortType !="undefined") {
-					console.log(sortType);
-					location.href = "chefListShowMore.ict?sortCondition=" + sortType;
+			function whenSuccess(data) {
+				console.log(data);
+				let json = JSON.parse(data);
+				let recipe_html = "";
+				
+				console.log(json.mem[0].mgrade);
+				console.log(json.mem[0].mnick);
+				console.log(json.mem[0].mprofile);
+				console.log(json.mem[0].mnum);
+				
+				console.log("레시피 : " + data);
+				console.log("레시피 : " + json.hasOwnProperty('recipe'));
+				console.log("레시피 : " + Object.keys(json));
+				
+				if(json.hasOwnProperty('recipe')) {
+					
+					console.log("조호된 recipe 데이터가 " + json.recipe.length + "건 있습니다.");
+					let cnt = 0;
+					
+					$(".choiceTable").empty();
+					
+					for(let i=0; i < json.recipe.length; i++) {
+						
+						let choiceTable = $(".choiceTable");
+						
+						let choiceFour = $("<td>");
+						choiceFour.addClass("choiceFour");
+						
+						let aTag = $("<a>");
+						let rnum = json.recipe[i].rnum;
+						aTag.attr("href", "javascript:selectRecipe('" + rnum + "')");
+						
+						let selectOne = $("<div>");
+						selectOne.addClass("selectOne");
+						
+						let selectTable = $("<table>");
+						selectTable.addClass("selectTable");
+						
+						let tr = $("<tr>");
+						
+						let optionTd = $("<td>");
+						optionTd.addClass("optionTd");
+						
+						let hitDiv = $("<div>");
+						
+						let likeDiv = $("<div>");
+						
+						let span = $("<span>");
+						let hitp = $("<p>").text(json.recipe[i].rhit);
+						let likep = $("<p>").text(json.recipe[i].likecnt);
+						
+						let imgTd = $("<td>");
+						imgTd.addClass("imgTd");
+						
+						let img = $("<img id='rphoto'>")
+						img.attr("src", ("/oneYo/img/recipe/") + json.recipe[i].rphoto);
+						
+						let cateTd = $("<td>");
+						cateTd.addClass("cateTd");
+						
+						let cateP = $("<p>");
+						cateP.text(json.recipe[i].rcategory);
+						
+						let nameTd1 = $("<td>");
+						nameTd1.addClass("nameTd");
+						
+						let nameTd2 = $("<td>");
+						nameTd2.addClass("nameTd");
+						
+						let dayTd = $("<td>");
+						dayTd.addClass("dayTd");
+						
+						let imgDiv = $("<div>");
+						imgDiv.append(img);
+						
+						if(i % 4 == 0) {
+							choiceTable.append($("<tr>").append(choiceFour));
+							var newLine = $(".choiceFour").eq(cnt);
+							cnt++;
+						}
+
+						newLine.append(aTag);
+						aTag.append(selectOne);
+						selectOne.append(selectTable);
+						selectTable.append($("<tr>").append(optionTd));
+						
+						optionTd.append(hitDiv).append($("<span>").text("조회수 :"));
+						optionTd.append(hitp);
+						optionTd.append(likeDiv).append($("<span>").text("좋아요 :"));
+						optionTd.append(likep);
+						
+						selectTable.append($("<tr>").append(imgTd));
+						imgTd.append(img);
+						
+						selectTable.append($("<tr>").append(cateTd));
+						cateTd.append(cateP);
+						
+						selectTable.append($("<tr>").append(nameTd1));
+						nameTd1.append($("<div>").text(json.recipe[i].rsubject));
+						
+						selectTable.append($("<tr>").append(nameTd2));
+						nameTd2.append($("<p>").text('작성자'));
+						
+						selectTable.append($("<tr>").append(dayTd));
+						dayTd.append($("<div>").text(json.recipe[i].insertdate));
+						
+						choiceTable.append(tr);
+						
+						if (i  % 4 == 3) {
+							newLine.append("</td>").append("</tr>");
+						}
+						
+						console.log(i + "번 index : " + json.recipe[i].rnum);
+						console.log(i + "번 index : " + json.recipe[i].rsubject);
+						console.log(i + "번 index : " + json.recipe[i].rcategory);
+						console.log(i + "번 index : " + json.recipe[i].rphoto);
+						console.log(i + "번 index : " + json.recipe[i].mnick);
+						console.log(i + "번 index : " + json.recipe[i].rhit);
+						console.log(i + "번 index : " + json.recipe[i].insertdate);
+						console.log(i + "번 index : " + json.recipe[i].likecnt);
+					} // end of for
+					if (json.recipe.length % 4 != 0) {
+						let notEnough = (4 - json.recipe.length % 4);
+						alert(notEnough);
+						
+						for (let i=0; i < notEnough; i++) {
+							newLine.append($("<a>"));
+						}
+					}
+				}else{
+					
 				}
 				
+				if(json.hasOwnProperty('tip')) {
+					
+					console.log("조호된 recipe 데이터가 " + json.tip.length + "건 있습니다.");
+					let cnt = 0;
+					
+					$(".choiceTable").empty();
+					
+					for(let i=0; i < json.tip.length; i++) {
+						
+						let choiceTable = $(".choiceTable");
+						
+						let choiceFour = $("<td>");
+						choiceFour.addClass("choiceFour");
+						
+						let aTag = $("<a>");
+						let tnum = json.tip[i].tnum;
+						aTag.attr("href", "javascript:selectTip('" + tnum + "')");
+						
+						let selectOne = $("<div>");
+						selectOne.addClass("selectOne");
+						
+						let selectTable = $("<table>");
+						selectTable.addClass("selectTable");
+						
+						let tr = $("<tr>");
+						
+						let optionTd = $("<td>");
+						optionTd.addClass("optionTd");
+						
+						let hitDiv = $("<div>");
+						
+						let likeDiv = $("<div>");
+						
+						let span = $("<span>");
+						let hitp = $("<p>").text(json.tip[i].thit);
+						let likep = $("<p>").text(json.tip[i].likecnt);
+						
+						let imgTd = $("<td>");
+						imgTd.addClass("imgTd");
+						
+						let img = $("<img id='tphoto'>")
+						img.attr("src", ("/oneYo/img/tip/") + json.tip[i].tphoto);
+						
+						let cateTd = $("<td>");
+						cateTd.addClass("cateTd");
+						
+						let cateP = $("<p>");
+						cateP.text(json.tip[i].tcategory);
+						
+						let nameTd1 = $("<td>");
+						nameTd1.addClass("nameTd");
+						
+						let nameTd2 = $("<td>");
+						nameTd2.addClass("nameTd");
+						
+						let dayTd = $("<td>");
+						dayTd.addClass("dayTd");
+						
+						let imgDiv = $("<div>");
+						imgDiv.append(img);
+						
+						if(i % 4 == 0) {
+							choiceTable.append($("<tr>").append(choiceFour));
+							var newLine = $(".choiceFour").eq(cnt);
+							cnt++;
+						}
+
+						newLine.append(aTag);
+						aTag.append(selectOne);
+						selectOne.append(selectTable);
+						selectTable.append($("<tr>").append(optionTd));
+						
+						optionTd.append(hitDiv).append($("<span>").text("조회수 :"));
+						optionTd.append(hitp);
+						optionTd.append(likeDiv).append($("<span>").text("좋아요 :"));
+						optionTd.append(likep);
+						
+						selectTable.append($("<tr>").append(imgTd));
+						imgTd.append(img);
+						
+						selectTable.append($("<tr>").append(cateTd));
+						cateTd.append(cateP);
+						
+						selectTable.append($("<tr>").append(nameTd1));
+						nameTd1.append($("<div>").text(json.tip[i].tsubject));
+						
+						selectTable.append($("<tr>").append(nameTd2));
+						nameTd2.append($("<p>").text('작성자'));
+						
+						selectTable.append($("<tr>").append(dayTd));
+						dayTd.append($("<div>").text(json.tip[i].insertdate));
+						
+						choiceTable.append(tr);
+						
+						if (i  % 4 == 3) {
+							newLine.append("</td>").append("</tr>");
+						}
+						
+						console.log(i + "번 index : " + json.tip[i].tnum);
+						console.log(i + "번 index : " + json.tip[i].tsubject);
+						console.log(i + "번 index : " + json.tip[i].tcategory);
+						console.log(i + "번 index : " + json.tip[i].tphoto);
+						console.log(i + "번 index : " + json.tip[i].mnick);
+						console.log(i + "번 index : " + json.tip[i].thit);
+						console.log(i + "번 index : " + json.tip[i].insertdate);
+						console.log(i + "번 index : " + json.tip[i].likecnt);
+					} // end of for
+					if (json.tip.length % 4 != 0) {
+						let notEnough = (4 - json.tip.length % 4);
+						alert(notEnough);
+						
+						for (let i=0; i < notEnough; i++) {
+							newLine.append($("<a>"));
+						}
+					}
+				}else{
+					
+				}
+				
+				if(json.hasOwnProperty('community')) {
+					
+					console.log(json.community.length);
+					
+					for(var i=0; i < json.community.length; i++) {
+						console.log(i + "번 index : " + json.community[i].cnum);
+						console.log(i + "번 index : " + json.community[i].csubject);
+						console.log(i + "번 index : " + json.community[i].cphoto);
+					}
+					console.log(recipe_html);
+				}else{
+					
+				}
+				
+			}
+			
+			function whenError(request,status,error) {
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+			
+			function selectRecipe(rnum) {
+				location.href = "recipeSelectContent.ict?rnum=" + rnum;
+			}
+			
+			function selectTip(tnum) {
+				location.href = "tipSelectContent.ict?tnum=" + tnum;
 			}
 			
 		</script>
@@ -275,61 +605,21 @@
 
 <div id="center" style="text-align:center;">
 <!--
-2023-01-05
-쉐프 더 보기 작업할 공간
-2023-01-05
-쉐프 더 보기 작업할 공간
-2023-01-05
-쉐프 더 보기 작업할 공간
-2023-01-05
-쉐프 더 보기 작업할 공간
-2023-01-05
-쉐프 더 보기 작업할 공간
-2023-01-05
-쉐프 더 보기 작업할 공간
+쉐프 소개 페이지 작업할 공간
 -->
+<!-- 임시 버튼 -->
+<button type="button" id="recipeBtn">레시피 버튼</button>
+<button type="button" id="tipBtn">전문가팁 버튼</button>
+<button type="button" id="communityBtn">커뮤니티 버튼</button>
 
-<h3>쉐프 더보기</h3>
-<table>
-		<tr>
-			<td colspan="8" style="text-align:right;">
-				<button type="button" onclick="sortProccess('totalrecipe')">레시피 작성순</button>
-				<button type="button" onclick="sortProccess('totalrecipehit')">레시피 조회수순</button>
-				<button type="button" onclick="sortProccess('totaltip')">전문가 팁 작성순</button>
-				<button type="button" onclick="sortProccess('totaltiphit')">전문가 팁 조회수순</button>
-				<button type="button" onclick="sortProccess('subscription')">활동기간순</button>
-			</td>
-		</tr>
-<%
-	if (list !=null && list.size() > 0) {
-		for (int i=0; i < list.size(); i++) {
-			hvo = list.get(i);
-%> 
-		<tr>
-			<th>회원번호</th>
-			<th>닉네임</th>
-			<th>프로필</th>
-			<th>레시피 작성</th>
-			<th>레시피 조회수</th>
-			<th>전문가팁 작성</th>
-			<th>전문가팁 조회수</th>
-			<th>활동기간</th>
-		</tr>
-		<tr>
-			<td><span><%= hvo.getMnum() %></span></td>
-			<td><span><%= hvo.getMnick() %></span></td>
-			<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
-			<td><span><%= hvo.getTotalrecipe() %></span></td>
-			<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
-			<td><span><%= hvo.getTotaltip() %></span></td>
-			<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
-			<td><span><%= hvo.getSubscription() %>일</span></td>
-		</tr>
-<%
-		}
-	}
-%>
-</table>
+<div class="choiceAll">
+		<div class="choiceTableDiv">
+			<table class="choiceTable">
+				
+					
+			</table>
+		</div>
+	</div>
 
 </div>
 

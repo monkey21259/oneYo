@@ -128,8 +128,15 @@
 	SELECT  
 		    B.RNUM 		AS		RNUM
 		   ,B.RSUBJECT 	AS		RSUBJECT
+		   ,B.RCATEGORY	AS		RCATEGORY
 		   ,B.RPHOTO 	AS		RPHOTO
+		   ,A.MNICK		AS		MNICK
+		   ,B.RHIT		AS		RHIT
 		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+		   ,NVL((SELECT COUNT(LIKETHIS)
+				   	 FROM ORCLICT00.ICT_LIKE
+				   	 WHERE B.RNUM = LIKETHIS
+				   	 AND   LIKEYN = 'Y'), 0)	LIKECNT
 	FROM	(SELECT  
 					 MNUM
 					,MNICK
@@ -144,6 +151,8 @@
 		   		   ,RSUBJECT
 		   		   ,RPHOTO
 		   		   ,MNUM
+		   		   ,RCATEGORY
+		   		   ,RHIT
 		   		   ,INSERTDATE
 		     FROM	"ORCLICT00"."ICT_RECIPE"
 		     WHERE	DELETEYN = 'Y'			
@@ -158,8 +167,15 @@
 	SELECT  
 		    B.TNUM 		AS		TNUM
 		   ,B.TSUBJECT 	AS		TSUBJECT
+		   ,B.TCATEGORY	AS		TCATEGORY
+		   ,B.THIT		AS		THIT
 		   ,B.TPHOTO 	AS		TPHOTO
+		   ,A.MNICK		AS		MNICK
 		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+	   	   ,NVL((SELECT COUNT(LIKETHIS)
+			   	 FROM ORCLICT00.ICT_LIKE
+			   	 WHERE B.TNUM = LIKETHIS
+			   	 AND   LIKEYN = 'Y'), 0)	LIKECNT
 	FROM	(SELECT  
 					 MNUM
 					,MNICK
@@ -175,7 +191,9 @@
 		   		   ,TSUBJECT
 		   		   ,TPHOTO
 		   		   ,INSERTDATE
+		   		   ,THIT
 		   		   ,MNUM
+		   		   ,TCATEGORY
 		     FROM	"ORCLICT00"."ICT_TIP"
 		     WHERE	DELETEYN = 'Y'			
 		     AND	MNUM 	 = #{mnum})				B	
