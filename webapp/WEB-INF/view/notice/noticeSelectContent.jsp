@@ -1,47 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="org.apache.log4j.LogManager" %>
+<%@ page import="org.apache.log4j.Logger" %>
 
 <%@ page import="java.util.List" %>
+
 <%@ page import="main.ict.notice.vo.NoticeVO" %>
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.common.ConstPack" %>
+<%@ page import="main.ict.common.CodeUtils" %>
+
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
-	request.setCharacterEncoding("UTF-8");
-	
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("noticeSelectContent.jsp 진입 .");	
+%>
+<%
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+%>
+<%
 	Object obj = request.getAttribute("scontList");
+
 	if (obj == null) return;
 	List<NoticeVO> scontList = (List<NoticeVO>)obj;
 	NoticeVO nvo = scontList.get(0);
-	
-	//세션부여
-	O_Session oSession = O_Session.getInstance();
-	String mnum = oSession.getSession(request);
-	String mid = (String)oSession.getAttribute(request, "mid");
-	String mnick = (String)oSession.getAttribute(request, "mnick");
-
 %>
+
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 	<head>
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>
-		
-		<!-- jQuery -->
+<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		
-		<!-- 전체 css -->
+<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		<!-- noticeSelectContent.jsp 전용 -->
+<!-- noticeSelectContent.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/notice/noticeSelectContent.css">
-		<!-- 댓글 기능 전용 -->
+<!-- 댓글 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
-		
-		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
-			
-		
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
@@ -75,8 +80,9 @@
 		</script>
 	</head>
 	<body>
-		<form id="selectContentForm" name="selectContentForm">
-			<div id="realAll">
+<form id="selectContentForm" name="selectContentForm">
+
+<div id="realAll">
 
 <div id="backMenu"></div>
 <input type="checkbox" id="sideMenu" name="sideMenu" hidden>
@@ -220,7 +226,6 @@
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-		 	
 <% 		
 		}
 %>
@@ -274,59 +279,139 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			
 			<input type="hidden" id="nnum" name="nnum" value="<%=nvo.getNnum() %>">
-			<table>
-				<tr>
-					<td>제목</td>
-					<td><%=nvo.getNsubject() %></td>
-				</tr>
-				<tr>
-					<td>작성일</td>
-					<td><%=nvo.getInsertdate() %></td>
-				</tr>
-				<tr>
-				<td>내용</td>
-				</tr>
-				<tr>
-				<td><%=nvo.getNcontent() %></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<img src="/oneYo/img/notice/<%=nvo.getNphoto()%>" style="width:200px; height:200px;"><br>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
+			<div id="viewTable">
+				<table id="selectContent">
+					<tr>
+						<td colspan="2">
+							<%
+								Object likeObj = request.getAttribute("likeList");
+								String likeyn = "Y";
+								if(likeObj == null) likeyn = "N";
+							
+							%>
+							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
+								<jsp:param name="mnum" value="<%= mnum %>"/>
+								<jsp:param name="likethis" value="<%= nvo.getNnum() %>"/>
+								<jsp:param name="likeyn" value="<%= likeyn %>"/>
+							</jsp:include>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:right;">
+						<!-- 수정 / 삭제 / 경고 / 신고 -->
+					<% if (mnum.equals("M000000000000")) { %>
+							<button id="updateBtn" class="noticeButton">수정</button>
+							<button id="deleteBtn" class="noticeButton">삭제</button>
+					<% } %>
+						</td>
+					</tr>
+					<tr>
+						<td id="notice" class="selectTd cateTd" style="text-align:left;">
+							<span>공지사항</span>
+						</td>
+						<td rowspan="2">
+						<!-- 글 이미지 + 카테고리 -->
 						<%
-							Object likeObj = request.getAttribute("likeList");
-							String likeyn = "Y";
-							if(likeObj == null) likeyn = "N";
-						
+							if (nvo.getNphoto() == null) {
 						%>
-						<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
-							<jsp:param name="mnum" value="<%=mnum %>"/>
-							<jsp:param name="likethis" value="<%=nvo.getNnum() %>"/>
-							<jsp:param name="likeyn" value="<%=likeyn %>"/>
-						</jsp:include>
-					</td>
-				</tr>
-				<% 
-				if(mnum.equals("M000000000000")){
-				%>
-				<td colspan="2">
-						<button id="updateBtn">수정</button>
-						<button id="deleteBtn">삭제</button>
-					</td>
-				<%
-				}
-				%>	
-				</tr>
+							<script>
+								
+								$(document).ready(function() {
+									
+									let subjectTr = $(".subjectTr");
+									subjectTr.css({
+										"display": "flex",
+										"justify-content": "center",
+										"margin-bottom": "20px"
+									});
+									
+									$(".selectTd").css({
+										"width": "100%"
+									});
+									
+								});
+							
+							</script>
+<!-- 							<div style="width:200px;height:200px;margin-bottom: 20px;"></div> -->
+						<%
+							} else {
+						%>
+							<div class="imgSelect" style="margin-bottom: 20px;">
+								<img class="noticeImg" src="/oneYo/img/notice/<%= nvo.getNphoto() %>">
+								<input type="hidden" id="nphoto" name="nphoto" value="<%= nvo.getNphoto() %>"/> 
+							</div>
+						<%
+							}
+						%>
+						</td>
+					</tr>
+					<!-- 글 제목 + 글 작성자 -->
+					<tr class="subjectTr"> <%  // 글 제목 %>
+						<td class="selectTd subjectTd">
+							<p style="text-align:left;word-break:keep-all;overflow:hidden;">
+								<%= nvo.getNsubject() %><br />
+							</p>
+							<div id="hrDiv"></div>
+							<div class="writerDiv" style="text-align:left;">
+								<%= mnick %>
+							</div>
+							<div class="thirdContents">
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												좋아요
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= nvo.getLikecnt() %>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												조회수
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= nvo.getNhit() %>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												작성일
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= nvo.getInsertdate()%>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="contentBody">
+							<%= nvo.getNcontent() %>
+						</td>
+					</tr>
 			</table>
-		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
-			<jsp:param name="cotnum" value="<%=nvo.getNnum() %>"/>
-			<jsp:param name="clientMnick" value="<%=mnick %>"/>
-		</jsp:include>
+			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+				<jsp:param name="cotnum" value="<%=nvo.getNnum() %>"/>
+				<jsp:param name="clientMnick" value="<%=mnick %>"/>
+			</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
@@ -344,7 +429,7 @@
 </div>
 		</form>
 		<form id="logoutForm">
- 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
  		</form>
 	</body>
 </html>

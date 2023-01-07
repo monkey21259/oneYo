@@ -74,7 +74,6 @@
 					}).submit();
 				}); //delete
 				
-				
 			//신고
 				$(document).on("click", "#warning", function(){
 					
@@ -281,11 +280,11 @@
 %>
 			<div class="loginBtnDiv">
 <%
-			if(mid.equals("admin")){
+			if (mid.equals("admin")) {
 %>
 				<span class="Choonsik adminHome">관리자페이지</span>
 <%
-			}else{
+			} else {
 %>
 				<span class="Choonsik mypageHome">마이페이지</span>
 <%
@@ -310,7 +309,7 @@
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<% 		
+<% 		
 		}
 %>
 	 	</div>
