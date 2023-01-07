@@ -403,11 +403,11 @@
 					<td rowspan="2">
 					<!-- 글 이미지 + 카테고리 -->
 						<div class="imgSelect" style="margin-bottom: 20px;">
-							<img src="/oneYo/img/tip/<%= tvo.getTphoto() %>">
+							<img class="tipImg" src="/oneYo/img/tip/<%= tvo.getTphoto() %>">
 							<input type="hidden" id="tphoto" name="tphoto" value="<%= tvo.getTphoto() %>"/> 
 						</div>
 					</td>
-					<td id="recipe" class="selectTd cateTd" style="text-align:left;">
+					<td id="tip" class="selectTd cateTd" style="text-align:left;">
 						<span>전문가 팁</span>
 					</td>
 				</tr>

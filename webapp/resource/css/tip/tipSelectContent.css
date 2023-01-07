@@ -239,6 +239,11 @@
 	box-shadow:2px 2px 2px -1px #93A603;
 }
 
+.tipImg {
+	padding: 5px;
+	object-fit: contain;
+}
+
 /* -------------------------------- 우측 right -------------------------------- */
 #right {
 	

@@ -1,63 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
+
 <%@ page import="java.util.List" %>
+
 <%@ page import="main.ict.community.vo.CommunityVO" %>
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.common.ConstPack" %>
+<%@ page import="main.ict.common.CodeUtils" %>
 
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
-	request.setCharacterEncoding("UTF-8");
- 
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("CommunitySelect 진입 >>> : "); 
-%>    
+	logger.info("CommunitySelect 진입 .");	
+%>
 <%
-	//	model.addAttribute("listS", listS);
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	String mnick = (String)mSession.getAttribute(request, "mnick");
+%>
+<%
 	Object obj = request.getAttribute("listS");
+	CommunityVO cvo = null;
 	
 	List<CommunityVO> list = (List<CommunityVO>)obj;
 	int nCnt = list.size();
 	logger.info("nCnt >>> : " + nCnt);
-	
-	CommunityVO cvo = null;
-	
-	//세션부여
-	O_Session oSession = O_Session.getInstance();
-	String mnum = oSession.getSession(request);
-	String mnick = (String)oSession.getAttribute(request, "mnick");
-	String mid = (String)oSession.getAttribute(request, "mid");
-	
-	if(nCnt == 1){
+	if (nCnt == 1) {
 		cvo = list.get(0);
 	}
-	
 %>
+
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 	<head>
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>
-		
-		<!-- jQuery -->
+<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
-		<!-- 전체 css -->
+<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		
-		<!-- communitySelectContent.jsp 전용 -->
+<!-- communitySelectContent.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectContent.css">
-		
-		<!-- 댓글 기능 전용 -->
+<!-- 댓글 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
-		
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		
-		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
-		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
-		
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>		
 		<script type="text/javascript">
 			$(document).ready(function(){
 			//조회수 추가하기
@@ -171,13 +164,11 @@
 		</script>
 	</head>
 	<body>
-	
-		<form id="communitySelectContent" name="communitySelectContent">
+<form id="communitySelectContent" name="communitySelectContent">
+
 <div id="realAll">
 
-
 <div id="backMenu"></div>
-
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
@@ -210,7 +201,7 @@
 			</span>
 			</div>
 		</li>
-				<li class="item">
+		<li class="item">
 	<%
 		if(mid == null || !mid.equals("admin")){
 	%>
@@ -242,8 +233,6 @@
 		</li>
 	</ul>
 	</div>
-
-
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
@@ -374,48 +363,12 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-			<input type="hidden" id="mnum" name="mnum" value="<%=cvo.getMnum() %>">
-			<input type="hidden" id="mnick" name="mnick" value="<%=cvo.getMnick() %>">
-			<input type="hidden" id="csubject" name="csubject" value="<%=cvo.getCsubject() %>">
 			<input type="hidden" id="cnum" name="cnum" value="<%= cvo.getCnum() %>">
-			<table>
-				<div>
-					<tr>
-						<td>제목</td>
-						<td colspan="2"><%=cvo.getCsubject() %></td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td colspan="2"><%= cvo.getMnick()%></td>
-					</tr>
-					<tr>
-						<td>작성시간</td>
-						<td colspan="2"><%= cvo.getInsertdate()%></td>
-					</tr>
-				</div>
-				
-				<div>
-					<tr>
-						<td>좋아요</td>
-						<td><%= cvo.getLikecnt() %></td>
-					</tr>
-					<tr>
-						<td>조회수</td>
-						<td><%= cvo.getChit() %></td>
-					</tr>
-					
-					<tr>
-						<td colspan="2">내용</td>
-					</tr>
-					<tr>
-						<td colspan="2"><%= cvo.getCcontent() %></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<img src="/oneYo/img/community/<%=cvo.getCphoto()%>" style="width:200px; height:200px;">
-							<input type="hidden" id="cphoto" name="cphoto" value="<%= cvo.getCphoto()%>"></td>
-					</tr>
-					
+			<input type="hidden" id="mnum" name="mnum" value="<%= cvo.getMnum() %>">
+			<input type="hidden" id="csubject" name="csubject" value="<%= cvo.getCsubject() %>">
+			<input type="hidden" id="mnick" name="mnick" value="<%= cvo.getMnick() %>">
+			<div id="viewTable">
+				<table id="selectContent">
 					<tr>
 						<td colspan="2">
 							<%
@@ -424,44 +377,133 @@
 								if(likeObj == null) likeyn = "N";
 							%>
 							<jsp:include page="/WEB-INF/view/like/likeForm.jsp" flush="true">
-								<jsp:param name="mnum" value="<%=mnum %>"/>
-								<jsp:param name="likethis" value="<%=cvo.getCnum() %>"/>
-								<jsp:param name="likeyn" value="<%=likeyn %>"/>
+								<jsp:param name="mnum" value="<%= mnum %>"/>
+								<jsp:param name="likethis" value="<%= cvo.getCnum() %>"/>
+								<jsp:param name="likeyn" value="<%= likeyn %>"/>
 							</jsp:include>
 						</td>
 					</tr>
 					<tr>
-						
-											
-						<td colspan="2">
+					<td colspan="3" style="text-align:right;">
+						<!-- 수정 / 삭제 / 경고 / 신고 -->
+					<% if (mnum.length() > 0) { %>
+							<input id="warningBtn" type="button" class="communityButton" value="신고"> 
+					<% } %>
+					<% if (mnum.equals(cvo.getMnum())) { %>
+							<input id="updateBtn" type="button" class="communityButton" value="수정">
+							<input id="deleteBtn" type="button" class="communityButton" value="삭제">
+					<% } else if (mnum.equals("M000000000000")) { %>
+							<button type="button" id="cautionBtn" class="communityButton">경고</button>
+					<% } %>
+						</td>
+					</tr>
+					<tr>
+						<td id="community" class="selectTd cateTd" style="text-align:left;">
+							<span>커뮤니티</span>
+						</td>
+						<td rowspan="2">
+						<!-- 글 이미지 + 카테고리 -->
 						<%
-						if(mnum.length()>0){
+							if (cvo.getCphoto() == null) {
 						%>
-							<button type="button" id="warning">신고</button>
+							<script>
+								
+								$(document).ready(function() {
+									
+									let subjectTr = $(".subjectTr");
+									subjectTr.css({
+										"display": "flex",
+										"justify-content": "center",
+										"margin-bottom": "20px"
+									});
+									
+									$(".selectTd").css({
+										"width": "100%"
+									});
+									
+								});
+							
+							</script>
+<!-- 							<div style="width:200px;height:200px;margin-bottom: 20px;"></div> -->
 						<%
-						}
-						if(mnum.equals(cvo.getMnum())){ 
-							logger.info("mnum >>> : " + mnum);
-							logger.info("cvo.getMnum() >>> : " + cvo.getMnum());
-						
+							} else {
 						%>
-							<button type="button" id="UpdateBtn">수정</button>
-							<button type="button" id="DeleteBtn">삭제</button>
+							<div class="imgSelect" style="margin-bottom: 20px;">
+								<img class="communityImg" src="/oneYo/img/community/<%= cvo.getCphoto() %>">
+								<input type="hidden" id="tphoto" name="tphoto" value="<%= cvo.getCphoto() %>"/> 
+							</div>
 						<%
-						}else if(mnum.equals("M000000000000")){
-						%>
-							<button type="button" id="warningBtn">경고</button>
-						<%
-						}
+							}
 						%>
 						</td>
 					</tr>
-				</div>
-			</table>
-		<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
-			<jsp:param name="cotnum" value="<%=cvo.getCnum() %>"/>
-			<jsp:param name="clientMnick" value="<%=mnick %>"/>
-		</jsp:include>
+					<!-- 글 제목 + 글 작성자 -->
+					<tr class="subjectTr"> <%  // 글 제목 %>
+						<td class="selectTd subjectTd">
+							<p style="text-align:left;word-break:keep-all;overflow:hidden;">
+								<%= cvo.getCsubject() %><br />
+							</p>
+							<div id="hrDiv"></div>
+							<div class="writerDiv" style="text-align:left;">
+								<%= cvo.getMnick()%>
+							</div>
+							<div class="thirdContents">
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												좋아요
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= cvo.getLikecnt() %>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												조회수
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= cvo.getChit() %>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oneTd">
+									<table>
+										<tr>
+											<td class="nameTd">
+												작성일
+											</td>
+										</tr>
+										<tr>
+											<td class="valTd">
+												<%= cvo.getInsertdate()%>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="contentBody">
+							<%= cvo.getCcontent() %>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<jsp:include page="/WEB-INF/view/comment/commentForm.jsp" flush="true">
+				<jsp:param name="cotnum" value="<%= cvo.getCnum() %>"/>
+				<jsp:param name="clientMnick" value="<%= mnick %>"/>
+			</jsp:include>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
