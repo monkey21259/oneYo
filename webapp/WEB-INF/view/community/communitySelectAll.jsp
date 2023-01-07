@@ -71,14 +71,7 @@
 		<script type="text/javascript">
 		
 		$(document).ready(function(){
-			$(document).on("click", "#communityInsertBtn", function(){
-				$("#communitySelectAll").attr({
-					"action":"communityInsertForm.ict",
-					"method":"GET",
-					"enctype":"application/x-www-form-urlencoded"
-				}).submit();
-			}); //insertSelectAllBtn
-			
+
 			//datepicker 한글화
 			$.datepicker.setDefaults({
 				dateFormat: 'yymmdd',
@@ -152,6 +145,14 @@
 				$('#endDate').val('');
 			}//end of if
 			
+			//검색
+			function communitySearch() {
+				
+				location.href = "recipeSearchForm.ict";
+			}
+		
+			
+			
 			//로그아웃
 			$("#logoutBtn").on("click", function() {
 				$("#logoutForm").attr({
@@ -167,37 +168,6 @@
 		}); //ready
 	
 		</script>
-	<style>
-	
-	.link{
-		margin:2px;
-		list-style-type:none;
-		float:left;
-		padding:9px 15px 9px 15px;
-		border:1px solid #ebebeb; 
-		}
-	.hi{
-		color:#888;
-		text-decoration: none;
-		font-weight: 500;
-	}
-
-	.hello{
-	color:#ff5e5e;
-		text-decoration: none;
-		
-	}
-	#list{
-		text-align:center;
-		
-	}
-	#block{
-	display:inline-block;
-	
-	}
-	
-	
-	</style>
 	</head>
  	<body>
  	<form id="communitySelectAll" name="communitySelectAll">
@@ -223,13 +193,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -392,37 +355,61 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-	<h3>커뮤니티 게시판</h3>
-	<hr>
-	<div>
-		<div>
-			<button type="button">인기글</button> 			
-		
-		</div>
+	<div id="anne">
+	<p id="subject">커뮤니티</p>
 	</div>
-
-		
-			<table>
+	
+<!-- 검색바 -->
+	<div class="SearchPeriodContainer">
+		<div>
+			<div class="search_fill">
+				<div>
+					<span>
+						<select id="searchFilter" name="searchFilter">
+							<option id="00" value="00">전체</option>
+							<option id="01" value="01">제목</option>
+							<option id="02" value="02">작성자</option>
+						</select>
+						<input type="text" id="keyword" name="keyword" placeholder="검색어 입력">
+					</span>
+						
+					<span class="date_style">
+					검색기간조회:
+						<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
+						<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
+					</span>
+					
+					<span class="BtnTwo">
+						<span class="SearchBtnDiv tright searchBtn">	
+						<button type="button" id="searchBtn">검색</button>
+						</span>
+					<%
+					if(mnum.length() > 0){
+					%>
+						<span class="SearchBtnDiv tright">
+							<button type="button" onclick="location.href='/oneYo/communityInsertForm.ict'">글등록</button>
+						</span>
+					<%
+					}
+					%>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>		
+</div>
+	
+	
+<!-- 게시판 부분 -->
+	<div>
+			<table class="table-fill">
 				<thead>
 					<tr>
-						<td colspan="4">
-							<select id="searchFilter" name="searchFilter">
-								<option id="00" value="00">전체</option>
-								<option id="01" value="01">제목</option>
-								<option id="02" value="02">작성자</option>
-							</select>
-							<input type="text" id="keyword" name="keyword" placeholder="검색어 입력">
-							<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
-							<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
-							<input type="button" id="searchBtn" value="검색">
-						</td>
-					</tr>
-					<tr>
-						<th>NO</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>조회수</th>
-						<th>작성일</th>
+						<th width="10%">NO</th>
+						<th width="40%">제목</th>
+						<th width="25%">작성자</th>
+						<th width="10%">조회수</th>
+						<th width="15%">작성일</th>
 					</tr>
 				</thead>
 
@@ -436,11 +423,11 @@
 		%>
 				<tbody>
 					<tr>
-						<td style="text-align:center;"><%= cvo.getCommunitynum()%></td>
-						<td style="text-align:left;"><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></a></td>
-						<td style="text-align:center;"><%= cvo.getMnick() %></td>
-						<td style="text-align:center;"><%= cvo.getChit() %></td>
-						<td style="text-align:center;"><%= cvo.getInsertdate()%></td>
+						<td><%= cvo.getCommunitynum()%></td>
+						<td class="table_subject"><a href="communitySelectContent.ict?cnum=<%= cvo.getCnum()%>"><%= cvo.getCsubject() %></a></td>
+						<td><%= cvo.getMnick() %></td>
+						<td><%= cvo.getChit() %></td>
+						<td><%= cvo.getInsertdate()%></td>
 					</tr>
 		<%
 		totalCount = Integer.parseInt(cvo.getTotalCount());
@@ -470,12 +457,14 @@
 				logger.info("totalCount >>> : " + totalCount );
 				
 				
-				
+		
 				%>
+				</tbody>	
 				
-				<tr>
-				<td colspan="6">
-				<br>
+			</table>
+				<div>
+				<span>
+				<br><br>
 				<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
 				<input type="hidden" id="keywordVal" value="<%=keyword %>">
 				<input type="hidden" id="startDateVal" value="<%=startDate %>">
@@ -492,28 +481,17 @@
 					<jsp:param value="<%=startDate %>" name="startDate"/>
 					<jsp:param value="<%=endDate %>" name="endDate"/>
 					</jsp:include>
-				</td>
-			</tr>
+				</span>
+			</div>
 			<%
 			}else{
 				out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='communitySelectAll.ict';</script>");
 			}//if else
 			%>
-				</tbody>	
-	
-			</table>
+
+		
 			
-			<div>
-			<%
-			if(mnum.length() > 0){
-			%>
-			<button type="button" id="communityInsertBtn" name="communityInsertBtn">글 등록 </button>
-			<%
-			}
-			%>
-			</div>
-			
-			<!-- -------------------------------페이지 전용 center------------------------------- -->
+<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
   
 <div id="footer">

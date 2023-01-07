@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0
 						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<title>Insert title here</title>
+<title>oneYo(오내요)</title>
 
 <!-- jQuery -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -23,9 +23,8 @@
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
-<!-- adminWarningSelectAll.jsp 전용 -->
-<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupSelectAll.css">		
-
+<!-- adminLevelupSelectAll.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupSelectAll.css">	
 
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
@@ -64,14 +63,18 @@
 		allJavaScript();
 	});
 </script>
-
 </head>
-<body>
-<form id="adminForm" name="adminForm">
- 	<div id="realAll">
 
-<div id="backMenu"></div>
-<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+
+<body>
+
+
+<form id="adminForm" name="adminForm">
+ <div id="realAll">
+
+	<div id="backMenu"></div>
+
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
@@ -89,13 +92,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -103,7 +99,6 @@
 			</span>
 			</div>
 		</li>
-		
 		<li class="item">
 	<%
 		if(mid == null || !mid.equals("admin")){
@@ -113,19 +108,18 @@
 			마이<br>페이지 
 			</span>
 			</div>
-			<%
+	<%
 		} else if(mid.equals("admin")){
-			%>
+	%>
 			<div class="adminHome">
 			<span>
 			관리자<br>페이지 
 			</span>
 			</div>
-			<%
+	<%
 		}
-		%>
+	%>
 		</li>
-
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
@@ -137,21 +131,14 @@
 		</li>
 	</ul>
 	</div>
-<div id="searchBar" class="hidden_X">
-<!-- <div id="searchBar" class="hidden_O"> -->
-	<div class="searchBarBtn">
-		X
-	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
-</div>
 
 <div id="singo" class="hidden_X">
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -195,26 +182,27 @@
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-			String mSNSid = mid;  // M22...
-			if (mid != null && !(mid.equals(""))) {
-				if (mid.length() > 5) {
-					String checkSNS = mid.substring(0, 6);
-					if (checkSNS.equals("naver_")) {
-						mSNSid = "naver"; 
-					}
-					if (checkSNS.equals("kakao_")) {
-						mSNSid = "kakao";
-					}
+		String mSNSid = mid;
+		if (mid != null && !(mid.equals(""))) {
+			if (mid.length() > 5) {
+				String checkSNS = mid.substring(0, 6);
+				if (checkSNS.equals("naver_")) {
+					mSNSid = "naver"; 
+				}
+				if (checkSNS.equals("kakao_")) {
+					mSNSid = "kakao";
 				}
 			}
+		}
 %>
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		
+		 	
 <% 		
 		}
 %>
+
 	 	</div>
 	</div>
 	
@@ -238,7 +226,7 @@
 			</li>
 			<li>
 				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
+				<div class="divClick">
 				커뮤니티
 				</div>
 				</a>
@@ -263,25 +251,25 @@
 	
 </div>
 
+
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-
-<!-- 등업  -->	
-
-	<h3>등업</h3>
-		<hr>
-			<table border="1 solid">
-			
+	<div id="anne">
+	<p id="subject">등업신청목록</p>
+	</div>
+		<div>
+			<table class="table-fill">
+				<thead>
 					<tr>
-						<td>NO</td>
-						<td>등업번호</td>
-						<td>등업제목</td>
-						<td>등업사진</td>
-						<td>등업신청자</td>
-						<td>등업신청일</td> <!-- 작성일 -->
-						<td>등업처리여부</td>						
-					</tr>					
-				
+						<th width="5%">NO</th>
+						<th width="10%">등업신청번호</th>
+						<th width="25%">제목</th>
+						<th width="10%">사진</th>
+						<th width="15%">신청자</th>
+						<th width="20%">신청일</th>
+						<th width="15%">처리여부</th>
+					</tr>
+				</thead>			
 <%
  			
 				List<LevelupVO> list = (List<LevelupVO>)request.getAttribute("list");
@@ -297,28 +285,28 @@
 					};
 %>
 			
-						
+				<tbody>	
 					<tr>
 						<input type="hidden" value="<%= lvo.getMnick()%>" id="mnick">
 						<input type="hidden" value="<%= lvo.getMnum()%>" id="mnum">
 						<td><%= i+1 %></td>
 						<td><%= lvo.getLvnum()%></td>
-						<td class="content"><%= lvo.getLvsubject()%></td>
+						<td class="content table_subject"><%= lvo.getLvsubject()%></td>
 						<td><img src="oneYo/img/levelup/<%= lvo.getLvphoto()%>"></td>
 						<td><%= lvo.getMnick()%></td> <!-- 닉네임 -->
 						<td><%= lvo.getInsertdate()%></td>
 						<td><%= process%></td>
 					</tr>
-				
+				</tbody>
 				<%
 				} //for
  			} //if				
 				%>
 			</table>
 	
-			<!-- -------------------------------페이지 전용 center------------------------------- -->
+<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
-<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
+  
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
