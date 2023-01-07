@@ -67,7 +67,7 @@ public class MemController {
 		StringBuffer neyong = null;
 		neyong = new StringBuffer();
 		neyong.append(" <div align='center'>");
-		neyong.append(" <a href='" + sendUrl + "'><img src='/oneYo/resource/img/memInsert.png'></a> ");
+		neyong.append(" <a href='" + sendUrl + "'><img src='http://localhost:8088/oneYo/resource/img/memInsert.png'></a> ");
 		neyong.append(" </div> ");
 		sendMsg = neyong.toString();
 		
