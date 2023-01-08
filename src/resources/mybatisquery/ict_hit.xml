@@ -35,7 +35,7 @@
 			<![CDATA[
 					ICT_NOTICE
 				SET
-					CHIT = NVL(CHIT, 0) + 1
+					NHIT = NVL(NHIT, 0) + 1
 				WHERE NNUM = #{boardNum, jdbcType=VARCHAR}
 			]]>
 		</if>
