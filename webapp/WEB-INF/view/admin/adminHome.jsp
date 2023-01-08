@@ -605,7 +605,7 @@
 			<div class="gubunDiv">
 				<div class="gubunLeft">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<b class="gubun">신고</b>
+					<b class="gubun">커뮤니티</b>
 				</div>
 				<div class="gubunRight">
 					<button type="button" id="communitymoreBtn" class="showMoreBtn">더보기</button>

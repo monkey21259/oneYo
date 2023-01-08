@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="main.ict.common.CodeUtils" %>
 <%@ page import="main.ict.warning.vo.WarningVO" %>
 <%@ page import="main.ict.common.O_Session" %>
  
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
-	request.setCharacterEncoding("UTF-8");
- 
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("adminWarningSelectAll 진입 >>> : ");
-	
+%>
+<%
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
 	String mid = (String)oSession.getAttribute(request, "mid");
@@ -26,17 +26,16 @@
 	
 	String searchCategory = "";
 
-
-
 	Object obj = request.getAttribute("listAll");
-	if(obj == null){
+	if (obj == null) {
 		out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='adminWarningSelectAll.ict';</script>");
 	}
 	List<WarningVO> listAll = (List<WarningVO>)obj;
-	if(listAll.size() == 0){
+	if (listAll.size() == 0) {
 		out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='adminWarningSelectAll.ict';</script>");
 	}
-	
+%>
+<%
 	WarningVO wvo = null;
 %>
 <!DOCTYPE html>
@@ -44,80 +43,80 @@
 	<head>
 		<title>oneYo(오내요)</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0
-						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<title>oneYo(오내요)</title>
-		<!-- jQuery -->
+<!-- jQuery -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		
-		<!-- 전체 css -->
+<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		
-		<!-- adminWarningSelectAll.jsp 전용 -->
+<!-- adminWarningSelectAll.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/warning/adminWarningSelectAll.css">		
-		
-		<!-- 페이징 기능 전용 -->
+<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		<script type="text/javascript">
 		
-		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
-	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
-		
-<script type="text/javascript">
-		
-	$(document).ready(function(){
+			$(document).ready(function(){
+			
+			//content로 전송
+				$(".warningSelect").click(function(){
+					
+						let info = $(this).siblings();
+						let info0 = info.get(0).value;
+						let info1 = info.get(1).value;
+						let info2 = info.get(2).value;
+						let info3 = info.get(3).value;
+						let info4 = info.get(4).value;
+					
+// 						console.log(info0);
+// 						console.log(info1);
+// 						console.log(info2);
+// 						console.log(info3);
+// 						console.log(info4);
+// 						alert("info check!");
+						
+						$("#wtnum").val(info0);
+						$("#wcategory").val(info1);
+						$("#wcontent").val(info2);
+						$("#mnick").val(info3);
+						$("#insertdate").val(info4);
+						
+// 						console.log($("#wtnum").val());
+// 						console.log($("#wcategory").val());
+// 						console.log($("#wcontent").val());
+// 						console.log($("#mnick").val());
+// 						console.log($("#insertdate").val());
+// 						alert("value check!");
+						
+					$("#adminWarningSelectAll").attr({
+						'action':'adminWarningSelectContent.ict',
+						'method':'GET',
+						'enctype':'application/x-www-form-urlencoded'
+					}).submit();
+					
+				}); //warningSelect 클릭
+				
+				//로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				//all.js 에 있는 모든 함수 연결
+				allJavaScript();
+				
+			});	//ready
 	
-	//content로 전송
-		$(".warningSelect").click(function(){
-			
-				let info = $(this).siblings();
-				let info0 = info.get(0).value;
-				let info1 = info.get(1).value;
-				let info2 = info.get(2).value;
-				let info3 = info.get(3).value;
-				let info4 = info.get(4).value;
-			
-				console.log(info0);
-				console.log(info1);
-				console.log(info2);
-				console.log(info3);
-				console.log(info4);
-				
-				$("#wtnum").val(info0);
-				$("#wcategory").val(info1);
-				$("#wcontent").val(info2);
-				$("#mnick").val(info3);
-				$("#insertdate").val(info4);
-				
-			$("#adminWarningSelectAll").attr({
-				'action':'adminWarningSelectContent.ict',
-				'method':'GET',
-				'enctype':'application/x-www-form-urlencoded'
-			}).submit();
-			
-		}); //warningSelect 클릭
-		
-		//로그아웃
-		$("#logoutBtn").on("click", function() {
-			$("#logoutForm").attr({
-				"action": "logout.ict",
-				"method": "GET",
-				"enctype": "application/x-www-form-urlencoded"
-			}).submit();
-		});
-				
-		//all.js 에 있는 모든 함수 연결
-		allJavaScript();
-		
-	});	//ready
-	
-</script>
+		</script>
 	</head>
 	<body>
-		<form id="adminWarningSelectAll" name="adminWarningSelectAll">
-		 	
+<form id="adminWarningSelectAll" name="adminWarningSelectAll">
 
 <div id="realAll">
 
@@ -147,17 +146,17 @@
 <!-- 			</span> -->
 <!-- 			</div> -->
 <!-- 		</li> -->
-		<li class="item">
-			<div class="warningForm">
-			<span>
-			신고<br>팝업
-			</span>
-			</div>
-		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div class="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고<br>팝업 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
 		
 		<li class="item">
 	<%
-		if(mid == null || !mid.equals("admin")){
+		if (mid == null || !mid.equals("admin")) {
 	%>
 			<div class="mypageHome">
 			<span>
@@ -165,7 +164,7 @@
 			</span>
 			</div>
 			<%
-		} else if(mid.equals("admin")){
+		} else if(mid.equals("admin")) {
 			%>
 			<div class="adminHome">
 			<span>
@@ -203,9 +202,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
-		<jsp:param value="" name=""/>
-	</jsp:include>	
+<%-- 	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true"> --%>
+<%-- 		<jsp:param value="" name=""/> --%>
+<%-- 	</jsp:include>	 --%>
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -236,11 +235,11 @@
 %>
 			<div class="loginBtnDiv">
 <%
-			if(mid.equals("admin")){
+			if (mid.equals("admin")) {
 %>
 				<span class="Choonsik adminHome">관리자페이지</span>
 <%
-			}else{
+			} else {
 %>
 				<span class="Choonsik mypageHome">마이페이지</span>
 <%
@@ -321,7 +320,7 @@
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 	<h3>신고글조회</h3>
 	<hr>
-			<table border="1 solid">
+			<table border="1">
 				<thead>
 					<tr>
 						<td colspan="6">
@@ -393,8 +392,8 @@
 						<td><%= wvo.getInsertdate()%></td> <!-- 등록일 -->
 					</tr>
 <%
-		totalCount = Integer.parseInt(wvo.getTotalCount());
-		} //for
+				totalCount = Integer.parseInt(wvo.getTotalCount());
+				} //for
 %>	
 <%
 			}//if
@@ -414,18 +413,17 @@
 		logger.info("curPage >>> : " + curPage );
 		
 		logger.info("totalCount >>> : " + totalCount );
-
 %>
 		<tr>
 			<td colspan="6">
 				<jsp:include page="/WEB-INF/view/warning/adminWarningPaging.jsp" flush="true">
 					<jsp:param value="adminWarningSelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
-						<jsp:param value="<%=pageSize %>" name="pageSize"/>
-						<jsp:param value="<%=groupSize %>" name="groupSize"/>
-						<jsp:param value="<%=curPage %>" name="curPage"/>
-						<jsp:param value="<%=totalCount %>" name="totalCount"/>
-						<jsp:param value="<%=searchCategory %>" name="searchCategory"/>
+						<jsp:param value="<%= pageSize %>" name="pageSize"/>
+						<jsp:param value="<%= groupSize %>" name="groupSize"/>
+						<jsp:param value="<%= curPage %>" name="curPage"/>
+						<jsp:param value="<%= totalCount %>" name="totalCount"/>
+						<jsp:param value="<%= searchCategory %>" name="searchCategory"/>
 				</jsp:include>
 			</td>
 		</tr>

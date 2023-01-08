@@ -20,6 +20,259 @@
 	
 }
 
+/* 글 등록 헤더 */
+.reqHeader {
+	width: 1180px;
+    height: 100px;
+    margin: 0px auto;
+    border: 1px solid #EEE;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: #657202;
+    background-color: #E3E69E;
+    box-shadow: 2px 2px 8px #AAA;
+    font-weight: 500;
+}
+
+.reqHeaderUnderLine {
+	position: relative;
+	text-align: center;
+    font-size: 35px;
+    top: -45px;
+    color: #BBB;
+}
+
+/* 센터 버튼 */
+.wButton {
+	font-size: 14px;
+    color: #93A603;
+    border-radius: 5px;
+    background-color: white;
+    border: 3px solid #93A603;
+    width: 50px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.wButton:hover {
+    color : white;
+    background-color: #93A603;
+}
+
+#center #viewTable #selectContent {
+	width	: 900px;
+	margin	: 0 auto;
+}
+
+#center #selectContent .imgSelect {
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	overflow	: hidden;
+	
+	width	: 200px;
+	height	: 200px;
+	
+	box-shadow: 2px 2px 2px -1px #AC7B53;
+}
+#center #selectContent .imgSelect * {
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px; */
+	
+	width	: 100%;
+	height	: 100%;
+}
+#center #selectContent .imgWriter {
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	overflow	: hidden;
+	
+	width	: 85px;
+	height	: 85px;
+}
+#center #selectContent .imgWriter * {
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px; */
+	
+	width	: 100%;
+	height	: 100%;
+}
+
+#center #selectContent .selectTd {
+	width	: 900px;
+	text-align: center;
+	
+	/* 정렬 */
+/* 	display	: flex; */
+/* 	flex-wrap: wrap; */
+/* 	align-items: center; */
+/* 	justify-content: center; */
+
+/* 	position: relative; */
+/* 	left: 85px; */
+}
+
+/* 카테고리 */
+#center #selectContent .selectTd span {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	width	: 100%;
+}
+#center #selectContent .cateTd {
+	height	: 20px;
+	margin-top	: 20px;
+}
+
+/* 제목 */
+#center #selectContent .selectTd p {
+	/* 폰트 사이즈 */
+	font-size	: 33px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+}
+#center #selectContent .subjectTd {
+	align-items: flex-end;
+/* 	align-items: center; */
+	/* 제목+작성자 적히는 곳 높이 */
+	height	: 140px;
+/* 	justify-content: center; */
+}
+#center #selectContent .subjectTd p {
+	/* 제목 적히는 곳 높이 */
+	min-height	: 50px;
+	max-height	: 75px;
+	width	: 100%;
+}
+
+/* 제목과 작성자 사이 선 */
+#center #selectContent .subjectTd #hrDiv {
+	min-height	: 1px;
+	width	: 98%;
+/* 	margin	: auto; */
+	border-top	: 1px solid #AC7B53;
+}
+
+/* 작성자 */
+#center #selectContent .selectTd .writerDiv {
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	/* 폰트 색상 */
+	color		: #666;
+	/* 공간 높이 */
+	min-height	: 25px;
+	max-height	: 70px;
+	width	: 99%;
+	margin	: auto;
+	/* 중앙배치 */
+/* 	text-align: right; */
+/* 	border-top	: 1px solid #AC7B53; */
+}
+
+/* 각종 값 테이블(+재료) 담은 셀 */
+#center #selectContent .infoTd {
+	height	: 100px;
+	margin-bottom	: 20px;
+}
+
+/* 각종 값 테이블 */
+#center #selectContent .selectTd .oneTd  {
+	width	: 180px;
+	height	: 70px;
+}
+#center #selectContent .selectTd .oneTd table  {
+	margin	: 5px auto;
+	margin-left	: 0;
+	/* 중앙 정렬 */
+	text-align: center;
+}
+
+/* 재료 테이블 */
+#center #selectContent .selectTd .twoTd  {
+	width	: 500px;
+/* 	height	: 300px; */
+	margin-top	: 10px;
+}
+
+/* 각종 값 테이블(+재료) 이름 */
+#center #selectContent .selectTd .nameTd  {
+	/* 폰트 사이즈 */
+	font-size	: 20px;
+	/* 폰트 색상 */
+	color		: #AC7B53;
+}
+
+/* 각종 값 테이블 내용 */
+#center #selectContent .selectTd .oneTd .valTd  {
+	/* 폰트 사이즈 */
+	font-size	: 22px;
+	/* 폰트 색상 */
+	color		: #444;
+}
+/* 재료 테이블 재료 내용 */
+#center #selectContent .selectTd .twoTd .valTd  {
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+}
+
+/* 본문 */
+#center #selectContent .neyong  {
+	width	: 800px;
+	margin	: 40px auto;
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	letter-spacing	: 1px;
+	line-height	: 150%;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+}
+
+
+#center .comments {
+	width	: 800px;
+	margin	: 10px auto;
+	
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	background-color	: #ddd;
+}
+
+/* 추가 230107 김기영 */
+.thirdContents {
+	display:flex !important;
+	justify-content:center !important;
+	width:100% !important;
+	margin-top:15px !important;
+}
+
+.oneTd {
+	float: left !important!;
+}
+
+.contentBody {
+	border:1px solid #DDD;
+	border-radius:30px;
+	padding:30px 30px;
+	box-shadow:2px 2px 2px -1px #93A603;
+}
+
+.noticeImg {
+	padding: 5px;
+	object-fit: contain;
+}
+
+.btnDiv {
+	position: relative;
+	left: 900px;
+}
+
 /* -------------------------------- 우측 right -------------------------------- */
 #right {
 	

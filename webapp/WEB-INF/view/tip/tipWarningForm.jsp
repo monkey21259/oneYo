@@ -13,7 +13,6 @@
 	
 %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +40,8 @@
 		$("#datain").click(function(){
 			
 			let box = $("#box").val();
-			
+			console.log("A:" + box);
+			alert(box);
 			if(box != '50'){
 			
 			$("#submit").attr({

@@ -30,9 +30,9 @@ public class AdminWarningController {
 		logger.info("AdminWarningController 함수진입 >>> ");
 		
 		//페이징==========
-		int pageSize = ConstPack.WARNING_PAGE_SIZE; //10
-		int groupSize = ConstPack.WARNING_GROUP_SIZE; //5
-		int curPage = ConstPack.WARNING_CUR_PAGE; //1
+		int pageSize = ConstPack.WARNING_PAGE_SIZE; // 10
+		int groupSize = ConstPack.WARNING_GROUP_SIZE; // 5
+		int curPage = ConstPack.WARNING_CUR_PAGE; // 1
 		
 		if(wvo.getCurPage() != null) {
 			curPage = Integer.parseInt(wvo.getCurPage());
@@ -70,12 +70,12 @@ public class AdminWarningController {
 	public String adminWarningSelectContent(WarningVO wvo , HttpServletRequest req, Model model) {
 		logger.info("adminWarningSelectContent 함수진입 >>> ");
 		
-	
-		System.out.println("wtnum : " + wvo.getWtnum());
-		System.out.println("wcategory : " + wvo.getWcategory());
-		System.out.println("wcontent : " + wvo.getWcontent());
-		System.out.println("mnick : " + wvo.getMnick());
-		System.out.println("insertddate : " + wvo.getInsertdate());
+		logger.info("wtnum : " + wvo.getWtnum());
+		logger.info("wcategory : " + wvo.getWcategory());
+		logger.info("wcontent : " + wvo.getWcontent());
+		logger.info("mnick : " + wvo.getMnick());
+		logger.info("insertddate : " + wvo.getInsertdate());
+		logger.info("------ 신고글 카테고리 분기 시작 ------");
 		
 		String wcategory = wvo.getWcategory();
 		String mnick = wvo.getMnick();
@@ -87,11 +87,8 @@ public class AdminWarningController {
 		if(wvo.getWtnum().substring(0,1).equals("R")) {
 			
 			List<WarningVO> list = adminWarningService.adminWarningSelectRecipe(wvo);
-			
 			logger.info("신고분야가 레시피(R) 인 글 갯수 >>> : " + list.size());
-			
 			if(list.size() > 0) {
-				 
 				model.addAttribute("list", list);
 				model.addAttribute("wcategory", wcategory);
 				model.addAttribute("wtnum", wtnum);
@@ -99,19 +96,17 @@ public class AdminWarningController {
 				model.addAttribute("wcontent", wcontent);
 				model.addAttribute("insertdate", insertdate);
 				return "warning/adminWarningSelectContent";
-			} //if
+			} // if
 		
-		} //if
+		} // if
 		
-//신고글 카테고리가 레시피인 경우(T)				
+//신고글 카테고리가 전문가팁인 경우(T)				
 		if(wvo.getWtnum().substring(0,1).equals("T")) {
 			
 			List<WarningVO> list = adminWarningService.adminWarningSelectTip(wvo);
 			
-			logger.info("신고분야가 레시피(T) 인 글 갯수 >>> : " + list.size());
-			
+			logger.info("신고분야가 전문가팁(T)인 글 갯수 >>> : " + list.size());
 			if(list.size() > 0) {
-				 
 				model.addAttribute("list", list);
 				model.addAttribute("wcategory", wcategory);
 				model.addAttribute("wtnum", wtnum);
@@ -123,15 +118,12 @@ public class AdminWarningController {
 		
 		} //if
 		
-//신고글 카테고리가 레시피인 경우(C)				
+//신고글 카테고리가 커뮤니티인 경우(C)				
 		if(wvo.getWtnum().substring(0,1).equals("C")) {
 			
 			List<WarningVO> list = adminWarningService.adminWarningSelectCommunity(wvo);
-			
-			logger.info("신고분야가 레시피(C) 인 글 갯수 >>> : " + list.size());
-			
+			logger.info("신고분야가 커뮤니티(C)인 글 갯수 >>> : " + list.size());
 			if(list.size() > 0) {
-				 
 				model.addAttribute("list", list);
 				model.addAttribute("wcategory", wcategory);
 				model.addAttribute("wtnum", wtnum);

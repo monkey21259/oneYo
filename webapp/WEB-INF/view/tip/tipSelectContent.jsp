@@ -76,7 +76,8 @@
 					if(confirm("신고하시겠습니까?")){
 						$("#tipSelectContentForm").attr({
 							'action': 'tipWarningForm.ict',
-							'method': 'GET'
+							'method': 'GET',
+							'enctype': 'application/x-www-form-urlencoded'
 						}).submit();
 					}
 		
