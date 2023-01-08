@@ -91,7 +91,7 @@ hr {
 	margin: auto;
 	border-radius: 10px;
 	background-color:white;
-	box-shadow: 5px 5px 5px -5px;
+	box-shadow: 0px 5px 5px -5px;
 }
 
 #recipe_div, #tip_div, #community_div {
