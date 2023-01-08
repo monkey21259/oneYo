@@ -205,7 +205,7 @@
 						cateTd.addClass("cateTd");
 						
 						let cateP = $("<p>");
-						cateP.text(json.recipe[i].rcategory);
+						cateP.text(categoryLabeling(json.recipe[i].rcategory, 'recipe'));
 						
 						let nameTd1 = $("<td>");
 						nameTd1.addClass("nameTd");
@@ -324,7 +324,7 @@
 						cateTd.addClass("cateTd");
 						
 						let cateP = $("<p>");
-						cateP.text(json.tip[i].tcategory);
+						cateP.text(categoryLabeling(json.tip[i].tcategory, 'tIp'));
 						
 						let nameTd1 = $("<td>");
 						nameTd1.addClass("nameTd");
@@ -422,6 +422,23 @@
 			
 			function selectTip(tnum) {
 				location.href = "tipSelectContent.ict?tnum=" + tnum;
+			}
+			
+			function categoryLabeling(category, identifier) {
+				console.log(identifier + '게시판의 카테고리 : ' + category);
+				
+				let recipe_category_label = {'00': '한식', '01': '중식', '02': '양식', '03': '일식', '04': '디저트', '99': '기타'};
+				let tip_category_label = {'00': '요리', '01': '주방관리', '02': '재료정보', '99': '기타'};
+				
+				if(identifier.toUpperCase() == 'RECIPE' && identifier !=null) {
+					console.log('레시피 게시판');
+					return recipe_category_label[category];
+				}
+				
+				if(identifier.toUpperCase() == 'TIP' && identifier !=null) {
+					console.log('전문가팁 게시판');
+					return tip_category_label[category];
+				}
 			}
 			
 		</script>
