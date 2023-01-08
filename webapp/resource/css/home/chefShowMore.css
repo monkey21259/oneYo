@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+/* -------------------------------- 전체 영역 -------------------------------- */
+#all_div {
+	
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	
+}
+
+
+
+/* -------------------------------- 중앙 center -------------------------------- */
+#center {
+/* 	height	: 700px; */
+	margin:0 auto;
+}
+
+#anne {
+		border-bottom : 1px solid #AC7B53;
+	margin:0 auto;
+}
+
+
+#subject{
+	font-size: 30px;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/*=================카테고리 버튼 바===================*/
+
+.category_fillContainer {
+	padding	: 4px 8px;
+	background-color	: #E0E086;
+	/* 테두리 둥글게 */
+	border-radius : 20px;
+
+	margin-top : 15px;
+	margin-bottom : 38px;
+	
+	display	: flex;
+	justify-content	: center;
+}
+
+.category_fillContainer .category{
+	display	: flex;
+	justify-content	: center;
+	
+}
+
+/*버튼*/
+.category_fillContainer .category_btn {
+	display	: flex;
+	justify-content	: center;
+	align-items: center;
+	color	: #AC7B53;
+	
+	width: 200px;
+	height: 36px;
+	
+	border: none;
+	
+	margin : 10px;
+	
+    padding: 6px 20px;
+    
+	background-color	: #fff;
+	/* 테두리 둥글게 */
+	border-radius	: 15px;
+	
+	font-size:18px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* 상단 메뉴 버튼 영역에 마우스 올렸을 시 */
+.category_fillContainer .category_btn:hover {
+ 	border : 3px solid #AC7B53;
+	color	: #AC7B53;
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+}
+
+/* 상단 메뉴 버튼 영역에 마우스 클릭이후 */
+/* .category_fillContainer .btn_1 { */
+/* 	border : 3px solid #AC7B53; */
+/* 	color	: #AC7B53; */
+/* 	font-size	: 18px; */
+/* } */
+
+/* .category_fillContainer .btn_2 { */
+/* 	border : 3px solid #AC7B53; */
+/* 	color	: #AC7B53; */
+/* 	font-size	: 18px; */
+/* } */
+
+
+
+/* ------------게시판 selectAll -----------*/
+
+.table-fill {
+	 display: table;
+   	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
+/* 	    text-indent: initial; */ /*들여쓰기*/
+    border-spacing: 0px; /*테이블 간격*/
+	border-collapse: collapse;
+	background-color:none;
+	margin-bottom: 20px;
+	padding:10px;
+    width: 100%;
+/*   animation: float 5s infinite; */
+}
+
+th {
+
+   background:none; 
+   border-top:3px solid #d8d8d8; 
+   border-bottom: 1px solid #d8d8d8;
+   background: #f8f8f8; 
+   color:#444; 
+   font-size:18px; 
+   font-weight: 100; 
+ /*   height:35px; */
+   padding:15px; 
+   text-align:center; 
+   font-weight:bold; 
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
+/*   vertical-align:middle; */
+}
+  
+tr {
+/*   border-top: 1px solid #C1C3D1; */
+  border-bottom: 1px solid #C1C3D1; 
+   color:black; 
+  font-size:14px; 
+   font-weight:normal; 
+}
+ 
+td {
+   padding:10px; 
+   text-align:center; 
+   vertical-align:middle; 
+   font-weight:300;
+   font-size:18px; 
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1); 
+ 
+}
+
+	
+img{
+	 width : 90px; 
+	 height : 90px;
+}	
+	
+	
+/*---------------------------버튼-------------------------*/
+
+        
+
+
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	
+}

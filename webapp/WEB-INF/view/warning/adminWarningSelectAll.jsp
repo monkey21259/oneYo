@@ -146,13 +146,13 @@
 <!-- 			</span> -->
 <!-- 			</div> -->
 <!-- 		</li> -->
-<!-- 		<li class="item"> -->
-<!-- 			<div class="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고<br>팝업 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+		<li class="item">
+			<div>
+			<span>
+			신고<br>팝업
+			</span>
+			</div>
+		</li>
 		
 		<li class="item">
 	<%
@@ -198,14 +198,14 @@
 	<input type="button" id="searchTextBtn" value="검색">
 </div>
 
-<div id="singo" class="hidden_X">
-	<div class="warningForm">
-		X
-	</div>
+<!-- <div id="singo" class="hidden_X"> -->
+<!-- 	<div class="warningForm"> -->
+<!-- 		X -->
+<!-- 	</div> -->
 <%-- 	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true"> --%>
 <%-- 		<jsp:param value="" name=""/> --%>
 <%-- 	</jsp:include>	 --%>
-</div>
+<!-- </div> -->
 
 <div id="shadow" class="hidden_X"></div>
 
@@ -318,54 +318,60 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-	<h3>신고글조회</h3>
-	<hr>
-			<table border="1">
+	<div id="anne">
+	<p id="subject">신고목록</p>
+	</div>
+	
+	<!-- 신고분야 -->
+	<div>
+		<div>
+			<span>
+					<button type="button" id="searchCategory-1" class="searchBtn" onclick="categorySearch('-1')">전체</button>&nbsp;
+					<button type="button" id="searchCategory00" class="searchBtn" onclick="categorySearch('00')">욕설 및 비방</button>&nbsp;
+					<button type="button" id="searchCategory01" class="searchBtn" onclick="categorySearch('01')">음란물</button>&nbsp;
+					<button type="button" id="searchCategory02" class="searchBtn" onclick="categorySearch('02')">불법광고</button>&nbsp;
+					<button type="button" id="searchCategory03" class="searchBtn" onclick="categorySearch('03')">도배성</button>&nbsp;
+					<button type="button" id="searchCategory04" class="searchBtn" onclick="categorySearch('04')">주제와 맞지 않음</button>&nbsp;
+					<button type="button" id="searchCategory99" class="searchBtn" onclick="categorySearch('99')">기타</button>
+					<input type="hidden" id="searchCategory" name="searchCategory">
+					<script>
+						//search 프로퍼티 담아서 폼 보내기
+						function categorySearch(s){
+							if(s != '-1'){
+								location.href="adminWarningSelectAll.ict?searchCategory=" + s;
+								/*
+								$("#adminWarningSelectAll").attr({
+									'action':'adminWarningSelectAll.ict?searchCategory=' + String.valueOf(s),
+									'method':'GET',
+									'enctype':'application/x-www-form-urlencoded'
+								}).submit();
+								*/
+							}else{
+								location.href="adminWarningSelectAll.ict"
+								/*
+								$("#adminWarningSelectAll").attr({
+									'action':'adminWarningSelectAll.ict',
+									'method':'GET',
+									'enctype':'application/x-www-form-urlencoded'
+								}).submit();
+								*/
+							}//end of if-else
+							
+						}//end of categorySearch() function
+					</script>	
+			</span>
+		</div>
+	</div>
+		<div>
+			<table class="table-fill">
 				<thead>
 					<tr>
-						<td colspan="6">
-							<button type="button" id="searchCategory-1" class="searchBtn" onclick="categorySearch('-1')">전체</button>&nbsp;
-							<button type="button" id="searchCategory00" class="searchBtn" onclick="categorySearch('00')">욕설 및 비방</button>&nbsp;
-							<button type="button" id="searchCategory01" class="searchBtn" onclick="categorySearch('01')">음란물</button>&nbsp;
-							<button type="button" id="searchCategory02" class="searchBtn" onclick="categorySearch('02')">불법광고</button>&nbsp;
-							<button type="button" id="searchCategory03" class="searchBtn" onclick="categorySearch('03')">도배성</button>&nbsp;
-							<button type="button" id="searchCategory04" class="searchBtn" onclick="categorySearch('04')">주제와 맞지 않음</button>&nbsp;
-							<button type="button" id="searchCategory99" class="searchBtn" onclick="categorySearch('99')">기타</button>
-							<input type="hidden" id="searchCategory" name="searchCategory">
-							<script>
-								//search 프로퍼티 담아서 폼 보내기
-								function categorySearch(s){
-									if(s != '-1'){
-										location.href="adminWarningSelectAll.ict?searchCategory=" + s;
-										/*
-										$("#adminWarningSelectAll").attr({
-											'action':'adminWarningSelectAll.ict?searchCategory=' + String.valueOf(s),
-											'method':'GET',
-											'enctype':'application/x-www-form-urlencoded'
-										}).submit();
-										*/
-									}else{
-										location.href="adminWarningSelectAll.ict"
-										/*
-										$("#adminWarningSelectAll").attr({
-											'action':'adminWarningSelectAll.ict',
-											'method':'GET',
-											'enctype':'application/x-www-form-urlencoded'
-										}).submit();
-										*/
-									}//end of if-else
-									
-								}//end of categorySearch() function
-							</script>
-						</td>
-					</tr>
-					<tr>
-						<th>NO</th>
-						<th>신고글번호</th> <!-- 신고당한 글번호 -->
-						<th>신고분야</th>
-						<th>신고내용</th>
-						<th>신고자</th>
-						<th>신고날짜</th> 
+						<th width="5%">NO</th>
+						<th width="10%">신고글번호</th> <!-- 신고당한 글번호 -->
+						<th width="20%">신고분야</th>
+						<th width="35%">신고내용</th>
+						<th width="10%">신고자</th>
+						<th width="20%">신고날짜</th> 
 					</tr>					
 				</thead>
 	<%
@@ -383,6 +389,7 @@
 						<input type="hidden" name="wcontent1" value="<%= wvo.getWcontent() %>">
 						<input type="hidden" name="mnick1" value="<%= wvo.getMnick()%>">
 						<input type="hidden" name="insertdate1" value="<%= wvo.getInsertdate()%>">
+						
 						<td><%= wvo.getWarningnum() %></td>
 						<td><%= wvo.getWtnum() %></td>
 						<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
@@ -398,6 +405,9 @@
 <%
 			}//if
 %>
+			</tbody>
+		</table>
+</div>	
 <%
 	//	model.addAttribute("pagingAWVO", wvo);
 		Object obj_p = request.getAttribute("pagingAWVO");
@@ -414,8 +424,15 @@
 		
 		logger.info("totalCount >>> : " + totalCount );
 %>
-		<tr>
-			<td colspan="6">
+		<div>
+			<span>
+				<br><br>
+					<input type="hidden" id="wtnum" name="wtnum" value="">
+					<input type="hidden" id="wcategory" name="wcategory" value="">
+					<input type="hidden" id="wcontent" name="wcontent" value="">
+					<input type="hidden" id="mnick" name="mnick" value="">
+					<input type="hidden" id="insertdate" name="insertdate" value="">
+			
 				<jsp:include page="/WEB-INF/view/warning/adminWarningPaging.jsp" flush="true">
 					<jsp:param value="adminWarningSelectAll.ict" name="url"/>
 						<jsp:param value="" name="str"/>
@@ -425,15 +442,8 @@
 						<jsp:param value="<%= totalCount %>" name="totalCount"/>
 						<jsp:param value="<%= searchCategory %>" name="searchCategory"/>
 				</jsp:include>
-			</td>
-		</tr>
-				</tbody>
-			</table>
-			<input type="hidden" id="wtnum" name="wtnum" value="">
-			<input type="hidden" id="wcategory" name="wcategory" value="">
-			<input type="hidden" id="wcontent" name="wcontent" value="">
-			<input type="hidden" id="mnick" name="mnick" value="">
-			<input type="hidden" id="insertdate" name="insertdate" value="">
+				</span>
+			</div>
 			
 			<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
