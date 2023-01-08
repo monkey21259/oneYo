@@ -20,6 +20,118 @@
 	
 }
 
+.neyongContainer {
+	border-radius: 10px;
+	background-color:white;
+	box-shadow: 5px 5px 5px -5px;
+	text-align: center;
+}
+
+.centerBtn {
+	font-size : 14px;
+	color : #93A603;
+	border-radius: 5px;
+	background-color: white;
+	border:3px solid #93A603;
+	width : 150px;
+	height:40px;
+	margin-top:5px;
+	margin-bottom: 5px;
+	letter-spacing: 1px;
+	cursor:pointer;
+}
+
+.showMoreBtn {
+	font-size : 13px;
+	color : #93A603;
+	border-radius: 5px;
+	background-color: white;
+	border:3px solid #93A603;
+	margin-top:5px;
+	margin-bottom: 5px;
+	letter-spacing: 1px;
+	cursor:pointer;
+	width : 100px;
+	height:30px;
+}
+
+hr {
+	width:1150px;
+	margin: auto;
+	background: #d1d1d1;
+	height: 1px;
+	border: 0;
+}
+
+.gubunDiv {
+	display: inline-block;
+	width: 1150px;
+	margin: auto;
+	line-height: 70%;
+	text-align: left;
+	margin-top: 70px;
+}
+
+.gubunLeft {
+	display: inline-block;
+	margin: auto;
+	width: 570px;
+}
+
+.gubunRight {
+	display: inline-block;
+	margin: auto;
+	width: 570px;
+	text-align: right;
+}
+
+.gubun {
+	font-size : 30px;
+	letter-spacing: 5px;
+}
+
+b {
+	font-size : 18px;
+	color : #93A603;
+	letter-spacing: 1px;
+}
+
+.tableContainer {
+	display: inline-block;
+	width: 1150px;
+	margin: auto;
+	text-align: center;
+}
+
+table {
+	width: 1100px;
+	margin:  auto;
+}
+
+th {
+	font-size : 18px;
+	color : #93A603;
+	letter-spacing: 1px;
+	padding-bottom: 12px;
+	border-bottom:3px solid #d1d1d1;
+}
+
+td {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 3px;
+	padding-right: 3px;
+	border-bottom:1px solid #d1d1d1;
+}
+
+.leftTd {
+	text-align: left;
+}
+
+img {
+	border-radius: 8px;
+}
+
 /* -------------------------------- 우측 right -------------------------------- */
 #right {
 	

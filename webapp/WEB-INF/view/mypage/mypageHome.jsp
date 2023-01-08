@@ -408,7 +408,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 			<hr>
 			<br><br>
 		</div>
-		<div id="recipe_div" style="width:940px; margin:auto;">
+		<div id="recipe_div">
 			<c:choose>
 				<c:when test="${fn:length(rList) eq 0}">
 					<b>작성한 글이 없습니다</b>
@@ -435,12 +435,12 @@ logger.info("mypageHome.jsp 페이지 진입");
 		</div>
 		<div class="gubunDiv">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b class="gubun">팁</b>
+			<b class="gubun">전문가 팁</b>
 			<br><br>
 			<hr>
 			<br><br>
 		</div>
-		<div id="tip_div" style="width:940px; margin:auto;">
+		<div id="tip_div">
 			<c:choose>
 				<c:when test="${fn:length(tList) eq 0}">
 					<b>작성한 글이 없습니다</b>
@@ -473,7 +473,7 @@ logger.info("mypageHome.jsp 페이지 진입");
 			<br><br>
 		</div>
 		
-		<div id="community_div" style="width:940px; margin:auto;">
+		<div id="community_div">
 			<c:choose>
 				<c:when test="${fn:length(cList) eq 0}">
 					<b>작성한 글이 없습니다</b>

@@ -385,217 +385,272 @@
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 	
 	<div>
-	<button type="button" id="memselectAllBtn">회원목록</button>
+		<button type="button" id="memselectAllBtn" class="centerBtn">회원목록</button>
+		<button type="button" id="noticeBtn" class="centerBtn">공지사항</button>
 	</div>
 	<form id="adminForm" name="adminForm">
-<!-- 등업  -->	
-
-	<h3>등업</h3>
-		<hr>
-		<button type="button" id="levelupmoreBtn" style="float: left;">더보기</button><br>
-			<table border="1 solid">
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>등업번호</th>
-						<th>등업제목</th>
-						<th>등업사진</th>
-						<th>등업신청자</th>
-						<th>등업신청일</th> <!-- 작성일 -->
-						<th>등업처리여부</th>						
-					</tr>					
-				</thead>
-<%
- 			
-				String process = null;
-				if(listLV.size() > 0){
-				for(int i=0; i<listLV.size(); i++){
-					lvvo = listLV.get(i);
-					
-					
-					if(lvvo.getProcessyn().equals("0")){
-						process = "대기 중";
-					};
-%>
-				<tbody>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= lvvo.getLvnum()%></td>
-						<td><%= lvvo.getLvsubject()%></td>
-						<td><img src="oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
-						<td><%= lvvo.getMnick()%></td> <!-- 닉네임 -->
-						<td><%= lvvo.getInsertdate()%></td>
-						<td><%= process%></td>
-					</tr>
-				</tbody>
-				<%
-				} //for
- 			} //if				
-				%>
-			</table>
-			
-<!-- 신고  -->	
-	<h3>신고</h3>
-		<hr>
-		<button type="button" id="warningmoreBtn" style="float: left;">더보기</button><br>
-			<table border="1 solid">
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>신고글번호</th> <!-- 신고당한 글번호 -->
-						<th>신고분야</th>
-						<th>신고내용</th>
-						<th>신고자</th>
-						<th>신고날짜</th> 
-					</tr>					
-				</thead>
-<%
-			if(listW.size() > 0){
-				for(int i=0; i<listW.size(); i++){
-					wvo = listW.get(i);
-					
-					
-%>
-				<tbody>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= wvo.getWtnum() %></td>
-						<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
-						<td><%= wvo.getWcontent()%></td>
-						<td><%= wvo.getMnick()%></td>
-						<td><%= wvo.getInsertdate()%></td>
-					</tr>
-<%
-				} //for
-			}//if
-%>
-				</tbody>
-			</table>
+		<div class="neyongContainer">
+<!-- 등업  -->
+			<div class="gubunDiv">
+				<div class="gubunLeft">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b class="gubun">등업</b>
+				</div>
+				<div class="gubunRight">
+					<button type="button" id="levelupmoreBtn" class="showMoreBtn">더보기</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<br><br>
+				<hr>
+				<br><br>
+			</div>
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>등업번호</th>
+							<th>등업제목</th>
+							<th>등업사진</th>
+							<th>등업신청자</th>
+							<th>등업신청일</th> <!-- 작성일 -->
+							<th>등업처리여부</th>
+						</tr>
+					</thead>
+	<%
+	 			
+					String process = null;
+					if(listLV.size() > 0){
+					for(int i=0; i<listLV.size(); i++){
+						lvvo = listLV.get(i);
 						
+						
+						if(lvvo.getProcessyn().equals("0")){
+							process = "대기 중";
+						};
+	%>
+					<tbody>
+						<tr>
+							<td><%= 5-i %></td>
+							<td><%= lvvo.getLvnum()%></td>
+							<td class="leftTd"><%= lvvo.getLvsubject()%></td>
+							<td><img src="oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
+							<td><%= lvvo.getMnick()%></td> <!-- 닉네임 -->
+							<td><%= lvvo.getInsertdate()%></td>
+							<td><%= process%></td>
+						</tr>
+					</tbody>
+					<%
+					} //for
+	 			} //if				
+					%>
+				</table>
+			</div>
+<!-- 신고  -->	
+			<div class="gubunDiv">
+				<div class="gubunLeft">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b class="gubun">신고</b>
+				</div>
+				<div class="gubunRight">
+					<button type="button" id="warningmoreBtn" class="showMoreBtn">더보기</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<br><br>
+				<hr>
+				<br><br>
+			</div>
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>신고글번호</th> <!-- 신고당한 글번호 -->
+							<th>신고분야</th>
+							<th>신고내용</th>
+							<th>신고자</th>
+							<th>신고날짜</th> 
+						</tr>					
+					</thead>
+	<%
+				if(listW.size() > 0){
+					for(int i=0; i<listW.size(); i++){
+						wvo = listW.get(i);
+						
+						
+	%>
+					<tbody>
+						<tr>
+							<td><%= 5-i %></td>
+							<td><%= wvo.getWtnum() %></td>
+							<td><%= CodeUtils.getWcategory(wvo.getWcategory())%></td>
+							<td class="leftTd"><%= wvo.getWcontent()%></td>
+							<td><%= wvo.getMnick()%></td>
+							<td><%= wvo.getInsertdate()%></td>
+						</tr>
+	<%
+					} //for
+				}//if
+	%>
+					</tbody>
+				</table>
+			</div>
+			
 <!-- 레시피  -->	
-	<h3>레시피</h3>
-		<hr>
-		<button type="button" id="recipemoreBtn" style="float: left;">더보기</button><br>
-			<table border="1 solid">
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>요리분야</th>
-						<th>작성자</th>
-						<th>제목</th>
-						<th>사진</th>
-						<th>조회수</th>
-						<th>등록일</th>
-						<th>신고</th>
-					</tr>					
-				</thead>
-<%
-			if(listR.size() > 0){
-				for(int i=0; i<listR.size(); i++){
-					rvo = listR.get(i);
-					
-%>				
-				<tbody>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= CodeUtils.getAdminRcategorys(rvo.getRcategory()) %></td>
-						<td><%= rvo.getMnick() %></td><!-- 닉네임 -->
-						<td><%= rvo.getRsubject() %></td>
-						<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="width:50px; height:50px"></td>
-						<td><%= rvo.getRhit() %></td>
-						<td><%= rvo.getInsertdate() %></td>
-						<td><%= rvo.getWarning() %></td>
-					</tr>
-				</tbody>
-<%
-				}//for
-			}//if
-%>
-			</table>
-			
-<!-- 전문가팁 -->	
-		
-	<h3>전문가팁</h3>
-		<hr>
-		<button type="button" id="tipmoreBtn" style="float: left;">더보기</button><br>
-			<table border="1 solid">
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>팁분야</th>
-						<th>작성자</th>
-						<th>제목</th>
-						<th>사진</th>
-						<th>조회수</th>
-						<th>등록일</th>
-						<th>신고</th>
-					</tr>					
-				</thead>
-<%
-			if(listT.size() > 0){
-				for(int i=0; i<listT.size(); i++){
-					tvo = listT.get(i);
-%>							
-				<tbody>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= CodeUtils.getTipcate(tvo.getTcategory())%></td>
-						<td><%= tvo.getMnick()%></td><!-- 닉네임 -->
-						<td><%= tvo.getTsubject()%></td>
-						<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>" style="width:50px; height:50px"></td>
-						<td><%= tvo.getThit()%></td>
-						<td><%= tvo.getInsertdate()%></td>
-						<td><%= tvo.getWarning()%></td>
-					</tr>
-				</tbody>
-<%
-				}//for
-			}//if
-%>		
-			</table>
-			
+			<div class="gubunDiv">
+				<div class="gubunLeft">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b class="gubun">레시피</b>
+				</div>
+				<div class="gubunRight">
+					<button type="button" id="recipemoreBtn" class="showMoreBtn">더보기</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<br><br>
+				<hr>
+				<br><br>
+			</div>
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>요리분야</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>사진</th>
+							<th>조회수</th>
+							<th>작성일</th>
+							<th>신고</th>
+						</tr>					
+					</thead>
+	<%
+				if(listR.size() > 0){
+					for(int i=0; i<listR.size(); i++){
+						rvo = listR.get(i);
+						
+	%>				
+					<tbody>
+						<tr>
+							<td><%= 5-i %></td>
+							<td><%= CodeUtils.getAdminRcategorys(rvo.getRcategory()) %></td>
+							<td><%= rvo.getMnick() %></td><!-- 닉네임 -->
+							<td class="leftTd"><%= rvo.getRsubject() %></td>
+							<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="width:50px; height:50px"></td>
+							<td><%= rvo.getRhit() %></td>
+							<td><%= rvo.getInsertdate() %></td>
+							<td><%= rvo.getWarning() %></td>
+						</tr>
+					</tbody>
+	<%
+					}//for
+				}//if
+	%>
+				</table>
+			</div>
+				
+<!-- 전문가팁 -->
+			<div class="gubunDiv">
+				<div class="gubunLeft">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b class="gubun">전문가 팁</b>
+				</div>
+				<div class="gubunRight">
+					<button type="button" id="tipmoreBtn" class="showMoreBtn">더보기</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<br><br>
+				<hr>
+				<br><br>
+			</div>
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>팁분야</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>사진</th>
+							<th>조회수</th>
+							<th>작성일</th>
+							<th>신고</th>
+						</tr>					
+					</thead>
+	<%
+				if(listT.size() > 0){
+					for(int i=0; i<listT.size(); i++){
+						tvo = listT.get(i);
+	%>							
+					<tbody>
+						<tr>
+							<td><%= 5-i %></td>
+							<td><%= CodeUtils.getTipcate(tvo.getTcategory())%></td>
+							<td><%= tvo.getMnick()%></td><!-- 닉네임 -->
+							<td class="leftTd"><%= tvo.getTsubject()%></td>
+							<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>" style="width:50px; height:50px"></td>
+							<td><%= tvo.getThit()%></td>
+							<td><%= tvo.getInsertdate()%></td>
+							<td><%= tvo.getWarning()%></td>
+						</tr>
+					</tbody>
+	<%
+					}//for
+				}//if
+	%>		
+				</table>
+			</div>
+				
 <!-- 커뮤니티 -->	
-	<h3>커뮤니티</h3>
-		<hr>
-		<button type="button" id="communitymoreBtn" style="float: left;">더보기</button><br>
-			<table border="1 solid">
-				<thead>
-					<tr>
-						<th>NO</th>
-						<th>작성자</th>
-						<th>제목</th>
-						<th>조회수</th>
-						<th>작성일</th>
-						<th>신고</th>
-					</tr>					
-				</thead>
-<%
-			if(listC.size() > 0){
-				for(int i=0; i<listC.size(); i++){
-					cvo = listC.get(i);
-					
-%>					
-				<tbody>
-					<tr>
-						<td><%= i+1 %></td>
-						<td><%= cvo.getMnick() %></td> <!-- 닉네임 -->
-						<td><%= cvo.getCsubject() %></td>
-						<td><%= cvo.getChit() %></td>
-						<td><%= cvo.getInsertdate() %></td>
-						<td><%= cvo.getWarning() %></td>
-					</tr>
-				</tbody>
-<%
-				}//for
-			}//if
-%>		
-			</table>
-			<br>
-		<div>
-			<button type="button" id="noticeBtn">공지사항</button>
-		</div>	
-		
-		</form>
+			<div class="gubunDiv">
+				<div class="gubunLeft">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b class="gubun">신고</b>
+				</div>
+				<div class="gubunRight">
+					<button type="button" id="communitymoreBtn" class="showMoreBtn">더보기</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<br><br>
+				<hr>
+				<br><br>
+			</div>
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>조회수</th>
+							<th>작성일</th>
+							<th>신고</th>
+						</tr>					
+					</thead>
+	<%
+				if(listC.size() > 0){
+					for(int i=0; i<listC.size(); i++){
+						cvo = listC.get(i);
+						
+	%>					
+					<tbody>
+						<tr>
+							<td><%= 5-i %></td>
+							<td><%= cvo.getMnick() %></td> <!-- 닉네임 -->
+							<td class="leftTd"><%= cvo.getCsubject() %></td>
+							<td><%= cvo.getChit() %></td>
+							<td><%= cvo.getInsertdate() %></td>
+							<td><%= cvo.getWarning() %></td>
+						</tr>
+					</tbody>
+	<%
+					}//for
+				}//if
+	%>		
+				</table>
+			</div>
+		</div>
+	</form>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
