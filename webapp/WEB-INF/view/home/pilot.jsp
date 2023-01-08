@@ -34,6 +34,7 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
+		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectAll.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -173,6 +174,7 @@
 					let cnt = 0;
 					
 					$(".choiceTable").empty();
+					$(".table-fill").empty();
 					
 					for(let i=0; i < json.recipe.length; i++) {
 						
@@ -293,6 +295,7 @@
 					let cnt = 0;
 					
 					$(".choiceTable").empty();
+					$(".table-fill").empty();
 					
 					for(let i=0; i < json.tip.length; i++) {
 						
@@ -411,12 +414,35 @@
 					
 					console.log(json.community.length);
 					
+					$(".choiceTable").empty();
+					$(".table_fill").empty();
+					
+					let table_fill = $(".table-fill");
+					let table_thead = $("<thead>");
+					let table_tr = $("<tr>");
+					
+					table_tr.append($("<th>").attr('width', '10%').text('NO'));
+					table_tr.append($("<th>").attr('width', '40%').text('제목'));
+					table_tr.append($("<th>").attr('width', '25%').text('작성자'));
+					table_tr.append($("<th>").attr('width', '10%').text('조회수'));
+					table_tr.append($("<th>").attr('width', '15%').text('작성일'));
+					table_thead.append(table_tr);
+					table_fill.append(table_thead);
+					
+					
 					for(var i=0; i < json.community.length; i++) {
-						console.log(i + "번 index : " + json.community[i].cnum);
-						console.log(i + "번 index : " + json.community[i].csubject);
-						console.log(i + "번 index : " + json.community[i].cphoto);
+					
+						let tbody = $("<tbody>");
+						let tr = $("<tr>");
+						
+						tr.append($("<td>").text(json.community.length - i));
+						tr.append($("<td>").text(json.community[i].csubject).attr("onclick", "selectCommunity('" + json.community[i].cnum + "')"));
+						tr.append($("<td>").text(json.community[i].mnick));
+						tr.append($("<td>").text(json.community[i].chit));
+						tr.append($("<td>").text(json.community[i].insertdate));
+						tbody.append(tr);
+						table_fill.append(tbody);
 					}
-					console.log(recipe_html);
 				}else{
 					
 				}
@@ -433,6 +459,10 @@
 			
 			function selectTip(tnum) {
 				location.href = "tipSelectContent.ict?tnum=" + tnum;
+			}
+			
+			function selectCommunity(cnum) {
+				location.href = "communitySelectContent.ict?cnum=" + cnum;
 			}
 			
 			function categoryLabeling(category, identifier) {
@@ -675,15 +705,18 @@
 	<button type="button" id="communityBtn" class="centerBtn">커뮤니티 버튼</button>
 </div>
 
-<div class="choiceAll">
+	<div class="choiceAll">
 		<div class="choiceTableDiv">
 			<table class="choiceTable">
-				
-					
+			
 			</table>
 		</div>
 	</div>
-
+	
+	<div>
+		<table class="table-fill">
+		</table>
+	</div>
 </div>
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->

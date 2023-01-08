@@ -203,6 +203,9 @@ public class HomeRestController {
 				json_community_obj.put("csubject", cvo.getCsubject());
 				json_community_obj.put("cphoto", cvo.getCphoto());
 				json_community_obj.put("csubject", cvo.getCsubject());
+				json_community_obj.put("mnick", cvo.getMnick());
+				json_community_obj.put("chit", cvo.getChit());
+				json_community_obj.put("insertdate", cvo.getInsertdate());
 				json_community_array.add(json_community_obj);
 			} // end of for
 			json_output.put("community", json_community_array);

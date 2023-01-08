@@ -211,6 +211,8 @@
 		   ,B.CSUBJECT 	AS		CSUBJECT
 		   ,B.CPHOTO 	AS		CPHOTO
 		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+		   ,A.MNICK		AS		MNICK
+		   ,B.CHIT		AS		CHIT
 	FROM	(SELECT  
 					 MNUM
 					,MNICK
@@ -227,6 +229,7 @@
 		   		   ,CPHOTO
 		   		   ,INSERTDATE
 		   		   ,MNUM
+		   		   ,CHIT
 		     FROM	"ORCLICT00"."ICT_COMMUNITY"
 		     WHERE	DELETEYN = 'Y'			
 		     AND	MNUM 	 = #{mnum} )			B
