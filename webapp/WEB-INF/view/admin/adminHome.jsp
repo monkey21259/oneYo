@@ -384,12 +384,13 @@
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 	
-	<div>
-		<button type="button" id="memselectAllBtn" class="centerBtn">회원목록</button>
-		<button type="button" id="noticeBtn" class="centerBtn">공지사항</button>
-	</div>
 	<form id="adminForm" name="adminForm">
 		<div class="neyongContainer">
+			<div class="btnDiv">
+				<br>
+				<button type="button" id="memselectAllBtn" class="centerBtn">회원목록</button>&nbsp;&nbsp;&nbsp;
+				<button type="button" id="noticeBtn" class="centerBtn">공지사항</button>
+			</div>
 <!-- 등업  -->
 			<div class="gubunDiv">
 				<div class="gubunLeft">
@@ -536,7 +537,7 @@
 							<td><%= CodeUtils.getAdminRcategorys(rvo.getRcategory()) %></td>
 							<td><%= rvo.getMnick() %></td><!-- 닉네임 -->
 							<td class="leftTd"><%= rvo.getRsubject() %></td>
-							<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>" style="width:50px; height:50px"></td>
+							<td><img src="/oneYo/img/recipe/<%= rvo.getRphoto() %>"></td>
 							<td><%= rvo.getRhit() %></td>
 							<td><%= rvo.getInsertdate() %></td>
 							<td><%= rvo.getWarning() %></td>
@@ -588,7 +589,7 @@
 							<td><%= CodeUtils.getTipcate(tvo.getTcategory())%></td>
 							<td><%= tvo.getMnick()%></td><!-- 닉네임 -->
 							<td class="leftTd"><%= tvo.getTsubject()%></td>
-							<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>" style="width:50px; height:50px"></td>
+							<td><img src="/oneYo/img/tip/<%= tvo.getTphoto()%>"></td>
 							<td><%= tvo.getThit()%></td>
 							<td><%= tvo.getInsertdate()%></td>
 							<td><%= tvo.getWarning()%></td>
@@ -605,7 +606,7 @@
 			<div class="gubunDiv">
 				<div class="gubunLeft">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<b class="gubun">신고</b>
+					<b class="gubun">커뮤니티</b>
 				</div>
 				<div class="gubunRight">
 					<button type="button" id="communitymoreBtn" class="showMoreBtn">더보기</button>
@@ -649,6 +650,7 @@
 	%>		
 				</table>
 			</div>
+			<br><br><br>
 		</div>
 	</form>
 		<!-- -------------------------------페이지 전용 center------------------------------- -->

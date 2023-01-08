@@ -132,18 +132,13 @@ public class RecipeController {
 			recipevo.setCurPage(String.valueOf(ConstPack.RECIPE_CUR_PAGE));
 		}//end of if
 		
-		// 1. 값 불러와서 model
-		List<RecipeVO> recipeList = recipeService.recipeSelectAll(recipevo);
+		List<RecipeVO> recipeList = recipeService.recipeSelectAll(recipevo);// 레시피 리스트
 		if (recipeList == null || recipeList.size() < 1) {
 			logger.info("[FAIL] Recipe SelectAll");
 			return "#";
 		}
-//		logger.info(recipeList.toString());
-		logger.info("0 : " + recipeList.get(0).toString());
-		logger.info("1 : " + recipeList.get(1).toString());
-		List<String> recipeLike = recipeService.recipeSelectLike();
-		logger.info("recipeLike.size : " + recipeLike.size());
 		
+		List<String> recipeLike = recipeService.recipeSelectLike(); //레시피 좋아요 리스트
 		
 		for(int i=0; i < recipeList.size(); i++) {
 			recipeList.get(i).setLikecnt("0");
@@ -154,11 +149,11 @@ public class RecipeController {
 			for(int j=0; j < recipeLike.size(); j++) {
 				like = 0;
 				if(recipeList.get(i).getRnum().equals(recipeLike.get(j))) {
-					logger.info("recipeLike.get(j) : " +  recipeList.get(i).getRnum() + recipeLike.get(j));
+					
 					
 					like = (Integer.parseInt(recipeList.get(i).getLikecnt()) + 1);
 					recipeList.get(i).setLikecnt(String.valueOf(like));
-					logger.info("recipeList.get(i).getLikecnt : " + recipeList.get(i).getLikecnt());
+					
 					}
 				}
 			}
