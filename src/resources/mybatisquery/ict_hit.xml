@@ -31,7 +31,7 @@
 				WHERE CNUM = #{boardNum, jdbcType=VARCHAR}
 			]]>
 		</if>
-		<if test='boardFlag == "C"'>
+		<if test='boardFlag == "N"'>
 			<![CDATA[
 					ICT_NOTICE
 				SET

@@ -105,7 +105,16 @@ b {
 
 table {
 	width: 1100px;
-	margin:  auto;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+tr {
+	border-bottom:1px solid #d1d1d1;
+}
+
+.headTr {
+	border-bottom:3px solid #d1d1d1;
 }
 
 th {
@@ -113,7 +122,6 @@ th {
 	color : #93A603;
 	letter-spacing: 1px;
 	padding-bottom: 12px;
-	border-bottom:3px solid #d1d1d1;
 }
 
 td {
@@ -121,7 +129,6 @@ td {
 	padding-bottom: 6px;
 	padding-left: 3px;
 	padding-right: 3px;
-	border-bottom:1px solid #d1d1d1;
 }
 
 .leftTd {

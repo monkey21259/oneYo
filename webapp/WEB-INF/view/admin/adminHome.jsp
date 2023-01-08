@@ -407,7 +407,7 @@
 			<div class="tableContainer">
 				<table>
 					<thead>
-						<tr>
+						<tr class="headTr">
 							<th>NO</th>
 							<th>등업번호</th>
 							<th>등업제목</th>
@@ -463,7 +463,7 @@
 			<div class="tableContainer">
 				<table>
 					<thead>
-						<tr>
+						<tr class="headTr">
 							<th>NO</th>
 							<th>신고글번호</th> <!-- 신고당한 글번호 -->
 							<th>신고분야</th>
@@ -513,7 +513,7 @@
 			<div class="tableContainer">
 				<table>
 					<thead>
-						<tr>
+						<tr class="headTr">
 							<th>NO</th>
 							<th>요리분야</th>
 							<th>작성자</th>
@@ -566,7 +566,7 @@
 			<div class="tableContainer">
 				<table>
 					<thead>
-						<tr>
+						<tr class="headTr">
 							<th>NO</th>
 							<th>팁분야</th>
 							<th>작성자</th>
@@ -618,7 +618,7 @@
 			<div class="tableContainer">
 				<table>
 					<thead>
-						<tr>
+						<tr class="headTr">
 							<th>NO</th>
 							<th>작성자</th>
 							<th>제목</th>
