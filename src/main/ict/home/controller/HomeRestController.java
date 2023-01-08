@@ -65,6 +65,7 @@ public class HomeRestController {
 			json_member_obj.put("mnick", mvo.getMnick());
 			json_member_obj.put("mgrade", mvo.getMgrade());
 			json_member_obj.put("mprofile", mvo.getMprofile());
+			json_member_obj.put("insertdate", mvo.getInsertdate());
 			json_member_array.add(json_member_obj);
 			json_output.put("mem", json_member_array);
 		} // end of if
