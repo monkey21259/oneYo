@@ -39,6 +39,8 @@
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
 		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		
+		<link rel="stylesheet" href="/oneYo/resource/css/mypage/myPageHome.css">
 		<script type="text/javascript">
 		
 			console.log("[home.jsp] JS");
@@ -158,6 +160,13 @@
 				console.log("레시피 : " + json.hasOwnProperty('recipe'));
 				console.log("레시피 : " + Object.keys(json));
 				
+				if(json.hasOwnProperty('mem')) {
+					$("#mnick").text(json.mem[0].mnick);
+					$("#insertdate").text(json.mem[0].insertdate);
+					$("#mprofile").attr("src", "/oneYo/img/mem/" + json.mem[0].mprofile);
+					$("#mgrade").text(categoryLabeling(json.mem[0].mgrade, 'mem'));
+				}
+				
 				if(json.hasOwnProperty('recipe')) {
 					
 					console.log("조호된 recipe 데이터가 " + json.recipe.length + "건 있습니다.");
@@ -198,14 +207,14 @@
 						let imgTd = $("<td>");
 						imgTd.addClass("imgTd");
 						
-						let img = $("<img id='rphoto'>")
+						let img = $("<img id='rphoto' style='width:200px; height:200px;'>")
 						img.attr("src", ("/oneYo/img/recipe/") + json.recipe[i].rphoto);
 						
 						let cateTd = $("<td>");
 						cateTd.addClass("cateTd");
 						
 						let cateP = $("<p>");
-						cateP.text(json.recipe[i].rcategory);
+						cateP.text(categoryLabeling(json.recipe[i].rcategory, 'recipe'));
 						
 						let nameTd1 = $("<td>");
 						nameTd1.addClass("nameTd");
@@ -246,6 +255,7 @@
 						
 						selectTable.append($("<tr>").append(nameTd2));
 						nameTd2.append($("<p>").text('작성자'));
+						nameTd2.append($("<span>").text(json.recipe[i].mnick));
 						
 						selectTable.append($("<tr>").append(dayTd));
 						dayTd.append($("<div>").text(json.recipe[i].insertdate));
@@ -317,14 +327,14 @@
 						let imgTd = $("<td>");
 						imgTd.addClass("imgTd");
 						
-						let img = $("<img id='tphoto'>")
+						let img = $("<img id='tphoto' style='width:200px; height:200px;'>")
 						img.attr("src", ("/oneYo/img/tip/") + json.tip[i].tphoto);
 						
 						let cateTd = $("<td>");
 						cateTd.addClass("cateTd");
 						
 						let cateP = $("<p>");
-						cateP.text(json.tip[i].tcategory);
+						cateP.text(categoryLabeling(json.tip[i].tcategory, 'tIp'));
 						
 						let nameTd1 = $("<td>");
 						nameTd1.addClass("nameTd");
@@ -365,6 +375,7 @@
 						
 						selectTable.append($("<tr>").append(nameTd2));
 						nameTd2.append($("<p>").text('작성자'));
+						nameTd2.append($("<span>").text(json.tip[i].mnick));
 						
 						selectTable.append($("<tr>").append(dayTd));
 						dayTd.append($("<div>").text(json.tip[i].insertdate));
@@ -422,6 +433,29 @@
 			
 			function selectTip(tnum) {
 				location.href = "tipSelectContent.ict?tnum=" + tnum;
+			}
+			
+			function categoryLabeling(category, identifier) {
+				console.log(identifier + '게시판의 카테고리 : ' + category);
+				
+				let recipe_category_label = {'00': '한식', '01': '중식', '02': '양식', '03': '일식', '04': '디저트', '99': '기타'};
+				let tip_category_label = {'00': '요리', '01': '주방관리', '02': '재료정보', '99': '기타'};
+				let mem_category_label = {'0': '일반', '1': '전문가'};
+				
+				if(identifier.toUpperCase() == 'RECIPE' && identifier !=null) {
+					console.log('레시피 게시판');
+					return recipe_category_label[category];
+				}
+				
+				if(identifier.toUpperCase() == 'TIP' && identifier !=null) {
+					console.log('전문가팁 게시판');
+					return tip_category_label[category];
+				}
+				
+				if(identifier.toUpperCase() == 'MEM' && identifier !=null) {
+					console.log('회원 등급');
+					return mem_category_label[category];
+				}
 			}
 			
 		</script>
@@ -604,13 +638,42 @@
 </div>
 
 <div id="center" style="text-align:center;">
+		<div id="profile_div" style="display:table; margin-left:24px; width:100%;">
+			<div style="display:flex; align-items:center; line-height:80%;">
+				<div style="display:inline-block; text-align:center; float:left;">
+					<img id="mprofile" style="width:102px; height:102px; border-radius: 10px;" />
+				</div>
+				<div style="display:inline-block; text-align:left; width: 360px;">
+					<div style="display:inline-block; padding-left:15px;">
+						<b>닉네임</b><br><br>
+						<b>등&nbsp;&nbsp;&nbsp;급</b><br><br>
+						<b>가입일</b>
+					</div>
+					<div style="display:inline-block; padding-left:8px;">
+						<span id="mnick">
+						
+						</span>
+						<br><br>
+						<span id="mgrade">
+						
+						</span>
+						<br><br>
+						<span id="insertdate">
+						
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
 <!--
 쉐프 소개 페이지 작업할 공간
 -->
 <!-- 임시 버튼 -->
-<button type="button" id="recipeBtn">레시피 버튼</button>
-<button type="button" id="tipBtn">전문가팁 버튼</button>
-<button type="button" id="communityBtn">커뮤니티 버튼</button>
+<div style="text-align:right;">
+	<button type="button" id="recipeBtn" class="centerBtn">레시피 버튼</button>
+	<button type="button" id="tipBtn" class="centerBtn">전문가팁 버튼</button>
+	<button type="button" id="communityBtn" class="centerBtn">커뮤니티 버튼</button>
+</div>
 
 <div class="choiceAll">
 		<div class="choiceTableDiv">
