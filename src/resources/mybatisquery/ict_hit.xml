@@ -31,6 +31,14 @@
 				WHERE CNUM = #{boardNum, jdbcType=VARCHAR}
 			]]>
 		</if>
+		<if test='boardFlag == "C"'>
+			<![CDATA[
+					ICT_NOTICE
+				SET
+					CHIT = NVL(CHIT, 0) + 1
+				WHERE NNUM = #{boardNum, jdbcType=VARCHAR}
+			]]>
+		</if>
 		AND DELETEYN = 'Y'
 		
 		
