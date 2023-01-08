@@ -100,6 +100,7 @@
 					
 					let jeryo = $("#jeryo");
 					let jeryoList = $("#jeryoList");
+					let jeryoAtag = $("<a>").attr("onclick", "deleteJeryo(this)");
 					console.log("입력된 재료 : " + jeryo.val());
 					console.log("입력된 재료 문자열 길이 : " + jeryo.val().length);
 					
@@ -111,7 +112,7 @@
 						}
 						console.log(jeryoList.text().split('#').length);
 						if(jeryoList.text().split('#').length <= 3) {
-							jeryoList.append("#" + jeryo.val() + " ");	
+							jeryoList.append(jeryoAtag.text("#" + jeryo.val() + " "));
 							jeryo.val("");
 							jeryo.focus();
 						}else {
@@ -177,6 +178,12 @@
 						$(elem).css("z-index", 0);
 					}
 				});
+			}
+			
+			function deleteJeryo(obj) {
+				if(confirm("재료를 제거하시겠습니까?")) {
+					obj.remove();	
+				}
 			}
 			
 		</script>

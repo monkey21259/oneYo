@@ -65,6 +65,7 @@ public class HomeRestController {
 			json_member_obj.put("mnick", mvo.getMnick());
 			json_member_obj.put("mgrade", mvo.getMgrade());
 			json_member_obj.put("mprofile", mvo.getMprofile());
+			json_member_obj.put("insertdate", mvo.getInsertdate());
 			json_member_array.add(json_member_obj);
 			json_output.put("mem", json_member_array);
 		} // end of if
@@ -202,6 +203,9 @@ public class HomeRestController {
 				json_community_obj.put("csubject", cvo.getCsubject());
 				json_community_obj.put("cphoto", cvo.getCphoto());
 				json_community_obj.put("csubject", cvo.getCsubject());
+				json_community_obj.put("mnick", cvo.getMnick());
+				json_community_obj.put("chit", cvo.getChit());
+				json_community_obj.put("insertdate", cvo.getInsertdate());
 				json_community_array.add(json_community_obj);
 			} // end of for
 			json_output.put("community", json_community_array);
@@ -267,48 +271,34 @@ public class HomeRestController {
 			logger.info(oList.toString());
 		}
 		
-		// JSONArray를 사용해서 리스트 받기 -> 각 VO를 Map으로 변경해서 할당.
-		
-		// ** 테스트케이스 ** //
-//		JSONObject testObj = new JSONObject();  // 
-//		testObj.put("TEST", "TEST입니다.");  // VO를 Map으로 받아서 다 넣어야됨.
-		
-		// JSONArray(jsonArr)를 담을 최종 JSONObject
+
 		JSONObject jsonObj = new JSONObject();
 		// JSONObject를 담을 Array
 		JSONArray  jsonArr = new JSONArray();
 		
 		// jsonArr에 담겨질 JSONObject
 		JSONObject jObj = null;
-//		Map<String, Object> oMap = null;
+
 		logger.info("oList: " + oList);
 		if (oList != null) {
 			try {
 				if (oList.size() == 0) { throw new Exception("사이즈 부족"); }
 				for (ObjectVO _ovo: oList) {
-//					oMap = CodeUtils.convertToMap(oList.get(0));
+
 					jObj = CodeUtils.convertToJSONObj(_ovo);
 					jsonArr.add(jObj);
 				}
 			} catch (Exception e) {
 				logger.info("[FAIL] VO -> JSONObject: " + e.getMessage());
-//				oMap = Collections.emptyMap();
+
 				jObj = new JSONObject();
 				jsonArr = new JSONArray();
 				jsonArr.add(jObj);
 			}
 		}
-//		logger.info("oMap.toString(): " + oMap.toString());
+
 		logger.info("jObj.toString(): " + jObj.toString());
-		
-//		obj = new JSONObject(oMap);  // json-simple-1.1.1.jar에서 지원.
-//		StringWriter out = new StringWriter();
-//		try {
-//			JSONObject.writeJSONString(oMap, out);
-//		} catch (Exception e) {
-//			logger.info("[FAIL] Write JSONObject to JSONString.");
-//		}
-//		logger.info("out.toString(): " + out.toString());
+	
 		
 		// JSONObject --------------------------
 		jsonObj.put("jsonArr", jsonArr);

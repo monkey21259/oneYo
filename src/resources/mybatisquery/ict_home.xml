@@ -111,10 +111,11 @@
 <select id="homeRestSelectMem" parameterType="memvo" resultType="memvo">
 
 	SELECT		
-				A.MNUM		AS		MNUM
-		   	   ,A.MNICK		AS		MNICK
-		       ,A.MGRADE	AS		MGRADE
-		       ,A.MPROFILE	AS		MPROFILE
+				A.MNUM			AS		MNUM
+		   	   ,A.MNICK			AS		MNICK
+		       ,A.MGRADE		AS		MGRADE
+		       ,A.MPROFILE		AS		MPROFILE
+		       ,TO_CHAR(TO_DATE(A.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
 	FROM 	    "ORCLICT00"."ICT_MEMBER"	A
 	WHERE 	    A.MNUM     = #{mnum}
 	AND 		A.MGRADE   = '1'
@@ -142,6 +143,7 @@
 					,MNICK
 					,MGRADE
 					,MPROFILE
+					,INSERTDATE
 			 FROM	"ORCLICT00"."ICT_MEMBER"
 			 WHERE	DELETEYN = 'Y'
 			 AND	MNUM     = #{mnum}
@@ -209,6 +211,8 @@
 		   ,B.CSUBJECT 	AS		CSUBJECT
 		   ,B.CPHOTO 	AS		CPHOTO
 		   ,TO_CHAR(TO_DATE(B.INSERTDATE), 'YYYY-MM-DD')	AS		INSERTDATE
+		   ,A.MNICK		AS		MNICK
+		   ,B.CHIT		AS		CHIT
 	FROM	(SELECT  
 					 MNUM
 					,MNICK
@@ -225,6 +229,7 @@
 		   		   ,CPHOTO
 		   		   ,INSERTDATE
 		   		   ,MNUM
+		   		   ,CHIT
 		     FROM	"ORCLICT00"."ICT_COMMUNITY"
 		     WHERE	DELETEYN = 'Y'			
 		     AND	MNUM 	 = #{mnum} )			B
