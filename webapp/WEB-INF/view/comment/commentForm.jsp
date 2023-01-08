@@ -102,9 +102,20 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 					function whenSuccess(resData){
 						console.log(typeof resData);
 						if(resData == null || typeof resData == "undefined" || resData == ""){
+							
+							$('.hrhr').addClass('hidden_X');
+							$('.nullDiv').addClass('hidden_X');
+							
 							return false;
 						}else{
 							let commentList = resData.split("&");
+							
+							var chongGul = $('<span>');
+							chongGul.html('댓글');
+							var chongCnt = $('<p>');
+							chongCnt.html(commentList.length + ' 개');
+							$('#chong').append(chongGul).append(chongCnt);
+							
 							for(let i=0; i<commentList.length; i++){
 								let row = commentList[i].split(",");
 								console.log(row);
@@ -115,6 +126,7 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 								row[3] : mnick
 								row[4] : insertdate
 								*/
+								
 								if(i > 0) {
 									$('#commentList').append($('<hr>'));
 								}
@@ -137,9 +149,14 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 						return false;
 					}//end of if
 					
+					
 					//새로운 댓글이 담겨질 div태그
 					var newDiv = $('<div>');
 					newDiv.addClass('item');
+					
+					//	닉네임+작성일
+					var wridayDiv = $('<div>');
+					wridayDiv.addClass('wriday');
 					
 					//작성자 닉네임, 삭제 버튼이 담길 div태그
 					var writerDiv = $('<div>');
@@ -190,11 +207,14 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 // 					insertdateDiv.html(decodeURIComponent(insertdate) + "&nbsp;&nbsp;&nbsp;");
 					insertdateDiv.addClass('insertdate');
 					
+					
 					//생성한 태그들 조립하기
 					writerDiv.append(conumHidden).append(mnumHidden);
 // 					insertdateDiv.append(deleteBtn);
 // 					newDiv.append(writerDiv).append(cocontentDiv).append(insertdateDiv);
-					newDiv.append(writerDiv).append(insertdateDiv).append(cocontentDiv).append(deleteBtn);
+// 					newDiv.append(writerDiv).append(insertdateDiv).append(cocontentDiv).append(deleteBtn);
+					wridayDiv.append(writerDiv).append(insertdateDiv);
+					newDiv.append(wridayDiv).append(deleteBtn).append(cocontentDiv);
 					$('#commentList').append(newDiv);
 					
 				}//end of addNewItem() function
@@ -237,6 +257,7 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 		</script>
 	</head>
 	<body>
+		<div class="comments">
 		<!-- 화면에 보일 div태그 -->
 		<!-- 게시글 사이즈에 따라 width 변경하기 -->
 			<form id="commentForm" name="commentForm">
@@ -255,12 +276,28 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 					</div>
 				</div>
 <%	
+			}else {
+%>
+				
+				<div class="nullDiv"></div>
+<%
 			}
 %>
+				
+				<div class="nullDiv"></div>
+				<div id="chong" class="chong"></div>
+				<hr id="hrhr" class="hrhr">
+				
 				<input type="hidden" id="cotnum" value="<%=cotnum %>">
 				<div id="commentList">
 					<!-- 댓글 내용 table태그 들어갈 자리 -->
 				</div>
+				
+				<div class="nullDiv"></div>
+				<div class="nullDiv"></div>
+				<div class="nullDiv"></div>
+				<div class="nullDiv"></div>
 			</form>
+		</div>
 	</body>
 </html>

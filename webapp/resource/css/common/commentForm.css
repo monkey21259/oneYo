@@ -6,6 +6,19 @@
 <link rel="stylesheet" href="/oneYo/resource/css/common/commentForm.css">
 */
 
+
+
+#center .comments {
+	width	: 800px;
+	margin	: 10px auto;
+	
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	background-color	: #FCF4EF;
+}
+
+
 /* 입력 칸의 부모 */
 #inputComment {
 	
@@ -24,7 +37,7 @@
 #inputComment #inputNick {
 	width	: 100%;
 	
-	margin-top	: 20px;
+	margin-top	: 50px;
 	margin-bottom	: 10px;
 }
 
@@ -35,20 +48,39 @@
 /* 	margin-left	: 5px; */
 }
 #inputComment #insertNeyong #cocontent {
-	width	: 100%;
+	width	: 95%;
 	/* 높이조절 */
 	resize	: vertical;
+	border	: none;
+	font-size	: 18px;
+	padding	: 8px;
+	border-radius	: 15px;
+}
+#inputComment #insertNeyong #cocontent:focus {
+	outline	: none;
 }
 
 /* 입력하는 버튼 */
 #inputComment #insertBtn {
-	width	: 100px;
-	height	: 40px;
+	height	: 35px;
+	padding	: 0 12px;
+	
+	font-size	: 15px;
+	  
+	color	: #666;
 	
 	margin-right	: -1%;
 	
 	text-align	: center;
-	line-height: 40px;
+	line-height: 35px;
+}
+/* 입력하는 버튼 */
+#inputComment #insertBtn:hover {
+	
+	color	: #fff;
+	background-color	: #AC7B53;
+	
+	border-radius	: 15px;
 }
 
 
@@ -69,7 +101,7 @@
 	display	: flex;
 	flex-wrap	: wrap;
 	
-	margin	: 20px auto;
+	margin	: 0 auto;
 	
 }
 
@@ -80,56 +112,134 @@
 	/* 정렬 편집용 세팅 */
 	display	: flex;
 	flex-wrap	: wrap;
+	justify-content	: space-between;
 	
 	margin	: 20px auto;
 	
 }
-/* 작성자 */
-#commentList .item .writer {
-	
-/* 	width	: 100%; */
+/* 작성자+작성일 */
+#commentList .item .wriday {
 	
 	/* 정렬 편집용 세팅 */
-/* 	display	: flex; */
-/* 	flex-wrap	: wrap; */
+	display	: flex;
+	align-items: flex-end;
 	
-/* 	margin	: 20px auto; */
+	margin-left	: 3px;
+	
+}
+/* 작성자 */
+#commentList .item .wriday .writer {
+	
+	font-size	: 17px;
+	color	: #AC7B53;
+	
+	margin-right	: 10px;
 	
 }
 /* 작성일 */
-#commentList .item .insertdate {
+#commentList .item .wriday .insertdate {
 	
-/* 	width	: 50%; */
-	
-	/* 정렬 편집용 세팅 */
-/* 	display	: flex; */
-/* 	flex-wrap	: wrap; */
-	
-/* 	margin	: 20px auto; */
+	font-size	: 13px;
+	color	: #777;
 	
 }
 /* 댓글내용 */
 #commentList .item .cocontent {
 	
-/* 	width	: 50%; */
+	width	: 100%;
 	
-	/* 정렬 편집용 세팅 */
-/* 	display	: flex; */
-/* 	flex-wrap	: wrap; */
 	
-/* 	margin	: 20px auto; */
+	margin-top	: 12px;
 	
 }
 /* 삭제버튼 */
 #commentList .item .deleteBtn {
 	
-/* 	width	: 50%; */
+	font-size	: 15px;
+	
+	padding	: 5px 12px;
+	
+	color	: #666;
+	
+	margin-right	: 20px;
+	
+}
+/* 삭제버튼 마우스오버 */
+#commentList .item .deleteBtn:hover {
+	
+	
+	border-radius	: 10px;
+	background-color	: #AC7B53;
+	color	: #fff;
+}
+
+
+
+
+
+
+
+
+.chong {
+	
+	width	: 700px;
 	
 	/* 정렬 편집용 세팅 */
-/* 	display	: flex; */
-/* 	flex-wrap	: wrap; */
+	display	: flex;
+	align-items	: flex-end;
 	
-/* 	margin	: 20px auto; */
+	margin	: 5px auto;
+	
+}
+.chong span {
+	
+	font-size	: 22px;
+	
+	margin-right	: 10px;
+	
+	color	: #AC7B53;
+	
+}
+.chong p {
+	
+	font-size	: 20px;
+	
+	color	: #AC7B53;
+}
+
+
+
+
+
+
+
+
+.comments #commentList hr {
+	
+	width	: 700px;
+	margin	: 2px auto;
+	
+	
+	border	: 0;
+	border-top	: 1px dashed #AC7B53;
+		
+}
+.comments .hrhr {
+	
+	width	: 700px;
+	
+	margin	: 0 auto;
+	
+	border	: 0;
+	border-top	: 1px solid #AC7B53;
+	
+}
+
+
+/* 빈공간 */
+.nullDiv {
+	
+	height	: 15px;
 	
 }
 
