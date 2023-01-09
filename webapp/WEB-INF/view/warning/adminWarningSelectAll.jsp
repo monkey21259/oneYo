@@ -325,41 +325,58 @@
 	<!-- 신고분야 -->
 	<div>
 		<div>
-			<span>
-					<button type="button" id="searchCategory-1" class="searchBtn" onclick="categorySearch('-1')">전체</button>&nbsp;
-					<button type="button" id="searchCategory00" class="searchBtn" onclick="categorySearch('00')">욕설 및 비방</button>&nbsp;
-					<button type="button" id="searchCategory01" class="searchBtn" onclick="categorySearch('01')">음란물</button>&nbsp;
-					<button type="button" id="searchCategory02" class="searchBtn" onclick="categorySearch('02')">불법광고</button>&nbsp;
-					<button type="button" id="searchCategory03" class="searchBtn" onclick="categorySearch('03')">도배성</button>&nbsp;
-					<button type="button" id="searchCategory04" class="searchBtn" onclick="categorySearch('04')">주제와 맞지 않음</button>&nbsp;
-					<button type="button" id="searchCategory99" class="searchBtn" onclick="categorySearch('99')">기타</button>
+			<!-- 카테고리 -->
+			<div class="category_fillContainer">
+				<div class="category">
+					<div class="divClick">
+						<button type="button" id="searchCategory-1" class="category_btn" onclick="categorySearch('-1')">전체</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory00" class="category_btn" onclick="categorySearch('00')">욕설 및 비방</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory01" class="category_btn" onclick="categorySearch('01')">음란물</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory02" class="category_btn" onclick="categorySearch('02')">불법광고</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory03" class="category_btn" onclick="categorySearch('03')">도배성</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory04" class="category_btn" onclick="categorySearch('04')">주제와 맞지 않음</button>
+					</div>
+					<div class="divClick">
+						<button type="button" id="searchCategory99" class="category_btn" onclick="categorySearch('99')">기타</button>
+					</div>
 					<input type="hidden" id="searchCategory" name="searchCategory">
-					<script>
-						//search 프로퍼티 담아서 폼 보내기
-						function categorySearch(s){
-							if(s != '-1'){
-								location.href="adminWarningSelectAll.ict?searchCategory=" + s;
-								/*
-								$("#adminWarningSelectAll").attr({
-									'action':'adminWarningSelectAll.ict?searchCategory=' + String.valueOf(s),
-									'method':'GET',
-									'enctype':'application/x-www-form-urlencoded'
-								}).submit();
-								*/
-							}else{
-								location.href="adminWarningSelectAll.ict"
-								/*
-								$("#adminWarningSelectAll").attr({
-									'action':'adminWarningSelectAll.ict',
-									'method':'GET',
-									'enctype':'application/x-www-form-urlencoded'
-								}).submit();
-								*/
-							}//end of if-else
-							
-						}//end of categorySearch() function
-					</script>	
-			</span>
+				</div>
+			</div>
+				<script>
+					//search 프로퍼티 담아서 폼 보내기
+					function categorySearch(s){
+						if(s != '-1'){
+							location.href="adminWarningSelectAll.ict?searchCategory=" + s;
+							/*
+							$("#adminWarningSelectAll").attr({
+								'action':'adminWarningSelectAll.ict?searchCategory=' + String.valueOf(s),
+								'method':'GET',
+								'enctype':'application/x-www-form-urlencoded'
+							}).submit();
+							*/
+						}else{
+							location.href="adminWarningSelectAll.ict"
+							/*
+							$("#adminWarningSelectAll").attr({
+								'action':'adminWarningSelectAll.ict',
+								'method':'GET',
+								'enctype':'application/x-www-form-urlencoded'
+							}).submit();
+							*/
+						}//end of if-else
+						
+					}//end of categorySearch() function
+				</script>
 		</div>
 	</div>
 		<div>

@@ -45,7 +45,7 @@
 				<a href="/oneYo/recipeInsertForm.ict">레시피 게시글 등록</a><br />
 				<a href="/oneYo/recipeSelectAll.ict">레시피 전체 조회</a>
 				<hr /><br />
-				<a href="rssTest.ict">RSS 테스트</a>
+				<a href="entertainment.ict">엔터테이먼트 테스트</a>
 				<hr>
 				<a href="adminHome.ict">관리자 메인페이지</a><br>
 				<hr>

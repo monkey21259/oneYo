@@ -11,7 +11,7 @@
 <c:import var="foodInfo" url="https://www.foodsafetykorea.go.kr/rss/rss.do?bbs_no=bbs001&menu_no=3120&menu_grp=MENU_NEW01"/>
 <x:parse var="foodInfo" xml="${foodInfo}"></x:parse>
 <ul>
-    <x:forEach select="$foodInfo/rss/channel/item" begin="0" end="7">
+    <x:forEach select="$foodInfo/rss/channel/item" begin="0" end="10">
         <li>
             <a href="https://www.foodsafetykorea.go.kr/<x:out select="./link"/>" target="_blank">
                 <x:out select="./title"/>

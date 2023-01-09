@@ -43,7 +43,7 @@
 /*   animation: float 5s infinite; */
 }
   
-tr {
+.table_fill_w tr {
 /*   border-top: 1px solid #C1C3D1; */
  border-bottom: 1px solid #C1C3D1;
  border-top: 1px solid #C1C3D1;
@@ -52,7 +52,7 @@ tr {
   font-weight:normal;
 }
  
-td {
+.table_fill_w td {
   text-align:center;
   vertical-align:middle;
   font-weight:300;
@@ -107,7 +107,7 @@ td {
 	background: #FCF4EF;
 	resize:none; /*textarea 크기고정*/
 }
-textarea{
+.table_fill_w textarea{
 	width: 470px;
     height: 350px;
 	resize: none; /*textarea 크기고정*/
@@ -115,7 +115,7 @@ textarea{
 	padding:10px; 
 	 border: none;
 }
-textarea::placeholder {
+.table_fill_w textarea::placeholder {
   color: #c0c0c0;
   font-size:15px;
   text-align:center;

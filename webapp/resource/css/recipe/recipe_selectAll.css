@@ -91,6 +91,8 @@
 .recipeCategory {
 	display	: flex;
 	justify-content	: center;
+	
+/* 	margin-bottom	: 38px; */
 }
 .recipeCategory .recipeCate {
 	width	: 16%;
@@ -100,18 +102,22 @@
 }
 
 
-.recipeSearchPeriodContainer {
+.recipeSearchPeriodContainer, .recipeSearchPeriodContainerBottom {
 	
 	padding	: 4px 8px;
 	background-color	: #E0E086;
 	/* 테두리 둥글게 */
 	border-radius	: 20px;
 	
-	margin-bottom	: 38px;
+	margin-bottom	: 8px;
+/* 	margin-bottom	: 38px; */
 	
 	display	: flex;
 /* 	justify-content	: space-between; */
 	justify-content	: flex-end;
+}
+.recipeSearchPeriodContainerBottom {
+	margin-bottom	: 38px;
 }
 
 .recipeSearchPeriodContainer .recipeSearchAll {

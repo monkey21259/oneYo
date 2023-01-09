@@ -370,45 +370,7 @@
 <!-- 		 	</div> -->
 		 	
 		 	
-			<div class="recipeCategory">
-				<!-- (조건 검색) 카테고리 넣는 공간 -->
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=00">
-						<img src="/oneYo/img/recipe/rcategory/recipekorea.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=01">
-						<img src="/oneYo/img/recipe/rcategory/recipechina.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=02">
-						<img src="/oneYo/img/recipe/rcategory/recipeyang.png">
-					</a>
-				</div>
-				
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=03">
-						<img src="/oneYo/img/recipe/rcategory/recipejapan.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=04">
-						<img src="/oneYo/img/recipe/rcategory/recipedesert.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=99">
-						<img src="/oneYo/img/recipe/rcategory/recipeelse.png">
-					</a>
-				</div>
-			</div>
-			
-			
-			
-
-			
+		 	
 			<div class="recipeSearchPeriodContainer">
 <!-- 				<div class="recipeSearchAll"> -->
 <!-- 					<div class="t"> -->
@@ -451,6 +413,53 @@
 <%
 				}
 %>
+				</div>
+			</div>
+		 	
+		 	
+			<div class="recipeCategory">
+				<!-- (조건 검색) 카테고리 넣는 공간 -->
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=00">
+						<img src="/oneYo/img/recipe/rcategory/recipekorea.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=01">
+						<img src="/oneYo/img/recipe/rcategory/recipechina.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=02">
+						<img src="/oneYo/img/recipe/rcategory/recipeyang.png">
+					</a>
+				</div>
+				
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=03">
+						<img src="/oneYo/img/recipe/rcategory/recipejapan.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=04">
+						<img src="/oneYo/img/recipe/rcategory/recipedesert.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=99">
+						<img src="/oneYo/img/recipe/rcategory/recipeelse.png">
+					</a>
+				</div>
+			</div>
+			
+			
+			
+
+			
+			<div class="recipeSearchPeriodContainerBottom">
+
+				<div class="recipeBtnTwo">
+				<span>&nbsp;</span>
 				</div>
 			</div>
 <%
