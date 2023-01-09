@@ -8,10 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/oneYo/entertainment/docs/js/examples-base.js"></script>
-<script type="text/javascript" src="/oneYo/entertainment/docs/js/highlight.min.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9grmlwqclh"></script>
-<link rel="stylesheet" type="text/css" href="/oneYo/entertainment/docs/css/examples-base.css" />
 <script type="text/javascript">
 
 
@@ -135,45 +132,16 @@
 			return date;
 		}
 	});
-	
-	
-	var HOME_PATH = window.HOME_PATH || '.';
-
-	var cityhall = new naver.maps.LatLng(37.478853, 126.879367),
-	    map = new naver.maps.Map('map', {
-	        center: cityhall.destinationPoint(0, 500),
-	        zoom: 15
-	    }),
-	    marker = new naver.maps.Marker({
-	        map: map,
-	        position: cityhall
-	    });
-
-	var contentString = [
-	        '<div class="iw_inner">',
-	        '   <h3>오내요 개발자 센터</h3>',
-	        '   <p>서울특별시 금천구 가산동 426-5<br />',
-	        '       <img src="'+ HOME_PATH +'/resource/img/oneyo_logo.png" width="55" height="55" alt="오내요" class="thumb" /><br />',
-	        '       가산디지털단지역 5번출구 5분거리<br />',
-	        '       <a href="http://localhost:800/oneYo/home.ict" target="_blank">오내요 홈페이지 가기/</a>',
-	        '   </p>',
-	        '</div>'
-	    ].join('');
 
 
-	var infowindow = new naver.maps.InfoWindow({
-	    content: contentString
-	});
+</script>
+<style>
+	.iw_inner{
+	width:400px;
+	}
 
-	naver.maps.Event.addListener(marker, "click", function(e) {
-	    if (infowindow.getMap()) {
-	        infowindow.close();
-	    } else {
-	        infowindow.open(map, marker);
-	    }
-	});
 
-</script>		
+</style>		
 </head>
 <body>
 <c:import var="foodInfo" url="https://www.foodsafetykorea.go.kr/rss/rss.do?bbs_no=bbs001&menu_no=3120&menu_grp=MENU_NEW01"/>
@@ -218,10 +186,47 @@
  
  <div id="wrap" class="section">
     <h2>오내요 개발자 센터</h2>
-    <div id="map" style="width:100%;height:600px;"></div>
+    <div id="map" style="width:70%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
 </div>
- 
+<script id="code">
+var HOME_PATH = window.HOME_PATH || '.';
 
+var cityhall = new naver.maps.LatLng(37.478853, 126.879367),
+    map = new naver.maps.Map('map', {
+        center: cityhall.destinationPoint(0, 500),
+        zoom: 15
+    }),
+    marker = new naver.maps.Marker({
+        map: map,
+        position: cityhall
+    });
+
+var contentString = [
+        '<div class="iw_inner" id="nmap">',
+        '   <h3>오내요 개발자 센터</h3>',
+        '   <p>서울특별시 금천구 가산동 426-5<br />',
+        '       <img src="http://localhost:8088/oneYo/resource/img/oneyo_logo.png" width="55" height="55" alt="오내요" class="thumb" /><br />',
+        '       가산디지털단지역 5번출구 5분거리<br />',
+        '       <a href="http://localhost:8088/oneYo/home.ict" target="_blank">오내요 홈페이지 가기/</a>',
+        '   </p>',
+        '</div>'
+    ].join('');
+
+
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString
+});
+
+naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+});
+
+infowindow.open(map, marker);
+</script>
 </body>
 </html>
