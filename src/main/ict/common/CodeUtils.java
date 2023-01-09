@@ -311,6 +311,30 @@ public abstract class CodeUtils {
 		return retStr;
 	}
 	
+// 전문가팁 게시판 카테고리
+	public static String getTcategory(String categoryNumber) {
+		
+		String retStr = "";
+		if (categoryNumber == null) { return retStr; }
+		if (categoryNumber.equals("00")) {
+			retStr = "요리";
+			return retStr;
+		}
+		if (categoryNumber.equals("01")) {
+			retStr = "주방관리";
+			return retStr;
+		}
+		if (categoryNumber.equals("02")) {
+			retStr = "재료정보";
+			return retStr;
+		}
+		if (categoryNumber.equals("99")) {
+			retStr = "기타";
+			return retStr;
+		}
+		return retStr;
+	}
+	
 // VO -> Map --------------------------------------------------------------------
 	public static Map<String, Object> convertToMap(Object obj) throws Exception {
 		

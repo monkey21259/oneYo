@@ -57,7 +57,6 @@
 		}
 	}
 	
-	
 	logger.info("mid: " + mid);
 	logger.info("mnum: " + mnum);
 	logger.info("chefMnum : " + chefMnum);
