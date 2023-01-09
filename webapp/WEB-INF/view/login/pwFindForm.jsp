@@ -87,17 +87,10 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -126,9 +119,11 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">
@@ -209,6 +204,7 @@
 </div>
 
 <div id="center">
+<div id="pwfindform">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 			<p id="subject">비밀번호 찾기</p>
 			<p id="content">가입하신 계정의 아이디와 이메일을 입력해주세요.</p>
@@ -252,7 +248,7 @@
 		<span></span> / <span></span><br />
 	</div>
 </div>
-
+</div>
 </div>
 </div>
 		</form>
