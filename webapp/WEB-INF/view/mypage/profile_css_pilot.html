@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang='ko'>
+	<head>
+		<meta charset="UTF-8">
+		<!-- [221230] 반응형 페이지 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+		<title>oneYo(오내요)</title>
+		<!-- jQuery -->
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+	</head>
+<body>
+
+<div id="realAll">
+
+<div id="backMenu"></div>
+
+	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
+	<ul>
+		<li class="item">
+			<div class="homeLink">
+			<span>
+			홈으로
+			</span>
+			</div>
+		</li>
+		<li class="item">
+			<div class="searchBarBtn">
+			<span>
+			검색
+			</span>
+			</div>
+		</li>
+<!-- 		<li class="item"> -->
+<!-- 			<div id="warningForm"> -->
+<!-- 			<span> -->
+<!-- 			신고 -->
+<!-- 			</span> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
+		<li class="item">
+			<div class="warningForm">
+			<span>
+			신고<br>팝업
+			</span>
+			</div>
+		</li>
+		<li class="item">
+			<div class="mypageHome">
+			<span>
+			my<br>Page 
+			</span>
+			</div>
+		</li>
+		<li class="item">
+			<a href="javascript:window.scrollTo(0,0);">
+			<div id="go_top">
+			<span>
+			TOP▲
+			</span>
+			</div>
+			</a>
+		</li>
+	</ul>
+	</div>
+
+<div id="searchBar" class="hidden_X">
+<!-- <div id="searchBar" class="hidden_O"> -->
+	<div class="searchBarBtn">
+		X
+	</div>
+	검색바 여기에 넣기
+	<input type="text" id="searchText" name="serchText">
+	<input type="button" id="searchTextBtn" value="검색">
+</div>
+
+<div id="singo" class="hidden_X">
+	<div class="warningForm">
+		X
+	</div>
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
+</div>
+
+<div id="shadow" class="hidden_X"></div>
+
+<div id="all_div">
+
+<div id="header">
+	<div id="logoLeft" class="logoSide">
+<!-- 	로고 옆공간 좌측 -->
+	</div>
+	<div id="logo" class="homeLink">
+		<img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png">
+		<!-- 379 X 186 -->
+	</div>
+	<div id="logoRight" class="logoSide">
+<!-- 	로고 옆공간 우측 -->
+	 	<div id="loginDiv">
+			<div class="loginBtnDiv">
+				<span class="Choonsik" id="newMemBtn">회원가입</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="loginBtn">로그인</span>
+	 		</div>
+			<div class="loginBtnDiv">
+				<span class="Choonsik mypageHome">마이페이지</span>
+				<span class="Choonsik">:</span>
+		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
+				<p><<span>님 환영합니다.</span></p>
+	 		</div>
+	 		<p></p>
+	 		<form id="logoutForm">
+	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 		</form>
+	 	</div>
+	</div>
+	
+	<div class="nav">
+	<!-- 상단 메뉴바 -->
+		<nav>
+		<ul>
+			<li>
+				<a href="recipeSelectAll.ict" class="menu_link">
+					<div>
+						레시피
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="tipSelectAll.ict" class="menu_link">
+					<div>
+						Tip
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="communitySelectAll.ict" class="menu_link">
+					<div>
+						커뮤니티
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="noticeSelectAll.ict" class="menu_link">
+					<div>
+						공지사항
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="menu_link">
+				<div>
+				더보기
+				</div>
+				</a>
+			</li>
+		</ul>
+		</nav>
+	</div>
+	
+</div>
+
+<div id="center" style="text-align:center;">
+		<div id="profile_div" style="display:table; margin-left:24px; width:100%;">
+			<div style="display:flex; align-items:center; line-height:80%;">
+				<div style="display:inline-block; text-align:center; float:left;">
+					<img id="mprofile" style="width:102px; height:102px; border-radius: 10px;" />
+				</div>
+				<div style="display:inline-block; text-align:left; width: 360px;">
+					<div style="display:inline-block; padding-left:15px;">
+						<b>닉네임</b><br><br>
+						<b>등&nbsp;&nbsp;&nbsp;급</b><br><br>
+						<b>가입일</b>
+					</div>
+					<div style="display:inline-block; padding-left:8px;">
+						<span id="mnick">
+						
+						</span>
+						<br><br>
+						<span id="mgrade">
+						
+						</span>
+						<br><br>
+						<span id="insertdate">
+						
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+<!--
+쉐프 소개 페이지 작업할 공간
+-->
+<!-- 임시 버튼 -->
+<div style="text-align:right;">
+	<button type="button" id="recipeBtn" class="centerBtn">레시피 버튼</button>
+	<button type="button" id="tipBtn" class="centerBtn">전문가팁 버튼</button>
+	<button type="button" id="communityBtn" class="centerBtn">커뮤니티 버튼</button>
+</div>
+
+	<div class="choiceAll">
+		<div class="choiceTableDiv">
+			<table class="choiceTable">
+			
+			</table>
+		</div>
+	</div>
+	
+	<div>
+		<table class="table-fill">
+		</table>
+	</div>
+</div>
+
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
+<div id="footer">
+	<div>
+		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
+		<span>팀 소개: ~~~</span>
+	</div>
+	<div>
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
+	</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
