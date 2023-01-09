@@ -292,7 +292,7 @@
 						<td><%= i+1 %></td>
 						<td><%= lvo.getLvnum()%></td>
 						<td class="content table_subject"><%= lvo.getLvsubject()%></td>
-						<td><img src="oneYo/img/levelup/<%= lvo.getLvphoto()%>"></td>
+						<td><img src="http://localhost:8088/oneYo/img/levelup/<%= lvo.getLvphoto()%>"></td>
 						<td><%= lvo.getMnick()%></td> <!-- 닉네임 -->
 						<td><%= lvo.getInsertdate()%></td>
 						<td><%= process%></td>

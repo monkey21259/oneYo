@@ -435,7 +435,7 @@
 							<td><%= 5-i %></td>
 							<td><%= lvvo.getLvnum()%></td>
 							<td class="leftTd"><%= lvvo.getLvsubject()%></td>
-							<td><img src="oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
+							<td><img src="http://localhost:8088/oneYo/img/levelup/<%= lvvo.getLvphoto()%>"></td>
 							<td><%= lvvo.getMnick()%></td> <!-- 닉네임 -->
 							<td><%= lvvo.getInsertdate()%></td>
 							<td><%= process%></td>
