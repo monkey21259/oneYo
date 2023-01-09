@@ -4,7 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>oneYo(오내요)</title>
+	
+<meta name="viewport" content="width=device-width, initial-scale=1.0
+						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<!-- 제이쿼리cdn -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 전체 css -->
+<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+<!-- warningPage.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/warning/warningPage.css">		
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -69,53 +78,73 @@
 	});
 	
 	
-	
-	
-	
 	});
 	
 </script>
 </head>
 <body>
 <form id="submit" name="submit">
-<table border="1">
-<tr><td>
-<h3 align="center">신고하기</h3>
-</td></tr>
-<tr><td>
-<select name="wcategory">
-<option>선택하세요 </option>
-<option value="00">욕설 및 비방 </option>
-<option value="01">음란물</option>
-<option value="02">불법광고</option>
-<option value="03">도배성</option>
-<option value="04">주제와 맞지 않음 </option>
-<option value="99">기타</option>
-</select>
-</td></tr>
-<tr><td>
-<select id="wc" name="wc">
-<option value="99">선택하세요 </option>
-<option value="00">레시피 </option>
-<option value="01">전문가 팁</option>
-<option value="02">커뮤니티</option>
-</select>
-</td></tr>
-<tr><td>
-<div id="subject" name="subject">
-<select id="sub" name="wtnum">
-<option>선택하세요</option>
-</select>
-</div>
-</td></tr>
-<tr><td>
-<textarea rows="30" cols="80" name="wcontent"></textarea>
-</td></tr>
-<tr><td colspan="2">
-<input type="button" id="datain" value="신고">
-<input type="reset" value="다시쓰기">
-</td></tr>
+
+
+<!-- -------------------------------페이지 전용 center------------------------------- -->
+	<div id="anne_w">
+		<p id="subject_w">신고하기</p>
+	</div>
+
+<table class="table_fill_w">
+	<tr>
+		<td class="table_subject_w">신고분야</td>
+		<td class="warning_subject_w">
+			<select name="wcategory" class="warming_select">
+				<option>선택하세요 </option>
+				<option value="00">욕설 및 비방 </option>
+				<option value="01">음란물</option>
+				<option value="02">불법광고</option>
+				<option value="03">도배성</option>
+				<option value="04">주제와 맞지 않음 </option>
+				<option value="99">기타</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+	<td class="table_subject_w">카테고리</td>
+		<td>
+			<select id="wc" name="wc" class="warming_select">
+				<option value="99">선택하세요 </option>
+				<option value="00">레시피 </option>
+				<option value="01">전문가 팁</option>
+				<option value="02">커뮤니티</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+	<td class="table_subject_w">제목</td>
+		<td>
+			<div id="subject_ww" name="subject_ww">
+				<select id="sub" name="wtnum" class="warming_select">
+					<option>선택하세요</option>
+				</select>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="table_subject_w_content">신고할 내용</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<textarea rows="30" cols="80" name="wcontent" placeholder="신고할 내용을 입력하여주세요."></textarea>
+		</td>
+	</tr>
+	
 </table>
+
+<div id="buttontable_w">
+	<input type="button" id="datain" class="btn_w" value="신고">
+	<input type="reset" class="btn_w" value="다시쓰기">
+
+</div>
+
+
 </form>
 
 
