@@ -397,6 +397,12 @@
 							<button type="button" id="insertBtn" name="insertBtn">글등록</button>
 						</span>
 					<%
+						}else{
+					%>
+						<span class="SearchBtnDiv tright hidden_O">
+							<button type="button" onclick="location.href='/oneYo/communityInsertForm.ict'">글등록</button>
+						</span>
+					<%
 					}
 					%>
 					</span>
