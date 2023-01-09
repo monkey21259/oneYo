@@ -372,6 +372,7 @@
 		 	
 		 	
 			<div class="recipeSearchPeriodContainer">
+<!-- 			<div class="recipeSearchPeriod"> -->
 <!-- 				<div class="recipeSearchAll"> -->
 <!-- 					<div class="t"> -->
 <!-- 						<a href="javascript:void(0);"> -->
@@ -414,7 +415,7 @@
 				}
 %>
 				</div>
-			</div>
+<!-- 			</div> -->
 		 	
 		 	
 			<div class="recipeCategory">
@@ -453,15 +454,63 @@
 			</div>
 			
 			
+<!-- 			<div class="recipeSearchPeriod"> -->
+<!-- 				<div class="recipeSearchAll"> -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>일간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>주간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>월간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"><span>인기글</span></div> -->
+<!-- 				</div> -->
+<!-- 				<div class="recipeBtnTwo"> -->
+<!-- 					<a class="recipeSearchBtn" href="javascript:recipeSearch();"> -->
+<!-- 						<div class="recipeSearchBtnDiv"> -->
+							<!-- 카테고리 조건 검색 -->
+<!-- 							검색 -->
+<!-- 						</div> -->
+<!-- 					</a> -->
+<%
+				
+// 				if (mnum.length() > 0) {
+				
+%>
+<!-- 				<div class="tright"> -->
+<!-- 					<a href="/oneYo/recipeInsertForm.ict"> -->
+<!-- 						<span>글 등록</span> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<%
+// 				}
+%>
+<!-- 				</div> -->
+<!-- 			</div> -->
 			
-
 			
-			<div class="recipeSearchPeriodContainerBottom">
-
-				<div class="recipeBtnTwo">
-				<span>&nbsp;</span>
-				</div>
+			
 			</div>
+			
+
+			
+<!-- 			<div class="recipeSearchPeriodContainerBottom"> -->
+
+<!-- 				<div class="recipeBtnTwo"> -->
+<!-- 				<span>&nbsp;</span> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 <%
 			Object pagingObj = request.getAttribute("pagingVO");
 			if (pagingObj == null) {
