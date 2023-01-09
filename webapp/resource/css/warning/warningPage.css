@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/* -------------------------------- 전체 영역 -------------------------------- */
+#all_div {
+	
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	
+}
+
+
+/* -------------------------------- 중앙 center -------------------------------- */
+#anne_w {
+	display: table;
+	width: 100%;
+	margin-bottom:10px;
+}
+
+#subject_w{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	text-align: center;
+	margin-bottom:10px;
+	
+}
+
+/*================테이블 =====================*/
+
+.table_fill_w{
+	display: table;
+   	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
+/* 	    text-indent: initial; */ /*들여쓰기*/
+    border-spacing: 0px; /*테이블 간격*/
+	border-collapse: collapse;
+	background-color:none;
+	margin: auto;
+	padding:10px;
+    width: 80%;
+/*   animation: float 5s infinite; */
+}
+  
+tr {
+/*   border-top: 1px solid #C1C3D1; */
+ border-bottom: 1px solid #C1C3D1;
+ border-top: 1px solid #C1C3D1;
+  color:black;
+  font-size:14px;
+  font-weight:normal;
+}
+ 
+td {
+  text-align:center;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+ 
+}
+
+/*테이블 제목*/
+.table_subject_w{
+	width: 30%;
+	height: 30px;
+	font-size: 18px;
+	text-align : center;
+	font-weight: 400;
+	background: #FCF4EF;
+}
+
+
+/*select box*/
+.warming_select{
+		display:flex;
+		justify-content	: flex-start;
+		height: 30px;
+	    width: 93%;
+	    margin-left: 10px;
+    	margin-right: 10px;
+	    margin-top: 5px;
+	    margin-bottom: 5px;
+		padding-left: 10px;
+		border: 1px solid #cccccc;
+		border-radius: 5px;
+}
+
+
+.warming_select option {
+  background: #FCF4EF;
+  color: black;
+  padding: 3px 0;
+  font-size: 14px;
+  height:50px;
+}
+
+
+/*신고 내용*/
+.table_subject_w_content{
+	width : 100%;
+	height: 40px;
+	font-size: 18px;
+	font-weight: 400;
+	text-align : center;
+	background: #FCF4EF;
+	resize:none; /*textarea 크기고정*/
+}
+textarea{
+	width: 470px;
+    height: 350px;
+	resize: none; /*textarea 크기고정*/
+	font-size:15px;
+	padding:10px; 
+	 border: none;
+}
+textarea::placeholder {
+  color: #c0c0c0;
+  font-size:15px;
+  text-align:center;
+  padding-top:20px; 
+}
+
+/* ===============신고버튼 ================*/
+
+#buttontable_w{
+		display	: flex;
+		justify-content	: space-around;
+		text-align:center;
+		margin-top:20px;
+}
+
+.btn_w{
+		font-size : 14px;
+		color : #93A603;
+		border-radius: 15px;
+		background-color: white;
+		border:3px solid #93A603;
+		 width: 100px;
+    	height: 40px;
+		letter-spacing: 1px;
+		cursor:pointer;
+		margin: 0;
+       }    
+        
+.btn_w:hover {
+   	    font-size : 14px;
+   	    font-weight: bold;
+        color : white;
+        border-radius: 15px;
+        background-color: #93A603;
+        border : none;
+	   width: 100px;
+    height: 40px;
+        margin: 0;
+      	letter-spacing: 1px;
+         	
+        }
+	
+
+
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	
+}

@@ -683,7 +683,6 @@
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
 		<span></span> / <span></span><br />

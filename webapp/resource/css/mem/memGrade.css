@@ -120,6 +120,14 @@
 		border-radius: 5px;
 }
 
+
+#memail2 option {
+  color: black;
+  padding: 3px 0;
+  font-size: 14px;
+  height:50px;
+}
+
 /*이메일인증버튼*/
 #center table #buttontable{
 	text-align:center;
