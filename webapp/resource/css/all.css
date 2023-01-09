@@ -354,8 +354,8 @@ a {
 	position	: fixed;
 	
 	/* 위치 지정 */
-	top	: 30%;
-	right	: 25%;
+	top	: calc(50% - 40px);
+	right	: calc(50% - 400px);
 	
 	/* 40층에 쌓아서 아래의 요소보다 위에 드러남 */
 	z-index	: 40;
@@ -365,7 +365,6 @@ a {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
 	
-	/* #all_div의 약 67% 가로 폭 */
 	width: 620px;
     height: 784px;
 	
@@ -383,8 +382,8 @@ a {
 	position	: fixed;
 	
 	/* 위치 지정 */
-	top	: 17%;
-	right	: 35%;
+	top	: calc(50% - 392px);
+	right	: calc(50% - 310px);
 	
 	/* 40층에 쌓아서 아래의 요소보다 위에 드러남 */
 	z-index	: 40;
