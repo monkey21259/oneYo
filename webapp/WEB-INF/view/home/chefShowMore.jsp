@@ -344,31 +344,32 @@
 		for (int i=0; i < list.size(); i++) {
 			hvo = list.get(i);
 %> 
-	
-	<table class="table-fill">
-		<thead>
-			<tr>
-				<th width="15%">닉네임</th>
-				<th width="10%">프로필</th>
-				<th width="15%">레시피 작성</th>
-				<th width="15%">레시피 조회수</th>
-				<th width="15%">전문가팁 작성</th>
-				<th width="15%">전문가팁 조회수</th>
-				<th width="15%">활동기간</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><span><%= hvo.getMnick() %></span></td>
-				<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
-				<td><span><%= hvo.getTotalrecipe() %></span></td>
-				<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
-				<td><span><%= hvo.getTotaltip() %></span></td>
-				<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
-				<td><span><%= hvo.getSubscription() %>일</span></td>
-			</tr>
-		</tbody>
+	<a href="chefIntroduce.ict?mnum=<%= hvo.getMnum() %>">
+		<table class="table-fill">
+			<thead>
+				<tr>
+					<th width="15%">닉네임</th>
+					<th width="10%">프로필</th>
+					<th width="15%">레시피 작성</th>
+					<th width="15%">레시피 조회수</th>
+					<th width="15%">전문가팁 작성</th>
+					<th width="15%">전문가팁 조회수</th>
+					<th width="15%">활동기간</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span><%= hvo.getMnick() %></span></td>
+					<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
+					<td><span><%= hvo.getTotalrecipe() %></span></td>
+					<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
+					<td><span><%= hvo.getTotaltip() %></span></td>
+					<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
+					<td><span><%= hvo.getSubscription() %>일</span></td>
+				</tr>
+			</tbody>
 		</table>
+	</a>
 <%
 		}
 	}
