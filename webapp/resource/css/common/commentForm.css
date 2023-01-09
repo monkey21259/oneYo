@@ -146,9 +146,10 @@
 /* 댓글내용 */
 #commentList .item .cocontent {
 	
-	width	: 100%;
+	width	: 98%;
 	
 	
+	margin	: 0 auto;
 	margin-top	: 12px;
 	
 }

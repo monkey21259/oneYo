@@ -91,6 +91,8 @@
 .recipeCategory {
 	display	: flex;
 	justify-content	: center;
+	
+	margin-bottom	: 38px;
 }
 .recipeCategory .recipeCate {
 	width	: 16%;
@@ -107,7 +109,8 @@
 	/* 테두리 둥글게 */
 	border-radius	: 20px;
 	
-	margin-bottom	: 38px;
+	margin-bottom	: 8px;
+/* 	margin-bottom	: 38px; */
 	
 	display	: flex;
 /* 	justify-content	: space-between; */

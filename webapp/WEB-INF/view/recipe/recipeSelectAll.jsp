@@ -370,45 +370,7 @@
 <!-- 		 	</div> -->
 		 	
 		 	
-			<div class="recipeCategory">
-				<!-- (조건 검색) 카테고리 넣는 공간 -->
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=00">
-						<img src="/oneYo/img/recipe/rcategory/recipekorea.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=01">
-						<img src="/oneYo/img/recipe/rcategory/recipechina.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=02">
-						<img src="/oneYo/img/recipe/rcategory/recipeyang.png">
-					</a>
-				</div>
-				
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=03">
-						<img src="/oneYo/img/recipe/rcategory/recipejapan.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=04">
-						<img src="/oneYo/img/recipe/rcategory/recipedesert.png">
-					</a>
-				</div>
-				<div class="recipeCate">
-					<a href="recipeCategorySelectAll.ict?rcategory=99">
-						<img src="/oneYo/img/recipe/rcategory/recipeelse.png">
-					</a>
-				</div>
-			</div>
-			
-			
-			
-
-			
+		 	
 			<div class="recipeSearchPeriodContainer">
 <!-- 				<div class="recipeSearchAll"> -->
 <!-- 					<div class="t"> -->
@@ -453,6 +415,93 @@
 %>
 				</div>
 			</div>
+		 	
+		 	
+			<div class="recipeCategory">
+				<!-- (조건 검색) 카테고리 넣는 공간 -->
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=00">
+						<img src="/oneYo/img/recipe/rcategory/recipekorea.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=01">
+						<img src="/oneYo/img/recipe/rcategory/recipechina.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=02">
+						<img src="/oneYo/img/recipe/rcategory/recipeyang.png">
+					</a>
+				</div>
+				
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=03">
+						<img src="/oneYo/img/recipe/rcategory/recipejapan.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=04">
+						<img src="/oneYo/img/recipe/rcategory/recipedesert.png">
+					</a>
+				</div>
+				<div class="recipeCate">
+					<a href="recipeCategorySelectAll.ict?rcategory=99">
+						<img src="/oneYo/img/recipe/rcategory/recipeelse.png">
+					</a>
+				</div>
+			</div>
+			
+			
+			
+
+			
+<!-- 			<div class="recipeSearchPeriodContainer"> -->
+			
+<!-- 				<div class="recipeSearchAll"> -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>일간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>주간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"> -->
+<!-- 						<a href="javascript:void(0);"> -->
+<!-- 							<span>월간</span> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					| -->
+<!-- 					<div class="t"><span>인기글</span></div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="recipeBtnTwo"> -->
+<!-- 					<a class="recipeSearchBtn" href="javascript:recipeSearch();"> -->
+<!-- 						<div class="recipeSearchBtnDiv"> -->
+<!-- 							카테고리 조건 검색 -->
+<!-- 							검색 -->
+<!-- 						</div> -->
+<!-- 					</a> -->
+<%
+				
+				if (mnum.length() > 0) {
+				
+%>
+<!-- 				<div class="tright"> -->
+<!-- 					<a href="/oneYo/recipeInsertForm.ict"> -->
+<!-- 						<span>글 등록</span> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<%
+				}
+%>
+<!-- 				</div> -->
+<!-- 			</div> -->
 <%
 			Object pagingObj = request.getAttribute("pagingVO");
 			if (pagingObj == null) {
