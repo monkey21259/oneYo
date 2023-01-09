@@ -363,7 +363,7 @@ a {
 	
 	/* #all_div의 약 67% 가로 폭 */
 	width	: 800px;
-	height	: 80px;
+	height	: 900px;
 	
 	/* 테두리 둥글게 */
 	border-radius	: 10px;
@@ -395,19 +395,22 @@ a {
 	height	: 19px;
 	
 	/* 위치 지정 */
-	margin-right	: 1%;
-	margin-left	: 98%;
+/* 	margin-right	: 1%; */
+/* 	margin-left	: 98%; */
+	margin-top: 3%;
+    margin-left: 95%;
 }
 /* 신고창 X버튼 */
-#singo div {
+
+#singo .warningForm {
 	
 	/* #singo 사이즈 */
 	width	: 13px;
 	height	: 19px;
 	
 	/* 위치 지정 */
-	margin-right	: 1%;
-	margin-left	: 98%;
+	margin-top: 3%;
+    margin-left: 95%;
 }
 
 /* 검색 시 어둡게 */

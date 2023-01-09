@@ -167,12 +167,14 @@
 </div>
 
 <div id="singo" class="hidden_X">
-	<div class="warningForm">
+	<div class="warningForm"> <!-- 이거는 신고  -->
 		X
 	</div>
-	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
-		<jsp:param value="" name=""/>
-	</jsp:include>	
+	<div>
+		<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+			<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="shadow" class="hidden_X"></div>

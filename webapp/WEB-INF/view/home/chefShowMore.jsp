@@ -42,8 +42,8 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		<!-- home 페이지 전용 css -->
-		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
+		<!-- chefShowMore 페이지 전용 css -->
+		<link rel="stylesheet" href="/oneYo/resource/css/home/chefShowMore.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -80,6 +80,15 @@
 						"enctype": "application/x-www-form-urlencoded"
 					}).submit();
 				});
+				
+				//카테고리 버튼 클릭했을 때 
+
+// 						$(document).on('click', '.btn_1', function(){
+// 							$('.category').find('div').removeClass('btn_2');
+// 							$(this).find('div').addClass('btn_1');
+// 						});
+						
+			
 
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
@@ -97,11 +106,10 @@
 		</script>
 	</head>
 <body>
-
+<form>
 <div id="realAll">
 
 <div id="backMenu"></div>
-
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
@@ -120,13 +128,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -134,13 +135,29 @@
 			</span>
 			</div>
 		</li>
+		
 		<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
@@ -152,7 +169,6 @@
 		</li>
 	</ul>
 	</div>
-
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
@@ -167,7 +183,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -190,36 +208,44 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">:</span>
+<%
+			}
+%>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-		String mSNSid = mid;  // M22...
-		if (mid != null && !(mid.equals(""))) {
-			if (mid.length() > 5) {
-				String checkSNS = mid.substring(0, 6);
-				if (checkSNS.equals("naver_")) {
-					mSNSid = "naver"; 
-				}
-				if (checkSNS.equals("kakao_")) {
-					mSNSid = "kakao";
+			String mSNSid = mid;  // M22...
+			if (mid != null && !(mid.equals(""))) {
+				if (mid.length() > 5) {
+					String checkSNS = mid.substring(0, 6);
+					if (checkSNS.equals("naver_")) {
+						mSNSid = "naver"; 
+					}
+					if (checkSNS.equals("kakao_")) {
+						mSNSid = "kakao";
+					}
 				}
 			}
-		}
 %>
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 		
 <% 		
 		}
 %>
@@ -232,30 +258,30 @@
 		<ul>
 			<li>
 				<a href="recipeSelectAll.ict" class="menu_link">
-					<div>
-						레시피
-					</div>
+				<div>
+				레시피
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-					<div>
-						Tip
-					</div>
+				<div>
+				Tip
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="communitySelectAll.ict" class="menu_link">
-					<div>
-						커뮤니티
-					</div>
+				<div>
+				커뮤니티
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="noticeSelectAll.ict" class="menu_link">
-					<div>
-						공지사항
-					</div>
+				<div>
+				공지사항
+				</div>
 				</a>
 			</li>
 			<li>
@@ -271,7 +297,8 @@
 	
 </div>
 
-<div id="center" style="text-align:center;">
+<div id="center">
+<!-- -------------------------------페이지 전용 center------------------------------- -->
 <!--
 2023-01-05
 쉐프 더 보기 작업할 공간
@@ -287,53 +314,73 @@
 쉐프 더 보기 작업할 공간
 -->
 
-<h3>쉐프 더보기</h3>
-<table>
-		<tr>
-			<td colspan="7" style="text-align:right;">
-				<button type="button" onclick="sortProccess('totalrecipe')">레시피 작성순</button>
-				<button type="button" onclick="sortProccess('totalrecipehit')">레시피 조회수순</button>
-				<button type="button" onclick="sortProccess('totaltip')">전문가 팁 작성순</button>
-				<button type="button" onclick="sortProccess('totaltiphit')">전문가 팁 조회수순</button>
-				<button type="button" onclick="sortProccess('subscription')">활동기간순</button>
-			</td>
-		</tr>
+	<div id="anne">
+	<p id="subject">오내요 쉐프 목록</p>
+	</div>
+	
+<!-- 카테고리 -->
+	<div class="category_fillContainer">
+	
+		<div class="category">
+	 <div class="divClick">
+				<button type="button" class="category_btn btn_1" onclick="sortProccess('totalrecipe')">레시피 작성순</button>
+			 </div>
+			 <div class="divClick">
+				<button type="button" class="category_btn btn_2" onclick="sortProccess('totalrecipehit')">레시피 조회수순</button>
+			 </div>
+			 <div class="divClick">
+				<button type="button" class="category_btn btn_3" class="category_btn" onclick="sortProccess('totaltip')">전문가 팁 작성순</button>
+			</div>
+			 <div class="divClick">
+				<button type="button" class="category_btn btn_4" onclick="sortProccess('totaltiphit')">전문가 팁 조회수순</button>
+			</div>
+			 <div class="divClick">
+			 	<button type="button" class="category_btn btn_5" onclick="sortProccess('subscription')">활동기간순</button>
+			</div>
+		</div>
+	</div>
 <%
 	if (list !=null && list.size() > 0) {
 		for (int i=0; i < list.size(); i++) {
 			hvo = list.get(i);
 %> 
-		<tr>
-			<th>닉네임</th>
-			<th>프로필</th>
-			<th>레시피 작성</th>
-			<th>레시피 조회수</th>
-			<th>전문가팁 작성</th>
-			<th>전문가팁 조회수</th>
-			<th>활동기간</th>
-		</tr>
-		<tr>
-			<td><span><%= hvo.getMnick() %></span></td>
-			<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
-			<td><span><%= hvo.getTotalrecipe() %></span></td>
-			<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
-			<td><span><%= hvo.getTotaltip() %></span></td>
-			<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
-			<td><span><%= hvo.getSubscription() %>일</span></td>
-		</tr>
+	
+	<table class="table-fill">
+		<thead>
+			<tr>
+				<th width="15%">닉네임</th>
+				<th width="10%">프로필</th>
+				<th width="15%">레시피 작성</th>
+				<th width="15%">레시피 조회수</th>
+				<th width="15%">전문가팁 작성</th>
+				<th width="15%">전문가팁 조회수</th>
+				<th width="15%">활동기간</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span><%= hvo.getMnick() %></span></td>
+				<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
+				<td><span><%= hvo.getTotalrecipe() %></span></td>
+				<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
+				<td><span><%= hvo.getTotaltip() %></span></td>
+				<td><span><%= hvo.getTotaltiphitcnt() %></span></td>
+				<td><span><%= hvo.getSubscription() %>일</span></td>
+			</tr>
+		</tbody>
+		</table>
 <%
 		}
 	}
 %>
-</table>
 
+	<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
 		<span></span> / <span></span><br />
@@ -343,5 +390,9 @@
 
 </div>
 </div>
+</form>
+	<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 </body>
 </html>

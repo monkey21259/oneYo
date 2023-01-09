@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%@ page import="org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
+
 <%@ page import="java.util.List" %>
+
 <%@ page import="main.ict.common.CodeUtils" %>
 <%@ page import="main.ict.warning.vo.WarningVO" %>
 <%@ page import="main.ict.recipe.vo.RecipeVO" %>
 <%@ page import="main.ict.common.O_Session" %>
 
+<% request.setCharacterEncoding("UTF-8"); %>
 <%
-	request.setCharacterEncoding("UTF-8");
- 
 	Logger logger = LogManager.getLogger(this.getClass());
-	logger.info("adminWarningSelectAll 진입 >>> : ");
-	
-	O_Session oSession = O_Session.getInstance();
-	String mnum = oSession.getSession(request);
-	String mid = (String)oSession.getAttribute(request, "mid");
+	logger.info("adminWarningSelectContent.jsp 진입 .");	
+%>
+<%
+	//세션부여
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
 %>
 <%
 	String wcategory = (String)request.getAttribute("wcategory");
@@ -27,125 +29,113 @@
 	String insertdate = (String)request.getAttribute("insertdate");
 %>
 <%
-	//	model.addAttribute("list", list);
 	Object obj = request.getAttribute("list");
-			if(obj == null){return; }
-			List<WarningVO> list = (List<WarningVO>)obj;	
-			
-			int nCnt = list.size();
-			
-			WarningVO wvo = null;
-			wvo = list.get(0);
+	if(obj == null){return; }
+	List<WarningVO> list = (List<WarningVO>)obj;	
+
+	WarningVO wvo = list.get(0);
 %>
+
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 	<head>
 		<meta charset="UTF-8">
 		<title>oneYo(오내요)</title>
-
 <!-- 제이쿼리 -->		
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
-<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-		
+		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 <!-- 전체 css -->
-<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-
-<!-- adminWarningSelectAll.jsp 전용 -->
-<link rel="stylesheet" href="/oneYo/resource/css/levelup/adminLevelupSelectContent.css">
-
+		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+<!-- adminWarningSelectContent.jsp 전용 -->
+		<link rel="stylesheet" href="/oneYo/resource/css/warning/adminWarningSelectContent.css">
 <!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
-	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-			
-//경고버튼 클릭		
-		$(document).on("click", "#warningBtn", function(){
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
 		
-			//mid	
-				let mnum = $("#mnum").val();			
-				console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
-			
-			//mnick	
-				let mnick = $(this).parents().find("#mnick").val();
-				console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
+				// 경고버튼 클릭
+				$(document).on("click", "#warningBtn", function(){
 				
-				let result = confirm(mnick + '님을 경고 하시겠습니까?');
+					// mid	
+					let mnum = $("#mnum").val();			
+					console.log("mnum(신고당한사람 회원번호) >>> : " + mnum);
 				
-				if(result == true){
-					let url = "adminCaution.ict";
-					let reqType = "GET";
-					let dataParam = {
-							mnum :$("#mnum").val(),
-					};
-				
-					console.log("url : " + url);
-					console.log("reqType : " + reqType);
-					console.log("dataParam : " + dataParam);
-				
-					$.ajax({
-						url:url,
-						type:reqType,
-						data:dataParam,
-						success:whenSuccess,
-						error:whenError		
-					}); //ajax
+					// mnick	
+					let mnick = $(this).parents().find("#mnick").val();
+					console.log("mnick(신고당한사람 닉네임) >>> : " + mnick);
 					
-				}else{
-					alert("취소되었습니다");
-					location.href="#";
-				} //if else
+					let result = confirm(mnick + '님을 경고 하시겠습니까?');
+					
+					if (result == true) {
+						let url = "adminCaution.ict";
+						let reqType = "GET";
+						let dataParam = {
+							mnum :$("#mnum").val(),
+						};
+					
+						console.log("url : " + url);
+						console.log("reqType : " + reqType);
+						console.log("dataParam : " + dataParam);
+					
+						$.ajax({
+							url:url,
+							type:reqType,
+							data:dataParam,
+							success:whenSuccess,
+							error:whenError		
+						}); // ajax
+						
+					} else {
+						alert("취소되었습니다");
+						location.href="#";
+					} // if else
+					
+					// 성공했을 때
+					function whenSuccess(resData) {
+						if (resData == 'updateOK') {
+							alert("경고 처리 되었습니다.");
+							$('#warningBtn').prop('disabled', true);
+						}
+					}
+					
+					// 실패했을 때
+					function whenError(e) {
+						console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
+					} // whenError	
+					
+				}); // warningBtn 버튼 클릭
 			
-		//성공했을때
-			function whenSuccess(resData){
-				if(resData == 'updateOK'){
-					alert("경고 처리 되었습니다.");
-					$('#warningBtn').prop('disabled', true);
-				} 
-			}
-			
-		//실패했을때
-			function whenError(e){
-				console("경고 처리 되지 않았습니다(error) : "  + e.responseText);
-			} //whenError	
-			
-		});//warningBtn버튼클릭
-	
-//삭제버튼클릭	
-		$(document).on("click", "#deleteBtn", function(){
-		
-			$("#adminwarningForm").attr({
-				'action':"adminWarningDelete.ict",
-				'method':'GET',
-				'enctype':'application/x-www-form-urlencoded'
-			}).submit();		
-			
-		}); //deleteBtn
-		
-		//로그아웃
-		$("#logoutBtn").on("click", function() {
-			$("#logoutForm").attr({
-				"action": "logout.ict",
-				"method": "GET",
-				"enctype": "application/x-www-form-urlencoded"
-			}).submit();
-		});
+				// 삭제 버튼 클릭	
+				$(document).on("click", "#deleteBtn", function(){
 				
-		//all.js 에 있는 모든 함수 연결
-		allJavaScript();
+					$("#adminwarningForm").attr({
+						'action':"adminWarningDelete.ict",
+						'method':'GET',
+						'enctype':'application/x-www-form-urlencoded'
+					}).submit();		
+					
+				}); // deleteBtn
+				
+				// 로그아웃
+				$("#logoutBtn").on("click", function() {
+					$("#logoutForm").attr({
+						"action": "logout.ict",
+						"method": "GET",
+						"enctype": "application/x-www-form-urlencoded"
+					}).submit();
+				});
+						
+				// all.js 에 있는 모든 함수 연결
+				allJavaScript();
+				
+			}); // ready	
 		
-	}); //ready	
-
-</script>
-		
+		</script>
 	</head>
 	<body>
-	<br>
 		
-		<form name="adminwarningForm" id="adminwarningForm">
-				 	
+<form name="adminwarningForm" id="adminwarningForm">
 
 <div id="realAll">
 
@@ -231,9 +221,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
-		<jsp:param value="" name=""/>
-	</jsp:include>	
+<%-- 	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true"> --%>
+<%-- 		<jsp:param value="" name=""/> --%>
+<%-- 	</jsp:include>	 --%>
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -293,7 +283,6 @@
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 	
 <% 		
 		}
 %>
@@ -347,44 +336,85 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-		<h1 align="center">신고</h1>
-			<table id="hi" align="center">
-				<tr>
-					<td>신고분야</td>
-					<td colspan="4" style="text-align:left; width:400;">
-						<font size="4" style="color:black"><%= CodeUtils.getWcategory(wcategory) %></font>
-					</td>
-					<td class="td_2"> 작성일자 : <%= insertdate %>
-					</td>
-				</tr> 
-				<tr>
-					<input type="hidden" id ="wnum" name="wnum" value="<%=wvo.getWnum()%>" />
-					<input type="hidden" id ="mnum" name="mnum" value="<%=wvo.getWtmnum()%>" />
-					<input type="hidden" id ="mnick" name="mnick" value="<%=wvo.getWtmnick()%>" />
-					<td>신고당한 사람</td>
-					<td><%= wvo.getWtmnick() %></td> 
-					
-					<td class="td_2">신고자</td>
-					<td><%= mnick%></td>
-				</tr>
-				<tr>
-					<td>
-					<span name="wcontent" id="wcontent" rows="5" cols="100"><%= wcontent %></span>
-					</td>
-				</tr>		
-				<tr>
-					<td colspan="6" align="center">
-					<br><br>
-					<button type="button" class="btns" id="warningBtn">경고</button>
-					<button type="button" class="btns" id="deleteBtn">삭제</button>
-					
-					</td>				
-				</tr>
-			</table>
-			
+			<input type="hidden" id ="wnum" name="wnum" value="<%=wvo.getWnum()%>" />
+			<input type="hidden" id ="mnum" name="mnum" value="<%=wvo.getWtmnum()%>" />
+			<input type="hidden" id ="mnick" name="mnick" value="<%=wvo.getWtmnick()%>" />
+			<div class="reqHeader">
+				접수된 신고 조회
+			</div>
+			<div class="reqHeaderUnderLine">
+				-------------------
+			</div>
+			<div id="viewTable" style="margin-bottom: 35px;">
+				<table id="selectContent">
+<!-- 
+		신고 분야		작성 일자		  신고당한 닉네임	 신고한 닉네임
+		   -		   -		   	  -			     -
+		
+						        신고 내용
+		=================================================
+		
+						 경  고    /  삭 제
+						 
+						 << footer >>
+ -->
+ 					<tr>
+ 						<td class="selectTd">
+ 							<div class="thirdContents">
+								<div class="oneTd">
+									<div class="nameTd">
+										신고분야
+									</div>
+									<div class="valTd">
+										<%= CodeUtils.getWcategory(wcategory) %>
+									</div>
+								</div>
+								<div class="oneTd">
+									<div class="nameTd">
+										작성일자
+									</div>
+									<div class="valTd">
+										<%= insertdate %>
+									</div>
+								</div>
+								<div class="oneTd">
+									<div class="nameTd">
+										신고당한 닉네임
+									</div>
+									<div class="valTd">
+										<%= wvo.getWtmnick() %>
+									</div>
+								</div>
+								<div class="oneTd">
+									<div class="nameTd">
+										신고한 닉네임
+									</div>
+									<div class="valTd">
+										<%= mnick%>
+									</div>
+								</div>
+							</div>
+ 						</td>
+ 					</tr>
+ 					<tr class="selectTd">
+ 						<td class="oneTd">
+ 							<div class="nameTd">
+ 								신고 내용
+ 							</div>
+ 						</td>
+ 					</tr>
+ 					<tr>
+						<td colspan="2" class="contentBody">
+							<%= wcontent %>
+						</td>
+					</tr>
+				</table>
+				<div class="btnDiv">
+					<button type="button" class="wButton" id="warningBtn">경고</button>
+					<button type="button" class="wButton" id="deleteBtn">삭제</button>
+				</div>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
-
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">

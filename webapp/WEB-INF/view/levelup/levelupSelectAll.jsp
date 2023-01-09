@@ -28,6 +28,8 @@
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 <!-- 칸 나눈 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
+<!-- levelupSelectAll.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/levelup/levelupSelectAll.css">		
 <!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 <script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		
@@ -101,13 +103,6 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
@@ -164,7 +159,9 @@
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+		<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -278,26 +275,17 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-<div id="container" style="text-align:center;">
-	<div id="levelup" style="display:inline-block;">
-		<table style="border:1px solid black;">
-			<thead style="border:1px solid black;">
+<div id="anne">
+	<p id="subject">회원목록</p>
+	</div>
+		<table class="table-fill">
+			<thead>
 				<tr>
-					<th>
-						글번호
-					</th>
-					<th>
-						제목
-					</th>
-					<th>
-						내용
-					</th>
-					<th>
-						사진
-					</th>
-					<th>
-						등록일
-					</th>
+					<th width="5%">글번호</th>
+					<th width="15%" class="table_subject">제목</th>
+					<th width="10%">내용</th>
+					<th width="10%">사진</th>
+					<th width="10%">등록일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -313,24 +301,20 @@
 							${lvvo.lvcontent}
 						</td>
 						<td>
-							<img src="/oneYo/img/levelup/${lvvo.lvphoto}" style="width:50px; height:50px;">
+							<img src="/oneYo/img/levelup/${lvvo.lvphoto}" style="width:90px; height:50px;">
 						</td>
 						<td>
 							${lvvo.insertdate}
 						</td>
 					</tr>
 				</c:forEach>
-				<tr> 
-					<td colspan="5">
-				
-						<button type="button" id="levelupInsertBtn">등업 신청</button>
-
-					</td>
-				</tr>
 			</tbody>
 		</table>
-	</div>
-</div>
+		
+			<div id="buttontable">
+				<button type="button" id="levelupInsertBtn">등업 신청</button>
+			</div>
+
 <!-- -------------------------------페이지 전용 center------------------------------- -->  
 </div>
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
