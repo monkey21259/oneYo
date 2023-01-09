@@ -33,8 +33,7 @@
 		<!-- 칸 나눈 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
-		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
-		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectAll.css">
+		<link rel="stylesheet" id="change_css" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -88,6 +87,7 @@
 				// 레시피버튼을 누를 경우
 				$(document).on("click", "#recipeBtn", function(){
 					console.log("recipeBtn 버튼 클릭 이벤트 발생");
+					change_css.href = "/oneYo/resource/css/recipe/recipe_selectAll.css";
 					
 					$.ajax({
 						type:'GET',
@@ -101,6 +101,7 @@
 				// 팁버튼을 누를 경우
 				$(document).on("click", "#tipBtn", function(){
 					console.log("tipBtn 버튼 클릭 이벤트 발생");
+					change_css.href = "/oneYo/resource/css/recipe/recipe_selectAll.css";
 					
 					$.ajax({
 						type:'GET',
@@ -114,6 +115,7 @@
 				// 커뮤니티 누를 경우
 				$(document).on("click", "#communityBtn", function(){
 					console.log("communityBtn 버튼 클릭 이벤트 발생");
+					change_css.href = "/oneYo/resource/css/community/communitySelectAll.css";
 					
 					$.ajax({
 						type:'GET',
