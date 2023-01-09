@@ -109,12 +109,19 @@
 	//boardSelectList.jsp&curPage=0		
 %>	
 	<!-- 쿼리스트링 날릴려고 작성한 곳 -->
-	<a href="<%=url %>?<%=str %>curPage=1">◁◁</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url %>?<%=str %>curPage=<%=linkPage%>">◀</a>&nbsp;&nbsp;&nbsp;
+	<div align="center">
+	<ul id="block">
+			<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi">&lt;</a>
+			</li>
 <%		
 	}else{
 %>	
- <!--  ◁◁-->&nbsp;&nbsp;&nbsp;<!--◀-->&nbsp;&nbsp;&nbsp;
+ 	<div align="center">
+	<ul id="block">
+			<li class="link">
+				<span class="hi">&lt;</span>
+			</li>
 <%
 	} 
 	//다음 링크를 위해 증가시킴
@@ -133,13 +140,17 @@
 		logger.info("그룹범위내에서 페이지 링크if");
 
 %>	
-	<%=linkPage %>
+	<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hello"><%=linkPage%></a>
+			</li>
 <% 	
 	}else{
 		logger.info("그룹범위내에서 페이지 링크 else");
 		logger.info("linkPage 값 증가 : " + linkPage);
 %>
-	[<a href="<%=url %>?<%=str %>curPage=<%=linkPage%>"><%=linkPage %></a>]&nbsp;
+	<li class="link">
+				<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi"><%=linkPage%></a>
+			</li>
 	
 
 <% 	
@@ -159,9 +170,11 @@
 		//boardSelectList.jsp?&curPage=6
 		//boardSelectList.jsp?&curPage=40		
 %>	
-	<a href="<%=url %>?<%=str %>curPage=<%=linkPage %>">▶</a>&nbsp;&nbsp;&nbsp;
-	<a href="<%=url %>?<%=str %>curPage=<%=pageCount %>">▷▷</a>&nbsp;&nbsp;&nbsp;
-	
+	<li class="link">
+			<a href="<%=url%>?<%=str%>curPage=<%=linkPage%>" class="hi">&gt;</a>
+		</li>
+		</ul>
+		</div>
 <% 	
 	//마지막 페이지의 경우
 	}else{
@@ -169,16 +182,13 @@
 		logger.info("다음그룹이 있는경우 pageCount : " + pageCount);
 		logger.info("다음그룹이 있는경우 _else");
 %>	
-	<!--    ▶-->&nbsp;&nbsp;&nbsp;<!--  ▷▷-->&nbsp;&nbsp;&nbsp; 
+	<li class="link">
+			<span class="hi">&gt;</span>
+		</li>
+		</ul>
+		</div> 
 <% 
 	}
 	
 %>
 </p>
-
-
-
-
-
-
-
