@@ -320,9 +320,8 @@
 	
 <!-- 카테고리 -->
 	<div class="category_fillContainer">
-	
 		<div class="category">
-	 <div class="divClick">
+			<div class="divClick">
 				<button type="button" class="category_btn btn_1" onclick="sortProccess('totalrecipe')">레시피 작성순</button>
 			 </div>
 			 <div class="divClick">

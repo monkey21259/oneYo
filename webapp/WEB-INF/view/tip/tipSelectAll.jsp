@@ -1,28 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="org.apache.log4j.LogManager" %>
+
 <%@ page import="java.util.List" %>
+
 <%@ page import="main.ict.tip.vo.TipVO" %>
+<%@ page import="main.ict.common.CodeUtils" %>
 <%@ page import="main.ict.common.O_Session" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-Logger logger = LogManager.getLogger(this.getClass());
-logger.info("tipSelectAll.jsp 페이지 진입");
-
-O_Session mSession = O_Session.getInstance();
-String mnum = mSession.getSession(request);
-String mid = (String)mSession.getAttribute(request, "mid");
-logger.info("mid >>> : " + mid);
-logger.info("mnum >>>>>>> : " + mnum);
-
+	Logger logger = LogManager.getLogger(this.getClass());
+	logger.info("tipSelectAll.jsp 페이지 진입");
 %>
 <%
-	
+	O_Session mSession = O_Session.getInstance();
+	String mnum = mSession.getSession(request);
+	String mid = (String)mSession.getAttribute(request, "mid");
+	logger.info("mid >>> : " + mid);
+	logger.info("mnum >>>>>>> : " + mnum);
+%>
+<%
 	List<TipVO> list = null;
 	TipVO tvo = null;
-	
 	TipVO pagingVO = null;
 	int pageSize = 0;
 	int groupSize = 0;
@@ -54,35 +55,29 @@ logger.info("mnum >>>>>>> : " + mnum);
 		curPage = Integer.parseInt(pagingVO.getCurPage());
 	}
 %>
+
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
 <head>
 	<meta charset="UTF-8">
 	<title>oneYo(오내요)</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0
-						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	
-	<!-- 제이쿼리 -->
+<!-- 제이쿼리 -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
 	<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script src="/oneYo/calendar_datepicker/jquery-ui-1.12.1/datepicker-ko.js"></script>
-	
-	<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
+<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 	<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-	
-	<!-- 전체 css -->
+<!-- 전체 css -->
 	<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-	
-	<!-- tipSelectAll.jsp 전용 -->
+<!-- tipSelectAll.jsp 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/tip/tipSelectAll.css">		
-	
-	<!-- 페이징 기능 전용 -->
+<!-- 페이징 기능 전용 -->
 	<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
-	
-	<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 	<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
-		
 	<script type="text/javascript">
 	
 		$(document).ready(function(){		
@@ -145,10 +140,10 @@ logger.info("mnum >>>>>>> : " + mnum);
 			});//end of startDate datepicker()
 			
 			//SEARCH를 위한 form 보내기
-			$('#searchBtn').click(function(){
+			$('#searchBtn').click(function() {
 				var cate = document.getElementsByName('searchCategory');
 				var bool = false;
-				for(var i=0; i<cate.length; i++){
+				for (var i=0; i<cate.length; i++) {
 					if(cate[i].hasAttribute('data')){
 						bool = true;
 					}//end of if
@@ -157,13 +152,13 @@ logger.info("mnum >>>>>>> : " + mnum);
 				if (($('#keyword').val() == '') && ($('#startDate').val() == '') && ($('#endDate').val() == '') && ($('.category').prop('checked') == false) && !bool) {
 					alert("검색할 카테고리, 키워드 또는 날짜를 설정하세요.");
 					$('#keyword').focus();
-				}else if(($('#keyword').val() == '') && ($('#startDate').val() == '') && ($('#endDate').val() != '')){
+				} else if (($('#keyword').val() == '') && ($('#startDate').val() == '') && ($('#endDate').val() != '')) {
 					alert("검색 시작일을 설정하세요.");
 					$('#startDate').focus();
-				}else if(($('#keyword').val() == '') && ($('#startDate').val() != '') && ($('#endDate').val() == '')){
+				} else if (($('#keyword').val() == '') && ($('#startDate').val() != '') && ($('#endDate').val() == '')) {
 					alert("검색 종료일을 설정하세요.");
 					$('#endDate').focus();
-				}else{
+				} else {
 					$('#tipSelectAllForm').attr({
 						'action':'tipSelectAll.ict',
 						'method':'GET',
@@ -245,46 +240,92 @@ logger.info("mnum >>>>>>> : " + mnum);
 				}).submit();
 			});
 					
-		//all.js 에 있는 모든 함수 연결
-		allJavaScript();
+			//all.js 에 있는 모든 함수 연결
+			allJavaScript();
 
 // 			//all.js 에 있는 모든 함수 연결
 <%-- 			allJavaScript("<%=mnum%>"); --%>
+
+			// 검색 카테고리 클릭 시 이벤트 처리
+			// 1. 중복 선택 불가(O)
+			// 2. divClick on/off -> input:checkbox 선택/해제(O)
+			// 3. 안보이게 만들기(O)
+			$(".divCate").on("click", function() {
+				let thisObj = this;					// 클릭한 객체
+				let cate_span = $(this).children();		// 카테고리 박스
+				let hidden_box = cate_span.children();	// 카테고리에 숨겨진 Checkbox
+// 				console.log(thisObj);
+// 				console.log(cate_span);
+// 				console.log(hidden_box);
+// 				console.log(hidden_box.prop("checked"));
+// 				console.log(typeof hidden_box.prop("checked"));
+				if (hidden_box.prop("checked") == false) {		// [미선택 상태] false -> true
+					cate_span.css({
+						"width": "204px",
+						"height": "30px",
+						"border": "3px solid #AC7B53"
+					});
+					// 체크박스 클릭하기
+					hidden_box.prop("checked", true);
+// 					console.log(hidden_box.prop("checked"));
+				} else if (hidden_box.prop("checked") == true) {	// [선택 상태] true -> false
+					cate_span.css({
+						"width": "210px",
+						"height": "36px",
+						"border": "none"
+					});
+					// 체크박스 해제하기
+					hidden_box.prop("checked", false);
+// 					console.log(hidden_box.prop("checked"));
+				}
+				
+				$(".divCate").each(function(i, elem) {
+					if (elem != thisObj) {
+						$(elem).find('input').prop("checked", false);
+						$(elem).children().css({
+							"width": "210px",
+							"height": "36px",
+							"border": "none"
+						});
+					}
+				});
+			});
 			
 		});// ready
 		
 	</script>
-	<style>
-	
-	.link{
-		margin:2px;
-		list-style-type:none;
-		float:left;
-		padding:9px 15px 9px 15px;
-		border:1px solid #ebebeb; 
-		}
-	.hi{
-		color:#888;
-		text-decoration: none;
-		font-weight: 500;
-	}
-
-	.hello{
-	color:#ff5e5e;
-		text-decoration: none;
+		<style>
 		
-	}
-	#list{
-		text-align:center;
+			.link {
+				margin:2px;
+				list-style-type:none;
+				float:left;
+				padding:9px 15px 9px 15px;
+				border:1px solid #ebebeb; 
+			}
+				
+			.hi {
+				color:#888;
+				text-decoration: none;
+				font-weight: 500;
+			}
 		
-	}
-	#block{
-	display:inline-block;
-	
-	}
-	
-	
-	</style>
+			.hello {
+			color:#ff5e5e;
+				text-decoration: none;
+				
+			}
+			#list {
+				text-align:center;
+				
+			}
+			
+			#block {
+			display:inline-block;
+			
+			}
+		
+		</style>
 	</head>
 	<body>
 	<form id="tipSelectAllForm">
@@ -488,81 +529,147 @@ logger.info("mnum >>>>>>> : " + mnum);
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-	<table>
-		<thead>
-			<tr>
-				<td colspan="4">
-					<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="00">요리&nbsp;
-					<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="01">주방관리&nbsp;
-					<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="02">재료정보&nbsp;
-					<input type="checkbox" id="searchCategory" name="searchCategory" class="category" value="99">기타<br>
-					<input type="text" id="keyword" name="keyword" placeholder="제목 검색">
-					<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
-					<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
-					<input type="button" id="searchBtn" value="검색">
-				</td>
-			</tr>
-			<tr>
-				<!-- 
-				<th>글 번호</th>
-				<th>글 제목</th>
-				<th>글 내용</th>
-				<th>글 조회수</th>
-				<th>작성자</th>
-				<th>등록일</th>
-				 -->
-				<th>NO</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>등록일</th>
-			</tr>
-		</thead>
+	<div class="category_fillContainer">
+		<div class="category_cond">
+			<input type="text" id="keyword" name="keyword" style="width:120px;" placeholder="제목 검색">
+			<span> | </span>
+			<input type="text" id="startDate" name="startDate" size="8" placeholder="검색 시작일" autocomplete="off"> ~
+			<input type="text" id="endDate" name="endDate" size="8" placeholder="검색 종료일" autocomplete="off">
+			<input type="button" id="searchBtn" value="검색">
+			<button type="button" id="insertBtn" style="position:relative;left:30px;">글등록</button>
+		</div>
+		<div class="category">
+			<div class="divCate">
+				<!-- 요소 한개만! jQuery -->
+				<span class="category_btn">
+					<input type="checkbox" id="searchCategory" name="searchCategory" class="searchCategory" value="00" />요리
+				</span>
+			</div>
+			<div class="divCate">
+				<!-- 요소 한개만! jQuery -->
+				<span class="category_btn">
+					<input type="checkbox" id="searchCategory" name="searchCategory" class="searchCategory" value="01" />주방관리
+				</span>
+			</div>
+			<div class="divCate">
+				<!-- 요소 한개만! jQuery -->
+				<span class="category_btn">
+					<input type="checkbox" id="searchCategory" name="searchCategory" class="searchCategory" value="02" />재료정보
+				</span>
+			</div>
+			<div class="divCate">
+				<!-- 요소 한개만! jQuery -->
+				<span class="category_btn">
+					<input type="checkbox" id="searchCategory" name="searchCategory" class="searchCategory" value="99" />기타
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="choiceAll">
+		<div class="choiceTableDiv">
+			<table class="choiceTable">
+				<tbody>
+<%
+					TipVO _tipVO = null;
+					for (int i=0; i<list.size(); i++) {
+						_tipVO = list.get(i);
+						totalCount = Integer.parseInt(tvo.getTotalCount());
+						
+						searchCategory = _tipVO.getSearchCategory();
+						keyword = _tipVO.getKeyword();
+						startDate = _tipVO.getStartDate();
+						endDate = _tipVO.getEndDate();
+						
+						if (i % 4 == 0) {
+%>
+					<tr>
+						<td class="choiceFour">
+<%
+						}
+%>
+							<!-- 한 게시글 -->
+							<a href="javascript:void(0);">  <!-- 클릭 시 해당 내용이 있는 Content로 이동 -->
+							<div class="selectOne">
+								<input type="hidden" class="tnum" name="tnum" value="<%= _tipVO.getTnum() %>">
+								<table class="selectTable">
+									<!-- 조회수/좋아요 -->
+									<tr>
+										<td class="optionTd">
+											<div>
+												<span>조회수 :</span>
+												<p><%= _tipVO.getThit() %></p>
+	 										</div>
+										</td>
+									</tr>
+									<!-- 썸네일 -->
+									<tr>
+										<td class="imgTd">
+											<div class="imgTdSub1">
+												<img src="/oneYo/img/tip/<%= _tipVO.getTphoto() %>" id="rphoto">
+											</div>
+										</td>
+									</tr>
+									<!-- 분류 -->
+									<tr>
+										<td class="cateTd" style="text-align:left;">
+											<p>
+												<%= CodeUtils.getTcategory(_tipVO.getTcategory()) %>
+											</p>
+										</td>
+									</tr>
+									<!-- 제목 -->
+									<tr>
+										<td class="nameTd" style="height:42px;overflow-y:hidden;">
+											<div>
+												<%= _tipVO.getTsubject() %>
+											</div>
+										</td>
+									</tr>
+									<!-- 작성자 -->
+									<tr>
+										<td class="nameTd">
+											<p>
+												작성자
+											</p>
+											<span>
+												<%= _tipVO.getMnick() %>
+											</span>
+										</td>
+									</tr>
+									<!-- 작성일 -->
+									<tr>
+										<td class="dayTd">
+											<div>
+												<%= _tipVO.getInsertdate() %>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</a>
+<%
+					if (i % 4 == 3) {
+%>
+						</td>
+						</tr>
+<%
+					} else if (list.size() == i + 1 && (i + 1) % 4 > 0) {
+						for (int j = 0; j < 4 - (i + 1) % 4; j++) {
+%>
+						<div class="notOne hidden_O"></div>
+<%
+						}
+%>
+						</td>
+						</tr>			
+<%
+					}
+				}
+%>
+		</tbody>
+	</table>
+	<table style="margin: 0px auto">
 		<tbody>
-	<% 
-		for(int i=0; i < list.size(); i++) {
-			tvo = list.get(i);
-			
-			totalCount = Integer.parseInt(tvo.getTotalCount());
-			
-			searchCategory = tvo.getSearchCategory();
-			keyword = tvo.getKeyword();
-			startDate = tvo.getStartDate();
-			endDate = tvo.getEndDate();
-	%>
-			<tr>
-				<td>
-					<%= tvo.getTipnum() %>
-				</td>
-				<td class="tsubject">
-					<%= tvo.getTsubject() %>
-					<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
-				</td>
-				<!-- 
-				<td class="tcontent">
-					<%= tvo.getTcontent() %>
-					<input type="hidden" class="tnum" name="tnum" value="<%= tvo.getTnum() %>">
-				</td>
-				<td>
-					<%= tvo.getThit() %>
-				</td>
-				<td>
-					<%= tvo.getMnick() %>
-				</td>
-				 -->
-				<td>
-					<%= tvo.getMnick() %>
-				</td>
-				<td>
-					<%= tvo.getThit() %>
-				</td>
-				<td>
-					<%= tvo.getInsertdate() %>
-				</td>
-			</tr>
-	<%
-		}
-	%>
 			<tr>			
 				<td colspan="4">
 				<br>
@@ -583,11 +690,6 @@ logger.info("mnum >>>>>>> : " + mnum);
 							<jsp:param value="<%=endDate %>" name="endDate"/>
 					</jsp:include>
 				</td>
-			</tr>
-			
-			<tr>
-				<td><button type="button" id="insertBtn">글등록</button>
-			
 			</tr>
 		</tbody>
 	</table>
