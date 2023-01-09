@@ -83,23 +83,29 @@
 		$(document).ready(function(){		
 			console.log("tipSelectAll.jsp 페이지 진입");
 			
-			$(document).on("click", ".tsubject", function(){
-				let tnum = $(this).children(1).val();
-				console.log("tnum : " + tnum);
+// 			$(document).on("click", ".tsubject", function(){
+// 				let tnum = $(this).children(1).val();
+// 				console.log("tnum : " + tnum);
 				
-				location.href = "tipSelectContent.ict?tnum=" + tnum;
+// 				location.href = "tipSelectContent.ict?tnum=" + tnum;
 				
-				<%--
-				$("#tipSelectAllForm").attr({
-					"action": "#tipSelectContent.ict",
-					"method": "GET"
-				}).submit();
-				--%>
-			});
+ 				
+<%-- 				$("#tipSelectAllForm").attr({ --%>
+<%-- 					"action": "#tipSelectContent.ict", --%>
+<%-- 					"method": "GET" --%>
+<%-- 				}).submit(); --%>
+<%-- 				--%>
+// 			});
 			
-			$(document).on("click", ".tcontent", function(){
+// 			$(document).on("click", ".tcontent", function(){
+// 				let tnum = $(this).children(1).val();
+// 				console.log("tnum : " + tnum);
+				
+// 				location.href = "tipSelectContent.ict?tnum=" + tnum;
+// 			});
+
+			$(document).on("click", ".selectOne", function(){
 				let tnum = $(this).children(1).val();
-				console.log("tnum : " + tnum);
 				
 				location.href = "tipSelectContent.ict?tnum=" + tnum;
 			});
