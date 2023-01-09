@@ -33,6 +33,11 @@
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
 		<!-- home 페이지 전용 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/home/home.css">
+		
+		
+	<!-- recipeSerachForm.jsp 전용 -->
+	<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipeSearchForm.css">	
+		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
@@ -40,12 +45,9 @@
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 		<script type="text/javascript">
 		
-		
-			
 			$(document).ready(function() {
 				
 				
-
 				// 게시글 관련 ---------------------------------
 				$(".favorPostTitle").on("click", function() {  // 타이틀 클릭
 					postClick($(this));
@@ -167,7 +169,6 @@
 				
 				// 값 갱신
 				$(".postTitles").attr('data-num', after_num);
-
 				// 클릭한 것에 해당하는 게시판 글 z-index 변경하기.
 				$(".favorPost").each(function(i, elem) {
 // 					console.log($(elem).attr("data-value"));
@@ -189,12 +190,12 @@
 		</script>
 	</head>
 <body>
-
+<form id="recipeSearchForm">
 <div id="realAll">
 
 <div id="backMenu"></div>
 
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
@@ -203,7 +204,7 @@
 			<span>
 			홈으로
 			</span>
-			</div>
+			</div> 
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
@@ -226,13 +227,29 @@
 			</span>
 			</div>
 		</li>
+		
 		<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
@@ -245,14 +262,16 @@
 	</ul>
 	</div>
 
-<div id="searchBar" class="hidden_X">
+<div>
 <!-- <div id="searchBar" class="hidden_O"> -->
-	<div class="searchBarBtn">
-		X
-	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+<!-- 	<div class="searchBarBtn"> -->
+<!-- 		X -->
+<!-- 	</div> -->
+<!-- 	<div> -->
+<%-- 		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true"> --%>
+<%-- 				<jsp:param value="" name=""/> --%>
+<%-- 		</jsp:include>	 --%>
+<!-- 	</div> -->
 </div>
 
 <div id="singo" class="hidden_X">
@@ -284,72 +303,81 @@
 %>
 			<div class="loginBtnDiv">
 				<span class="Choonsik" id="newMemBtn">회원가입</span>
-				<span class="Choonsik">:</span>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="loginBtn">로그인</span>
 	 		</div>
 <%
 		} else {
 %>
 			<div class="loginBtnDiv">
+<%
+			if(mid.equals("admin")){
+%>
+				<span class="Choonsik adminHome">관리자페이지</span>
+<%
+			}else{
+%>
 				<span class="Choonsik mypageHome">마이페이지</span>
-				<span class="Choonsik">:</span>
+<%
+			}
+%>
+				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-		String mSNSid = mid;  // M22...
-		if (mid != null && !(mid.equals(""))) {
-			if (mid.length() > 5) {
-				String checkSNS = mid.substring(0, 6);
-				if (checkSNS.equals("naver_")) {
-					mSNSid = "naver"; 
-				}
-				if (checkSNS.equals("kakao_")) {
-					mSNSid = "kakao";
+			String mSNSid = mid;  // M22...
+			if (mid != null && !(mid.equals(""))) {
+				if (mid.length() > 5) {
+					String checkSNS = mid.substring(0, 6);
+					if (checkSNS.equals("naver_")) {
+						mSNSid = "naver"; 
+					}
+					if (checkSNS.equals("kakao_")) {
+						mSNSid = "kakao";
+					}
 				}
 			}
-		}
 %>
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
 	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+	 			<input type="hidden" id="mid" name="mid" value="<%= mid %>" />
 	 		</form>
 <% 		
 		}
 %>
 	 	</div>
 	</div>
-	
 	<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
 		<ul>
 			<li>
 				<a href="recipeSelectAll.ict" class="menu_link">
-					<div>
-						레시피
-					</div>
+				<div>
+				레시피
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="tipSelectAll.ict" class="menu_link">
-					<div>
-						Tip
-					</div>
+				<div>
+				Tip
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="communitySelectAll.ict" class="menu_link">
-					<div>
-						커뮤니티
-					</div>
+				<div>
+				커뮤니티
+				</div>
 				</a>
 			</li>
 			<li>
 				<a href="noticeSelectAll.ict" class="menu_link">
-					<div>
-						공지사항
-					</div>
+				<div>
+				공지사항
+				</div>
 				</a>
 			</li>
 			<li>
@@ -365,27 +393,31 @@
 	
 </div>
 
-<div id="center" style="text-align:center;">
+<div id="center">
+<!-- -------------------------------페이지 전용 center------------------------------- -->
+	
+	<div id="anne">
+		<p id="subject">재료 검색</p>
+		<p id="content">검색하실 재료를 입력하면 해당 재료의 레시피가 검색됩니다.</p>
+	</div>
+	
 	<div>
-		<form id="recipeSearchForm" style="display:inline-block;">
-			<table style="border:1px solid black;">
-				<thead>
-					<tr>
-						<th>
-							<span>재료 검색(최대 3개 입력 가능)</span>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
+			<table class="table-fill_recipeSearch">
+			
+					
+
+	
 					<tr>
 						<td>
 							<input id="jeryo" type="text">
-						</td>
-					</tr>
-					<tr>
-						<td>
 							<input id="jeryoBtn" type="button" value="등록하기">
 						</td>
+					</tr>
+					
+					<tr>
+							<td id="recipe_info">
+							재료 검색은 최대 3개까지  입력 가능합니다.
+							</td>
 					</tr>
 					<tr>
 						<td>
@@ -397,25 +429,25 @@
 							<input type="button" id="recipeSearchBtn" value="검색하기">
 						</td>
 					</tr>
-				</tbody>
+
 			</table>
-		</form>
 	</div>
+</div>
+	<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
 		<span></span> / <span></span><br />
 		<span></span> / <span></span><br />
 	</div>
+</div> <!-- footer -->
 </div>
 
-</div>
-</div>
-</body>
+		</form>
+	</body>
 </html>

@@ -13,12 +13,14 @@
 
 /* -------------------------------- 중앙 center -------------------------------- */
 
-#anne_r {
+#anne{
 	display: table;
 	width: 100%;
+    margin-bottom: 38px;
+	border-bottom : 1px solid #AC7B53;
 }
 
-#subject_r{
+#subject{
 	font-size : 30px;
 	font-weight: bold;
 	padding-top : 15px;
@@ -28,7 +30,13 @@
 	
 }
 
-#recipe_pop_info{
+#content{
+	font-size : 15px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#recipe_info{
 	font-size: 15px;
     color: #AC7B53;
     font-weight: bold;
@@ -41,7 +49,7 @@
 /*================테이블 =====================*/
 
 
-.table-fill_r_pop{
+.table-fill_recipeSearch{
    	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
 /* 	    text-indent: initial; */ /*들여쓰기*/
     border-spacing: 0px; /*테이블 간격*/
@@ -53,7 +61,7 @@
 /*   animation: float 5s infinite; */
 }
   
-.table-fill_r_pop tr {
+.table-fill_recipeSearch tr {
 /*   border-top: 1px solid #C1C3D1; */
 /*  border-bottom: 1px solid #C1C3D1; */
   color:black;
@@ -61,7 +69,7 @@
   font-weight:normal;
 }
  
-.table-fill_r_pop td {
+.table-fill_recipeSearch td {
     text-align: center;
     vertical-align: middle;
     font-weight: 300;
@@ -77,9 +85,22 @@
 }
 #jeryoList{
 	font-size: 20px;
+	margin
 }
 
-input[id="jeryo_r"] {
+
+/*테이블 제목*/
+.table_subject_w{
+	width: 30%;
+	height: 30px;
+	font-size: 18px;
+	text-align : center;
+	font-weight: 400;
+	background: #FCF4EF;
+}
+
+
+input[id="jeryo"] {
 	height: 45px;
     width: 210px;
     border: 1px solid #cccccc;
@@ -88,26 +109,19 @@ input[id="jeryo_r"] {
     padding-left: 10px;
 }
 
-input[id="jeryo_r"]:focus {
+input[id="jeryo"]:focus {
 	outline-color: #c0c0c0;
 	}
 
-.table-fill_r_pop #jeryo_i{
+.table-fill_recipeSearch #jeryo_i{
 	margin-bottom: 20px;
 	
 }
 
 
-#find_img{
-	width:150px; 
-	height:150px;
-	margin-top: 10px;
-}
-
-
 /* ===============버튼 ================*/
 
-.table-fill_r_pop .recipesearch_Btn{
+.table-fill_recipeSearch #recipeSearchBtn, #jeryoBtn{
 		font-size : 14px;
 		color : #93A603;
 		border-radius: 15px;
@@ -117,10 +131,10 @@ input[id="jeryo_r"]:focus {
     	height: 40px;
 		letter-spacing: 1px;
 		cursor:pointer;
-		margin: auto;
+		margin : 10px;
        }    
         
-.table-fill_r_pop .recipesearch_Btn:hover {
+.table-fill_recipeSearch #recipeSearchBtn:hover, #jeryoBtn:hover {
    	    font-size : 14px;
    	    font-weight: bold;
         color : white;
@@ -129,7 +143,7 @@ input[id="jeryo_r"]:focus {
         border : none;
 	   width: 100px;
     height: 40px;
-        margin: 0;
+      	margin : 10px;
       	letter-spacing: 1px;
         }
 	

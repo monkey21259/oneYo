@@ -13,7 +13,7 @@
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 
-<!-- warningPage.jsp 전용 -->
+<!-- recipePage.jsp 전용 -->
 <link rel="stylesheet" href="/oneYo/resource/css/recipe/recipePage.css">	
 
 	<script type="text/javascript">

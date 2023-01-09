@@ -13,26 +13,27 @@
 
 /* -------------------------------- 중앙 center -------------------------------- */
 
- 
 #center {
 	 margin: auto;
-     width: 500px;
+}
+
+#loginresetpw{
+	 width: 500px;
      height : 600px;
      background-color: white;
      border-radius: 30px;
      text-align: center;
      padding: 20px;
 	 border-color: #93A603;
-	 margin-bottom	: 20px;
+	  margin: auto;
      box-shadow: 0px 5px 20px -5px;
+	
 }
-
 #center table{
 	
 	overflow : hidden; /*테두리 영역 넘어가면 숨김*/
 	padding-top:25px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin : auto;
 }
 
 table .name{

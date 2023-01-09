@@ -64,17 +64,10 @@ $(document).ready(function(){
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -103,9 +96,11 @@ $(document).ready(function(){
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">
@@ -189,6 +184,7 @@ $(document).ready(function(){
 </div>
 
 <div id="center">
+<div id="meminsertemail">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 	<p id="subject">회원가입</p>
 		<p id="content">이메일이 전송되었습니다. <br>
@@ -218,7 +214,6 @@ $(document).ready(function(){
 		<span></span> / <span></span><br />
 	</div>
 </div>
-
 </div>
 </div>
 
