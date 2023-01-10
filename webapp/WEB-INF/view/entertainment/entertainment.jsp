@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %><!-- 식품안전나라 RSS -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="main.ict.common.O_Session" %>
+
+<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	O_Session oSession = O_Session.getInstance();
+	String mnum = oSession.getSession(request);
+	String mid = (String)oSession.getAttribute(request, "mid");
+	String mnick = (String)oSession.getAttribute(request, "mnick");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,5 +238,9 @@ naver.maps.Event.addListener(marker, "click", function(e) {
 
 infowindow.open(map, marker);
 </script>
+<jsp:include page="./chat.jsp">
+	<jsp:param value="<%=mnick %>" name="mnick"/>
+</jsp:include>
+
 </body>
 </html>

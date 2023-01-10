@@ -554,7 +554,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="menu_link">
+				<a href="entertainment.ict" class="menu_link">
 				<div>
 				더보기
 				</div>
