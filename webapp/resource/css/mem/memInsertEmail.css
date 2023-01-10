@@ -16,17 +16,20 @@
 
 #center {
 	 margin: auto;
-     width: 500px;
+}
+
+#meminsertemail{
+	 width: 500px;
      height : 600px;
      background-color: white;
      border-radius: 30px;
      text-align: center;
      padding: 20px;
 	 border-color: #93A603;
-	 margin-bottom	: 20px;
+	  margin: auto;
      box-shadow: 0px 5px 20px -5px;
+	
 }
-
 #center table{	
 	align:center;
 	overflow : hidden; /*테두리 영역 넘어가면 숨김*/

@@ -59,9 +59,10 @@
 					});
 					
 					//사용자가 내용 입력할 input 태그
-					var newInput = $('<textarea>');
+					var newInput = $('<input>');
 					newInput.attr({
-						'placeholder':'내용을 입력해주세요'
+						 'type'			: 'text'
+						,'placeholder'	: '내용을 입력해주세요'
 					});
 					newInput.addClass('rcontent');
 					
@@ -75,6 +76,11 @@
 					
 					//부모 div태그에 새로운 div태그 붙이기
 					$('#neyong').append(newDiv);
+					
+					//	생성된 div로 스크롤 이동
+					var offset = newDiv.offset(); //선택한 태그의 위치를 반환
+	                //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+			        $('html').animate({scrollTop : offset.top}, 400);
 					
 				});//end of addRcontentBtn click function
 				
@@ -167,7 +173,22 @@
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
 				
+				//	사진 미리 보기
+				$(document).on('change', '#rphoto', function() {
+					preview(this);
+				});
+				
 			});
+			//	사진 미리 보기
+			function preview(fileP) {
+				if(fileP.files && fileP.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$('#preview').attr('src', e.target.result);
+					}
+					reader.readAsDataURL(fileP.files[0]);
+				}
+			}
 		
 		</script>
 		<style type="text/css">
@@ -388,16 +409,16 @@
 				
 				<div id="viewTable">
 				<table id="insertContent">
-					<!-- 글쓰기 -->
-					<tr>
-						<td style="text-align:right;">
-							<a id="recipeInsertBtn">글쓰기</a>
-						</td>
-					</tr>
 					<!-- 카테고리 -->
 					<tr>
 						<td id="recipe" class="selectTd cateTd">
 							<span>레시피 글쓰기</span>
+						</td>
+					</tr>
+					<!-- 글쓰기 -->
+					<tr>
+						<td style="text-align:right;">
+							<a id="recipeInsertBtn" class="buttons">글쓰기</a>
 						</td>
 					</tr>
 					<!-- 글 제목 -->
@@ -514,7 +535,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="valTd">
+										<td class="valTd selectOption">
 											<select id="rdiff" name="rdiff">
 												<option value="0">쉬움</option>
 												<option value="1">보통</option>
@@ -525,14 +546,18 @@
 								</table>
 							</div>
 							<!-- 사진 -->
-							<div class="twoTd">
+							<div class="twoTd photoTd">
 								<table>
 									<tr>
 										<td class="nameTd">
-											사진
+											<label for="rphoto">사진</label>
 										</td>
 										<td class="valTd">
-											<input type="file" id="rphoto" name="rphoto" />
+											<label for="rphoto">
+												<img id="preview">
+											</label>
+											<label for="rphoto" class="photoBtn">사진</label>
+											<input type="file" id="rphoto" name="rphoto"  accept=".jpg, .jpeg, .png, .gif" hidden/>
 										</td>
 									</tr>
 								</table>
@@ -550,7 +575,7 @@
 											<!-- input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
 											<input type="hidden" id="data" name="rjeryo" value="">
 											<input type="text" id="jeryoText" name="rjeryoSelect" value="" placeholder="재료를 입력하세요." />
-											<input id="jeryo" type="button" value="재료등록"><br>
+											<span id="jeryo">재료등록</span>
 											<p id="jeryocan"></p>
 										</td>
 									</tr>
@@ -566,153 +591,22 @@
 								<input type="hidden" id="rcontent" name="rcontent">
 								<div class="neyong" style="display:flex; align-items:center;">
 									<img src="/oneYo/img/numbering/number1.png" width="45" height="45">&nbsp;
-									<textarea class="rcontent" placeholder="내용을 입력해주세요"></textarea>
+<!-- 									<textarea class="rcontent" placeholder="내용을 입력해주세요"></textarea> -->
+									<input type="text" class="rcontent" placeholder="내용을 입력해주세요">
 								</div>
 							</div>
-							&nbsp;&nbsp;
-							<button type="button" id="addRcontentBtn">단계 추가하기</button>
-							<button type="button" id="removeRcontentBtn">단계 빼기</button>
+							<div class="btnsBottom">
+								<span id="addRcontentBtn" class="buttons">단계 추가하기</span>
+								<span id="removeRcontentBtn" class="buttons">단계 빼기</span>
+							</div>
 						</td>
 					</tr>
 					
 				</table>
 				</div>
 				
-				<hr>
-				<hr>
-				<hr>
-				<hr>
-					<!-- -------------------------------페이지 전용 center 위가 편집 후 아래가 편집 전 ------------------------------- -->		
-				
-				
-				
-				
-				
-<!-- 				<table class="recipeTable"> -->
-<!-- 					<tr> -->
-<!-- 						<td colspan="2"> -->
-<!-- 							<span>레시피 글쓰기</span> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 글 제목 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td>글 제목</td> -->
-<!-- 						<td> -->
-<!-- 							<input type="text" id="rsubject" name="rsubject" value="" placeholder="제목 입력란" /> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 요리 분야 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td>요리 분야</td> -->
-<!-- 						<td> -->
-<!-- 							<select id="rcategory" name="rcategory"> -->
-<!-- 								<option value="00">한식</option> -->
-<!-- 								<option value="01">중식</option> -->
-<!-- 								<option value="02">양식</option> -->
-<!-- 								<option value="03">일식</option> -->
-<!-- 								<option value="04">디저트</option> -->
-<!-- 								<option value="99">기타</option> -->
-<!-- 							</select> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 음식 재료 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td id="rjeryo">재료</td> -->
-<!-- 						<td> -->
-<!-- 							input_text => 값을 담는 방식과 재료 종류를 설정해야함. -->
-<!-- 							<input type="hidden" id="data" name="rjeryo" value=""> -->
-<!-- 							<input type="text" id="jeryoText" name="rjeryoSelect" value="" placeholder="재료를 입력하세요." /> -->
-<!-- 							<input id="jeryo" type="button" value="재료등록"><br> -->
-<!-- 							<p id="jeryocan"></p> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 조리 시간 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td>시간</td> -->
-<!-- 						<td> -->
-<!-- 							<select id="rhour" name="rhour" > -->
-<!-- 								<option value="00" selected>00</option> -->
-<%-- <%	// ---- 시(0 ~ 23) --%>
-<!-- 
-// 							String hour = null;
-// 							for (int i=1; i<24; i++) {
-// 								hour = "";
-// 								if (i < 10) { hour += "0"; }
-// 								hour += i;
- -->
-<%-- %> --%>
-<%-- 								<option value=<%= hour %>><%= hour %></option> --%>
-<%-- <% --%>
-<!-- // 							} -->
-<%-- %>							</select>&nbsp;시간&nbsp; --%>
-<!-- 							<select id="rminute" name="rminute" > -->
-<!-- 								<option value="00" selected>00</option> -->
-<%-- <%	// ---- 분(0 ~ 59) --%>
-<!-- 
-// 							String minute = null;
-// 							for (int i=1; i<60; i++) {
-// 								minute = "";
-// 								if (i < 10) { minute += "0"; }
-// 								minute += i;
- -->
-<%-- %>								 --%>
-<%-- 								<option value=<%= minute %>><%= minute %></option> --%>
-<%-- <%							 --%>
-<!-- 
-// 							} -->
-<%-- %>							</select>&nbsp;분&nbsp; --%>
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td>인분</td> -->
-<!-- 						<td> -->
-<!-- 							<select id="rperson" name="rperson"> -->
-<!-- 								<option value="1인분" selected>1인분</option> -->
-<%-- <%  // ---- 몇 인분(max=10) --%>
-<!-- 
-// 							String rPerson = null;
-// 							for (int i=2; i<11; i++) {
-// 								rPerson = "";
-								
-// 								rPerson += i;
- -->
-<%-- %> --%>
-<%-- 								<option value="<%= rPerson %>인분"><%= i %>인분</option> --%>
-<%-- <% --%>
-<!-- // 							} -->
-<%-- %>							</select> --%>
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 난이도: 쉬움(0), 보통(1), 어려움(2) %> --%>
-<!-- 					<tr> -->
-<!-- 						<td>난이도</td> -->
-<!-- 						<td> -->
-<!-- 							<select id="rdiff" name="rdiff"> -->
-<!-- 								<option value="0">쉬움</option> -->
-<!-- 								<option value="1">보통</option> -->
-<!-- 								<option value="2">어려움</option> -->
-<!-- 							</select> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 글 내용 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td>글 내용</td> -->
-<!-- 						<td> -->
-<!-- 							<textarea id="rcontent" name="rcontent" cols="10" rows="5">내용을 입력하세요. -->
-<!-- 							</textarea><br /> -->
-<%-- <%  // 음식 사진 %> --%>
-<!-- 							<input type="file" id="rphoto" name="rphoto" /> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<%-- <%  // 글쓰기 버튼 %> --%>
-<!-- 					<tr> -->
-<!-- 						<td colspan="2" style="text-align:right;"> -->
-<!-- 							<a id="recipeInsertBtn">글쓰기</a> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 				</table> -->
 				</form>
-					<!-- -------------------------------페이지 전용 center------------------------------- -->
+<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->

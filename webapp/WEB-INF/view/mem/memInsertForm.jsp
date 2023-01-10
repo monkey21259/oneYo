@@ -229,7 +229,7 @@ $(document).ready(function(){
 	$(document).on('click', '#formBtn', function(){
 		
 		//	NOT NULL 데이터 NULL 체크			=====================
-		alert("닉네임확인버튼클릭");
+		
 		if( $('#mnick').text() == null){
 			alert("닉네임을 기입해주세요");
 			$("#mnick").focus();
@@ -332,12 +332,13 @@ $(document).ready(function(){
 					mcategory += "#" + $(this).val();
 				}
 			});
-			alert("mcategory: " + mcategory);  // 230103 김기영 추가
+		
+			
 			$('#mcategory').val(mcategory);
 			console.log("mcategory >>> : " + $('#mcategory').val());
-			//	mcategory 복수	=====================
-			
-			alert("mid >>> : " + $('#mid').val());
+			//	mcategory 복수	=====================	
+				
+			alert("회원가입 되었습니다.");
 			
 			$('#memInsertForm').attr({
 				 'action'	: 'memInsert.ict'
@@ -383,17 +384,10 @@ $(document).ready(function(){
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -422,9 +416,11 @@ $(document).ready(function(){
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">

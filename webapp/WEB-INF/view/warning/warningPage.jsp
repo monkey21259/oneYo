@@ -8,8 +8,6 @@
 	
 <meta name="viewport" content="width=device-width, initial-scale=1.0
 						maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<!-- 제이쿼리cdn -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 <!-- warningPage.jsp 전용 -->

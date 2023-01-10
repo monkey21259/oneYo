@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/* 전체 컨테이너 */
+.container {
+	display: none;
+}
+
+/*테이블*/
+.chatTable {
+	
+}
+
+/*채팅글 보여지는 div*/
+#list {
+	
+}
+
+/*한 개의 채팅글이 담기는 div*/
+.chatline {
+	
+}
+
+/*입장 로그 div*/
+.entermsg {
+	
+}
+
+/*퇴장 로그 div*/
+.outmsg {
+	
+}
+
+/*내가 보낸 채팅글 div*/
+.mychatcontainer {
+	
+}
+
+/*다른 사람이 보낸 채팅글 div*/
+.otherchatcontainer {
+	
+}
+
+/*닉네임 담기는 곳*/
+.nick {
+	
+}
+
+/*채팅 글자가 담기는 div*/
+.chatmsg {
+	
+}
+
+/*보낸 시간이 담기는 div*/
+.msgtime {
+	
+}
+
+/*text 인풋*/
+#msg {
+	
+}

@@ -115,17 +115,10 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -241,7 +234,7 @@
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
-
+<div id="login_Form">
 			<table>
 				<tr>
 				<td><img alt="오내요" src="/oneYo/resource/img/oneYo_logo.png" class="logo"></td>
@@ -307,7 +300,7 @@
 		<span></span> / <span></span><br />
 	</div>
 </div>
-
+</div>
 </div>
 </div>
 		</form>

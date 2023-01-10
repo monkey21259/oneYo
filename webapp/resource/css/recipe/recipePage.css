@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+/* -------------------------------- 전체 영역 -------------------------------- */
+#all_div {
+	
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	
+}
+
+
+/* -------------------------------- 중앙 center -------------------------------- */
+
+#anne_r {
+	display: table;
+	width: 100%;
+}
+
+#subject_r{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	text-align: center;
+	margin-bottom:10px;
+	
+}
+
+#recipe_pop_info{
+	font-size: 15px;
+    color: #AC7B53;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    text-align: center;
+	
+}
+
+/*================테이블 =====================*/
+
+
+.table-fill_r_pop{
+   	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
+/* 	    text-indent: initial; */ /*들여쓰기*/
+    border-spacing: 0px; /*테이블 간격*/
+	border-collapse: collapse;
+	background-color:none;
+	margin: 0 auto;
+	padding:10px;
+   	width: 100%;
+/*   animation: float 5s infinite; */
+}
+  
+.table-fill_r_pop tr {
+/*   border-top: 1px solid #C1C3D1; */
+/*  border-bottom: 1px solid #C1C3D1; */
+  color:black;
+  font-size:14px;
+  font-weight:normal;
+}
+ 
+.table-fill_r_pop td {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.jeryoList_td{
+	text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 30px;
+    padding : 20px;
+}
+#jeryoList{
+	font-size: 20px;
+}
+
+input[id="jeryo_r"] {
+	height: 45px;
+    width: 210px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 15px;
+    padding-left: 10px;
+}
+
+input[id="jeryo_r"]:focus {
+	outline-color: #c0c0c0;
+	}
+
+.table-fill_r_pop #jeryo_i{
+	margin-bottom: 20px;
+	
+}
+
+
+#find_img{
+	width:150px; 
+	height:150px;
+	margin-top: 10px;
+}
+
+
+/* ===============버튼 ================*/
+
+.table-fill_r_pop .recipesearch_Btn{
+		font-size : 14px;
+		color : #93A603;
+		border-radius: 15px;
+		background-color: white;
+		border:3px solid #93A603;
+		 width: 100px;
+    	height: 40px;
+		letter-spacing: 1px;
+		cursor:pointer;
+		margin: auto;
+       }    
+        
+.table-fill_r_pop .recipesearch_Btn:hover {
+   	    font-size : 14px;
+   	    font-weight: bold;
+        color : white;
+        border-radius: 15px;
+        background-color: #93A603;
+        border : none;
+	   width: 100px;
+    height: 40px;
+        margin: 0;
+      	letter-spacing: 1px;
+        }
+	
+
+
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	
+}

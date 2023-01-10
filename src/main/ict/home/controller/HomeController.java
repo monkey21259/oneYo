@@ -106,7 +106,7 @@ public class HomeController {
 		m.addAttribute("chefMnum", rvo.getMnum());
 		return "home/showMore";
 	}
-	
+
 	@GetMapping(value="chefTipShowMore")
 	public String chefTipShowMore(TipVO tvo, Model m) {
 		logger.info("chefTipShowMore() 함수 진입");
@@ -132,7 +132,7 @@ public class HomeController {
 		m.addAttribute("chefMnum", tvo.getMnum());
 		return "home/showMore";
 	}
-	
+
 	@GetMapping(value="chefCommunityShowMore")
 	public String chefCommunityShowMore(CommunityVO cvo, Model m) {
 		logger.info("chefCommunityShowMore() 함수 진입");
