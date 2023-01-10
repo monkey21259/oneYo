@@ -535,7 +535,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="valTd">
+										<td class="valTd selectOption">
 											<select id="rdiff" name="rdiff">
 												<option value="0">쉬움</option>
 												<option value="1">보통</option>
@@ -606,7 +606,7 @@
 				</div>
 				
 				</form>
-					<!-- -------------------------------페이지 전용 center------------------------------- -->
+<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
 <!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->

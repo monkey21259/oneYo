@@ -162,8 +162,9 @@
 </script>
 </head>
 <body>
-<button type="button" id="chatBtn">채팅하기</button>
-<div class="container">
+<div id="chatBtn">채팅하기</div>
+<!-- <button type="button" id="chatBtn">채팅하기</button> -->
+<div class="containerChat">
 	<b><%=mnick %>님 환영합니다</b>
 	<table class="chatTable">
 		<tr>

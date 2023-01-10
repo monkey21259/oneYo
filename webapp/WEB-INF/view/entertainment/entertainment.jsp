@@ -19,6 +19,8 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9grmlwqclh"></script>
+<!-- 채팅 css -->
+<link rel="stylesheet" href="/oneYo/resource/css/common/chat.css">
 <script type="text/javascript">
 
 
