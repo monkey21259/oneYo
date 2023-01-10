@@ -16,5 +16,6 @@
 		<typeAlias type="main.ict.home.vo.HomeVO" alias="homevo"/>                  <!-- 홈(메인) -->
 		<typeAlias type="main.ict.like.vo.LikeVO" alias="likevo"/>                  <!-- 좋아요 -->
 		<typeAlias type="main.ict.hit.vo.HitVO" alias="hitvo"/>                     <!-- 조회 수 -->
+		<typeAlias type="main.ict.calendar.vo.CalendarVO" alias="calendarvo"/>      <!-- 일정관리 -->
 	</typeAliases> 
 </configuration>  

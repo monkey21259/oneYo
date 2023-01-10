@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="main.ict.calendar.dao.CalendarDAO">
+	
+	<!-- 캘린더 조회 -->
+	<select id="calendarSelectAll" resultType="calendarvo">
+			SELECT 													
+						 A.CAL_NO				CAL_NO				
+						,A.CAL_TITLE			CAL_TITLE			
+						,A.CAL_STARTDATE		CAL_STARTDATE		
+						,A.CAL_ENDDATE			CAL_ENDDATE			
+						,A.CAL_DESCRIPTION		CAL_DESCRIPTION		
+						,A.CAL_TYPE				CAL_TYPE			
+						,A.CAL_BACKGROUNDCOLOR	CAL_BACKGROUNDCOLOR	
+						,A.CAL_TEXTCOLOR		CAL_TEXTCOLOR		
+						,A.CAL_ALLDAY			CAL_ALLDAY		
+						,A.DELETEYN				DELETEYN		
+						,A.INSERTDATE			INSERTDATE		
+						,A.UPDATEDATE			UPDATEDATE		
+			FROM
+						ICT_CALENDAR A
+			WHERE 		A.DELETEYN = 'Y'
+		 	ORDER BY 1 DESC
+	</select>
+	
+	<!-- 캘린더 입력 -->
+	<insert id="calendarInsert" parameterType="calendarvo">
+		<selectKey keyProperty="cal_no" resultType="String" order="BEFORE">
+			SELECT
+			'C' || LPAD(NVL(MAX(SUBSTR(CAL_NO, -4)), 0) + 1, 4, '0') FROM ICT_CALENDAR
+		</selectKey>
+		 INSERT INTO SPRING_CALENDAR 								
+ 					( 								
+							 CAL_NO						
+							,CAL_TITLE					
+							,CAL_STARTDATE				
+							,CAL_ENDDATE				
+							,CAL_DESCRIPTION			
+							,CAL_TYPE					
+							,CAL_BACKGROUNDCOLOR		
+							,CAL_TEXTCOLOR				
+							,CAL_ALLDAY					
+							,DELETEYN
+							,INSERTDATE				
+							,UPDATEDATE				
+ 					) 								
+ 			VALUES	 								
+ 					( 								
+							 #{cal_no, jdbcType=VARCHAR}							
+							,#{cal_title, jdbcType=VARCHAR}							
+							,#{cal_startdate, jdbcType=VARCHAR}							
+							,#{cal_enddate, jdbcType=VARCHAR}							
+							,#{cal_description, jdbcType=VARCHAR}							
+							,#{cal_type, jdbcType=VARCHAR}							
+							,#{cal_backgroundColor, jdbcType=VARCHAR}							
+							,#{cal_textColor, jdbcType=VARCHAR}							
+							,#{cal_allDay, jdbcType=VARCHAR}	
+							,'Y'						
+							,SYSDATE					
+							,SYSDATE									
+ 					) 	
+	</insert>
+		
+</mapper>	
