@@ -89,6 +89,7 @@ a {
 #header {
 	/* 일단 보기 편하시라고 선그어놨어용 */
 /* 	border-bottom	: 1px solid #ccc; */
+	z-index	: 28;
 }
 
 /* -------------------------------- 상단 logo -------------------------------- */
@@ -203,6 +204,8 @@ a {
 	width	: 100%;
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
+	
+	z-index	: 39;
 }
 
 .nav * {
@@ -214,10 +217,12 @@ a {
 /* 	transform	: translateY(-50%); */
 	
 	background-color	: #AC7B53;
+	
+	z-index	: 39;
 }
 
 /* 상단 메뉴 버튼 영역 */
-.nav nav ul li {
+.nav nav ul .menu {
 	/* 상단 메뉴바 가로 정렬 */
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
@@ -229,6 +234,8 @@ a {
 	/* 영역 확장 */
 	padding	: 3px 20px;
 	margin-bottom	: 60px;
+	
+	z-index	: 39;
 }
 
 /* 상단 메뉴 버튼 영역 */
@@ -238,13 +245,12 @@ a {
 	color	: #F0F2CC;
 	/* 폰트 사이즈 */
 	font-size	: 25px;
-	/* 폰트 테두리 */
-/* 	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff, */
-/* 				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff; */
 	
 	/* 영역 지정 */
 	width	: 100%;
 	height	: 100%;
+	
+	z-index	: 39;
 }
 
 /* 상단 메뉴 버튼 영역에 마우스 올렸을 시 */
@@ -254,10 +260,61 @@ a {
 	color	: #E0E086;
 	/* 폰트 사이즈 */
 	font-size	: 25px;
-	/* 폰트 테두리 */
-/* 	text-shadow	: -1px 0 #fff,		0 1px #fff,		1px 0 #fff,		0 -1px #fff, */
-/* 				  -1px -1px #fff,	1px -1px #fff,	-1px 1px #fff,	1px 1px #fff; */
+	
+	z-index	: 39;
 }
+
+
+/* 상단 메뉴 버튼 영역 */
+.nav li .pulsMenu li {
+	
+	/* 영역 지정 */
+	width	: 160px;
+	min-height	: 30px;
+	
+	/* 영역 확장 */
+	padding	: 3px 20px;
+	
+	z-index	: 39;
+}
+
+/* 상단 메뉴 버튼 영역 */
+.nav .menu_link .pulsMenu li div {
+
+	/* 폰트 색상 */
+	color	: #F0F2CC;
+	/* 폰트 사이즈 */
+	font-size	: 25px;
+	
+	/* 영역 지정 */
+	width	: 100%;
+	height	: 100%;
+	
+	z-index	: 39;
+}
+
+
+
+
+/* 더보기 메뉴 버튼 영역에 마우스 올렸을 시 */
+.nav .menu_link .pulsMenu:hover {
+	z-index	: 39;
+}
+.pulsMenu ul {
+	opacity	: 0;
+	z-index	: 39;
+}
+.nav .menu_link .pulsMenu:hover ul {
+	opacity	: 1;
+	z-index	: 39;
+}
+.nav .menu_link .pulsMenu:hover ul li div {
+	z-index	: 39;
+}
+
+
+
+
 
 /* 상단 메뉴 버튼 영역에 마우스 클릭이후 */
 .nav .menu_link .divClick {
