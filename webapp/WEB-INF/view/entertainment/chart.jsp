@@ -34,7 +34,7 @@
 		//responseText  : 서버의 응답 텍스트
 		var jsonData = $.ajax({
 
-			url : "chartdata.ict",
+			url : "pieChartData.ict",
 
 			dataType : "json",
 
@@ -51,8 +51,11 @@
 
 		//draw(데이터, 옵션)
 		chart.draw(data, {
-			width : 400,
-			height : 240
+			width: 800,
+			height: 480,
+			is3D: true,
+			title: 'oneYo(오내요) 게시판별 글 등록 현황',
+			titlePosition: 'out'
 		});
 	}
 	
@@ -66,7 +69,7 @@
 		//responseText  : 서버의 응답 텍스트
 		var jsonData = $.ajax({
 
-			url : "chartdata.ict",
+			url : "barChartData.ict",
 
 			dataType : "json",
 
@@ -83,8 +86,11 @@
 
 		//draw(데이터, 옵션)
 		chart.draw(data,{ 
-				width:400,
-				height:240});
+				width:800,
+				height:480,
+				title: 'oneYo(오내요) 게시판별 총 조회수 현황',
+				titlePosition: 'out'
+				});
 
 	}
 </script>
