@@ -1,0 +1,411 @@
+@charset "UTF-8";
+
+/* -------------------------------- 전체 영역 -------------------------------- */
+#all_div {
+	 
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	
+}
+
+/* -------------------------------- 중앙 center -------------------------------- */
+
+#center {
+	 margin: auto;
+}
+
+
+#anne {
+	border-bottom : 1px solid #AC7B53;
+	margin-bottom : 38px;
+}
+
+#subject{
+	font-size : 30px;
+	font-weight: bold;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	text-align: center;
+}
+
+/*   테이블   */
+.recipesearch {
+	 display: table;
+   	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
+/* 	    text-indent: initial; */ /*들여쓰기*/
+    border-spacing: 0px; /*테이블 간격*/
+	border-collapse: collapse;
+	background-color:none;
+	margin-bottom: 20px;
+	padding:10px;
+    width: 100%;
+/*   animation: float 5s infinite; */
+}
+
+.recipesearch th {
+	height : 40px;
+   background:none; 
+   border-top:3px solid #d8d8d8; 
+   border-bottom: 1px solid #d8d8d8;
+   background: #f8f8f8; 
+   color:#444; 
+   font-size:18px; 
+   font-weight: 100; 
+ /*   height:35px; */
+   padding:15px; 
+   text-align:center; 
+   font-weight:bold; 
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
+/*   vertical-align:middle; */
+}
+  
+.recipesearch tr {
+/*   border-top: 1px solid #C1C3D1; */
+  border-bottom: 1px solid #C1C3D1; 
+  color:black; 
+  font-size:14px; 
+  font-weight:normal; 
+}
+ 
+.recipesearch td {
+   padding:10px; 
+     height: 110px;
+   text-align:center; 
+   vertical-align:middle; 
+   font-weight:300;
+   font-size:18px; 
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1); 
+ 
+}
+
+
+/* 레시피 제목 효과*/
+
+.recipe_alink a:hover {
+	color:#AC7B53;
+}
+	
+
+/*이미지사이즈*/	
+#center .recipesearch #recipesearchimg{
+	width:100px;
+	height:100px;
+	
+}
+
+#center #viewTable #insertContent {
+	width	: 750px;
+	margin	: 0 auto;
+}
+
+#center #viewTable #insertContent input {
+	border	: none;
+/* 	outline	: none; */
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	padding	: 5px 12px;
+}
+#center #viewTable #insertContent input:focus {
+	
+/* 	outline	: none; */
+	outline	: #93A603 dashed 1px;
+	
+/* 	background-color	: #FFC; */
+}
+
+/* 버튼 */
+#center #viewTable #insertContent .buttons {
+	padding	: 5px 12px;
+	color	: #666;
+	font-size	: 16px;
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	
+	cursor	: pointer;
+}
+#center #viewTable #insertContent .buttons:hover {
+	background-color	: #AC7B53;
+	color	: #fff;
+}
+
+#center #insertContent .imgSelect {
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	overflow	: hidden;
+	
+	width	: 300px;
+	height	: 300px;
+	
+	box-shadow: 2px 2px 2px -1px #AC7B53;
+}
+#center #insertContent .imgSelect * {
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px; */
+	
+	width	: 100%;
+	height	: 100%;
+}
+#center #insertContent .imgWriter {
+	/* 테두리 둥글게 */
+	border-radius	: 30px;
+	overflow	: hidden;
+	
+	width	: 85px;
+	height	: 85px;
+}
+#center #insertContent .imgWriter * {
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px; */
+	
+	width	: 100%;
+	height	: 100%;
+}
+
+
+#center #insertContent .selectTd {
+	width	: 98%;
+/* 	margin-left	: 10px; */
+	
+	/* 정렬 */
+	display	: flex;
+	flex-wrap: wrap;
+	align-items: center;
+/* 	justify-content: center; */
+}
+
+/* 카테고리 */
+#center #insertContent .cateTd span {
+	/* 폰트 사이즈 */
+	font-size	: 17px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	width	: 100%;
+}
+#center #insertContent .cateTd {
+	height	: 20px;
+	margin-top	: 20px;
+	margin-bottom	: 20px;
+}
+
+/* 제목 */
+#center #insertContent .subjectTd p {
+	/* 폰트 사이즈 */
+	font-size	: 33px;
+	/* 폰트 색상 */
+/* 	color		: #93A603; */
+	/* 제목 적히는 곳 높이 */
+	height	: 40px;
+	width	: 95%;
+	padding	: auto;
+/* 	margin	: auto; */
+	margin-top	: 1%;
+/* 	margin-left	: 2%; */
+}
+#center #insertContent .subjectTd p input {
+	/* 제목 적히는 곳 높이 */
+	height	: 30px;
+	width	: 100%;
+	
+	font-size	: 20px;
+}
+#center #insertContent .subjectTd {
+	align-items: flex-end;
+/* 	align-items: center; */
+	/* 제목+작성자 적히는 곳 높이 */
+	min-height	: 67px;
+/* 	justify-content: center; */
+}
+
+/* 제목과 작성자 사이 선 */
+#center #insertContent .selectTd #hrDiv {
+	height	: 6px;
+	width	: 100%;
+/* 	margin	: auto; */
+	margin-bottom	: 13px;
+	border-bottom	: 1px solid #AC7B53;
+}
+
+/* 제목 란 적히는 칸 */
+#center #insertContent .selectTd .subjectDiv {
+	/* 폰트 사이즈 */
+	font-size	: 18px;
+	/* 폰트 색상 */
+	color		: #AC7B53;
+	/* 공간 높이 */
+	height	: 21px;
+	width	: 80%;
+	margin	: auto;
+	margin-left	: 2px;
+	/* 중앙배치 */
+/* 	text-align: right; */
+/* 	border-top	: 1px solid #AC7B53; */
+}
+
+/* 각종 값 테이블(+재료) 담은 셀 */
+#center #insertContent .infoTd {
+	min-height	: 110px;
+	margin-bottom	: 20px;
+}
+
+/* 각종 값 테이블 */
+#center #insertContent .selectTd .oneTd  {
+/* 	width	: 125px; */
+	width	: 15%;
+	height	: 50px;
+}
+#center #insertContent .selectTd .oneTdSpe  {
+/* 	width	: 125px; */
+	width	: 28%;
+	height	: 50px;
+}
+#center #insertContent .selectTd .oneTd table  {
+	margin	: 5px auto;
+	margin-left	: 5%;
+	/* 중앙 정렬 */
+	text-align: center;
+}
+
+/* 재료 테이블 */
+#center #insertContent .selectTd .twoTd  {
+	width	: 100%;
+/* 	height	: 300px; */
+	margin-top	: 10px;
+}
+
+/* 각종 값 테이블(+재료) 이름 */
+#center #insertContent .selectTd .nameTd  {
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	/* 폰트 색상 */
+	color		: #AC7B53;
+}
+
+/* 각종 값 테이블 내용 */
+#center #insertContent .selectTd .oneTd .valTd  {
+	/* 폰트 사이즈 */
+	font-size	: 17px;
+	/* 폰트 색상 */
+	color		: #444;
+}
+
+/* "사진" */
+#center #insertContent .selectTd .photoTd .nameTd label  {
+	
+	display	: block;
+	
+	width	: 100px;
+	height	: 90px;
+	
+	line-height	: 90px;
+	
+	cursor	: pointer;
+}
+/* 사진 */
+#center #insertContent .selectTd .photoTd .valTd  {
+	
+	height	: 100px;
+	
+	/* 정렬 */
+	display	: flex;
+	align-items: center;
+/* 	justify-content: center; */
+	
+}
+/* 사진 미리보기 */
+#center #insertContent .selectTd .photoTd .valTd img  {
+	
+	/* 테두리 둥글게 */
+	border-radius	: 4px;
+	
+	max-width	: 120px;
+	max-height	: 90px;
+	
+	cursor	: pointer;
+	
+}
+/* 사진 미리보기 */
+#center #insertContent .selectTd .photoTd .valTd .photoBtn  {
+	
+	margin-left	: 10px;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	padding	: 5px 12px;
+	
+	border	: #93A603 solid 1px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	/* 폰트 사이즈 */
+	font-size	: 15px;
+	
+	cursor	: pointer;
+}
+
+/* 입력창 */
+#center #insertContent .selectTd .twoTd .valTd input {
+	/* 폰트 사이즈 */
+	font-size	: 15px;
+}
+/* btn */
+#center #insertContent .selectTd .twoTd .valTd #jeryo  {
+	
+	padding	: 5px 12px;
+	
+	/* 폰트 사이즈 */
+	font-size	: 15px;
+	/* 폰트 색상 */
+	color		: #93A603;
+	border	: #93A603 solid 1px;
+	/* 테두리 둥글게 */
+	border-radius	: 10px;
+	
+	cursor	: pointer;
+	
+}
+/* 재료 테이블 재료 내용 */
+#center #insertContent .selectTd .twoTd .valTd #jeryocan  {
+/* 	margin-top	: 3px; */
+/* 	margin-bottom	: 3px; */
+	margin	: 3px 0;
+	margin-left	: 0;
+}
+#center #insertContent .selectTd .twoTd .valTd #jeryocan .je  {
+	/* 폰트 사이즈 */
+	font-size	: 14px;
+	margin-right	: 10px;
+}
+
+/* 본문 */
+#center #insertContent .neyong {
+	width	: 700px;
+	margin	: auto;
+	margin-left	: 0;
+/* 	margin-left	: 3%; */
+	margin-bottom	: 20px;
+}
+#center #insertContent .neyong input {
+	width	: 98%;
+	margin	: auto;
+	/* 폰트 사이즈 */
+	font-size	: 16px;
+	letter-spacing	: 1px;
+	line-height	: 150%;
+	
+/* 	resize	: vertical; */
+}
+
+.btnsBottom {
+	
+	/* 정렬 */
+	display	: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	
+}
