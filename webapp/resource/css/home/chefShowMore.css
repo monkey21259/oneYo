@@ -103,7 +103,7 @@
 
 /* ------------게시판 selectAll -----------*/
 
-.table-fill {
+.chef_table-fill {
 	 display: table;
    	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
 /* 	    text-indent: initial; */ /*들여쓰기*/
@@ -116,7 +116,7 @@
 /*   animation: float 5s infinite; */
 }
 
-th {
+.chef_table-fill th {
 
    background:none; 
    border-top:3px solid #d8d8d8; 
@@ -133,7 +133,7 @@ th {
 /*   vertical-align:middle; */
 }
   
-tr {
+.chef_table-fill tr {
 /*   border-top: 1px solid #C1C3D1; */
   border-bottom: 1px solid #C1C3D1; 
    color:black; 
@@ -141,7 +141,7 @@ tr {
    font-weight:normal; 
 }
  
-td {
+.chef_table-fill td {
    padding:10px; 
    text-align:center; 
    vertical-align:middle; 
@@ -152,7 +152,7 @@ td {
 }
 
 	
-img{
+.chef_table-fill img{
 	 width : 90px; 
 	 height : 90px;
 }	

@@ -68,6 +68,8 @@
 				<a href="recipeCategorySelectAll.ict?rcategory=01">레시피 분류 조회 테스트(현재 카테고리 01)</a>
 				<hr>
 				<a href="chefListShowMore.ict">쉐프 더보기 테스트</a>
+				<hr>
+				<a href="chart.ict">차트 테스트</a>
 			</div>
 		</div>
 	</body>

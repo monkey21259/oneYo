@@ -50,12 +50,16 @@
 							maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<!-- 제이쿼리cdn -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+		
 		<!-- communitySelectAll.jsp 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/community/communitySelectAll.css">		
+		
 		<!-- 페이징 기능 전용 -->
 		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
+		
 		<!-- 검색 -->
 		<link rel="stylesheet" href="/oneYo/calendar_datepicker/jquery-ui-1.12.1/jquery-ui.min.css">
 		
@@ -162,8 +166,9 @@
 				}).submit();
 			});
 		
-		//all.js 에 있는 모든 함수 연결
-		allJavaScript();
+			//all.js 에 있는 모든 함수 연결
+			allJavaScript();
+			
 		
 		}); //ready
 	
@@ -173,8 +178,7 @@
  	<form id="communitySelectAll" name="communitySelectAll">
  	<div id="realAll">
 
-<div id="backMenu"></div>
-
+	<div id="backMenu"></div>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
@@ -196,10 +200,11 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
+		
 		<li class="item">
 	<%
 		if(mid == null || !mid.equals("admin")){
@@ -209,18 +214,19 @@
 			마이<br>페이지 
 			</span>
 			</div>
-	<%
+			<%
 		} else if(mid.equals("admin")){
-	%>
+			%>
 			<div class="adminHome">
 			<span>
 			관리자<br>페이지 
 			</span>
 			</div>
-	<%
+			<%
 		}
-	%>
+		%>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
@@ -232,6 +238,18 @@
 		</li>
 	</ul>
 	</div>
+	
+<div id="searchBar" class="hidden_X">
+<!-- <div id="searchBar" class="hidden_O"> -->
+	<div class="searchBarBtn">
+		X
+	</div>
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>	
+</div>
 
 <div id="singo" class="hidden_X">
 	<div class="warningForm">
@@ -283,27 +301,26 @@
 				<span class="Choonsik">|</span>
 		 		<span class="Choonsik" id="logoutBtn">로그아웃</span>
 <%
-		String mSNSid = mid;
-		if (mid != null && !(mid.equals(""))) {
-			if (mid.length() > 5) {
-				String checkSNS = mid.substring(0, 6);
-				if (checkSNS.equals("naver_")) {
-					mSNSid = "naver"; 
-				}
-				if (checkSNS.equals("kakao_")) {
-					mSNSid = "kakao";
+			String mSNSid = mid;  // M22...
+			if (mid != null && !(mid.equals(""))) {
+				if (mid.length() > 5) {
+					String checkSNS = mid.substring(0, 6);
+					if (checkSNS.equals("naver_")) {
+						mSNSid = "naver"; 
+					}
+					if (checkSNS.equals("kakao_")) {
+						mSNSid = "kakao";
+					}
 				}
 			}
-		}
 %>
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-		 	
+	 		
 <% 		
 		}
 %>
-
 	 	</div>
 	</div>
 	
@@ -327,7 +344,7 @@
 			</li>
 			<li>
 				<a href="communitySelectAll.ict" class="menu_link">
-				<div class="divClick">
+				<div>
 				커뮤니티
 				</div>
 				</a>
@@ -348,10 +365,9 @@
 			</li>
 		</ul>
 		</nav>
-	</div>
+	</div> <!-- nav -->
 	
-</div>
-
+</div> <!-- header -->
 
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
@@ -397,7 +413,6 @@
 			</div>
 		</div>
 	</div>		
-</div>
 	
 	
 <!-- 게시판 부분 -->
@@ -462,38 +477,39 @@
 				</tbody>	
 				
 			</table>
+
 				<div>
-				<span>
-				<br><br>
-				<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
-				<input type="hidden" id="keywordVal" value="<%=keyword %>">
-				<input type="hidden" id="startDateVal" value="<%=startDate %>">
-				<input type="hidden" id="endDateVal" value="<%=endDate %>">
-				<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
-					<jsp:param name="url" value="communitySelectAll.ict" />
-					<jsp:param value="" name="str"/>
-					<jsp:param name="pageSize" value="<%=pageSize %>" />
-					<jsp:param name="groupSize" value="<%=groupSize %>" />
-					<jsp:param name="curPage" value="<%=curPage %>"/>
-					<jsp:param name="totalCount" value="<%=totalCount %>"/>
-					<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
-					<jsp:param value="<%=keyword %>" name="keyword"/>
-					<jsp:param value="<%=startDate %>" name="startDate"/>
-					<jsp:param value="<%=endDate %>" name="endDate"/>
-					</jsp:include>
-				</span>
-			</div>
+					<span>
+					<br><br>
+					<input type="hidden" id="searchFilterVal" value="<%=searchFilter %>">
+					<input type="hidden" id="keywordVal" value="<%=keyword %>">
+					<input type="hidden" id="startDateVal" value="<%=startDate %>">
+					<input type="hidden" id="endDateVal" value="<%=endDate %>">
+					<jsp:include page="/WEB-INF/view/paging/paging.jsp" flush="true">
+						<jsp:param name="url" value="communitySelectAll.ict" />
+						<jsp:param value="" name="str"/>
+						<jsp:param name="pageSize" value="<%=pageSize %>" />
+						<jsp:param name="groupSize" value="<%=groupSize %>" />
+						<jsp:param name="curPage" value="<%=curPage %>"/>
+						<jsp:param name="totalCount" value="<%=totalCount %>"/>
+						<jsp:param value="<%=searchFilter %>" name="searchFilter"/>
+						<jsp:param value="<%=keyword %>" name="keyword"/>
+						<jsp:param value="<%=startDate %>" name="startDate"/>
+						<jsp:param value="<%=endDate %>" name="endDate"/>
+						</jsp:include>
+					</span>
+				</div>
 			<%
 			}else{
 				out.println("<script>alert('검색된 게시글이 없습니다.'); location.href='communitySelectAll.ict';</script>");
 			}//if else
 			%>
-
+	</div>
 		
-			
-<!-- -------------------------------페이지 전용 center------------------------------- -->
-</div>
-  
+	<!-- -------------------------------페이지 전용 center------------------------------- -->
+</div> <!-- center -->
+
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
@@ -502,14 +518,13 @@
 		<span></span> / <span></span><br />
 		<span></span> / <span></span><br />
 	</div>
-</div>
+</div> <!-- footer -->
 
-</div>
-</div>
-			
-		</form>
-			<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
-	</body>
+</div><!-- all_div -->
+</div> <!-- realall -->
+</form>
+	<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
+</body>
 </html>

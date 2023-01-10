@@ -176,8 +176,8 @@ jsp:param name="clientMnick" value="세션에 담긴 mnick"
 					//댓글 삭제 버튼 input태그
 					var deleteBtn = $('<div>');
 					deleteBtn.html('삭제');
-					//접속한 고객 회원번호와 조회된 댓글 작성자의 회원번호가 같다면 삭제 버튼 보이기
-					if(mnum == $('#mnum').val()){
+					//접속한 고객 닉네임과 조회된 댓글 작성자의 닉네임이 같다면 삭제 버튼 보이기
+					if(mnick == $('#inputNick').text().trim()){
 						deleteBtn.addClass('deleteBtn');
 					}else{
 						deleteBtn.addClass('deleteBtn');

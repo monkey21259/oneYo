@@ -148,9 +148,11 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>	
 </div>
 
 <div id="singo" class="hidden_X">
