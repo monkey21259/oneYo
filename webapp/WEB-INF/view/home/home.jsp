@@ -63,15 +63,6 @@
 					homeRESTCateCond();
 				});
 				
-				$('.pa').on("click", function() {				// 게시글 클릭 시
- 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
-					$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
-					$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
-						"action": "/oneYo/goSelectContent.ict",
-						"method": "GET",
-						"enctype": "application/x-www-form-urlencoded"
-					}).submit();
-				});
 				// ------------------------------------------
 				
 				$("#warningForm").click(function(){
@@ -105,6 +96,7 @@
 				// ------------------------------------------
 				// 일간/주간/월간 + 게시판별 조건 조회하기 ------------
 				$("#favorCond").on("change", function() {
+					console.log($(".pa").attr("data-value"));
 					homeRESTCateCond();
 				});
 				// ------------------------------------------
@@ -216,10 +208,12 @@
 						for (let i=0; i<jsonArr.length; i++) {
 							let pa = $("<a>");
 							pa.addClass("pa");
-							pa.attr("data-value", jsonArr[i].num);
+// 							pa.attr("data-value", jsonArr[i].num);
 							
 							let p1 = $("<div>");
 							p1.addClass("p1");
+							// TODO
+							p1.attr("data-value", jsonArr[i].num);
 							
 							let imgCover = $("<div>");
 							imgCover.addClass("imgCover");
@@ -252,6 +246,16 @@
 							pa.append(p1);
 							_condPost.append(pa);
 						}
+						
+						$('.p1').on("click", function() {				// 게시글 클릭 시
+		 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
+							$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
+							$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
+								"action": "/oneYo/goSelectContent.ict",
+								"method": "GET",
+								"enctype": "application/x-www-form-urlencoded"
+							}).submit();
+						});
 					}
 					
 					if (boardCategory == 3 || boardCategory == 4) {
@@ -267,10 +271,12 @@
 						for (let i=0; i<jsonArr.length; i++) {
 							let pa = $("<a>");
 							pa.addClass("pa");
-							pa.attr("data-value", jsonArr[i].num);	// <a>
+// 							pa.attr("data-value", jsonArr[i].num);	// <a>
 							
 							let p2 = $("<div>");
 							p2.addClass("p2");				// <div> : 전체 내용을 감싸는 div 태그.
+							// TODO
+							p2.attr("data-value", jsonArr[i].num);	// <a>
 							
 							let pno = $("<div>");
 							pno.addClass("psubj2");			
@@ -328,6 +334,16 @@
 							pa.append(p2);
 							_condPost.append(pa);
 						}
+						
+						$('.p2').on("click", function() {				// 게시글 클릭 시
+		 					console.log($(this).attr('data-value'));	// 게시글의 고유번호
+							$('#num').val($(this).attr('data-value'));	// 보낼 내용 지정하기
+							$("#goSelectForm").attr({					// hidden 태그 받아서 사용하기
+								"action": "/oneYo/goSelectContent.ict",
+								"method": "GET",
+								"enctype": "application/x-www-form-urlencoded"
+							}).submit();
+						});
 					}
 				};
 				
