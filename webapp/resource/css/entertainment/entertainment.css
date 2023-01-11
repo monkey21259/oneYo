@@ -1,0 +1,310 @@
+@charset "UTF-8";
+
+/* -------------------------------- 전체 영역 -------------------------------- */
+#all_div {
+	 
+}
+
+/* -------------------------------- 상단 header -------------------------------- */
+#header {
+	
+}
+
+
+/* -------------------------------- 중앙 center -------------------------------- */
+
+#center_e {
+/* 	height	: 700px; */
+	margin:0 auto;
+}
+
+#center_e hr{
+	 background:#AC7B53;
+    height:1px;
+    border:0;
+}
+.anne_e {
+	border-bottom : 1px solid #AC7B53;
+	margin:0 auto;
+}
+
+.anne_em {
+	border-bottom : 1px solid #AC7B53;
+	margin-bottom:20px;
+	
+}
+.subject_e{
+	font-size: 30px;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*구분선*/
+
+.line {
+  border-top: 1px solid #AC7B53;
+  margin: 30px auto;
+  width: 300px;
+  height: 0px;
+}
+.line:after {
+  content: "◆";
+  color: #AC7B53;
+  position: relative;
+  top: -9px;
+  left: calc( 50% - 8px );
+}
+
+/*날씨와 지도 사이 여백*/
+#enter_block{
+	margin:88px;
+}
+
+/* ===========================식품안전나라============================== */
+
+#food_container{
+	margin:0 auto;
+	display: table;
+}
+
+#food_container ul{
+	width: 1000px;
+    height: 400px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f6f6f6;
+    border-radius: 15px; 
+    box-shadow: 5px 5px 8px rgb(0 0 0 / 10%);
+}
+
+
+
+#food_container li{
+	margin: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+/*rss 링크연결*/
+
+.food_alink{
+	color : black;
+	font-size:17px;
+}
+
+.food_alink:hover{
+	color:#AC7B53;
+	font-size:17px;
+}
+
+/* 더보기 버튼 */
+#m_btn{
+  display: flex;
+  justify-content: flex-end;
+  margin-right:10px;
+}
+
+
+#more_btn{
+	font-size: 15px;
+    display: flex;
+    color: #93A603;
+    border-radius: 45px;
+    background-color: white;
+    border: 3px solid #93A603;
+    width: 8%;
+    height: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+	
+}
+#more_btn:hover{
+	font-size: 15px;
+	font-weight: bold;
+    display: flex;
+    color: white;
+    border-radius: 45px;
+    background-color: #93A603;
+    border: 3px solid #93A603;
+    width: 8%;
+    height: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* ===========================날씨============================== */
+
+#weather_container{
+	margin:auto;
+	width:100%;
+}	
+
+#weathertable{
+	width:100%;
+}
+
+#weathertable th{
+/* 	 border-top:3px solid #d8d8d8; */
+/*   border-bottom: 1px solid #d8d8d8; */
+  background: #ede5de;
+  color:#444;
+  font-size:20px;
+  font-weight: 100;
+/*   height:35px; */
+  padding:20px;
+  text-align:center;
+  font-weight:bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+	
+}	
+
+#weathertable td{
+/*   border-bottom: 1px solid #ede5de; */
+  padding:20px;
+  text-align:center;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  
+}
+
+
+/*날씨 이미지*/
+
+#imgtemp{
+	vertical-align : middle;
+	width : 35px;
+	height : 35px;
+	margin-right : 4px;
+	
+}
+
+/* ==============================지도============================== */
+
+.map_table{
+	margin:auto;
+	width:100%;
+	
+}
+
+.map_table th{
+	 box-sizing: border-box; /*테이블에 맞춰 행, 열 간격 붙이기*/
+/* 	    text-indent: initial; */ /*들여쓰기*/
+    border-spacing: 0px; /*테이블 간격*/
+	border-collapse: collapse;
+	background-color:none;
+	margin: auto;
+	padding:10px;
+    width: 50%;
+	
+	font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+	
+}
+
+.map_table td{
+	padding : 10px;
+	
+	}
+
+/* ===========================네이버지도============================== */
+
+
+
+.map_container{
+	margin:auto;
+	display: flex;
+	 justify-content: flex-start;
+	
+}
+
+
+#naver_map{
+	width:100%;
+}	
+
+#map{
+	width:100%;
+	height:600px;
+}
+
+#m_logo_img{
+	text-align: center;
+	margin: 10px ;
+}
+
+
+.iw_inner{
+width:250px;
+}
+
+.iw_inner p{
+	font-size: 14px;
+    margin: auto;
+    text-align: center;
+}
+
+/*로고이미지*/
+.iw_inner .thumb{
+	width:100px;
+	height:55px;
+	align:center;
+	
+}
+
+
+.iw_inner #m_home_link{
+	font-size: 12px;
+    display: flex;
+    color: white;
+    border-radius: 45px;
+    background-color: #93A603;
+    border: 3px solid #93A603;
+    width: 77%;
+    height: 30px;
+  	margin:10px auto 10px auto;
+    letter-spacing: 1px;
+    align-items: center;
+    justify-content: center;
+	
+}
+.iw_inner #m_home_link:hover{
+	font-size: 12px;
+    display: flex;
+    color: #93A603;
+    border-radius: 45px;
+    background-color: white;
+    border: 3px solid #93A603;
+    width: 77%;
+    height: 30px;
+   	margin:10px auto 10px auto;
+    letter-spacing: 1px;
+    align-items: center;
+    justify-content: center;
+	font-weight: bold;
+}
+
+
+/*다음지도*/
+#daum_map{
+
+	
+	
+	
+}
+/* -------------------------------- 하단 footer -------------------------------- */
+#footer {
+	
+}
