@@ -32,10 +32,10 @@ public class EntertainmentController {
 		return "entertainment/chart";
 	}
 	
-	@GetMapping(value="pieChartData", produces="text/json; charset=UTF-8")
+	@GetMapping(value="googlePieChartData", produces="text/json; charset=UTF-8")
 	@ResponseBody
-	public String pieChartData() {
-		logger.info("piChartData() 함수 진입");
+	public String googlePieChartData() {
+		logger.info("googlePieChartData() 함수 진입");
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -132,10 +132,10 @@ public class EntertainmentController {
 		return jsonData.toJSONString();
 	}
 	
-	@GetMapping(value="barChartData", produces="text/json; charset=UTF-8")
+	@GetMapping(value="googleBarChartData", produces="text/json; charset=UTF-8")
 	@ResponseBody
-	public String barChartData() {
-		logger.info("piChartData() 함수 진입");
+	public String googleBarChartData() {
+		logger.info("googleBarChartData() 함수 진입");
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -232,6 +232,78 @@ public class EntertainmentController {
 				
 			}
 			jsonData.put("rows", body);
+			
+			rsRs.close();
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			logger.info("예외 처리 발생 : " + e.getMessage());
+		}
+		
+		return jsonData.toJSONString();
+	}
+	
+	@GetMapping(value="chartjsPieChartData", produces="text/json; charset=UTF-8")
+	@ResponseBody()
+	public String chartjsPieChartData() {
+		logger.info("chartjsPieChartData() 함수 진입");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rsRs = null;
+		String sql = null;
+		StringBuffer sb = null;
+		JSONArray jsonData = null;
+		JSONArray jsonLabel = null;
+		JSONArray jsonCount = null;
+		JSONObject jsonObj = null;
+		
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/ict", "root", "admin1234");
+			logger.info("conn : " + conn);
+			
+			sb = new StringBuffer();
+			sb.append("select rcategory 			category");
+			sb.append("		 ,count(rcategory) 	    cnt		");
+			sb.append("from   (select rnum					");
+			sb.append("				 ,rcategory				");
+			sb.append("				 ,deleteyn				");
+			sb.append("		   from   ict_recipe)	a		");
+			sb.append("where   deleteyn = 'Y'				");
+			sb.append("group by a.RCATEGORY					");
+			
+			sql = sb.toString();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			logger.info(pstmt);
+			
+			rsRs = pstmt.executeQuery();
+			
+			logger.info(rsRs);
+			
+			if(rsRs !=null) {
+				jsonLabel = new JSONArray();
+				jsonCount = new JSONArray();
+			}
+			
+			while (rsRs.next()) {
+				jsonLabel.add(CodeUtils.getRcategory(rsRs.getString(1)));
+				jsonCount.add(Integer.parseInt(rsRs.getString(2)));
+			}
+			
+			jsonObj = new JSONObject();
+			jsonObj.put("label", jsonLabel);
+			jsonObj.put("total", jsonCount);
+			
+			jsonData = new JSONArray();
+			jsonData.add(jsonObj);
+			
+			logger.info(jsonData);
 			
 			rsRs.close();
 			pstmt.close();
