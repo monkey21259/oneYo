@@ -55,13 +55,13 @@ function drawChart3() {
                             data: data[0].total,
                             borderColor: 'rgb(230, 230, 230)',
                             backgroundColor: [
-                            	  'rgb(255, 153, 153)',
-                                  'rgb(255, 204, 153)',
-                                  'rgb(255, 255, 204)',
-                                  'rgb(204, 255, 204)',
-                                  'rgb(204, 255, 255)',
-                                  'rgb(204, 204, 255)',
-                                  'rgb(204, 153, 255)'
+                            	  'rgb(255, 77, 77)',
+                                  'rgb(255, 179, 102)',
+                                  'rgb(255, 255, 102)',
+                                  'rgb(102, 255, 102)',
+                                  'rgb(77, 195, 255)',
+                                  'rgb(102, 179, 255)',
+                                  'rgb(204, 51, 255)'
                             ]
                         }
                     ],
@@ -79,6 +79,7 @@ function drawChart3() {
                 			enabled: false
                 		},
                 		datalabels: {
+                			color: '#404040',
 	                    	formatter: function(value, context) {
 	                    		let idx = context.dataIndex;
 	                    		let percentage = Math.round(((value / valueSum) * 100), 0) + '%';
@@ -87,7 +88,7 @@ function drawChart3() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 총 조회수 현황'
+                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
                     	}
                 	}
                 }
@@ -115,13 +116,13 @@ function drawChart4() {
                             data: data[0].total,
                             borderColor: 'rgb(230, 230, 230)',
                             backgroundColor: [
-                            	  'rgb(255, 153, 153)',
-                                  'rgb(255, 204, 153)',
-                                  'rgb(255, 255, 204)',
-                                  'rgb(204, 255, 204)',
-                                  'rgb(204, 255, 255)',
-                                  'rgb(204, 204, 255)',
-                                  'rgb(204, 153, 255)'
+                            	  'rgb(255, 77, 77)',
+                                  'rgb(255, 179, 102)',
+                                  'rgb(255, 255, 102)',
+                                  'rgb(102, 255, 102)',
+                                  'rgb(77, 195, 255)',
+                                  'rgb(102, 179, 255)',
+                                  'rgb(204, 51, 255)'
                             ]
                         }
                     ],
@@ -135,6 +136,7 @@ function drawChart4() {
                 			display: false
                 		},
                 		datalabels: {
+                		    color: '#404040',
 	                    	formatter: function(value, context) {
 	                    		var idx = context.dataIndex;
 	                    		return context.chart.data.labels[idx] + ' : ' + value + '개';
@@ -142,7 +144,7 @@ function drawChart4() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 총 조회수 현황'
+                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
                     	}
                 	}
                 }
