@@ -201,6 +201,7 @@
     <div id="map" style="width:70%;height:600px;"></div>
     <code id="snippet" class="snippet"></code>
 </div>
+
 <script id="code">
 var HOME_PATH = window.HOME_PATH || '.';
 
@@ -243,6 +244,8 @@ infowindow.open(map, marker);
 <jsp:include page="./chat.jsp">
 	<jsp:param value="<%=mnick %>" name="mnick"/>
 </jsp:include>
+
+<%@ include file="./kakao_map.jsp" %>
 
 </body>
 </html>
