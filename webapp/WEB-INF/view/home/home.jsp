@@ -525,38 +525,55 @@
 	<!-- 상단 메뉴바 -->
 		<nav>
 		<ul>
-			<li>
+			<li class="menu">
 				<a href="recipeSelectAll.ict" class="menu_link">
 					<div>
 						레시피
 					</div>
 				</a>
 			</li>
-			<li>
+			<li class="menu">
 				<a href="tipSelectAll.ict" class="menu_link">
 					<div>
 						Tip
 					</div>
 				</a>
 			</li>
-			<li>
+			<li class="menu">
 				<a href="communitySelectAll.ict" class="menu_link">
 					<div>
 						커뮤니티
 					</div>
 				</a>
 			</li>
-			<li>
+			<li class="menu">
 				<a href="noticeSelectAll.ict" class="menu_link">
 					<div>
 						공지사항
 					</div>
 				</a>
 			</li>
-			<li>
+			<li class="menu">
 				<a href="entertainment.ict" class="menu_link">
-				<div>
-				더보기
+				<div class="pulsMenu">
+					더보기
+					<ul>
+						<li>
+							<div>
+							더보기1
+							</div>
+						</li>
+						<li>
+							<div>
+							더보기2
+							</div>
+						</li>
+						<li>
+							<div>
+							더보기3
+							</div>
+						</li>
+					</ul>
 				</div>
 				</a>
 			</li>

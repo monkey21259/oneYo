@@ -24,14 +24,26 @@
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
-		<title>recipeSelectAll.jsp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+		<title>oneYo(오내요)</title>
 		<!--  제이쿼리 -->
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
 		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
+		
 		<!-- 전체 css -->
 		<link rel="stylesheet" href="/oneYo/resource/css/all.css">
-		<!-- communitySelectAll.jsp 전용 -->
+		
+		<!-- recipe_selectAll.jsp 전용 -->
+		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
+		
+		<!-- 페이징 기능 전용 -->
+		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
+	
+		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+
 		<script type="text/javascript">
 		
 			console.log("[recipeSelectAll.jsp] JS");
@@ -82,15 +94,6 @@
 					}).submit();
 				});
 				// ------------------------------------------
-				
-				//로그아웃
-				$("#logoutBtn").on("click", function() {
-					$("#logoutForm").attr({
-						"action": "logout.ict",
-						"method": "GET",
-						"enctype": "application/x-www-form-urlencoded"
-					}).submit();
-				});
 						
 				//all.js 에 있는 모든 함수 연결
 				allJavaScript();
@@ -103,43 +106,7 @@
 			}
 		
 		</script>
-		<!-- recipe_selectAll.jsp 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipe_selectAll.css">
-		<!-- 페이징 기능 전용 -->
-		<link rel="stylesheet" href="/oneYo/resource/css/common/paging.css">
-		<!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
-		<script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
-	<style>
 	
-	.link{
-		margin:2px;
-		list-style-type:none;
-		float:left;
-		padding:9px 15px 9px 15px;
-		border:1px solid #ebebeb; 
-		}
-	.hi{
-		color:#888;
-		text-decoration: none;
-		font-weight: 500;
-	}
-
-	.hello{
-	color:#ff5e5e;
-		text-decoration: none;
-		
-	}
-	#list{
-		text-align:center;
-		
-	}
-	#block{
-	display:inline-block;
-	
-	}
-	
-	
-	</style>
 	</head>
 	<body>
 		<% logger.info("[recipeSelectAll.jsp] .jsp 진입"); %>
@@ -166,17 +133,11 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+
 		<li class="item">
 			<div class="warningForm">
 			<span>
-				신고<br>팝업
+				신고
 			</span>
 			</div>
 		</li>
@@ -218,9 +179,11 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">

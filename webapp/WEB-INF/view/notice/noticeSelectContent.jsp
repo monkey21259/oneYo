@@ -354,7 +354,7 @@
 							</p>
 							<div id="hrDiv"></div>
 							<div class="writerDiv" style="text-align:left;">
-								<%= mnick %>
+								 관리자
 							</div>
 							<div class="thirdContents">
 								<div class="oneTd">

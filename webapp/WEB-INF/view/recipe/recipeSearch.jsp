@@ -3,20 +3,27 @@
 
 <%@ page import="main.ict.common.O_Session" %>
 
+<%@ page import = "org.apache.log4j.LogManager"%>
+<%@	page import = "org.apache.log4j.Logger" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>    
 <%
-	request.setCharacterEncoding("UTF-8");
+	Logger logger = LogManager.getLogger(this.getClass());
 	
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
 	String mid = (String)oSession.getAttribute(request, "mid");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- [221230] 반응형 페이지 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+		
 <title>oneYo(오내요)</title>
 
 <!-- jQuery -->
@@ -25,6 +32,11 @@
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 <!-- 칸 나눈 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
+
+<!-- recipeSearch.jsp 전용 -->
+<link rel="stylesheet" href="/oneYo/resource/css/recipe/recipeSearch.css" />
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -49,54 +61,75 @@ $(document).ready(function(){
 <div id="realAll">
 
 <div id="backMenu"></div>
-
-<div id="sideBar">
-	<label for="sideMenu"><div>▼<br>▽<br>▼</div></label>
 	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
+	<div class="sidebar">
 	<ul>
 		<li class="item">
 			<div class="homeLink">
+			<span>
 			홈으로
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="searchBarBtn">
+			<span>
 			검색
-			</div>
-		</li>
-		<li class="item">
-			<div id="warningForm">
-			신고
+			</span>
 			</div>
 		</li>
 		<li class="item">
 			<div class="warningForm">
-			신고<br>팝업
+			<span>
+			신고
+			</span>
 			</div>
 		</li>
+		
 		<li class="item">
-			<div class="searchBarBtn">
-			my<br>Page
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
+			<div class="mypageHome">
+			<span>
+			마이<br>페이지 
+			</span>
 			</div>
+			<%
+		} else if(mid.equals("admin")){
+			%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+			<%
+		}
+		%>
 		</li>
+
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
 			<div id="go_top">
+			<span>
 			TOP▲
+			</span>
 			</div>
 			</a>
 		</li>
 	</ul>
-</div>
-
+	</div>
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>	
 </div>
 
 <div id="singo" class="hidden_X">
@@ -165,9 +198,7 @@ $(document).ready(function(){
 				<p><%= mSNSid %> <span>님 환영합니다.</span></p>
 	 		</div>
 	 		<p></p>
-	 		<form id="logoutForm">
-	 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
-	 		</form>
+	 		
 <% 		
 		}
 %>
@@ -222,46 +253,64 @@ $(document).ready(function(){
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 
-	<div id="container" style="text-align:center;">
-		<div id="temp" style="display:inline-block;">
-			<table>
+	<div id="anne">
+		<div id="subject">
+<!-- 		<span>"oo"</span> -->
+		<span>레시피 목록</span>
+		</div> 
+	</div>
+	
+	
+			<table class="recipesearch">
+			<thead>
+				<tr>
+					<th width="10%">글번호</th>
+					<th width="45%">레시피명</th>
+					<th width="10%">사진</th>
+					<th width="20%">작성자</th>
+					<th width="15%">작성일</th>
+				</tr>
+			
+			</thead>
 				<c:forEach items="${list}" var="rvo">
+				
 					<tr>
-						<td>
-							${rvo.rnum}
+						<td>${rvo.rnum}</td>
+						<td class="recipe_alink">
+							 <a href="recipeSelectContent.ict?rnum=${rvo.rnum}&mnum=${rvo.mnum}">${rvo.rsubject}</a>
 						</td>
 						<td>
-							${rvo.rsubject}
-						</td>
-						<td>
-							<img src="/oneYo/img/recipe/${rvo.rphoto}">
+							<img src="/oneYo/img/recipe/${rvo.rphoto}" id="recipesearchimg">
 						</td>
 						<td>
 							${rvo.mnum}
 						</td>
-					</tr>
+						<td>
+							${rvo.insertdate}
+						</td>
+				</tr>
 				</c:forEach>
 			</table>
-		</div>
-	</div>
-	
-
-<!-- -------------------------------페이지 전용 center------------------------------- -->
+		
+	<!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
+<!-- common_count.js 자바스크립트 임포트하면 span태그에 값이 바인딩 됨. -->
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
-		<span>회원 수: ${ Count.get(0).membercnt }명</span> / <span>레시피글 수: ${ Count.get(0).recipecnt }개</span><br />
-		<span>전문가팁글 수: ${ Count.get(0).tipcnt }개</span> / <span>커뮤니티글 수: ${ Count.get(0).communitycnt }개</span><br />
+		<span></span> / <span></span><br />
+		<span></span> / <span></span><br />
 	</div>
 </div>
 
 </div>
 </div>
-
+</form>
+	<form id="logoutForm">
+ 			<input type="hidden" id="mid" name="mid" value="<%=mid %>" />
+ 		</form>
 </body>
 </html>

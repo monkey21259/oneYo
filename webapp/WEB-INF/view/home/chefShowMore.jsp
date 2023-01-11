@@ -131,8 +131,7 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
-			</span>
+			신고
 			</div>
 		</li>
 		
@@ -174,9 +173,11 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>	
 </div>
 
 <div id="singo" class="hidden_X">
@@ -344,7 +345,7 @@
 			hvo = list.get(i);
 %> 
 	<a href="chefIntroduce.ict?mnum=<%= hvo.getMnum() %>">
-		<table class="table-fill">
+		<table class="chef_table-fill">
 			<thead>
 				<tr>
 					<th width="15%">닉네임</th>
@@ -359,7 +360,7 @@
 			<tbody>
 				<tr>
 					<td><span><%= hvo.getMnick() %></span></td>
-					<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" style="width:50px; height:50px;"></td>
+					<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>"></td>
 					<td><span><%= hvo.getTotalrecipe() %></span></td>
 					<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
 					<td><span><%= hvo.getTotaltip() %></span></td>

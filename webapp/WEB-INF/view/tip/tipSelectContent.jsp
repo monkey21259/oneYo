@@ -152,17 +152,7 @@
 			}); //ready
 		
 		</script>
-		<style type="text/css">
-		
-			#container {
-				text-align: center;
-			}
-			
-			#tip_area {
-				display: inlineblock;
-			}
-		
-		</style>
+
 	</head>
 <body>
 <form id="tipSelectContentForm">
@@ -427,7 +417,7 @@
 								<table>
 									<tr>
 										<td class="nameTd">
-											좋아요
+										좋아요
 										</td>
 									</tr>
 									<tr>
