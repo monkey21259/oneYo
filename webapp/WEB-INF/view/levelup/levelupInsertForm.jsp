@@ -2,13 +2,30 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.mem.vo.MemVO" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.apache.log4j.LogManager" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	Logger logger = LogManager.getLogger(this.getClass());
 	
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
+	
+	// 2023-01-11 이성일 추가
+	MemVO mvo = null;
+	String mgrade = null;
+	if(mnum == null || mnum.length() == 0) {
+		if(request.getAttribute("mvo") !=null) {
+			mvo = (MemVO)request.getAttribute("mvo");
+			mnum = mvo.getMnum();
+			mgrade = mvo.getMgrade();
+			logger.info("mnum + mgrade : " + mnum + ", " + mgrade);
+		}
+	}
 	String mid = (String)oSession.getAttribute(request, "mid");
 %>
 
@@ -277,7 +294,8 @@
 	<table style="display:inline-block;">
 		<tr>
 			<td>
-				<input type="hidden" id="mnum" name="mnum" value="${mvo.mnum}" />
+				<input type="hidden" id="mnum" name="mnum" value="<%= mnum %>" />
+				<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>" />
 				제목
 			</td>
 			<td>
