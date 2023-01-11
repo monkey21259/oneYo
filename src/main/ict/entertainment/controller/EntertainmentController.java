@@ -129,6 +129,8 @@ public class EntertainmentController {
 			logger.info("예외 처리 발생 : " + e.getMessage());
 		}
 		
+		logger.info(jsonData);
+		
 		return jsonData.toJSONString();
 	}
 	

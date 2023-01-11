@@ -13,6 +13,7 @@
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
+	logger.info("memGrade.jsp");
 	
 %>
 
