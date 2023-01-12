@@ -155,6 +155,7 @@ public abstract class CodeUtils {
 	public static String getRdiffVal(String diffV) {
 		
 		logger.info("getRdiffVal() - 조리 난이도 매핑 함수 진입.");
+		logger.info("diffV: " + diffV);
 		if (diffV == null) {
 			return null;
 		}
@@ -162,6 +163,7 @@ public abstract class CodeUtils {
 		try {
 			for (int i=0; i<ConstPack.RECIPE_DIFF_ARR.length; i++) {
 				if (ConstPack.RECIPE_DIFF_ARR[i].equals(diffV)) {
+					logger.info("165라인 if문 걸림!");
 					return ConstPack.RECIPE_DIFF_IDX_ARR[i];
 				}
 			}

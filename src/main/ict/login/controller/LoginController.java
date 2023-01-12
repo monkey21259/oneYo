@@ -190,7 +190,7 @@ public class LoginController {
 		
 			String grantType = "authorization_code";
 			String clientId = "d00ed47ba28a4cf79b2ef80cee3bfdc0";
-			String redirect_uri = "http://192.168.219.125:8088/oneYo/loginForm.ict";
+			String redirect_uri = "http://192.168.219.104:8088/oneYo/loginForm.ict";
 			String accessToken = "";
 			String refreshToken = "";
 			

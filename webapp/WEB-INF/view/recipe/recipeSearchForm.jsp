@@ -114,6 +114,7 @@
 						}
 						console.log(jeryoList.text().split('#').length);
 						if(jeryoList.text().split('#').length <= 3) {
+							console.log("3개 이하");
 							jeryoList.append(jeryoAtag.text("#" + jeryo.val() + " "));
 							jeryo.val("");
 							jeryo.focus();

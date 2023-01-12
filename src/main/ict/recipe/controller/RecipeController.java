@@ -287,15 +287,49 @@ public class RecipeController {
 	
 // U
 	@PostMapping(value="recipeUpdate")
-	public String recipeUpdate(HttpServletRequest req, RecipeVO recipevo, Model model) {
+	public String recipeUpdate(HttpServletRequest req, Model model) {
 		
 		logger.info("recipeUpdate() 함수 진입");
-		logger.info(recipevo.toString());
 		
-		String rhour = req.getParameter("rhour");
-		String rminute = req.getParameter("rminute");
+		FileUpload rfu = new FileUpload(ConstPack.RECIPE_IMG_PATH,
+				ConstPack.RECIPE_IMG_SIZE,
+				ConstPack.RECIPE_ENC_TYPE);
+
+		boolean bool = rfu.imgFileUpload(req);
+		String rphoto = "";
+		if (!bool) {
+		logger.info("[FAIL] POST Request.");
+		return "#";
+		}
+		
+		// VO setting
+		RecipeVO recipevo = new RecipeVO();
+		
+		O_Session mSession = O_Session.getInstance();
+		String mnum = mSession.getSession(req);
+		
+		recipevo.setMnum(mnum);
+		recipevo.setRnum(rfu.getParameter("rnum"));
+		recipevo.setRsubject(rfu.getParameter("rsubject"));
+		recipevo.setRcategory(rfu.getParameter("rcategory"));
+		recipevo.setRjeryo(rfu.getParameter("rjeryo"));
+		
+		String rhour = rfu.getParameter("rhour");
+		String rminute = rfu.getParameter("rminute");
+		StringBuffer sb = new StringBuffer();
 		String rtime = CommonUtils.hourToMinutes(rhour, rminute);
 		recipevo.setRtime(rtime);
+		
+		recipevo.setRperson(rfu.getParameter("rperson"));
+		recipevo.setRdiff(rfu.getParameter("rdiff"));
+		recipevo.setRcontent(rfu.getParameter("rcontent"));
+		if(rfu.getFileName("mphoto") != null && rfu.getFileName("mphoto").length() > 0) {
+			recipevo.setRphoto(rfu.getFileName("mphoto"));
+		}else {
+			recipevo.setRphoto(rfu.getParameter("rphotoOld"));
+		}//end of if-else
+		recipevo.setRhit(rfu.getParameter("rhit"));
+		
 		int nCnt = recipeService.recipeUpdate(recipevo);
 		logger.info("[Recipe Update] Count: " + nCnt);
 		if (nCnt < 1) {  // FAIL
@@ -306,7 +340,7 @@ public class RecipeController {
 		recipeList.add(recipevo);
 		
 		model.addAttribute("recipeList", recipeList);
-		return "./recipe/recipeSelectContent";
+		return "./recipe/recipeUpdate";
 	}
 	
 // D

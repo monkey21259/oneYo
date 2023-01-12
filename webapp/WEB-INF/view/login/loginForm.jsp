@@ -66,7 +66,7 @@
 				// 인가 코드 받기 요청
 				console.log($(Kakao));
 				Kakao.Auth.authorize({
-				      redirectUri: 'http://192.168.219.125:8088/oneYo/loginForm.ict'
+				      redirectUri: 'http://192.168.219.104:8088/oneYo/loginForm.ict'
 				});
 			}
 			
@@ -79,7 +79,7 @@
 				let uri = "https://nid.naver.com/oauth2.0/authorize";
 				let responseType = "code";
 				let clientId = "<%= ConstPack.M_NAVER_CID %>";
-				let redirectURI = "http://192.168.219.125:8088/oneYo/loginForm.ict";
+				let redirectURI = "http://192.168.219.104:8088/oneYo/loginForm.ict";
 				let state = "<%= ConstPack.M_NAVER_STATE %>";
 				
 				let apiURL = uri + "?response_type=" + responseType

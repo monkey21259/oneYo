@@ -16,7 +16,7 @@
 	$(document).ready(function(){
 		
 		//채팅 서버 주소
-		let url = "ws://192.168.219.131:8088/oneYo/chatserver";
+		let url = "ws://192.168.219.118:8088/oneYo/chatserver";
 		
 		// 웹 소켓
 		let ws;
@@ -36,8 +36,8 @@
 					// -> 1#유저명
 					ws.send('1#' + $('#user').val() + '#');
 					
-					$('.container').css({'display':'inline-block'});
-					$('#chatBtn').css({'display':'none'});
+// 					$('.container').css({'display':'inline-block'});
+// 					$('#chatBtn').css({'display':'none'});
 				};
 				
 				ws.onmessage = function (evt) {
@@ -95,9 +95,9 @@
 				temp += '</div>';
 			}else{
 			//다른 사람이 메세지 보낼 때
+				temp += '<div class="nick"><b>' + user + '</b></div>';
 				temp += '<div class="chatline othermsg">';
 				temp += '<div class="otherchatcontainer">';
-				temp += '<b class="nick">' + user + '</b>';
 				temp += '<div class="chatmsg">';
 				temp += txt;
 				temp += '</div>';
@@ -161,14 +161,14 @@
 			$('#msg').attr('disabled', true);
 		});
 		
-	}); //ready
+	});
 </script>
 </head>
 <body>
 
 <!-- 채팅버튼 -->
 <div id="chatBtn">
-	<img src="/oneYo/resource/img/chat.png" id="chat_img">
+	<img src="/oneYo/resource/img/chat.png" id="chat_img">채팅하기
 </div>
 
 

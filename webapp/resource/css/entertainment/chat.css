@@ -35,6 +35,7 @@
 	
 	top	: calc(90%);
 	right	: 10px;
+	z-index: 7;
 	
 	margin:auto;
 	padding: 10px;
@@ -58,8 +59,9 @@
 	/* 화면 스크롤 해도 고정하게 하는 */
 	position	: fixed;
 	
-	top	: calc(50% - 200px);
+	top: calc(50% - 42px);
 	right	: 10px;  /*우측에서 얼마나 떨어질지*/
+	z-index: 7;
 	
 	width: 340px;
     height: 450px;
@@ -95,7 +97,7 @@
 /*대화창 영역*/
 .containerChat .chatTable{
 	width: 100%;
-    height: 321px;
+    height: 335px;
 }
 
 .containerChat .chatTable #list {
@@ -103,7 +105,7 @@
     display: inline-block;
 /*     margin-top: 30px; */
     padding: 5px;
-    height: 321px;
+    height: 335px;
     width:100%;
     overflow: auto; /*양이 많으면 스크롤 생기는거*/
     color: #000;
@@ -120,11 +122,13 @@
 /*채팅문구 틀(한줄)*/
 .chatTable .list_td .chatline {
 	display: flex;
-	align-items: flex-start;
-    padding: 10px;
-    width: 90%;
-    height: 30px;
+    align-items: center;
+    padding: auto;
+    height: 40px;
     border-radius: 20px;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
    
 }
 
@@ -140,9 +144,6 @@
     border-radius: 20px;  
     margin: auto;    
 }
-
-
-
 
 /*=============내가보내는 mymsg=================*/
 .chatTable .list_td .mymsg {
@@ -182,6 +183,7 @@
 /* 	max-width: calc(100% - 70px); */
    padding: 10px 10px 10px 15px;
     border-radius: 24px;
+    margin-top: 10px;
     word-break: break-word;
 
 }
@@ -219,6 +221,7 @@
 	background: #d8d8d8;
 	display: flex;
 	justify-content: flex-start;
+	margin-top: 10px;
 	color:black;
 	font-size: 13px;
    padding: 10px 15px 10px 10px;
@@ -229,7 +232,7 @@
 
 
 /*닉네임*/
-.chatTable .othermsg .otherchatcontainer b{
+.chatTable .othermsg .otherchatcontainer .nick{
 	text-align:left;
 	color:black;
 	font-size:10px;	
