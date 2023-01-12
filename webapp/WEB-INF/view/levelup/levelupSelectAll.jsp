@@ -276,7 +276,7 @@
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 <div id="anne">
-	<p id="subject">회원목록</p>
+	<p id="subject">등업 목록</p>
 	</div>
 		<table class="table-fill">
 			<thead>

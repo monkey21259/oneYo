@@ -653,7 +653,7 @@
 				 			<div class="chefIcon">
 				 				<c:if test="${ mvo.mprofile != null }">
 					 				<img class="chefImg" style="box-shadow: 1px 1px 3px #AAA;"
-					 					 src="/oneYo/img/mem/${ mvo.mprofile }">
+					 					 src="/oneYo/img/mem/${ mvo.mprofile }" onerror="this.src='/oneYo/resource/img/grade0.png'">
 				 				</c:if>
 				 				<div class="chefName">${ mvo.mnick }</div>
 				 			</div>

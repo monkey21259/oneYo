@@ -360,7 +360,7 @@
 			<tbody>
 				<tr>
 					<td><span><%= hvo.getMnick() %></span></td>
-					<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>"></td>
+					<td><img src="/oneYo/img/mem/<%= hvo.getMprofile() %>" onerror="this.src='/oneYo/resource/img/grade0.png'"></td>
 					<td><span><%= hvo.getTotalrecipe() %></span></td>
 					<td><span><%= hvo.getTotalrecipehitcnt() %></span></td>
 					<td><span><%= hvo.getTotaltip() %></span></td>
