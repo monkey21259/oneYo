@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <link rel="stylesheet" href="/oneYo/calendar/css/main.css">
-	
 </head>
 
 <body>
@@ -134,7 +133,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <div class="panel panel-default">
+        <div id="filter_div" class="panel panel-default">
 
             <div class="panel-heading">
                 <h3 class="panel-title">필터</h3>
@@ -169,7 +168,7 @@
     <script src="/oneYo/calendar/js/addEvent.js" charset="UTF-8"></script>
     <script src="/oneYo/calendar/js/editEvent.js" charset="UTF-8"></script>
     <script src="/oneYo/calendar/js/etcSetting.js" charset="UTF-8"></script>
-    
+
 </body>
 
 </html>
