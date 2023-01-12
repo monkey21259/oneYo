@@ -88,7 +88,7 @@ function drawChart3() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
+                    		text: 'oneYo(오내요) 레시피 카테고리별 글 비율'
                     	}
                 	}
                 }
@@ -144,7 +144,7 @@ function drawChart4() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
+                    		text: 'oneYo(오내요) 레시피 카테고리별 글 개수'
                     	}
                 	}
                 }
