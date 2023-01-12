@@ -1,61 +1,289 @@
 @charset "UTF-8";
 
-/* 전체 컨테이너 */
-.container {
-	display: none;
+/*========================채팅하기버튼========================*/
+
+/*채팅아이콘*/
+#chat_img{
+	width: 70px;
+    height: 70px;
+    text-align: center;
+	filter: 
+	 invert(52%) sepia(3%) saturate(6831%) hue-rotate(339deg) brightness(95%) contrast(84%)
+	drop-shadow(
+      1px 1px 0px #AC7B53
+   ) drop-shadow(
+      -1px -1px 0px #AC7B53
+   ) drop-shadow(
+      -1px 1px 0px #AC7B53
+   ) drop-shadow(
+      1px -1px 0px #AC7B53
+   ) drop-shadow(
+      0px 1px 0px #AC7B53
+   ) drop-shadow(
+      0px -1px 0px #AC7B53
+   ) drop-shadow(
+      1px 0px 0px #AC7B53
+   ) drop-shadow(
+      -1px 0px 0px #AC7B53
+   );
 }
 
-/*테이블*/
-.chatTable {
+/*아이콘위치*/
+#chatBtn {
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	top	: calc(90%);
+	right	: 10px;
+	
+	margin:auto;
+	padding: 10px;
+	
+	/* 중앙 정렬 */
+	text-align: center;
+	
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px 10px 10px 30px; */
+	border-radius: 270px;
+	background	: #FCF4EF;
+/* 	box-shadow: 2px 2px 2px 0 #AC7B53; */
+	
+	/* 마우스 커서 선택 */
+	cursor	: pointer;
+}
+
+/*========================채팅창=========================*/
+
+.containerChat {
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	top	: calc(50% - 200px);
+	right	: 10px;  /*우측에서 얼마나 떨어질지*/
+	
+	width: 340px;
+    height: 450px;
+	margin: 0 auto;
+	
+	/* 테두리 둥글게 */
+	border-radius	: 30px 10px 10px 30px;
+	background	: #FCF4EF;
+	box-shadow: 2px 2px 2px 0 #AC7B53;
 	
 }
 
-/*채팅글 보여지는 div*/
-#list {
+
+/*상단 채팅창들어왔을때(~~님환영합니다)*/
+.containerChat .nick_info{
+	display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+    background: white;
+    border-radius: 30px 10px 0px 0px;
+    align-items: center;
+	font-weight: 500;
+}
+
+
+/*채팅 전체 틀*/
+.containerChat{
+	width: 320px;
+    height: 420px;	
+}
+
+/*대화창 영역*/
+.containerChat .chatTable{
+	width: 100%;
+    height: 321px;
+}
+
+.containerChat .chatTable #list {
+	position: relative;
+    display: inline-block;
+/*     margin-top: 30px; */
+    padding: 5px;
+    height: 321px;
+    width:100%;
+    overflow: auto; /*양이 많으면 스크롤 생기는거*/
+    color: #000;
+	
+/* 	height	: 350px; */
+/* 	border: 1px solid #AC7B53; */
+/* 	border-radius: 15px; */
+/* 	overflow-y	: scroll; */
+}
+
+
+/* ============================상세 디자인 ==============================*/
+
+/*채팅문구 틀(한줄)*/
+.chatTable .list_td .chatline {
+	display: flex;
+	align-items: flex-start;
+    padding: 10px;
+    width: 90%;
+    height: 30px;
+    border-radius: 20px;
+   
+}
+
+/*입장 , 나갔을 때*/
+.chatTable .list_td .chatline .entermsg, .chatTable .list_td .chatline.outmsg{
+	display: flex;
+	justify-content: center;
+	background: white;
+	align-items: center;
+	font-size: 15px;
+    width: 228px;
+    height:30px;
+    border-radius: 20px;  
+    margin: auto;    
+}
+
+
+
+
+/*=============내가보내는 mymsg=================*/
+.chatTable .list_td .mymsg {
+	display: flex;
+	justify-content: flex-end;
+	height:auto;
 	
 }
 
-/*한 개의 채팅글이 담기는 div*/
-.chatline {
-	
+.chatTable .mymsg .mychatcontainer{
+    position: relative;
+    max-width: calc(100% - 70px);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    
 }
 
-/*입장 로그 div*/
-.entermsg {
-	
+/*시간 */
+.chatTable .mymsg .mychatcontainer .msgtime{
+	 display: flex;
+    align-items: center;
+  	font-size:8px;
+	color:black;
+	padding-top: 15px;
+	padding-right: 5px;
 }
 
-/*퇴장 로그 div*/
-.outmsg {
-	
+/*대화내용 */
+.chatTable .mymsg .mychatcontainer .chatmsg {
+	background: #F0F2CC;
+	display: flex;
+	justify-content: flex-end;
+	color:black;
+	font-size: 13px;
+/* 	max-width: calc(100% - 70px); */
+   padding: 10px 10px 10px 15px;
+    border-radius: 24px;
+    word-break: break-word;
+
 }
 
-/*내가 보낸 채팅글 div*/
-.mychatcontainer {
-	
+/*=================다른 사람이 보낸 채팅글 div=================*/
+
+.chatTable .list_td .othermsg {
+	display: flex;
+	justify-content: flex-start;
+	height:auto;
 }
 
-/*다른 사람이 보낸 채팅글 div*/
-.otherchatcontainer {
-	
+.chatTable .othermsg .otherchatcontainer{
+    position: relative;
+/*     max-width: calc(100% - 70px); */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-/*닉네임 담기는 곳*/
-.nick {
-	
+
+/*시간*/
+.chatTable .othermsg .otherchatcontainer .msgtime{
+	display: flex;
+    align-items: center;
+  	font-size:8px;
+	color:black;
+	padding-top: 15px;
+	padding-left: 5px;
 }
 
-/*채팅 글자가 담기는 div*/
-.chatmsg {
-	
+/*대화내용*/
+.chatTable .othermsg .otherchatcontainer .chatmsg {
+	background: #d8d8d8;
+	display: flex;
+	justify-content: flex-start;
+	color:black;
+	font-size: 13px;
+   padding: 10px 15px 10px 10px;
+    border-radius: 24px;
+    word-break: break-word;
+
 }
 
-/*보낸 시간이 담기는 div*/
-.msgtime {
-	
+
+/*닉네임*/
+.chatTable .othermsg .otherchatcontainer b{
+	text-align:left;
+	color:black;
+	font-size:10px;	
 }
 
+/*=================채팅 input=================*/
 /*text 인풋*/
-#msg {
+.containerChat .chatTable #msg_input{
+	display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+    background: white;
+    border-radius: 0px 0px 10px 30px;
+    align-items: stretch;
 	
+}
+
+
+.chatTable input[id="msg"] {
+	display:flex;
+	height: 100%;
+    width: 252px;
+    font-size: 13px;
+    text-align: left;
+    padding-left:20px;
+    outline: none;
+    border:none;
+    border-radius: 0px 0px 10px 30px;
+}
+
+
+/*전송버튼*/
+.chatTable #enter_btn{
+	display:flex;
+	font-size: 15px;
+    display: flex;
+/*     border-radius: 45px; */
+    background-color: white;
+/*     border: 3px solid #93A603; */
+    width: 8%;
+    height: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatTable #send_img{
+	width:30px;
+	height:30px;
+	text-align:center;
+	padding-top: 10px;
+	padding-right: 10px;
+	
+	filter: invert(60%) sepia(16%) saturate(1170%) hue-rotate(345deg) brightness(83%) contrast(84%);
 }
