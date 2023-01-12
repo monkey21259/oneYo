@@ -2,7 +2,6 @@
 
 /* -------------------------------- 전체 영역 -------------------------------- */
 #all_div {
-	 
 }
 
 /* -------------------------------- 상단 header -------------------------------- */
@@ -206,7 +205,6 @@
 	margin: auto;
 	padding:10px;
     width: 50%;
-	
 	font-size: 30px;
     font-weight: bold;
     text-align: center;
@@ -251,6 +249,7 @@ width:250px;
 }
 
 .iw_inner p{
+	font-family: gulim, sans-serif;
 	font-size: 14px;
     margin: auto;
     text-align: center;
