@@ -16,7 +16,7 @@
 	$(document).ready(function(){
 		
 		//채팅 서버 주소
-		let url = "ws://192.168.219.118:8088/oneYo/chatserver";
+		let url = "ws://192.168.219.104:8088/oneYo/chatserver";
 		
 		// 웹 소켓
 		let ws;
@@ -80,7 +80,13 @@
 		function print(user, txt) {
 			let temp = '';
 			var hour = new Date().getHours();
+			if(hour.length == 1){
+				hour = "0" + hour;
+			}//end of if
 			var min = new Date().getMinutes();
+			if(min.length == 1){
+				min = "0" + min;
+			}//end of if
 			var time = hour + ":" + min;
 			
 			if($('#user').val() == user){
@@ -95,13 +101,13 @@
 				temp += '</div>';
 			}else{
 			//다른 사람이 메세지 보낼 때
-				temp += '<div class="nick"><b>' + user + '</b></div>';
 				temp += '<div class="chatline othermsg">';
 				temp += '<div class="otherchatcontainer">';
+				temp += '<b class="nick">' + user + '</b>';
 				temp += '<div class="chatmsg">';
 				temp += txt;
 				temp += '</div>';
-				temp += ' <span class="msgtime">' + new Date().toLocaleTimeString() + '</span>';
+				temp += ' <span class="msgtime">' + time + '</span>';
 				temp += '</div>';
 				temp += '</div>';
 			}//end of if-else
