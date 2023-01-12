@@ -77,4 +77,43 @@ public class CalendarController {
 		
 		return "entertainment/calendarData";
 	}
+	
+	//캘린더 드래그앤드롭
+	@GetMapping(value="calendarDragAndDrop")
+	public String calendarDragAndDrop(CalendarVO cvo, Model model) {
+		logger.info("calendarDragAndDrop()함수 진입 : ");
+		
+		//서비스 호출
+		int nCnt = calendarService.calendarDragAndDrop(cvo);
+		
+		model.addAttribute("nCnt", nCnt);
+		
+		return "entertainment/calendarData";
+	}//end of calendarDragAndDrop() method
+	
+	//일정 수정
+	@GetMapping(value="calendarUpdate")
+	public String calendarUpdate(CalendarVO cvo, Model model) {
+		logger.info("calendarUpdate()함수 진입 : ");
+		
+		//서비스 호출
+		int nCnt = calendarService.calendarUpdate(cvo);
+		
+		model.addAttribute("nCnt", nCnt);
+		
+		return "entertainment/calendarData";
+	}//end of calendarUpdate() method
+	
+	//일정 삭제
+	@GetMapping(value="calendarDelete")
+	public String calendarDelete(CalendarVO cvo, Model model) {
+		logger.info("calendarDelete()함수 진입 : ");
+		
+		//서비스 호출
+		int nCnt = calendarService.calendarDelete(cvo);
+		
+		model.addAttribute("nCnt", nCnt);
+		
+		return "entertainment/calendarData";
+	}//end of calendarDelete() method
 }

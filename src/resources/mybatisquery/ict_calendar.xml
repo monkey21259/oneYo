@@ -31,7 +31,7 @@
 			SELECT
 			'C' || LPAD(NVL(MAX(SUBSTR(CAL_NO, -4)), 0) + 1, 4, '0') FROM ICT_CALENDAR
 		</selectKey>
-		 INSERT INTO SPRING_CALENDAR 								
+		 INSERT INTO ICT_CALENDAR 								
  					( 								
 							 CAL_NO						
 							,CAL_TITLE					
@@ -62,5 +62,48 @@
 							,SYSDATE									
  					) 	
 	</insert>
+	
+	<!-- 캘린더 드래그앤드롭 -->
+	<update id="calendarDragAndDrop" parameterType="calendarvo">
 		
+		UPDATE ICT_CALENDAR
+		SET
+			 CAL_STARTDATE = #{cal_startdate, jdbcType=VARCHAR}
+			,CAL_ENDDATE = #{cal_enddate, jdbcType=VARCHAR}
+			,UPDATEDATE = SYSDATE
+		WHERE	CAL_NO = #{cal_no, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
+	
+	<!-- 일정 수정 -->
+	<update id="calendarUpdate" parameterType="calendarvo">
+		
+		UPDATE ICT_CALENDAR
+		SET
+			 CAL_TITLE = #{cal_title, jdbcType=VARCHAR}
+			,CAL_STARTDATE = #{cal_startdate, jdbcType=VARCHAR}
+			,CAL_ENDDATE = #{cal_enddate, jdbcType=VARCHAR}
+			,CAL_DESCRIPTION = #{cal_description, jdbcType=VARCHAR}
+			,CAL_TYPE = #{cal_type, jdbcType=VARCHAR}
+			,CAL_BACKGROUNDCOLOR = #{cal_backgroundColor, jdbcType=VARCHAR}
+			,CAL_ALLDAY = #{cal_allDay, jdbcType=VARCHAR}
+			,UPDATEDATE = SYSDATE
+		WHERE	CAL_NO = #{cal_no, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
+	
+	<!-- 일정 삭제 -->
+	<update id="calendarDelete" parameterType="calendarvo">
+		
+		UPDATE ICT_CALENDAR
+		SET
+			 DELETEYN = 'N'
+			,UPDATEDATE = SYSDATE
+		WHERE	CAL_NO = #{cal_no, jdbcType=VARCHAR}
+		AND		DELETEYN = 'Y'
+		
+	</update>
+	
 </mapper>	

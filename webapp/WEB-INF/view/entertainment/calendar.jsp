@@ -14,8 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>캘린더</title>
-<link rel=" shortcut icon" href="/oneYo/calendar/image/favicon.ico">
+<title>오내요 캘린더</title>
 
 <link rel="stylesheet" href="/oneYo/calendar/vendor/css/fullcalendar.min.css" />
 <link rel="stylesheet" href="/oneYo/calendar/vendor/css/bootstrap.min.css">

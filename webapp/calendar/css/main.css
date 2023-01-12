@@ -104,11 +104,16 @@ body {
   color: #505363;
 }
 
+.fc-center {
+	position: relative;
+	left: 78px;
+}
+
 .fc-center h2 {
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 600;
-  color: #505363;
+  color: #87552d;
   line-height: 32px;
 }
 
@@ -129,7 +134,7 @@ body {
 }
 
 .fc-day:hover {
-  background: #EEF7FF;
+  background: #debda0;
   cursor: pointer;
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
@@ -137,7 +142,7 @@ body {
 }
 
 .fc-highlight {
-  background: #EEF7FF;
+  background: #debda0;
   opacity: 0.7;
 }
 
@@ -304,4 +309,40 @@ select.filter {
 
 #edit-desc {
 	resize: none;
+}
+
+td.fc-sat {
+	background-color: #f7f9fc;
+}
+
+td.fc-sun {
+	background-color: #fcf7f7;
+}
+
+.fc-day-header span {
+	font-weight: bold;
+}
+
+.fc-day-top>a {
+	color: #505363;
+}
+
+.fc-sat span, .fc-sat>a{
+	color: #5c9dff;
+}
+
+.fc-sun span, .fc-sun>a{
+	color: #fc6a6a;
+}
+
+.fc-unthemed td.fc-today {
+    background: #fbfced;
+}
+
+.fc-day:hover {
+	background: #fff5ed;
+}
+
+.fc-day-header {
+	background-color: #f2e4d8;
 }

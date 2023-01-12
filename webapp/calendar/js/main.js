@@ -6,6 +6,8 @@ var calendar = $('#calendar').fullCalendar({
  /** ******************
    *  OPTIONS
    * *******************/
+  themeSystem               : 'bootstrap3',
+  themeName                 : 'lumen',
   locale                    : 'ko',    
   timezone                  : "local", 
   nextDayThreshold          : "09:00:00",
@@ -36,9 +38,9 @@ var calendar = $('#calendar').fullCalendar({
   eventLongPressDelay       : 0,
   selectLongPressDelay      : 0,  
   header                    : {
-                                left   : 'today, prevYear, nextYear, viewWeekends',
-                                center : 'prev, title, next',
-                                right  : 'month, agendaWeek, agendaDay, listWeek'
+                                left   : 'today',
+                                center : 'prevYear,prev, title, next,nextYear',
+                                right  : 'month,agendaWeek,agendaDay,listWeek'
                               },
   views                     : {
                                 month : {
@@ -57,17 +59,6 @@ var calendar = $('#calendar').fullCalendar({
                                   columnFormat : ''
                                 }
                               },
-  customButtons             : { //주말 숨기기 & 보이기 버튼
-                                viewWeekends : {
-                                  text  : '주말',
-                                  click : function () {
-                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
-                                    $('#calendar').fullCalendar('option', { 
-                                      weekends: activeInactiveWeekends
-                                    });
-                                  }
-                                }
-                               },
 
                                eventRender: function (event, element, view) {
 
@@ -82,8 +73,7 @@ var calendar = $('#calendar').fullCalendar({
                             	      }),
                             	      content: $('<div />', {
                             	          class: 'popoverInfoCalendar'
-                            	        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
-                            	        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
+                            	        }).append('<p><strong>구분:</strong> ' + event.type + '</p>')
                             	        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
                             	        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
                             	      delay: {
@@ -113,8 +103,7 @@ var calendar = $('#calendar').fullCalendar({
       }),
       content: $('<div />', {
           class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
-        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
+        }).append('<p><strong>구분:</strong> ' + event.type + '</p>')
         .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
         .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
       delay: {
@@ -208,16 +197,15 @@ var calendar = $('#calendar').fullCalendar({
     				cal_no : event._id
     				,cal_startdate : newDates.startDate
     				,cal_enddate : newDates.endDate
-    				,m_id : event.username
     			};
     			
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "/calendarDragAndDrop.ict",
+      url: "calendarDragAndDrop.ict",
       data: newDate,
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+        alert('일자가 수정되었습니다.\n' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
     });
 
@@ -227,8 +215,8 @@ var calendar = $('#calendar').fullCalendar({
 
     $(".fc-body").unbind('click');
     $(".fc-body").on('click', 'td', function (e) {
-      if($('#mnumVal').val() != 'M000000000000'){
-        console.log('관리자 입장!!!!!');
+      let mnumVal = $('#mnumVal').val();
+      if(mnumVal == 'M000000000000'){
         $("#contextMenu")
           .addClass("contextOpened")
           .css({
@@ -238,7 +226,6 @@ var calendar = $('#calendar').fullCalendar({
           });
         return false;
       }else{
-        console.log('관리자 아님***********');
         return false;
       }
     });
@@ -352,7 +339,13 @@ function calDateWhenDragnDrop(event) {
     startDate: '',
     endDate: ''
   }
-
+  
+  let mnumVal = $('#mnumVal').val();
+  if(mnumVal != 'M000000000000'){
+    alert('일정 수정 권한이 없습니다.');
+    window.location.reload();
+  }
+  
   // 날짜 & 시간이 모두 같은 경우
   if(!event.end) {
     event.end = event.start;
