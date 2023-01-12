@@ -39,7 +39,7 @@ var newEvent = function (start, end, eventType) {
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
-		alert("save-event >>> : ");
+		//alert("save-event >>> : ");
         var eventData = {
             cal_no: eventId,
             cal_title: editTitle.val(),
@@ -110,6 +110,7 @@ var newEvent = function (start, end, eventType) {
             	console.log(response);
             	var data = $(response).find("result").text();
             	console.log("data >>> : " + data);
+            	alert('일정이 저장되었습니다.');
             	window.location.reload();
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');

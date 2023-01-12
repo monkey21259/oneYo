@@ -346,3 +346,7 @@ td.fc-sun {
 .fc-day-header {
 	background-color: #f2e4d8;
 }
+
+#filter_div {
+	display: none;
+}
