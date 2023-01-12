@@ -15,7 +15,7 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-<script src="/oneYo/resource/js/common/common_chart.js"></script>
+<script src="/oneYo/resource/js/common/common_chart.js" charset="UTF-8"></script>
 
 <title>oneYo(오내요)</title>
 </head>

@@ -1,4 +1,4 @@
-function drawChart1() {
+﻿function drawChart1() {
 	var a = $.ajax({
 			url: "googlePieChartData.ict",
 			dataType: "json",
@@ -88,7 +88,7 @@ function drawChart3() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
+                    		text: 'oneYo(오내요) 분야별 레시피 비율'
                     	}
                 	}
                 }
@@ -144,7 +144,7 @@ function drawChart4() {
                     	},
                     	title: {
                     		display: true,
-                    		text: 'oneYo(오내요) 게시판별 글 등록 현황'
+                    		text: 'oneYo(오내요) 레시피게시판 분야별 글 개수'
                     	}
                 	}
                 }

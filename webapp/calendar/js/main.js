@@ -179,6 +179,14 @@ var calendar = $('#calendar').fullCalendar({
 
   //일정 드래그앤드롭
   eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+    //관리자 이외 드래그 방지
+    let mnumVal = $('#mnumVal').val();
+    if(mnumVal != 'M000000000000'){
+      alert('일정 수정 권한이 없습니다.');
+      window.location.reload();
+      return false;
+    }
+    
     $('.popover.fade.top').remove();
 
     //주,일 view일때 종일 <-> 시간 변경불가
@@ -338,12 +346,6 @@ function calDateWhenDragnDrop(event) {
   var newDates = {
     startDate: '',
     endDate: ''
-  }
-  
-  let mnumVal = $('#mnumVal').val();
-  if(mnumVal != 'M000000000000'){
-    alert('일정 수정 권한이 없습니다.');
-    window.location.reload();
   }
   
   // 날짜 & 시간이 모두 같은 경우
