@@ -265,9 +265,11 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">
@@ -350,7 +352,7 @@
 			<li>
 				<div class="menu">
 					<a href="recipeSelectAll.ict" class="menu_link">
-						<div class="divClick">
+						<div>
 							레시피
 						</div>
 					</a>
@@ -386,7 +388,7 @@
 			<li>
 				<div class="pulsMenu">
 					<div class="menu">
-						<a href="entertainment.ict" class="menu_link">
+						<a href="#" class="menu_link">
 							<div>
 								더보기
 							</div>

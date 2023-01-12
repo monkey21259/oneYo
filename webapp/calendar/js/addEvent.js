@@ -50,7 +50,6 @@ var newEvent = function (start, end, eventType) {
             cal_backgroundColor: editColor.val(),
             cal_textColor: '#ffffff',
             cal_allDay: editAllDay.is(':checked'),
-            mid: 'test_id'
         };
 
         if (eventData.start > eventData.end) {
@@ -90,8 +89,7 @@ var newEvent = function (start, end, eventType) {
                     cal_type: editType.val(),
                     cal_backgroundColor: editColor.val(),
                     cal_textColor: '#ffffff',
-                    cal_allDay: editAllDay.is(':checked'),
-                    m_id: 'brownPoodle'
+                    cal_allDay: editAllDay.is(':checked')
                 };
         }
 

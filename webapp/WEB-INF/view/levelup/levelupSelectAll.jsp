@@ -150,16 +150,18 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">
 	<div class="warningForm">
 		X
 	</div>
-		<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
 		<jsp:param value="" name=""/>
 	</jsp:include>	
 </div>
@@ -233,39 +235,76 @@
 		<nav>
 		<ul>
 			<li>
-				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
-				레시피
+				<div class="menu">
+					<a href="recipeSelectAll.ict" class="menu_link">
+						<div>
+							레시피
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
-				Tip
+				<div class="menu">
+					<a href="tipSelectAll.ict" class="menu_link">
+						<div>
+							Tip
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
-				커뮤니티
+				<div class="menu">
+					<a href="communitySelectAll.ict" class="menu_link">
+						<div>
+							커뮤니티
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
-				공지사항
+				<div class="menu">
+					<a href="noticeSelectAll.ict" class="menu_link">
+						<div>
+							공지사항
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="#" class="menu_link">
-				<div>
-				더보기
+				<div class="pulsMenu">
+					<div class="menu">
+						<a href="#" class="menu_link">
+							<div>
+								더보기
+							</div>
+						</a>
+					</div>
+					<div class="sub-menu">
+					<ul>
+						<li>
+							<a href="entertainment.ict" class="menu_link">
+							<div>
+							엔터테이먼트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="chart.ict" class="menu_link">
+							<div>
+							차트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="goCalendar.ict" class="menu_link">
+							<div>
+							일정 관리
+							</div>
+							</a>
+						</li>
+					</ul>
+					</div>
 				</div>
-				</a>
 			</li>
 		</ul>
 		</nav>
@@ -276,7 +315,7 @@
 <div id="center">
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 <div id="anne">
-	<p id="subject">회원목록</p>
+	<p id="subject">등업 목록</p>
 	</div>
 		<table class="table-fill">
 			<thead>
