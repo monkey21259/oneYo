@@ -140,6 +140,7 @@ public abstract class CodeUtils {
 		try {
 			
 			if ("0,1,2".contains(diffV)) {
+				logger.info("if 걸림!");
 				return ConstPack.RECIPE_DIFF_ARR[Integer.parseInt(diffV)];
 			}
 			else { return ""; }

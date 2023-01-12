@@ -159,6 +159,12 @@
 				$(document).on('click', '.delJeryo', function(){
 					let clickedSpan = this.parentNode;
 					clickedSpan.remove();
+					let data = "";
+					let dataList = document.getElementsByClassName('je');
+					for(let j=0; j<dataList.length; j++){
+						data = data + "#" + dataList.item(j).innerText.trim();
+					}
+					$('#data').val(data);
 				});//end of .delJeryo click function
 				
 				//로그아웃

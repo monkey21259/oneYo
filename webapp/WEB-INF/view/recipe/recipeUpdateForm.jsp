@@ -85,6 +85,9 @@
 				
 				/* 난이도 */
 				var rdiff = "<%= CodeUtils.getRdiffVal(recipevo.getRdiff()) %>";
+				console.log("getRdiff : " + <%=recipevo.getRdiff()%>);
+				console.log("CodeUtils : " + <%=CodeUtils.getRdiffVal("2")%>);
+				console.log("rdiff : " + rdiff);
 				$("#rdiff option[value='" + rdiff + "']").prop('selected', true);
 				
 				// Setting END ---------------------------------------------------------
@@ -104,30 +107,80 @@
 					rtime += "분"
 					$("#rtime").val(rtime);
 					
+					//내용 단계별로 묶기(구분자 : #)===================
+					let rcontentList = $('.rcontent');
+					
+					let rcontentVal = "";
+					
+					for(let j=0; j<rcontentList.length; j++){
+						let content = rcontentList[j].value;
+						rcontentVal += "#" + content;
+					}//end of for
+					
+					$('#rcontent').val(rcontentVal);
+					//내용 단계별로 묶기(구분자 : #)===================
+					
 					// 사진 변경 여부에 따른 분기 처리
 					// 일단은 POST로 전달하는걸로 (기존 rphoto 보내는쪽으로)
 					$("#recipeUpdateForm").attr({
 						"action": "/oneYo/recipeUpdate.ict",
 						"method": "POST",
-						"enctype": "application/x-www-form-urlencoded"
+						"enctype": "multipart/form-data"
 					}).submit();
 				});
 				
-				let selectjeryo = "<%=recipevo.getRjeryo()%>";
-				let valJeryo = selectjeryo.replaceAll("#", " ");
-				console.log("valJeryo : " + valJeryo);
-				$("#jeryocan").text(valJeryo + " ");
-				$("#data").val("<%=recipevo.getRjeryo()%>");
+				//let selectjeryo = "<%=recipevo.getRjeryo()%>";
+				//let valJeryo = selectjeryo.replaceAll("#", " ");
+				//console.log("valJeryo : " + valJeryo);
+				//$("#jeryocan").text(valJeryo + " ");
+				//$("#data").val("<%=recipevo.getRjeryo()%>");
+				
+				//DB에 있는 재료 긁어오기
 				let i = "";
-				$("#jeryo").click(function(){
+				let s = "<%=recipevo.getRjeryo()%>";
+				let ss = s.split('#');
+				console.log("zdfdf : " + ss);
+				console.log("zdfdf : " + ss.length);
+				console.log("zdfdf : " + ss[1]);
+				for(let j=1; j<ss.length; j++){
+					let jeryo = ss[j];
 					
+					let jeryoSpan = $("<span>");
+					jeryoSpan.addClass('je');
+					jeryoSpan.html(jeryo 
+							+ "&nbsp;<img class='delJeryo' src='/oneYo/img/numbering/delete.png' width='10' height='10'>");
 					
-					let jeryo = $("#jeryoText").val();
 					$("#jeryoText").val("");
-					$("#jeryocan").append(jeryo + " ");
+					$("#jeryocan").append(jeryoSpan);
+// 					$("#jeryocan").append(jeryo + " ");
 					let rjeryo = "#" + jeryo;
 					console.log("w :" + rjeryo);
-					i = $("#data").val();
+					
+					i = i + rjeryo;
+					console.log("w :" + i);
+					
+					$("#data").val(i);
+					
+					let info = $("#data").val();
+					console.log("최종 : " + info);
+				}
+				
+				//재료 추가
+				$("#jeryo").click(function(){
+					
+					let jeryo = $("#jeryoText").val();
+					
+					let jeryoSpan = $("<span>");
+					jeryoSpan.addClass('je');
+					jeryoSpan.html(jeryo 
+							+ "&nbsp;<img class='delJeryo' src='/oneYo/img/numbering/delete.png' width='10' height='10'>");
+					
+					$("#jeryoText").val("");
+					$("#jeryocan").append(jeryoSpan);
+// 					$("#jeryocan").append(jeryo + " ");
+					let rjeryo = "#" + jeryo;
+					console.log("w :" + rjeryo);
+					
 					i = i + rjeryo;
 					console.log("w :" + i);
 					
@@ -137,6 +190,18 @@
 					console.log("최종 : " + info);
 					
 				});
+				
+				//재료 삭제
+				$(document).on('click', '.delJeryo', function(){
+					let clickedSpan = this.parentNode;
+					clickedSpan.remove();
+					let data = "";
+					let dataList = document.getElementsByClassName('je');
+					for(let j=0; j<dataList.length; j++){
+						data = data + "#" + dataList.item(j).innerText.trim();
+					}
+					$('#data').val(data);
+				});//end of .delJeryo click function
 				
 				//로그아웃
 				$("#logoutBtn").on("click", function() {
@@ -154,6 +219,73 @@
 				$(document).on('change', '#rphoto', function() {
 					preview(this);
 				});
+				
+				//------------내용 단계 추가 및 빼기--------------
+				//요리 단계 추가하기에서 for문 변수의 역할을 할 n
+				var stepNVal = document.getElementsByClassName('stepN');
+				var n = parseInt(stepNVal.item(stepNVal.length-1).value);
+				
+				//요리 단계 추가하기 : addRcontentBtn click function
+				$(document).on('click', '#addRcontentBtn', function(){
+					
+					//img태그 생성 - .rcontent input태그 생성 - .neyong div태그 생성
+					//.neyong div에 img태그 append & .rcontent input태그 append
+					//#neyong div에 .neyong div태그 append
+					
+					//태그 생성을 위해 i 증가
+					n += 1;
+					
+					//단계 나타내는 img태그
+					var newImg = $('<img>');
+					newImg.attr({
+						'src':'/oneYo/img/numbering/number' + n.toString() + '.png',
+						'width':'45',
+						'height':'45'
+					});
+					
+					//사용자가 내용 입력할 input 태그
+					var newInput = $('<input>');
+					newInput.attr({
+						 'type'			: 'text'
+						,'placeholder'	: '내용을 입력해주세요'
+					});
+					newInput.addClass('rcontent');
+					
+					//단계 순서 숫자가 담길 hidden input태그
+					var newStepN = $('<input>');
+					newStepN.attr({'type':'hidden'});
+					newStepN.val(n);
+					
+					//img태그와 input태그가 담길 div태그
+					var newDiv = $('<div>');
+					newDiv.addClass('neyong');
+					newDiv.css({'display':'flex', 'align-items':'center'});
+					
+					//div태그 조립하기
+					newDiv.append(newImg).append('&nbsp;').append(newInput);
+					
+					//부모 div태그에 새로운 div태그 붙이기
+					$('#neyong').append(newDiv);
+					
+					//	생성된 div로 스크롤 이동
+					var offset = newDiv.offset(); //선택한 태그의 위치를 반환
+	                //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함 
+			        $('html').animate({scrollTop : offset.top}, 400);
+					
+				});//end of addRcontentBtn click function
+				
+				//요리 마지막 단계 빼기 : removeRcontentBtn click function
+				$(document).on('click', '#removeRcontentBtn', function(){
+					
+					if(n > 1){
+					$('#neyong .neyong:nth-child(' + (n+1) + ')').remove();
+					n -= 1;
+					}else{
+						alert("1단계 이상 작성해주세요.");
+					}//end of if-else
+					
+				});//end of removeRcontentBtn click function
+				//------------내용 단계 추가 및 빼기--------------
 				
 			});
 			
@@ -605,12 +737,22 @@
 	<tr>
 		<td>
 			<div class="neyong" id="neyong" style="display:table;">
-				<input type="hidden" id="rcontent" name="rcontent">
+			<input type="hidden" id="rcontent" name="rcontent">
+			<%
+				String[] ss = recipevo.getRcontent().split("#");
+				for(int i=1; i<ss.length; i++){
+			%>
 				<div class="neyong" style="display:flex; align-items:center;">
-					<img src="/oneYo/img/numbering/number1.png" width="45" height="45">&nbsp;
+					<img src="/oneYo/img/numbering/number<%=i %>.png" width="45" height="45">&nbsp;
 <!-- 									<textarea class="rcontent" placeholder="내용을 입력해주세요"></textarea> -->
-					<input type="text" class="rcontent" placeholder="내용을 입력해주세요">
+					<input type="text" class="rcontent" value="<%=ss[i] %>" placeholder="내용을 입력해주세요">
+					<input type="hidden" class="stepN"  value="<%=i %>">
 				</div>
+			<%
+				}//end of for
+			%>
+				
+				
 			</div>
 			<div class="btnsBottom">
 				<span id="addRcontentBtn" class="buttons">단계 추가하기</span>
