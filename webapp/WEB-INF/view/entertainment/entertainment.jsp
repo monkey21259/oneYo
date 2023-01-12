@@ -23,22 +23,22 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 전체 css -->
-<link rel="stylesheet" href="/oneYo/resource/css/all.css">
+<link rel="stylesheet" href="/oneYo/resource/css/all.css" charset="UTF-8">
 
 <!-- entertainment.jsp 전용 -->
-<link rel="stylesheet" href="/oneYo/resource/css/entertainment/entertainment.css">	
+<link rel="stylesheet" href="/oneYo/resource/css/entertainment/entertainment.css" charset="UTF-8">	
 
 <!-- 검색바 넣었다 다시 생기게하는 스크립트 (외부파일) -->
 <script type="text/javascript" src="/oneYo/resource/js/all.js" charset="UTF-8"></script>
 
 <!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
-<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"  charset="UTF-8"></script>
 	
 <!-- 네이버 지도 AIP -->
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9grmlwqclh"></script>
 
 <!-- 채팅 css -->
-<link rel="stylesheet" href="/oneYo/resource/css/common/chat.css">
+<link rel="stylesheet" href="/oneYo/resource/css/common/chat.css"  charset="UTF-8">
 <script type="text/javascript">
 
 	$(document).ready(function(){
