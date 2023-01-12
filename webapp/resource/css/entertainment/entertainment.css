@@ -299,10 +299,59 @@ width:250px;
 /*다음지도*/
 #daum_map{
 
-	
-	
-	
 }
+	/*========================채팅하기버튼========================*/
+
+/*채팅아이콘*/
+#chat_img{
+	width: 70px;
+    height: 70px;
+    text-align: center;
+	filter: 
+	 invert(52%) sepia(3%) saturate(6831%) hue-rotate(339deg) brightness(95%) contrast(84%)
+	drop-shadow(
+      1px 1px 0px #AC7B53
+   ) drop-shadow(
+      -1px -1px 0px #AC7B53
+   ) drop-shadow(
+      -1px 1px 0px #AC7B53
+   ) drop-shadow(
+      1px -1px 0px #AC7B53
+   ) drop-shadow(
+      0px 1px 0px #AC7B53
+   ) drop-shadow(
+      0px -1px 0px #AC7B53
+   ) drop-shadow(
+      1px 0px 0px #AC7B53
+   ) drop-shadow(
+      -1px 0px 0px #AC7B53
+   );
+
+}
+/*아이콘위치*/
+#chatBtn {
+	/* 화면 스크롤 해도 고정하게 하는 */
+	position	: fixed;
+	
+	top	: calc(86%);
+	right	: 10px;
+	
+	margin:auto;
+	padding: 10px;
+	
+	/* 중앙 정렬 */
+	text-align: center;
+	
+	/* 테두리 둥글게 */
+/* 	border-radius	: 30px 10px 10px 30px; */
+	border-radius: 270px;
+	background	: #FCF4EF;
+	box-shadow: 2px 2px 2px 0 #AC7B53;
+	
+	/* 마우스 커서 선택 */
+	cursor	: pointer;
+}
+
 /* -------------------------------- 하단 footer -------------------------------- */
 #footer {
 	

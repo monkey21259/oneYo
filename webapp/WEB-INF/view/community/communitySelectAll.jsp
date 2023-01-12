@@ -248,7 +248,7 @@
 		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
 				<jsp:param value="" name=""/>
 		</jsp:include>	
-	</div>
+	</div>	
 </div>
 
 <div id="singo" class="hidden_X">
@@ -324,7 +324,7 @@
 	 	</div>
 	</div>
 	
-	<div class="nav">
+<div class="nav">
 	<!-- 상단 메뉴바 -->
 		<nav>
 		<ul>
@@ -367,7 +367,7 @@
 			<li>
 				<div class="pulsMenu">
 					<div class="menu">
-						<a href="#" class="menu_link">
+						<a href="entertainment.ict" class="menu_link">
 							<div>
 								더보기
 							</div>
@@ -402,7 +402,7 @@
 			</li>
 		</ul>
 		</nav>
-	</div> <!-- nav -->
+	</div>
 	
 </div> <!-- header -->
 

@@ -168,6 +168,17 @@
 			
 		}); //more_btn
 		
+
+		//로그아웃
+		$("#logoutBtn").on("click", function() {
+			$("#logoutForm").attr({
+				"action": "logout.ict",
+				"method": "GET",
+				"enctype": "application/x-www-form-urlencoded"
+			}).submit();
+		});
+	
+		
 		//all.js 에 있는 모든 함수 연결
 		allJavaScript();
 		
@@ -553,13 +564,6 @@
 			</div> <!-- map_containe -->
 		</tbody>
 	</table>
-
-
-
-<!-- 채팅 -->
-<jsp:include page="./chat.jsp">
-	<jsp:param value="<%=mnick %>" name="mnick"/>
-</jsp:include>
 <!-- -------------------------------페이지 전용 center------------------------------- -->
 </div>
 
