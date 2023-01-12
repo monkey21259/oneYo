@@ -55,8 +55,7 @@
 				// Setting --------------------------------------------------------------
 				
 				/* 음식 카테고리 */ // 기타
-				var rcategory = "<%= CodeUtils.getRcategoryVal(recipevo.getRcategory()) %>";
-				$("#rcategory option[value='" + rcategory + "']").prop('selected', true);
+				$("#rcategory option[value='<%=recipevo.getRcategory()%>']").prop('selected', true);
 				
 				/* 조리 시간 */ // 00시 10분
 				var rhour, rminute;
@@ -84,11 +83,7 @@
 				$("#rperson option[value='" + "<%= recipevo.getRperson() %>" + "']").prop('selected', true);
 				
 				/* 난이도 */
-				var rdiff = "<%= CodeUtils.getRdiffVal(recipevo.getRdiff()) %>";
-				console.log("getRdiff : " + <%=recipevo.getRdiff()%>);
-				console.log("CodeUtils : " + <%=CodeUtils.getRdiffVal("2")%>);
-				console.log("rdiff : " + rdiff);
-				$("#rdiff option[value='" + rdiff + "']").prop('selected', true);
+				$("#rdiff option[value='<%=recipevo.getRdiff()%>']").prop('selected', true);
 				
 				// Setting END ---------------------------------------------------------
 				
@@ -139,9 +134,6 @@
 				let i = "";
 				let s = "<%=recipevo.getRjeryo()%>";
 				let ss = s.split('#');
-				console.log("zdfdf : " + ss);
-				console.log("zdfdf : " + ss.length);
-				console.log("zdfdf : " + ss[1]);
 				for(let j=1; j<ss.length; j++){
 					let jeryo = ss[j];
 					
@@ -154,15 +146,12 @@
 					$("#jeryocan").append(jeryoSpan);
 // 					$("#jeryocan").append(jeryo + " ");
 					let rjeryo = "#" + jeryo;
-					console.log("w :" + rjeryo);
 					
 					i = i + rjeryo;
-					console.log("w :" + i);
 					
 					$("#data").val(i);
 					
 					let info = $("#data").val();
-					console.log("최종 : " + info);
 				}
 				
 				//재료 추가
