@@ -266,7 +266,21 @@ a {
 
 
 /* 상단 메뉴 버튼 영역 */
-.nav li .pulsMenu li {
+.nav li {
+	
+	/* 영역 지정 */
+	width	: 160px;
+	min-height	: 30px;
+	
+	/* 영역 확장 */
+	padding	: 3px 20px;
+	
+	z-index	: 39;
+}
+
+/* 상단 메뉴 더보기 영역 */
+.pulsMenu li {
+	position: relative;
 	
 	/* 영역 지정 */
 	width	: 160px;
