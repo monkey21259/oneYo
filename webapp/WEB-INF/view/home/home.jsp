@@ -525,57 +525,77 @@
 	<!-- 상단 메뉴바 -->
 		<nav>
 		<ul>
-			<li class="menu">
-				<a href="recipeSelectAll.ict" class="menu_link">
-					<div>
-						레시피
-					</div>
-				</a>
+			<li>
+				<div class="menu">
+					<a href="recipeSelectAll.ict" class="menu_link">
+						<div>
+							레시피
+						</div>
+					</a>
+				</div>
 			</li>
-			<li class="menu">
-				<a href="tipSelectAll.ict" class="menu_link">
-					<div>
-						Tip
-					</div>
-				</a>
+			<li>
+				<div class="menu">
+					<a href="tipSelectAll.ict" class="menu_link">
+						<div>
+							Tip
+						</div>
+					</a>
+				</div>
 			</li>
-			<li class="menu">
-				<a href="communitySelectAll.ict" class="menu_link">
-					<div>
-						커뮤니티
-					</div>
-				</a>
+			<li>
+				<div class="menu">
+					<a href="communitySelectAll.ict" class="menu_link">
+						<div>
+							커뮤니티
+						</div>
+					</a>
+				</div>
 			</li>
-			<li class="menu">
-				<a href="noticeSelectAll.ict" class="menu_link">
-					<div>
-						공지사항
-					</div>
-				</a>
+			<li>
+				<div class="menu">
+					<a href="noticeSelectAll.ict" class="menu_link">
+						<div>
+							공지사항
+						</div>
+					</a>
+				</div>
 			</li>
-			<li class="menu">
-				<a href="entertainment.ict" class="menu_link">
+			<li>
 				<div class="pulsMenu">
-					더보기
+					<div class="menu">
+						<a href="entertainment.ict" class="menu_link">
+							<div>
+								더보기
+							</div>
+						</a>
+					</div>
+					<div class="sub-menu">
 					<ul>
 						<li>
+							<a href="entertainment.ict" class="menu_link">
 							<div>
-							더보기1
+							엔터테이먼트
 							</div>
+							</a>
 						</li>
 						<li>
+							<a href="chart.ict" class="menu_link">
 							<div>
-							더보기2
+							차트
 							</div>
+							</a>
 						</li>
 						<li>
+							<a href="goCalendar.ict" class="menu_link">
 							<div>
-							더보기3
+							일정 관리
 							</div>
+							</a>
 						</li>
 					</ul>
+					</div>
 				</div>
-				</a>
 			</li>
 		</ul>
 		</nav>

@@ -92,6 +92,10 @@ public class LevelupController {
 	
 		O_Session mSession = O_Session.getInstance();
 		String mnum = mSession.getSession(req);
+		if(mnum == null || mnum.length() == 0) {
+			mnum = fu.getParameter("mnum");
+			logger.info("레벨업 인서트 mnum : ");
+		}
 		lvvo.setMnum(mnum);
 		
 		logger.info(lvvo.getLvnum());
@@ -105,6 +109,11 @@ public class LevelupController {
 			lvvo.setLvphoto("no_img.jpg");
 		
 		int nCnt = levelupService.levelupInsert(lvvo);
+		
+		// 2023-01-11 이성일 추가
+		if(fu.getParameter("mgrade").equals("1")) {
+			return "login/loginForm";
+		}
 		
 		return "levelup/levelupInsert";
 	}
