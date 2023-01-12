@@ -77,19 +77,42 @@ public class FileUpload {
 		return this.mr.getParameterValues(s);
 	}
 	
+	
+	//	230112 사진 null처리
 	public String getFileName(String f) {
-		if (f == null) {
-			logger.info("FileUpload - getFileName()'s argument is invalid.");
-			
-			return null;
-		}
+
+		String fileName = "";
+		fileName = mr.getFilesystemName(f);
 		
-		if (this.mr.getFilesystemName(f) == null) {
-			logger.info("FileUpload - getFileName() -> mr.getFilesystemName() is invalid.");
-			
-			return null;
+		if (fileName == null) {
+			fileName = "noimg.png";
 		}
-		return this.mr.getFilesystemName(f);
+		return fileName;
+	}
+	
+	//	230112 업뎃시 비교 널처리
+	public String getUpdateFileName(String fNew, String fOld) {
+		
+		logger.info("getUpdateFileName(fNew,fOld) >>> : " + fNew + "\nbool >>> : " + fOld);
+		
+		String newFileName = "";
+		newFileName = this.getFileName(fNew);
+		logger.info("this.getFileName(fNew) >>> : " + newFileName);
+		
+		String oldFileName = "";
+		oldFileName = mr.getParameter(fOld);
+		logger.info("mr.getParameter(fOld) >>> : " + oldFileName);
+		
+		String fileName = "";
+		
+		if (!(newFileName.equals("noimg.png")) && !(newFileName.equals(oldFileName))) {
+			fileName = newFileName;
+		} else {
+			fileName = oldFileName;
+		}
+		logger.info("if (newFileName == null && !(newFileName.equals(oldFileName))) >>> : " + fileName);
+		
+		return fileName;
 	}
 	
 	public List<String> getFileNames() {

@@ -99,13 +99,47 @@
 // 				alert("[recipeInsertForm.jsp] jQuery");
 				$("#recipeInsertBtn").on("click", function() {
 					
-					
 					// validation code area
 					
 					let bar = $("#rperson").val();
 					console.log(bar);
 					let time = $("#rhour").val();
 					console.log(time);
+					
+					
+					
+					//	재료 합치기 함수 (기존은 삭제하면 반영이 안되어서 넣었어요)
+					var jeryos = "";
+					$('.je').each(function(){
+						
+						let jeryo = $(this).find('span').text();
+						jeryo = "#" + jeryo;
+						
+						console.log(jeryo);
+						
+						jeryos += jeryo;
+// 						alert(jeryos);
+					});
+					$("#data").val(jeryos);
+					
+					
+					
+					//	DB NotNull 방지 처리
+					$('.notNull').each(function(){
+						
+						let $this = $(this).val();
+						
+						if ($this == null || $this.length == 0 || $this == "") {
+							
+							alert("제목을 입력 해주세요.");
+							$(this).focus();
+							
+							return false;
+						}
+						
+					});
+					
+					
 					
 					//내용 단계별로 묶기(구분자 : #)===================
 					let rcontentList = $('.rcontent');
@@ -134,24 +168,47 @@
 					
 					let jeryo = $("#jeryoText").val();
 					
+					if (jeryo == null || jeryo == "" || jeryo.lenght == 0) {
+						
+						console.log("재료 입력x");
+						
+						return false;
+					}
 					let jeryoSpan = $("<span>");
 					jeryoSpan.addClass('je');
-					jeryoSpan.html(jeryo 
-							+ "&nbsp;<img class='delJeryo' src='/oneYo/img/numbering/delete.png' width='10' height='10'>");
+					
+					let jeryoVal = $('<span>');
+					jeryoVal.html(jeryo);
+					
+					let delJeryo = $('<img>');
+					delJeryo.addClass('delJeryo');
+					delJeryo.attr({
+						 'src'		: '/oneYo/img/numbering/delete.png'
+						,'width'	: '10'
+						,'height'	: '10'
+					});
+					
+					jeryoSpan.append(jeryoVal).append(delJeryo);
+// 					jeryoSpan.html(jeryo 
+// 							+ "<img class='delJeryo' src='/oneYo/img/numbering/delete.png' width='10' height='10'>");
 					
 					$("#jeryoText").val("");
 					$("#jeryocan").append(jeryoSpan);
 // 					$("#jeryocan").append(jeryo + " ");
-					let rjeryo = "#" + jeryo;
-					console.log("w :" + rjeryo);
 					
-					i = i + rjeryo;
-					console.log("w :" + i);
 					
-					$("#data").val(i);
 					
-					let info = $("#data").val();
-					console.log("최종 : " + info);
+					
+// 					let rjeryo = "#" + jeryo;
+// 					console.log("w :" + rjeryo);
+					
+// 					i = i + rjeryo;
+// 					console.log("w :" + i);
+					
+// 					$("#data").val(i);
+					
+// 					let info = $("#data").val();
+// 					console.log("최종 : " + info);
 					
 				});
 				
@@ -233,7 +290,7 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -468,7 +525,7 @@
 								글 제목
 							</div>
 							<p>
-								<input type="text" id="rsubject" name="rsubject" value="" placeholder="제목 입력란" />
+								<input type="text" id="rsubject" name="rsubject" value="" placeholder="제목 입력란" class="notNull"/>
 							</p>
 							<div id="hrDiv"></div>
 						</td>

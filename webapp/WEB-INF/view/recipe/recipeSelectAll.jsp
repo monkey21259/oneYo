@@ -578,7 +578,7 @@
 								<tr>
 									<td class="imgTd">
 										<div>
-											<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" id="rphoto">
+											<img src="/oneYo/img/recipe/<%= recipevo.getRphoto() %>" onerror="this.src='/oneYo/resource/img/noimg.png';" id="rphoto">
 										</div>
 									</td>
 								</tr>
