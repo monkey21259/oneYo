@@ -8,5 +8,8 @@ public interface CalendarDAO {
 
 	public List<CalendarVO> calendarSelectAll();
 	public int calendarInsert(CalendarVO cvo);
+	public int calendarDragAndDrop(CalendarVO cvo);
+	public int calendarUpdate(CalendarVO cvo);
+	public int calendarDelete(CalendarVO cvo);
 
 }

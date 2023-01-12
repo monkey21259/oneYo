@@ -46,7 +46,7 @@
 					console.log("  evt : " + evt);
 					console.log("  evt.data : " + evt.data);
 					console.log("  index : " + index);
-					let no = evt.data.substring(0, 1); 
+					let no = evt.data.substring(0, 1);
 					let user = evt.data.substring(2, index);
 					let txt = evt.data.substring(index + 1);
 							

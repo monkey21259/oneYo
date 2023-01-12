@@ -2,13 +2,30 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="main.ict.common.O_Session" %>
+<%@ page import="main.ict.mem.vo.MemVO" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.apache.log4j.LogManager" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	Logger logger = LogManager.getLogger(this.getClass());
 	
 	O_Session oSession = O_Session.getInstance();
 	String mnum = oSession.getSession(request);
+	
+	// 2023-01-11 이성일 추가
+	MemVO mvo = null;
+	String mgrade = null;
+	if(mnum == null || mnum.length() == 0) {
+		if(request.getAttribute("mvo") !=null) {
+			mvo = (MemVO)request.getAttribute("mvo");
+			mnum = mvo.getMnum();
+			mgrade = mvo.getMgrade();
+			logger.info("mnum + mgrade : " + mnum + ", " + mgrade);
+		}
+	}
 	String mid = (String)oSession.getAttribute(request, "mid");
 %>
 
@@ -151,16 +168,20 @@
 	<div class="searchBarBtn">
 		X
 	</div>
-	검색바 여기에 넣기
-	<input type="text" id="searchText" name="serchText">
-	<input type="button" id="searchTextBtn" value="검색">
+	<div>
+		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
+				<jsp:param value="" name=""/>
+		</jsp:include>	
+	</div>
 </div>
 
 <div id="singo" class="hidden_X">
 	<div class="warningForm">
 		X
 	</div>
-	신고 인클루드 이쪽으로
+	<jsp:include page="/WEB-INF/view/warning/warningPage.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </div>
 
 <div id="shadow" class="hidden_X"></div>
@@ -232,39 +253,76 @@
 		<nav>
 		<ul>
 			<li>
-				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
-				레시피
+				<div class="menu">
+					<a href="recipeSelectAll.ict" class="menu_link">
+						<div>
+							레시피
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
-				Tip
+				<div class="menu">
+					<a href="tipSelectAll.ict" class="menu_link">
+						<div>
+							Tip
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
-				커뮤니티
+				<div class="menu">
+					<a href="communitySelectAll.ict" class="menu_link">
+						<div>
+							커뮤니티
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
-				공지사항
+				<div class="menu">
+					<a href="noticeSelectAll.ict" class="menu_link">
+						<div>
+							공지사항
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="#" class="menu_link">
-				<div>
-				더보기
+				<div class="pulsMenu">
+					<div class="menu">
+						<a href="#" class="menu_link">
+							<div>
+								더보기
+							</div>
+						</a>
+					</div>
+					<div class="sub-menu">
+					<ul>
+						<li>
+							<a href="entertainment.ict" class="menu_link">
+							<div>
+							엔터테이먼트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="chart.ict" class="menu_link">
+							<div>
+							차트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="goCalendar.ict" class="menu_link">
+							<div>
+							일정 관리
+							</div>
+							</a>
+						</li>
+					</ul>
+					</div>
 				</div>
-				</a>
 			</li>
 		</ul>
 		</nav>
@@ -277,7 +335,8 @@
 	<table style="display:inline-block;">
 		<tr>
 			<td>
-				<input type="hidden" id="mnum" name="mnum" value="${mvo.mnum}" />
+				<input type="hidden" id="mnum" name="mnum" value="<%= mnum %>" />
+				<input type="hidden" id="mgrade" name="mgrade" value="<%= mgrade %>" />
 				제목
 			</td>
 			<td>

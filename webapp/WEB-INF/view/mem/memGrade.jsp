@@ -13,6 +13,7 @@
 <%
 	Logger logger = null;
 	logger = LogManager.getLogger(this.getClass());
+	logger.info("memGrade.jsp");
 	
 %>
 
@@ -256,39 +257,76 @@ $(document).ready(function(){
 		<nav>
 		<ul>
 			<li>
-				<a href="recipeSelectAll.ict" class="menu_link">
-				<div>
-				레시피
+				<div class="menu">
+					<a href="recipeSelectAll.ict" class="menu_link">
+						<div>
+							레시피
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="tipSelectAll.ict" class="menu_link">
-				<div>
-				Tip
+				<div class="menu">
+					<a href="tipSelectAll.ict" class="menu_link">
+						<div>
+							Tip
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="communitySelectAll.ict" class="menu_link">
-				<div>
-				커뮤니티
+				<div class="menu">
+					<a href="communitySelectAll.ict" class="menu_link">
+						<div>
+							커뮤니티
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="noticeSelectAll.ict" class="menu_link">
-				<div>
-				공지사항
+				<div class="menu">
+					<a href="noticeSelectAll.ict" class="menu_link">
+						<div>
+							공지사항
+						</div>
+					</a>
 				</div>
-				</a>
 			</li>
 			<li>
-				<a href="#" class="menu_link">
-				<div>
-				더보기
+				<div class="pulsMenu">
+					<div class="menu">
+						<a href="entertainment.ict" class="menu_link">
+							<div>
+								더보기
+							</div>
+						</a>
+					</div>
+					<div class="sub-menu">
+					<ul>
+						<li>
+							<a href="entertainment.ict" class="menu_link">
+							<div>
+							엔터테이먼트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="chart.ict" class="menu_link">
+							<div>
+							차트
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="goCalendar.ict" class="menu_link">
+							<div>
+							일정 관리
+							</div>
+							</a>
+						</li>
+					</ul>
+					</div>
 				</div>
-				</a>
 			</li>
 		</ul>
 		</nav>
@@ -345,6 +383,7 @@ $(document).ready(function(){
 		</table>
 	</div>
 	<input type="hidden" id="mgrade" name="mgrade" value="0">
+	<input type="hidden" id="mkey" name="mkey" value="0">
 	</div>
 	
 <div class="gradetable">

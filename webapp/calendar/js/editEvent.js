@@ -3,6 +3,11 @@
  * ************** */
 var editEvent = function (event, element, view) {
 	console.log("editEvent >>> : ");
+	let mnumVal = $('#mnumVal').val();
+		if(mnumVal != 'M000000000000'){
+			alert('일정 수정 권한이 없습니다.');
+			return false;
+		}
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
 
     $('.popover.fade.top').remove();
@@ -86,8 +91,7 @@ var editEvent = function (event, element, view) {
                 cal_type: editType.val(),
                 cal_backgroundColor: editColor.val(),
                 cal_textColor: '#ffffff',
-                cal_allDay: false,
-                m_id: event.username
+                cal_allDay: statusAllDay
             };
         
         //일정 업데이트
@@ -115,8 +119,7 @@ var editEvent = function (event, element, view) {
         $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
         eventModal.modal('hide');
         var eventData = {
-                'cal_no': event._id,
-                'm_id' : event.username
+                'cal_no': event._id
             };
         console.log("eventData >>> : " + eventData);
         //삭제시

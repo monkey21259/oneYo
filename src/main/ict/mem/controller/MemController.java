@@ -59,7 +59,7 @@ public class MemController {
 		
 		String sendUrl = "";
 //		sendUrl = "http://localhost:8088/oneYo/memInsertForm.ict?memail=";
-		sendUrl = "http://192.168.219.104:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
+		sendUrl = "http://localhost:8088/oneYo/memInsertForm.ict?memail=";	//	김은솔 ip
 		sendUrl += memail + "&mgrade=" + mvo.getMgrade();
 		 
 		String sendMsg = "";
@@ -67,7 +67,7 @@ public class MemController {
 		StringBuffer neyong = null;
 		neyong = new StringBuffer();
 		neyong.append(" <div align='center'>");
-		neyong.append(" <a href='" + sendUrl + "'><img src='http://localhost:8088/oneYo/resource/img/memInsert.png'></a> ");
+		neyong.append(" <a href='" + sendUrl + "'><img src='/oneYo/resource/img/memInsert.png'></a> ");
 		neyong.append(" </div> ");
 		sendMsg = neyong.toString();
 		
@@ -145,7 +145,7 @@ public class MemController {
 	}
 	//	회원가입 데이터 전송
 	@PostMapping("memInsert")
-	public String memInsert(HttpServletRequest req/* , MemVO mvo, Model model */) {
+	public String memInsert(HttpServletRequest req/* , MemVO mvo*/, Model model ) {
 		
 		logger.info("memInsert(req, mvo, model) >>> : memInsert.jsp"
 				+ " >>> : " + req/* + " / " + mvo + " / " + model */);
@@ -214,8 +214,11 @@ public class MemController {
 		//	MGRADE	//	등급	//	NOT NULL
 		String mgrade = "";
 		mgrade = fu.getParameter("mgrade");	//	호출
+		
+		// 2023-01-11 이성일 회원가입 수정
+		// mgrade : 디폴트 0으로 가입
 		logger.info("mgrade >>> : " + mgrade);
-		mvo.setMgrade(mgrade);	//	vo 세팅
+		mvo.setMgrade("0");	//	vo 세팅
 		logger.info("vo.mgrade >>> : " + mvo.getMgrade());
 		
 		//	MPROFILE	//	프로필사진	//	
@@ -238,7 +241,14 @@ public class MemController {
 		if (insertCnt > 0) {
 			logger.info("memInsert().nCnt >>> : " + insertCnt);
 			
-			return "login/loginForm";
+			// 2023-01-11 이성일 추가
+			if(mgrade.equals("0")) {
+				return "login/loginForm";
+			}else if(mgrade.equals("1")) {
+				model.addAttribute("mgrade", mgrade);
+				model.addAttribute("mnum", mnum);
+				return "levelup/expertLevelup";
+			}
 		}
 		
 		logger.info("memInsert().nCnt >>> : " + insertCnt + "로 입력 실패");

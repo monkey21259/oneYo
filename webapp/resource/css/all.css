@@ -133,8 +133,8 @@ a {
 	text-align: right;
 	
 	/* width 가로폭 */
- 	width	: 100%; 
- 	height	: 100%; 
+ 	width	: 100%;
+ 	height	: 100%;
 }
 
 #loginDiv .loginBtnDiv {
@@ -205,7 +205,7 @@ a {
 	/* float에 영향 받지 않고 하단에 깔아두고 싶다는 의미 */
 	clear	: both;
 	
-	z-index	: 39;
+	margin-bottom	: 60px;
 }
 
 .nav * {
@@ -217,15 +217,19 @@ a {
 /* 	transform	: translateY(-50%); */
 	
 	background-color	: #AC7B53;
-	
-	z-index	: 39;
 }
 
 /* 상단 메뉴 버튼 영역 */
-.nav nav ul .menu {
+.nav nav ul li {
 	/* 상단 메뉴바 가로 정렬 */
 	/* 해당 블럭 오른쪽에 다른 무언가가 와도 괜찮다는 표시 */
 	float	: left;
+	
+	/* 영역 지정 */
+	width	: 240px;
+	height	: 36px;
+}
+.nav nav ul li .menu {
 	
 	/* 영역 지정 */
 	width	: 200px;
@@ -233,37 +237,42 @@ a {
 	
 	/* 영역 확장 */
 	padding	: 3px 20px;
-	margin-bottom	: 60px;
-	
-	z-index	: 39;
 }
-
-/* 상단 메뉴 버튼 영역 */
-.nav .menu_link div {
-
+.nav nav ul li .menu .menu_link {
+	
 	/* 폰트 색상 */
 	color	: #F0F2CC;
 	/* 폰트 사이즈 */
 	font-size	: 25px;
+}
+.nav nav ul li .menu .menu_link div {
 	
 	/* 영역 지정 */
-	width	: 100%;
-	height	: 100%;
-	
-	z-index	: 39;
+	width	: 200px;
+	height	: 30px;
 }
 
 /* 상단 메뉴 버튼 영역에 마우스 올렸을 시 */
-.nav .menu_link div:hover {
-
+.nav .menu .menu_link:hover {
+	
 	/* 폰트 색상 */
 	color	: #E0E086;
-	/* 폰트 사이즈 */
-	font-size	: 25px;
-	
-	z-index	: 39;
 }
 
+
+.nav .pulsMenu .sub-menu {
+	
+	width	: 238px;
+	height	: 108px;
+	
+	background-color	: #FCF4EF;
+	
+	border	: 1px solid #AC7B53;
+	border-top	: none;
+	
+	z-index	: 29;
+	
+}
 
 /* 상단 메뉴 버튼 영역 */
 .nav li {
@@ -283,50 +292,55 @@ a {
 	position: relative;
 	
 	/* 영역 지정 */
-	width	: 160px;
-	min-height	: 30px;
+	width	: 238px;
+	height	: 36px;
 	
-	/* 영역 확장 */
+	z-index	: 29;
+}
+
+.nav .pulsMenu {
+	height	: 36px;
+	position	: relative;
+}
+/* 더보기 메뉴 버튼 영역에 마우스 올렸을 시 */
+.nav .pulsMenu:hover {
+	height	: 146px;
+	
+	z-index	: 29;
+}
+.nav .pulsMenu .sub-menu {
+	opacity	: 0;
+}
+.nav .pulsMenu:hover .sub-menu {
+	opacity	: 1;
+}
+.nav .pulsMenu .sub-menu ul {
+	opacity	: 0;
+}
+.nav .pulsMenu:hover .sub-menu ul {
+	opacity	: 1;
+}
+.nav .pulsMenu:hover .sub-menu ul li div {
+	
+	position	: relative;
+	
+	width	: 198px;
+	height	: 30px;
+	
 	padding	: 3px 20px;
 	
-	z-index	: 39;
-}
-
-/* 상단 메뉴 버튼 영역 */
-.nav .menu_link .pulsMenu li div {
-
-	/* 폰트 색상 */
-	color	: #F0F2CC;
-	/* 폰트 사이즈 */
+	background-color	: #FCF4EF;
+	
 	font-size	: 25px;
+	/* 폰트 색상 */
+	color	: #AC7B53;
 	
-	/* 영역 지정 */
-	width	: 100%;
-	height	: 100%;
-	
-	z-index	: 39;
+	z-index	: 29;
 }
-
-
-
-
-/* 더보기 메뉴 버튼 영역에 마우스 올렸을 시 */
-.nav .menu_link .pulsMenu:hover {
-	z-index	: 39;
+.nav .pulsMenu:hover .sub-menu .menu_link:hover div {
+	/* 폰트 색상 */
+	color	: #93A603;
 }
-.pulsMenu ul {
-	opacity	: 0;
-	z-index	: 39;
-}
-.nav .menu_link .pulsMenu:hover ul {
-	opacity	: 1;
-	z-index	: 39;
-}
-.nav .menu_link .pulsMenu:hover ul li div {
-	z-index	: 39;
-}
-
-
 
 
 
@@ -397,7 +411,24 @@ a {
 	
 	
 	
-	margin-top	: 60px;
+	padding	: 40px 0;
+	margin	: 20px 20px;
+	margin-top	: 150px;
+	
+	background-color	: #FCF4EF;
+	color	: #AC7B53;
+	
+	font-size	: 14px;
+	
+/* 	border	: 1px solid #AC7B53; */
+	
+	/* 테두리 둥글게 */
+	border-radius	: 50px;
+	
+	
+	text-align: center;
+	
+	box-shadow	: 0px 3px 7px 0px #AC7B53;
 }
 
 
