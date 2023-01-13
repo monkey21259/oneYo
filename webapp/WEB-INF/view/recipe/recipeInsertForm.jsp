@@ -125,6 +125,7 @@
 					
 					
 					//	DB NotNull 방지 처리
+					let $thisNull = null;
 					$('.notNull').each(function(){
 						
 						let $this = $(this).val();
@@ -133,6 +134,8 @@
 							
 							alert("제목을 입력 해주세요.");
 							$(this).focus();
+							
+							$thisNull = $this;
 							
 							return false;
 						}
@@ -154,11 +157,20 @@
 					$('#rcontent').val(rcontentVal);
 					//내용 단계별로 묶기(구분자 : #)===================
 					
-					$("#recipeInsertForm").attr({
-						"action": "/oneYo/recipeInsert.ict",
-						"method": "POST",
-						"enctype": "multipart/form-data"
-					}).submit();
+					
+					
+					
+					
+					//	필수 작성 항목을 다 작성했을 시
+					if ($thisNull == null) {
+						
+						$("#recipeInsertForm").attr({
+							"action": "/oneYo/recipeInsert.ict",
+							"method": "POST",
+							"enctype": "multipart/form-data"
+						}).submit();
+						
+					}
 					
 				});
 				
