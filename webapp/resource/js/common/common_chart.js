@@ -36,7 +36,7 @@ function drawChart3() {
 			async: !1,
 			success: function (data) {
 				$("#chart_div").empty();
-				$("#chart_div").append($("<canvas id='mychart' style='width:800px; height:480px;'>"));
+				$("#chart_div").append($("<canvas id='mychart' style='width:800px; height:480px; display: inline-block;'>"));
 				
 				let valueSum = 0;
 
@@ -104,7 +104,7 @@ function drawChart4() {
 			async: !1,
 			success: function (data) {
 				$("#chart_div").empty();
-				$("#chart_div").append($("<canvas id='mychart' style='width:800px; height:480px;'>"));
+				$("#chart_div").append($("<canvas id='mychart' style='width:800px; height:480px; display: inline-block;'>"));
 			    chart = new Chart(document.getElementById("mychart"), {
 			    plugins: [ChartDataLabels],
                 type: 'bar',
