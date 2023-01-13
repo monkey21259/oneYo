@@ -283,7 +283,7 @@
 				<tr>
 					<td>
 						<img src="/oneYo/resource/img/login.png" class="loginImg">
-						<input type="text" id="mid" name="mid" placeholder="아이디">
+						<input type="text" id="mid" name="mid" placeholder="아이디" autocomplete="off">
 						 <hr>
 					</td>
 				</tr>
