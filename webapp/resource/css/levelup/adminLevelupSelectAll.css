@@ -95,6 +95,11 @@ td {
 .table_subject{
 	text-align:left;
 	}
+	
+img {
+	width: 90px;
+	height: 50px;
+}
 
 /* -------------------------------- 하단 footer -------------------------------- */
 #footer {
