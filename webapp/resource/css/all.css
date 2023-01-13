@@ -275,21 +275,7 @@ a {
 }
 
 /* 상단 메뉴 버튼 영역 */
-.nav li {
-	
-	/* 영역 지정 */
-	width	: 160px;
-	min-height	: 30px;
-	
-	/* 영역 확장 */
-	padding	: 3px 20px;
-	
-	z-index	: 39;
-}
-
-/* 상단 메뉴 더보기 영역 */
-.pulsMenu li {
-	position: relative;
+.nav .pulsMenu .sub-menu li {
 	
 	/* 영역 지정 */
 	width	: 238px;
@@ -310,19 +296,15 @@ a {
 }
 .nav .pulsMenu .sub-menu {
 	opacity	: 0;
-	display	: none;
 }
 .nav .pulsMenu:hover .sub-menu {
 	opacity	: 1;
-	display	: block;
 }
 .nav .pulsMenu .sub-menu ul {
 	opacity	: 0;
-	display	: none;
 }
 .nav .pulsMenu:hover .sub-menu ul {
 	opacity	: 1;
-	display	: block;
 }
 .nav .pulsMenu:hover .sub-menu ul li div {
 	
@@ -664,6 +646,3 @@ input[id="sideMenu"]:checked + label {
 }
 .sidebar li div span {
 }
-
-
-
