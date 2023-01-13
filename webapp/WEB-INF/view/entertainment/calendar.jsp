@@ -434,10 +434,17 @@
     </div> <!-- container -->
     
     <!-- 채팅 -->
+    <%
+    if( mnick != null && mnick.length()>0){
+    
+    %>
 	<jsp:include page="./chat.jsp">
 		<jsp:param value="<%=mnick %>" name="mnick"/>
 	</jsp:include>
     
+    <%
+    }
+    %>
     <!-- /.container -->
     <script src="/oneYo/calendar/vendor/js/jquery.min.js" charset="UTF-8"></script>
     <script src="/oneYo/calendar/vendor/js/bootstrap.min.js" charset="UTF-8"></script>

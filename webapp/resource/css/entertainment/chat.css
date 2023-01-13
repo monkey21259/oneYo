@@ -30,27 +30,30 @@
 
 /*아이콘위치*/
 #chatBtn {
+	
 	/* 화면 스크롤 해도 고정하게 하는 */
-	position	: fixed;
-	
-	top	: calc(90%);
-	right	: 10px;
-	z-index: 7;
-	
-	margin:auto;
-	padding: 10px;
-	
-	/* 중앙 정렬 */
+	position: fixed;
+    top: calc(91%);
+    right: 10px;
+    z-index: 7;
+    
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 69px;
+    width: 152px;	
+    
+    /* 중앙 정렬 */
 	text-align: center;
-	
-	/* 테두리 둥글게 */
-/* 	border-radius	: 30px 10px 10px 30px; */
-	border-radius: 270px;
-	background	: #FCF4EF;
-/* 	box-shadow: 2px 2px 2px 0 #AC7B53; */
-	
-	/* 마우스 커서 선택 */
-	cursor	: pointer;
+    
+    /* 테두리 둥글게 */
+    /* border-radius: 30px 10px 10px 30px; */
+    border-radius: 270px;
+    background: #FCF4EF;
+    box-shadow: 2px 2px 2px 0 #ac7b53;
+    
+    	/* 마우스 커서 선택 */
+    cursor: pointer;
 }
 
 /*========================채팅창=========================*/
@@ -104,7 +107,6 @@
 	position: relative;
     display: inline-block;
 /*     margin-top: 30px; */
-    padding: 5px;
     height: 335px;
     width:100%;
     overflow: auto; /*양이 많으면 스크롤 생기는거*/
@@ -252,10 +254,10 @@
 }
 
 
-.chatTable input[id="msg"] {
+.containerChat .chatTable input[id="msg"] {
 	display:flex;
-	height: 100%;
-    width: 252px;
+	height: 51%;
+    width: 245px;
     font-size: 13px;
     text-align: left;
     padding-left:20px;
@@ -266,7 +268,7 @@
 
 
 /*전송버튼*/
-.chatTable #enter_btn{
+.containerChat #enter_btn{
 	display:flex;
 	font-size: 15px;
     display: flex;
@@ -281,7 +283,7 @@
     align-items: center;
 }
 
-.chatTable #send_img{
+.containerChat #send_img{
 	width:30px;
 	height:30px;
 	text-align:center;
