@@ -397,7 +397,7 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>

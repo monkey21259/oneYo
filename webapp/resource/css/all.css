@@ -296,15 +296,23 @@ a {
 }
 .nav .pulsMenu .sub-menu {
 	opacity	: 0;
+	
+	display	: none;
 }
 .nav .pulsMenu:hover .sub-menu {
 	opacity	: 1;
+	
+	display	: block;
 }
 .nav .pulsMenu .sub-menu ul {
 	opacity	: 0;
+	
+	display	: none;
 }
 .nav .pulsMenu:hover .sub-menu ul {
 	opacity	: 1;
+	
+	display	: block;
 }
 .nav .pulsMenu:hover .sub-menu ul li div {
 	
