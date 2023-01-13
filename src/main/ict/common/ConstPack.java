@@ -14,7 +14,8 @@ public abstract class ConstPack {
 	public static final String NOTICE_GUBUN = "N";
 	
 	//파일 업로드
-	public static final String COMMON_IMG_PATH = "C:\\00.KOSMO120\\30.web\\el_ict_work\\oneYo\\webapp\\img\\";
+	//public static final String COMMON_IMG_PATH = "C:\\00.KOSMO120\\30.web\\el_ict_work\\oneYo\\webapp\\img\\";
+	public static final String COMMON_IMG_PATH = "C:\\00.KOSMO120\\30.web\\el_project_work\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\oneYo\\img\\";
 	
 	public static final String	MEMBER_IMG_PATH = COMMON_IMG_PATH + "mem";
 	public static final int		MEMBER_IMG_SIZE = 10 * 1024 * 1024;

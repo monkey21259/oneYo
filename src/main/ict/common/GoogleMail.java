@@ -29,7 +29,7 @@ public class GoogleMail {
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("wnsvy1919@gmail.com", "yfbphxycxbsfmsrv");
+				return new PasswordAuthentication("zxcvb2355@gmail.com", "lherepzrdwlugvkt");
 			}//end of getPasswordAuthentication() method overriding
 		});
 		
