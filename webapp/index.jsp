@@ -5,6 +5,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>index.jsp</title>
+		<script>
+		
+		location.href="home.ict";
+		
+		</script>
 		<style type="text/css">
 			
 			#container {
