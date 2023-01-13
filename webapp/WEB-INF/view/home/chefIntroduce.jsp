@@ -281,7 +281,7 @@
 					} // end of for
 					if (json.recipe.length % 4 != 0) {
 						let notEnough = (4 - json.recipe.length % 4);
-						alert(notEnough);
+						console.log(notEnough);
 						
 						for (let i=0; i < notEnough; i++) {
 							newLine.append($("<a>"));
@@ -398,7 +398,7 @@
 					} // end of for
 					if (json.tip.length % 4 != 0) {
 						let notEnough = (4 - json.tip.length % 4);
-						alert(notEnough);
+						console.log(notEnough);
 						
 						for (let i=0; i < notEnough; i++) {
 							newLine.append($("<a>"));
@@ -491,7 +491,7 @@
 
 <div id="backMenu"></div>
 
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
@@ -509,26 +509,34 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
-		<li class="item">
+				<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+	<%
+		} else if(mid.equals("admin")){
+	%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+	<%
+		}
+	%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
@@ -673,7 +681,7 @@
 						<li>
 							<a href="entertainment.ict" class="menu_link">
 							<div>
-							엔터테이먼트
+							엔터테인먼트
 							</div>
 							</a>
 						</li>
@@ -757,13 +765,12 @@
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
 		<span></span> / <span></span><br />
 		<span></span> / <span></span><br />
 	</div>
-</div>
+</div> <!-- footer -->
 
 </div>
 </div>

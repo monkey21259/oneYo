@@ -208,7 +208,7 @@
 			</div> 
 		</li>
 		<li class="item">
-			<div class="searchBarBtn">
+			<div>
 			<span>
 			검색
 			</span>
@@ -258,14 +258,14 @@
 
 <div id="searchBar" class="hidden_X">
 <!-- <div id="searchBar" class="hidden_O"> -->
-	<div class="searchBarBtn">
-		X
-	</div>
-	<div>
-		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true">
-				<jsp:param value="" name=""/>
-		</jsp:include>	
-	</div>
+<!-- 	<div class="searchBarBtn"> -->
+<!-- 		X -->
+<!-- 	</div> -->
+<!-- 	<div> -->
+<%-- 		<jsp:include page="/WEB-INF/view/recipe/recipePage.jsp" flush="true"> --%>
+<%-- 				<jsp:param value="" name=""/> --%>
+<%-- 		</jsp:include>	 --%>
+<!-- 	</div> -->
 </div>
 
 <div id="singo" class="hidden_X">
@@ -349,7 +349,7 @@
 			<li>
 				<div class="menu">
 					<a href="recipeSelectAll.ict" class="menu_link">
-						<div>
+						<div class="divClick">
 							레시피
 						</div>
 					</a>
@@ -396,7 +396,7 @@
 						<li>
 							<a href="entertainment.ict" class="menu_link">
 							<div>
-							엔터테이먼트
+							엔터테인먼트
 							</div>
 							</a>
 						</li>

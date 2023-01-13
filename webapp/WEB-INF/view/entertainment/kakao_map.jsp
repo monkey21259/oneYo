@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>선의 거리 계산하기</title>
+    <title>oneYo(오내요)</title>
     <!-- 전체 css -->
 <link rel="stylesheet" href="/oneYo/resource/css/all.css">
 <link rel="stylesheet" href="/oneYo/resource/css/entertainment/kakao_map.css">

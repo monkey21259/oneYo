@@ -80,6 +80,11 @@
 		<script type="text/javascript" src="/oneYo/resource/js/home/home.js" charset="UTF-8"></script>
 		<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
 		<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"></script>
+		
+		
+<!-- 페이지 로드시 회원,게시판 카운트 ajax로 처리하는 파일 -->
+<script type="text/javascript" src="/oneYo/resource/js/common/common_count.js"  charset="UTF-8"></script>
+
 		<script type="text/javascript">
 		
 			console.log("[home.jsp] JS");
@@ -201,7 +206,7 @@
 
 <div id="backMenu"></div>
 
-	<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
+<input type="checkbox" id="sideMenu" name="sideMenu" hidden>
 	<label for="sideMenu" id="sideLabel">&lt;&lt;&nbsp;&nbsp;&nbsp;</label>
 	<div class="sidebar">
 	<ul>
@@ -219,26 +224,34 @@
 			</span>
 			</div>
 		</li>
-<!-- 		<li class="item"> -->
-<!-- 			<div id="warningForm"> -->
-<!-- 			<span> -->
-<!-- 			신고 -->
-<!-- 			</span> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
+
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
-		<li class="item">
+				<li class="item">
+	<%
+		if(mid == null || !mid.equals("admin")){
+	%>
 			<div class="mypageHome">
 			<span>
-			my<br>Page 
+			마이<br>페이지 
 			</span>
 			</div>
+	<%
+		} else if(mid.equals("admin")){
+	%>
+			<div class="adminHome">
+			<span>
+			관리자<br>페이지 
+			</span>
+			</div>
+	<%
+		}
+	%>
 		</li>
 		<li class="item">
 			<a href="javascript:window.scrollTo(0,0);">
@@ -383,7 +396,7 @@
 						<li>
 							<a href="entertainment.ict" class="menu_link">
 							<div>
-							엔터테이먼트
+							엔터테인먼트
 							</div>
 							</a>
 						</li>
@@ -481,13 +494,13 @@ tipList
 <div id="footer">
 	<div>
 		<span>사이트 개발자: ICT(I am Chef, Today)</span><br />
-		<span>팀 소개: ~~~</span>
 	</div>
 	<div>
 		<span></span> / <span></span><br />
 		<span></span> / <span></span><br />
 	</div>
-</div>
+</div> <!-- footer -->
+
 
 </div>
 </div>

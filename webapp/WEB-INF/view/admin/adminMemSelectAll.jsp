@@ -161,7 +161,7 @@
 		<li class="item">
 			<div class="warningForm">
 			<span>
-			신고<br>팝업
+			신고
 			</span>
 			</div>
 		</li>
@@ -338,7 +338,7 @@
 						<li>
 							<a href="entertainment.ict" class="menu_link">
 							<div>
-							엔터테이먼트
+							엔터테인먼트
 							</div>
 							</a>
 						</li>

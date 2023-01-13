@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>oneYo(오내요)</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="/oneYo/resource/css/entertainment/chat.css">
 <script type="text/javascript">
@@ -16,7 +16,7 @@
 	$(document).ready(function(){
 		
 		//채팅 서버 주소
-		let url = "ws://192.168.219.118:8088/oneYo/chatserver";
+		let url = "ws://192.168.219.106:8088/oneYo/chatserver";
 		
 		// 웹 소켓
 		let ws;
